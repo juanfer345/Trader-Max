@@ -6,7 +6,7 @@ public class Producto {
     //private HashMap <Integer, Reseña> Reseña = new HashMap <> ();  -----> pendiente por implementar la clase reseña
     private Vendedor vendedor;
     private String nombreProducto, categoria;
-    private double precio = 0;
+    private double precio;
     private int cantidad;
     
     public int getCantidad(){return cantidad;}
