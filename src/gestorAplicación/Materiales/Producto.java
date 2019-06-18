@@ -1,6 +1,8 @@
-package gestorAplicación;
+package gestorAplicación.Materiales;
 
 import java.util.HashMap;
+
+import gestorAplicación.Usuarios.Vendedor;
 
 public class Producto {
     //private HashMap <Integer, Reseña> Reseña = new HashMap <> ();  -----> pendiente por implementar la clase reseña
