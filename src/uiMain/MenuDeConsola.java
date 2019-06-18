@@ -1,15 +1,142 @@
 package uiMain;
 
-public class MenuDeConsola {
+import java.util.ArrayList;
 
-	public static void main(String[] args) {
+public class MenuDeConsola {
+	ArrayList<OpcionDeMenu> opciones = new ArrayList<OpcionDeMenu>();
+	
+}
+
+abstract class OpcionDeMenu {
+	abstract public void ejecutar();
+
+	abstract public String toString();
+
+}
+
+class registrar extends OpcionDeMenu { // opcion 0
+
+	@Override
+	public void ejecutar() {
 		// TODO Auto-generated method stub
 
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
-abstract class OpcionDeMenu 
-{ 
-    abstract public void ejecutar(); 
+class iniciarSesion extends OpcionDeMenu { // opcion 1
+
+	@Override
+	public void ejecutar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+
+class buscarProducto extends OpcionDeMenu { // opcion 2
+
+	@Override
+	public void ejecutar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+
+class buscarCategoria extends OpcionDeMenu { // opcion 3
+
+	@Override
+	public void ejecutar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+
+class agregarACarrito extends OpcionDeMenu { // opcion 4
+
+	@Override
+	public void ejecutar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+
+class borrarHistorial extends OpcionDeMenu { // opcion 5
+
+	@Override
+	public void ejecutar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+
+class mostrarHistorial extends OpcionDeMenu { // opcion 6
+
+	@Override
+	public void ejecutar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+
+class comprarProductos extends OpcionDeMenu { // opcion 7
+
+	@Override
+	public void ejecutar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
