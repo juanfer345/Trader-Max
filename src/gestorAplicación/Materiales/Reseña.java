@@ -17,4 +17,10 @@ public class Reseña {
 		this.comentario = comentario;
 	}
 	
+    public String mostrarReseña() {
+    	return "Comentario: " + comentario + ". Estrellas:" + estrellas;
+    		
+    	
+    }
+	
 }

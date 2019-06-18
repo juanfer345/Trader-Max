@@ -1,14 +1,18 @@
 package gestorAplicación.Usuarios;
 
 import java.util.HashMap;
-
+import gestorAplicación.Materiales.CarritoDeCompras;
 import gestorAplicación.Materiales.Producto;
 
-class Comprador extends Cuenta {
+public class Comprador extends Cuenta {
+
+	public CarritoDeCompras carrito;
 	private HashMap<Integer, Producto> historial = new HashMap<>();
 
 	public void agregarACarrito(Producto producto) {
-		// pendiente
+		if (producto.getCantidad() > 0) {
+			carrito.productos.add(producto);
+		}
 	}
 
 	public void buscarProducto(int codigoProducto) {
