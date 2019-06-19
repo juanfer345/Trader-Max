@@ -14,7 +14,7 @@ public class Comprador extends Cuenta {
 			carrito.productos.add(producto);
 		}
 	}
-
+	
 	public void buscarProducto(int codigoProducto) {
 
 		Producto resultado;
@@ -23,7 +23,7 @@ public class Comprador extends Cuenta {
 
 		// rutina de impresión del resultado encontrado
 	}
-
+	
 	public void buscarCategoria(String categoria) {
 		// pendiente
 	}
