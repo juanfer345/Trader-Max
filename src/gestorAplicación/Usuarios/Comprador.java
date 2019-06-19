@@ -12,6 +12,7 @@ public class Comprador extends Cuenta {
 	public void agregarACarrito(Producto producto) {
 		if (producto.getCantidad() > 0) {
 			carrito.productos.add(producto);
+			carrito.totalproductos++;
 		}
 	}
 	

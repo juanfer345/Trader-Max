@@ -6,12 +6,15 @@ import java.util.Iterator;
 import gestorAplicación.Usuarios.Comprador;
 
 public class CarritoDeCompras {
-	private int totalproductos;
+	public int totalproductos;
 	private double precioTotal;
 	private Comprador titular;
-
 	public ArrayList<Producto> productos = new ArrayList<>();
-
+	
+	public CarritoDeCompras(Comprador c) {
+		this.titular = c;
+	}
+	
 	public int getTotalproductos() {
 		return totalproductos;
 	}
@@ -33,11 +36,11 @@ public class CarritoDeCompras {
 		productos.clear();
 	}
 	
-	public void quitarProducto(Producto p) {
+	public void quitarProducto(int codigo) {
 		Iterator<Producto> it = productos.iterator();
 		while (it.hasNext()) {
 			Producto pr = it.next();
-			if(pr == p) {
+			if(pr.codigoProducto == codigo) {
 				productos.remove(pr);
 			}
 		}
