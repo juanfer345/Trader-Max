@@ -2,11 +2,12 @@ package gestorAplicación.Usuarios;
 
 import gestorAplicación.Materiales.CuentaBancaria;
 
-public class Cuenta {
+public abstract class Cuenta {
     private CuentaBancaria cuentaBancaria; //otra variable de # usuarios registrados para usar el satatic?
     private String nombre, correo, password; //Y si creamos una variable edad?
     private int id; //Como añadirle el final a id?
-    private int cedula; //Y si se pone cedula en CuentaBancaria?
+    private String cedula; //Y si se pone cedula en CuentaBancaria?
+    static protected int contador = 0;
     
 	public CuentaBancaria getCuentaBancaria() {
 		return cuentaBancaria;
@@ -36,11 +37,15 @@ public class Cuenta {
 		return id;
 	}
 	
-	public int getCedula() {
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getCedula() {
 		return cedula;
 	}
 	
-	public void setCedula(int cedula) {
+	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
 
