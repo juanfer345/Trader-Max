@@ -25,7 +25,7 @@ public class CarritoDeCompras {
 		while (it.hasNext()) {
 			Producto p = it.next();
 			double precio = p.getPrecio();
-			titular.getCuenta().Transaccion(titular.getCuenta(), p.getVendedor().getCuenta(), precio);
+			titular.getCuentaBancaria().Transaccion(titular.getCuentaBancaria(), p.getVendedor().getCuentaBancaria(), precio);
 			p.cantidad--;
 		}
 	}
@@ -40,6 +40,6 @@ public class CarritoDeCompras {
 			if(pr == p) {
 				productos.remove(pr);
 			}
+		}
 	}
-
 }

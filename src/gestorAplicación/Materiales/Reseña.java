@@ -4,6 +4,19 @@ public class Reseña {
 	private int estrellas;
 	private String comentario;
 	
+	public Reseña(int estrellas) {
+		this("Sin comentario",estrellas);
+	}
+	
+	public Reseña(String comentario) {
+		this(comentario, 0);
+	}
+	
+	public Reseña(String comentario, int estrellas) {
+		this.comentario=comentario;
+		this.estrellas=estrellas;
+	}
+	
 	public int getEstrellas() {
 		return estrellas;
 	}
@@ -18,7 +31,7 @@ public class Reseña {
 	}
 	
     public String mostrarReseña() {
-    	return "Comentario: " + comentario + ". Estrellas:" + estrellas;
+    	return "Comentario: " + comentario + ". \nEstrellas:" + estrellas;
     		
     	
     }
