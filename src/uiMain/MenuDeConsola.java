@@ -3,8 +3,9 @@ package uiMain;
 import java.util.ArrayList;
 
 public class MenuDeConsola {
-	ArrayList<OpcionDeMenu> opciones = new ArrayList<OpcionDeMenu>();
 	
+	ArrayList <OpcionDeMenu> opciones = new ArrayList<OpcionDeMenu>();
+	public static boolean SalirApp = false;
 }
 
 abstract class OpcionDeMenu {

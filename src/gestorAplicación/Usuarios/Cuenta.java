@@ -2,22 +2,61 @@ package gestorAplicación.Usuarios;
 
 import gestorAplicación.Materiales.CuentaBancaria;
 
-public class Cuenta {
-    private CuentaBancaria cuentaUsuario;
-    private String nombre, correo;
-    private int id, cedula;
+public abstract class Cuenta {
+    private CuentaBancaria cuentaBancaria; //otra variable de # usuarios registrados para usar el satatic?
+    private String nombre, correo, password; //Y si creamos una variable edad?
+    private int id; //Como añadirle el final a id?
+    private String cedula; //Y si se pone cedula en CuentaBancaria?
+    static protected int contador = 0;
     
-    public String getNombre(){return nombre;}
-    
-    public int getCedula(){return cedula;}
-    
-    public CuentaBancaria getCuenta(){return cuentaUsuario;}
-    
-    public void setNombre(String nombre){this.nombre = nombre;}
-    
-    public void setCedula(int cedula){this.cedula = cedula;}
-    
-    public void setCuenta(CuentaBancaria cuentaUsuario){this.cuentaUsuario = cuentaUsuario;}
+	public CuentaBancaria getCuentaBancaria() {
+		return cuentaBancaria;
+	}
+	
+	public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {
+		this.cuentaBancaria = cuentaBancaria;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public String getCorreo() {
+		return correo;
+	}
+	
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getCedula() {
+		return cedula;
+	}
+	
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 }
 
 
