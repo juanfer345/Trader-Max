@@ -1,11 +1,12 @@
 package uiMain;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class MenuDeConsola {
 	
 	ArrayList <OpcionDeMenu> opciones = new ArrayList<OpcionDeMenu>();
 	public static boolean SalirApp = false;
+	public static Scanner e = new Scanner(System.in);
 }
 
 abstract class OpcionDeMenu {
