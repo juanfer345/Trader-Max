@@ -18,13 +18,13 @@ public class CuentaBancaria {
     public CuentaBancaria(int saldo,Comprador cuenta) { 
     	this.saldo=saldo;
     	this.id=cuenta.getId();
-    	this.propietario=cuenta.getNombre();
+    	this.setPropietario(cuenta.getNombre());
     }
     
     public CuentaBancaria(int saldo,Vendedor cuenta) { 
     	this.saldo=saldo;
     	this.id=cuenta.getId();
-    	this.propietario=cuenta.getNombre();
+    	this.setPropietario(cuenta.getNombre());
     }
 
 	public double getSaldo() {
@@ -39,6 +39,23 @@ public class CuentaBancaria {
 		cb2.setSaldo(cb2.getSaldo()+precio);
 		cb1.setSaldo(cb1.getSaldo()-precio);
 		return cb1.getSaldo();
+	}
+	
+	// Generado los set i get de ID y propietario para la base de datos (Juanfer)
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getPropietario() {
+		return propietario;
+	}
+
+	public void setPropietario(String propietario) {
+		this.propietario = propietario;
 	}
     
 }

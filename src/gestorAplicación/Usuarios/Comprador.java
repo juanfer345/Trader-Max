@@ -44,4 +44,9 @@ public class Comprador extends Cuenta {
 	public void mostrarHistorial() {
 		// rutina de impresión
 	}
+
+	// Generado el get de historial para la base de datos (Juanfer)
+	public HashMap<Integer, Producto> getHistorial() {
+		return historial;
+	}
 }

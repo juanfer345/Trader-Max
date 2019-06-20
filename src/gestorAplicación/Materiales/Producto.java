@@ -11,7 +11,7 @@ public class Producto {
 	private String nombreProducto;
 	private String categoria;
 	private double precio;
-	int codigoProducto;
+	public int codigoProducto; // Esto debería de ser privado (Nota de Juanfer)
 	private static int cont = 0;
 	int cantidad;
 	//Lo puse para poder usarlo en la interfaz

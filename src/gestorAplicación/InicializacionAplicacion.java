@@ -21,6 +21,7 @@ public class InicializacionAplicacion {
 	    HashMap <Integer, Vendedor> BDVendedores = new HashMap <> ();
 	    HashMap <Integer, Administrador> BDAdministradores = new HashMap <> ();
 	    HashMap <Integer, CuentaBancaria> BDCuentasBancarias = new HashMap <> ();
+	    HashMap <Integer, CarritoDeCompras> BDCarritos = new HashMap <> ();
 	    HashMap <Integer, Producto> BDProductos = new HashMap <> ();
 	    HashMap <Integer, Reseña> BDReseñas = new HashMap <> ();
 	    
@@ -33,7 +34,7 @@ public class InicializacionAplicacion {
 		}
 		
 		//Ejecución de la escritura en la base de datos
-		EscrituraBD.PrincipalEscrituraBD("BaseDeDatos", BDCompradores, BDVendedores, BDAdministradores, BDCuentasBancarias, BDProductos, BDReseñas);
+		EscrituraBD.PrincipalEscrituraBD("BaseDeDatos", BDCompradores, BDVendedores, BDAdministradores, BDCuentasBancarias, BDCarritos, BDProductos, BDReseñas);
 		
 		//Cerrado de la aplicación (pendiente)
 	}
