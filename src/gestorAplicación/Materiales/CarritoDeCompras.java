@@ -11,6 +11,10 @@ public class CarritoDeCompras {
 	private Comprador titular;
 	public ArrayList<Producto> productos = new ArrayList<>();
 	
+	//para usar en la interfaz
+	public CarritoDeCompras() {
+		
+	}
 	public CarritoDeCompras(Comprador c) {
 		this.titular = c;
 	}

@@ -14,7 +14,10 @@ public class Producto {
 	int codigoProducto;
 	private static int cont = 0;
 	int cantidad;
-
+	//Lo puse para poder usarlo en la interfaz
+public Producto() {
+	
+}
 	public Producto(Vendedor v, double precio, int cant, String nombre, String categoria) {
 		this.vendedor = v;
 		this.precio = precio;

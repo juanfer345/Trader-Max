@@ -1,9 +1,9 @@
 package uiMain;
-
-import gestorAplicaciï¿½n.Materiales.Producto;
-import gestorAplicaciï¿½n.Usuarios.Comprador;
-import gestorAplicaciï¿½n.Usuarios.Cuenta;
-import gestorAplicaciï¿½n.Usuarios.Vendedor;
+import java.util.*;
+import gestorAplicación.Materiales.Producto;
+import gestorAplicación.Usuarios.Comprador;
+import gestorAplicación.Usuarios.Cuenta;
+import gestorAplicación.Usuarios.Vendedor;
 
 
 public class MenuDeConsola {
@@ -30,7 +30,7 @@ class registrar extends OpcionDeMenu { // opcion 0
 		String c = e.next();
 		System.out.println("Cedula :");
 		String cc = e.next();
-		System.out.println("Contraseï¿½a: ");
+		System.out.println("Contraseña: ");
 		String p = e.next();
 
 		if(t==1) {
@@ -54,7 +54,7 @@ class iniciarSesion extends OpcionDeMenu { // opcion 1
 	public void ejecutar() {
 		System.out.println("Correo: ");
 		String c = e.next();
-		System.out.println("Contraseï¿½a: ");
+		System.out.println("Contraseña: ");
 		String p = e.next();
 		//despues se ve lo de las tablas de la base de datos
 	}
@@ -70,7 +70,7 @@ class buscarProducto extends OpcionDeMenu { // opcion 2
 
 	@Override
 	public void ejecutar() {
-		System.out.println("Ingrese el cï¿½digo del producto: ");
+		System.out.println("Ingrese el código del producto: ");
 		int codigo = e.nextInt();
 		//Producto p = Comprador.buscarProducto(codigo);
 
