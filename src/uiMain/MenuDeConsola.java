@@ -1,26 +1,45 @@
 package uiMain;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+import gestorAplicación.Materiales.Producto;
+import gestorAplicación.Usuarios.Comprador;
+import gestorAplicación.Usuarios.Cuenta;
+import gestorAplicación.Usuarios.Vendedor;
 
 public class MenuDeConsola {
 	
 	ArrayList <OpcionDeMenu> opciones = new ArrayList<OpcionDeMenu>();
 	public static boolean SalirApp = false;
+	public static Scanner e = new Scanner(System.in);
 }
 
-abstract class OpcionDeMenu {
+abstract class OpcionDeMenu extends MenuDeConsola {
 	abstract public void ejecutar();
-
 	abstract public String toString();
-
 }
 
 class registrar extends OpcionDeMenu { // opcion 0
 
 	@Override
 	public void ejecutar() {
-		// TODO Auto-generated method stub
-
+		System.out.println("Tipo de cuenta: \n1.Vendedor\n2.Comprador");
+		short t = e.nextShort();
+		System.out.println("Nombre: ");
+		String n = e.next();
+		System.out.println("Correo: ");
+		String c = e.next();
+		System.out.println("Cedula :");
+		String cc = e.next();
+		System.out.println("Contraseña: ");
+		String p = e.next();
+		
+		if(t==1) {
+			Cuenta ven = new Vendedor(n,c,p,cc);
+		}else {
+			Cuenta comp = new Comprador(n,c,p,cc);
+		}
+		//de aca ya se mete en la base de datos...
 	}
 
 	@Override
@@ -34,13 +53,15 @@ class iniciarSesion extends OpcionDeMenu { // opcion 1
 
 	@Override
 	public void ejecutar() {
-		// TODO Auto-generated method stub
-
+		System.out.println("Correo: ");
+		String c = e.next();
+		System.out.println("Contraseña: ");
+		String p = e.next();
+		//despues se ve lo de las tablas de la base de datos
 	}
 
-	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -50,18 +71,18 @@ class buscarProducto extends OpcionDeMenu { // opcion 2
 
 	@Override
 	public void ejecutar() {
-		// TODO Auto-generated method stub
+		System.out.println("Ingrese el código del producto: ");
+		int codigo = e.nextInt();
+		//Producto p = Comprador.buscarProducto(codigo);
 
 	}
-
-	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
+		//se pone segun el producto y aja
 		return null;
 	}
 
 }
-
+//de aqui para abajo falta que definan los metodos en las clases de vendendor o comprador.
 class buscarCategoria extends OpcionDeMenu { // opcion 3
 
 	@Override
