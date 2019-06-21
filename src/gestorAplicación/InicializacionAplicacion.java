@@ -6,6 +6,8 @@
 package gestorAplicación;
 
 import uiMain.MenuDeConsola;
+
+import java.io.IOException;
 import java.util.HashMap;
 import baseDatos.*;
 import gestorAplicación.Materiales.*;
@@ -21,7 +23,7 @@ public class InicializacionAplicacion {
     private static HashMap <Integer, Producto> BDProductos = new HashMap <> ();
     private static HashMap <Integer, Reseña> BDReseñas = new HashMap <> ();
     
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		
 		//Aquí debería ir una primera entrada que permita ingresar el nombre de una base de datos para cargar o que indique que no existe

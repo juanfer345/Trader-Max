@@ -43,30 +43,34 @@ public class EscrituraBD {
 		// INTENTÉ REDUCIR LA CANTIDAD DE MÉTODOS USANDO POO PERO NO PUDE (CONSULTAR CON EL MONITOR), Juanfer
 		
 		//Escritura de las cuentas
-		EscrituraCompradores(pw, InicializacionAplicacion.getBDCompradores());
-		EscrituraVendedores(pw, InicializacionAplicacion.getBDVendedores());				//En este método se guarda también el catálogo
-		EscrituraAdministradores(pw, InicializacionAplicacion.getBDAdministradores());
+		escrituraCompradores(pw, InicializacionAplicacion.getBDCompradores());
+		escrituraVendedores(pw, InicializacionAplicacion.getBDVendedores());
+		escrituraAdministradores(pw, InicializacionAplicacion.getBDAdministradores());
+		
 		
 		//Escritura de las cuentas bancarias
-		EscrituraCuentasBancarias(pw, InicializacionAplicacion.getBDCuentasBancarias());
+		escrituraCuentasBancarias(pw, InicializacionAplicacion.getBDCuentasBancarias());
 
 		//Escritura de los carritos de compras
-		EscrituraCarritos(pw, InicializacionAplicacion.getBDCarritos());
+		escrituraCarritos(pw, InicializacionAplicacion.getBDCarritos());
+
+		//Escritura del catálogo
+		escrituraCatalogo(pw, Vendedor.catalogo);
 		
 		//Escritura de los productos
-		EscrituraProductos(pw, InicializacionAplicacion.getBDProductos());
+		escrituraProductos(pw, InicializacionAplicacion.getBDProductos());
 		
 		//Escritura de las reseñas
-		EscrituraReseñas(pw, InicializacionAplicacion.getBDReseñas());
+		escrituraReseñas(pw, InicializacionAplicacion.getBDReseñas());
 		
 		//Cerrado de la base de datos
 		pw.close();
 	}
-	
-	private static void EscrituraCompradores(PrintWriter pw, HashMap <Integer, Comprador> HM) {
+
+	private static void escrituraCompradores(PrintWriter pw, HashMap <Integer, Comprador> HM) {
 		
 		Comprador val;
-		int i, j;
+		int i;
 		
 		//Escritura de elementos nuevos
 		// pendiente: verificar que no se está escribiendo algo ya guardado
@@ -80,10 +84,11 @@ public class EscrituraBD {
     		pw.println("contraseña: " + val.getPassword());
     		pw.println("cédula: " + val.getCedula());
     		pw.println("cuenta bancaria #: " + val.getCuentaBancaria().getId());
+    		pw.println("carrito de compras #: " + val.getCarrito().getId());
     		
             pw.println("HISTORIAL INICIO");
     		for (Map.Entry <Integer, Producto> cat: entry.getValue().getHistorial().entrySet()) {
-                pw.println("producto #: " + cat.getValue().codigoProducto);
+                pw.println("producto #: " + cat.getValue().getCodigoProducto());
     		}
             pw.println("HISTORIAL FIN");
             pw.println("COMPRADOR " + i + " FIN" +"\n");
@@ -92,14 +97,14 @@ public class EscrituraBD {
 		//Pendiente: borrar en el archivo todo lo que no se encuentre en la tabla hash
 	}
 	
-	private static void EscrituraVendedores(PrintWriter pw, HashMap <Integer, Vendedor> HM) {
+	private static void escrituraVendedores(PrintWriter pw, HashMap <Integer, Vendedor> HM) {
 		
 		Vendedor val;
 		int i;
 
         pw.println("INICIO CATÁLOGO\n");
 		for (Map.Entry <Integer, Producto> entry : Vendedor.catalogo.entrySet()) {
-            pw.println("producto #: " + entry.getValue().codigoProducto);
+            pw.println("producto #: " + entry.getValue().getCodigoProducto());
 		}
         pw.println("FIN CATÁLOGO\n");
 		
@@ -119,7 +124,7 @@ public class EscrituraBD {
         pw.println("FIN VENDEDORES\n");
 	}
 	
-	private static void EscrituraAdministradores(PrintWriter pw, HashMap <Integer, Administrador> HM) {
+	private static void escrituraAdministradores(PrintWriter pw, HashMap <Integer, Administrador> HM) {
 		
 		Administrador val;
 		int i;		
@@ -138,7 +143,7 @@ public class EscrituraBD {
         pw.println("FIN ADMINISTRADORES\n");
 	}
 
-	private static void EscrituraCuentasBancarias(PrintWriter pw, HashMap <Integer, CuentaBancaria> HM) {
+	private static void escrituraCuentasBancarias(PrintWriter pw, HashMap <Integer, CuentaBancaria> HM) {
 		
 		CuentaBancaria val;
 		int i;
@@ -155,7 +160,7 @@ public class EscrituraBD {
         pw.println("FIN CUENTAS BANCARIAS\n");
 	}
 	
-	private static void EscrituraCarritos(PrintWriter pw, HashMap <Integer, CarritoDeCompras> HM) {
+	private static void escrituraCarritos(PrintWriter pw, HashMap <Integer, CarritoDeCompras> HM) {
 		
 		CarritoDeCompras val;
 		int i, j;
@@ -167,7 +172,7 @@ public class EscrituraBD {
             pw.println("CARRITO " + i + "\n");
             pw.println("CODIGOS PRODUCTOS\n");
     		for (j = 1; j < val.productos.size(); j++) {
-        		pw.println("producto #: " + val.productos.get(j).codigoProducto);
+        		pw.println("producto #: " + val.productos.get(j).getCodigoProducto());
     		}
             pw.println("CODIGOS PRODUCTOS FIN\n");
     		pw.println("total de productos: " + val.getTotalproductos());
@@ -176,8 +181,17 @@ public class EscrituraBD {
         }
         pw.println("FIN CARRITOS\n");
 	}
+
+	private static void escrituraCatalogo(PrintWriter pw, HashMap <Integer, Producto> HM) {
+				
+        pw.println("INICIO CATÁLOGO\n");
+        for (Map.Entry <Integer, Producto> entry : HM.entrySet()) {
+            pw.println("producto #: " + entry.getKey());
+        }
+        pw.println("FIN CATÁLOGO\n");
+	}
 	
-	private static void EscrituraProductos(PrintWriter pw, HashMap <Integer, Producto> HM) {
+	private static void escrituraProductos(PrintWriter pw, HashMap <Integer, Producto> HM) {
 		
 		Producto val;
 		int i;
@@ -202,7 +216,7 @@ public class EscrituraBD {
         }
         pw.println("FIN PRODUCTOS\n");
 	}
-	private static void EscrituraReseñas(PrintWriter pw, HashMap <Integer, Reseña> HM) {
+	private static void escrituraReseñas(PrintWriter pw, HashMap <Integer, Reseña> HM) {
 		
 		Reseña val;
 		int i;
@@ -217,6 +231,5 @@ public class EscrituraBD {
             pw.println("RESEÑA " + i + " FIN" +"\n");
         }
         pw.println("FIN RESEÑAS\n");
-		
 	}
 }

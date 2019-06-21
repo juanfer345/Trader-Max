@@ -18,6 +18,10 @@ public class Reseña {
 		this.estrellas=estrellas;
 	}
 	
+	//Constructor por default necesario para la BD (Juanfer)
+	public Reseña() {
+	}
+
 	public int getEstrellas() {
 		return estrellas;
 	}

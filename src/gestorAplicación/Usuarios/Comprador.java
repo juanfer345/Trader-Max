@@ -6,8 +6,8 @@ import gestorAplicación.Materiales.Producto;
 
 public class Comprador extends Cuenta {
 
-	public CarritoDeCompras carrito;
-	private HashMap<Integer, Producto> historial = new HashMap<>();
+	private CarritoDeCompras carrito;		// Lo convertí a privado (Juanfer)
+	private HashMap <Integer, Producto> historial = new HashMap <>();
 
 	public Comprador(String nombre, String correo, String password, String cedula) {
 		this.setNombre(nombre);
@@ -50,7 +50,16 @@ public class Comprador extends Cuenta {
 	}
 
 	// Generado el get de historial para la base de datos (Juanfer)
-	public HashMap<Integer, Producto> getHistorial() {
+	public HashMap <Integer, Producto> getHistorial() {
 		return historial;
+	}
+	
+	// Generado set y get del carrito (Juanfer)
+	public CarritoDeCompras getCarrito() {
+		return carrito;
+	}
+
+	public void setCarrito(CarritoDeCompras carrito) {
+		this.carrito = carrito;
 	}
 }
