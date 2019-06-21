@@ -1,17 +1,17 @@
 package gestorAplicación.Materiales;
 
 import gestorAplicación.Usuarios.Vendedor;
-import java.util.HashMap;
+
+import java.util.ArrayList;
 
 public class Producto {
 
-	private HashMap<Integer, Reseña> Reseñas = new HashMap<>();
-	private ArrayList<Reseña> Reseñas = new LinkedList<>();
+	private ArrayList<Reseña> Reseñas = new ArrayList<>();
 	private Vendedor vendedor;
 	private String nombreProducto;
-	private String categoria;
+	public String categoria;
 	private double precio;
-	int codigoProducto;
+	public final int codigoProducto;
 	private static int cont = 0;
 	int cantidad;
 
@@ -45,8 +45,14 @@ public class Producto {
 	}
 
 	public void añadirReseña(Reseña x) {
-		int indice = Reseñas.size();
-		Reseñas.put(indice, x);
+		Reseñas.add(x);
+
 	}
+	/*
+	 * public String informacionBasica() { return "Producto [nombreProducto=" +
+	 * nombreProducto + ", categoria=" + categoria + ", precio=" + precio +
+	 * ", codigoProducto=" + codigoProducto + ", cantidad=" + cantidad + "]"; }
+	 */
+	// Informacion basica para usar en el historial
 
 }

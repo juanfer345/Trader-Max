@@ -1,6 +1,7 @@
 package gestorAplicación.Materiales;
 
 public class Reseña {
+
 	private int estrellas;
 	private String comentario;
 	
@@ -30,10 +31,9 @@ public class Reseña {
 		this.comentario = comentario;
 	}
 	
-    public String mostrarReseña() {
-    	return "Comentario: " + comentario + ". \nEstrellas:" + estrellas;
-    		
-    	
-    }
+	@Override
+	public String toString() {
+		return "Reseña [estrellas=" + estrellas + ", comentario=" + comentario + "]";
+	}
 	
 }
