@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import gestorAplicación.Materiales.Producto;
 import gestorAplicación.Usuarios.Vendedor;
 
-public class Visitante {
+public class Visitante extends Cuenta {
 	
 	
 	public LinkedList<Producto> verProductos() {
