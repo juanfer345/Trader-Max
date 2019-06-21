@@ -13,16 +13,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import gestorAplicación.InicializacionAplicacion;
 
 import gestorAplicación.Materiales.*;
 import gestorAplicación.Usuarios.*;
 
 public class EscrituraBD {
 	
-	public static void PrincipalEscrituraBD(String NombreBD, HashMap <Integer, Comprador> BDCompradores, HashMap <Integer, Vendedor> BDVendedores,
-										    HashMap <Integer, Administrador> BDAdministradores, HashMap <Integer, CuentaBancaria> BDCuentasBancarias,
-										    HashMap <Integer, CarritoDeCompras> BDCarritos, HashMap <Integer, Producto> BDProductos, 
-										    HashMap <Integer, Reseña> BDReseñas) {
+	public static void PrincipalEscrituraBD(String NombreBD) {
 		/*
 	  		Método PrincipalEscrituraBD (público)
 		   	
@@ -45,23 +43,23 @@ public class EscrituraBD {
 		// INTENTÉ REDUCIR LA CANTIDAD DE MÉTODOS USANDO POO PERO NO PUDE (CONSULTAR CON EL MONITOR), Juanfer
 		
 		//Escritura de las cuentas
-		EscrituraCompradores(pw, BDCompradores);
-		EscrituraVendedores(pw, BDVendedores);				//En este método se guarda también el catálogo
-		EscrituraAdministradores(pw, BDAdministradores);
+		EscrituraCompradores(pw, InicializacionAplicacion.getBDCompradores());
+		EscrituraVendedores(pw, InicializacionAplicacion.getBDVendedores());				//En este método se guarda también el catálogo
+		EscrituraAdministradores(pw, InicializacionAplicacion.getBDAdministradores());
 		
 		//Escritura de los carritos de compras
 		
 		//Escritura de las cuentas bancarias
-		EscrituraCuentasBancarias(pw, BDCuentasBancarias);
+		EscrituraCuentasBancarias(pw, InicializacionAplicacion.getBDCuentasBancarias());
 		
 		//Escritura de los productos
-		EscrituraCarritos(pw, BDCarritos);
+		EscrituraCarritos(pw, InicializacionAplicacion.getBDCarritos());
 		
 		//Escritura de los productos
-		EscrituraProductos(pw, BDProductos);
+		EscrituraProductos(pw, InicializacionAplicacion.getBDProductos());
 		
 		//Escritura de las reseñas
-		EscrituraReseñas(pw, BDReseñas);
+		EscrituraReseñas(pw, InicializacionAplicacion.getBDReseñas());
 		
 		//Cerrado de la base de datos
 		pw.close();

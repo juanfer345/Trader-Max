@@ -16,6 +16,8 @@ public class MenuDeConsola {
 	public static long vendedores =0;// si tienen una mejor idea de como hacer eso, porfa me dicen
 	public static long administradores =0; // no lo hice con el de el id por que despues es un enredo 
 											//para buscar en esas tablas
+	
+	
 }
 
 abstract class OpcionDeMenu extends MenuDeConsola {

@@ -6,24 +6,23 @@
 package gestorAplicación;
 
 import uiMain.MenuDeConsola;
-
 import java.util.HashMap;
-
 import baseDatos.*;
 import gestorAplicación.Materiales.*;
 import gestorAplicación.Usuarios.*;
 
 public class InicializacionAplicacion {
 
+    private static HashMap <Integer, Comprador> BDCompradores = new HashMap <> ();
+    private static HashMap <Integer, Vendedor> BDVendedores = new HashMap <> ();
+    private static HashMap <Integer, Administrador> BDAdministradores = new HashMap <> ();
+    private static HashMap <Integer, CuentaBancaria> BDCuentasBancarias = new HashMap <> ();
+    private static HashMap <Integer, CarritoDeCompras> BDCarritos = new HashMap <> ();
+    private static HashMap <Integer, Producto> BDProductos = new HashMap <> ();
+    private static HashMap <Integer, Reseña> BDReseñas = new HashMap <> ();
+    
 	public static void main(String[] args) {
 
-	    HashMap <Integer, Comprador> BDCompradores = new HashMap <> ();
-	    HashMap <Integer, Vendedor> BDVendedores = new HashMap <> ();
-	    HashMap <Integer, Administrador> BDAdministradores = new HashMap <> ();
-	    HashMap <Integer, CuentaBancaria> BDCuentasBancarias = new HashMap <> ();
-	    HashMap <Integer, CarritoDeCompras> BDCarritos = new HashMap <> ();
-	    HashMap <Integer, Producto> BDProductos = new HashMap <> ();
-	    HashMap <Integer, Reseña> BDReseñas = new HashMap <> ();
 	    
 		//Ejecución de la lectura de la base de datos
 		LecturaBD.PrincipalLecturaBD("BaseDeDatos");
@@ -34,9 +33,36 @@ public class InicializacionAplicacion {
 		}
 		
 		//Ejecución de la escritura en la base de datos
-		EscrituraBD.PrincipalEscrituraBD("BaseDeDatos", BDCompradores, BDVendedores, BDAdministradores, BDCuentasBancarias, BDCarritos, BDProductos, BDReseñas);
+		EscrituraBD.PrincipalEscrituraBD("BaseDeDatos");
 		
 		//Cerrado de la aplicación (pendiente)
 	}
 
+	public static HashMap<Integer, Comprador> getBDCompradores() {
+		return BDCompradores;
+	}
+
+	public static HashMap<Integer, Vendedor> getBDVendedores() {
+		return BDVendedores;
+	}
+
+	public static HashMap<Integer, Administrador> getBDAdministradores() {
+		return BDAdministradores;
+	}
+
+	public static HashMap<Integer, CuentaBancaria> getBDCuentasBancarias() {
+		return BDCuentasBancarias;
+	}
+
+	public static HashMap<Integer, CarritoDeCompras> getBDCarritos() {
+		return BDCarritos;
+	}
+
+	public static HashMap<Integer, Producto> getBDProductos() {
+		return BDProductos;
+	}
+
+	public static HashMap<Integer, Reseña> getBDReseñas() {
+		return BDReseñas;
+	}
 }
