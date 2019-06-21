@@ -14,7 +14,6 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import gestorAplicación.InicializacionAplicacion;
-
 import gestorAplicación.Materiales.*;
 import gestorAplicación.Usuarios.*;
 
@@ -38,6 +37,7 @@ public class EscrituraBD {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
+            System.exit(0);
 		}
 		
 		// INTENTÉ REDUCIR LA CANTIDAD DE MÉTODOS USANDO POO PERO NO PUDE (CONSULTAR CON EL MONITOR), Juanfer
@@ -47,12 +47,10 @@ public class EscrituraBD {
 		EscrituraVendedores(pw, InicializacionAplicacion.getBDVendedores());				//En este método se guarda también el catálogo
 		EscrituraAdministradores(pw, InicializacionAplicacion.getBDAdministradores());
 		
-		//Escritura de los carritos de compras
-		
 		//Escritura de las cuentas bancarias
 		EscrituraCuentasBancarias(pw, InicializacionAplicacion.getBDCuentasBancarias());
-		
-		//Escritura de los productos
+
+		//Escritura de los carritos de compras
 		EscrituraCarritos(pw, InicializacionAplicacion.getBDCarritos());
 		
 		//Escritura de los productos
@@ -86,9 +84,6 @@ public class EscrituraBD {
             pw.println("HISTORIAL INICIO");
     		for (Map.Entry <Integer, Producto> cat: entry.getValue().getHistorial().entrySet()) {
                 pw.println("producto #: " + cat.getValue().codigoProducto);
-    		}
-    		for (j = 1; j < val.carrito.productos.size(); j++) {
-        		pw.println("producto #: " + val.carrito.productos.get(j).codigoProducto);
     		}
             pw.println("HISTORIAL FIN");
             pw.println("COMPRADOR " + i + " FIN" +"\n");
@@ -124,7 +119,7 @@ public class EscrituraBD {
         pw.println("FIN VENDEDORES\n");
 	}
 	
-	private static void EscrituraAdministradores(PrintWriter pw, HashMap<Integer, Administrador> HM) {
+	private static void EscrituraAdministradores(PrintWriter pw, HashMap <Integer, Administrador> HM) {
 		
 		Administrador val;
 		int i;		
@@ -143,7 +138,8 @@ public class EscrituraBD {
         pw.println("FIN ADMINISTRADORES\n");
 	}
 
-	private static void EscrituraCuentasBancarias(PrintWriter pw, HashMap<Integer, CuentaBancaria> HM) {
+	private static void EscrituraCuentasBancarias(PrintWriter pw, HashMap <Integer, CuentaBancaria> HM) {
+		
 		CuentaBancaria val;
 		int i;
 		
@@ -182,11 +178,45 @@ public class EscrituraBD {
 	}
 	
 	private static void EscrituraProductos(PrintWriter pw, HashMap <Integer, Producto> HM) {
-		// TODO Auto-generated method stub
 		
+		Producto val;
+		int i;
+		
+        pw.println("INICIO PRODUCTOS\n");
+        for (Map.Entry <Integer, Producto> entry : HM.entrySet()) {
+            val = entry.getValue();
+            i = entry.getKey();
+            pw.println("PRODUCTO " + i + "\n");
+    		pw.println("nombre: " + val.getNombreProducto());
+    		pw.println("vendedor: " + val.getVendedor().getNombre());
+    		pw.println("precio: " + val.getPrecio());
+    		pw.println("categoria: " + val.getCategoria());
+    		pw.println("cantidad: " + val.getCantidad());
+            
+            pw.println("CODIGOS RESEÑAS\n");
+    		for (Map.Entry <Integer, Reseña> cat: entry.getValue().getReseñas().entrySet()) {
+        		pw.println("reseña #: " + cat.getValue().getId());
+    		}
+            pw.println("CODIGOS RESEÑAS FIN\n");
+            pw.println("PRODUCTO " + i + " FIN" +"\n");
+        }
+        pw.println("FIN PRODUCTOS\n");
 	}
 	private static void EscrituraReseñas(PrintWriter pw, HashMap <Integer, Reseña> HM) {
-		// TODO Auto-generated method stub
+		
+		Reseña val;
+		int i;
+		
+        pw.println("INICIO RESEÑAS\n");
+        for (Map.Entry <Integer, Reseña> entry : HM.entrySet()) {
+            val = entry.getValue();
+            i = entry.getKey();
+            pw.println("RESEÑA " + i + "\n");
+    		pw.println("estrellas: " + val.getEstrellas());
+    		pw.println("comentario: " + val.getComentario());
+            pw.println("RESEÑA " + i + " FIN" +"\n");
+        }
+        pw.println("FIN RESEÑAS\n");
 		
 	}
 }

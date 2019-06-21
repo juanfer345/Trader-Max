@@ -22,7 +22,9 @@ public class InicializacionAplicacion {
     private static HashMap <Integer, Reseña> BDReseñas = new HashMap <> ();
     
 	public static void main(String[] args) {
-
+		
+		
+		//Aquí debería ir una primera entrada que permita ingresar el nombre de una base de datos para cargar o que indique que no existe
 	    
 		//Ejecución de la lectura de la base de datos
 		LecturaBD.PrincipalLecturaBD("BaseDeDatos");

@@ -17,6 +17,10 @@ public class Comprador extends Cuenta {
 		this.setId(contador++);
 	}
 	
+	// Se necesita el constructor por default para la BD (Juanfer)
+	public Comprador() {
+	}
+
 	public void agregarACarrito(Producto producto) {
 		if (producto.getCantidad() > 0) {
 			carrito.productos.add(producto);

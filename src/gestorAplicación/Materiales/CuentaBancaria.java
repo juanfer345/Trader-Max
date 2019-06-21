@@ -27,6 +27,11 @@ public class CuentaBancaria {
     	this.setPropietario(cuenta.getNombre());
     }
 
+	// Se necesita el constructor por default para la BD (Juanfer)
+	public CuentaBancaria() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public double getSaldo() {
 		return saldo;
 	}

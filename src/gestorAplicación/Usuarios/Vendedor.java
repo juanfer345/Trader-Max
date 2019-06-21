@@ -15,4 +15,9 @@ public class Vendedor extends Cuenta{
 		this.setCedula(cedula);
 		this.setId(contador++);
 	}
+    
+	// Se necesita el constructor por default para la BD (Juanfer)
+	public Vendedor() {
+		// TODO Auto-generated constructor stub
+	}
 }

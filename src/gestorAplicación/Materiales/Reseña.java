@@ -3,7 +3,8 @@ package gestorAplicación.Materiales;
 public class Reseña {
 	private int estrellas;
 	private String comentario;
-	
+    private int id; //Añadido para poder utilizarlo en la base de datos (Juanfer)
+    
 	public Reseña(int estrellas) {
 		this("Sin comentario",estrellas);
 	}
@@ -32,8 +33,15 @@ public class Reseña {
 	
     public String mostrarReseña() {
     	return "Comentario: " + comentario + ". \nEstrellas:" + estrellas;
-    		
     	
     }
-	
+    
+	// Añadido de aqui pa abajo para la BD (Juanfer)
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

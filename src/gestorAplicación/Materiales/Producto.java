@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Producto {
 
 	private HashMap<Integer, Reseña> Reseñas = new HashMap<>();
-	private ArrayList<Reseña> Reseñas = new LinkedList<>();
+	//private ArrayList<Reseña> Reseñas = new LinkedList<>();  porque lo declaron dos veces? (Juanfer9
 	private Vendedor vendedor;
 	private String nombreProducto;
 	private String categoria;
@@ -50,6 +50,23 @@ public Producto() {
 	public void añadirReseña(Reseña x) {
 		int indice = Reseñas.size();
 		Reseñas.put(indice, x);
+	}
+	
+	// Añadido de aqui pa abajo para la BD (Juanfer)
+	public String getNombreProducto() {
+		return nombreProducto;
+	}
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	public HashMap<Integer, Reseña> getReseñas() {
+		return Reseñas;
 	}
 
 }
