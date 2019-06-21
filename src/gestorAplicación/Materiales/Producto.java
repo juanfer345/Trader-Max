@@ -1,23 +1,21 @@
 package gestorAplicación.Materiales;
 
 import gestorAplicación.Usuarios.Vendedor;
-
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Producto {
 
-	private ArrayList<Reseña> Reseñas = new ArrayList<>();
+	
 	private HashMap<Integer, Reseña> Reseñas = new HashMap<>();
-	//private ArrayList<Reseña> Reseñas = new LinkedList<>();  porque lo declaron dos veces? (Juanfer9
 	private Vendedor vendedor;
 	private String nombreProducto;
 	public String categoria;
 	private double precio;
-	public final int codigoProducto;
-	private int codigoProducto; // Esto debería de ser privado (Nota de Juanfer)
+	private int codigoProducto; 
 	private static int cont = 0;
 	int cantidad;
-	//Lo puse para poder usarlo en la interfaz
+	
+	
 public Producto() {
 	
 }
@@ -51,12 +49,10 @@ public Producto() {
 	}
 
 	public void añadirReseña(Reseña x) {
-		Reseñas.add(x);
 		int indice = Reseñas.size();
 		Reseñas.put(indice, x);
 	}
 	
-	// Añadido de aqui pa abajo para la BD (Juanfer)
 	public String getNombreProducto() {
 		return nombreProducto;
 	}
@@ -87,4 +83,4 @@ public Producto() {
 	 */
 	// Informacion basica para usar en el historial
 
-}
+

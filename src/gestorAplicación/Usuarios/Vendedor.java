@@ -22,6 +22,5 @@ public class Vendedor extends Cuenta {
     
 	// Se necesita el constructor por default para la BD (Juanfer)
 	public Vendedor() {
-		// TODO Auto-generated constructor stub
 	}
 }

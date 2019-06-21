@@ -4,7 +4,7 @@ public class Reseña {
 
 	private int estrellas;
 	private String comentario;
-    private int id; //Añadido para poder utilizarlo en la base de datos (Juanfer)
+    private int id;
     
 	public Reseña(int estrellas) {
 		this("Sin comentario",estrellas);
@@ -19,7 +19,6 @@ public class Reseña {
 		this.estrellas=estrellas;
 	}
 	
-	//Constructor por default necesario para la BD (Juanfer)
 	public Reseña() {
 	}
 
@@ -36,18 +35,6 @@ public class Reseña {
 		this.comentario = comentario;
 	}
 	
-	@Override
-	public String toString() {
-		return "Reseña [estrellas=" + estrellas + ", comentario=" + comentario + "]";
-	}
-	
-}
-    public String mostrarReseña() {
-    	return "Comentario: " + comentario + ". \nEstrellas:" + estrellas;
-    	
-    }
-    
-	// Añadido de aqui pa abajo para la BD (Juanfer)
 	public int getId() {
 		return id;
 	}

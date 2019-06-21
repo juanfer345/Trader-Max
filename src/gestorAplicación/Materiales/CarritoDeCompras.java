@@ -45,7 +45,7 @@ public class CarritoDeCompras {
 		Iterator<Producto> it = productos.iterator();
 		while (it.hasNext()) {
 			Producto pr = it.next();
-			if(pr.codigoProducto == codigo) {
+			if(pr.getCodigoProducto() == codigo) {
 				productos.remove(pr);
 			}
 		}

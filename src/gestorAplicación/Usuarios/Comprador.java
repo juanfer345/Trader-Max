@@ -1,8 +1,8 @@
 package gestorAplicación.Usuarios;
 
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 import gestorAplicación.Materiales.CarritoDeCompras;
@@ -10,9 +10,7 @@ import gestorAplicación.Materiales.Producto;
 
 public class Comprador extends Cuenta {
 
-	public CarritoDeCompras carrito;
-	private ArrayList<Producto> historial = new ArrayList<>();
-	private CarritoDeCompras carrito;		// Lo convertí a privado (Juanfer)
+	private CarritoDeCompras carrito;		
 	private HashMap <Integer, Producto> historial = new HashMap <>();
 
 	public Comprador(String nombre, String correo, String password, String cedula) {
@@ -23,8 +21,6 @@ public class Comprador extends Cuenta {
 		this.id = contador++;
 	}
 
-	
-	// Se necesita el constructor por default para la BD (Juanfer)
 	public Comprador() {
 	}
 
@@ -41,8 +37,8 @@ public class Comprador extends Cuenta {
 		boolean x = true;
 		while (it.hasNext()) {
 			Producto p = it.next();
-			if (p.codigoProducto == codigo) {
-				historial.add(p);
+			if (p.getCodigoProducto() == codigo) {
+				historial.put(codigo, p);
 				mens = p;
 			}
 		}
@@ -82,7 +78,6 @@ public class Comprador extends Cuenta {
 		return historial;
 	}
 	
-	// Generado set y get del carrito (Juanfer)
 	public CarritoDeCompras getCarrito() {
 		return carrito;
 	}
