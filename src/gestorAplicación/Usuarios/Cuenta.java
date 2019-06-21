@@ -5,7 +5,7 @@ import gestorAplicación.Materiales.CuentaBancaria;
 public abstract class Cuenta {
     private CuentaBancaria cuentaBancaria; //otra variable de # usuarios registrados para usar el satatic?
     private String nombre, correo, password; 
-    public int id; 
+    public int id;
     private String cedula; 
     static protected int contador = 0;
     
