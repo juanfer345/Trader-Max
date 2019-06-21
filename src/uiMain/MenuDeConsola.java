@@ -1,22 +1,40 @@
 package uiMain;
 import java.util.*;
 import gestorAplicación.*;
+import gestorAplicación.Usuarios.Administrador;
 import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Usuarios.Cuenta;
 import gestorAplicación.Usuarios.Vendedor;
+import gestorAplicación.Usuarios.Visitante;
 import gestorAplicación.InicializacionAplicacion;
+import gestorAplicación.Materiales.CarritoDeCompras;
 import gestorAplicación.Materiales.Producto;
+import gestorAplicación.Materiales.Reseña;
 
 public class MenuDeConsola {
 
-	ArrayList <OpcionDeMenu> opciones = new ArrayList<OpcionDeMenu>();
+	ArrayList <OpcionDeMenu> opciones = new ArrayList<OpcionDeMenu>();//lista de metodos para el admin
+	ArrayList <OpcionDeMenu> activo = new ArrayList<OpcionDeMenu>();
+	Cuenta usuario = new Visitante();
 	public static boolean SalirApp = false;
 	public static Scanner e = new Scanner(System.in);
-	public static long compradores = 0; //para generar las claves para meterlos en la tabla hash
-	public static long vendedores =0;// si tienen una mejor idea de como hacer eso, porfa me dicen
-	public static long administradores =0; // no lo hice con el de el id por que despues es un enredo 
-											//para buscar en esas tablas
+	public static int compradores = 0; 
+	public static int vendedores =0;
+	public static int administradores =0;
+											
 	
+	public void LanzarMenu(){ //default del invitado
+		/*for(byte i=0;i<opciones.size();i++){
+		System.out.println(opciones.get(i) +"  "+i);
+		 }
+		//System.out.println(salir)?*/
+		//activo.add(registrar.ejecutar());
+		
+		System.out.println("Ingrese la opción");
+		int recibido = MenuDeConsola.e.nextInt();
+		OpcionDeMenu op =  opciones.get(recibido);
+		op.ejecutar();
+		}	
 	
 }
 
@@ -27,7 +45,6 @@ abstract class OpcionDeMenu extends MenuDeConsola {
 
 class registrar extends OpcionDeMenu { // opcion 0
 
-	@Override
 	public void ejecutar() {
 		System.out.println("Tipo de cuenta: \n1.Vendedor\n2.Comprador");
 		short t = e.nextShort();
@@ -41,14 +58,15 @@ class registrar extends OpcionDeMenu { // opcion 0
 		String p = e.next();
 
 		if(t==1) {
-			Cuenta ven = new Vendedor(n,c,p,cc);
-			//InicializaccionAplicacion.BDVendedores.put(vendedores,ven);
+			usuario = new Vendedor(n,c,p,cc);
+			(InicializacionAplicacion.getBDVendedores()).put(vendedores,ven);
+			opciones.add(subirProducto());
 			
 		}else {
 			Cuenta comp = new Comprador(n,c,p,cc);
-			//gestorAplicacón.InicializaccionAplicacion.BDCompradores.put(compradores,comp);
+			InicializacionAplicacion.getBDCompradores().put(compradores,comp);
 		}
-		//de aca ya se mete en la base de datos...
+		
 	}
 	public String toString() {
 		return null;
@@ -67,7 +85,7 @@ class iniciarSesion extends OpcionDeMenu { // opcion 1
 		String p = e.next();
 		if (t==1) {
 			boolean x;
-			 //busqueda en la tabla... lo hago una vez sepa como acceder a ellas
+			 
 			if(x==true) {
 				//se comprueba que la contraseña concuerde
 			}else {
@@ -170,6 +188,162 @@ class comprarProductos extends OpcionDeMenu { // opcion 7
 	@Override
 	public void ejecutar() {
 		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+class vaciarCarrito extends OpcionDeMenu { // opcion 8
+
+	@Override
+	public void ejecutar() {
+		CarritoDeCompras car = new CarritoDeCompras();
+		 car.vaciarCarrito();
+
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
+
+class quitarProducto extends OpcionDeMenu { // opcion 9
+    
+	@Override
+	public void ejecutar() {
+		System.out.println("Ingresa el codigo del producto");
+		int cod = MenuDeConsola.e.nextInt();
+		//definir el default en carritodecompras
+		CarritoDeCompras car = new CarritoDeCompras();
+		car.quitarProducto(cod);
+				   
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+
+//como poner esta opcion en solo cuando se hable de un producto??
+
+class agregarReseña extends OpcionDeMenu { // opcion 10
+
+	@Override
+	public void ejecutar() {
+		Producto pro = new Producto();
+        System.out.println("Ingrese numero de estrellas: ");
+        int estrellas = MenuDeConsola.e.nextInt();
+        System.out.println("Ingrese comentario: ");
+        String comentario  = MenuDeConsola.e.next();
+        Reseña rese = new Reseña(comentario, estrellas);
+        pro.añadirReseña(rese);
+       
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+
+//definir este metodo para vendedor
+
+class subirProducto extends OpcionDeMenu { // opcion 11
+     
+	@Override
+	public void ejecutar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+//asegurar de comofunciona la menu de consola
+class eliminarOpcion extends OpcionDeMenu { // opci gestorAplicación.Usuarios.Vendedoron 12
+	@Override
+	public void ejecutar() {
+		for (int i = 0;i<opciones.size();i++) {
+			System.out.println(opciones.get(i));
+		}
+		System.out.println("Ingrese el indice de la opcion que quiera eliminar: ");
+		int Aeliminar = MenuDeConsola.e.nextInt();
+		opciones.remove(Aeliminar);
+
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+//como va a conocer el administrador las opcionesDeMenu a agregar *--mal codigo,queda pendiente---*
+class agregarOpcion extends OpcionDeMenu { // opcion 13
+
+	@Override
+	public void ejecutar() {
+		for (int i = 0;i<opciones.size();i++) {
+			System.out.println(opciones.get(i));
+		}
+		System.out.println("Ingrese el indice de la opcion que quiera eliminar: ");
+		int Aeliminar = MenuDeConsola.e.nextInt();
+		opciones.remove(Aeliminar);
+
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+//administrador borrando cuenta, se puede ingresar el nombre de un objeto y destruirlo?
+
+class eliminarCuenta extends OpcionDeMenu { // opcion 14
+
+	@Override
+	public void ejecutar() {
+		System.out.println("¿Que cuenta eliminar?: ");
+	 String Aborrar = MenuDeConsola.e.next();
+	 Cuenta Aborrar = new Cuenta();
+	    
+	    
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+class SeguimientoDeCuentas extends OpcionDeMenu { // opcion 15
+
+	@Override
+	public void ejecutar() {
+		Administrador admi = new Administrador();
+		Administrador.getNumeroDeCuentas();
 
 	}
 
