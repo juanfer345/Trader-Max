@@ -12,6 +12,8 @@ public class Comprador extends Cuenta {
 
 	public CarritoDeCompras carrito;
 	private ArrayList<Producto> historial = new ArrayList<>();
+	private CarritoDeCompras carrito;		// Lo convertí a privado (Juanfer)
+	private HashMap <Integer, Producto> historial = new HashMap <>();
 
 	public Comprador(String nombre, String correo, String password, String cedula) {
 		this.setNombre(nombre);
@@ -19,6 +21,11 @@ public class Comprador extends Cuenta {
 		this.setPassword(password);
 		this.setCedula(cedula);
 		this.id = contador++;
+	}
+
+	
+	// Se necesita el constructor por default para la BD (Juanfer)
+	public Comprador() {
 	}
 
 	public void agregarACarrito(Producto producto) {
@@ -68,5 +75,19 @@ public class Comprador extends Cuenta {
 		 * imprimiendo cada producto con la informacion basica
 		 */
 
+	}
+
+	// Generado el get de historial para la base de datos (Juanfer)
+	public HashMap <Integer, Producto> getHistorial() {
+		return historial;
+	}
+	
+	// Generado set y get del carrito (Juanfer)
+	public CarritoDeCompras getCarrito() {
+		return carrito;
+	}
+
+	public void setCarrito(CarritoDeCompras carrito) {
+		this.carrito = carrito;
 	}
 }

@@ -10,7 +10,12 @@ public class CarritoDeCompras {
 	private double precioTotal;
 	private Comprador titular;
 	public ArrayList<Producto> productos = new ArrayList<>();
+	private int id;
 	
+	//para usar en la interfaz
+	public CarritoDeCompras() {
+		
+	}
 	public CarritoDeCompras(Comprador c) {
 		this.titular = c;
 	}
@@ -45,4 +50,20 @@ public class CarritoDeCompras {
 			}
 		}
 	}
+
+	// Generado de aqui para abajo para la BD (Juanfer)
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setTotalproductos(int totalproductos) {
+		this.totalproductos = totalproductos;
+	}
+	public void setPrecioTotal(double precioTotal) {
+		this.precioTotal = precioTotal;
+	}
+
 }

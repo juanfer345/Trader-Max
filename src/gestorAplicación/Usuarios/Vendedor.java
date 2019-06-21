@@ -19,4 +19,9 @@ public class Vendedor extends Cuenta {
 	public void subirProducto(Producto p) {
 		catalogo.add(p);
 	}
+    
+	// Se necesita el constructor por default para la BD (Juanfer)
+	public Vendedor() {
+		// TODO Auto-generated constructor stub
+	}
 }
