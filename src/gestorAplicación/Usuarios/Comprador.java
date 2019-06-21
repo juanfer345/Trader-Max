@@ -22,6 +22,11 @@ public class Comprador extends Cuenta {
 	}
 
 	public Comprador() {
+		
+	}
+	
+	public LinkedList<Producto> verProductos() {
+		return Vendedor.catalogo;
 	}
 
 	public void agregarACarrito(Producto producto) {
@@ -49,7 +54,7 @@ public class Comprador extends Cuenta {
 		}
 	}
 
-	public Deque buscarCategoria(String cat) {
+	public Deque<Producto> buscarCategoria(String cat) {
 		Deque<Producto> colaProd = new LinkedList<Producto>();
 		Iterator<Producto> it = Vendedor.catalogo.iterator();
 		while (it.hasNext()) {

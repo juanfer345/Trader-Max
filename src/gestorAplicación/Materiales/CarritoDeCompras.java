@@ -34,7 +34,7 @@ public class CarritoDeCompras {
 			Producto p = it.next();
 			double precio = p.getPrecio();
 			titular.getCuentaBancaria().Transaccion(titular.getCuentaBancaria(), p.getVendedor().getCuentaBancaria(), precio);
-			p.cantidad--;
+			p.setCantidad(p.getCantidad()-1);
 		}
 	}
 	public void vaciarCarrito() {

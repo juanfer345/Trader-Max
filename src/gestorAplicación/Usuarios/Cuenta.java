@@ -3,11 +3,11 @@ package gestorAplicación.Usuarios;
 import gestorAplicación.Materiales.CuentaBancaria;
 
 public abstract class Cuenta {
-    private CuentaBancaria cuentaBancaria; //otra variable de # usuarios registrados para usar el satatic?
+    private CuentaBancaria cuentaBancaria;
     private String nombre, correo, password; 
     public int id;
     private String cedula; 
-    static protected int contador = 0;
+    static protected int contador;
     
 	public CuentaBancaria getCuentaBancaria() {
 		return cuentaBancaria;

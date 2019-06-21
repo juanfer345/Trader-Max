@@ -12,13 +12,13 @@ public class Producto {
 	public String categoria;
 	private double precio;
 	private int codigoProducto; 
-	private static int cont = 0;
-	int cantidad;
+	private static int cont;
+	private int cantidad;
 	
+	public Producto() {
 	
-public Producto() {
+	}
 	
-}
 	public Producto(Vendedor v, double precio, int cant, String nombre, String categoria) {
 		this.vendedor = v;
 		this.precio = precio;
@@ -75,12 +75,6 @@ public Producto() {
 		this.codigoProducto = codigoProducto;
 	}
 
-	}
-	/*
-	 * public String informacionBasica() { return "Producto [nombreProducto=" +
-	 * nombreProducto + ", categoria=" + categoria + ", precio=" + precio +
-	 * ", codigoProducto=" + codigoProducto + ", cantidad=" + cantidad + "]"; }
-	 */
-	// Informacion basica para usar en el historial
+}
 
 

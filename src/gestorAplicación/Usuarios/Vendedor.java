@@ -1,7 +1,6 @@
 package gestorAplicación.Usuarios;
 
 import java.util.LinkedList;
-
 import gestorAplicación.Materiales.Producto;
 
 public class Vendedor extends Cuenta {
@@ -15,12 +14,16 @@ public class Vendedor extends Cuenta {
 		this.setCedula(cedula);
 		this.id = contador++;
 	}
+	
+	public Vendedor() {
+		
+	}
 
 	public void subirProducto(Producto p) {
 		catalogo.add(p);
 	}
     
-	// Se necesita el constructor por default para la BD (Juanfer)
-	public Vendedor() {
+	public LinkedList<Producto> verProductos() {
+		return Vendedor.catalogo;
 	}
 }

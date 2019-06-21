@@ -18,9 +18,6 @@ public class Reseña {
 		this.comentario=comentario;
 		this.estrellas=estrellas;
 	}
-	
-	public Reseña() {
-	}
 
 	public int getEstrellas() {
 		return estrellas;
