@@ -9,6 +9,7 @@ import gestorAplicación.Usuarios.Vendedor;
 
 public class Visitante {
 	
+	
 	public LinkedList<Producto> verProductos() {
 		return Vendedor.catalogo;
 	}

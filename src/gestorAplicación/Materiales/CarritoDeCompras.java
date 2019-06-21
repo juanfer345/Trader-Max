@@ -2,26 +2,25 @@ package gestorAplicación.Materiales;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import gestorAplicación.Usuarios.Comprador;
+import gestorAplicación.Usuarios.Vendedor;
 
 public class CarritoDeCompras {
-	public int totalproductos;
+	private int totalProductos;
 	private double precioTotal;
 	private Comprador titular;
 	public ArrayList<Producto> productos = new ArrayList<>();
 	private int id;
-	
-	//para usar en la interfaz
+
 	public CarritoDeCompras() {
-		
 	}
+
 	public CarritoDeCompras(Comprador c) {
 		this.titular = c;
 	}
-	
+
 	public int getTotalproductos() {
-		return totalproductos;
+		return totalProductos;
 	}
 
 	public double getPrecioTotal() {
@@ -33,25 +32,33 @@ public class CarritoDeCompras {
 		while (it.hasNext()) {
 			Producto p = it.next();
 			double precio = p.getPrecio();
-			titular.getCuentaBancaria().Transaccion(titular.getCuentaBancaria(), p.getVendedor().getCuentaBancaria(), precio);
-			p.setCantidad(p.getCantidad()-1);
+			titular.getCuentaBancaria().Transaccion(titular.getCuentaBancaria(), p.getVendedor().getCuentaBancaria(),
+					precio);
+			p.setCantidad(p.getCantidad() - 1);
+			if (p.getCantidad() == 0) {
+				Vendedor.catalogo.remove(p);
+			}
 		}
+		productos.clear();
+		totalProductos = 0;
 	}
+
 	public void vaciarCarrito() {
 		productos.clear();
+		totalProductos = 0;
 	}
-	
+
 	public void quitarProducto(int codigo) {
 		Iterator<Producto> it = productos.iterator();
 		while (it.hasNext()) {
 			Producto pr = it.next();
-			if(pr.getCodigoProducto() == codigo) {
+			if (pr.getCodigoProducto() == codigo) {
 				productos.remove(pr);
+				totalProductos--;
 			}
 		}
 	}
 
-	// Generado de aqui para abajo para la BD (Juanfer)
 	public int getId() {
 		return id;
 	}
@@ -59,9 +66,11 @@ public class CarritoDeCompras {
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public void setTotalproductos(int totalproductos) {
-		this.totalproductos = totalproductos;
+		this.totalProductos = totalproductos;
 	}
+
 	public void setPrecioTotal(double precioTotal) {
 		this.precioTotal = precioTotal;
 	}
