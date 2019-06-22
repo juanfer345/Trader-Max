@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Producto {
 
-	
+	private static String categorias [] = {"Belleza", "Carros", "Deportes", "Electrodomesticos", "Hogar", "Juegos", "Libros", "Musica", "Tecnologia", "Vestimenta"};
 	private HashMap<Integer, Reseña> Reseñas = new HashMap<>();
 	private Vendedor vendedor;
 	private String nombreProducto;
