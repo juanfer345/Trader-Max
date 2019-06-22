@@ -2,6 +2,11 @@ package gestorAplicación.Materiales;
 
 public class Reseña {
 
+	@Override
+	public String toString() {
+		return "Reseña [Estrellas=" + estrellas + "\n Comentario=" + comentario + "]";
+	}
+
 	private int estrellas;
 	private String comentario;
     private int id;
