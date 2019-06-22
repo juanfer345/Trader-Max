@@ -13,10 +13,11 @@ public class Vendedor extends Cuenta {
 		this.setPassword(password);
 		this.setCedula(cedula);
 		this.id = contador++;
+		totalCuentas++;
 	}
 	
 	public Vendedor() {
-		
+		totalCuentas++;
 	}
 
 	public void subirProducto(Producto p) {

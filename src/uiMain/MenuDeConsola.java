@@ -108,7 +108,7 @@ class buscarProducto extends OpcionDeMenu { // opcion 2
 	public void ejecutar() {
 		System.out.println("Ingrese el código del producto: ");
 		int codigo = e.nextInt();
-		Producto p = Comprador.buscarProducto(codigo); //se tiene que arreglar el metodo en comprador...
+		Producto p = Comprador.buscar(codigo); //se tiene que arreglar el metodo en comprador...
 		
 
 	}

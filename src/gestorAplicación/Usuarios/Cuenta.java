@@ -8,6 +8,7 @@ public abstract class Cuenta {
     public int id;
     private String cedula; 
     static protected int contador;
+    static int totalCuentas;
     
 	public CuentaBancaria getCuentaBancaria() {
 		return cuentaBancaria;

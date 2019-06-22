@@ -1,3 +1,4 @@
+
 package gestorAplicación.Usuarios;
 
 import java.util.Deque;
@@ -19,10 +20,11 @@ public class Comprador extends Cuenta {
 		this.setPassword(password);
 		this.setCedula(cedula);
 		this.id = contador++;
+		totalCuentas++;
 	}
 
 	public Comprador() {
-		
+		totalCuentas++;
 	}
 	
 	public LinkedList<Producto> verProductos() {
@@ -32,11 +34,12 @@ public class Comprador extends Cuenta {
 	public void agregarACarrito(Producto producto) {
 		if (producto.getCantidad() > 0) {
 			carrito.productos.add(producto);
-			carrito.totalproductos++;
+			carrito.setTotalproductos(carrito.getTotalproductos()+1);
+			carrito.setPrecioTotal(carrito.getPrecioTotal()+ producto.getPrecio());
 		}
 	}
 
-	public Producto buscarPorCodigo(int codigo) {
+	public Producto buscar(int codigo) {
 		Iterator<Producto> it = Vendedor.catalogo.iterator();
 		Producto mens = null;
 		boolean x = true;
@@ -54,7 +57,7 @@ public class Comprador extends Cuenta {
 		}
 	}
 
-	public Deque<Producto> buscarCategoria(String cat) {
+	public Deque<Producto> buscar(String cat) {
 		Deque<Producto> colaProd = new LinkedList<Producto>();
 		Iterator<Producto> it = Vendedor.catalogo.iterator();
 		while (it.hasNext()) {
@@ -70,15 +73,6 @@ public class Comprador extends Cuenta {
 		historial.clear();
 	}
 
-	public void mostrarHistorial() {
-		/*
-		 * Metodo a implementar desde interfaz recorriendo el arreglo historial e
-		 * imprimiendo cada producto con la informacion basica
-		 */
-
-	}
-
-	// Generado el get de historial para la base de datos (Juanfer)
 	public HashMap <Integer, Producto> getHistorial() {
 		return historial;
 	}
