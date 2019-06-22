@@ -1,17 +1,12 @@
 package gestorAplicación.Usuarios;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import gestorAplicación.Materiales.Producto;
 
 public class Vendedor extends Cuenta {
 
     public static HashMap <Integer, Producto> catalogo = new HashMap<>();
-	//public static LinkedList<Producto> catalogo = new LinkedList<>();
-
-
-	public static LinkedList<Producto> catalogo = new LinkedList<>();
-	private LinkedList<Producto> CatalogoPrivado = new LinkedList<>();
+	private HashMap <Integer, Producto> CatalogoPrivado = new HashMap<>();
 
 	public Vendedor(String nombre, String correo, String password, String cedula) {
 		this.setNombre(nombre);
@@ -27,8 +22,8 @@ public class Vendedor extends Cuenta {
 	}
 
 	public void subirProducto(Producto producto) {
-		catalogo.add(producto);
-		CatalogoPrivado.add(producto);
+		catalogo.put(producto.getCodigoProducto(), producto);
+		CatalogoPrivado.put(producto.getCodigoProducto(), producto);
 	}
 	
 	public double obtenerPrecio(Producto producto) {
@@ -43,11 +38,11 @@ public class Vendedor extends Cuenta {
 		producto.setCantidad(producto.getCantidad()+aumentar);
 	}
 	
-	public LinkedList<Producto> verProductosPrivados(Vendedor vendedor){
+	public HashMap<Integer, Producto> verProductosPrivados(Vendedor vendedor){
 		return vendedor.CatalogoPrivado;
 	}
     
-	public LinkedList<Producto> verProductos() {
+	public HashMap<Integer, Producto> verProductos() {
 		return Vendedor.catalogo;
 	}
 	
