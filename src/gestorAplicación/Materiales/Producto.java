@@ -74,6 +74,12 @@ public class Producto {
 	public void setCodigoProducto(int codigoProducto) {
 		this.codigoProducto = codigoProducto;
 	}
+	
+	@Override
+	public String toString() {
+		return "Producto [nombreProducto=" + nombreProducto + ", categoria=" + categoria + ", precio=" + precio
+				+ ", codigoProducto=" + codigoProducto + ", cantidad=" + cantidad + "]";
+	}
 
 }
 

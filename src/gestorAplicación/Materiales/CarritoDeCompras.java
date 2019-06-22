@@ -75,4 +75,9 @@ public class CarritoDeCompras {
 		this.precioTotal = precioTotal;
 	}
 
+	@Override
+	public String toString() {
+		return "CarritoDeCompras [totalProductos=" + totalProductos + ", precioTotal=" + precioTotal + "]";
+	}
+
 }

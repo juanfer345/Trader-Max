@@ -6,6 +6,7 @@ public class Reseña {
 	private String comentario;
     private int id;
     
+    
 	public Reseña(int estrellas) {
 		this("Sin comentario",estrellas);
 	}
@@ -17,6 +18,10 @@ public class Reseña {
 	public Reseña(String comentario, int estrellas) {
 		this.comentario=comentario;
 		this.estrellas=estrellas;
+	}
+
+	public Reseña() {
+		
 	}
 
 	public int getEstrellas() {

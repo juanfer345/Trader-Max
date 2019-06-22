@@ -1,11 +1,12 @@
 package gestorAplicación.Usuarios;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import gestorAplicación.Materiales.Producto;
 
 public class Vendedor extends Cuenta {
-
-	public static LinkedList<Producto> catalogo = new LinkedList<>();
+    public static HashMap <Integer, Producto> catalogo = new HashMap<>();
+	//public static LinkedList<Producto> catalogo = new LinkedList<>();
 
 	public Vendedor(String nombre, String correo, String password, String cedula) {
 		this.setNombre(nombre);
