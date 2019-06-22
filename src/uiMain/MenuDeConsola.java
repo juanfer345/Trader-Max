@@ -59,12 +59,11 @@ class registrar extends OpcionDeMenu { // opcion 0
 
 		if(t==1) {
 			usuario = new Vendedor(n,c,p,cc);
-			(InicializacionAplicacion.getBDVendedores()).put(vendedores,ven);
-			opciones.add(subirProducto());
+			(InicializacionAplicacion.getBDVendedores()).put(vendedores,(Vendedor)usuario);
 			
 		}else {
-			Cuenta comp = new Comprador(n,c,p,cc);
-			InicializacionAplicacion.getBDCompradores().put(compradores,comp);
+			usuario = new Comprador(n,c,p,cc);
+			InicializacionAplicacion.getBDCompradores().put(compradores,(Comprador)usuario);
 		}
 		
 	}
@@ -85,7 +84,8 @@ class iniciarSesion extends OpcionDeMenu { // opcion 1
 		String p = e.next();
 		if (t==1) {
 			boolean x;
-			 
+			 //eso del for de juan fernando que dijo que estaba en las bases de datos, 
+			//que necesito buscar en la tabla el usuario y aja
 			if(x==true) {
 				//se comprueba que la contraseña concuerde
 			}else {
