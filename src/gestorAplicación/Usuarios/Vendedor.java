@@ -6,7 +6,7 @@ import gestorAplicación.Materiales.Producto;
 
 public class Vendedor extends CuentaUsuarios {
 
-	public Vendedor(String nombre, String correo, String password, int cedula) {
+	public Vendedor(String nombre, String correo, String password, String cedula) {
 		super(nombre, correo, password, cedula);
 	}
 
