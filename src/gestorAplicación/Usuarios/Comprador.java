@@ -15,7 +15,7 @@ public class Comprador extends CuentaUsuarios {
 	private CarritoDeCompras carrito;
 	private HashMap<Integer, Producto> historial = new HashMap<>();
 
-	public Comprador(String nombre, String correo, String password, String cedula) {
+	public Comprador(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
 	}
 

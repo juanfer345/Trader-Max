@@ -6,7 +6,7 @@ import gestorAplicación.Materiales.Producto;
 
 public class Vendedor extends CuentaUsuarios {
 
-	public Vendedor(String nombre, String correo, String password, String cedula) {
+	public Vendedor(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
 	}
 
@@ -14,12 +14,12 @@ public class Vendedor extends CuentaUsuarios {
 		super();
 	}
 
-	public void subirProducto(Vendedor vendedor, String nombreProducto, String categoria, double precio, int cantidad) {
+	public static void subirProducto(Vendedor vendedor, String nombreProducto, String categoria, double precio, int cantidad) {
 		Producto p = new Producto(vendedor, precio, cantidad, nombreProducto, categoria);
 		catalogo.put(p.getCodigoProducto(), p);
 	}
 
-	public void cambiarPrecio(String nombre, double precio) {
+	public static void cambiarPrecio(String nombre, double precio) {
 		Producto mens = null;
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
 			Producto p = entry.getValue();
@@ -30,7 +30,7 @@ public class Vendedor extends CuentaUsuarios {
 		}
 		mens.setPrecio(precio);
 	}
-	public void aumentarCantidad(String nombre, int aumento) {
+	public static void aumentarCantidad(String nombre, int aumento) {
 		Producto mens = null;
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
 			Producto p = entry.getValue();

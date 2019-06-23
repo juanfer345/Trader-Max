@@ -11,7 +11,7 @@ public class CuentaUsuarios extends Cuenta {
 	private CuentaBancaria cuentaBancaria;
 	public static HashMap<Integer, Producto> catalogo = new HashMap<>();
 	
-	public CuentaUsuarios(String nombre, String correo, String password, String cedula){
+	public CuentaUsuarios(String nombre, String correo, String password, int cedula){
 		this.setNombre(nombre);
 		this.setCorreo(correo);
 		this.setPassword(password);

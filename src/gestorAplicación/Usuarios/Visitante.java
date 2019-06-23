@@ -26,7 +26,7 @@ public class Visitante extends Cuenta {
 		return colaProd;
 	}*/
 	
-	public Deque<Producto> buscarCategoria(String cat) {
+	public static Deque<Producto> buscarCategoria(String cat) {
 		Deque<Producto> colaProd = new LinkedList<Producto>();
 		(Vendedor.catalogo).forEach((k,v)-> {
 			Producto p = Vendedor.catalogo.get(k);
