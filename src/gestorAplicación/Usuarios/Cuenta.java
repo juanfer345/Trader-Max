@@ -1,22 +1,13 @@
 package gestorAplicación.Usuarios;
 
-import gestorAplicación.Materiales.CuentaBancaria;
 
 public abstract class Cuenta {
-	private CuentaBancaria cuentaBancaria;
+	
 	private String nombre, correo, password;
 	public int id;
 	private int cedula;
 	static protected int contador;
 	static int totalCuentas;
-
-	public CuentaBancaria getCuentaBancaria() {
-		return cuentaBancaria;
-	}
-
-	public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {
-		this.cuentaBancaria = cuentaBancaria;
-	}
 
 	public String getNombre() {
 		return nombre;

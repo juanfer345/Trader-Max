@@ -10,26 +10,17 @@ import java.util.Map;
 import gestorAplicación.Materiales.CarritoDeCompras;
 import gestorAplicación.Materiales.Producto;
 
-public class Comprador extends Cuenta {
+public class Comprador extends CuentaUsuarios {
 
 	private CarritoDeCompras carrito;
 	private HashMap<Integer, Producto> historial = new HashMap<>();
 
 	public Comprador(String nombre, String correo, String password, String cedula) {
-		this.setNombre(nombre);
-		this.setCorreo(correo);
-		this.setPassword(password);
-		this.setCedula(cedula);
-		this.id = contador++;
-		totalCuentas++;
+		super(nombre, correo, password, cedula);
 	}
 
 	public Comprador() {
-		totalCuentas++;
-	}
-
-	public HashMap<Integer, Producto> verProductos() {
-		return Vendedor.catalogo;
+		super();
 	}
 
 	public void agregarACarrito(Producto producto) {
@@ -64,9 +55,18 @@ public class Comprador extends Cuenta {
 				colaProd.add(p);
 			}
 		});
-
 		return colaProd;
-
+	}
+	
+	public Deque<Producto> buscar(String nombre) {
+		Deque<Producto> Prod = new LinkedList<Producto>();
+		(Vendedor.catalogo).forEach((k, v) -> {
+			Producto p = Vendedor.catalogo.get(k);
+			if (p.getNombreProducto().contains(nombre)) {
+				Prod.add(p);
+			}
+		});
+		return Prod;
 	}
 
 	public void borrarHistorial() {
