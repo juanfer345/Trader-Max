@@ -1,16 +1,8 @@
 package uiMain;
 
 import java.util.*;
-import gestorAplicación.*;
-import gestorAplicación.Usuarios.Administrador;
-import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Usuarios.Cuenta;
-import gestorAplicación.Usuarios.Vendedor;
 import gestorAplicación.Usuarios.Visitante;
-import gestorAplicación.InicializacionAplicacion;
-import gestorAplicación.Materiales.CarritoDeCompras;
-import gestorAplicación.Materiales.Producto;
-import gestorAplicación.Materiales.Reseña;
 
 public class MenuDeConsola {
 
