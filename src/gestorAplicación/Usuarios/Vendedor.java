@@ -1,49 +1,45 @@
 package gestorAplicación.Usuarios;
 
-import java.util.HashMap;
+import java.util.Map;
+
 import gestorAplicación.Materiales.Producto;
 
-public class Vendedor extends Cuenta {
-
-    public static HashMap <Integer, Producto> catalogo = new HashMap<>();
-	private HashMap <Integer, Producto> CatalogoPrivado = new HashMap<>();
+public class Vendedor extends CuentaUsuarios {
 
 	public Vendedor(String nombre, String correo, String password, String cedula) {
-		this.setNombre(nombre);
-		this.setCorreo(correo);
-		this.setPassword(password);
-		this.setCedula(cedula);
-		this.id = contador++;
-		totalCuentas++;
+		super(nombre, correo, password, cedula);
 	}
-	
+
 	public Vendedor() {
-		totalCuentas++;
+		super();
 	}
 
-	public void subirProducto(Producto producto) {
-		catalogo.put(producto.getCodigoProducto(), producto);
-		CatalogoPrivado.put(producto.getCodigoProducto(), producto);
-	}
-	
-	public double obtenerPrecio(Producto producto) {
-		return producto.getPrecio();
+	public void subirProducto(Vendedor vendedor, String nombreProducto, String categoria, double precio, int cantidad) {
+		Producto p = new Producto(vendedor, precio, cantidad, nombreProducto, categoria);
+		catalogo.put(p.getCodigoProducto(), p);
 	}
 
-	public void ponerPrecio(Producto producto, double precio) {
-		producto.setPrecio(precio);
+	public void cambiarPrecio(String nombre, double precio) {
+		Producto mens = null;
+		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
+			Producto p = entry.getValue();
+			if (p.getNombreProducto() == nombre) {
+				mens = p;
+				break;
+			}
+		}
+		mens.setPrecio(precio);
 	}
-	
-	public void aumentarCantidad(Producto producto, int aumentar) {
-		producto.setCantidad(producto.getCantidad()+aumentar);
+	public void aumentarCantidad(String nombre, int aumento) {
+		Producto mens = null;
+		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
+			Producto p = entry.getValue();
+			if (p.getNombreProducto() == nombre) {
+				mens = p;
+				break;
+			}
+		}
+		mens.setCantidad(mens.getCantidad() + aumento);
 	}
-	
-	public HashMap<Integer, Producto> verProductosPrivados(Vendedor vendedor){
-		return vendedor.CatalogoPrivado;
-	}
-    
-	public HashMap<Integer, Producto> verProductos() {
-		return Vendedor.catalogo;
-	}
-	
+
 }
