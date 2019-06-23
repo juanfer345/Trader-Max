@@ -6,7 +6,7 @@ public abstract class Cuenta {
 	private CuentaBancaria cuentaBancaria;
 	private String nombre, correo, password;
 	public int id;
-	private String cedula;
+	private int cedula;
 	static protected int contador;
 	static int totalCuentas;
 
@@ -43,11 +43,11 @@ public abstract class Cuenta {
 
 	}
 
-	public String getCedula() {
+	public int getCedula() {
 		return cedula;
 	}
 
-	public void setCedula(String cedula) {
+	public void setCedula(int cedula) {
 		this.cedula = cedula;
 	}
 
