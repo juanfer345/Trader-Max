@@ -3,6 +3,7 @@ package uiMain;
 import java.util.Deque;
 
 import gestorAplicación.Materiales.Producto;
+import gestorAplicación.Usuarios.Comprador;
 
 class buscarCategoria extends OpcionDeMenu { // opcion 3
 
@@ -11,7 +12,7 @@ class buscarCategoria extends OpcionDeMenu { // opcion 3
 		System.out.println("Ingrese la categoria:");
 		String cat = e.next();
 		Deque<Producto> categoria;
-		//categoria = Comprador.buscar(cat);// la misma vaina de arriba
+		categoria = Comprador.buscar(cat);
 
 	}
 

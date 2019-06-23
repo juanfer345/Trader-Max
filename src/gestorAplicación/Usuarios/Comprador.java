@@ -31,7 +31,7 @@ public class Comprador extends CuentaUsuarios {
 		}
 	}
 
-	public Producto buscar(int codigo) {
+	public static Producto buscar(int codigo) {
 		boolean x = true;
 		Producto mens = null; 
 		for(Map.Entry <Integer, Producto> entry : Vendedor.catalogo.entrySet()) {
@@ -47,7 +47,7 @@ public class Comprador extends CuentaUsuarios {
 		}
 	}
 
-	public Deque<Producto> buscarCategoria(String cat) {
+	public static Deque<Producto> buscarCategoria(String cat) {
 		Deque<Producto> colaProd = new LinkedList<Producto>();
 		(Vendedor.catalogo).forEach((k, v) -> {
 			Producto p = Vendedor.catalogo.get(k);
@@ -58,7 +58,7 @@ public class Comprador extends CuentaUsuarios {
 		return colaProd;
 	}
 	
-	public Deque<Producto> buscar(String nombre) {
+	public static Deque<Producto> buscar(String nombre) {
 		Deque<Producto> Prod = new LinkedList<Producto>();
 		(Vendedor.catalogo).forEach((k, v) -> {
 			Producto p = Vendedor.catalogo.get(k);
