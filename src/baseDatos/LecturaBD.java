@@ -27,50 +27,51 @@ import gestorAplicación.Usuarios.Vendedor;
 
 public class LecturaBD {
     
-	public static void PrincipalLecturaBD(String NombreBD) throws IOException {
+	public static void PrincipalLecturaBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCarr, 
+										  String BDCat, String BDProd, String BDRes) throws IOException {
 		/*
 	  		Método PrincipalLecturaBD (público)
 		   	
-	   		Propósito: Ejecutar el proceso de lectura paso a paso.
+	   		Propósito: Ejecutar el proceso de lectura de todas las bases de datos utilizadas en el programa.
+	   		
+	   		Variables de Entrada:
+	   		
+	   		- BDComp: Nombre de la base de datos de los compradores.
+	   		- BDVend: Nombre de la base de datos de los vendedores.
+	   		- BDAdm: Nombre de la base de datos de los administradores.
+	   		- BDCuentBanc: Nombre de la base de datos de las cuentas bancarias.
+	   		- BDCarr: Nombre de la base de datos de los carritos de compras.
+	   		- BDCat: Nombre de la base de datos del catálogo.
+	   		- BDProd: Nombre de la base de datos de los productos.
+	   		- BDRes: Nombre de la base de datos de las reseñas.
 	   	*/
-
 		Deque <Integer> auxComp = new LinkedList <>();
 		Deque <Integer> auxVend = new LinkedList <>();
 		Deque <Integer> auxCarr = new LinkedList <>();
 		Deque <Integer> auxCat = new LinkedList <>();
 		Deque <Integer> auxProd = new LinkedList <>();
-	    BufferedReader Br = null;
-		
-		//Intento de abrir la base de datos
-        try{
-            Br = new BufferedReader(new FileReader("/temp" + NombreBD));            
-        }
-        catch(FileNotFoundException ex){
-            System.out.println(ex.getMessage() + " Error al leer la base de datos");
-            System.exit(0);
-        }
 		
         //PENDIENTE: CONSIDERAR LOS CASOS EN QUE SE GUARDEN SESIONES VACIAS (P EJ. NO HAY NADA EN EL CATÁLOGO)
         
 		//Lectura de las cuentas
-		lecturaCompradores(Br, InicializacionAplicacion.getBDCompradores(), auxComp);
-		lecturaVendedores(Br, InicializacionAplicacion.getBDVendedores(), auxVend);
-		lecturaAdministradores(Br, InicializacionAplicacion.getBDAdministradores());
+		lecturaCompradores(BDComp, InicializacionAplicacion.getBDCompradores(), auxComp);
+		lecturaVendedores(BDVend, InicializacionAplicacion.getBDVendedores(), auxVend);
+		lecturaAdministradores(BDAdm, InicializacionAplicacion.getBDAdministradores());
 		
 		//Lectura de las cuentas bancarias
-		lecturaCuentasBancarias(Br, InicializacionAplicacion.getBDCuentasBancarias());
+		lecturaCuentasBancarias(BDCuentBanc, InicializacionAplicacion.getBDCuentasBancarias());
 
 		//Lectura de los carritos de compras
-		lecturaCarritos(Br, InicializacionAplicacion.getBDCarritos(), auxCarr);
+		lecturaCarritos(BDCarr, InicializacionAplicacion.getBDCarritos(), auxCarr);
 		
 		//Lectura del catálogo
-		lecturaCatalogo(Br, auxCat);
+		lecturaCatalogo(BDCat, auxCat);
 		
 		//Lectura de los productos
-		lecturaProductos(Br, InicializacionAplicacion.getBDProductos(), auxProd);
+		lecturaProductos(BDProd, InicializacionAplicacion.getBDProductos(), auxProd);
 		
 		//Lectura de las reseñas
-		lecturaReseñas(Br, InicializacionAplicacion.getBDReseñas());
+		lecturaReseñas(BDRes, InicializacionAplicacion.getBDReseñas());
 		
 		//Asignando los elementos restantes utilizando las colas auxiliares
 		complementoLectura(InicializacionAplicacion.getBDCompradores(), InicializacionAplicacion.getBDVendedores(),
@@ -78,161 +79,335 @@ public class LecturaBD {
 				  		   InicializacionAplicacion.getBDCuentasBancarias(), InicializacionAplicacion.getBDCarritos(), 
 				  		   InicializacionAplicacion.getBDProductos(), InicializacionAplicacion.getBDReseñas(), 
 				  		   auxComp, auxVend, auxCarr, auxCat, auxProd);
-		
-		//Cerrado de la base de datos
-		Br.close();
 	}
 
-	private static void lecturaCompradores(BufferedReader Br, HashMap <Integer, Comprador> HM, Deque <Integer> aux) throws IOException {
+	private static void lecturaCompradores(String NombreBD, HashMap <Integer, Comprador> HM, Deque <Integer> aux) throws IOException {
 		
 		Comprador val;
-		
-		//Ciclo para saltarse las líneas en blanco
-	    while (!Br.readLine().split(" ")[0].equals("INICIO")) {}
-	    
-	    //Ciclo para obtener la información
-	    do {
-	    	val = new Comprador();
-	    	val.setId(Integer.parseInt(Br.readLine().split(" ")[1])); Br.readLine();	//ID
-	    	val.setNombre(Br.readLine().split(" ")[1]);									//Nombre
-	    	val.setCorreo(Br.readLine().split(" ")[1]);									//Correo
-	    	val.setPassword(Br.readLine().split(" ")[1]);								//Contraseña
-	    	val.setCedula(Br.readLine().split(" ")[1]);									//Cédula
-	    	aux.add(Integer.parseInt(Br.readLine().split(" ")[3]));						//Apuntador a cuenta bancaria
-	    	aux.add(Integer.parseInt(Br.readLine().split(" ")[4]));						//Apuntador a carrito de compras
-			while (!Br.readLine().equals("HISTORIAL FIN")) {
-				aux.add(Integer.parseInt(Br.readLine().split(" ")[2]));					//Apuntadores a productos del historial
-			}
-	        HM.put(val.getId(), val);													//Asignación a la estructura de datos correspondiente
-	    } while (!Br.readLine().equals("FIN COMPRADORES"));
+	    BufferedReader Br = null;
+	    String [] Dat, auxS;
+
+		//Intento de apertura y lectura de la base de datos
+        try {
+            Br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
+
+    	    //Ciclo para obtener la información
+            while (!(Dat = Br.readLine().split(";"))[0].equals("#")) {
+    	    	val = new Comprador();
+    	    	val.setId(Integer.parseInt(Dat[0]));					//Identificador único de comprador
+    	    	val.setNombre(Dat[1]);									//Nombre comprador
+    	    	val.setCorreo(Dat[2]);									//Correo comprador
+    	    	val.setPassword(Dat[3]);								//Contraseña comprador
+    	    	val.setCedula(Integer.parseInt(Dat[4]));				//Cédula comprador
+    	    	aux.add(Integer.parseInt(Dat[5]));						//Apuntador a cuenta bancaria de comprador
+    	    	aux.add(Integer.parseInt(Dat[6]));						//Apuntador a carrito de compras
+    	    	auxS = Dat[7].split(",");								//Apuntadores a productos del historial del comprador
+    	    	
+    	    	//Condicional para el caso donde no existe historial
+    	    	if (!auxS[0].equals("##")) {
+	    	    	for (int i = 0; i < auxS.length; i++) {
+	    	    		aux.add(Integer.parseInt(auxS[i]));				//Asignación de apuntadores a productos del historial del comprador	
+	    	    	}
+    	    	}
+    	        HM.put(val.getId(), val);								//Asignación del objeto a la estructura de datos correspondiente
+    	    }
+            
+    		//Mensaje de confirmación
+            if (!HM.isEmpty()) {
+            	//Caso A: La base de datos se cargó correctamente
+            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
+            	
+            } else {
+            	//Caso B: La base de datos se encontraba vacía
+            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
+            }
+    		//Cerrado de la base de datos
+    	    Br.close();
+        }
+        catch (FileNotFoundException ex){
+            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.exit(0);
+        }
 	}
 	
-	private static void lecturaVendedores(BufferedReader Br, HashMap <Integer, Vendedor> HM, Deque <Integer> aux) throws IOException {
+	private static void lecturaVendedores(String NombreBD, HashMap <Integer, Vendedor> HM, Deque <Integer> aux) throws IOException {
 		
 		Vendedor val;
+	    BufferedReader Br = null;
+	    String [] Dat;
 
-		//Ciclo para saltarse las líneas en blanco
-	    while (!Br.readLine().split(" ")[0].equals("INICIO")) {}
-	    
-	    //Ciclo para obtener la información de los vendedores
-	    do {
-	    	val = new Vendedor();
-	    	val.setId(Integer.parseInt(Br.readLine().split(" ")[1])); Br.readLine();
-	    	val.setNombre(Br.readLine().split(" ")[1]);
-	    	val.setCorreo(Br.readLine().split(" ")[1]);
-	    	val.setPassword(Br.readLine().split(" ")[1]);
-	    	val.setCedula(Br.readLine().split(" ")[1]);
-	    	aux.add(Integer.parseInt(Br.readLine().split(" ")[3]));
-	        HM.put(val.getId(), val);
-	    } while (!Br.readLine().equals("FIN VENDEDORES"));
+		//Intento de apertura y lectura de la base de datos
+        try {
+            Br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
+
+    	    //Ciclo para obtener la información
+            while (!(Dat = Br.readLine().split(";"))[0].equals("#")) {
+    	    	val = new Vendedor();
+    	    	val.setId(Integer.parseInt(Dat[0]));					//Identificador único de vendedor
+    	    	val.setNombre(Dat[1]);									//Nombre vendedor
+    	    	val.setCorreo(Dat[2]);									//Correo vendedor
+    	    	val.setPassword(Dat[3]);								//Contraseña vendedor
+    	    	val.setCedula(Integer.parseInt(Dat[4]));				//Cédula vendedor
+    	    	aux.add(Integer.parseInt(Dat[5]));						//Apuntador a cuenta bancaria del vendedor
+    	        HM.put(val.getId(), val);								//Asignación del objeto a la estructura de datos correspondiente
+    	    }
+            
+    		//Mensaje de confirmación
+            if (!HM.isEmpty()) {
+            	//Caso A: La base de datos se cargó correctamente
+            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
+            	
+            } else {
+            	//Caso B: La base de datos se encontraba vacía
+            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
+            }
+    		//Cerrado de la base de datos
+    	    Br.close();
+        }
+        catch (FileNotFoundException ex){
+            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.exit(0);
+        }
 	}
 	
-	private static void lecturaAdministradores(BufferedReader Br, HashMap <Integer, Administrador> HM) throws IOException {
-
-		Administrador val;
+	private static void lecturaAdministradores(String NombreBD, HashMap <Integer, Administrador> HM) throws IOException {
 		
-		//Ciclo para saltarse las líneas en blanco
-	    while (!Br.readLine().split(" ")[0].equals("INICIO")) {}
+		Administrador val;
+	    BufferedReader Br = null;
+	    String [] Dat;
 	    
-	    //Ciclo para obtener la información
-	    do {
-	    	val = new Administrador();
-	    	val.setId(Integer.parseInt(Br.readLine().split(" ")[1])); Br.readLine();
-	    	val.setNombre(Br.readLine().split(" ")[1]);
-	    	val.setCorreo(Br.readLine().split(" ")[1]);
-	    	val.setPassword(Br.readLine().split(" ")[1]);
-	    	val.setCedula(Br.readLine().split(" ")[1]);
-	        HM.put(val.getId(), val);
-	    } while (!Br.readLine().equals("FIN ADMINISTRADORES"));
+		//Intento de apertura y lectura de la base de datos
+        try {
+            Br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
+            
+    	    //Ciclo para obtener la información
+            while (!(Dat = Br.readLine().split(";"))[0].equals("#")) {
+    	    	val = new Administrador();
+    	    	val.setId(Integer.parseInt(Dat[0])); 					//Identificador único de administrador
+    	    	val.setNombre(Dat[1]);									//Nombre administrador
+    	    	val.setCorreo(Dat[2]);									//Correo administrador
+    	    	val.setPassword(Dat[3]);								//Contraseña administrador
+    	    	val.setCedula(Integer.parseInt(Dat[4]));				//Cédula administrador
+    	        HM.put(val.getId(), val);								//Asignación del objeto a la estructura de datos correspondiente
+    	    }
+            
+    		//Mensaje de confirmación
+            if (!HM.isEmpty()) {
+            	//Caso A: La base de datos se cargó correctamente
+            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
+            	
+            } else {
+            	//Caso B: La base de datos se encontraba vacía
+            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
+            }
+    		//Cerrado de la base de datos
+    	    Br.close();
+        }
+        catch (FileNotFoundException ex){
+            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.exit(0);
+        }
 	}
 	
-	private static void lecturaCuentasBancarias(BufferedReader Br, HashMap <Integer, CuentaBancaria> HM) throws NumberFormatException, IOException {
+	private static void lecturaCuentasBancarias(String NombreBD, HashMap <Integer, CuentaBancaria> HM) throws NumberFormatException, IOException {
 		
 		CuentaBancaria val;
-
-		//Ciclo para saltarse las líneas en blanco
-	    while (!Br.readLine().split(" ")[0].equals("INICIO")) {}
+	    BufferedReader Br = null;
+	    String [] Dat;
 	    
-	    //Ciclo para obtener la información
-	    do {
-	    	val = new CuentaBancaria();
-	    	val.setId(Integer.parseInt(Br.readLine().split(" ")[2])); Br.readLine();
-	    	val.setPropietario(Br.readLine().split(" ")[1]);
-	    	val.setSaldo(Double.parseDouble(Br.readLine().split(" ")[1]));
-	        HM.put(val.getId(), val);
-	    } while (!Br.readLine().equals("FIN CUENTAS BANCARIAS"));
+		//Intento de apertura y lectura de la base de datos
+        try {
+            Br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
+            
+    	    //Ciclo para obtener la información
+            while (!(Dat = Br.readLine().split(";"))[0].equals("#")) {
+    	    	val = new CuentaBancaria();
+    	    	val.setId(Integer.parseInt(Dat[0]));					//Identificador único de la cuenta bancaria
+    	    	val.setPropietario(Dat[1]);								//Titular de la cuenta bancaria
+    	    	val.setSaldo(Double.parseDouble(Dat[2]));				//Saldo de la cuenta bancaria
+    	    }
+    	    
+    		//Mensaje de confirmación
+            if (!HM.isEmpty()) {
+            	//Caso A: La base de datos se cargó correctamente
+            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
+            	
+            } else {
+            	//Caso B: La base de datos se encontraba vacía
+            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
+            }
+    		//Cerrado de la base de datos
+    	    Br.close();
+        }
+        catch (FileNotFoundException ex){
+            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.exit(0);
+        }
 	}
 	
-	private static void lecturaCarritos(BufferedReader Br, HashMap <Integer, CarritoDeCompras> HM, Deque <Integer> aux) throws IOException {
+	private static void lecturaCarritos(String NombreBD, HashMap <Integer, CarritoDeCompras> HM, Deque <Integer> aux) throws IOException {
 		
 		CarritoDeCompras val;
+	    BufferedReader Br = null;
+	    String [] Dat, auxS;
 
-		//Ciclo para saltarse las líneas en blanco
-	    while (!Br.readLine().split(" ")[0].equals("INICIO")) {}
-	    
-	    //Ciclo para obtener la información
-	    do {
-	    	val = new CarritoDeCompras();
-	    	val.setId(Integer.parseInt(Br.readLine().split(" ")[1])); Br.readLine();
-			while (!Br.readLine().equals("CODIGOS PRODUCTOS FIN")) {
-				aux.add(Integer.parseInt(Br.readLine().split(" ")[2]));					//Apuntadores a productos del carrito
-			}
-	    	val.setTotalproductos(Integer.parseInt(Br.readLine().split(" ")[3]));
-	    	val.setPrecioTotal(Double.parseDouble(Br.readLine().split(" ")[2]));
-	        HM.put(val.getId(), val);
-	    } while (!Br.readLine().equals("FIN CARRITOS"));
+		//Intento de apertura y lectura de la base de datos
+        try {
+            Br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
+
+    	    //Ciclo para obtener la información
+            while (!(Dat = Br.readLine().split(";"))[0].equals("#")) {
+    	    	val = new CarritoDeCompras();
+    	    	val.setId(Integer.parseInt(Dat[0])); 					//Identificador único del carrito
+    	    	val.setTotalproductos(Integer.parseInt(Dat[1]));		//Total de productos del carrito
+    	    	val.setPrecioTotal(Double.parseDouble(Dat[2]));			//Precio total de los productos en el carrito
+    	    	auxS = Dat[3].split(",");								//Apuntadores a productos del carrito
+    	    	
+    	    	//Condicional para el caso donde el carrito no tiene productos
+    	    	if (!auxS[0].equals("##")) {
+	    	    	for (int i = 0; i < auxS.length; i++) {
+	    	    		aux.add(Integer.parseInt(auxS[i]));				//Asignación de apuntadores a productos del carrito
+	    	    	}
+    	    	}
+    	        HM.put(val.getId(), val);								//Asignación del objeto a la estructura de datos correspondiente
+    	    }
+            
+    		//Mensaje de confirmación
+            if (!HM.isEmpty()) {
+            	//Caso A: La base de datos se cargó correctamente
+            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
+            	
+            } else {
+            	//Caso B: La base de datos se encontraba vacía
+            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
+            }
+    		//Cerrado de la base de datos
+    	    Br.close();
+        }
+        catch (FileNotFoundException ex){
+            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.exit(0);
+        }
 	}
 	
-	private static void lecturaCatalogo(BufferedReader Br, Deque <Integer> aux) throws IOException {
-		
-		//Ciclo para saltarse las líneas en blanco
-	    while (!Br.readLine().split(" ")[0].equals("INICIO")) {}
+	private static void lecturaCatalogo(String NombreBD, Deque <Integer> aux) throws IOException {
+
+	    BufferedReader Br = null;
+	    String [] Dat;
 	    
-	    //Ciclo para obtener la información
-	    do {
-	    	aux.add(Integer.parseInt(Br.readLine().split(" ")[2]));
-	    } while (!Br.readLine().equals("FIN CATÁLOGO"));
+		//Intento de apertura y lectura de la base de datos
+        try {
+            Br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
+            
+    	    //Ciclo para obtener la información
+            for (int i = 0; i < (Dat = Br.readLine().split(",")).length; i++) {
+            	aux.add(Integer.parseInt(Dat[i]));
+            }
+    	    
+    		//Mensaje de confirmación
+            if (!aux.isEmpty()) {
+            	//Caso A: La base de datos se cargó correctamente
+            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
+            	
+            } else {
+            	//Caso B: La base de datos se encontraba vacía
+            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
+            }
+    		//Cerrado de la base de datos
+    	    Br.close();
+        }
+        catch (FileNotFoundException ex){
+            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.exit(0);
+        }
 	}
 	
-	private static void lecturaProductos(BufferedReader Br, HashMap <Integer, Producto> HM, Deque <Integer> aux) throws NumberFormatException, IOException {
+	private static void lecturaProductos(String NombreBD, HashMap <Integer, Producto> HM, Deque <Integer> aux) throws NumberFormatException, IOException {
 		
 		Producto val;
+	    BufferedReader Br = null;
+	    String [] Dat, auxS;
 
-		//Ciclo para saltarse las líneas en blanco
-	    while (!Br.readLine().split(" ")[0].equals("INICIO")) {}
-	    
-	    //Ciclo para obtener la información
-	    do {
-	    	val = new Producto();
-	    	val.setCodigoProducto(Integer.parseInt(Br.readLine().split(" ")[1])); Br.readLine();
-	    	val.setNombreProducto(Br.readLine().split(" ")[1]);
-	    	val.setPrecio(Double.parseDouble(Br.readLine().split(" ")[1]));
-	    	val.setCategoria(Br.readLine().split(" ")[1]);
-	    	val.setCantidad(Integer.parseInt(Br.readLine().split(" ")[1]));
-			while (!Br.readLine().equals("CODIGOS RESEÑAS FIN")) {
-				aux.add(Integer.parseInt(Br.readLine().split(" ")[2]));					//Apuntadores a reseñas del producto
-			}
-	        HM.put(val.getCodigoProducto(), val);
-	    } while (!Br.readLine().equals("FIN PRODUCTOS"));
-	}
-	private static void lecturaReseñas(BufferedReader Br, HashMap <Integer, Reseña> HM) throws NumberFormatException, IOException {
-		
-		Reseña val;
+		//Intento de apertura y lectura de la base de datos
+        try {
+            Br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
 
-		//Ciclo para saltarse las líneas en blanco
-	    while (!Br.readLine().split(" ")[0].equals("INICIO")) {}
-	    
-	    //Ciclo para obtener la información
-	    do {
-	    	val = new Reseña();
-	    	val.setId(Integer.parseInt(Br.readLine().split(" ")[1])); Br.readLine();
-	    	val.setEstrellas(Integer.parseInt(Br.readLine().split(" ")[1]));
-	    	val.setComentario(Br.readLine().split(" ")[1]);
-	        HM.put(val.getId(), val);
-	    } while (!Br.readLine().equals("FIN RESEÑAS"));
+    	    //Ciclo para obtener la información
+            while (!(Dat = Br.readLine().split(";"))[0].equals("#")) {
+    	    	val = new Producto();
+    	    	val.setCodigoProducto(Integer.parseInt(Dat[0]));	//Identificador único del producto
+    	    	val.setNombreProducto(Dat[1]);						//Nombre del producto
+    	    	aux.add(Integer.parseInt(Dat[2]));					//Apuntador al vendedor del producto
+    	    	val.setPrecio(Double.parseDouble(Dat[3]));			//Precio total del producto
+    	    	val.setCategoria(Dat[4]);							//Categoría del producto
+    	    	val.setCantidad(Integer.parseInt(Dat[5]));			//Cantidad del producto 
+    	    	auxS = Dat[6].split(",");							//Apuntadores de reseñas del producto
+    	    	
+    	    	//Condicional para el caso donde el producto no tiene reseñas
+    	    	if (!auxS[0].equals("##")) {
+	    	    	for (int i = 0; i < auxS.length; i++) {
+	    	    		aux.add(Integer.parseInt(auxS[i]));			//Asignación de apuntadores de reseñas del producto	
+	    	    	}
+    	    	}
+    	        HM.put(val.getCodigoProducto(), val);				//Asignación del objeto a la estructura de datos correspondiente
+    	    }
+    	    
+    		//Mensaje de confirmación
+            if (!HM.isEmpty()) {
+            	//Caso A: La base de datos se cargó correctamente
+            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
+            	
+            } else {
+            	//Caso B: La base de datos se encontraba vacía
+            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
+            }
+    		//Cerrado de la base de datos
+    	    Br.close();
+        }
+        catch (FileNotFoundException ex){
+            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.exit(0);
+        }
 	}
 	
-	private static void complementoLectura(HashMap <Integer, Comprador> bdCompradores, HashMap <Integer, Vendedor> bdVendedores, 
+	private static void lecturaReseñas(String NombreBD, HashMap <Integer, Reseña> HM) throws NumberFormatException, IOException {
+		
+		Reseña val;
+	    BufferedReader Br = null;
+	    String [] Dat;
+	    
+		//Intento de apertura y lectura de la base de datos
+        try {
+            Br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
+            
+    	    //Ciclo para obtener la información
+            while (!(Dat = Br.readLine().split(";"))[0].equals("#")) {
+    	    	val = new Reseña();
+    	    	val.setId(Integer.parseInt(Dat[0])); 					//Identificador único de la reseña
+    	    	val.setEstrellas(Integer.parseInt(Dat[1]));				//Nombre administrador
+    	    	val.setComentario(Dat[2]);								////Comentario de la reseña
+    	        HM.put(val.getId(), val);								//Asignación del objeto a la estructura de datos correspondiente
+    	    }
+    	    
+    		//Mensaje de confirmación
+            if (!HM.isEmpty()) {
+            	//Caso A: La base de datos se cargó correctamente
+            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
+            	
+            } else {
+            	//Caso B: La base de datos se encontraba vacía
+            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
+            }
+    		//Cerrado de la base de datos
+    	    Br.close();
+        }
+        catch (FileNotFoundException ex){
+            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.exit(0);
+        }   
+	}
+	
+	private static void complementoLectura(HashMap <Integer, Comprador> BDCompradores, HashMap <Integer, Vendedor> BDVendedores, 
 										   HashMap <Integer, Administrador> BDAdministradores, HashMap <Integer, Producto> catalogo, 
 										   HashMap <Integer, CuentaBancaria> BDCuentasBancarias, HashMap <Integer, CarritoDeCompras> bdCarritos, 
 										   HashMap <Integer, Producto> BDProductos, HashMap <Integer, Reseña> BDReseñas, 
@@ -241,7 +416,7 @@ public class LecturaBD {
 		int i, j;
 		
 		//Completando la información de los compradores
-        for (Map.Entry <Integer, Comprador> entry : bdCompradores.entrySet()) {
+        for (Map.Entry <Integer, Comprador> entry : BDCompradores.entrySet()) {
             entry.getValue().setCuentaBancaria(BDCuentasBancarias.get(auxComp.poll())); //Asignación de cuenta bancaria
             entry.getValue().setCarrito(bdCarritos.get(auxComp.poll()));				//Asignación de carrito
             
@@ -253,7 +428,7 @@ public class LecturaBD {
         }
 
 		//Completando la información de los vendedores
-        for (Map.Entry <Integer, Vendedor> entry : bdVendedores.entrySet()) {
+        for (Map.Entry <Integer, Vendedor> entry : BDVendedores.entrySet()) {
             entry.getValue().setCuentaBancaria(BDCuentasBancarias.get(auxVend.poll())); //Asignación de cuenta bancaria
         }
 
@@ -267,6 +442,7 @@ public class LecturaBD {
         
 		//Completando la información de los productos
         for (Map.Entry <Integer, Producto> entry : BDProductos.entrySet()) {
+        	entry.getValue().setVendedor(BDVendedores.get(auxProd.poll()));
             //Asignación de productos al carrito
             for (i = 0; i < auxProd.size(); i++) {
             	j = auxProd.poll();

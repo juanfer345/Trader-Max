@@ -81,6 +81,10 @@ public class Producto {
 				+ ", codigoProducto=" + codigoProducto + ", cantidad=" + cantidad + "]";
 	}
 
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
+	}
+
 }
 
 

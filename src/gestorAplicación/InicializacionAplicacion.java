@@ -25,11 +25,11 @@ public class InicializacionAplicacion {
     
 	public static void main(String[] args) throws IOException {
 		
-		
-		//Aquí debería ir una primera entrada que permita ingresar el nombre de una base de datos para cargar o que indique que no existe
+		//Aquí debería ir una primera entrada que permita ingresar el nombre de una base de datos para cargar o que indique que no existe (pendiente)
 	    
 		//Ejecución de la lectura de la base de datos
-		LecturaBD.PrincipalLecturaBD("BaseDeDatos");
+		LecturaBD.PrincipalLecturaBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Carritos de Compras", 
+			 						 "Catálogo", "Productos", "Reseñas");
 		
 		//Ciclo de control para ejecutar el menú hasta que se desee salir de la aplicación
 		while (!MenuDeConsola.SalirApp) {
@@ -37,7 +37,8 @@ public class InicializacionAplicacion {
 		}
 		
 		//Ejecución de la escritura en la base de datos
-		EscrituraBD.PrincipalEscrituraBD("BaseDeDatos");
+		EscrituraBD.PrincipalEscrituraBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Carritos de Compras", 
+										 "Catálogo", "Productos", "Reseñas");
 		
 		//Cerrado de la aplicación (pendiente)
 	}
