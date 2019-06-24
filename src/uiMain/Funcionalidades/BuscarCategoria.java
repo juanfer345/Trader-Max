@@ -10,16 +10,11 @@ public class BuscarCategoria extends OpcionDeMenu { // opcion 3
 
 	@Override
 	public void ejecutar() { //pa la logica
-		System.out.println("Ingrese la categoria: ");
-		String nom = scn.next();
-		boolean aux = Producto.existeCategoria(nom);
-		if(aux == true) {
-			Deque<Producto> cola;
-			cola = Comprador.buscar(nom);
-			for (int i = 0; i < cola.size(); i++) {
-				Producto prod = cola.poll();
-				System.out.println(prod);
-			}
+		Producto.getCategorias();
+		System.out.println("Ingrese la posición de la categoria  ");
+		int pos = scn.nextInt();
+			if(pos>0 && pos<Producto.categorias.length) {
+				Comprador.buscarCategoria(pos);
 		} else {
 			System.out.println("Categoria invalida");
 		}

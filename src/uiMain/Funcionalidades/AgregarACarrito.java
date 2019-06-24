@@ -11,17 +11,12 @@ public class AgregarACarrito extends OpcionDeMenu { // opcion 4
 	
 	@Override
 	public void ejecutar() { //pa la logica
+		Comprador comp = (Comprador)usuario;
 		System.out.println("Ingrese el código del producto a agregar");
 		int codigoP = scn.nextInt();
-		Producto P = null;
-		P = CuentaUsuarios.catalogo.get(codigoP);
-		if(P != null) {
-			usuario.agregarACarrito(P);		
-			System.out.println(P);
-			System.out.println("Este producto ha sido agregado exitosamente");
-		} else {
-			System.out.println("Código de producto invalido");
-		}
+		System.out.println("Ingrese la cantidad de unidades de este producto");
+		int cantidad  = scn.nextInt();
+        String agreg = comp.agregarACarrito(codigoP, cantidad);
 	}
 
 	@Override

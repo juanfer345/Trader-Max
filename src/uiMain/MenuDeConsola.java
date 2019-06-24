@@ -16,7 +16,7 @@ import java.io.InputStreamReader;
 public class MenuDeConsola {
 
 	public ArrayList<OpcionDeMenu> opciones = new ArrayList<OpcionDeMenu>();// lista de metodos para el admin
-	public ArrayList<OpcionDeMenu> activo = new ArrayList<OpcionDeMenu>();
+	public  ArrayList<OpcionDeMenu> activo = new ArrayList<OpcionDeMenu>();
 	public static Cuenta usuario = new Visitante();
 	public static boolean SalirApp = false;
 	public static Scanner scn = new Scanner(System.in);

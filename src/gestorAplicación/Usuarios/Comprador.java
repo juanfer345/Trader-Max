@@ -67,15 +67,16 @@ public class Comprador extends CuentaUsuarios {
 		}
 	}
 
-	public static Deque<Producto> buscarCategoria(String cat) {
+	public static Deque<Producto> buscarCategoria(int cat) {
 		Deque<Producto> colaProd = new LinkedList<Producto>();
 		(Vendedor.catalogo).forEach((k, v) -> {
 			Producto p = Vendedor.catalogo.get(k);
-			if (p.getCategoria() == cat) {
+			if (p.getCategoria() == Producto.categorias[cat]) {
 				colaProd.add(p);
 			}
 		});
 		return colaProd;
+		
 	}
 
 	public static Deque<Producto> buscar(String nombre) {
