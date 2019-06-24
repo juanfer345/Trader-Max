@@ -1,4 +1,4 @@
-package gestorAplicación.Materiales;
+package gestorAplicacion.Materiales;
 
 import java.util.HashMap;
 import java.util.Map;

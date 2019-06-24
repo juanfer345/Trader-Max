@@ -3,11 +3,7 @@ package uiMain;
 import java.util.*;
 import gestorAplicación.Usuarios.Cuenta;
 import gestorAplicación.Usuarios.Visitante;
-import uiMain.Funcionalidades.buscarCategoria;
-import uiMain.Funcionalidades.buscarProducto;
-import uiMain.Funcionalidades.iniciarSesion;
-import uiMain.Funcionalidades.registrar;
-import uiMain.Funcionalidades.salir;
+import uiMain.Funcionalidades.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;

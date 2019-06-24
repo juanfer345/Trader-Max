@@ -14,11 +14,11 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import gestorAplicación.InicializacionAplicacion;
+import gestorAplicacion.InicializacionAplicacion;
+import gestorAplicacion.Materiales.Reseña;
 import gestorAplicación.Materiales.CarritoDeCompras;
 import gestorAplicación.Materiales.CuentaBancaria;
 import gestorAplicación.Materiales.Producto;
-import gestorAplicación.Materiales.Reseña;
 import gestorAplicación.Usuarios.Administrador;
 import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Usuarios.Vendedor;
@@ -318,7 +318,7 @@ public class EscrituraBD {
 	        	
 	        	//Apuntadores a las reseñas del producto
 	        	if (!entry.getValue().getReseñas().isEmpty()){
-		    		for (Map.Entry <Integer, Reseña> res: entry.getValue().getReseñas().entrySet()) {
+		    		for (Map.Entry <Integer, Resena> res: entry.getValue().getResenas().entrySet()) {
 		    			sb.append(res.getValue().getId() + ',');
 		    		}
 	        	} else {
@@ -340,11 +340,11 @@ public class EscrituraBD {
 		}
 	}
 	
-	private static void escrituraReseñas(String NombreBD, HashMap <Integer, Reseña> HM) {
+	private static void escrituraResenas(String NombreBD, HashMap <Integer, Resena> HM) {
 		
 		File BD;
 		PrintWriter pw = null;
-		Reseña val;
+		Resena val;
         StringBuilder sb = new StringBuilder();
 		
 		//Creación o sobreescritura de la base de datos y control de errores
@@ -354,7 +354,7 @@ public class EscrituraBD {
 			BD.createNewFile();					//Creación de archivo (en el computador)
 			pw = new PrintWriter(BD);			//Asignación del objeto que imprime
 	        
-	        for (Map.Entry <Integer, Reseña> entry : HM.entrySet()) {
+	        for (Map.Entry <Integer, Resena> entry : HM.entrySet()) {
 	        	val = entry.getValue();							//Extracción de valores de la tabla hash
 	            sb.append(entry.getKey() + ';'); 				//Identificador único de la reseña
 	            sb.append(val.getEstrellas() + ';');			//Estrellas de la reseña

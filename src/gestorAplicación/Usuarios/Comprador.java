@@ -8,7 +8,7 @@ import java.util.Map;
 
 import gestorAplicación.Materiales.CarritoDeCompras;
 import gestorAplicación.Materiales.Producto;
-import gestorAplicación.Materiales.Reseña;
+import gestorAplicación.Materiales.Resena;
 
 public class Comprador extends CuentaUsuarios {
 
@@ -107,11 +107,11 @@ public class Comprador extends CuentaUsuarios {
 		this.carrito = carrito;
 	}
 	
-	public String añadirReseña(int codigo, Reseña r) {
+	public String añadirReseña(int codigo, Resena r) {
 		if(historial.containsKey(codigo)) {
 			Producto p = historial.get(codigo);
-			int indice = p.Reseñas.size();
-			p.Reseñas.put(indice, r);
+			int indice = p.Resenas.size();
+			p.Resenas.put(indice, r);
 			return "Reseña del producto: " + p.getNombreProducto() + "ha sido añadida";
 		}else {
 			return "No ha comprado este producto, no puede añadir una reseña";
