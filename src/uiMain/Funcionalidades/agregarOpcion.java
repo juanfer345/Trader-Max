@@ -11,8 +11,11 @@ public class agregarOpcion extends OpcionDeMenu { // opcion 13
 		}
 		System.out.println("Ingrese el indice de la opcion que quiera eliminar: ");
 		int agregar = scn.nextInt();
-		String str = activo.add(opciones.get(agregar));
-		System.out.println(str);
+		boolean b = activo.add(opciones.get(agregar));
+		if(b)
+			System.out.println("Se agregó la opción exitosamente");
+		else
+			System.out.println("No se pudo agregar la opción");
 
 	}
 	@Override
