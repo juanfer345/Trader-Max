@@ -1,9 +1,10 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
 import gestorAplicación.InicializacionAplicacion;
 import gestorAplicación.Usuarios.Cuenta;
+import uiMain.OpcionDeMenu;
 
-class iniciarSesion extends OpcionDeMenu { // opcion 1
+public class iniciarSesion extends OpcionDeMenu { // opcion 1
 	Integer key =-1;
 	Cuenta us;
 	byte intentar = 1;

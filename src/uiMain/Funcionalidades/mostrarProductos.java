@@ -1,8 +1,9 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
 import java.util.Map;
 import gestorAplicación.Materiales.Producto;
 import gestorAplicación.Usuarios.CuentaUsuarios;
+import uiMain.OpcionDeMenu;
 
 public class mostrarProductos extends OpcionDeMenu{
 	//Recorre toda la tabla Hash mostrando los productos

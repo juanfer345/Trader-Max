@@ -1,7 +1,8 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
+import uiMain.OpcionDeMenu;
 
-class agregarOpcion extends OpcionDeMenu { // opcion 13
+public class agregarOpcion extends OpcionDeMenu { // opcion 13
 
 	@Override
 	public void ejecutar() {

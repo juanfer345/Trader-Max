@@ -1,9 +1,10 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
 import gestorAplicación.Materiales.Producto;
 import gestorAplicación.Usuarios.Comprador;
+import uiMain.OpcionDeMenu;
 
-class buscarProducto extends OpcionDeMenu { // opcion 2
+public class buscarProducto extends OpcionDeMenu { // opcion 2
 
 	@Override
 	public void ejecutar() {

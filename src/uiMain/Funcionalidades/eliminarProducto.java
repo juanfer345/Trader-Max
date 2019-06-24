@@ -1,7 +1,8 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
+import uiMain.OpcionDeMenu;
 
-class eliminarProducto extends OpcionDeMenu {
+public class eliminarProducto extends OpcionDeMenu {
 
 	@Override
 	public void ejecutar() {

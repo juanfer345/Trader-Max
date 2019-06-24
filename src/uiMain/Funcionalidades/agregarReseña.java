@@ -1,12 +1,13 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
 import java.io.IOException;
 
 import gestorAplicación.Materiales.Producto;
 import gestorAplicación.Materiales.Reseña;
 import gestorAplicación.Usuarios.Vendedor;
+import uiMain.OpcionDeMenu;
 
-class agregarReseña extends OpcionDeMenu { // opcion 10
+public class agregarReseña extends OpcionDeMenu { // opcion 10
 
 	@Override
 	public void ejecutar() throws IOException {

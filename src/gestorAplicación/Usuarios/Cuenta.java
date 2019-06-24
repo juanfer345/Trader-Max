@@ -9,7 +9,7 @@ public abstract class Cuenta {
 	private String cedula;
 	static protected int contador;
 	static int totalCuentas;
-
+	
 	public String getNombre() {
 		return nombre;
 	}

@@ -1,11 +1,12 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
 import gestorAplicación.Usuarios.CuentaUsuarios;
+import uiMain.OpcionDeMenu;
 import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Materiales.Producto;
 import java.util.Scanner;
 
-class agregarACarrito extends OpcionDeMenu { // opcion 4
+public class agregarACarrito extends OpcionDeMenu { // opcion 4
 	//Pedir codigo, y en caso de existir el producto agregarlo
 	
 	@Override

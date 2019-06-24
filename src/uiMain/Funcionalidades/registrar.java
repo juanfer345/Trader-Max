@@ -1,12 +1,13 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
 import java.io.IOException;
 
 import gestorAplicación.InicializacionAplicacion;
 import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Usuarios.Vendedor;
+import uiMain.OpcionDeMenu;
 
-class registrar extends OpcionDeMenu { // opcion 0
+public class registrar extends OpcionDeMenu { // opcion 0
 	boolean x= false;
 	Integer key;
 	public void ejecutar() throws IOException{

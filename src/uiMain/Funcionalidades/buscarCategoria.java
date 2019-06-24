@@ -1,11 +1,12 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
 import java.util.Deque;
 
 import gestorAplicación.Materiales.Producto;
 import gestorAplicación.Usuarios.Comprador;
+import uiMain.OpcionDeMenu;
 
-class buscarCategoria extends OpcionDeMenu { // opcion 3
+public class buscarCategoria extends OpcionDeMenu { // opcion 3
 
 	@Override
 	public void ejecutar() {

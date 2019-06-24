@@ -1,7 +1,8 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
+import uiMain.OpcionDeMenu;
 
-class eliminarOpcion extends OpcionDeMenu { // opci gestorAplicación.Usuarios.Vendedoron 12
+public class eliminarOpcion extends OpcionDeMenu { // opci gestorAplicación.Usuarios.Vendedoron 12
 	@Override
 	public void ejecutar() {
 		for (int i = 0; i < activo.size(); i++) {

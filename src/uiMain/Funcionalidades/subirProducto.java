@@ -1,8 +1,10 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
 import java.io.IOException;
 
-class subirProducto extends OpcionDeMenu { // opcion 11
+import uiMain.OpcionDeMenu;
+
+public class subirProducto extends OpcionDeMenu { // opcion 11
 
 	@Override
 	public void ejecutar() throws IOException {

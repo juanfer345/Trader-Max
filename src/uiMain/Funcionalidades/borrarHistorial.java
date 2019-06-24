@@ -1,8 +1,9 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
 import gestorAplicación.Usuarios.Comprador;
+import uiMain.OpcionDeMenu;
 
-class borrarHistorial extends OpcionDeMenu { // opcion 5
+public class borrarHistorial extends OpcionDeMenu { // opcion 5
 
 	@Override
 	public void ejecutar() {

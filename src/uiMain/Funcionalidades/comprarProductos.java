@@ -1,6 +1,8 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
-class comprarProductos extends OpcionDeMenu { // opcion 7
+import uiMain.OpcionDeMenu;
+
+public class comprarProductos extends OpcionDeMenu { // opcion 7
 
 	@Override
 	public void ejecutar() {

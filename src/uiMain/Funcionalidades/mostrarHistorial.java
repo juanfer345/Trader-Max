@@ -1,12 +1,13 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
 import java.util.Map;
 
 import gestorAplicación.Materiales.Producto;
 import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Usuarios.CuentaUsuarios;
+import uiMain.OpcionDeMenu;
 
-class mostrarHistorial extends OpcionDeMenu { // opcion 6
+public class mostrarHistorial extends OpcionDeMenu { // opcion 6
 
 	@Override
 	public void ejecutar() {
@@ -14,7 +15,6 @@ class mostrarHistorial extends OpcionDeMenu { // opcion 6
 			Producto P = entry.getValue();
 			System.out.println(P);
 		}
-	}
 	}
 
 	@Override

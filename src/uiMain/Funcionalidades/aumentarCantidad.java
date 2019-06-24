@@ -1,8 +1,9 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
 import gestorAplicación.Usuarios.Vendedor;
+import uiMain.OpcionDeMenu;
 
-class aumentarCantidad extends OpcionDeMenu{
+public class aumentarCantidad extends OpcionDeMenu{
 	//Y si se considera el caso de agregar cantidad por codigo ya que el catalogo es static entonces pueden haber varios -
 	//- productos con el mismo nombre (Lo voy a dejar por si algo, igual que la funcion en Vendedor como comentario)
 	

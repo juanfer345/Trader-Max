@@ -1,8 +1,9 @@
-package uiMain;
+package uiMain.Funcionalidades;
 
 import gestorAplicación.Usuarios.Administrador;
+import uiMain.OpcionDeMenu;
 
-class cuentas extends OpcionDeMenu { // opcion 15
+public class cuentas extends OpcionDeMenu { // opcion 15
 
 	@Override
 	public void ejecutar() {
