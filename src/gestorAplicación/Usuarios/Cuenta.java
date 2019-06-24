@@ -1,5 +1,6 @@
 package gestorAplicación.Usuarios;
 
+import gestorAplicación.Materiales.Producto;
 
 public abstract class Cuenta {
 	
@@ -48,6 +49,14 @@ public abstract class Cuenta {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public void borrarHistorial() {
+		//Para poder llamar al metodo borrarHistorial desde el apuntador Cuenta
+	}
+
+	public void agregarACarrito(Producto p) {
+		//Para poder llamar al metodo agregarACarrito desde el apuntador Cuenta
 	}
 
 }

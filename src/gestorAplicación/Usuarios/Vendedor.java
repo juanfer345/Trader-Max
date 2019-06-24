@@ -30,6 +30,7 @@ public class Vendedor extends CuentaUsuarios {
 		}
 		mens.setPrecio(precio);
 	}
+	
 	public static void aumentarCantidad(String nombre, int aumento) {
 		Producto mens = null;
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
@@ -41,5 +42,13 @@ public class Vendedor extends CuentaUsuarios {
 		}
 		mens.setCantidad(mens.getCantidad() + aumento);
 	}
-
+	
+/*	public static void AumentarCantidad(int codigo, int aumento) {
+		Producto P = null;
+		P = Vendedor.catalogo.get(codigo);
+		if(P!=null) {
+			P.setCantidad(P.getCantidad() + aumento);
+		}
+	}
+*/
 }

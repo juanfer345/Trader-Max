@@ -19,7 +19,7 @@ public class Visitante extends Cuenta {
 		Iterator<Producto> it = Vendedor.catalogo.iterator();
 		while (it.hasNext()) {
 			Producto p = it.next();
-			if (p.categoria == cat) {
+			if (p.getCategoria() == cat) {
 				colaProd.add(p);
 			}
 		}
@@ -30,7 +30,7 @@ public class Visitante extends Cuenta {
 		Deque<Producto> colaProd = new LinkedList<Producto>();
 		(Vendedor.catalogo).forEach((k,v)-> {
 			Producto p = Vendedor.catalogo.get(k);
-			if (p.categoria == cat) {
+			if (p.getCategoria() == cat) {
 				colaProd.add(p);}
 		});
 		

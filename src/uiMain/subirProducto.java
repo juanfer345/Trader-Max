@@ -6,11 +6,11 @@ class subirProducto extends OpcionDeMenu { // opcion 11
 	@Override
 	public void ejecutar() {
 		System.out.println("Ingrese el nombre del producto");
-		String nombre = e.next();
+		String nombre = scn.next();
 		System.out.println("Ingrese la cantidad ");
-		int cant = e.nextInt();
+		int cant = scn.nextInt();
 		System.out.println("Ingrese el precio ");
-		double precio = e.nextDouble();
+		double precio = scn.nextDouble();
 		//hay que esperar a que sara y juan manuel resuelvan las categorias
 
 	}

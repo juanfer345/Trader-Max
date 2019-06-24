@@ -51,7 +51,7 @@ public class Comprador extends CuentaUsuarios {
 		Deque<Producto> colaProd = new LinkedList<Producto>();
 		(Vendedor.catalogo).forEach((k, v) -> {
 			Producto p = Vendedor.catalogo.get(k);
-			if (p.categoria == cat) {
+			if (p.getCategoria() == cat) {
 				colaProd.add(p);
 			}
 		});

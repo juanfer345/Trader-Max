@@ -10,7 +10,7 @@ public class MenuDeConsola {
 	ArrayList<OpcionDeMenu> activo = new ArrayList<OpcionDeMenu>();
 	Cuenta usuario = new Visitante();
 	public static boolean SalirApp = false;
-	public static Scanner e = new Scanner(System.in);
+	public static Scanner scn = new Scanner(System.in);
 	public static int compradores = 0;
 	public static int vendedores = 0;
 	public static int administradores = 0;
@@ -24,7 +24,7 @@ public class MenuDeConsola {
 			System.out.println((i+1)+ activo.get(i).toString());
 		}
 		System.out.println("Ingrese la opción");
-		int recibido = MenuDeConsola.e.nextInt();
+		int recibido = MenuDeConsola.scn.nextInt();
 		OpcionDeMenu op = opciones.get(recibido-1);
 		op.ejecutar();
 		

@@ -9,15 +9,15 @@ class registrar extends OpcionDeMenu { // opcion 0
 	Integer key;
 	public void ejecutar() {
 		System.out.println("Tipo de cuenta: \n1.Vendedor\n2.Comprador");
-		short t = e.nextShort();
+		short t = scn.nextShort();
 		System.out.println("Nombre: ");
-		String n = e.next();
+		String n = scn.next();
 		System.out.println("Correo: ");
-		String c = e.next();
-		System.out.println("Cedula :");
-		String cc = e.next();
+		String c = scn.next();
+		System.out.println("Cedula: ");
+		String cc = scn.next();
 		System.out.println("Contraseña: ");
-		String p = e.next();
+		String p = scn.next();
 
 		if (t == 1) {
 			(InicializacionAplicacion.getBDCompradores()).forEach((k,v)-> {
@@ -68,7 +68,7 @@ class registrar extends OpcionDeMenu { // opcion 0
 			InicializacionAplicacion.getBDCompradores().put(compradores, (Comprador) usuario);
 			activo.clear();
 			activo.add(new buscarProducto());
-			activo.add(new buscarNombre());
+			activo.add(new buscarCategoria());
 			activo.add(new agregarACarrito());
 			activo.add(new borrarHistorial());
 			activo.add(new mostrarHistorial());

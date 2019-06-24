@@ -8,7 +8,7 @@ class eliminarOpcion extends OpcionDeMenu { // opci gestorAplicación.Usuarios.Ve
 			System.out.println(opciones.get(i));
 		}
 		System.out.println("Ingrese el indice de la opcion que quiera eliminar: ");
-		int Aeliminar = e.nextInt();
+		int Aeliminar = scn.nextInt();
 		activo.remove(Aeliminar);
 	}
 

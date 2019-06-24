@@ -8,16 +8,17 @@ class agregarReseña extends OpcionDeMenu { // opcion 10
 
 	@Override
 	public void ejecutar() {
-		//mostrar el catalogo y numerar las posiciones(empezar en 1)
-		System.out.println("Ingrese numero del producto en el catálogo ");
-		int codigo = e.nextInt();
-		Producto p = Vendedor.catalogo.get(codigo-1);
+		//Mostrar el catalogo y numerar las posiciones(empezar en 1)
+		
+		System.out.println("Ingrese el codigo del producto: ");
+		int codigoP = scn.nextInt();
+		Producto P = Vendedor.catalogo.get(codigoP);
 		System.out.println("Ingrese numero de estrellas: ");
-		int estrellas = MenuDeConsola.e.nextInt();
+		int estrellas = scn.nextInt();
 		System.out.println("Ingrese comentario: ");
-		String comentario = MenuDeConsola.e.next();
+		String comentario = scn.next();
 		Reseña rese = new Reseña(comentario, estrellas);
-		p.añadirReseña(rese);
+		P.añadirReseña(rese);
 	}
 	@Override
 	public String toString() {

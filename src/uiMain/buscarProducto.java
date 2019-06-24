@@ -4,15 +4,18 @@ import gestorAplicación.Materiales.Producto;
 import gestorAplicación.Usuarios.Comprador;
 
 class buscarProducto extends OpcionDeMenu { // opcion 2
-	Producto prod;
 
 	@Override
 	public void ejecutar() {
 		System.out.println("Ingrese el código del producto: ");
-		int codigo = e.nextInt();
+		int codigo = scn.nextInt();
+		Producto prod;
 		prod = Comprador.buscar(codigo); 
-		System.out.println("Nombre: " + prod.getNombreProducto() + "Código: " + prod.getCodigoProducto());
-
+		if(prod != null) {
+			System.out.println(prod);
+		} else {
+			System.out.println("Producto no encontrado");
+		}
 	}
 
 	public String toString() {

@@ -6,9 +6,9 @@ class cambiarPrecio extends OpcionDeMenu {
 
 	public void ejecutar() {
 		System.out.println("Ingrese el nombre del producto");
-		String nom = e.next();
+		String nom = scn.next();
 		System.out.println("Ingrese el nuevo precio");
-		double pre = e.nextDouble();
+		double pre = scn.nextDouble();
 		Vendedor.cambiarPrecio(nom, pre);
 		
 	}

@@ -6,7 +6,7 @@ class eliminarProducto extends OpcionDeMenu {
 	@Override
 	public void ejecutar() {
 		System.out.println("Ingrese el código del producto a eliminar ");
-		int cod = e.nextInt();
+		int cod = scn.nextInt();
 
 	}
 

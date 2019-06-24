@@ -10,9 +10,9 @@ class iniciarSesion extends OpcionDeMenu { // opcion 1
 	public void ejecutar() {
 		
 		System.out.println("Correo: ");
-		String c = e.next();
+		String c = scn.next();
 		System.out.println("Contraseña: ");
-		String p = e.next();
+		String p = scn.next();
 		
 		(InicializacionAplicacion.getBDCompradores()).forEach((k, v) -> {
 			if ((v.getCorreo().equals(c))) {
@@ -52,10 +52,10 @@ class iniciarSesion extends OpcionDeMenu { // opcion 1
 						break;
 					}else {
 						System.out.println("Contraseña incorrecta. \n1.Volver a intentar\n2.Cancelar");
-						intentar = e.nextByte();
+						intentar = scn.nextByte();
 						if(intentar==1) {
 							System.out.println("Ingrese la contraseña: ");
-							p = e.next();
+							p = scn.next();
 						}
 					}
 				}while(intentar!=1);
