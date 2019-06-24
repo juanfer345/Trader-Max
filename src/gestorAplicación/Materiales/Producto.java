@@ -5,7 +5,8 @@ import java.util.HashMap;
 
 public class Producto {
 
-	public static String categorias [] = {"Belleza", "Carros", "Deportes", "Electrodomesticos", "Hogar", "Juegos", "Libros", "Musica", "Tecnologia", "Vestimenta"};
+
+	public static String categorias [] = {"Belleza", "Vehiculos", "Deportes", "Electrodomesticos", "Hogar", "Juegos", "Libros", "Musica", "Tecnologia", "Vestimenta","Vivienda"};
 	private HashMap<Integer, Reseña> Reseñas = new HashMap<>();
 	private Vendedor vendedor;
 	private String nombreProducto;
@@ -46,11 +47,6 @@ public class Producto {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
-	}
-
-	public void añadirReseña(Reseña x) {
-		int indice = Reseñas.size();
-		Reseñas.put(indice, x);
 	}
 	
 	public String getNombreProducto() {

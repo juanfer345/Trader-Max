@@ -5,11 +5,11 @@ import gestorAplicación.Materiales.Producto;
 import gestorAplicación.Usuarios.CuentaUsuarios;
 import uiMain.OpcionDeMenu;
 
-public class mostrarProductos extends OpcionDeMenu{
+public class MostrarProductos extends OpcionDeMenu{
 	//Recorre toda la tabla Hash mostrando los productos
 
 	@Override
-	public void ejecutar() { //esto lo tienen que pasar a la logica
+	public void ejecutar() {
 		for (Map.Entry<Integer, Producto> entry : CuentaUsuarios.catalogo.entrySet()) {
 			Producto P = entry.getValue();
 			System.out.println(P);

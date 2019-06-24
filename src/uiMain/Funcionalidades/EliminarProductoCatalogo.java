@@ -3,7 +3,7 @@ package uiMain.Funcionalidades;
 import gestorAplicación.Usuarios.Vendedor;
 import uiMain.OpcionDeMenu;
 
-public class eliminarProductoCatalogo extends OpcionDeMenu {
+public class EliminarProductoCatalogo extends OpcionDeMenu {
 
 	@Override
 	public void ejecutar() {

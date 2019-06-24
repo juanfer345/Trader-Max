@@ -7,7 +7,7 @@ import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Usuarios.Vendedor;
 import uiMain.OpcionDeMenu;
 
-public class registrar extends OpcionDeMenu { // opcion 0
+public class Registrar extends OpcionDeMenu { // opcion 0
 	boolean x= false;
 	Integer key;
 	public void ejecutar() throws IOException{

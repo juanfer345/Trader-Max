@@ -5,7 +5,7 @@ import java.io.IOException;
 import gestorAplicación.Usuarios.Vendedor;
 import uiMain.OpcionDeMenu;
 
-public class cambiarPrecio extends OpcionDeMenu {
+public class CambiarPrecio extends OpcionDeMenu {
 
 	public void ejecutar() throws IOException {
 		System.out.println("Ingrese el nombre del producto");

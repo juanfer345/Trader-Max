@@ -2,7 +2,7 @@ package uiMain.Funcionalidades;
 
 import uiMain.OpcionDeMenu;
 
-public class salir extends OpcionDeMenu {
+public class Salir extends OpcionDeMenu {
 
 	@Override
 	public void ejecutar() {

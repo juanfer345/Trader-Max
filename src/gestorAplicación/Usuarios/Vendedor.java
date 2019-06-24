@@ -19,7 +19,7 @@ public class Vendedor extends CuentaUsuarios {
 		catalogo.put(p.getCodigoProducto(), p);
 	}
 
-	public static void cambiarPrecio(String nombre, double precio) {
+	public static String cambiarPrecio(String nombre, double precio) {
 		Producto mens = null;
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
 			Producto p = entry.getValue();
@@ -28,10 +28,17 @@ public class Vendedor extends CuentaUsuarios {
 				break;
 			}
 		}
-		mens.setPrecio(precio);
+		if (mens == null) {
+			return "El producto no existe, no se puede cambiar el precio";
+		}
+		else {
+			mens.setPrecio(precio);
+			return "Se ha cambiado el precio del producto: " + mens.getNombreProducto() +
+					". Precio actual: " + mens.getPrecio();
+		}
 	}
 	
-	public static void aumentarCantidad(String nombre, int aumento) {
+	public static String aumentarCantidad(String nombre, int aumento) {
 		Producto mens = null;
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
 			Producto p = entry.getValue();
@@ -40,7 +47,16 @@ public class Vendedor extends CuentaUsuarios {
 				break;
 			}
 		}
-		mens.setCantidad(mens.getCantidad() + aumento);
+		if (mens == null) {
+			return "El producto no existe, no se puede aumentar la cantidad";
+		}
+		else {
+			int can_final = mens.getCantidad() + aumento;
+			mens.setCantidad(mens.getCantidad() + aumento);
+			return "Se aumentó la cantidad del producto: " + mens.getNombreProducto() +
+					"cantidad actual: " + can_final;
+		}
+		
 	}
 
 	public String  eliminarProductoCatalogo(int prod) {
@@ -54,12 +70,4 @@ public class Vendedor extends CuentaUsuarios {
 		return "Eliminó el producto exitosamente";
 	}
 	
-/*	public static void AumentarCantidad(int codigo, int aumento) {
-		Producto P = null;
-		P = Vendedor.catalogo.get(codigo);
-		if(P!=null) {
-			P.setCantidad(P.getCantidad() + aumento);
-		}
-	}
-*/
 }
