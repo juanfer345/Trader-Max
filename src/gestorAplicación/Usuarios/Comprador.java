@@ -8,11 +8,12 @@ import java.util.Map;
 
 import gestorAplicación.Materiales.CarritoDeCompras;
 import gestorAplicación.Materiales.Producto;
+import gestorAplicación.Materiales.Reseña;
 
 public class Comprador extends CuentaUsuarios {
 
 	private CarritoDeCompras carrito;
-	private HashMap<Integer, Producto> historial = new HashMap<>();
+	public HashMap<Integer, Producto> historial = new HashMap<>();
 
 	public Comprador(String nombre, String correo, String password, String cedula) {
 		super(nombre, correo, password, cedula);
@@ -88,11 +89,12 @@ public class Comprador extends CuentaUsuarios {
 		return Prod;
 	}
 
-	public void borrarHistorial() {
+	public String borrarHistorial() {
 		historial.clear();
+		return "El historial se ha borrado exitosamente";
 	}
 
-	public/* static */ HashMap<Integer, Producto> getHistorial() {
+	public HashMap<Integer, Producto> getHistorial() {
 		return historial;
 	}
 
@@ -102,6 +104,18 @@ public class Comprador extends CuentaUsuarios {
 
 	public void setCarrito(CarritoDeCompras carrito) {
 		this.carrito = carrito;
+	}
+	
+	public String añadirReseña(int codigo, Reseña r) {
+		if(historial.containsKey(codigo)) {
+			Producto p = historial.get(codigo);
+			int indice = p.Reseñas.size();
+			p.Reseñas.put(indice, r);
+			return "Reseña del producto: " + p.getNombreProducto() + "ha sido añadida";
+		}else {
+			return "No ha comprado este producto, no puede añadir una reseña";
+		}
+
 	}
 
 }

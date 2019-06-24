@@ -12,7 +12,7 @@ public class aumentarCantidad extends OpcionDeMenu{
 		String nombre = br.readLine();
 		System.out.println("Ingrese la cantidad a agregar: ");
 		int cantidad = scn.nextInt();
-		String str =Vendedor.aumentarCantidad(nombre, cantidad);
+		String str = Vendedor.aumentarCantidad(nombre, cantidad);
 		System.out.println(str);
 	}
 

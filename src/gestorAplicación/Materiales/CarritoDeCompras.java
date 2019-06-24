@@ -10,7 +10,8 @@ public class CarritoDeCompras {
 	private int totalProductos;
 	private double precioTotal;
 	private Comprador titular;
-	public HashMap<Integer, Integer> productos = new HashMap<>();// Carrito {Codigo, Cantidad};
+	public HashMap<Integer, Integer> productos = new HashMap<>();
+	// Carrito {Codigo, Cantidad};
 	private int id;
 
 	public CarritoDeCompras() {
@@ -46,6 +47,7 @@ public class CarritoDeCompras {
 				titular.getCuentaBancaria().Transaccion(titular.getCuentaBancaria(),
 						p.getVendedor().getCuentaBancaria(), precio);
 				p.setCantidad(p.getCantidad() - cantidad);
+				titular.historial.put(codigo, p);
 				if (p.getCantidad() == 0) {
 					Vendedor.catalogo.remove(codigo);
 				}
