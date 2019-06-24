@@ -3,7 +3,7 @@
 	
 	Propósito: Contiene la rutina principal del programa.
 */
-package gestorAplicación;
+package gestorAplicacion;
 
 import uiMain.MenuDeConsola;
 
@@ -21,7 +21,7 @@ public class InicializacionAplicacion {
     private static HashMap <Integer, CuentaBancaria> BDCuentasBancarias = new HashMap <> ();
     private static HashMap <Integer, CarritoDeCompras> BDCarritos = new HashMap <> ();
     private static HashMap <Integer, Producto> BDProductos = new HashMap <> ();
-    private static HashMap <Integer, Reseña> BDReseñas = new HashMap <> ();
+    private static HashMap <Integer, Resena> BDResenas = new HashMap <> ();
     
 	public static void main(String[] args) throws IOException {
 		
@@ -67,7 +67,7 @@ public class InicializacionAplicacion {
 		return BDProductos;
 	}
 
-	public static HashMap<Integer, Reseña> getBDReseñas() {
-		return BDReseñas;
+	public static HashMap<Integer, Resena> getBDResenas() {
+		return BDResenas;
 	}
 }

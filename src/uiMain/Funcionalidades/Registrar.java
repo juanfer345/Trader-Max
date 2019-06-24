@@ -2,7 +2,7 @@ package uiMain.Funcionalidades;
 
 import java.io.IOException;
 
-import gestorAplicación.InicializacionAplicacion;
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Usuarios.Vendedor;
 import uiMain.OpcionDeMenu;

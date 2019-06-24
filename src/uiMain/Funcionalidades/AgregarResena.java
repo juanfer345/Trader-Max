@@ -1,10 +1,13 @@
 package uiMain.Funcionalidades;
 import java.io.IOException;
-import gestorAplicación.Materiales.Reseña;
+
+import gestorAplicación.Materiales.Producto;
+import gestorAplicación.Materiales.Resena;
+import gestorAplicación.Usuarios.Vendedor;
 import gestorAplicación.Usuarios.Comprador;
 import uiMain.OpcionDeMenu;
 
-public class AgregarReseña extends OpcionDeMenu { // opcion 10
+public class AgregarResena extends OpcionDeMenu { // opcion 10
 
 	@Override
 	public void ejecutar() throws IOException {
@@ -18,8 +21,9 @@ public class AgregarReseña extends OpcionDeMenu { // opcion 10
 		int estrellas = scn.nextInt();
 		System.out.println("Ingrese comentario: ");
 		String comentario = br.readLine();
-		Reseña rese = new Reseña(comentario, estrellas);
-		String str =comp.añadirReseña(codigoP,rese);
+		Resena rese = new Resena(comentario, estrellas);
+		String str =P.añadirResena(rese);
+		String str =comp.añadirResena(codigoP,rese);
 		System.out.println(str);
 	}
 	@Override

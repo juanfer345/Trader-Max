@@ -7,6 +7,7 @@ public class Producto {
 
 
 	public static String categorias [] = {"Belleza", "Vehiculos", "Deportes", "Electrodomesticos", "Hogar", "Juegos", "Libros", "Musica", "Tecnologia", "Vestimenta","Vivienda"};
+
 	public HashMap<Integer, Reseña> Reseñas = new HashMap<>();
 	private Vendedor vendedor;
 	private String nombreProducto;
@@ -61,7 +62,7 @@ public class Producto {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	public HashMap<Integer, Reseña> getReseñas() {
+	public HashMap<Integer, Resena> getReseñas() {
 		return Reseñas;
 	}
 	public int getCodigoProducto() {

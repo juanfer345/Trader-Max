@@ -3,7 +3,7 @@ package gestorAplicación.Usuarios;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
-import gestorAplicación.InicializacionAplicacion;
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicación.Materiales.Producto;
 import gestorAplicación.Usuarios.Vendedor;
 

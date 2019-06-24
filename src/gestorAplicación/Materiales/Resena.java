@@ -1,8 +1,7 @@
 package gestorAplicación.Materiales;
-
 import gestorAplicación.Usuarios.Comprador;
 
-public class Reseña {
+public class Resena {	
 
 	@Override
 	public String toString() {
@@ -15,20 +14,20 @@ public class Reseña {
     Comprador comp;
     
     
-	public Reseña(int estrellas) {
+	public Resena(int estrellas) {
 		this("Sin comentario",estrellas);
 	}
 	
-	public Reseña(String comentario) {
+	public Resena(String comentario) {
 		this(comentario, 0);
 	}
 	
-	public Reseña(String comentario, int estrellas) {
+	public Resena(String comentario, int estrellas) {
 		this.comentario=comentario;
 		this.estrellas=estrellas;
 	}
 
-	public Reseña() {
+	public Resena() {
 		
 	}
 

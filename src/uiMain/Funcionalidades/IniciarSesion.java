@@ -1,6 +1,6 @@
 package uiMain.Funcionalidades;
 
-import gestorAplicación.InicializacionAplicacion;
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicación.Usuarios.Cuenta;
 import uiMain.OpcionDeMenu;
 
