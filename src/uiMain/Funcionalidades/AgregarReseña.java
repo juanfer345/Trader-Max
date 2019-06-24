@@ -7,7 +7,7 @@ import gestorAplicación.Materiales.Reseña;
 import gestorAplicación.Usuarios.Vendedor;
 import uiMain.OpcionDeMenu;
 
-public class agregarReseña extends OpcionDeMenu { // opcion 10
+public class AgregarReseña extends OpcionDeMenu { // opcion 10
 
 	@Override
 	public void ejecutar() throws IOException {//mostrar el catalogo, pa la logica

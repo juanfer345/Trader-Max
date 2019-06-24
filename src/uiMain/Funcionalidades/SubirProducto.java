@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import uiMain.OpcionDeMenu;
 
-public class subirProducto extends OpcionDeMenu { // opcion 11
+public class SubirProducto extends OpcionDeMenu { // opcion 11
 
 	@Override
 	public void ejecutar() throws IOException {

@@ -6,7 +6,7 @@ import gestorAplicación.Materiales.Producto;
 import gestorAplicación.Usuarios.Comprador;
 import uiMain.OpcionDeMenu;
 
-public class buscarCategoria extends OpcionDeMenu { // opcion 3
+public class BuscarCategoria extends OpcionDeMenu { // opcion 3
 
 	@Override
 	public void ejecutar() { //pa la logica

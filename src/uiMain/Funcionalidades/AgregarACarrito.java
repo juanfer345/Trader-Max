@@ -6,7 +6,7 @@ import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Materiales.Producto;
 import java.util.Scanner;
 
-public class agregarACarrito extends OpcionDeMenu { // opcion 4
+public class AgregarACarrito extends OpcionDeMenu { // opcion 4
 	//Pedir codigo, y en caso de existir el producto agregarlo
 	
 	@Override

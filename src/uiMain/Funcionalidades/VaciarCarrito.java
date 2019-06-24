@@ -3,7 +3,7 @@ package uiMain.Funcionalidades;
 import gestorAplicación.Usuarios.Comprador;
 import uiMain.OpcionDeMenu;
 
-public class vaciarCarrito extends OpcionDeMenu { // opcion 8
+public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 
 	@Override
 	public void ejecutar() {

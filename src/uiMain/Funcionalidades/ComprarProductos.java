@@ -3,7 +3,7 @@ package uiMain.Funcionalidades;
 import gestorAplicación.Usuarios.Comprador;
 import uiMain.OpcionDeMenu;
 
-public class comprarProductos extends OpcionDeMenu { // opcion 7
+public class ComprarProductos extends OpcionDeMenu { // opcion 7
 
 	@Override
 	public void ejecutar() {

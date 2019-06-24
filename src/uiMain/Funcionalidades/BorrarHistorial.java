@@ -2,7 +2,7 @@ package uiMain.Funcionalidades;
 
 import uiMain.OpcionDeMenu;
 
-public class borrarHistorial extends OpcionDeMenu { // opcion 5
+public class BorrarHistorial extends OpcionDeMenu { // opcion 5
 
 	@Override
 	public void ejecutar() {

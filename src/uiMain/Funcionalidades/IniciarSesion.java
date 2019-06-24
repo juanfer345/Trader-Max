@@ -4,7 +4,7 @@ import gestorAplicación.InicializacionAplicacion;
 import gestorAplicación.Usuarios.Cuenta;
 import uiMain.OpcionDeMenu;
 
-public class iniciarSesion extends OpcionDeMenu { // opcion 1
+public class IniciarSesion extends OpcionDeMenu { // opcion 1
 	
 	public void ejecutar() {
 		
