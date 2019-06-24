@@ -73,7 +73,7 @@ public class Comprador extends CuentaUsuarios {
 		historial.clear();
 	}
 
-	public HashMap<Integer, Producto> getHistorial() {
+	public/*static*/ HashMap<Integer, Producto> getHistorial() {
 		return historial;
 	}
 

@@ -3,19 +3,23 @@ package uiMain;
 import java.util.*;
 import gestorAplicación.Usuarios.Cuenta;
 import gestorAplicación.Usuarios.Visitante;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class MenuDeConsola {
 
 	ArrayList<OpcionDeMenu> opciones = new ArrayList<OpcionDeMenu>();// lista de metodos para el admin
 	ArrayList<OpcionDeMenu> activo = new ArrayList<OpcionDeMenu>();
-	Cuenta usuario = new Visitante();
+	public static Cuenta usuario = new Visitante();
 	public static boolean SalirApp = false;
 	public static Scanner scn = new Scanner(System.in);
+	 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public static int compradores = 0;
 	public static int vendedores = 0;
 	public static int administradores = 0;
-
-	public void LanzarMenu() {
+ 
+	public void LanzarMenu() throws IOException {
 		activo.add(new iniciarSesion());
 		activo.add(new registrar());
 		activo.add(new salir());

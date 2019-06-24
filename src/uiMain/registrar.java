@@ -1,5 +1,7 @@
 package uiMain;
 
+import java.io.IOException;
+
 import gestorAplicación.InicializacionAplicacion;
 import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Usuarios.Vendedor;
@@ -7,11 +9,11 @@ import gestorAplicación.Usuarios.Vendedor;
 class registrar extends OpcionDeMenu { // opcion 0
 	boolean x= false;
 	Integer key;
-	public void ejecutar() {
+	public void ejecutar() throws IOException{
 		System.out.println("Tipo de cuenta: \n1.Vendedor\n2.Comprador");
 		short t = scn.nextShort();
 		System.out.println("Nombre: ");
-		String n = scn.next();
+		String n = br.readLine();
 		System.out.println("Correo: ");
 		String c = scn.next();
 		System.out.println("Cedula: ");

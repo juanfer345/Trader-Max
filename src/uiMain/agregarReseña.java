@@ -1,5 +1,7 @@
 package uiMain;
 
+import java.io.IOException;
+
 import gestorAplicación.Materiales.Producto;
 import gestorAplicación.Materiales.Reseña;
 import gestorAplicación.Usuarios.Vendedor;
@@ -7,7 +9,7 @@ import gestorAplicación.Usuarios.Vendedor;
 class agregarReseña extends OpcionDeMenu { // opcion 10
 
 	@Override
-	public void ejecutar() {
+	public void ejecutar() throws IOException {
 		//Mostrar el catalogo y numerar las posiciones(empezar en 1)
 		
 		System.out.println("Ingrese el codigo del producto: ");
@@ -16,7 +18,7 @@ class agregarReseña extends OpcionDeMenu { // opcion 10
 		System.out.println("Ingrese numero de estrellas: ");
 		int estrellas = scn.nextInt();
 		System.out.println("Ingrese comentario: ");
-		String comentario = scn.next();
+		String comentario = br.readLine();
 		Reseña rese = new Reseña(comentario, estrellas);
 		P.añadirReseña(rese);
 	}

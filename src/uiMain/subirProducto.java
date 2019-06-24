@@ -1,12 +1,13 @@
 package uiMain;
 
+import java.io.IOException;
 
 class subirProducto extends OpcionDeMenu { // opcion 11
 
 	@Override
-	public void ejecutar() {
+	public void ejecutar() throws IOException {
 		System.out.println("Ingrese el nombre del producto");
-		String nombre = scn.next();
+		String nombre = br.readLine();
 		System.out.println("Ingrese la cantidad ");
 		int cant = scn.nextInt();
 		System.out.println("Ingrese el precio ");

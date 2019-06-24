@@ -7,7 +7,7 @@ package gestorAplicación.Usuarios;
 
 public class Administrador extends Cuenta {
 	
-	public int getNumeroCuentas(){
+	public static int getNumeroCuentas(){
 		return totalCuentas;
 		
 	}
