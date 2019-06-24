@@ -75,15 +75,12 @@ public class Producto {
 		this.codigoProducto = codigoProducto;
 	}
 	
-	public static boolean existeCategoria(String nom) {
-		boolean aux=false;
-		for(int i = 0; i < 10; i++) {		//Recorrer el Array de categorias
-			if(nom == Producto.categorias[i]) {
-				aux = true;
-				break;
+	public static String[] getCategorias() {
+		String mostrar[] = new String[10];
+				for(int i = 0; i < 10; i++) {		//Recorrer el Array de categorias
+			 mostrar[i]=categorias[i];
 			}
-		}
-		return aux;
+				return mostrar;
 	}
 	
 	@Override

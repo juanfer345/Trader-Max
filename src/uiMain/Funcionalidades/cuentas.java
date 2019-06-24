@@ -7,8 +7,8 @@ public class cuentas extends OpcionDeMenu { // opcion 15
 
 	@Override
 	public void ejecutar() {//sera que esto va en la logica?
-		int cuentas =Administrador.getNumeroCuentas();
-		System.out.println("Actualmente hay "+cuentas+" cuentas");
+		String cuentas = Administrador.numeroCuentas();
+		System.out.println(cuentas);
 	}
 
 	@Override
