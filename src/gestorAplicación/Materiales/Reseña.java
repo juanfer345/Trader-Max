@@ -1,5 +1,7 @@
 package gestorAplicación.Materiales;
 
+import gestorAplicación.Usuarios.Comprador;
+
 public class Reseña {
 
 	@Override
@@ -10,6 +12,7 @@ public class Reseña {
 	private int estrellas;
 	private String comentario;
     private int id;
+    Comprador comp;
     
     
 	public Reseña(int estrellas) {
@@ -32,12 +35,23 @@ public class Reseña {
 	public int getEstrellas() {
 		return estrellas;
 	}
+	
+	public void setComprador(Comprador comprador) {
+		this.comp = comprador;
+	}
+	
+	public Comprador getComprador() {
+		return this.comp;
+	}
+	
 	public void setEstrellas(int estrellas) {
 		this.estrellas = estrellas;
 	}
+	
 	public String getComentario() {
 		return comentario;
 	}
+	
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}

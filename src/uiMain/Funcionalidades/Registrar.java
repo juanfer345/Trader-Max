@@ -43,9 +43,9 @@ public class Registrar extends OpcionDeMenu { // opcion 0
 			usuario = new Vendedor(n, c, p, cc);
 			(InicializacionAplicacion.getBDVendedores()).put(vendedores, (Vendedor) usuario);
 			activo.clear();
-			activo.add(new subirProducto());
-			activo.add(new eliminarProductoCatalogo());
-			activo.add(new salir());
+			activo.add(new SubirProducto());
+			activo.add(new EliminarProductoCatalogo());
+			activo.add(new Salir());
 			}else {
 				System.out.println("El correo ya se encuentra registrado");
 			}
@@ -70,16 +70,16 @@ public class Registrar extends OpcionDeMenu { // opcion 0
 			usuario = new Comprador(n, c, p, cc);
 			InicializacionAplicacion.getBDCompradores().put(compradores, (Comprador) usuario);
 			activo.clear();
-			activo.add(new buscarProducto());
-			activo.add(new buscarCategoria());
-			activo.add(new agregarACarrito());
-			activo.add(new borrarHistorial());
-			activo.add(new mostrarHistorial());
-			activo.add(new comprarProductos());
-			activo.add(new vaciarCarrito());
-			activo.add(new quitarProductoCarrito());
-			activo.add(new agregarReseña());
-			activo.add(new salir());
+			activo.add(new BuscarProducto());
+			activo.add(new BuscarCategoria());
+			activo.add(new AgregarACarrito());
+			activo.add(new BorrarHistorial());
+			activo.add(new MostrarHistorial());
+			activo.add(new ComprarProductos());
+			activo.add(new VaciarCarrito());
+			activo.add(new QuitarProductoCarrito());
+			activo.add(new AgregarReseña());
+			activo.add(new Salir());
 			}else {
 				System.out.println("El correo ya se encuentra registrado");
 			}
