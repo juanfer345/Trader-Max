@@ -32,7 +32,7 @@ public class CuentaUsuarios extends Cuenta {
 		this.cuentaBancaria = cuentaBancaria;
 	}
 
-	public HashMap<Integer, Producto> verProductos() {
+	public HashMap<Integer, Producto> getCatalogo() {
 		return catalogo;
 	}
 
@@ -46,5 +46,4 @@ public class CuentaUsuarios extends Cuenta {
 		}
 		return mens.getPrecio();
 	}
-
 }

@@ -44,7 +44,7 @@ public class registrar extends OpcionDeMenu { // opcion 0
 			(InicializacionAplicacion.getBDVendedores()).put(vendedores, (Vendedor) usuario);
 			activo.clear();
 			activo.add(new subirProducto());
-			activo.add(new eliminarProducto());
+			activo.add(new eliminarProductoCatalogo());
 			activo.add(new salir());
 			}else {
 				System.out.println("El correo ya se encuentra registrado");
@@ -77,7 +77,7 @@ public class registrar extends OpcionDeMenu { // opcion 0
 			activo.add(new mostrarHistorial());
 			activo.add(new comprarProductos());
 			activo.add(new vaciarCarrito());
-			activo.add(new quitarProducto());
+			activo.add(new quitarProductoCarrito());
 			activo.add(new agregarReseña());
 			activo.add(new salir());
 			}else {
