@@ -48,9 +48,7 @@ public class CarritoDeCompras {
 						p.getVendedor().getCuentaBancaria(), precio);
 				p.setCantidad(p.getCantidad() - cantidad);
 				titular.historial.put(codigo, p);
-				if (p.getCantidad() == 0) {
-					Vendedor.catalogo.remove(codigo);
-				}
+				
 			}
 			productos.clear();
 			totalProductos = 0;

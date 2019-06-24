@@ -3,7 +3,11 @@ package uiMain;
 import java.util.*;
 import gestorAplicación.Usuarios.Cuenta;
 import gestorAplicación.Usuarios.Visitante;
-import uiMain.Funcionalidades.*;
+import uiMain.Funcionalidades.BuscarCategoria;
+import uiMain.Funcionalidades.BuscarProducto;
+import uiMain.Funcionalidades.IniciarSesion;
+import uiMain.Funcionalidades.Registrar;
+import uiMain.Funcionalidades.Salir;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,11 +26,11 @@ public class MenuDeConsola {
 	public static int administradores = 0;
 	
 	MenuDeConsola () {
-		activo.add(new iniciarSesion());
-		activo.add(new registrar());
-		activo.add(new buscarProducto());
-		activo.add(new buscarCategoria());
-		activo.add(new salir());
+		activo.add(new IniciarSesion());
+		activo.add(new Registrar());
+		activo.add(new BuscarProducto());
+		activo.add(new BuscarCategoria());
+		activo.add(new Salir());
 	}
 	
 	public void LanzarMenu() throws IOException {
