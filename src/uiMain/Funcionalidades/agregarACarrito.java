@@ -10,7 +10,7 @@ public class agregarACarrito extends OpcionDeMenu { // opcion 4
 	//Pedir codigo, y en caso de existir el producto agregarlo
 	
 	@Override
-	public void ejecutar() {
+	public void ejecutar() { //pa la logica
 		System.out.println("Ingrese el código del producto a agregar");
 		int codigoP = scn.nextInt();
 		Producto P = null;

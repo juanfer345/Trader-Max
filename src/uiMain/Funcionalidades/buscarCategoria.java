@@ -9,7 +9,7 @@ import uiMain.OpcionDeMenu;
 public class buscarCategoria extends OpcionDeMenu { // opcion 3
 
 	@Override
-	public void ejecutar() {
+	public void ejecutar() { //pa la logica
 		System.out.println("Ingrese la categoria: ");
 		String nom = scn.next();
 		boolean aux = Producto.existeCategoria(nom);

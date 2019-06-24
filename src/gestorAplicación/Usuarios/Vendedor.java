@@ -42,6 +42,17 @@ public class Vendedor extends CuentaUsuarios {
 		}
 		mens.setCantidad(mens.getCantidad() + aumento);
 	}
+
+	public String  eliminarProductoCatalogo(int prod) {
+		
+		(CuentaUsuarios.catalogo).forEach((k,v)->
+		{
+			if ((v.getCodigoProducto()==prod)) {
+				catalogo.remove(k);
+			}
+		});
+		return "Eliminó el producto exitosamente";
+	}
 	
 /*	public static void AumentarCantidad(int codigo, int aumento) {
 		Producto P = null;

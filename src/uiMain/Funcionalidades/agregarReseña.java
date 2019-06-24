@@ -10,7 +10,7 @@ import uiMain.OpcionDeMenu;
 public class agregarReseña extends OpcionDeMenu { // opcion 10
 
 	@Override
-	public void ejecutar() throws IOException {
+	public void ejecutar() throws IOException {//mostrar el catalogo, pa la logica
 		//Mostrar el catalogo y numerar las posiciones(empezar en 1)
 		
 		System.out.println("Ingrese el codigo del producto: ");
@@ -21,7 +21,8 @@ public class agregarReseña extends OpcionDeMenu { // opcion 10
 		System.out.println("Ingrese comentario: ");
 		String comentario = br.readLine();
 		Reseña rese = new Reseña(comentario, estrellas);
-		P.añadirReseña(rese);
+		String str =P.añadirReseña(rese);
+		System.out.println(str);
 	}
 	@Override
 	public String toString() {
