@@ -10,8 +10,8 @@ import uiMain.MenuDeConsola;
 import java.io.IOException;
 import java.util.HashMap;
 import baseDatos.*;
-import gestorAplicación.Materiales.*;
-import gestorAplicación.Usuarios.*;
+import gestorAplicacion.Materiales.*;
+import gestorAplicacion.Usuarios.*;
 
 public class InicializacionAplicacion {
 
@@ -22,6 +22,7 @@ public class InicializacionAplicacion {
     private static HashMap <Integer, CarritoDeCompras> BDCarritos = new HashMap <> ();
     private static HashMap <Integer, Producto> BDProductos = new HashMap <> ();
     private static HashMap <Integer, Resena> BDResenas = new HashMap <> ();
+	public static Cuenta usuarioActivo = new Visitante();
     
 	public static void main(String[] args) throws IOException {
 		
@@ -43,17 +44,17 @@ public class InicializacionAplicacion {
 		//Cerrado de la aplicación (pendiente)
 	}
 
-	public static HashMap<Integer, Comprador> getBDCompradores() {return BDCompradores;}
+	public static HashMap <Integer, Comprador> getBDCompradores() {return BDCompradores;}
 
-	public static HashMap<Integer, Vendedor> getBDVendedores() {return BDVendedores;}
+	public static HashMap <Integer, Vendedor> getBDVendedores() {return BDVendedores;}
 
-	public static HashMap<Integer, Administrador> getBDAdministradores() {return BDAdministradores;}
+	public static HashMap <Integer, Administrador> getBDAdministradores() {return BDAdministradores;}
 
-	public static HashMap<Integer, CuentaBancaria> getBDCuentasBancarias() {return BDCuentasBancarias;}
+	public static HashMap <Integer, CuentaBancaria> getBDCuentasBancarias() {return BDCuentasBancarias;}
 
-	public static HashMap<Integer, CarritoDeCompras> getBDCarritos() {return BDCarritos;}
+	public static HashMap <Integer, CarritoDeCompras> getBDCarritos() {return BDCarritos;}
 
-	public static HashMap<Integer, Producto> getBDProductos() {return BDProductos;}
+	public static HashMap <Integer, Producto> getBDProductos() {return BDProductos;}
 
-	public static HashMap<Integer, Reseña> getBDReseñas() {return BDReseñas;}
+	public static HashMap <Integer, Resena> getBDResenas() {return BDResenas;}
 }

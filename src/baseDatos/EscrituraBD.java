@@ -15,13 +15,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import gestorAplicacion.InicializacionAplicacion;
-import gestorAplicacion.Materiales.Reseña;
-import gestorAplicación.Materiales.CarritoDeCompras;
-import gestorAplicación.Materiales.CuentaBancaria;
-import gestorAplicación.Materiales.Producto;
-import gestorAplicación.Usuarios.Administrador;
-import gestorAplicación.Usuarios.Comprador;
-import gestorAplicación.Usuarios.Vendedor;
+import gestorAplicacion.Materiales.CarritoDeCompras;
+import gestorAplicacion.Materiales.CuentaBancaria;
+import gestorAplicacion.Materiales.Producto;
+import gestorAplicacion.Materiales.Resena;
+import gestorAplicacion.Usuarios.Administrador;
+import gestorAplicacion.Usuarios.Comprador;
+import gestorAplicacion.Usuarios.Vendedor;
 
 public class EscrituraBD {
 	public static void PrincipalEscrituraBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCarr, 
@@ -61,7 +61,7 @@ public class EscrituraBD {
 		escrituraProductos(BDProd, InicializacionAplicacion.getBDProductos());
 		
 		//Escritura de las reseñas
-		escrituraReseñas(BDRes, InicializacionAplicacion.getBDReseñas());
+		escrituraResenas(BDRes, InicializacionAplicacion.getBDResenas());
 	}
 	
 	private static void escrituraCompradores(String NombreBD, HashMap <Integer, Comprador> HM) {
@@ -241,8 +241,8 @@ public class EscrituraBD {
 	        	
 	        	//Apuntadores a los productos del carrito
 	        	if (!val.productos.isEmpty()){
-		    		for (int j = 1; j < val.productos.size(); j++) {
-		    			sb.append(val.productos.get(j).getCodigoProducto() + ',');
+	    	        for (Map.Entry <Integer, Integer> prod : val.productos.entrySet()) {
+		    			sb.append(prod.getKey() + ',');
 		    		}
 	        	} else {
 	        		sb.append("##");
@@ -317,7 +317,7 @@ public class EscrituraBD {
 	            sb.append(val.getCantidad()+ ';' + '\n');				//Cantidad del producto y salto de renglón
 	        	
 	        	//Apuntadores a las reseñas del producto
-	        	if (!entry.getValue().getReseñas().isEmpty()){
+	        	if (!entry.getValue().getResenas().isEmpty()){
 		    		for (Map.Entry <Integer, Resena> res: entry.getValue().getResenas().entrySet()) {
 		    			sb.append(res.getValue().getId() + ',');
 		    		}

@@ -17,13 +17,13 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import gestorAplicacion.InicializacionAplicacion;
-import gestorAplicación.Materiales.CarritoDeCompras;
-import gestorAplicación.Materiales.CuentaBancaria;
-import gestorAplicación.Materiales.Producto;
-import gestorAplicación.Materiales.Resena;
-import gestorAplicación.Usuarios.Administrador;
-import gestorAplicación.Usuarios.Comprador;
-import gestorAplicación.Usuarios.Vendedor;
+import gestorAplicacion.Materiales.CarritoDeCompras;
+import gestorAplicacion.Materiales.CuentaBancaria;
+import gestorAplicacion.Materiales.Producto;
+import gestorAplicacion.Materiales.Resena;
+import gestorAplicacion.Usuarios.Administrador;
+import gestorAplicacion.Usuarios.Comprador;
+import gestorAplicacion.Usuarios.Vendedor;
 
 public class LecturaBD {
     
@@ -408,7 +408,7 @@ public class LecturaBD {
 	private static void complementoLectura(HashMap <Integer, Comprador> BDCompradores, HashMap <Integer, Vendedor> BDVendedores, 
 										   HashMap <Integer, Administrador> BDAdministradores, HashMap <Integer, Producto> catalogo, 
 										   HashMap <Integer, CuentaBancaria> BDCuentasBancarias, HashMap <Integer, CarritoDeCompras> bdCarritos, 
-										   HashMap <Integer, Producto> BDProductos, HashMap <Integer, Resena> BDReseñas, 
+										   HashMap <Integer, Producto> BDProductos, HashMap <Integer, Resena> BDResenas, 
 										   Deque <Integer> auxComp, Deque <Integer> auxVend, Deque <Integer> auxCarr, Deque <Integer> auxCat, 
 										   Deque <Integer> auxProd) {
 		int i, j;
@@ -434,7 +434,7 @@ public class LecturaBD {
         for (Map.Entry <Integer, CarritoDeCompras> entry : bdCarritos.entrySet()) {
             //Asignación de productos al carrito
             for (i = 0; i < auxCarr.size(); i++) {
-            	entry.getValue().productos.add(BDProductos.get(auxCarr.poll()));
+            	entry.getValue().productos.put(auxCarr.poll(), auxCarr.poll());
             }
         }
         
