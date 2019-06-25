@@ -14,10 +14,10 @@ public class agregarReseña extends OpcionDeMenu { // opcion 10
 		//Mostrar el catalogo y numerar las posiciones(empezar en 1)
 		
 		System.out.println("Ingrese el codigo del producto: ");
-		int codigoP = scn.nextInt();
+		int codigoP = Integer.parseInt(br.readLine().trim());
 		Producto P = Vendedor.catalogo.get(codigoP);
 		System.out.println("Ingrese numero de estrellas: ");
-		int estrellas = scn.nextInt();
+		int estrellas = Integer.parseInt(br.readLine().trim());
 		System.out.println("Ingrese comentario: ");
 		String comentario = br.readLine();
 		Reseña rese = new Reseña(comentario, estrellas);

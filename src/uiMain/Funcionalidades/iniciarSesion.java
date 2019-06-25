@@ -11,9 +11,9 @@ public class iniciarSesion extends OpcionDeMenu { // opcion 1
 	public void ejecutar() {
 		
 		System.out.println("Correo: ");
-		String c = scn.next();
+		String c = br.readLine().trim();
 		System.out.println("Contraseña: ");
-		String p = scn.next();
+		String p = br.readLine().trim();
 		
 		(InicializacionAplicacion.getBDCompradores()).forEach((k, v) -> {
 			if ((v.getCorreo().equals(c))) {

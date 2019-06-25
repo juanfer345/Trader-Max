@@ -42,10 +42,10 @@ public class registrar extends OpcionDeMenu { // opcion 0
 			//preguntar con que clave está metiendo eso en las hash, por ahora se deja ir
 			usuario = new Vendedor(n, c, p, cc);
 			(InicializacionAplicacion.getBDVendedores()).put(vendedores, (Vendedor) usuario);
-			activo.clear();
-			activo.add(new subirProducto());
-			activo.add(new eliminarProducto());
-			activo.add(new salir());
+			opcionesActivas.clear();
+			opcionesActivas.add(new subirProducto());
+			opcionesActivas.add(new eliminarProducto());
+			opcionesActivas.add(new salir());
 			}else {
 				System.out.println("El correo ya se encuentra registrado");
 			}
@@ -69,17 +69,17 @@ public class registrar extends OpcionDeMenu { // opcion 0
 			if(x==false) {
 			usuario = new Comprador(n, c, p, cc);
 			InicializacionAplicacion.getBDCompradores().put(compradores, (Comprador) usuario);
-			activo.clear();
-			activo.add(new buscarProducto());
-			activo.add(new buscarCategoria());
-			activo.add(new agregarACarrito());
-			activo.add(new borrarHistorial());
-			activo.add(new mostrarHistorial());
-			activo.add(new comprarProductos());
-			activo.add(new vaciarCarrito());
-			activo.add(new quitarProducto());
-			activo.add(new agregarReseña());
-			activo.add(new salir());
+			opcionesActivas.clear();
+			opcionesActivas.add(new buscarProducto());
+			opcionesActivas.add(new buscarCategoria());
+			opcionesActivas.add(new agregarACarrito());
+			opcionesActivas.add(new borrarHistorial());
+			opcionesActivas.add(new mostrarHistorial());
+			opcionesActivas.add(new comprarProductos());
+			opcionesActivas.add(new vaciarCarrito());
+			opcionesActivas.add(new quitarProducto());
+			opcionesActivas.add(new agregarReseña());
+			opcionesActivas.add(new salir());
 			}else {
 				System.out.println("El correo ya se encuentra registrado");
 			}

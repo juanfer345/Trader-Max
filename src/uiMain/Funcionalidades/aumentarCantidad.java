@@ -1,5 +1,7 @@
 package uiMain.Funcionalidades;
 
+import java.io.IOException;
+
 import gestorAplicación.Usuarios.Vendedor;
 import uiMain.OpcionDeMenu;
 
@@ -15,11 +17,11 @@ public class aumentarCantidad extends OpcionDeMenu{
 		Vendedor.AumentarCantidad(codigo, cantidad);
 	}
 */
-	public void ejecutar() {
+	public void ejecutar() throws IOException {
 		System.out.println("Ingrese el nombre del producto: ");
-		String nombre = scn.next();
+		String nombre = br.readLine().trim();
 		System.out.println("Ingrese la cantidad a agregar: ");
-		int cantidad = scn.nextInt();
+		int cantidad = Integer.parseInt(br.readLine().trim());
 		Vendedor.aumentarCantidad(nombre, cantidad);
 	}
 

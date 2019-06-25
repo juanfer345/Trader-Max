@@ -50,8 +50,6 @@ public class LecturaBD {
 		Deque <Integer> auxCarr = new LinkedList <>();
 		Deque <Integer> auxCat = new LinkedList <>();
 		Deque <Integer> auxProd = new LinkedList <>();
-		
-        //PENDIENTE: CONSIDERAR LOS CASOS EN QUE SE GUARDEN SESIONES VACIAS (P EJ. NO HAY NADA EN EL CATÁLOGO)
         
 		//Lectura de las cuentas
 		lecturaCompradores(BDComp, InicializacionAplicacion.getBDCompradores(), auxComp);
@@ -98,7 +96,7 @@ public class LecturaBD {
     	    	val.setNombre(Dat[1]);									//Nombre comprador
     	    	val.setCorreo(Dat[2]);									//Correo comprador
     	    	val.setPassword(Dat[3]);								//Contraseña comprador
-    	    	val.setCedula(Dat[4]);				//Cédula comprador
+    	    	val.setCedula(Integer.parseInt(Dat[4]));				//Cédula comprador
     	    	aux.add(Integer.parseInt(Dat[5]));						//Apuntador a cuenta bancaria de comprador
     	    	aux.add(Integer.parseInt(Dat[6]));						//Apuntador a carrito de compras
     	    	auxS = Dat[7].split(",");								//Apuntadores a productos del historial del comprador
@@ -147,7 +145,7 @@ public class LecturaBD {
     	    	val.setNombre(Dat[1]);									//Nombre vendedor
     	    	val.setCorreo(Dat[2]);									//Correo vendedor
     	    	val.setPassword(Dat[3]);								//Contraseña vendedor
-    	    	val.setCedula(Dat[4]);									//Cédula vendedor
+	    		val.setCedula(Integer.parseInt(Dat[4]));				//Cédula vendedor
     	    	aux.add(Integer.parseInt(Dat[5]));						//Apuntador a cuenta bancaria del vendedor
     	        HM.put(val.getId(), val);								//Asignación del objeto a la estructura de datos correspondiente
     	    }
@@ -187,7 +185,7 @@ public class LecturaBD {
     	    	val.setNombre(Dat[1]);									//Nombre administrador
     	    	val.setCorreo(Dat[2]);									//Correo administrador
     	    	val.setPassword(Dat[3]);								//Contraseña administrador
-    	    	val.setCedula(Dat[4]);									//Cédula administrador
+    	    	val.setCedula(Integer.parseInt(Dat[4]));				//Cédula administrador
     	        HM.put(val.getId(), val);								//Asignación del objeto a la estructura de datos correspondiente
     	    }
             

@@ -33,7 +33,7 @@ public class InicializacionAplicacion {
 		
 		//Ciclo de control para ejecutar el menú hasta que se desee salir de la aplicación
 		while (!MenuDeConsola.SalirApp) {
-			//ejecutar menú
+			MenuDeConsola.LanzarMenu();
 		}
 		
 		//Ejecución de la escritura en la base de datos
@@ -43,31 +43,17 @@ public class InicializacionAplicacion {
 		//Cerrado de la aplicación (pendiente)
 	}
 
-	public static HashMap<Integer, Comprador> getBDCompradores() {
-		return BDCompradores;
-	}
+	public static HashMap<Integer, Comprador> getBDCompradores() {return BDCompradores;}
 
-	public static HashMap<Integer, Vendedor> getBDVendedores() {
-		return BDVendedores;
-	}
+	public static HashMap<Integer, Vendedor> getBDVendedores() {return BDVendedores;}
 
-	public static HashMap<Integer, Administrador> getBDAdministradores() {
-		return BDAdministradores;
-	}
+	public static HashMap<Integer, Administrador> getBDAdministradores() {return BDAdministradores;}
 
-	public static HashMap<Integer, CuentaBancaria> getBDCuentasBancarias() {
-		return BDCuentasBancarias;
-	}
+	public static HashMap<Integer, CuentaBancaria> getBDCuentasBancarias() {return BDCuentasBancarias;}
 
-	public static HashMap<Integer, CarritoDeCompras> getBDCarritos() {
-		return BDCarritos;
-	}
+	public static HashMap<Integer, CarritoDeCompras> getBDCarritos() {return BDCarritos;}
 
-	public static HashMap<Integer, Producto> getBDProductos() {
-		return BDProductos;
-	}
+	public static HashMap<Integer, Producto> getBDProductos() {return BDProductos;}
 
-	public static HashMap<Integer, Reseña> getBDReseñas() {
-		return BDReseñas;
-	}
+	public static HashMap<Integer, Reseña> getBDReseñas() {return BDReseñas;}
 }

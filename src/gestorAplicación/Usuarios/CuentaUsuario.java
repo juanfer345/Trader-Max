@@ -2,16 +2,17 @@ package gestorAplicación.Usuarios;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import gestorAplicación.Materiales.CuentaBancaria;
 import gestorAplicación.Materiales.Producto;
+import uiMain.MenuDeConsola;
 
-public class CuentaUsuarios extends Cuenta {
+abstract public class CuentaUsuario extends Cuenta {
 
+	static private MenuDeConsola menu;
 	private CuentaBancaria cuentaBancaria;
 	public static HashMap<Integer, Producto> catalogo = new HashMap<>();
 	
-	public CuentaUsuarios(String nombre, String correo, String password, String cedula){
+	public CuentaUsuario(String nombre, String correo, String password, int cedula){
 		this.setNombre(nombre);
 		this.setCorreo(correo);
 		this.setPassword(password);
@@ -20,7 +21,7 @@ public class CuentaUsuarios extends Cuenta {
 		totalCuentas++;
 	}
 	
-	public CuentaUsuarios() {
+	public CuentaUsuario() {
 		totalCuentas++;
 	}
 
@@ -46,5 +47,4 @@ public class CuentaUsuarios extends Cuenta {
 		}
 		return mens.getPrecio();
 	}
-
 }

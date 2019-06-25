@@ -1,15 +1,37 @@
 package gestorAplicación.Usuarios;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 import gestorAplicación.Materiales.Producto;
+import uiMain.MenuDeConsola;
+import uiMain.OpcionDeMenu;
+import uiMain.Funcionalidades.*;
 
-public class Vendedor extends CuentaUsuarios {
+public class Vendedor extends CuentaUsuario {
+	
 
-	public Vendedor(String nombre, String correo, String password, String cedula) {
-		super(nombre, correo, password, cedula);
+	public void setMenu() {
+		new MenuDeConsola(new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] {new iniciarSesion(), new registrar(), new buscarProducto(),
+														  			new buscarCategoria(),new salir()})), this);
 	}
-
+	
+	public void setMenuPredeterminado() {
+		Cuenta.menu.cambiarMenu(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new subirProducto(), new eliminarProducto(), 
+										  new cerrarSesion(), new salir()})), this);
+	}
+	
+	public void setMenu(ArrayList <OpcionDeMenu> opcionesActivas) {
+		Cuenta.menu.cambiarMenu(opcionesActivas, this);
+	}
+	
+	public Vendedor(String nombre, String correo, String password, int cedula) {
+		super(nombre, correo, password, cedula);
+		Cuenta.menu = new MenuDeConsola(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new iniciarSesion(), new registrar(), 
+				  		new buscarProducto(), new buscarCategoria(),new salir()})), this);
+	}
+	
 	public Vendedor() {
 		super();
 	}
