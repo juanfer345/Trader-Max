@@ -1,17 +1,16 @@
 package uiMain.Funcionalidades;
 
 import java.util.Map;
-
 import gestorAplicación.Materiales.Producto;
-import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Usuarios.CuentaUsuarios;
 import uiMain.OpcionDeMenu;
 
-public class mostrarHistorial extends OpcionDeMenu { // opcion 6
+public class MostrarProductos extends OpcionDeMenu{
+	//Recorre toda la tabla Hash mostrando los productos
 
 	@Override
 	public void ejecutar() {
-		for (Map.Entry<Integer, Producto> entry : Comprador.historial/*Comprador.getHistorial()*/.entrySet()) {
+		for (Map.Entry<Integer, Producto> entry : CuentaUsuarios.catalogo.entrySet()) {
 			Producto P = entry.getValue();
 			System.out.println(P);
 		}
@@ -19,7 +18,7 @@ public class mostrarHistorial extends OpcionDeMenu { // opcion 6
 
 	@Override
 	public String toString() {
-		return "Mostrar historial";
+		return "Mostrar Productos";
 	}
 
 }

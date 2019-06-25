@@ -1,11 +1,10 @@
 package uiMain.Funcionalidades;
 
 import java.io.IOException;
-
 import uiMain.OpcionDeMenu;
 
-public class eliminarOpcion extends OpcionDeMenu { // opci gestorAplicación.Usuarios.Vendedoron 12
-	@Override
+public class EliminarOpcion extends OpcionDeMenu { // opci gestorAplicación.Usuarios.Vendedoron 12
+
 	public void ejecutar() throws NumberFormatException, IOException {
 		for (int i = 0; i < opcionesActivas.size(); i++) {
 			System.out.println(opcionesActivas.get(i));
@@ -15,7 +14,6 @@ public class eliminarOpcion extends OpcionDeMenu { // opci gestorAplicación.Usua
 		opcionesActivas.remove(Aeliminar);
 	}
 
-	@Override
 	public String toString() {
 		return "Eliminar opción";
 	}

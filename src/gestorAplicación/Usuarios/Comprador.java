@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import gestorAplicación.Materiales.CarritoDeCompras;
 import gestorAplicación.Materiales.Producto;
+import gestorAplicación.Materiales.Resena;
 import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.*;
@@ -27,8 +28,8 @@ public class Comprador extends CuentaUsuario {
 	public void setMenu(ArrayList <OpcionDeMenu> opcionesActivas) {
 		Cuenta.menu.cambiarMenu(opcionesActivas, this);
 	}
-	
-	public Comprador(String nombre, String correo, String password, int cedula) {
+
+	public Comprador(String nombre, String correo, String password, String cedula) {
 		super(nombre, correo, password, cedula);
 		Cuenta.menu = new MenuDeConsola(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new iniciarSesion(), new registrar(), 
 				  		new buscarProducto(), new buscarCategoria(),new salir()})), this);
@@ -37,22 +38,42 @@ public class Comprador extends CuentaUsuario {
 	public Comprador() {
 		super();
 	}
-	
-	public void agregarACarrito(Producto producto) {
-		if (producto.getCantidad() > 0) {
-			carrito.productos.add(producto);
-			carrito.setTotalproductos(carrito.getTotalproductos() + 1);
-			carrito.setPrecioTotal(carrito.getPrecioTotal() + producto.getPrecio());
+
+	public String agregarACarrito(int codigo, int cantidad) {
+
+		if (cantidad > 0) {
+			if(catalogo.containsKey(codigo)) {
+				Producto p = catalogo.get(codigo);
+				if (p.getCantidad() >= cantidad) {
+					carrito.productos.put(codigo, cantidad);
+					carrito.setTotalproductos(carrito.getTotalproductos() + cantidad);
+					carrito.setPrecioTotal(carrito.getPrecioTotal() + (cantidad * p.getPrecio()));
+					if (cantidad == 1) {
+						return "Se ha agregado el producto " + p.getNombreProducto() + " al carrito";
+					}
+					else {
+						return "Se han agregado " + cantidad + " " + p.getNombreProducto() + " al carrito";
+					}
+				}
+				else {
+					return "La cantidad ingresada es mayor a la existente";
+				}
+			}else {
+				return "El producto no existe";
+			}
+		} else {
+			return "La cantidad ingresada debe ser mayor a cero";
 		}
 	}
 	
 	public static Producto buscar(int codigo) {
-		boolean x = true;
-		Producto mens = null; 
-		for(Map.Entry <Integer, Producto> entry : Vendedor.catalogo.entrySet()) {
+		boolean x = false;
+		Producto mens = null;
+		for (Map.Entry<Integer, Producto> entry : Vendedor.catalogo.entrySet()) {
 			Producto p = entry.getValue();
-			if(p.getCodigoProducto() == codigo) {
+			if (p.getCodigoProducto() == codigo) {
 				mens = p;
+				x = true;
 			}
 		}
 		if (x) {
@@ -61,18 +82,18 @@ public class Comprador extends CuentaUsuario {
 			return null;
 		}
 	}
-	
-	public static Deque<Producto> buscarCategoria(String cat) {
+
+	public static Deque<Producto> buscarCategoria(int cat) {
 		Deque<Producto> colaProd = new LinkedList<Producto>();
 		(Vendedor.catalogo).forEach((k, v) -> {
 			Producto p = Vendedor.catalogo.get(k);
-			if (p.getCategoria() == cat) {
+			if (p.getCategoria() == Producto.categorias[cat]) {
 				colaProd.add(p);
 			}
 		});
 		return colaProd;
 	}
-	
+
 	public static Deque<Producto> buscar(String nombre) {
 		Deque<Producto> Prod = new LinkedList<Producto>();
 		(Vendedor.catalogo).forEach((k, v) -> {
@@ -83,12 +104,13 @@ public class Comprador extends CuentaUsuario {
 		});
 		return Prod;
 	}
-	
-	public void borrarHistorial() {
+
+	public String borrarHistorial() {
 		historial.clear();
+		return "El historial se ha borrado exitosamente";
 	}
-	
-	public/*static*/ HashMap<Integer, Producto> getHistorial() {
+
+	public HashMap<Integer, Producto> getHistorial() {
 		return historial;
 	}
 	
@@ -98,5 +120,17 @@ public class Comprador extends CuentaUsuario {
 	
 	public void setCarrito(CarritoDeCompras carrito) {
 		this.carrito = carrito;
+	}
+	
+	public String añadirReseña(int codigo, Resena r) {
+		if(historial.containsKey(codigo)) {
+			Producto p = historial.get(codigo);
+			int indice = p.Resenas.size();
+			p.Resenas.put(indice, r);
+			return "Reseña del producto: " + p.getNombreProducto() + "ha sido añadida";
+		}else {
+			return "No ha comprado este producto, no puede añadir una reseña";
+		}
+
 	}
 }

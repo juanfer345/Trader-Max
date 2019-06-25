@@ -6,7 +6,7 @@ import gestorAplicación.Materiales.Producto;
 import gestorAplicación.Usuarios.Comprador;
 import uiMain.OpcionDeMenu;
 
-public class buscarProducto extends OpcionDeMenu { // opcion 2
+public class BuscarProducto extends OpcionDeMenu { // opcion 2
 
 	@Override
 	public void ejecutar() throws NumberFormatException, IOException {
@@ -20,9 +20,7 @@ public class buscarProducto extends OpcionDeMenu { // opcion 2
 			System.out.println("Producto no encontrado");
 		}
 	}
-
 	public String toString() {
 		return "Buscar Producto";
 	}
-
 }

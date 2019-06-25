@@ -16,11 +16,11 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import gestorAplicación.InicializacionAplicacion;
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicación.Materiales.CarritoDeCompras;
 import gestorAplicación.Materiales.CuentaBancaria;
 import gestorAplicación.Materiales.Producto;
-import gestorAplicación.Materiales.Reseña;
+import gestorAplicación.Materiales.Resena;
 import gestorAplicación.Usuarios.Administrador;
 import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Usuarios.Vendedor;
@@ -69,13 +69,13 @@ public class LecturaBD {
 		lecturaProductos(BDProd, InicializacionAplicacion.getBDProductos(), auxProd);
 		
 		//Lectura de las reseñas
-		lecturaReseñas(BDRes, InicializacionAplicacion.getBDReseñas());
+		lecturaResenas(BDRes, InicializacionAplicacion.getBDResenas());
 		
 		//Asignando los elementos restantes utilizando las colas auxiliares
 		complementoLectura(InicializacionAplicacion.getBDCompradores(), InicializacionAplicacion.getBDVendedores(),
 				  		   InicializacionAplicacion.getBDAdministradores(), Vendedor.catalogo, 
 				  		   InicializacionAplicacion.getBDCuentasBancarias(), InicializacionAplicacion.getBDCarritos(), 
-				  		   InicializacionAplicacion.getBDProductos(), InicializacionAplicacion.getBDReseñas(), 
+				  		   InicializacionAplicacion.getBDProductos(), InicializacionAplicacion.getBDResenas(), 
 				  		   auxComp, auxVend, auxCarr, auxCat, auxProd);
 	}
 
@@ -368,9 +368,9 @@ public class LecturaBD {
         }
 	}
 	
-	private static void lecturaReseñas(String NombreBD, HashMap <Integer, Reseña> HM) throws NumberFormatException, IOException {
+	private static void lecturaResenas(String NombreBD, HashMap <Integer, Resena> HM) throws NumberFormatException, IOException {
 		
-		Reseña val;
+		Resena val;
 	    BufferedReader Br = null;
 	    String [] Dat;
 	    
@@ -380,7 +380,7 @@ public class LecturaBD {
             
     	    //Ciclo para obtener la información
             while (!(Dat = Br.readLine().split(";"))[0].equals("#")) {
-    	    	val = new Reseña();
+    	    	val = new Resena();
     	    	val.setId(Integer.parseInt(Dat[0])); 					//Identificador único de la reseña
     	    	val.setEstrellas(Integer.parseInt(Dat[1]));				//Nombre administrador
     	    	val.setComentario(Dat[2]);								////Comentario de la reseña
@@ -408,7 +408,7 @@ public class LecturaBD {
 	private static void complementoLectura(HashMap <Integer, Comprador> BDCompradores, HashMap <Integer, Vendedor> BDVendedores, 
 										   HashMap <Integer, Administrador> BDAdministradores, HashMap <Integer, Producto> catalogo, 
 										   HashMap <Integer, CuentaBancaria> BDCuentasBancarias, HashMap <Integer, CarritoDeCompras> bdCarritos, 
-										   HashMap <Integer, Producto> BDProductos, HashMap <Integer, Reseña> BDReseñas, 
+										   HashMap <Integer, Producto> BDProductos, HashMap <Integer, Resena> BDReseñas, 
 										   Deque <Integer> auxComp, Deque <Integer> auxVend, Deque <Integer> auxCarr, Deque <Integer> auxCat, 
 										   Deque <Integer> auxProd) {
 		int i, j;
@@ -444,7 +444,7 @@ public class LecturaBD {
             //Asignación de productos al carrito
             for (i = 0; i < auxProd.size(); i++) {
             	j = auxProd.poll();
-            	entry.getValue().getReseñas().put(j, BDReseñas.get(j));
+            	entry.getValue().getResenas().put(j, BDResenas.get(j));
             }
         }
 	}

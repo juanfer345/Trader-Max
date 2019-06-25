@@ -8,10 +8,9 @@ import gestorAplicación.Materiales.Producto;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class agregarACarrito extends OpcionDeMenu { // opcion 4
+public class AgregarACarrito extends OpcionDeMenu { // opcion 4
 	//Pedir codigo, y en caso de existir el producto agregarlo
 	
-	@Override
 	public void ejecutar() throws NumberFormatException, IOException {
 		System.out.println("Ingrese el código del producto a agregar");
 		int codigoP = Integer.parseInt(br.readLine().trim());
@@ -26,9 +25,7 @@ public class agregarACarrito extends OpcionDeMenu { // opcion 4
 		}
 	}
 
-	@Override
 	public String toString() {
 		return "Agregar a Carrito";
 	}
-
 }

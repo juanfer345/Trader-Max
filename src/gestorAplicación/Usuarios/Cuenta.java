@@ -55,10 +55,6 @@ public abstract class Cuenta {
 		this.password = password;
 	}
 	
-	public void borrarHistorial() {
-		//Para poder llamar al metodo borrarHistorial desde el apuntador Cuenta
-	}
-	
 	public void agregarACarrito(Producto p) {
 		//Para poder llamar al metodo agregarACarrito desde el apuntador Cuenta
 	}

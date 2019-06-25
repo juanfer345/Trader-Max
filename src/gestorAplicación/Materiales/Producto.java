@@ -5,8 +5,10 @@ import java.util.HashMap;
 
 public class Producto {
 
-	public static String categorias [] = {"Belleza", "Carros", "Deportes", "Electrodomesticos", "Hogar", "Juegos", "Libros", "Musica", "Tecnologia", "Vestimenta"};
-	private HashMap<Integer, Reseña> Reseñas = new HashMap<>();
+
+	public static String categorias [] = {"Belleza", "Vehiculos", "Deportes", "Electrodomesticos", "Hogar", "Juegos", "Libros", "Musica", "Tecnologia", "Vestimenta","Vivienda"};
+
+	public HashMap<Integer, Reseña> Reseñas = new HashMap<>();
 	private Vendedor vendedor;
 	private String nombreProducto;
 	private String categoria;
@@ -47,11 +49,6 @@ public class Producto {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-
-	public void añadirReseña(Reseña x) {
-		int indice = Reseñas.size();
-		Reseñas.put(indice, x);
-	}
 	
 	public String getNombreProducto() {
 		return nombreProducto;
@@ -65,7 +62,7 @@ public class Producto {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	public HashMap<Integer, Reseña> getReseñas() {
+	public HashMap<Integer, Resena> getReseñas() {
 		return Reseñas;
 	}
 	public int getCodigoProducto() {
@@ -75,15 +72,12 @@ public class Producto {
 		this.codigoProducto = codigoProducto;
 	}
 	
-	public static boolean existeCategoria(String nom) {
-		boolean aux=false;
-		for(int i = 0; i < 10; i++) {		//Recorrer el Array de categorias
-			if(nom == Producto.categorias[i]) {
-				aux = true;
-				break;
+	public static String[] getCategorias() {
+		String mostrar[] = new String[10];
+				for(int i = 0; i < 10; i++) {		//Recorrer el Array de categorias
+			 mostrar[i]=categorias[i];
 			}
-		}
-		return aux;
+				return mostrar;
 	}
 	
 	@Override

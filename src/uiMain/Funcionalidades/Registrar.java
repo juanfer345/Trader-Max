@@ -2,13 +2,13 @@ package uiMain.Funcionalidades;
 
 import java.io.IOException;
 
-import gestorAplicación.InicializacionAplicacion;
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Usuarios.Vendedor;
 import uiMain.OpcionDeMenu;
 
-public class registrar extends OpcionDeMenu { // opcion 0
-	boolean x= false;
+public class Registrar extends OpcionDeMenu { // opcion 0
+	boolean x = false;
 	Integer key;
 	public void ejecutar() throws IOException{
 		System.out.println("Tipo de cuenta: \n1.Vendedor\n2.Comprador");
@@ -39,13 +39,13 @@ public class registrar extends OpcionDeMenu { // opcion 0
 				}
 			});
 			if (x==false) {
-			//preguntar con que clave está metiendo eso en las hash, por ahora se deja ir
-			usuario = new Vendedor(n, c, p, cc);
-			(InicializacionAplicacion.getBDVendedores()).put(vendedores, (Vendedor) usuario);
-			opcionesActivas.clear();
-			opcionesActivas.add(new subirProducto());
-			opcionesActivas.add(new eliminarProducto());
-			opcionesActivas.add(new salir());
+				//preguntar con que clave está metiendo eso en las hash, por ahora se deja ir
+				usuario = new Vendedor(n, c, p, cc);
+				(InicializacionAplicacion.getBDVendedores()).put(vendedores, (Vendedor) usuario);
+				activo.clear();
+				activo.add(new SubirProducto());
+				activo.add(new EliminarProductoCatalogo());
+				activo.add(new Salir());
 			}else {
 				System.out.println("El correo ya se encuentra registrado");
 			}
@@ -67,19 +67,19 @@ public class registrar extends OpcionDeMenu { // opcion 0
 				}
 			});
 			if(x==false) {
-			usuario = new Comprador(n, c, p, cc);
-			InicializacionAplicacion.getBDCompradores().put(compradores, (Comprador) usuario);
-			opcionesActivas.clear();
-			opcionesActivas.add(new buscarProducto());
-			opcionesActivas.add(new buscarCategoria());
-			opcionesActivas.add(new agregarACarrito());
-			opcionesActivas.add(new borrarHistorial());
-			opcionesActivas.add(new mostrarHistorial());
-			opcionesActivas.add(new comprarProductos());
-			opcionesActivas.add(new vaciarCarrito());
-			opcionesActivas.add(new quitarProducto());
-			opcionesActivas.add(new agregarReseña());
-			opcionesActivas.add(new salir());
+				usuario = new Comprador(n, c, p, cc);
+				InicializacionAplicacion.getBDCompradores().put(compradores, (Comprador) usuario);
+				activo.clear();
+				activo.add(new BuscarProducto());
+				activo.add(new BuscarCategoria());
+				activo.add(new AgregarACarrito());
+				activo.add(new BorrarHistorial());
+				activo.add(new MostrarHistorial());
+				activo.add(new ComprarProductos());
+				activo.add(new VaciarCarrito());
+				activo.add(new QuitarProductoCarrito());
+				activo.add(new AgregarReseña());
+				activo.add(new Salir());
 			}else {
 				System.out.println("El correo ya se encuentra registrado");
 			}

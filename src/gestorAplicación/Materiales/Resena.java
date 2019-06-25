@@ -1,6 +1,7 @@
 package gestorAplicación.Materiales;
+import gestorAplicación.Usuarios.Comprador;
 
-public class Reseña {
+public class Resena {	
 
 	@Override
 	public String toString() {
@@ -10,34 +11,46 @@ public class Reseña {
 	private int estrellas;
 	private String comentario;
     private int id;
+    Comprador comp;
     
     
-	public Reseña(int estrellas) {
+	public Resena(int estrellas) {
 		this("Sin comentario",estrellas);
 	}
 	
-	public Reseña(String comentario) {
+	public Resena(String comentario) {
 		this(comentario, 0);
 	}
 	
-	public Reseña(String comentario, int estrellas) {
+	public Resena(String comentario, int estrellas) {
 		this.comentario=comentario;
 		this.estrellas=estrellas;
 	}
 
-	public Reseña() {
+	public Resena() {
 		
 	}
 
 	public int getEstrellas() {
 		return estrellas;
 	}
+	
+	public void setComprador(Comprador comprador) {
+		this.comp = comprador;
+	}
+	
+	public Comprador getComprador() {
+		return this.comp;
+	}
+	
 	public void setEstrellas(int estrellas) {
 		this.estrellas = estrellas;
 	}
+	
 	public String getComentario() {
 		return comentario;
 	}
+	
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}

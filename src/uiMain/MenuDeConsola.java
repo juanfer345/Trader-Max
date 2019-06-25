@@ -3,13 +3,17 @@ package uiMain;
 import java.util.*;
 import gestorAplicación.Usuarios.Cuenta;
 import gestorAplicación.Usuarios.Visitante;
+import uiMain.Funcionalidades.BuscarCategoria;
+import uiMain.Funcionalidades.BuscarProducto;
+import uiMain.Funcionalidades.IniciarSesion;
+import uiMain.Funcionalidades.Registrar;
+import uiMain.Funcionalidades.Salir;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class MenuDeConsola {
-	
 	public static ArrayList <OpcionDeMenu> opcionesActivas = new ArrayList<OpcionDeMenu>();
 	public static Cuenta usuarioActivo = new Visitante();
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

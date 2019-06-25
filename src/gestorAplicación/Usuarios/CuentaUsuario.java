@@ -33,7 +33,7 @@ abstract public class CuentaUsuario extends Cuenta {
 		this.cuentaBancaria = cuentaBancaria;
 	}
 
-	public HashMap<Integer, Producto> verProductos() {
+	public HashMap<Integer, Producto> getCatalogo() {
 		return catalogo;
 	}
 

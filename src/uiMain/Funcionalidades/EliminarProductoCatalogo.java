@@ -1,18 +1,19 @@
 package uiMain.Funcionalidades;
 
 import java.io.IOException;
-
+import gestorAplicación.Usuarios.Vendedor;
 import uiMain.OpcionDeMenu;
 
-public class eliminarProducto extends OpcionDeMenu {
+public class EliminarProductoCatalogo extends OpcionDeMenu {
 
-	@Override
 	public void ejecutar() throws NumberFormatException, IOException {
 		System.out.println("Ingrese el código del producto a eliminar ");
 		int cod = Integer.parseInt(br.readLine().trim());
+		Vendedor comp = (Vendedor)usuario;
+		String str = comp.eliminarProductoCatalogo(cod);
+		System.out.println(str);
 	}
 
-	@Override
 	public String toString() {
 		return "Eliminar producto";
 	}

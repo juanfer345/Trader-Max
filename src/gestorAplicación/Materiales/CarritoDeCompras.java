@@ -1,7 +1,8 @@
-package gestorAplicación.Materiales;
+package gestorAplicacion.Materiales;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
+import java.util.Map;
+
 import gestorAplicación.Usuarios.Comprador;
 import gestorAplicación.Usuarios.Vendedor;
 
@@ -9,7 +10,8 @@ public class CarritoDeCompras {
 	private int totalProductos;
 	private double precioTotal;
 	private Comprador titular;
-	public ArrayList<Producto> productos = new ArrayList<>();
+	public HashMap<Integer, Integer> productos = new HashMap<>();
+	// Carrito {Codigo, Cantidad};
 	private int id;
 
 	public CarritoDeCompras() {
@@ -27,35 +29,61 @@ public class CarritoDeCompras {
 		return precioTotal;
 	}
 
-	public void comprarProductos() {
-		Iterator<Producto> it = productos.iterator();
-		while (it.hasNext()) {
-			Producto p = it.next();
-			double precio = p.getPrecio();
-			titular.getCuentaBancaria().Transaccion(titular.getCuentaBancaria(), p.getVendedor().getCuentaBancaria(),
-					precio);
-			p.setCantidad(p.getCantidad() - 1);
-			if (p.getCantidad() == 0) {
-				Vendedor.catalogo.remove(p);
-			}
+	public String comprarProductos() {
+		double total = 0;
+		for (Map.Entry<Integer, Integer> entry : productos.entrySet()) {
+			int codigo = entry.getKey();
+			int cantidad = entry.getValue();
+			Producto p = Vendedor.catalogo.get(codigo);
+			setPrecioTotal(getPrecioTotal() + (p.getPrecio() * cantidad));
 		}
-		productos.clear();
-		totalProductos = 0;
-	}
-
-	public void vaciarCarrito() {
-		productos.clear();
-		totalProductos = 0;
-	}
-
-	public void quitarProducto(int codigo) {
-		Iterator<Producto> it = productos.iterator();
-		while (it.hasNext()) {
-			Producto pr = it.next();
-			if (pr.getCodigoProducto() == codigo) {
-				productos.remove(pr);
-				totalProductos--;
+		total = getPrecioTotal();
+		if (titular.getCuentaBancaria().getSaldo() >= total) {
+			for (Map.Entry<Integer, Integer> entry : productos.entrySet()) {
+				int codigo = entry.getKey();
+				int cantidad = entry.getValue();
+				Producto p = Vendedor.catalogo.get(codigo);
+				double precio = p.getPrecio() * cantidad;
+				titular.getCuentaBancaria().Transaccion(titular.getCuentaBancaria(),
+						p.getVendedor().getCuentaBancaria(), precio);
+				p.setCantidad(p.getCantidad() - cantidad);
+				titular.historial.put(codigo, p);
+				
 			}
+			productos.clear();
+			totalProductos = 0;
+			return "Se han comprado los productos. Saldo restante: " + titular.getCuentaBancaria().getSaldo();
+		} else {
+			return "Saldo insuficiente, no se pueden comprar los productos";
+		}
+	}
+
+	public String vaciarCarrito() {
+		productos.clear();
+		totalProductos = 0;
+		return "Su carrito está vacío";
+	}
+
+	public String quitarProducto(int codigo, int cantidad) {
+		if (cantidad > 0) {
+			if (productos.containsKey(codigo)) {
+				if (productos.get(codigo) >= cantidad) {
+					productos.put(codigo, productos.get(codigo) - cantidad);
+					if (cantidad == 1) {
+						return "Se ha quitado el producto " + Vendedor.catalogo.get(codigo).getNombreProducto()
+								+ " del carrito";
+					} else {
+						return "Se han quitado " + cantidad + " " + Vendedor.catalogo.get(codigo).getNombreProducto()
+								+ " del carrito";
+					}
+				} else {
+					return "La cantidad ingresada excede la existente";
+				}
+			} else {
+				return "El producto no está en el carrito";
+			}
+		} else {
+			return "La cantidad ingresada debe ser mayor a cero";
 		}
 	}
 

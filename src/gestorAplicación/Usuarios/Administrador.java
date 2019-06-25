@@ -2,7 +2,6 @@ package gestorAplicación.Usuarios;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.*;
@@ -14,9 +13,7 @@ import uiMain.Funcionalidades.*;
 
 public class Administrador extends Cuenta {
 	
-	public static int getNumeroCuentas(){
-		return totalCuentas;
-	}
+	public static int getNumeroCuentas(){totalCuentas;}
 	
 	public void setMenuPredeterminado() {
 		Cuenta.menu.cambiarMenu(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new eliminarOpcion(), new agregarOpcion(), 
@@ -36,4 +33,13 @@ public class Administrador extends Cuenta {
 		Cuenta.menu = new MenuDeConsola(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new iniciarSesion(), new registrar(), 
 				  		new buscarProducto(), new buscarCategoria(),new salir()})), this);
 	}
+	public static String numeroCuentas() {
+		int cuentas =Administrador.getNumeroCuentas();
+		return"Actualmente hay "+cuentas+" cuentas";
+	}
+	/*public String eliminarOpcion(int Aeliminar) {
+		ArrayList<OpcionDeMenu>elim = OpcionDeMenu.activo<>();
+		activo.remove(Aeliminar);
+		return "Se ha eliminado la opción";
+	}*/
 }
