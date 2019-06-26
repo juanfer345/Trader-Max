@@ -2,6 +2,7 @@ package uiMain.Funcionalidades.Cuenta.Comprador;
 
 import java.io.IOException;
 
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Comprador;
 import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
@@ -10,7 +11,7 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 
 	@Override
 	public void ejecutar() throws NumberFormatException, IOException {
-		Comprador comp = (Comprador) MenuDeConsola.usuarioActivo;
+		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
 		System.out.println("Ingresa el código del producto: ");
 		int cod = Integer.parseInt(MenuDeConsola.br.readLine().trim());
 		System.out.println("Ingrese cantidad que desea quitar: ");

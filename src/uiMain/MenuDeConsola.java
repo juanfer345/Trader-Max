@@ -14,10 +14,11 @@ public class MenuDeConsola {
 	public static void LanzarMenu() throws IOException {
 		
 		ArrayList <OpcionDeMenu> aux = InicializacionAplicacion.usuarioActivo.getOpcionesDeMenu();
+	    StringBuilder sb = new StringBuilder();
 		
 		System.out.println("Elija una opción:");
 		for (int i = 0; i < aux.size(); i++) {
-			System.out.println((i + 1) + ". " + aux.get(i).toString());
+			sb.append((i + 1) + ". " + aux.get(i).toString() + "/n");
 		}
 		System.out.println("=> ");
 		

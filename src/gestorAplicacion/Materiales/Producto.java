@@ -5,15 +5,14 @@ import java.util.HashMap;
 
 public class Producto {
 
-
-	public static String categorias [] = {"Belleza", "Vehiculos", "Deportes", "Electrodomesticos", "Hogar", "Juegos", "Libros", "Musica", "Tecnologia", "Vestimenta","Vivienda"};
+	public static String categorias [] = {"Belleza", "Vehículos", "Deportes", "Electrodomésticos", "Hogar", "Juegos", "Libros", "Música", "Tecnología", "Vestimenta", "Vivienda"};
 
 	public HashMap <Integer, Resena> Resenas = new HashMap<>();
 	private Vendedor vendedor;
 	private String nombreProducto;
 	private String categoria;
 	private double precio;
-	private int codigoProducto; 
+	private int codigoProducto;
 	private static int cont;
 	private int cantidad;
 	

@@ -8,23 +8,35 @@ import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.*;
 import uiMain.Funcionalidades.Cuenta.CerrarSesion;
+import uiMain.Funcionalidades.Cuenta.Administrador.AgregarOpcion;
+import uiMain.Funcionalidades.Cuenta.Administrador.CuentasAdmin;
+import uiMain.Funcionalidades.Cuenta.Administrador.EliminarCuenta;
+import uiMain.Funcionalidades.Cuenta.Administrador.EliminarOpcion;
 import uiMain.Funcionalidades.Cuenta.Vendedor.EliminarProductoCatalogo;
 import uiMain.Funcionalidades.Cuenta.Vendedor.SubirProducto;
 
 public class Vendedor extends CuentaUsuario {
 	
-	public Vendedor(String nombre, String correo, String password, int cedula) {
-		super(nombre, correo, password, cedula);
-		setMenuPredeterminado();
+	public Vendedor() {
+		super();
+		this.totalDeOpcionesDefault = 4;
+		setOpcionesDeMenuPredeterminadas();
 	}
 	
-	public void setMenuPredeterminado() {
+	public Vendedor(String nombre, String correo, String password, int cedula) {
+		super(nombre, correo, password, cedula);
+		this.totalDeOpcionesDefault = 4;
+		setOpcionesDeMenuPredeterminadas();
+	}
+	
+	public void setOpcionesDeMenuPredeterminadas() {
 		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new SubirProducto(), new EliminarProductoCatalogo(), 
 										  new CerrarSesion(), new Salir()})));
 	}
 	
-	public Vendedor() {
-		super();
+	public ArrayList <OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
+		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new SubirProducto(), new EliminarProductoCatalogo(), 
+				  new CerrarSesion(), new Salir()}));
 	}
 
 	public static void subirProducto(Vendedor vendedor, String nombreProducto, String categoria, double precio,

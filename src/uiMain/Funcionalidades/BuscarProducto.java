@@ -8,21 +8,26 @@ import uiMain.OpcionDeMenu;
 
 public class BuscarProducto extends OpcionDeMenu {
 
+	@Override
 	public void ejecutar() throws NumberFormatException, IOException {
 
 	    StringBuilder sb = new StringBuilder();
 	    String selecc;
 	    byte seleccion;
+	    
+	    //Guardado de mensaje principal
+		sb.append("Por favor elija el método de búsqueda\n");
+		sb.append("1: Por código\n");
+		sb.append("2: Por nombre\n");
+		sb.append("=> ");
 		
+		//Ciclo para control de error
 		while (!OpcionDeMenu.controlError) {
-
-			sb.append("Por favor elija el método de búsqueda\n");
-			sb.append("1: Por código\n");
-			sb.append("2: Por nombre\n");
-			sb.append("=> ");
+			
+			//Impresión de mensaje y recepción de datos
 			System.out.println(sb);
 			seleccion = Byte.parseByte(MenuDeConsola.br.readLine().trim());
-
+			
 			//Ejecución del método e impresión de respuesta
 			if (seleccion != 0) {
 				if (seleccion == 1) {
@@ -49,6 +54,8 @@ public class BuscarProducto extends OpcionDeMenu {
 			if (!OpcionDeMenu.controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
 		}
 	}
+	
+	@Override
 	public String toString() {
 		return "Buscar producto.";
 	}

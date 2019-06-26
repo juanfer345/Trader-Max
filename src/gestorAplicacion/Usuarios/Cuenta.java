@@ -1,66 +1,52 @@
 package gestorAplicacion.Usuarios;
 
 import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.Map;
 
-import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public abstract class Cuenta {
-	
+
+	public static HashMap <Integer, Producto> catalogo = new HashMap <> ();
 	protected static MenuDeConsola menu;
+	protected static ArrayList <OpcionDeMenu> cambioOpDeMen;
+	protected int totalDeOpcionesDefault;
 	private String nombre, correo, password;
 	public int id;
 	private int cedula;
 	static protected int contador;
 	static int totalCuentas;
 	
-	public String getNombre() {
-		return nombre;
-	}
+	public String getNombre() {return nombre;}
 	
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+	public void setNombre(String nombre) {this.nombre = nombre;}
 	
-	public String getCorreo() {
-		return correo;
-	}
+	public String getCorreo() {return correo;}
 	
-	public void setCorreo(String correo) {
-		this.correo = correo;
-	}
+	public void setCorreo(String correo) {this.correo = correo;}
 	
-	public int getId() {
-		return id;
-	}
+	public int getId() {return id;}
 	
-	public void setId(int id) {
-		this.id = id;
-	}
+	public void setId(int id) {this.id = id;}
 	
-	public int getCedula() {
-		return cedula;
-	}
+	public int getCedula() {return cedula;}
 	
-	public void setCedula(int cedula) {
-		this.cedula = cedula;
-	}
+	public void setCedula(int cedula) {this.cedula = cedula;}
 	
-	public String getPassword() {
-		return password;
-	}
+	public String getPassword() {return password;}
 	
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	public void setPassword(String password) {this.password = password;}
+		
+	public abstract ArrayList <OpcionDeMenu> getOpcionesDeMenu();
 	
+	abstract void setOpcionesDeMenuPredeterminadas();
+	abstract ArrayList <OpcionDeMenu> getOpcionesDeMenuPredeterminadas();
 	
-	public String salir (int seleccion) {
+	//Comando para salir de la aplicación
+	public String salir (byte seleccion) {
 		if (seleccion == 1) {
 			OpcionDeMenu.controlError = true; MenuDeConsola.SalirApp = true;
 			return "\n La aplicación será cerrada \n";
@@ -74,12 +60,13 @@ public abstract class Cuenta {
 			return "\n Por favor ingrese un número válido \n";
 		}
 	}
-
+	
+	//Búsqueda de producto por código
 	public StringBuilder buscarProducto(int codigo) {
 		
 		Producto prod;
 	    StringBuilder sb = new StringBuilder();
-			
+		
 		if (Vendedor.catalogo.containsKey(codigo)) {
 
 			prod = Vendedor.catalogo.get(codigo);
@@ -89,46 +76,77 @@ public abstract class Cuenta {
 			sb.append("Precio: " + prod.getPrecio() + ",/n");
 			sb.append("Código: " + codigo + ",/n");
 			sb.append("Cantidad: " + prod.getCantidad() + "]/n");
-			
 			OpcionDeMenu.controlError = true;
-			
 			return sb;
 		}
 		else {
 			return sb.append("Producto no encontrado.");
 		}
 	}
+	
+	//Búsqueda de producto por nombre (puede retornar varios resultados)
+	public StringBuilder buscarProducto(String nombre) {
 		
-	public Deque <Producto> buscarProducto(String nombre) {
-		Deque<Producto> Prod = new LinkedList<Producto>();
-		(Vendedor.catalogo).forEach((k, v) -> {
-			Producto p = Vendedor.catalogo.get(k);
-			if (p.getNombreProducto().contains(nombre)) {
-				Prod.add(p);
+	    StringBuilder sb = new StringBuilder();
+	    
+	    //Búsqueda de cada producto
+		Vendedor.catalogo.forEach((k, v) -> {
+			Producto prod = Vendedor.catalogo.get(k);
+			if (prod.getNombreProducto().contains(nombre)) {
+				sb.append(prod.toString() + '\n');
 			}
 		});
 		
-
-		if(Prod != null) {
-			System.out.println(Prod);
-		} else {
-			System.out.println("Producto no encontrado");
+		//Comprobación del resultado
+		if (sb.length() > 0) {
+			OpcionDeMenu.controlError = true;
+			return sb.append("\nEl producto fue encontrado: \n" + sb);
 		}
+		else {
+			return sb.append("Producto no encontrado.");
+		}
+	}
+	
+	//Mostrar catálogo (todos los productos)
+	public StringBuilder mostrarCatalogo() {
 		
-		return Prod;
+	    StringBuilder sb = new StringBuilder();
+		for (Map.Entry <Integer, Producto> entry : catalogo.entrySet()) {
+			sb.append(entry.getValue().toString() + '\n');
+		}
+		return sb.append("\nCatálogo de Trader-Max: \n" + sb);
 	}
 	
-	public Deque <Producto> mostrarCategoria(int cat) {
-		Deque <Producto> colaProd = new LinkedList<Producto>();
-		(Vendedor.catalogo).forEach((k, v) -> {
-			Producto p = Vendedor.catalogo.get(k);
-			if (p.getCategoria() == Producto.categorias[cat]) {
-				colaProd.add(p);
-			}
-		});
-		return colaProd;
+	//Mostrar todos los productos de una categoria
+	public StringBuilder mostrarCategoria(byte cat) {
+		
+	    StringBuilder sb = new StringBuilder();
+	    
+		//Verificación de índice válido
+		if (cat > 0 && cat < Producto.categorias.length) {
+			
+			//Ciclo para hallar cada producto de la categoría adecuada
+			(Vendedor.catalogo).forEach((k, v) -> {
+				Producto prod = Vendedor.catalogo.get(k);
+				if (prod.getCategoria() == Producto.categorias[cat]) {
+					sb.append(prod.toString() + '\n');
+				}
+			});
+		} else {
+			sb.append("Categoria inválida, por favor ingrese un índice dentro del rango establecido.");
+		}
+		return sb;
 	}
-	
-	public abstract ArrayList <OpcionDeMenu> getOpcionesDeMenu();
-	abstract void setMenuPredeterminado();
+
+	public int getTotalDeOpcionesDefault() {
+		return totalDeOpcionesDefault;
+	}
+
+	public static ArrayList<OpcionDeMenu> getCambioOpDeMen() {
+		return cambioOpDeMen;
+	}
+
+	public static void setCambioOpDeMen(ArrayList<OpcionDeMenu> cambioOpDeMen) {
+		Cuenta.cambioOpDeMen = cambioOpDeMen;
+	}
 }

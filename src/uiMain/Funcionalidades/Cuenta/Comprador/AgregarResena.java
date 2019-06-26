@@ -1,6 +1,7 @@
 package uiMain.Funcionalidades.Cuenta.Comprador;
 import java.io.IOException;
 
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
 import gestorAplicacion.Usuarios.Vendedor;
@@ -12,7 +13,7 @@ public class AgregarResena extends OpcionDeMenu { // opcion 10
 
 	@Override
 	public void ejecutar() throws IOException {
-		Comprador comp = (Comprador) MenuDeConsola.usuarioActivo;
+		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
 		comp.getHistorial().forEach((k, v) -> {
 			System.out.println(v);
 		});

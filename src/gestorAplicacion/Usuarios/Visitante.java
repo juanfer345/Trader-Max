@@ -9,6 +9,9 @@ import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.*;
+import uiMain.Funcionalidades.Cuenta.CerrarSesion;
+import uiMain.Funcionalidades.Cuenta.Vendedor.EliminarProductoCatalogo;
+import uiMain.Funcionalidades.Cuenta.Vendedor.SubirProducto;
 import uiMain.Funcionalidades.Invitado.IniciarSesion;
 import uiMain.Funcionalidades.Invitado.Registrar;
 
@@ -16,27 +19,26 @@ public class Visitante extends Cuenta {
 
 	public Visitante() {
 		super();
-		setMenuPredeterminado();
+		this.totalDeOpcionesDefault = 5;
+		setOpcionesDeMenuPredeterminadas();
 	}
 	
-	public void setMenuPredeterminado() {
+	public void setOpcionesDeMenuPredeterminadas() {
 		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new IniciarSesion(), new Registrar(), 
-										  new BuscarProducto(), new MostrarCategoria(), new Salir()})));
+										  new BuscarProducto(), new MostrarPorCategoria(), new Salir()})));
+	}
+	
+	public ArrayList <OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
+		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new IniciarSesion(), new Registrar(), 
+				  new BuscarProducto(), new MostrarPorCategoria(), new Salir()}));
+	}
+	
+	public ArrayList <OpcionDeMenu> getOpcionesDeMenu() {
+		return menu.getOpcionesActivas();
 	}
 	
 	public HashMap <Integer,Producto> verProductos() {
 		return Vendedor.catalogo;
-	}
-
-	public static Deque<Producto> buscarCategoria(String cat) {
-		Deque<Producto> colaProd = new LinkedList<Producto>();
-		(Vendedor.catalogo).forEach((k, v) -> {
-			Producto p = Vendedor.catalogo.get(k);
-			if (p.getCategoria() == cat) {
-				colaProd.add(p);
-			}
-		});
-		return colaProd;
 	}
 
 //	public String IniciarSesion(String c, String p) {
@@ -90,10 +92,4 @@ public class Visitante extends Cuenta {
 //			}
 //		}
 //	}
-
-	@Override
-	public ArrayList <OpcionDeMenu> getOpcionesDeMenu() {
-		return menu.getOpcionesActivas();
-	}
-
 }

@@ -3,14 +3,15 @@ package gestorAplicacion.Usuarios;
 import java.util.HashMap;
 import java.util.Map;
 
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.CuentaBancaria;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.MenuDeConsola;
+import uiMain.OpcionDeMenu;
 
 abstract public class CuentaUsuario extends Cuenta {
 
 	private CuentaBancaria cuentaBancaria;
-	public static HashMap <Integer, Producto> catalogo = new HashMap <> ();
 	
 	public CuentaUsuario(String nombre, String correo, String password, int cedula){
 		this.setNombre(nombre);
@@ -21,30 +22,28 @@ abstract public class CuentaUsuario extends Cuenta {
 		totalCuentas++;
 	}
 	
-	public CuentaUsuario() {
-		totalCuentas++;
-	}
+	public CuentaUsuario() {totalCuentas++;}
 
-	public CuentaBancaria getCuentaBancaria() {
-		return cuentaBancaria;
-	}
+	public CuentaBancaria getCuentaBancaria() {return cuentaBancaria;}
 
 	public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {
 		this.cuentaBancaria = cuentaBancaria;
 	}
-
-	public HashMap <Integer, Producto> getCatalogo() {
-		return catalogo;
-	}
-
-	public double obtenerPrecio(String nombre) {
-		Producto mens = null;
-		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-			Producto p = entry.getValue();
-			if (p.getNombreProducto() == nombre) {
-				mens = p;
-			}
+	
+	//Método para cerrar sesión
+	public String cerrarSesion (byte seleccion) {
+		if (seleccion == 1) {
+			InicializacionAplicacion.usuarioActivo = new Visitante();
+			OpcionDeMenu.controlError = true;
+			return "\nSe ha cerrado sesión correctamente mijin\n";
 		}
-		return mens.getPrecio();
+		else if (seleccion == 2) {
+			OpcionDeMenu.controlError = true;
+			return "";
+		}
+		else {
+			OpcionDeMenu.controlError = false;
+			return "\nPor favor ingrese un número válido\n";
+		}
 	}
 }

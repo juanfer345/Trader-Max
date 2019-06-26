@@ -24,20 +24,27 @@ public class Comprador extends CuentaUsuario {
 	
 	private CarritoDeCompras carrito;
 	private HashMap <Integer, Producto> historial = new HashMap <> ();
-
-	public Comprador(String nombre, String correo, String password, int cedula) {
-		super(nombre, correo, password, cedula);
-		setMenuPredeterminado();
-	}
-	
-	public void setMenuPredeterminado() {
-		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new AgregarACarrito(), new BorrarHistorial(), 
-										  new MostrarHistorial(), new VaciarCarrito(), new ComprarProducto(), new QuitarProductoCarrito(), 
-										  new AgregarResena(), new MostrarCategoria(), new BuscarProducto(), new CerrarSesion(), new Salir()})));
-	}
 	
 	public Comprador() {
 		super();
+		this.totalDeOpcionesDefault = 11;
+		setOpcionesDeMenuPredeterminadas();
+	}
+
+	public Comprador(String nombre, String correo, String password, int cedula) {
+		super(nombre, correo, password, cedula);
+		this.totalDeOpcionesDefault = 11;
+		setOpcionesDeMenuPredeterminadas();
+	}
+	
+	public void setOpcionesDeMenuPredeterminadas() {
+		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new AgregarACarrito(), new BorrarHistorial(), 
+										  new MostrarHistorial(), new VaciarCarrito(), new ComprarProducto(), new QuitarProductoCarrito(), 
+										  new AgregarResena(), new MostrarPorCategoria(), new BuscarProducto(), new CerrarSesion(), new Salir()})));
+	}
+	
+	public ArrayList <OpcionDeMenu> getOpcionesDeMenu() {
+		return menu.getOpcionesActivas();
 	}
 
 	public String agregarACarrito(int codigo, int cantidad) {
@@ -95,9 +102,5 @@ public class Comprador extends CuentaUsuario {
 			return "No ha comprado este producto, no puede añadir una reseña";
 		}
 
-	}
-	@Override
-	public ArrayList <OpcionDeMenu> getOpcionesDeMenu() {
-		return menu.getOpcionesActivas();
 	}
 }

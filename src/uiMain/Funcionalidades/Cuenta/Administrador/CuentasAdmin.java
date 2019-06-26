@@ -15,5 +15,4 @@ public class CuentasAdmin extends OpcionDeMenu { // opcion 15
 	public String toString() {
 		return "Numero de cuentas ";
 	}
-
 }

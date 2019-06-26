@@ -1,9 +1,6 @@
 package uiMain.Funcionalidades;
 
-import java.util.Map;
-
-import gestorAplicacion.Materiales.Producto;
-import gestorAplicacion.Usuarios.CuentaUsuario;
+import gestorAplicacion.InicializacionAplicacion;
 import uiMain.OpcionDeMenu;
 
 public class MostrarCatalogo extends OpcionDeMenu{
@@ -11,15 +8,12 @@ public class MostrarCatalogo extends OpcionDeMenu{
 
 	@Override
 	public void ejecutar() {
-		for (Map.Entry<Integer, Producto> entry : CuentaUsuario.catalogo.entrySet()) {
-			Producto P = entry.getValue();
-			System.out.println(P);
-		}
+		System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCatalogo());
 	}
 
 	@Override
 	public String toString() {
-		return "Mostrar Productos";
+		return "Mostrar todos los productos.";
 	}
 
 }

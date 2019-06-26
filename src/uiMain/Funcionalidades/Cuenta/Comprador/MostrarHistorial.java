@@ -2,15 +2,16 @@ package uiMain.Funcionalidades.Cuenta.Comprador;
 
 import java.util.Map;
 
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
-import uiMain.*;
 import gestorAplicacion.Usuarios.Comprador;
+import uiMain.OpcionDeMenu;
 
 public class MostrarHistorial extends OpcionDeMenu { // opcion 6
 
 	@Override
 	public void ejecutar() {
-		Comprador comp = (Comprador) MenuDeConsola.usuarioActivo;
+		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
 		for (Map.Entry<Integer, Producto> entry : comp.getHistorial().entrySet()) {
 			Producto P = entry.getValue();
 			System.out.println(P);
