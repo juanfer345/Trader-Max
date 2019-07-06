@@ -9,10 +9,10 @@ public class IniciarSesion extends OpcionDeMenu { // opcion 1
 	
 	public void ejecutar() throws IOException {
 		
-		System.out.println("Correo: ");
-		String c = MenuDeConsola.br.readLine().trim();
-		System.out.println("Contraseña: ");
-		String p = MenuDeConsola.br.readLine().trim();
+//		System.out.println("Correo: ");
+//		String c = MenuDeConsola.br.readLine().trim();
+//		System.out.println("Contraseña: ");
+//		String p = MenuDeConsola.br.readLine().trim();
 		
 		
 	}

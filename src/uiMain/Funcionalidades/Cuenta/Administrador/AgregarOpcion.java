@@ -1,11 +1,10 @@
 package uiMain.Funcionalidades.Cuenta.Administrador;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
-import gestorAplicacion.Usuarios.Comprador;
-import uiMain.*;
+import uiMain.MenuDeConsola;
+import uiMain.OpcionDeMenu;
 
 public class AgregarOpcion extends OpcionDeMenu {
 	
@@ -13,11 +12,8 @@ public class AgregarOpcion extends OpcionDeMenu {
 		
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
 	    StringBuilder sb = new StringBuilder();
-	    int seleccion, idUsuario;
+	    int idUsuario;
 	    byte tipoUsuario;
-
-		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
-		int codigoProd, cantidadProd;
 
 	    //Guardado de mensaje principal
 		sb.append("Elija el tipo de cuenta a la cual se le desea agregar la opción:\n");

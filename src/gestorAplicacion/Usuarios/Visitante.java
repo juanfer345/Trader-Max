@@ -2,16 +2,12 @@ package gestorAplicacion.Usuarios;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Deque;
 import java.util.HashMap;
-import java.util.LinkedList;
 import gestorAplicacion.Materiales.Producto;
-import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.OpcionDeMenu;
-import uiMain.Funcionalidades.*;
-import uiMain.Funcionalidades.Cuenta.CerrarSesion;
-import uiMain.Funcionalidades.Cuenta.Vendedor.EliminarProductoCatalogo;
-import uiMain.Funcionalidades.Cuenta.Vendedor.SubirProducto;
+import uiMain.Funcionalidades.BuscarProducto;
+import uiMain.Funcionalidades.MostrarPorCategoria;
+import uiMain.Funcionalidades.Salir;
 import uiMain.Funcionalidades.Invitado.IniciarSesion;
 import uiMain.Funcionalidades.Invitado.Registrar;
 

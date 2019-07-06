@@ -6,12 +6,8 @@ import java.util.Map;
 
 import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
-import uiMain.Funcionalidades.*;
+import uiMain.Funcionalidades.Salir;
 import uiMain.Funcionalidades.Cuenta.CerrarSesion;
-import uiMain.Funcionalidades.Cuenta.Administrador.AgregarOpcion;
-import uiMain.Funcionalidades.Cuenta.Administrador.CuentasAdmin;
-import uiMain.Funcionalidades.Cuenta.Administrador.EliminarCuenta;
-import uiMain.Funcionalidades.Cuenta.Administrador.EliminarOpcion;
 import uiMain.Funcionalidades.Cuenta.Vendedor.EliminarProductoCatalogo;
 import uiMain.Funcionalidades.Cuenta.Vendedor.SubirProducto;
 

@@ -19,6 +19,8 @@ import uiMain.Funcionalidades.Cuenta.Comprador.ComprarProducto;
 import uiMain.Funcionalidades.Cuenta.Comprador.MostrarHistorial;
 import uiMain.Funcionalidades.Cuenta.Comprador.QuitarProductoCarrito;
 import uiMain.Funcionalidades.Cuenta.Comprador.VaciarCarrito;
+import uiMain.Funcionalidades.Cuenta.Vendedor.EliminarProductoCatalogo;
+import uiMain.Funcionalidades.Cuenta.Vendedor.SubirProducto;
 
 public class Comprador extends CuentaUsuario {
 	
@@ -41,6 +43,12 @@ public class Comprador extends CuentaUsuario {
 		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new AgregarACarrito(), new BorrarHistorial(), 
 										  new MostrarHistorial(), new VaciarCarrito(), new ComprarProducto(), new QuitarProductoCarrito(), 
 										  new AgregarResena(), new MostrarPorCategoria(), new BuscarProducto(), new CerrarSesion(), new Salir()})));
+	}
+
+	public ArrayList <OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
+		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new AgregarACarrito(), new BorrarHistorial(), 
+				  new MostrarHistorial(), new VaciarCarrito(), new ComprarProducto(), new QuitarProductoCarrito(), 
+				  new AgregarResena(), new MostrarPorCategoria(), new BuscarProducto(), new CerrarSesion(), new Salir()}));
 	}
 	
 	public ArrayList <OpcionDeMenu> getOpcionesDeMenu() {
