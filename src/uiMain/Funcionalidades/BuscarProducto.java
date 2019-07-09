@@ -35,7 +35,8 @@ public class BuscarProducto extends OpcionDeMenu {
 						System.out.print("Ingrese el código del producto: ");
 						seleccion = Byte.parseByte(MenuDeConsola.br.readLine().trim());
 						System.out.println(InicializacionAplicacion.usuarioActivo.buscarProducto(seleccion));
-						if (!OpcionDeMenu.controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
+						if (!OpcionDeMenu.controlError) {
+							System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
 					}
 				}
 				else if (seleccion == 2) {
@@ -43,7 +44,8 @@ public class BuscarProducto extends OpcionDeMenu {
 						System.out.print("Ingrese el nombre del producto: ");
 						selecc = MenuDeConsola.br.readLine().trim();
 						System.out.println(InicializacionAplicacion.usuarioActivo.buscarProducto(selecc));
-						if (!OpcionDeMenu.controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
+						if (!OpcionDeMenu.controlError) {
+							System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
 					}
 				}
 			}

@@ -10,11 +10,43 @@ import uiMain.OpcionDeMenu;
 public class EliminarProductoCatalogo extends OpcionDeMenu {
 
 	public void ejecutar() throws NumberFormatException, IOException {
-		System.out.println("Ingrese el código del producto a eliminar ");
-		int cod = Integer.parseInt(MenuDeConsola.br.readLine().trim());
-		Vendedor comp = (Vendedor) InicializacionAplicacion.usuarioActivo;
-		String str = comp.eliminarProductoCatalogo(cod);
-		System.out.println(str);
+
+		StringBuilder sb = new StringBuilder();
+		int cod;
+
+		sb.append("\n Recuerde que el producto a eliminar debe ser de su propiedad");
+		sb.append("\n Para devolverse al menú anterior, ingrese el numero '0'");
+		sb.append("\n Ingrese el código del producto a eliminar o el numero '0': ");
+
+		while (!OpcionDeMenu.controlError) {
+
+			System.out.println(sb);
+
+			try {
+				cod = Integer.parseInt(MenuDeConsola.br.readLine().trim()); //Puede que se genere un error (depende del dato)
+				
+				//Apartir de aquí no se generan errores
+				if (cod == 0) { //Por si se quiere salir el usuario
+					OpcionDeMenu.controlError = true;
+				} else { //Analiza el codigo introducido para eliminar producto
+					Vendedor comp = (Vendedor) InicializacionAplicacion.usuarioActivo;
+					String str = comp.eliminarProductoCatalogo(cod);
+
+					if (str.equals("No existe el producto") || str.equals("No es un producto propio, no puede ser eliminado")) {
+						System.out.println(str);
+					} else {
+						System.out.println(str);
+						OpcionDeMenu.controlError = true;
+					}
+					
+				}
+				
+			} catch (NumberFormatException nfe) {
+				System.out.println("\n El codigo que ingreso es invalido");
+			}
+
+		}
+
 	}
 
 	public String toString() {
