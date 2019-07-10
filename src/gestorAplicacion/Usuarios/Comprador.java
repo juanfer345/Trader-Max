@@ -4,13 +4,14 @@ package gestorAplicacion.Usuarios;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
 import uiMain.OpcionDeMenu;
-import uiMain.Funcionalidades.*;
+import uiMain.Funcionalidades.BuscarProducto;
+import uiMain.Funcionalidades.MostrarPorCategoria;
+import uiMain.Funcionalidades.Salir;
 import uiMain.Funcionalidades.Cuenta.CerrarSesion;
 import uiMain.Funcionalidades.Cuenta.Comprador.AgregarACarrito;
 import uiMain.Funcionalidades.Cuenta.Comprador.AgregarResena;
@@ -19,8 +20,6 @@ import uiMain.Funcionalidades.Cuenta.Comprador.ComprarProducto;
 import uiMain.Funcionalidades.Cuenta.Comprador.MostrarHistorial;
 import uiMain.Funcionalidades.Cuenta.Comprador.QuitarProductoCarrito;
 import uiMain.Funcionalidades.Cuenta.Comprador.VaciarCarrito;
-import uiMain.Funcionalidades.Cuenta.Vendedor.EliminarProductoCatalogo;
-import uiMain.Funcionalidades.Cuenta.Vendedor.SubirProducto;
 
 public class Comprador extends CuentaUsuario {
 	
@@ -110,5 +109,10 @@ public class Comprador extends CuentaUsuario {
 			return "No ha comprado este producto, no puede añadir una reseña";
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + ", carrito#=" + carrito.getId() + "]";
 	}
 }

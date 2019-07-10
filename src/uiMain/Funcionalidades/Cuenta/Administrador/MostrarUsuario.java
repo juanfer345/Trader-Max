@@ -4,24 +4,19 @@ import java.io.IOException;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
-import gestorAplicacion.Usuarios.CuentaUsuario;
 import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
-public class EliminarCuenta extends OpcionDeMenu {
-	boolean z = false;
-	CuentaUsuario c;
-	int llave = -1;
-	
-	@Override
-	public void ejecutar() throws IOException {
+public class MostrarUsuario {
+	public void ejecutar() throws NumberFormatException, IOException {
+		
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
 	    StringBuilder sb = new StringBuilder();
 	    int idUsuario;
 	    byte tipoUsuario;
 
 	    //Guardado de mensaje principal
-		sb.append("Elija el tipo de cuenta que desea eliminar:\n");
+		sb.append("Elija el tipo de cuenta de la cual desea obtener información:\n");
 		sb.append("1: Comprador\n");
 		sb.append("2: Vendedor\n");
 		sb.append("=> ");
@@ -43,8 +38,8 @@ public class EliminarCuenta extends OpcionDeMenu {
 					System.out.print("=> ");
 					idUsuario = Integer.parseInt(MenuDeConsola.br.readLine().trim());
 					
-					//Eliminación de la cuenta
-					System.out.println(usuario.eliminarCuenta(idUsuario, tipoUsuario));
+					//Mostrado de información del usuario
+					System.out.println(usuario.mostrarUsuario(idUsuario, tipoUsuario));
 				}
 			}
 			else {
@@ -54,10 +49,8 @@ public class EliminarCuenta extends OpcionDeMenu {
 			if (!OpcionDeMenu.controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
 		}
 	}
-
-	@Override
+	
 	public String toString() {
-		return "Eliminar cuenta de usuario.";
+		return "Mostrar información de usuario.";
 	}
-
 }

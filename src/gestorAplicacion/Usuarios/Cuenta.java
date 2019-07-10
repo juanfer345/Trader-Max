@@ -62,7 +62,7 @@ public abstract class Cuenta {
 	}
 	
 	//Búsqueda de producto por código
-	public StringBuilder buscarProducto(int codigo) {
+	public String buscarProducto(int codigo) {
 		
 		Producto prod;
 	    StringBuilder sb = new StringBuilder();
@@ -77,15 +77,15 @@ public abstract class Cuenta {
 			sb.append("Código: " + codigo + ",/n");
 			sb.append("Cantidad: " + prod.getCantidad() + "]/n");
 			OpcionDeMenu.controlError = true;
-			return sb;
+			return sb.toString();
 		}
 		else {
-			return sb.append("Producto no encontrado.");
+			return sb.append("Producto no encontrado.").toString();
 		}
 	}
 	
 	//Búsqueda de producto por nombre (puede retornar varios resultados)
-	public StringBuilder buscarProducto(String nombre) {
+	public String buscarProducto(String nombre) {
 		
 	    StringBuilder sb = new StringBuilder();
 	    
@@ -100,25 +100,25 @@ public abstract class Cuenta {
 		//Comprobación del resultado
 		if (sb.length() > 0) {
 			OpcionDeMenu.controlError = true;
-			return sb.append("\nEl producto fue encontrado: \n" + sb);
+			return sb.append("\nEl producto fue encontrado: \n" + sb).toString();
 		}
 		else {
-			return sb.append("Producto no encontrado.");
+			return sb.append("Producto no encontrado.").toString();
 		}
 	}
 	
 	//Mostrar catálogo (todos los productos)
-	public StringBuilder mostrarCatalogo() {
+	public String mostrarCatalogo() {
 		
 	    StringBuilder sb = new StringBuilder();
 		for (Map.Entry <Integer, Producto> entry : catalogo.entrySet()) {
 			sb.append(entry.getValue().toString() + '\n');
 		}
-		return sb.append("\nCatálogo de Trader-Max: \n" + sb);
+		return sb.append("\nCatálogo de Trader-Max: \n" + sb).toString();
 	}
 	
 	//Mostrar todos los productos de una categoria
-	public StringBuilder mostrarCategoria(byte cat) {
+	public String mostrarCategoria(byte cat) {
 		
 	    StringBuilder sb = new StringBuilder();
 	    
@@ -135,7 +135,7 @@ public abstract class Cuenta {
 		} else {
 			sb.append("Categoria inválida, por favor ingrese un índice dentro del rango establecido.");
 		}
-		return sb;
+		return sb.toString();
 	}
 
 	public int getTotalDeOpcionesDefault() {
@@ -148,5 +148,11 @@ public abstract class Cuenta {
 
 	public static void setCambioOpDeMen(ArrayList<OpcionDeMenu> cambioOpDeMen) {
 		Cuenta.cambioOpDeMen = cambioOpDeMen;
+	}
+
+	@Override
+	public String toString() {
+		return "Cuenta [nombre=" + nombre + ", correo=" + correo + ", password=" + password + ", id=" + id + ", cedula="
+				+ cedula;
 	}
 }

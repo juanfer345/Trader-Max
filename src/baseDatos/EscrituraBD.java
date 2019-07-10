@@ -21,6 +21,7 @@ import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Comprador;
+import gestorAplicacion.Usuarios.CuentaUsuario;
 import gestorAplicacion.Usuarios.Vendedor;
 
 public class EscrituraBD {
@@ -64,11 +65,11 @@ public class EscrituraBD {
 		escrituraResenas(BDRes, InicializacionAplicacion.getBDResenas());
 	}
 	
-	private static void escrituraCompradores(String NombreBD, HashMap <Integer, Comprador> HM) {
+	private static void escrituraCompradores(String NombreBD, HashMap <Integer, CuentaUsuario> HM) {
 
 		File BD;
 		PrintWriter pw = null;
-		Comprador val;
+		CuentaUsuario val;
         StringBuilder sb = new StringBuilder();
 		
 		//Creación o sobreescritura de la base de datos y control de errores
@@ -78,7 +79,7 @@ public class EscrituraBD {
 			BD.createNewFile();					//Creación de archivo (en el computador)
 			pw = new PrintWriter(BD);			//Asignación del objeto que imprime
 	        
-	        for (Map.Entry <Integer, Comprador> entry : HM.entrySet()) {
+	        for (Map.Entry <Integer, CuentaUsuario> entry : HM.entrySet()) {
 	        	val = entry.getValue();									//Extracción de valores de la tabla hash
 	            sb.append(entry.getKey() + ';'); 						//Identificador único de comprador
 	            sb.append(val.getNombre() + ';');						//Nombre comprador
@@ -86,11 +87,11 @@ public class EscrituraBD {
 	            sb.append(val.getPassword() + ';');						//Contraseña comprador
 	            sb.append(val.getCedula() + ';');						//Cédula comprador
 	            sb.append(val.getCuentaBancaria().getId() + ';');		//Apuntador a cuenta bancaria del comprador
-	        	sb.append(val.getCarrito().getId() + ';' + '\n');		//Apuntador a carrito de compras y salto de renglón
+	        	sb.append(((Comprador) val).getCarrito().getId() + ';' + '\n');		//Apuntador a carrito de compras y salto de renglón
 	        	
 	        	//Apuntadores a los productos del historial del comprador
-	        	if (!val.getHistorial().isEmpty()){
-		    		for (Map.Entry <Integer, Producto> his: val.getHistorial().entrySet()) {
+	        	if (!((Comprador) val).getHistorial().isEmpty()){
+		    		for (Map.Entry <Integer, Producto> his: ((Comprador) val).getHistorial().entrySet()) {
 		    			sb.append(his.getValue().getCodigoProducto() + ',');
 		    		}
 	        	} else {
@@ -112,11 +113,11 @@ public class EscrituraBD {
 		}
 	}
 	
-	private static void escrituraVendedores(String NombreBD, HashMap <Integer, Vendedor> HM) {
+	private static void escrituraVendedores(String NombreBD, HashMap <Integer, CuentaUsuario> HM) {
 		
 		File BD;
 		PrintWriter pw = null;
-		Vendedor val;
+		CuentaUsuario val;
         StringBuilder sb = new StringBuilder();
 		
 		//Creación o sobreescritura de la base de datos y control de errores
@@ -126,7 +127,7 @@ public class EscrituraBD {
 			BD.createNewFile();					//Creación de archivo (en el computador)
 			pw = new PrintWriter(BD);			//Asignación del objeto que imprime
 	        
-	        for (Map.Entry <Integer, Vendedor> entry : HM.entrySet()) {
+	        for (Map.Entry <Integer, CuentaUsuario> entry : HM.entrySet()) {
 	        	val = entry.getValue();										//Extracción de valores de la tabla hash
 	            sb.append(entry.getKey() + ';'); 							//Identificador único de vendedor
 	            sb.append(val.getNombre() + ';');							//Nombre vendedor

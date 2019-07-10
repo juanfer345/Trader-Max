@@ -23,6 +23,7 @@ import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Comprador;
+import gestorAplicacion.Usuarios.CuentaUsuario;
 import gestorAplicacion.Usuarios.Vendedor;
 
 public class LecturaBD {
@@ -79,7 +80,7 @@ public class LecturaBD {
 				  		   auxComp, auxVend, auxCarr, auxCat, auxProd);
 	}
 
-	private static void lecturaCompradores(String NombreBD, HashMap <Integer, Comprador> HM, Deque <Integer> aux) throws IOException {
+	private static void lecturaCompradores(String NombreBD, HashMap <Integer, CuentaUsuario> HM, Deque <Integer> aux) throws IOException {
 		
 		Comprador val;
 	    BufferedReader Br = null;
@@ -128,7 +129,7 @@ public class LecturaBD {
         }
 	}
 	
-	private static void lecturaVendedores(String NombreBD, HashMap <Integer, Vendedor> HM, Deque <Integer> aux) throws IOException {
+	private static void lecturaVendedores(String NombreBD, HashMap <Integer, CuentaUsuario> HM, Deque <Integer> aux) throws IOException {
 		
 		Vendedor val;
 	    BufferedReader Br = null;
@@ -405,7 +406,7 @@ public class LecturaBD {
         }   
 	}
 	
-	private static void complementoLectura(HashMap <Integer, Comprador> BDCompradores, HashMap <Integer, Vendedor> BDVendedores, 
+	private static void complementoLectura(HashMap <Integer, CuentaUsuario> BDCompradores, HashMap <Integer, CuentaUsuario> BDVendedores, 
 										   HashMap <Integer, Administrador> BDAdministradores, HashMap <Integer, Producto> catalogo, 
 										   HashMap <Integer, CuentaBancaria> BDCuentasBancarias, HashMap <Integer, CarritoDeCompras> bdCarritos, 
 										   HashMap <Integer, Producto> BDProductos, HashMap <Integer, Resena> BDResenas, 
@@ -414,19 +415,19 @@ public class LecturaBD {
 		int i, j;
 		
 		//Completando la información de los compradores
-        for (Map.Entry <Integer, Comprador> entry : BDCompradores.entrySet()) {
+        for (Map.Entry <Integer, CuentaUsuario> entry : BDCompradores.entrySet()) {
             entry.getValue().setCuentaBancaria(BDCuentasBancarias.get(auxComp.poll())); //Asignación de cuenta bancaria
-            entry.getValue().setCarrito(bdCarritos.get(auxComp.poll()));				//Asignación de carrito
+            ((Comprador) entry.getValue()).setCarrito(bdCarritos.get(auxComp.poll()));				//Asignación de carrito
             
             //Asignación de productos al historial del comprador
             for (i = 0; i < auxComp.size(); i++) {
             	j = auxComp.poll();
-            	entry.getValue().getHistorial().put(j, BDProductos.get(j));
+            	((Comprador) entry.getValue()).getHistorial().put(j, BDProductos.get(j));
             }
         }
 
 		//Completando la información de los vendedores
-        for (Map.Entry <Integer, Vendedor> entry : BDVendedores.entrySet()) {
+        for (Map.Entry <Integer, CuentaUsuario> entry : BDVendedores.entrySet()) {
             entry.getValue().setCuentaBancaria(BDCuentasBancarias.get(auxVend.poll())); //Asignación de cuenta bancaria
         }
 
@@ -440,7 +441,7 @@ public class LecturaBD {
         
 		//Completando la información de los productos
         for (Map.Entry <Integer, Producto> entry : BDProductos.entrySet()) {
-        	entry.getValue().setVendedor(BDVendedores.get(auxProd.poll()));
+        	entry.getValue().setVendedor((Vendedor) BDVendedores.get(auxProd.poll()));
             //Asignación de productos al carrito
             for (i = 0; i < auxProd.size(); i++) {
             	j = auxProd.poll();

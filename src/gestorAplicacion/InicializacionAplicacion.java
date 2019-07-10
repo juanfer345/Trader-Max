@@ -15,8 +15,8 @@ import gestorAplicacion.Usuarios.*;
 
 public class InicializacionAplicacion {
 
-    private static HashMap <Integer, Comprador> BDCompradores = new HashMap <> ();
-    private static HashMap <Integer, Vendedor> BDVendedores = new HashMap <> ();
+    private static HashMap <Integer, CuentaUsuario> BDCompradores = new HashMap <> ();
+    private static HashMap <Integer, CuentaUsuario> BDVendedores = new HashMap <> ();
     private static HashMap <Integer, Administrador> BDAdministradores = new HashMap <> ();
     private static HashMap <Integer, CuentaBancaria> BDCuentasBancarias = new HashMap <> ();
     private static HashMap <Integer, CarritoDeCompras> BDCarritos = new HashMap <> ();
@@ -44,9 +44,9 @@ public class InicializacionAplicacion {
 		//Cerrado de la aplicación (pendiente)
 	}
 
-	public static HashMap <Integer, Comprador> getBDCompradores() {return BDCompradores;}
+	public static HashMap <Integer, CuentaUsuario> getBDCompradores() {return BDCompradores;}
 
-	public static HashMap <Integer, Vendedor> getBDVendedores() {return BDVendedores;}
+	public static HashMap <Integer, CuentaUsuario> getBDVendedores() {return BDVendedores;}
 
 	public static HashMap <Integer, Administrador> getBDAdministradores() {return BDAdministradores;}
 

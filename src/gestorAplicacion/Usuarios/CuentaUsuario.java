@@ -41,4 +41,9 @@ abstract public class CuentaUsuario extends Cuenta {
 			return "\nPor favor ingrese un número válido\n";
 		}
 	}
+
+	@Override
+	public String toString() {
+		return super.toString() + ", cuentaBancaria=" + cuentaBancaria;
+	}
 }
