@@ -3,6 +3,8 @@ package gestorAplicacion.Usuarios;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.BuscarProducto;
@@ -36,7 +38,64 @@ public class Visitante extends Cuenta {
 	public HashMap <Integer,Producto> verProductos() {
 		return Vendedor.catalogo;
 	}
+	
+	boolean x = false;//si puede ser estatico?
+	public  String Registrarse(short t,String n,String c,int cc,String p) {
+		
+		if (t == 1) {
+			(InicializacionAplicacion.getBDCompradores()).forEach((k,v)-> {
+				if((v.getCorreo().equals(c))) {
+					x=true;
+				}
+			});
+			(InicializacionAplicacion.getBDVendedores()).forEach((k,v)-> {
+				if((v.getCorreo().equals(c))) {
+					x=true;
+				}
+			});
+			(InicializacionAplicacion.getBDAdministradores()).forEach((k,v)-> {
+				if((v.getCorreo().equals(c))) {
+					x=true;
+				}
+			});
+			if (x==false) {
+				//preguntar con que clave está metiendo eso en las hash, por ahora se deja ir
+				InicializacionAplicacion.usuarioActivo = new Vendedor(n, c, p, cc);
+				(InicializacionAplicacion.getBDVendedores()).put(InicializacionAplicacion.usuarioActivo.getId(), (Vendedor) InicializacionAplicacion.usuarioActivo);//porque 2
+				InicializacionAplicacion.usuarioActivo.setOpcionesDeMenuPredeterminadas();
+				return "Registro exitoso";
+			}else {
+				return "El correo ya se encuentra registrado";
+			}
+		} else {
 
+			(InicializacionAplicacion.getBDCompradores()).forEach((k,v)-> {
+				if((v.getCorreo().equals(c))) {
+					x=true;
+				}
+			});
+			(InicializacionAplicacion.getBDVendedores()).forEach((k,v)-> {
+				if((v.getCorreo().equals(c))) {
+					x=true;
+				}
+			});
+			(InicializacionAplicacion.getBDAdministradores()).forEach((k,v)-> {
+				if((v.getCorreo().equals(c))) {
+					x=true;
+				}
+			});
+			if(x == false) {
+				InicializacionAplicacion.usuarioActivo = new Comprador(n, c, p, cc);
+				InicializacionAplicacion.getBDCompradores().put(InicializacionAplicacion.usuarioActivo.getId(), (Comprador) InicializacionAplicacion.usuarioActivo);//porque 4?
+				InicializacionAplicacion.usuarioActivo.setOpcionesDeMenuPredeterminadas();
+				return "Registro exitoso";
+			}else {
+				return"El correo ya se encuentra registrado";
+			}
+		}
+	}
+
+	
 //	public String IniciarSesion(String c, String p) {
 //		Integer key = -1;
 //		Cuenta us;
