@@ -3,6 +3,7 @@ package gestorAplicacion.Usuarios;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
@@ -39,54 +40,70 @@ public class Visitante extends Cuenta {
 		return Vendedor.catalogo;
 	}
 	
-	boolean x = false;//si puede ser estatico?
+	
 	public  String Registrarse(short t,String n,String c,int cc,String p) {
-		
-		if (t == 1) {
-			(InicializacionAplicacion.getBDCompradores()).forEach((k,v)-> {
-				if((v.getCorreo().equals(c))) {
+		boolean x = false;
+		if (t == 1) {            //busqueda de correo si el usuario quiere ser un VENDEDOR
+			//(InicializacionAplicacion.getBDCompradores()).forEach((k,v)-> {
+			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDCompradores()).entrySet()) {       //busqueda de correo en el  hash de compradores			
+				if((entry.getValue().getCorreo().equals(c))) {
 					x=true;
+					break;
 				}
-			});
-			(InicializacionAplicacion.getBDVendedores()).forEach((k,v)-> {
-				if((v.getCorreo().equals(c))) {
+			}//});
+			//(InicializacionAplicacion.getBDVendedores()).forEach((k,v)-> {
+			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDVendedores()).entrySet()) {     //busqueda de correo en el  hash de vendedores				
+				if((entry.getValue().getCorreo().equals(c))) {
 					x=true;
+					break;
 				}
-			});
-			(InicializacionAplicacion.getBDAdministradores()).forEach((k,v)-> {
-				if((v.getCorreo().equals(c))) {
+			
+			}//});
+			//(InicializacionAplicacion.getBDAdministradores()).forEach((k,v)-> {
+			for (Entry<Integer, Administrador> entry : (InicializacionAplicacion.getBDAdministradores()).entrySet()) {	  //busqueda de correo en el  hash de admnin			
+				if((entry.getValue().getCorreo().equals(c))) {
 					x=true;
+					break;
 				}
-			});
-			if (x==false) {
-				//preguntar con que clave está metiendo eso en las hash, por ahora se deja ir
+			
+			}
+			//});
+			if (x==false) {		//en caso de que no se encuentre el correo registrado en ninguna tabla
 				InicializacionAplicacion.usuarioActivo = new Vendedor(n, c, p, cc);
-				(InicializacionAplicacion.getBDVendedores()).put(InicializacionAplicacion.usuarioActivo.getId(), (Vendedor) InicializacionAplicacion.usuarioActivo);//porque 2
+				(InicializacionAplicacion.getBDVendedores()).put(InicializacionAplicacion.usuarioActivo.getId(), (Vendedor) InicializacionAplicacion.usuarioActivo);
 				InicializacionAplicacion.usuarioActivo.setOpcionesDeMenuPredeterminadas();
 				return "Registro exitoso";
 			}else {
 				return "El correo ya se encuentra registrado";
 			}
-		} else {
+		} else {          //busqueda de correo y registro si el usuario quiere ser COMPRADOR
 
-			(InicializacionAplicacion.getBDCompradores()).forEach((k,v)-> {
-				if((v.getCorreo().equals(c))) {
+			//(InicializacionAplicacion.getBDCompradores()).forEach((k,v)-> {
+			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDCompradores()).entrySet()) {	   //busqueda de correo en el  hash de compradores			
+				if((entry.getValue().getCorreo().equals(c))) {
 					x=true;
+					break;
 				}
-			});
-			(InicializacionAplicacion.getBDVendedores()).forEach((k,v)-> {
-				if((v.getCorreo().equals(c))) {
+			}//});
+			//(InicializacionAplicacion.getBDVendedores()).forEach((k,v)-> {
+			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDVendedores()).entrySet()) {     //busqueda de correo en el  hash de vendedores	
+				if((entry.getValue().getCorreo().equals(c))) {
 					x=true;
+					break;
 				}
-			});
-			(InicializacionAplicacion.getBDAdministradores()).forEach((k,v)-> {
-				if((v.getCorreo().equals(c))) {
+			
+			}//});
+			//(InicializacionAplicacion.getBDAdministradores()).forEach((k,v)-> {
+			for (Entry<Integer, Administrador> entry : (InicializacionAplicacion.getBDAdministradores()).entrySet()) {	    //busqueda de correo en el  hash de admin		
+				if((entry.getValue().getCorreo().equals(c))) {
 					x=true;
+					break;
 				}
-			});
-			if(x == false) {
+			
+			}
+			if(x == false) {      //en caso de que no se encuentre el correo registrado en ninguna tabla
 				InicializacionAplicacion.usuarioActivo = new Comprador(n, c, p, cc);
-				InicializacionAplicacion.getBDCompradores().put(InicializacionAplicacion.usuarioActivo.getId(), (Comprador) InicializacionAplicacion.usuarioActivo);//porque 4?
+				InicializacionAplicacion.getBDCompradores().put(InicializacionAplicacion.usuarioActivo.getId(), (Comprador) InicializacionAplicacion.usuarioActivo);
 				InicializacionAplicacion.usuarioActivo.setOpcionesDeMenuPredeterminadas();
 				return "Registro exitoso";
 			}else {
