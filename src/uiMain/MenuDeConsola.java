@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import gestorAplicacion.InicializacionAplicacion;
 
 public class MenuDeConsola {
+	
 	private ArrayList <OpcionDeMenu> opcionesActivas = new ArrayList <OpcionDeMenu>();
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public static boolean SalirApp = false;

@@ -47,16 +47,20 @@ public abstract class Cuenta {
 	
 	//Comando para salir de la aplicación
 	public String salir (byte seleccion) {
+		
 		if (seleccion == 1) {
-			OpcionDeMenu.controlError = true; MenuDeConsola.SalirApp = true;
+			OpcionDeMenu.controlError = true; 
+			MenuDeConsola.SalirApp = true;
 			return "\n La aplicación será cerrada \n";
 		}
 		else if (seleccion == 2) {
-			OpcionDeMenu.controlError = true; MenuDeConsola.SalirApp = false;
+			OpcionDeMenu.controlError = true; 
+			MenuDeConsola.SalirApp = false;
 			return "";
 		}
 		else {
-			OpcionDeMenu.controlError = false; MenuDeConsola.SalirApp = false;
+			OpcionDeMenu.controlError = false; 
+			MenuDeConsola.SalirApp = false;
 			return "\n Por favor ingrese un número válido \n";
 		}
 	}
