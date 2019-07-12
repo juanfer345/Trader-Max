@@ -14,9 +14,10 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 		StringBuilder sb = new StringBuilder();
 		int cod;
 
+		sb.append("\n Esta opción es para eliminar un producto de tu catalogo");
 		sb.append("\n Recuerde que el producto a eliminar debe ser de su propiedad");
-		sb.append("\n Para devolverse al menú anterior, ingrese el numero '0'");
-		sb.append("\n Ingrese el código del producto a eliminar o el numero '0': ");
+		sb.append("\n Para devolverse al menú anterior, ingrese el número '0'");
+		sb.append("\n Ingrese el código del producto a eliminar o el número '0': ");
 
 		while (!OpcionDeMenu.controlError) {
 
@@ -28,7 +29,8 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 				//Apartir de aquí no se generan errores
 				if (cod == 0) { //Por si se quiere salir el usuario
 					OpcionDeMenu.controlError = true;
-				} else { //Analiza el codigo introducido para eliminar producto
+				} else { //Si el usuario no quiere salir, continua el proceso
+					//Analiza el codigo introducido para eliminar producto
 					Vendedor comp = (Vendedor) InicializacionAplicacion.usuarioActivo;
 					String str = comp.eliminarProductoCatalogo(cod);
 
