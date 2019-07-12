@@ -1,16 +1,15 @@
 package uiMain.Funcionalidades;
 
 import java.io.IOException;
+
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class MostrarPorCategoria extends OpcionDeMenu { // opcion 3
 
 	public void ejecutar() throws NumberFormatException, IOException { //pa la logica
 
-	    StringBuilder sb = new StringBuilder();
 	    byte seleccion, i;
 	    
 	    //Guardado de mensaje principal
@@ -24,7 +23,7 @@ public class MostrarPorCategoria extends OpcionDeMenu { // opcion 3
 		    
 			//Impresión de mensaje y recepción de datos
 			System.out.println(sb);
-			seleccion = Byte.parseByte(MenuDeConsola.br.readLine().trim());
+			seleccion = Byte.parseByte(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
 			if (seleccion != 0) {
@@ -39,6 +38,6 @@ public class MostrarPorCategoria extends OpcionDeMenu { // opcion 3
 	}
 
 	public String toString() {
-		return "Mostrar por categoria.";
+		return "Mostrar productos por categoria";
 	}
 }

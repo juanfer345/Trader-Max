@@ -269,8 +269,11 @@ public class LecturaBD {
             Br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
             
     	    //Ciclo para obtener la información
-            for (int i = 0; i < (Dat = Br.readLine().split(",")).length; i++) {
-            	aux.add(Integer.parseInt(Dat[i]));
+            Dat = Br.readLine().split(",");
+            if (!Dat[0].equals("#")) {
+                for (int i = 0; i < Dat.length; i++) {
+                	aux.add(Integer.parseInt(Dat[i]));
+                }
             }
     	    
     		//Mensaje de confirmación
@@ -403,13 +406,13 @@ public class LecturaBD {
 	}
 	
 	private static String mensajeConfirmacion(boolean BDvacia, String NombreBD) {
-        if (!BDvacia) {
+        if (BDvacia) {
         	//Caso A: La base de datos se cargó correctamente
-        	return "Base de datos " + NombreBD + ".txt" + "cargada exitosamente";
+        	return "Base de datos \"" + NombreBD + ".txt\"" + " cargada exitosamente";
         	
         } else {
         	//Caso B: La base de datos se encontraba vacía
-        	return "Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía";
+        	return "Advertencia: la base de datos \"" + NombreBD + ".txt\"" + " se encuentra vacía";
         }
 	}
 }

@@ -1,9 +1,8 @@
 package uiMain.Funcionalidades.Cuenta.Comprador;
 
-import java.io.IOException; 
+import java.io.IOException;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Comprador;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class ComprarProducto extends OpcionDeMenu { // opcion 7
@@ -25,7 +24,7 @@ public class ComprarProducto extends OpcionDeMenu { // opcion 7
 			System.out.println(sb);
 
 			try {
-				opcion = Integer.parseInt(MenuDeConsola.br.readLine().trim());
+				opcion = Integer.parseInt(br.readLine().trim());
 				
 				if (opcion == 0) {
 					OpcionDeMenu.controlError = true;

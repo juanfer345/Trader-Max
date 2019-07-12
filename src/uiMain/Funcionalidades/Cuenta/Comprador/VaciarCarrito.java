@@ -10,9 +10,7 @@ public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 
 	@Override
 	public void ejecutar() throws IOException {
-
-		StringBuilder sb = new StringBuilder();
-
+		
 		sb.append("\n Usted ha elegido la opcion para vaciar su carrito de compras");
 		sb.append("\n Para regresar y cancelar el proceso ingrese el '0'");
 		sb.append("\n Para continuar con el proceso ingrese '1'");
@@ -25,7 +23,7 @@ public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 			System.out.println(sb);
 
 			try {
-				opcion = Integer.parseInt(MenuDeConsola.br.readLine().trim());
+				opcion = Integer.parseInt(br.readLine().trim());
 				
 				if (opcion == 0) {
 					OpcionDeMenu.controlError = true;

@@ -3,7 +3,6 @@ package uiMain.Funcionalidades.Cuenta.Administrador;
 import java.io.IOException;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class AgregarOpcion extends OpcionDeMenu {
@@ -11,7 +10,6 @@ public class AgregarOpcion extends OpcionDeMenu {
 	public void ejecutar() throws NumberFormatException, IOException {
 		
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
-	    StringBuilder sb = new StringBuilder();
 	    int idUsuario;
 	    byte tipoUsuario, opcionUsuario;
 
@@ -26,7 +24,7 @@ public class AgregarOpcion extends OpcionDeMenu {
 			
 			//Impresión de mensaje y recepción de datos
 			System.out.println(sb);
-			tipoUsuario = Byte.parseByte(MenuDeConsola.br.readLine().trim());
+			tipoUsuario = Byte.parseByte(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
 			if (tipoUsuario != 0) {
@@ -36,7 +34,7 @@ public class AgregarOpcion extends OpcionDeMenu {
 					//Impresión de mensaje y recepción de datos
 					System.out.println("\nPor favor ingrese el identificador del usuario");
 					System.out.print("=> ");
-					idUsuario = Integer.parseInt(MenuDeConsola.br.readLine().trim());
+					idUsuario = Integer.parseInt(br.readLine().trim());
 					
 					//Mostrado de opciones de menú del usuario
 					System.out.println(usuario.mostrarOpcionesDeMenu(idUsuario, tipoUsuario));
@@ -52,7 +50,7 @@ public class AgregarOpcion extends OpcionDeMenu {
 							if (OpcionDeMenu.controlError) {
 								OpcionDeMenu.controlError = false;
 								//Agregado de la opción seleccionada
-								opcionUsuario = (byte) (Byte.parseByte(MenuDeConsola.br.readLine().trim()) - 1);
+								opcionUsuario = (byte) (Byte.parseByte(br.readLine().trim()) - 1);
 								System.out.println(usuario.agregarOpcion(idUsuario, tipoUsuario, opcionUsuario));								
 								}
 							else {
@@ -76,5 +74,4 @@ public class AgregarOpcion extends OpcionDeMenu {
 	public String toString() {
 		return "Agregar opción de menú";
 	}
-
 }

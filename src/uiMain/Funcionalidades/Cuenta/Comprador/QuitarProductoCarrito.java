@@ -11,8 +11,6 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 	@Override
 	public void ejecutar() throws NumberFormatException, IOException {
 		
-
-		StringBuilder sb = new StringBuilder();
 		int cod, cantidad;
 		
 		sb.append("\n Para devolverse al menú, ingrese el numero '0'");
@@ -26,9 +24,9 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 
 			try {
 				System.out.println("Ingrese el codigo del producto que desea eliminar: ");
-				cod = Integer.parseInt(MenuDeConsola.br.readLine().trim()); 
+				cod = Integer.parseInt(br.readLine().trim()); 
 				System.out.println("Ingrese la cantidad de elementos que desea quitar: ");
-				cantidad = Integer.parseInt(MenuDeConsola.br.readLine().trim());
+				cantidad = Integer.parseInt(br.readLine().trim());
 				
 				if (cod == 0 || cantidad == 0) { 
 					OpcionDeMenu.controlError = true;	
@@ -60,6 +58,6 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 		
 	@Override
 	public String toString() {
-		return "Quitar Producto del carrito";
+		return "Quitar producto del carrito";
 	}
 }

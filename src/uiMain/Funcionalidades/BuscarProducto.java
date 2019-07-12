@@ -11,7 +11,6 @@ public class BuscarProducto extends OpcionDeMenu {
 	@Override
 	public void ejecutar() throws NumberFormatException, IOException {
 
-	    StringBuilder sb = new StringBuilder();
 	    String selecc;
 	    byte seleccion;
 	    
@@ -26,14 +25,14 @@ public class BuscarProducto extends OpcionDeMenu {
 			
 			//Impresión de mensaje y recepción de datos
 			System.out.println(sb);
-			seleccion = Byte.parseByte(MenuDeConsola.br.readLine().trim());
+			seleccion = Byte.parseByte(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
 			if (seleccion != 0) {
 				if (seleccion == 1) {
 					while (!OpcionDeMenu.controlError) {
 						System.out.print("Ingrese el código del producto: ");
-						seleccion = Byte.parseByte(MenuDeConsola.br.readLine().trim());
+						seleccion = Byte.parseByte(br.readLine().trim());
 						System.out.println(InicializacionAplicacion.usuarioActivo.buscarProducto(seleccion));
 						if (!OpcionDeMenu.controlError) {
 							System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
@@ -42,7 +41,7 @@ public class BuscarProducto extends OpcionDeMenu {
 				else if (seleccion == 2) {
 					while (!OpcionDeMenu.controlError) {
 						System.out.print("Ingrese el nombre del producto: ");
-						selecc = MenuDeConsola.br.readLine().trim();
+						selecc = br.readLine().trim();
 						System.out.println(InicializacionAplicacion.usuarioActivo.buscarProducto(selecc));
 						if (!OpcionDeMenu.controlError) {
 							System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
@@ -59,6 +58,6 @@ public class BuscarProducto extends OpcionDeMenu {
 	
 	@Override
 	public String toString() {
-		return "Buscar producto.";
+		return "Buscar producto";
 	}
 }

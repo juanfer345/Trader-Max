@@ -1,8 +1,8 @@
 package uiMain.Funcionalidades;
 
 import java.io.IOException;
+
 import gestorAplicacion.InicializacionAplicacion;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class MostrarCatalogo extends OpcionDeMenu{
@@ -10,8 +10,6 @@ public class MostrarCatalogo extends OpcionDeMenu{
 
 	@Override
 	public void ejecutar() throws IOException {
-		
-		StringBuilder sb = new StringBuilder();
 
 		sb.append("\n Usted ha elegido la opcion para mostrar el catalogo de los productos");
 		sb.append("\n Para regresar y cancelar el proceso ingrese el '0'");
@@ -25,7 +23,7 @@ public class MostrarCatalogo extends OpcionDeMenu{
 			System.out.println(sb);
 
 			try {
-				opcion = Integer.parseInt(MenuDeConsola.br.readLine().trim());
+				opcion = Integer.parseInt(br.readLine().trim());
 				
 				if (opcion == 0) {
 					OpcionDeMenu.controlError = true;
@@ -45,7 +43,7 @@ public class MostrarCatalogo extends OpcionDeMenu{
 
 	@Override
 	public String toString() {
-		return "Mostrar todos los productos.";
+		return "Mostrar todos los productos";
 	}
 
 }

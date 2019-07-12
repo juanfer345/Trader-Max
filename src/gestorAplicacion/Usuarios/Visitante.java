@@ -12,8 +12,8 @@ import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.BuscarProducto;
 import uiMain.Funcionalidades.MostrarPorCategoria;
 import uiMain.Funcionalidades.Salir;
-import uiMain.Funcionalidades.Invitado.IniciarSesion;
-import uiMain.Funcionalidades.Invitado.Registrar;
+import uiMain.Funcionalidades.Visitante.IniciarSesion;
+import uiMain.Funcionalidades.Visitante.Registrar;
 
 public class Visitante extends Cuenta {
 
@@ -24,7 +24,6 @@ public class Visitante extends Cuenta {
 	}
 	
 	public void setOpcionesDeMenuPredeterminadas() {
-		Cuenta.menu = new MenuDeConsola();
 		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new IniciarSesion(), new Registrar(), 
 										  new BuscarProducto(), new MostrarPorCategoria(), new Salir()})));
 	}

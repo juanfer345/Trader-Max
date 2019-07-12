@@ -7,11 +7,10 @@ import gestorAplicacion.Usuarios.Administrador;
 import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
-public class MostrarOpcionesDeMenu extends OpcionDeMenu {
+public class MostrarMenu extends OpcionDeMenu {
 	public void ejecutar() throws NumberFormatException, IOException {
 		
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
-	    StringBuilder sb = new StringBuilder();
 	    int idUsuario;
 	    byte tipoUsuario;
 
@@ -26,7 +25,7 @@ public class MostrarOpcionesDeMenu extends OpcionDeMenu {
 			
 			//Impresión de mensaje y recepción de datos
 			System.out.println(sb);
-			tipoUsuario = Byte.parseByte(MenuDeConsola.br.readLine().trim());
+			tipoUsuario = Byte.parseByte(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
 			if (tipoUsuario != 0) {
@@ -36,7 +35,7 @@ public class MostrarOpcionesDeMenu extends OpcionDeMenu {
 					//Impresión de mensaje y recepción de datos
 					System.out.println("\nPor favor ingrese el identificador del usuario");
 					System.out.print("=> ");
-					idUsuario = Integer.parseInt(MenuDeConsola.br.readLine().trim());
+					idUsuario = Integer.parseInt(br.readLine().trim());
 					
 					//Mostrado de opciones de menú del usuario
 					System.out.println(usuario.mostrarOpcionesDeMenu(idUsuario, tipoUsuario));
@@ -51,6 +50,6 @@ public class MostrarOpcionesDeMenu extends OpcionDeMenu {
 	}
 
 	public String toString() {
-		return "Mostrar opciones de menú.";
+		return "Mostrar menú";
 	}
 }

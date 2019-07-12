@@ -16,9 +16,9 @@ public class AgregarACarrito extends OpcionDeMenu {
 		
 			//Ingreso de valores
 			System.out.print("Ingrese el código del producto a agregar: ");
-			codigoProd = Integer.parseInt(MenuDeConsola.br.readLine().trim());
+			codigoProd = Integer.parseInt(br.readLine().trim());
 			System.out.print("\nIngrese la cantidad de productos a agregar: ");
-			cantidadProd = Integer.parseInt(MenuDeConsola.br.readLine().trim());
+			cantidadProd = Integer.parseInt(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
 			if (codigoProd != 0) {
@@ -34,6 +34,6 @@ public class AgregarACarrito extends OpcionDeMenu {
 	}
 
 	public String toString() {
-		return "Agregar a carrito.";
+		return "Agregar a carrito";
 	}
 }

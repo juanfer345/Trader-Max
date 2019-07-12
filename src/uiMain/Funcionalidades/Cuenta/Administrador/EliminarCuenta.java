@@ -1,11 +1,9 @@
 package uiMain.Funcionalidades.Cuenta.Administrador;
 
 import java.io.IOException;
-
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.CuentaUsuario;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class EliminarCuenta extends OpcionDeMenu {
@@ -16,7 +14,6 @@ public class EliminarCuenta extends OpcionDeMenu {
 	@Override
 	public void ejecutar() throws IOException {
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
-	    StringBuilder sb = new StringBuilder();
 	    int idUsuario;
 	    byte tipoUsuario;
 
@@ -31,7 +28,7 @@ public class EliminarCuenta extends OpcionDeMenu {
 			
 			//Impresión de mensaje y recepción de datos
 			System.out.println(sb);
-			tipoUsuario = Byte.parseByte(MenuDeConsola.br.readLine().trim());
+			tipoUsuario = Byte.parseByte(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
 			if (tipoUsuario != 0) {
@@ -41,7 +38,7 @@ public class EliminarCuenta extends OpcionDeMenu {
 					//Impresión de mensaje y recepción de datos
 					System.out.println("\nPor favor ingrese el identificador del usuario");
 					System.out.print("=> ");
-					idUsuario = Integer.parseInt(MenuDeConsola.br.readLine().trim());
+					idUsuario = Integer.parseInt(br.readLine().trim());
 					
 					//Eliminación de la cuenta
 					System.out.println(usuario.eliminarCuenta(idUsuario, tipoUsuario));
@@ -57,7 +54,7 @@ public class EliminarCuenta extends OpcionDeMenu {
 
 	@Override
 	public String toString() {
-		return "Eliminar cuenta de usuario.";
+		return "Eliminar cuenta de usuario";
 	}
 
 }

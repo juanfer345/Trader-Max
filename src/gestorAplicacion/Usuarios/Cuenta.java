@@ -11,7 +11,7 @@ import uiMain.OpcionDeMenu;
 public abstract class Cuenta {
 
 	public static HashMap <Integer, Producto> catalogo = new HashMap <> ();
-	protected static MenuDeConsola menu;
+	protected static MenuDeConsola menu = new MenuDeConsola();
 	protected static ArrayList <OpcionDeMenu> cambioOpDeMen;
 	protected int totalDeOpcionesDefault;
 	private String nombre, correo, password;
@@ -47,11 +47,10 @@ public abstract class Cuenta {
 	
 	//Comando para salir de la aplicación
 	public String salir (byte seleccion) {
-		
 		if (seleccion == 1) {
 			OpcionDeMenu.controlError = true; 
 			MenuDeConsola.SalirApp = true;
-			return "\n La aplicación será cerrada \n";
+			return "\nLa aplicación será cerrada\n";
 		}
 		else if (seleccion == 2) {
 			OpcionDeMenu.controlError = true; 
@@ -61,7 +60,7 @@ public abstract class Cuenta {
 		else {
 			OpcionDeMenu.controlError = false; 
 			MenuDeConsola.SalirApp = false;
-			return "\n Por favor ingrese un número válido \n";
+			return "\nPor favor ingrese un número válido [1 ó 2].";
 		}
 	}
 	

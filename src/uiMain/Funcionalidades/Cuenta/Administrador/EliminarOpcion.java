@@ -1,18 +1,14 @@
 package uiMain.Funcionalidades.Cuenta.Administrador;
 
 import java.io.IOException;
-
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
-public class EliminarOpcion extends OpcionDeMenu { // opci gestorAplicación.Usuarios.Vendedoron 12
-
+public class EliminarOpcion extends OpcionDeMenu {
 	public void ejecutar() throws NumberFormatException, IOException {
 		
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
-	    StringBuilder sb = new StringBuilder();
 	    int idUsuario;
 	    byte tipoUsuario, opcionUsuario;
 
@@ -27,7 +23,7 @@ public class EliminarOpcion extends OpcionDeMenu { // opci gestorAplicación.Usua
 			
 			//Impresión de mensaje y recepción de datos
 			System.out.println(sb);
-			tipoUsuario = Byte.parseByte(MenuDeConsola.br.readLine().trim());
+			tipoUsuario = Byte.parseByte(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
 			if (tipoUsuario != 0) {
@@ -37,7 +33,7 @@ public class EliminarOpcion extends OpcionDeMenu { // opci gestorAplicación.Usua
 					//Impresión de mensaje y recepción de datos
 					System.out.println("\nPor favor ingrese el identificador del usuario");
 					System.out.print("=> ");
-					idUsuario = Integer.parseInt(MenuDeConsola.br.readLine().trim());
+					idUsuario = Integer.parseInt(br.readLine().trim());
 					
 					//Mostrado de opciones de menú del usuario
 					System.out.println(usuario.mostrarOpcionesDeMenu(idUsuario, tipoUsuario));
@@ -53,7 +49,7 @@ public class EliminarOpcion extends OpcionDeMenu { // opci gestorAplicación.Usua
 							if (OpcionDeMenu.controlError) {
 								OpcionDeMenu.controlError = false;
 								//Eliminación de la opción seleccionada
-								opcionUsuario = (byte) (Byte.parseByte(MenuDeConsola.br.readLine().trim()) - 1);
+								opcionUsuario = (byte) (Byte.parseByte(br.readLine().trim()) - 1);
 								System.out.println(usuario.eliminarOpcion(idUsuario, tipoUsuario, opcionUsuario));								
 								}
 							else {
@@ -75,7 +71,6 @@ public class EliminarOpcion extends OpcionDeMenu { // opci gestorAplicación.Usua
 	}
 
 	public String toString() {
-		return "Eliminar opción de menú.";
+		return "Eliminar opción de menú";
 	}
-
 }

@@ -1,10 +1,8 @@
 package uiMain.Funcionalidades.Cuenta.Vendedor;
 
 import java.io.IOException;
-
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Vendedor;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class EliminarProductoCatalogo extends OpcionDeMenu {
@@ -24,7 +22,7 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 			System.out.println(sb);
 
 			try {
-				cod = Integer.parseInt(MenuDeConsola.br.readLine().trim()); //Puede que se genere un error (depende del dato)
+				cod = Integer.parseInt(br.readLine().trim()); //Puede que se genere un error (depende del dato)
 				
 				//Apartir de aquí no se generan errores
 				if (cod == 0) { //Por si se quiere salir el usuario
@@ -46,13 +44,10 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 			} catch (NumberFormatException nfe) {
 				System.out.println("\n El codigo que ingreso es invalido");
 			}
-
 		}
-
 	}
 
 	public String toString() {
 		return "Eliminar producto";
 	}
-
 }

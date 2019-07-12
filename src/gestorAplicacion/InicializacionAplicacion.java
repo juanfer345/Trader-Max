@@ -29,20 +29,24 @@ public class InicializacionAplicacion {
 		//Aquí debería ir una primera entrada que permita ingresar el nombre de una base de datos para cargar o que indique que no existe (pendiente)
 	    
 		//Ejecución de la lectura de la base de datos
-		LecturaBD.PrincipalLecturaBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Carritos de Compras", 
-			 						 "Catálogo", "Productos", "Reseñas");
+		System.out.println("LECTURA DE BASE DE DATOS - [INICIO]\n");
+		LecturaBD.PrincipalLecturaBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Carritos de Compras", "Catálogo", "Productos", "Reseñas");
+		System.out.println("\nLECTURA DE BASE DE DATOS - [FIN]\n");
+		
+		//Mensaje de inicialización
+		System.out.println("           TRADER-MAX INC           \n");
+		System.out.println("Bienvenido invitado.\n");
 		
 		//Creación de un usuario visitante
 		usuarioActivo = new Visitante();
 		
 		//Ciclo de control para ejecutar el menú hasta que se desee salir de la aplicación
-		while (!MenuDeConsola.SalirApp) {
-			MenuDeConsola.LanzarMenu();
-		}
+		MenuDeConsola.LanzarMenu();
 		
 		//Ejecución de la escritura en la base de datos
-		EscrituraBD.PrincipalEscrituraBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Carritos de Compras", 
-										 "Catálogo", "Productos", "Reseñas");
+		System.out.println("\nGUARDADO DE BASE DE DATOS - [INICIO]\n");
+		EscrituraBD.PrincipalEscrituraBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Carritos de Compras", "Catálogo", "Productos", "Reseñas");
+		System.out.println("\nGUARDADO DE BASE DE DATOS - [FIN]\n");
 		
 		//Cerrado de la aplicación (pendiente)
 	}

@@ -2,14 +2,12 @@ package uiMain.Funcionalidades.Cuenta.Comprador;
 
 import java.io.IOException;
 import java.util.Map;
-
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Comprador;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
-public class MostrarHistorial extends OpcionDeMenu { // opcion 6
+public class MostrarHistorial extends OpcionDeMenu {
 
 	@Override
 	public void ejecutar() throws IOException {
@@ -28,7 +26,7 @@ public class MostrarHistorial extends OpcionDeMenu { // opcion 6
 			System.out.println(sb);
 
 			try {
-				opcion = Integer.parseInt(MenuDeConsola.br.readLine().trim());
+				opcion = Integer.parseInt(br.readLine().trim());
 				
 				if (opcion == 0) {
 					OpcionDeMenu.controlError = true;
@@ -49,9 +47,7 @@ public class MostrarHistorial extends OpcionDeMenu { // opcion 6
 				// Por si se ingresa un tipo de dato diferente
 				System.out.println("\n El dato que ingreso es invalido ");
 			}
-
 		}
-
 	}
 
 	@Override

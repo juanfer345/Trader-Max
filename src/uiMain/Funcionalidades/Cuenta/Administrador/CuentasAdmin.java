@@ -4,7 +4,7 @@ import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
 import uiMain.OpcionDeMenu;
 
-public class CuentasAdmin extends OpcionDeMenu { // opcion 15
+public class CuentasAdmin extends OpcionDeMenu {
 
 	@Override
 	public void ejecutar() {
