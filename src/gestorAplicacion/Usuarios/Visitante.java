@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
+import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.BuscarProducto;
 import uiMain.Funcionalidades.MostrarPorCategoria;
@@ -23,6 +24,7 @@ public class Visitante extends Cuenta {
 	}
 	
 	public void setOpcionesDeMenuPredeterminadas() {
+		Cuenta.menu = new MenuDeConsola();
 		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new IniciarSesion(), new Registrar(), 
 										  new BuscarProducto(), new MostrarPorCategoria(), new Salir()})));
 	}

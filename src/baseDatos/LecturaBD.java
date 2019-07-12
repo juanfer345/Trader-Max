@@ -112,19 +112,13 @@ public class LecturaBD {
     	    }
             
     		//Mensaje de confirmación
-            if (!HM.isEmpty()) {
-            	//Caso A: La base de datos se cargó correctamente
-            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
-            	
-            } else {
-            	//Caso B: La base de datos se encontraba vacía
-            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
-            }
+            System.out.println(mensajeConfirmacion(!HM.isEmpty(), NombreBD));
+            
     		//Cerrado de la base de datos
     	    Br.close();
         }
         catch (FileNotFoundException ex){
-            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.out.println(ex.getMessage() + " Base de datos \"" + NombreBD + ".txt\" no encontrada");
             System.exit(0);
         }
 	}
@@ -152,19 +146,13 @@ public class LecturaBD {
     	    }
             
     		//Mensaje de confirmación
-            if (!HM.isEmpty()) {
-            	//Caso A: La base de datos se cargó correctamente
-            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
-            	
-            } else {
-            	//Caso B: La base de datos se encontraba vacía
-            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
-            }
+            System.out.println(mensajeConfirmacion(!HM.isEmpty(), NombreBD));
+            
     		//Cerrado de la base de datos
     	    Br.close();
         }
         catch (FileNotFoundException ex){
-            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.out.println(ex.getMessage() + " Base de datos \"" + NombreBD + ".txt\" no encontrada");
             System.exit(0);
         }
 	}
@@ -191,19 +179,13 @@ public class LecturaBD {
     	    }
             
     		//Mensaje de confirmación
-            if (!HM.isEmpty()) {
-            	//Caso A: La base de datos se cargó correctamente
-            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
-            	
-            } else {
-            	//Caso B: La base de datos se encontraba vacía
-            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
-            }
+            System.out.println(mensajeConfirmacion(!HM.isEmpty(), NombreBD));
+            
     		//Cerrado de la base de datos
     	    Br.close();
         }
         catch (FileNotFoundException ex){
-            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.out.println(ex.getMessage() + " Base de datos \"" + NombreBD + ".txt\" no encontrada");
             System.exit(0);
         }
 	}
@@ -227,19 +209,13 @@ public class LecturaBD {
     	    }
     	    
     		//Mensaje de confirmación
-            if (!HM.isEmpty()) {
-            	//Caso A: La base de datos se cargó correctamente
-            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
-            	
-            } else {
-            	//Caso B: La base de datos se encontraba vacía
-            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
-            }
+            System.out.println(mensajeConfirmacion(!HM.isEmpty(), NombreBD));
+            
     		//Cerrado de la base de datos
     	    Br.close();
         }
         catch (FileNotFoundException ex){
-            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.out.println(ex.getMessage() + " Base de datos \"" + NombreBD + ".txt\" no encontrada");
             System.exit(0);
         }
 	}
@@ -272,19 +248,13 @@ public class LecturaBD {
     	    }
             
     		//Mensaje de confirmación
-            if (!HM.isEmpty()) {
-            	//Caso A: La base de datos se cargó correctamente
-            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
-            	
-            } else {
-            	//Caso B: La base de datos se encontraba vacía
-            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
-            }
+            System.out.println(mensajeConfirmacion(!HM.isEmpty(), NombreBD));
+            
     		//Cerrado de la base de datos
     	    Br.close();
         }
         catch (FileNotFoundException ex){
-            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.out.println(ex.getMessage() + " Base de datos \"" + NombreBD + ".txt\" no encontrada");
             System.exit(0);
         }
 	}
@@ -304,19 +274,13 @@ public class LecturaBD {
             }
     	    
     		//Mensaje de confirmación
-            if (!aux.isEmpty()) {
-            	//Caso A: La base de datos se cargó correctamente
-            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
-            	
-            } else {
-            	//Caso B: La base de datos se encontraba vacía
-            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
-            }
+            System.out.println(mensajeConfirmacion(!aux.isEmpty(), NombreBD));
+            
     		//Cerrado de la base de datos
     	    Br.close();
         }
         catch (FileNotFoundException ex){
-            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.out.println(ex.getMessage() + " Base de datos \"" + NombreBD + ".txt\" no encontrada");
             System.exit(0);
         }
 	}
@@ -352,19 +316,13 @@ public class LecturaBD {
     	    }
     	    
     		//Mensaje de confirmación
-            if (!HM.isEmpty()) {
-            	//Caso A: La base de datos se cargó correctamente
-            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
-            	
-            } else {
-            	//Caso B: La base de datos se encontraba vacía
-            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
-            }
+            System.out.println(mensajeConfirmacion(!HM.isEmpty(), NombreBD));
+            
     		//Cerrado de la base de datos
     	    Br.close();
         }
         catch (FileNotFoundException ex){
-            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.out.println(ex.getMessage() + " Base de datos \"" + NombreBD + ".txt\" no encontrada");
             System.exit(0);
         }
 	}
@@ -389,19 +347,13 @@ public class LecturaBD {
     	    }
     	    
     		//Mensaje de confirmación
-            if (!HM.isEmpty()) {
-            	//Caso A: La base de datos se cargó correctamente
-            	System.out.println("Base de datos " + NombreBD + ".txt" + "cargada exitosamente");
-            	
-            } else {
-            	//Caso B: La base de datos se encontraba vacía
-            	System.out.println("Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía");
-            }
+            System.out.println(mensajeConfirmacion(!HM.isEmpty(), NombreBD));
+            
     		//Cerrado de la base de datos
     	    Br.close();
         }
         catch (FileNotFoundException ex){
-            System.out.println(ex.getMessage() + " Error al intentar abrir la base de datos" + NombreBD + ".txt");
+            System.out.println(ex.getMessage() + " Base de datos \"" + NombreBD + ".txt\" no encontrada");
             System.exit(0);
         }   
 	}
@@ -447,6 +399,17 @@ public class LecturaBD {
             	j = auxProd.poll();
             	entry.getValue().getResenas().put(j, BDResenas.get(j));
             }
+        }
+	}
+	
+	private static String mensajeConfirmacion(boolean BDvacia, String NombreBD) {
+        if (!BDvacia) {
+        	//Caso A: La base de datos se cargó correctamente
+        	return "Base de datos " + NombreBD + ".txt" + "cargada exitosamente";
+        	
+        } else {
+        	//Caso B: La base de datos se encontraba vacía
+        	return "Advertencia: la base de datos " + NombreBD + ".txt" + "se encuentra vacía";
         }
 	}
 }

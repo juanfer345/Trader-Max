@@ -22,7 +22,7 @@ public class InicializacionAplicacion {
     private static HashMap <Integer, CarritoDeCompras> BDCarritos = new HashMap <> ();
     private static HashMap <Integer, Producto> BDProductos = new HashMap <> ();
     private static HashMap <Integer, Resena> BDResenas = new HashMap <> ();
-	public static Cuenta usuarioActivo = new Visitante();
+	public static Cuenta usuarioActivo;
     
 	public static void main(String[] args) throws IOException {
 		
@@ -31,6 +31,9 @@ public class InicializacionAplicacion {
 		//Ejecución de la lectura de la base de datos
 		LecturaBD.PrincipalLecturaBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Carritos de Compras", 
 			 						 "Catálogo", "Productos", "Reseñas");
+		
+		//Creación de un usuario visitante
+		usuarioActivo = new Visitante();
 		
 		//Ciclo de control para ejecutar el menú hasta que se desee salir de la aplicación
 		while (!MenuDeConsola.SalirApp) {
