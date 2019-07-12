@@ -26,7 +26,19 @@ public class MenuDeConsola {
 		OpcionDeMenu.controlError = false;
 		aux.get(Byte.parseByte(br.readLine().trim()) - 1).ejecutar();
 	}
+	public static boolean EsByte(String cadena) { //comprobar si un string es un int para volver con el 0
 
+        boolean resultado;
+
+        try {
+           Byte.parseByte(cadena);
+            resultado = true;
+        } catch (NumberFormatException excepcion) {
+            resultado = false;
+        }
+
+        return resultado;
+    }
 	public ArrayList <OpcionDeMenu> getOpcionesActivas() {
 		return opcionesActivas;
 	}
