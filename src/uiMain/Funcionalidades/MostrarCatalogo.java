@@ -16,9 +16,9 @@ public class MostrarCatalogo extends OpcionDeMenu{
 		sb.append("\n Para continuar con el proceso ingrese '1'");
 
 		int opcion;
-		OpcionDeMenu.controlError = false;
+		controlError = false;
 
-		while (!OpcionDeMenu.controlError) {
+		while (!controlError) {
 
 			System.out.println(sb);
 
@@ -26,10 +26,10 @@ public class MostrarCatalogo extends OpcionDeMenu{
 				opcion = Integer.parseInt(br.readLine().trim());
 				
 				if (opcion == 0) {
-					OpcionDeMenu.controlError = true;
+					controlError = true;
 				} else if (opcion == 1) {
 					System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCatalogo());
-					OpcionDeMenu.controlError = true;
+					controlError = true;
 				}else {
 					System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo");
 				}

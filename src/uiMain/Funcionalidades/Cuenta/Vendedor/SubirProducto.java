@@ -1,11 +1,11 @@
 package uiMain.Funcionalidades.Cuenta.Vendedor;
 
 import java.io.IOException;
+
 import gestorAplicacion.InicializacionAplicacion;
-import gestorAplicacion.Usuarios.Vendedor;
-import uiMain.MenuDeConsola;
-import uiMain.OpcionDeMenu;
 import  gestorAplicacion.Materiales.Producto;
+import gestorAplicacion.Usuarios.Vendedor;
+import uiMain.OpcionDeMenu;
 
 public class SubirProducto extends OpcionDeMenu { 
 
@@ -22,7 +22,7 @@ public class SubirProducto extends OpcionDeMenu {
 		sb.append("\n Esta opción es para registrar un produto");
 		sb.append("\n Para devolverse al menú anterior, ingrese el número '0'");
 		
-		while (!OpcionDeMenu.controlError) {
+		while (!controlError) {
 
 			System.out.println(sb);
 		
@@ -30,7 +30,7 @@ public class SubirProducto extends OpcionDeMenu {
 			nombre = br.readLine().trim();
 			
 			if (nombre.equals("0")) {
-				OpcionDeMenu.controlError = true;
+				controlError = true;
 			} else { 
 				//Si el usuario no quiere salir, continua el proceso
 				try {
@@ -54,10 +54,10 @@ public class SubirProducto extends OpcionDeMenu {
 					vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
 					Vendedor.subirProducto(vend, nombre, categoria, precio, cant);
 					System.out.println("\n Se ha subido el producto exitosamente");
-					OpcionDeMenu.controlError = true;
+					controlError = true;
 					
 				} catch (NumberFormatException nfe) {
-					OpcionDeMenu.controlError = false;
+					controlError = false;
 					System.out.println("/n Por favor asegurese de ingresar un número");
 				}
 			}

@@ -17,7 +17,7 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 		sb.append("\n Para devolverse al menú anterior, ingrese el número '0'");
 		sb.append("\n Ingrese el código del producto a eliminar o el número '0': ");
 
-		while (!OpcionDeMenu.controlError) {
+		while (!controlError) {
 
 			System.out.println(sb);
 
@@ -26,7 +26,7 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 				
 				//Apartir de aquí no se generan errores
 				if (cod == 0) { //Por si se quiere salir el usuario
-					OpcionDeMenu.controlError = true;
+					controlError = true;
 				} else { //Si el usuario no quiere salir, continua el proceso
 					//Analiza el codigo introducido para eliminar producto
 					Vendedor comp = (Vendedor) InicializacionAplicacion.usuarioActivo;
@@ -36,7 +36,7 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 						System.out.println(str);
 					} else {
 						System.out.println(str);
-						OpcionDeMenu.controlError = true;
+						controlError = true;
 					}
 					
 				}

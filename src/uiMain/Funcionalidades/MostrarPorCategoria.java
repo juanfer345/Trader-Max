@@ -19,7 +19,7 @@ public class MostrarPorCategoria extends OpcionDeMenu { // opcion 3
 		}
 
 		//Ciclo para control de error
-		while (!OpcionDeMenu.controlError) {
+		while (!controlError) {
 		    
 			//Impresión de mensaje y recepción de datos
 			System.out.println(sb);
@@ -30,10 +30,10 @@ public class MostrarPorCategoria extends OpcionDeMenu { // opcion 3
 				System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCategoria(seleccion));
 			}
 			else {
-				OpcionDeMenu.controlError = true;
+				controlError = true;
 			}
 			//Impresión de mensaje de cancelación en caso de que se haya producido un error
-			if (!OpcionDeMenu.controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
+			if (!controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
 		}
 	}
 

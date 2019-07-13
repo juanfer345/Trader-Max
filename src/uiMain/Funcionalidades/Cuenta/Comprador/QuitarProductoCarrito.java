@@ -1,9 +1,8 @@
 package uiMain.Funcionalidades.Cuenta.Comprador;
 
-import java.io.IOException;  
+import java.io.IOException;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Comprador;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
@@ -16,9 +15,9 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 		sb.append("\n Para devolverse al menú, ingrese el numero '0'");
 		sb.append("\n Si alguno de los 2 datos ingresados es '0', se saldrá de esta opcion");
 		
-		OpcionDeMenu.controlError = false;
+		controlError = false;
 		
-		while (!OpcionDeMenu.controlError) {
+		while (!controlError) {
 
 			System.out.println(sb);
 
@@ -29,7 +28,7 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 				cantidad = Integer.parseInt(br.readLine().trim());
 				
 				if (cod == 0 || cantidad == 0) { 
-					OpcionDeMenu.controlError = true;	
+					controlError = true;	
 				}else {
 					//Si el usuario no quiere salir, continua el proceso
 					Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
@@ -43,7 +42,7 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 						System.out.println("Repita el proceso con datos correctos");	
 					} else {
 						System.out.println(str);
-						OpcionDeMenu.controlError = true;
+						controlError = true;
 					}
 				}
 				

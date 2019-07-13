@@ -3,7 +3,6 @@ package uiMain.Funcionalidades.Cuenta.Comprador;
 import java.io.IOException;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Comprador;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class VaciarCarrito extends OpcionDeMenu { // opcion 8
@@ -16,9 +15,9 @@ public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 		sb.append("\n Para continuar con el proceso ingrese '1'");
 
 		int opcion;
-		OpcionDeMenu.controlError = false;
+		controlError = false;
 
-		while (!OpcionDeMenu.controlError) {
+		while (!controlError) {
 
 			System.out.println(sb);
 
@@ -26,13 +25,13 @@ public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 				opcion = Integer.parseInt(br.readLine().trim());
 				
 				if (opcion == 0) {
-					OpcionDeMenu.controlError = true;
+					controlError = true;
 				} else if (opcion == 1) {
 					Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
 					System.out.println("Su carrito tiene " + comp.getCarrito().getTotalproductos() + " productos ");
 					String str = comp.getCarrito().vaciarCarrito();
 					System.out.println(str);
-					OpcionDeMenu.controlError = true;
+					controlError = true;
 				}else {
 					System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo");
 				}

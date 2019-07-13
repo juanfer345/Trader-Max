@@ -20,7 +20,7 @@ public class AgregarOpcion extends OpcionDeMenu {
 		sb.append("=> ");
 		
 		//Ciclo para control de error
-		while (!OpcionDeMenu.controlError) {
+		while (!controlError) {
 			
 			//Impresión de mensaje y recepción de datos
 			System.out.println(sb);
@@ -29,7 +29,7 @@ public class AgregarOpcion extends OpcionDeMenu {
 			//Ejecución del método e impresión de respuesta
 			if (tipoUsuario != 0) {
 
-				while (!OpcionDeMenu.controlError) {
+				while (!controlError) {
 
 					//Impresión de mensaje y recepción de datos
 					System.out.println("\nPor favor ingrese el identificador del usuario");
@@ -40,15 +40,15 @@ public class AgregarOpcion extends OpcionDeMenu {
 					System.out.println(usuario.mostrarOpcionesDeMenu(idUsuario, tipoUsuario));
 					
 					//Selección de opción a agregar en caso de que la cuenta exista
-					if (OpcionDeMenu.controlError) {
-						OpcionDeMenu.controlError = false;
+					if (controlError) {
+						controlError = false;
 						
 						//Impresión de las opciones disponibles a agregar
-						while (!OpcionDeMenu.controlError) {
+						while (!controlError) {
 							System.out.println(usuario.comprobarCantidadOpciones(idUsuario, tipoUsuario, (byte) 1));
 							
-							if (OpcionDeMenu.controlError) {
-								OpcionDeMenu.controlError = false;
+							if (controlError) {
+								controlError = false;
 								//Agregado de la opción seleccionada
 								opcionUsuario = (byte) (Byte.parseByte(br.readLine().trim()) - 1);
 								System.out.println(usuario.agregarOpcion(idUsuario, tipoUsuario, opcionUsuario));								
@@ -64,10 +64,10 @@ public class AgregarOpcion extends OpcionDeMenu {
 				}
 			}
 			else {
-				OpcionDeMenu.controlError = true;
+				controlError = true;
 			}
 			//Impresión de mensaje de cancelación en caso de que se haya producido un error
-			if (!OpcionDeMenu.controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
+			if (!controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
 		}
 	}
 	
