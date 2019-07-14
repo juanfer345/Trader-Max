@@ -12,7 +12,7 @@ public class AgregarACarrito extends OpcionDeMenu {
 		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
 		int codigoProd, cantidadProd;
 		
-		while (!OpcionDeMenu.controlError) {
+		while (!controlError) {
 		
 			//Ingreso de valores
 			System.out.print("Ingrese el código del producto a agregar: ");
@@ -25,11 +25,11 @@ public class AgregarACarrito extends OpcionDeMenu {
 				System.out.println(comp.agregarACarrito(codigoProd, cantidadProd));
 			}
 			else {
-				OpcionDeMenu.controlError = true;
+				controlError = true;
 			}
 			
 			//Impresión de mensaje de cancelación en caso de que se haya producido un error
-			if (!OpcionDeMenu.controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
+			if (!controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
 		}
 	}
 

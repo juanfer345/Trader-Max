@@ -8,8 +8,7 @@ public class CuentasAdmin extends OpcionDeMenu {
 
 	@Override
 	public void ejecutar() {
-		System.out.println(((Administrador) 
-				InicializacionAplicacion.usuarioActivo).numeroCuentas());
+		System.out.println(((Administrador) InicializacionAplicacion.usuarioActivo).numeroCuentas());
 	}
 
 	@Override

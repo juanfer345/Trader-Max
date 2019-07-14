@@ -20,7 +20,7 @@ public class CerrarSesion extends OpcionDeMenu {
 		sb.append("=> ");
 
 		//Ciclo para control de error
-		while (!OpcionDeMenu.controlError) {
+		while (!controlError) {
 			
 		    //Ingreso de valores
 			System.out.println(sb);
