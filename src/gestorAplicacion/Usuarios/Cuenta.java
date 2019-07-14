@@ -50,17 +50,14 @@ public abstract class Cuenta {
 		if (seleccion == 1) {
 			OpcionDeMenu.controlError = true; 
 			MenuDeConsola.SalirApp = true;
-			return "\nLa aplicación será cerrada\n";
+			return "\nLa aplicación será cerrada";
 		}
 		else if (seleccion == 2) {
-			OpcionDeMenu.controlError = true; 
-			MenuDeConsola.SalirApp = false;
+			OpcionDeMenu.controlError = true;
 			return "";
 		}
 		else {
-			OpcionDeMenu.controlError = false; 
-			MenuDeConsola.SalirApp = false;
-			return "\nPor favor ingrese un número válido [1 ó 2].";
+			return "Por favor ingrese un número entero en el rango [1,2].";
 		}
 	}
 	
@@ -82,8 +79,12 @@ public abstract class Cuenta {
 			OpcionDeMenu.controlError = true;
 			return sb.toString();
 		}
+		else if (Vendedor.catalogo.isEmpty()) {
+			OpcionDeMenu.controlError = true;
+			return "El catálogo se encuentra vacío.\n";
+		}
 		else {
-			return sb.append("Producto no encontrado.").toString();
+			return "Producto no encontrado.\n";
 		}
 	}
 	
@@ -105,8 +106,12 @@ public abstract class Cuenta {
 			OpcionDeMenu.controlError = true;
 			return sb.append("\nEl producto fue encontrado: \n" + sb).toString();
 		}
+		else if (Vendedor.catalogo.isEmpty()) {
+			OpcionDeMenu.controlError = true;
+			return "El catálogo se encuentra vacío.\n";
+		}
 		else {
-			return sb.append("Producto no encontrado.").toString();
+			return "Producto no encontrado.\n";
 		}
 	}
 	
@@ -125,20 +130,29 @@ public abstract class Cuenta {
 		
 	    StringBuilder sb = new StringBuilder();
 	    
-		//Verificación de índice válido
-		if (cat > 0 && cat < Producto.categorias.length) {
-			
-			//Ciclo para hallar cada producto de la categoría adecuada
-			(Vendedor.catalogo).forEach((k, v) -> {
-				Producto prod = Vendedor.catalogo.get(k);
-				if (prod.getCategoria() == Producto.categorias[cat]) {
-					sb.append(prod.toString() + '\n');
-				}
-			});
-		} else {
-			sb.append("Categoria inválida, por favor ingrese un índice dentro del rango establecido.");
+		//Verificación de catalogo no vacío
+		if (!Vendedor.catalogo.isEmpty()) {
+			//Verificación de índice válido
+			if (cat > 0 && cat < Producto.categorias.length) {
+				
+				//Ciclo para hallar cada producto de la categoría adecuada
+				(Vendedor.catalogo).forEach((k, v) -> {
+					Producto prod = Vendedor.catalogo.get(k);
+					if (prod.getCategoria() == Producto.categorias[cat]) {
+						sb.append(prod.toString() + '\n');
+					}
+				});
+				OpcionDeMenu.controlError = true;
+				return "Categoría " + Producto.categorias[cat] + ":\n" + sb.toString();
+			}
+			else {
+				return "Categoria inválida, por favor ingrese un índice dentro del rango establecido.";
+			}
 		}
-		return sb.toString();
+		else {
+			OpcionDeMenu.controlError = true;
+			return "El catálogo se encuentra vacío.\n";
+		}
 	}
 
 	public int getTotalDeOpcionesDefault() {

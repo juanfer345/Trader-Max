@@ -53,6 +53,6 @@ public class Registrar extends OpcionDeMenu { // opcion 0
 	}
 
 	public String toString() {
-		return "Registrar";
+		return "Registrarse";
 	}
 }
