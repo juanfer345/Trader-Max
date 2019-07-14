@@ -6,8 +6,9 @@ import gestorAplicacion.InicializacionAplicacion;
 
 public class MenuDeConsola {
 
-	private ArrayList <OpcionDeMenu> opcionesActivas = new ArrayList <OpcionDeMenu>();
-	public static ArrayList <OpcionDeMenu> opcionesUsuarioActivo = InicializacionAplicacion.usuarioActivo.getOpcionesDeMenu();
+	private ArrayList<OpcionDeMenu> opcionesActivas = new ArrayList<OpcionDeMenu>();
+	public static ArrayList<OpcionDeMenu> opcionesUsuarioActivo = InicializacionAplicacion.usuarioActivo
+			.getOpcionesDeMenu();
 	public static boolean SalirApp = false;
 
 	public static void LanzarMenu() throws IOException {
@@ -25,7 +26,7 @@ public class MenuDeConsola {
 		}
 	}
 
-	//Método para comprobar si una entrada de tipo String es numérica
+	// Método para comprobar si una entrada de tipo String es numérica
 	public static long esNumeroEntero(String input) {
 
 		try {
@@ -40,7 +41,7 @@ public class MenuDeConsola {
 			} catch (NumberFormatException f) {
 				try {
 					Byte.parseByte(input);
-					return Long.parseLong(input);	
+					return Long.parseLong(input);
 
 				} catch (NumberFormatException g) {
 					return -1;
@@ -48,11 +49,12 @@ public class MenuDeConsola {
 			}
 		}
 	}
-	public ArrayList <OpcionDeMenu> getOpcionesActivas() {
+
+	public ArrayList<OpcionDeMenu> getOpcionesActivas() {
 		return opcionesActivas;
 	}
 
-	public void setOpcionesActivas(ArrayList <OpcionDeMenu> opcionesActivas) {
+	public void setOpcionesActivas(ArrayList<OpcionDeMenu> opcionesActivas) {
 		this.opcionesActivas = opcionesActivas;
 	}
 }
