@@ -12,27 +12,27 @@ import uiMain.Funcionalidades.Cuenta.Vendedor.EliminarProductoCatalogo;
 import uiMain.Funcionalidades.Cuenta.Vendedor.SubirProducto;
 
 public class Vendedor extends CuentaUsuario {
-	
+
 	public Vendedor() {
 		super();
 		this.totalDeOpcionesDefault = 4;
 		setOpcionesDeMenuPredeterminadas();
 	}
-	
+
 	public Vendedor(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
 		this.totalDeOpcionesDefault = 4;
 		setOpcionesDeMenuPredeterminadas();
 	}
-	
+
 	public void setOpcionesDeMenuPredeterminadas() {
-		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new SubirProducto(), new EliminarProductoCatalogo(), 
-										  new CerrarSesion(), new Salir()})));
+		Cuenta.menu.setOpcionesActivas(new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] {
+				new SubirProducto(), new EliminarProductoCatalogo(), new CerrarSesion(), new Salir() })));
 	}
-	
-	public ArrayList <OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
-		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new SubirProducto(), new EliminarProductoCatalogo(), 
-				  new CerrarSesion(), new Salir()}));
+
+	public ArrayList<OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new SubirProducto(),
+				new EliminarProductoCatalogo(), new CerrarSesion(), new Salir() }));
 	}
 
 	public static void subirProducto(Vendedor vendedor, String nombreProducto, String categoria, double precio,
@@ -111,10 +111,10 @@ public class Vendedor extends CuentaUsuario {
 		}
 		if (mens == null) {
 			return "No existe el producto";
-		}else {
+		} else {
 			int id = this.id;
 			int id_mens = mens.getVendedor().getId();
-			if(id == id_mens) {
+			if (id == id_mens) {
 				catalogo.remove(cod);
 				return "Se eliminó el producto exitosamente";
 			} else {
@@ -124,8 +124,8 @@ public class Vendedor extends CuentaUsuario {
 	}
 
 	@Override
-	public ArrayList <OpcionDeMenu> getOpcionesDeMenu() {
+	public ArrayList<OpcionDeMenu> getOpcionesDeMenu() {
 		return menu.getOpcionesActivas();
 	}
-	
+
 }

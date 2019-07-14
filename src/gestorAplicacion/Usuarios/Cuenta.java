@@ -1,9 +1,8 @@
 package gestorAplicacion.Usuarios;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.HashMap;
 import java.util.Map;
-
 import gestorAplicacion.Materiales.Producto;
 import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;

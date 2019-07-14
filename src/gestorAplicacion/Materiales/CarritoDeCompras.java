@@ -27,10 +27,10 @@ public class CarritoDeCompras {
 	public double getPrecioTotal() {
 		return precioTotal;
 	}
-	
+
 	public String comprarProductos() {
 		double total = 0;
-		
+
 		for (Map.Entry<Integer, Integer> entry : productos.entrySet()) {
 			int codigo = entry.getKey();
 			int cantidad = entry.getValue();
@@ -38,9 +38,9 @@ public class CarritoDeCompras {
 			setPrecioTotal(getPrecioTotal() + (p.getPrecio() * cantidad));
 		}
 		total = getPrecioTotal();
-		
+
 		if (titular.getCuentaBancaria().getSaldo() >= total) {
-			
+
 			for (Map.Entry<Integer, Integer> entry : productos.entrySet()) {
 				int codigo = entry.getKey();
 				int cantidad = entry.getValue();
@@ -48,7 +48,7 @@ public class CarritoDeCompras {
 				double precio = p.getPrecio() * cantidad;
 				CuentaBancaria c = titular.getCuentaBancaria();
 				CuentaBancaria v = p.getVendedor().getCuentaBancaria();
-				//Transaccion del costo por producto
+				// Transaccion del costo por producto
 				c.Transaccion(c, v, precio);
 				p.setCantidad(p.getCantidad() - cantidad);
 				titular.getHistorial().put(codigo, p);
@@ -56,9 +56,9 @@ public class CarritoDeCompras {
 			productos.clear();
 			totalProductos = 0;
 			setPrecioTotal(0);
-			
+
 			return "Se han comprado los productos. Saldo restante: " + titular.getCuentaBancaria().getSaldo();
-			
+
 		} else {
 			return "Saldo insuficiente, no se pueden comprar los productos";
 		}
