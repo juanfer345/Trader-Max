@@ -41,36 +41,36 @@ public class Visitante extends Cuenta {
 		return Vendedor.catalogo;
 	}
 	
-	
-	public  String Registrarse(short t,String n,String c,int cc,String p) {
-		boolean x = false;
-		if (t == 1) {            //busqueda de correo si el usuario quiere ser un VENDEDOR
-			//(InicializacionAplicacion.getBDCompradores()).forEach((k,v)-> {
+
+	public  String Registrarse(short tipoDeCuenta,String nombreDado,String correoDado,int cedulaDada,String contrasenaDada) {
+		boolean correoRegistrado = false;
+		if (tipoDeCuenta == 1) {            //busqueda de correo si el usuario quiere ser un VENDEDOR
+
 			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDCompradores()).entrySet()) {       //busqueda de correo en el  hash de compradores			
-				if((entry.getValue().getCorreo().equals(c))) {
-					x=true;
+				if((entry.getValue().getCorreo().equals(correoDado))) {
+					correoRegistrado=true;
 					break;
 				}
-			}//});
-			//(InicializacionAplicacion.getBDVendedores()).forEach((k,v)-> {
-			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDVendedores()).entrySet()) {     //busqueda de correo en el  hash de vendedores				
-				if((entry.getValue().getCorreo().equals(c))) {
-					x=true;
-					break;
-				}
-			
-			}//});
-			//(InicializacionAplicacion.getBDAdministradores()).forEach((k,v)-> {
-			for (Entry<Integer, Administrador> entry : (InicializacionAplicacion.getBDAdministradores()).entrySet()) {	  //busqueda de correo en el  hash de admnin			
-				if((entry.getValue().getCorreo().equals(c))) {
-					x=true;
-					break;
-				}
-			
 			}
-			//});
-			if (x==false) {		//en caso de que no se encuentre el correo registrado en ninguna tabla
-				InicializacionAplicacion.usuarioActivo = new Vendedor(n, c, p, cc);
+
+			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDVendedores()).entrySet()) {     //busqueda de correo en el  hash de vendedores				
+				if((entry.getValue().getCorreo().equals(correoDado))) {
+					correoRegistrado=true;
+					break;
+				}
+
+			}
+
+			for (Entry<Integer, Administrador> entry : (InicializacionAplicacion.getBDAdministradores()).entrySet()) {	  //busqueda de correo en el  hash de admnin			
+				if((entry.getValue().getCorreo().equals(correoDado))) {
+					correoRegistrado=true;
+					break;
+				}
+
+			}
+
+			if (correoRegistrado==false) {		//en caso de que no se encuentre el correo registrado en ninguna tabla
+				InicializacionAplicacion.usuarioActivo = new Vendedor(nombreDado, correoDado, contrasenaDada, cedulaDada);
 				(InicializacionAplicacion.getBDVendedores()).put(InicializacionAplicacion.usuarioActivo.getId(), (Vendedor) InicializacionAplicacion.usuarioActivo);
 				InicializacionAplicacion.usuarioActivo.setOpcionesDeMenuPredeterminadas();
 				return "Registro exitoso";
@@ -79,31 +79,31 @@ public class Visitante extends Cuenta {
 			}
 		} else {          //busqueda de correo y registro si el usuario quiere ser COMPRADOR
 
-			//(InicializacionAplicacion.getBDCompradores()).forEach((k,v)-> {
+
 			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDCompradores()).entrySet()) {	   //busqueda de correo en el  hash de compradores			
-				if((entry.getValue().getCorreo().equals(c))) {
-					x=true;
+				if((entry.getValue().getCorreo().equals(correoDado))) {
+					correoRegistrado=true;
 					break;
 				}
-			}//});
-			//(InicializacionAplicacion.getBDVendedores()).forEach((k,v)-> {
-			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDVendedores()).entrySet()) {     //busqueda de correo en el  hash de vendedores	
-				if((entry.getValue().getCorreo().equals(c))) {
-					x=true;
-					break;
-				}
-			
-			}//});
-			//(InicializacionAplicacion.getBDAdministradores()).forEach((k,v)-> {
-			for (Entry<Integer, Administrador> entry : (InicializacionAplicacion.getBDAdministradores()).entrySet()) {	    //busqueda de correo en el  hash de admin		
-				if((entry.getValue().getCorreo().equals(c))) {
-					x=true;
-					break;
-				}
-			
 			}
-			if(x == false) {      //en caso de que no se encuentre el correo registrado en ninguna tabla
-				InicializacionAplicacion.usuarioActivo = new Comprador(n, c, p, cc);
+
+			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDVendedores()).entrySet()) {     //busqueda de correo en el  hash de vendedores	
+				if((entry.getValue().getCorreo().equals(correoDado))) {
+					correoRegistrado=true;
+					break;
+				}
+
+			}
+
+			for (Entry<Integer, Administrador> entry : (InicializacionAplicacion.getBDAdministradores()).entrySet()) {	    //busqueda de correo en el  hash de admin		
+				if((entry.getValue().getCorreo().equals(correoDado))) {
+					correoRegistrado=true;
+					break;
+				}
+
+			}
+			if(correoRegistrado == false) {      //en caso de que no se encuentre el correo registrado en ninguna tabla
+				InicializacionAplicacion.usuarioActivo = new Comprador(nombreDado, correoDado, contrasenaDada, cedulaDada);
 				InicializacionAplicacion.getBDCompradores().put(InicializacionAplicacion.usuarioActivo.getId(), (Comprador) InicializacionAplicacion.usuarioActivo);
 				InicializacionAplicacion.usuarioActivo.setOpcionesDeMenuPredeterminadas();
 				return "Registro exitoso";

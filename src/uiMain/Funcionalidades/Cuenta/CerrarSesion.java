@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.CuentaUsuario;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class CerrarSesion extends OpcionDeMenu {
