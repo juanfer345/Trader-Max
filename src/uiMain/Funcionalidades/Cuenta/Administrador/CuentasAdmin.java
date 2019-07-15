@@ -1,18 +1,16 @@
 package uiMain.Funcionalidades.Cuenta.Administrador;
 
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
 import uiMain.OpcionDeMenu;
 
-public class CuentasAdmin extends OpcionDeMenu { // opcion 15
+public class CuentasAdmin extends OpcionDeMenu {
 
 	@Override
-	public void ejecutar() {//sera que esto va en la logica?
-		String cuentas = Administrador.numeroCuentas();
-		System.out.println(cuentas);
+	public void ejecutar() {
+		System.out.println(((Administrador) InicializacionAplicacion.usuarioActivo).numeroCuentas());
 	}
 
 	@Override
-	public String toString() {
-		return "Numero de cuentas ";
-	}
+	public String toString() {return "Numero de cuentas";}
 }

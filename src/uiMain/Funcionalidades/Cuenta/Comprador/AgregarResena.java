@@ -16,12 +16,14 @@ public class AgregarResena extends OpcionDeMenu { // opcion 10
 			System.out.println(v);
 		});
 		System.out.println("Ingrese el codigo del producto: ");
-		int codigoP = Integer.parseInt(MenuDeConsola.br.readLine().trim());
+
+//		int codigoP = Integer.parseInt(MenuDeConsola.br.readLine().trim());
 //		Producto P = Vendedor.catalogo.get(codigoP);
+		int codigoP = Integer.parseInt(br.readLine().trim());
 		System.out.println("Ingrese numero de estrellas: ");
-		int estrellas = Integer.parseInt(MenuDeConsola.br.readLine().trim());
+		int estrellas = Integer.parseInt(br.readLine().trim());
 		System.out.println("Ingrese comentario: ");
-		String comentario = MenuDeConsola.br.readLine();
+		String comentario = br.readLine();
 		Resena rese = new Resena(comentario, estrellas);
 //		String str = P.anadirResena(rese);
 		String str = comp.anadirResena(codigoP,rese);
@@ -29,6 +31,6 @@ public class AgregarResena extends OpcionDeMenu { // opcion 10
 	}
 	@Override
 	public String toString() {
-		return "Agregar reseña ";
+		return "Agregar reseña";
 	}
 }

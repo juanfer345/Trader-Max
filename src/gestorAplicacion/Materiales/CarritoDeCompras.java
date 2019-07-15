@@ -27,9 +27,10 @@ public class CarritoDeCompras {
 	public double getPrecioTotal() {
 		return precioTotal;
 	}
-	
+
 	public String comprarProductos() {
 		double total = 0;
+
 		for (Map.Entry<Integer, Integer> entry : productos.entrySet()) {
 			int codigo = entry.getKey();
 			int cantidad = entry.getValue();
@@ -37,20 +38,27 @@ public class CarritoDeCompras {
 			setPrecioTotal(getPrecioTotal() + (p.getPrecio() * cantidad));
 		}
 		total = getPrecioTotal();
+
 		if (titular.getCuentaBancaria().getSaldo() >= total) {
+
 			for (Map.Entry<Integer, Integer> entry : productos.entrySet()) {
 				int codigo = entry.getKey();
 				int cantidad = entry.getValue();
 				Producto p = Vendedor.catalogo.get(codigo);
 				double precio = p.getPrecio() * cantidad;
-				titular.getCuentaBancaria().Transaccion(titular.getCuentaBancaria(),
-						p.getVendedor().getCuentaBancaria(), precio);
+				CuentaBancaria c = titular.getCuentaBancaria();
+				CuentaBancaria v = p.getVendedor().getCuentaBancaria();
+				// Transaccion del costo por producto
+				c.Transaccion(c, v, precio);
 				p.setCantidad(p.getCantidad() - cantidad);
 				titular.getHistorial().put(codigo, p);
 			}
 			productos.clear();
 			totalProductos = 0;
+			setPrecioTotal(0);
+
 			return "Se han comprado los productos. Saldo restante: " + titular.getCuentaBancaria().getSaldo();
+
 		} else {
 			return "Saldo insuficiente, no se pueden comprar los productos";
 		}
@@ -59,7 +67,8 @@ public class CarritoDeCompras {
 	public String vaciarCarrito() {
 		productos.clear();
 		totalProductos = 0;
-		return "Su carrito está vacío";
+		setPrecioTotal(0);
+		return "Su carrito ya está vacío";
 	}
 
 	public String quitarProducto(int codigo, int cantidad) {
