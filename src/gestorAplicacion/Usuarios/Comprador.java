@@ -4,8 +4,6 @@ package gestorAplicacion.Usuarios;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
-
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
@@ -19,8 +17,6 @@ import uiMain.Funcionalidades.Cuenta.Comprador.ComprarProducto;
 import uiMain.Funcionalidades.Cuenta.Comprador.MostrarHistorial;
 import uiMain.Funcionalidades.Cuenta.Comprador.QuitarProductoCarrito;
 import uiMain.Funcionalidades.Cuenta.Comprador.VaciarCarrito;
-import uiMain.Funcionalidades.Cuenta.Vendedor.EliminarProductoCatalogo;
-import uiMain.Funcionalidades.Cuenta.Vendedor.SubirProducto;
 
 public class Comprador extends CuentaUsuario {
 	
@@ -100,7 +96,7 @@ public class Comprador extends CuentaUsuario {
 		this.carrito = carrito;
 	}
 	
-	public String añadirReseña(int codigo, Resena r) {
+	public String anadirResena(int codigo, Resena r) {
 		if(historial.containsKey(codigo)) {
 			Producto p = historial.get(codigo);
 			int indice = p.getResenas().size();
