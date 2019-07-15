@@ -46,8 +46,7 @@ public class MostrarMenu extends OpcionDeMenu {
 			if (!controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
 		}
 	}
-
-	public String toString() {
-		return "Mostrar menú";
-	}
+	
+	@Override
+	public String toString() {return "Mostrar menú";}
 }

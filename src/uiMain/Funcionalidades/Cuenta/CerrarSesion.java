@@ -30,8 +30,7 @@ public class CerrarSesion extends OpcionDeMenu {
 			System.out.println(usuario.cerrarSesion(seleccion));
 		}
 	}
-
-	public String toString() {
-		return "Cerrar sesión";
-	}
+	
+	@Override
+	public String toString() {return "Cerrar sesión";}
 }

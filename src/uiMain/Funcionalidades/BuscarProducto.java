@@ -44,9 +44,7 @@ public class BuscarProducto extends OpcionDeMenu {
 							}
 							if (!controlError) System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
 						}
-						else {
-							System.out.println(); return;
-						}
+						else {System.out.println(); return;}
 					}
 				}
 				else if (seleccion == 2) {
@@ -64,9 +62,7 @@ public class BuscarProducto extends OpcionDeMenu {
 							}
 							if (!controlError) System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
 						}
-						else {
-							System.out.println(); return;
-						}
+						else {System.out.println(); return;}
 					}
 				}
 			}
@@ -79,7 +75,5 @@ public class BuscarProducto extends OpcionDeMenu {
 	}
 	
 	@Override
-	public String toString() {
-		return "Buscar producto";
-	}
+	public String toString() {return "Buscar producto";}
 }

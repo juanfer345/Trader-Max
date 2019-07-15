@@ -21,7 +21,6 @@ import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Comprador;
-import gestorAplicacion.Usuarios.CuentaUsuario;
 import gestorAplicacion.Usuarios.Vendedor;
 
 public class EscrituraBD {
@@ -76,9 +75,9 @@ public class EscrituraBD {
 		}
 	}
 
-	private static void escrituraCompradores(String NombreBD, HashMap <Integer, CuentaUsuario> HM) throws IOException {
+	private static void escrituraCompradores(String NombreBD, HashMap <Integer, Comprador> HM) throws IOException {
 
-		CuentaUsuario val;
+		Comprador val;
 
 		//Creación o sobreescritura de la base de datos
 		BD = new File(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" +  NombreBD + ".txt");	//Creación de archivo (en java)
@@ -86,7 +85,7 @@ public class EscrituraBD {
 		BD.createNewFile();					//Creación de archivo (en el computador)
 		pw = new PrintWriter(BD);			//Asignación del objeto que imprime
 
-		for (Map.Entry <Integer, CuentaUsuario> entry : HM.entrySet()) {
+		for (Map.Entry <Integer, Comprador> entry : HM.entrySet()) {
 			val = entry.getValue();									//Extracción de valores de la tabla hash
 			sb.append(entry.getKey() + ';'); 						//Identificador único de comprador
 			sb.append(val.getNombre() + ';');						//Nombre comprador
@@ -114,9 +113,9 @@ public class EscrituraBD {
 		pw.close(); System.out.println("Base de datos \"" + NombreBD + ".txt" + "\" guardada exitosamente");
 	}
 
-	private static void escrituraVendedores(String NombreBD, HashMap <Integer, CuentaUsuario> HM) throws IOException {
+	private static void escrituraVendedores(String NombreBD, HashMap <Integer, Vendedor> HM) throws IOException {
 
-		CuentaUsuario val;
+		Vendedor val;
 
 		//Creación o sobreescritura de la base de datos
 		BD = new File(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" +  NombreBD + ".txt");	//Creación de archivo (en java)
@@ -124,7 +123,7 @@ public class EscrituraBD {
 		BD.createNewFile();					//Creación de archivo (en el computador)
 		pw = new PrintWriter(BD);			//Asignación del objeto que imprime
 
-		for (Map.Entry <Integer, CuentaUsuario> entry : HM.entrySet()) {
+		for (Map.Entry <Integer, Vendedor> entry : HM.entrySet()) {
 			val = entry.getValue();										//Extracción de valores de la tabla hash
 			sb.append(entry.getKey() + ';'); 							//Identificador único de vendedor
 			sb.append(val.getNombre() + ';');							//Nombre vendedor

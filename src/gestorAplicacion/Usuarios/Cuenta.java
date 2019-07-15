@@ -16,8 +16,19 @@ public abstract class Cuenta {
 	private String nombre, correo, password;
 	public int id;
 	private int cedula;
-	static protected int contador;
-	static int totalCuentas;
+	static protected int contador;	//realmente hace falta este atributo??
+	static int totalCuentas;		//no seria menos enredado borrarlo y sacarle el tamaño a las tablas hash cada vez que se desee saber el total de las cuentas?
+	
+	Cuenta(){}
+	
+	Cuenta(String nombre, String correo, String password, int cedula) {
+		this.setNombre(nombre);
+		this.setCorreo(correo);
+		this.setPassword(password);
+		this.setCedula(cedula);
+		id = contador++;
+		totalCuentas++;
+	}
 	
 	public String getNombre() {return nombre;}
 	
@@ -66,9 +77,9 @@ public abstract class Cuenta {
 		Producto prod;
 	    StringBuilder sb = new StringBuilder();
 		
-		if (Vendedor.catalogo.containsKey(codigo)) {
+		if (catalogo.containsKey(codigo)) {
 
-			prod = Vendedor.catalogo.get(codigo);
+			prod = catalogo.get(codigo);
 			sb.append("\nEl producto fue encontrado: \n");
 			sb.append("[Nombre: " + prod.getNombreProducto() + ",/n");
 			sb.append("Categoria: " + prod.getCategoria() + ",/n");
@@ -78,7 +89,7 @@ public abstract class Cuenta {
 			OpcionDeMenu.controlError = true;
 			return sb.toString();
 		}
-		else if (Vendedor.catalogo.isEmpty()) {
+		else if (catalogo.isEmpty()) {
 			OpcionDeMenu.controlError = true;
 			return "El catálogo se encuentra vacío.\n";
 		}
@@ -93,8 +104,8 @@ public abstract class Cuenta {
 	    StringBuilder sb = new StringBuilder();
 	    
 	    //Búsqueda de cada producto
-		Vendedor.catalogo.forEach((k, v) -> {
-			Producto prod = Vendedor.catalogo.get(k);
+		catalogo.forEach((k, v) -> {
+			Producto prod = catalogo.get(k);
 			if (prod.getNombreProducto().contains(nombre)) {
 				sb.append(prod.toString() + '\n');
 			}
@@ -105,7 +116,7 @@ public abstract class Cuenta {
 			OpcionDeMenu.controlError = true;
 			return sb.append("\nEl producto fue encontrado: \n" + sb).toString();
 		}
-		else if (Vendedor.catalogo.isEmpty()) {
+		else if (catalogo.isEmpty()) {
 			OpcionDeMenu.controlError = true;
 			return "El catálogo se encuentra vacío.\n";
 		}
@@ -118,10 +129,18 @@ public abstract class Cuenta {
 	public String mostrarCatalogo() {
 		
 	    StringBuilder sb = new StringBuilder();
-		for (Map.Entry <Integer, Producto> entry : catalogo.entrySet()) {
-			sb.append(entry.getValue().toString() + '\n');
+
+		if (!catalogo.isEmpty()) {
+			for (Map.Entry <Integer, Producto> entry : catalogo.entrySet()) {
+				sb.append(entry.getValue().toString() + '\n');
+			}
+			OpcionDeMenu.controlError = true;
+			return sb.append("\nCatálogo de TRADER-MAX: \n" + sb).toString();
 		}
-		return sb.append("\nCatálogo de Trader-Max: \n" + sb).toString();
+		else {
+			OpcionDeMenu.controlError = true;
+			return "El catálogo se encuentra vacío.\n";
+		}
 	}
 	
 	//Mostrar todos los productos de una categoria
@@ -130,13 +149,13 @@ public abstract class Cuenta {
 	    StringBuilder sb = new StringBuilder();
 	    
 		//Verificación de catalogo no vacío
-		if (!Vendedor.catalogo.isEmpty()) {
+		if (!catalogo.isEmpty()) {
 			//Verificación de índice válido
 			if (cat > 0 && cat < Producto.categorias.length) {
 				
 				//Ciclo para hallar cada producto de la categoría adecuada
-				(Vendedor.catalogo).forEach((k, v) -> {
-					Producto prod = Vendedor.catalogo.get(k);
+				(catalogo).forEach((k, v) -> {
+					Producto prod = catalogo.get(k);
 					if (prod.getCategoria() == Producto.categorias[cat]) {
 						sb.append(prod.toString() + '\n');
 					}

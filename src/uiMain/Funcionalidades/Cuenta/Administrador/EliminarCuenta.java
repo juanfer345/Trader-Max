@@ -53,8 +53,5 @@ public class EliminarCuenta extends OpcionDeMenu {
 	}
 
 	@Override
-	public String toString() {
-		return "Eliminar cuenta de usuario";
-	}
-
+	public String toString() {return "Eliminar cuenta de usuario";}
 }

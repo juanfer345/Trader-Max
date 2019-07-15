@@ -50,7 +50,7 @@ public class Administrador extends CuentaUsuario {
 	//Mostrado de las opciones de menú ingresando el id del usuario
 	public String mostrarOpcionesDeMenu(int idUsuario, byte tipoUsuario) {
 		
-		HashMap <Integer, CuentaUsuario> aux = null;
+		HashMap <Integer, ? extends CuentaUsuario> baseDeDatos = null;
 		ArrayList <OpcionDeMenu> menu;
 	    StringBuilder sb = new StringBuilder();
 	    String usuario = null;
@@ -59,17 +59,17 @@ public class Administrador extends CuentaUsuario {
     	//Condicional para distinguir entre comprador y vendedor
 	    if (tipoUsuario == 1) {
 	    	//Caso A: Comprador
-	    	aux = InicializacionAplicacion.getBDCompradores();
+	    	baseDeDatos = InicializacionAplicacion.getBDCompradores();
 	    	usuario = "comprador";
 	    }
 	    else if (tipoUsuario == 2) {
 	    	//Caso B: Vendedor
-	    	aux = InicializacionAplicacion.getBDVendedores();
+	    	baseDeDatos = InicializacionAplicacion.getBDVendedores();
 	    	usuario = "vendedor";
 	    }
 	    
-    	if (aux.containsKey(idUsuario)) {
-    		menu = aux.get(idUsuario).getOpcionesDeMenu();
+    	if (baseDeDatos.containsKey(idUsuario)) {
+    		menu = baseDeDatos.get(idUsuario).getOpcionesDeMenu();
     		sb.append("A continuación se muestra el menú del " + usuario + "\n");
     		for (i = 0; i < menu.size(); i++) {
     			sb.append((i + 1) + ". " + menu.get(i).toString() + "\n");
@@ -86,7 +86,7 @@ public class Administrador extends CuentaUsuario {
 	//para cuando se desee agregar o eliminar opciones
 	public String comprobarCantidadOpciones(int idUsuario, byte tipoUsuario, byte borradoAgregado) {
 		
-		HashMap <Integer, CuentaUsuario> aux = null;
+		HashMap <Integer, ? extends CuentaUsuario> baseDeDatos = null;
 		ArrayList <OpcionDeMenu> menu;
 	    StringBuilder sb = new StringBuilder();
 	    int i;
@@ -94,13 +94,13 @@ public class Administrador extends CuentaUsuario {
     	//Condicional para distinguir entre comprador y vendedor
 	    if (tipoUsuario == 1) {
 	    	//Caso A: Comprador
-	    	aux = InicializacionAplicacion.getBDCompradores();
+	    	baseDeDatos = InicializacionAplicacion.getBDCompradores();
 	    }
 	    else if (tipoUsuario == 2) {
 	    	//Caso B: Vendedor
-	    	aux = InicializacionAplicacion.getBDVendedores();
+	    	baseDeDatos = InicializacionAplicacion.getBDVendedores();
 	    }
-    	menu = aux.get(idUsuario).getOpcionesDeMenu();	//Obtención de opciones de menú del usuario
+    	menu = baseDeDatos.get(idUsuario).getOpcionesDeMenu();	//Obtención de opciones de menú del usuario
 	    
 	    //Condicional para identificar si es el caso de agregado o eliminación de opciones
 	    if (borradoAgregado == 1) {
@@ -108,10 +108,10 @@ public class Administrador extends CuentaUsuario {
 	    	//Caso A: Se está agregando una opción - [Inicio]
     		
     		//Resultado según cantidad de opciones del usuario seleccionado
-    		if (menu.size() < aux.get(idUsuario).getTotalDeOpcionesDefault()) {
+    		if (menu.size() < baseDeDatos.get(idUsuario).getTotalDeOpcionesDefault()) {
     			
     			//Caso A.a: El menú del usuario no tiene la cantidad máxima posible de opciones
-    			opcionComp = aux.get(idUsuario).getOpcionesDeMenuPredeterminadas();
+    			opcionComp = baseDeDatos.get(idUsuario).getOpcionesDeMenuPredeterminadas();
 	    		
     			//Ciclo para descartar las opciones que ya posee el menú del usuario
     			for (i = 0; i < menu.size(); i++) {
@@ -130,7 +130,7 @@ public class Administrador extends CuentaUsuario {
     			sb.append("=> ");
 	    		OpcionDeMenu.controlError = true;
     		}
-    		else if (menu.size() == aux.get(idUsuario).getTotalDeOpcionesDefault()) {
+    		else if (menu.size() == baseDeDatos.get(idUsuario).getTotalDeOpcionesDefault()) {
 
     			//Caso A.b: El menú del usuario tiene la cantidad máxima posible de opciones
     			sb.append("\nEsta cuenta ya posee la máxima cantidad de opciones de menú\n");
@@ -149,7 +149,7 @@ public class Administrador extends CuentaUsuario {
     			sb.append("=> ");
 	    		OpcionDeMenu.controlError = true;
     		}
-    		else if (menu.size() == aux.get(idUsuario).getTotalDeOpcionesDefault()) {
+    		else if (menu.size() == baseDeDatos.get(idUsuario).getTotalDeOpcionesDefault()) {
 
     			//Caso B.b: El menú del usuario se encuentra vacío
     			sb.append("\nEsta cuenta ya no posee ninguna opción de menú, no es posible borrar más\n");
@@ -162,20 +162,20 @@ public class Administrador extends CuentaUsuario {
 	//Método para agregarle una opción al menú de un usuario
 	public String agregarOpcion(int idUsuario, byte tipoUsuario, byte indice) {
 		
-		HashMap <Integer, CuentaUsuario> aux = null;
+		HashMap <Integer, ? extends CuentaUsuario> baseDeDatos = null;
 		ArrayList <OpcionDeMenu> menu;
 	    StringBuilder sb = new StringBuilder();
 	    
     	//Condicional para distinguir entre comprador y vendedor
 	    if (tipoUsuario == 1) {
 	    	//Caso A: Comprador
-	    	aux = InicializacionAplicacion.getBDCompradores();
+	    	baseDeDatos = InicializacionAplicacion.getBDCompradores();
 	    }
 	    else if (tipoUsuario == 2) {
 	    	//Caso B: Vendedor
-	    	aux = InicializacionAplicacion.getBDVendedores();
+	    	baseDeDatos = InicializacionAplicacion.getBDVendedores();
 	    }
-    	menu = aux.get(idUsuario).getOpcionesDeMenu();	//Obtención de opciones de menú del usuario
+    	menu = baseDeDatos.get(idUsuario).getOpcionesDeMenu();	//Obtención de opciones de menú del usuario
     	
     	try {
     		menu.add(opcionComp.get(indice));				//Agregado de la opción correspondiente
@@ -191,20 +191,20 @@ public class Administrador extends CuentaUsuario {
 	}
 	
 	public String eliminarOpcion(int idUsuario, byte tipoUsuario, byte indice) {
-		HashMap <Integer, CuentaUsuario> aux = null;
+		HashMap <Integer, ? extends CuentaUsuario> baseDeDatos = null;
 		ArrayList <OpcionDeMenu> menu;
 	    StringBuilder sb = new StringBuilder();
 	    
     	//Condicional para distinguir entre comprador y vendedor
 	    if (tipoUsuario == 1) {
 	    	//Caso A: Comprador
-	    	aux = InicializacionAplicacion.getBDCompradores();
+	    	baseDeDatos = InicializacionAplicacion.getBDCompradores();
 	    }
 	    else if (tipoUsuario == 2) {
 	    	//Caso B: Vendedor
-	    	aux = InicializacionAplicacion.getBDVendedores();
+	    	baseDeDatos = InicializacionAplicacion.getBDVendedores();
 	    }
-    	menu = aux.get(idUsuario).getOpcionesDeMenu();	//Obtención de opciones de menú del usuario
+    	menu = baseDeDatos.get(idUsuario).getOpcionesDeMenu();	//Obtención de opciones de menú del usuario
     	
     	try {
     		menu.remove(menu.get(indice));				//Agregado de la opción correspondiente
@@ -226,24 +226,24 @@ public class Administrador extends CuentaUsuario {
 	
 	public String mostrarUsuario(int idUsuario, byte tipoUsuario) {
 
-		HashMap <Integer, CuentaUsuario> aux = null;
+		HashMap <Integer, ? extends CuentaUsuario> baseDeDatos = null;
 	    StringBuilder sb = new StringBuilder();
 	    String usuario = null;
 	    
     	//Condicional para distinguir entre comprador y vendedor
 	    if (tipoUsuario == 1) {
 	    	//Caso A: Comprador
-	    	aux = InicializacionAplicacion.getBDCompradores();
+	    	baseDeDatos = InicializacionAplicacion.getBDCompradores();
 	    	usuario = "comprador";
 	    }
 	    else if (tipoUsuario == 2) {
 	    	//Caso B: Vendedor
-	    	aux = InicializacionAplicacion.getBDVendedores();
+	    	baseDeDatos = InicializacionAplicacion.getBDVendedores();
 	    	usuario = "vendedor";
 	    }
 	    
-    	if (aux.containsKey(idUsuario)) {
-    		sb.append(aux.get(idUsuario).toString());
+    	if (baseDeDatos.containsKey(idUsuario)) {
+    		sb.append(baseDeDatos.get(idUsuario).toString());
     		OpcionDeMenu.controlError = true;
     	}
     	else {
@@ -254,24 +254,24 @@ public class Administrador extends CuentaUsuario {
 
 	public String eliminarCuenta(int idUsuario, byte tipoUsuario) {
 
-		HashMap <Integer, CuentaUsuario> aux = null;
+		HashMap <Integer, ? extends CuentaUsuario> baseDeDatos = null;
 	    StringBuilder sb = new StringBuilder();
 	    String usuario = null;
 	    
     	//Condicional para distinguir entre comprador y vendedor
 	    if (tipoUsuario == 1) {
 	    	//Caso A: Comprador
-	    	aux = InicializacionAplicacion.getBDCompradores();
+	    	baseDeDatos = InicializacionAplicacion.getBDCompradores();
 	    	usuario = "comprador";
 	    }
 	    else if (tipoUsuario == 2) {
 	    	//Caso B: Vendedor
-	    	aux = InicializacionAplicacion.getBDVendedores();
+	    	baseDeDatos = InicializacionAplicacion.getBDVendedores();
 	    	usuario = "vendedor";
 	    }
 	    
-    	if (aux.containsKey(idUsuario)) {
-    		aux.remove(idUsuario);
+    	if (baseDeDatos.containsKey(idUsuario)) {
+    		baseDeDatos.remove(idUsuario);
     		sb.append("Se ha removido la cuenta correctamente");
     		OpcionDeMenu.controlError = true;
     	}

@@ -37,13 +37,10 @@ public class MostrarPorCategoria extends OpcionDeMenu { // opcion 3
 				}
 				if (!controlError) System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
 			}
-			else {
-				System.out.println(); return;
-			}
+			else {System.out.println(); return;}
 		}
 	}
-
-	public String toString() {
-		return "Mostrar productos por categoria";
-	}
+	
+	@Override
+	public String toString() {return "Mostrar productos por categoria";}
 }

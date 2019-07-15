@@ -3,7 +3,7 @@ package gestorAplicacion.Usuarios;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map.Entry;
+import java.util.Map;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
@@ -41,128 +41,120 @@ public class Visitante extends Cuenta {
 		return Vendedor.catalogo;
 	}
 	
-
-	public  String Registrarse(short tipoDeCuenta,String nombreDado,String correoDado,int cedulaDada,String contrasenaDada) {
+	//Método para registrar usuarios
+	public String Registrarse(byte tipoDeCuenta, String nombreDado, String correoIngresado, int cedulaIngresada, String contrasenaIngresada) {
+		
+		HashMap <Integer, ? extends Cuenta> baseDeDatos = null;
 		boolean correoRegistrado = false;
-		if (tipoDeCuenta == 1) {            //busqueda de correo si el usuario quiere ser un VENDEDOR
 
-			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDCompradores()).entrySet()) {       //busqueda de correo en el  hash de compradores			
-				if((entry.getValue().getCorreo().equals(correoDado))) {
-					correoRegistrado=true;
+		switch (tipoDeCuenta) {
+			case 1:
+				//Caso A: Registro de un usuario vendedor
+				baseDeDatos = InicializacionAplicacion.getBDCompradores();
+				break;
+			case 2:
+				//Caso B: Registro de un usuario Comprador
+				baseDeDatos = InicializacionAplicacion.getBDVendedores();
+				break;
+			case 3:
+				//Caso C: Registro de un usuario Administrador
+				baseDeDatos = InicializacionAplicacion.getBDAdministradores();
+				break;
+		}
+		
+		//Busqueda de correo en la base de datos seleccionada
+		correoRegistrado = busquedaCorreo(baseDeDatos, correoIngresado);
+		
+		if (!correoRegistrado) {
+			//Caso A: El correo no se encuentra repetido
+			
+			switch (tipoDeCuenta) {
+				case 1:
+					//Caso A: Registro de un usuario vendedor
+					InicializacionAplicacion.usuarioActivo = new Comprador(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
+					InicializacionAplicacion.getBDCompradores().put(InicializacionAplicacion.usuarioActivo.getId(), (Comprador) InicializacionAplicacion.usuarioActivo);
 					break;
-				}
-			}
-
-			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDVendedores()).entrySet()) {     //busqueda de correo en el  hash de vendedores				
-				if((entry.getValue().getCorreo().equals(correoDado))) {
-					correoRegistrado=true;
+				case 2:
+					//Caso B: Registro de un usuario Comprador
+					InicializacionAplicacion.usuarioActivo = new Vendedor(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
+					InicializacionAplicacion.getBDVendedores().put(InicializacionAplicacion.usuarioActivo.getId(), (Vendedor) InicializacionAplicacion.usuarioActivo);
 					break;
-				}
-
-			}
-
-			for (Entry<Integer, Administrador> entry : (InicializacionAplicacion.getBDAdministradores()).entrySet()) {	  //busqueda de correo en el  hash de admnin			
-				if((entry.getValue().getCorreo().equals(correoDado))) {
-					correoRegistrado=true;
+				case 3:
+					//Caso C: Registro de un usuario Administrador
+					InicializacionAplicacion.usuarioActivo = new Administrador(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
+					InicializacionAplicacion.getBDAdministradores().put(InicializacionAplicacion.usuarioActivo.getId(), (Administrador) InicializacionAplicacion.usuarioActivo);
 					break;
-				}
-
 			}
-
-			if (correoRegistrado==false) {		//en caso de que no se encuentre el correo registrado en ninguna tabla
-				InicializacionAplicacion.usuarioActivo = new Vendedor(nombreDado, correoDado, contrasenaDada, cedulaDada);
-				(InicializacionAplicacion.getBDVendedores()).put(InicializacionAplicacion.usuarioActivo.getId(), (Vendedor) InicializacionAplicacion.usuarioActivo);
-				InicializacionAplicacion.usuarioActivo.setOpcionesDeMenuPredeterminadas();
-				return "Registro exitoso";
-			}else {
-				return "El correo ya se encuentra registrado";
-			}
-		} else {          //busqueda de correo y registro si el usuario quiere ser COMPRADOR
-
-
-			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDCompradores()).entrySet()) {	   //busqueda de correo en el  hash de compradores			
-				if((entry.getValue().getCorreo().equals(correoDado))) {
-					correoRegistrado=true;
-					break;
-				}
-			}
-
-			for (Entry<Integer, CuentaUsuario> entry : (InicializacionAplicacion.getBDVendedores()).entrySet()) {     //busqueda de correo en el  hash de vendedores	
-				if((entry.getValue().getCorreo().equals(correoDado))) {
-					correoRegistrado=true;
-					break;
-				}
-
-			}
-
-			for (Entry<Integer, Administrador> entry : (InicializacionAplicacion.getBDAdministradores()).entrySet()) {	    //busqueda de correo en el  hash de admin		
-				if((entry.getValue().getCorreo().equals(correoDado))) {
-					correoRegistrado=true;
-					break;
-				}
-
-			}
-			if(correoRegistrado == false) {      //en caso de que no se encuentre el correo registrado en ninguna tabla
-				InicializacionAplicacion.usuarioActivo = new Comprador(nombreDado, correoDado, contrasenaDada, cedulaDada);
-				InicializacionAplicacion.getBDCompradores().put(InicializacionAplicacion.usuarioActivo.getId(), (Comprador) InicializacionAplicacion.usuarioActivo);
-				InicializacionAplicacion.usuarioActivo.setOpcionesDeMenuPredeterminadas();
-				return "Registro exitoso";
-			}else {
-				return"El correo ya se encuentra registrado";
-			}
+    		OpcionDeMenu.controlError = true;
+			return "Registro exitoso, bienvenido a TRADER-MAX " + InicializacionAplicacion.usuarioActivo.getNombre() + ".\n";
+		}
+		else {
+			//Caso B: El correo se encuentra repetido
+			return "El correo ya se encuentra registrado.\n";
 		}
 	}
-
 	
-//	public String IniciarSesion(String c, String p) {
-//		Integer key = -1;
-//		Cuenta us;
-//		byte intentar = 1;
-//		(InicializacionAplicacion.getBDCompradores()).forEach((k, v) -> {
-//			if ((v.getCorreo().equals(c))) {
-//				key = k;
-//			}
-//		});
-//		if (key != -1 && (InicializacionAplicacion.getBDCompradores()).get(key).getPassword().equals(p)) {
-//			us = (InicializacionAplicacion.getBDCompradores()).get(key);
-//		} else if (key == -1) {
-//			(InicializacionAplicacion.getBDVendedores()).forEach((k, v) -> {
-//				if ((v.getCorreo().equals(c))) {
-//					key = k;
-//				}
-//			});
-//			if (key != -1 && (InicializacionAplicacion.getBDVendedores()).get(key).getPassword().equals(p)) {
-//				us = (InicializacionAplicacion.getBDVendedores()).get(key);
-//			}
-//		} else {
-//			(InicializacionAplicacion.getBDAdministradores()).forEach((k, v) -> {
-//				if ((v.getCorreo().equals(c))) {
-//					key = k;
-//				}
-//			});
-//			if (key != -1 && (InicializacionAplicacion.getBDAdministradores()).get(key).getPassword().equals(p)) {
-//				us = (InicializacionAplicacion.getBDAdministradores()).get(key);
-//			}
-//		}
-//		if (key == -1) {
-//			System.out.println("El correo no se encuentra registrado");
-//		} else {
-//			do {
-//				if (us.getPassword().equals(p)) {
-//					Cuenta usuario = us;
-//					break;
-//				} else {
-//					System.out.println("Contraseña incorrecta. \n1.Volver a intentar\n2.Cancelar");
-//					//intentar = Byte.parseByte(br.readLine());	CORREGIR BUFFERED READER
-//					if (intentar == 1) {
-//						System.out.println("Ingrese la contraseña: ");
-//						//p = scn.next();
-//					}
-//				}
-//			} while (intentar != 1);
-//			if (intentar == 2) {
-//				// se devuelve al inicializador de aplicacion
-//			}
-//		}
-//	}
+	//Método para buscar correo en las bases de datos de las cuentas, para ahorrar espácio en el método registrarse
+	private static boolean busquedaCorreo(HashMap <Integer, ? extends Cuenta> HM, String correoIngresado) {
+		
+		for (Map.Entry <Integer, ? extends Cuenta> entry : HM.entrySet()) {
+			if((entry.getValue().getCorreo().equals(correoIngresado))) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	//Método para iniciar sesión
+	public String iniciarSesion(byte tipoDeCuenta, String correoIngresado, String contrasenaIngresada) {
+		
+		HashMap <Integer, ? extends Cuenta> baseDeDatos = null;
+		int idcorreoRegistrado;
+
+		switch (tipoDeCuenta) {
+			case 1:
+				//Caso A: Registro de un usuario vendedor
+				baseDeDatos = InicializacionAplicacion.getBDCompradores();
+				break;
+			case 2:
+				//Caso B: Registro de un usuario Comprador
+				baseDeDatos = InicializacionAplicacion.getBDVendedores();
+				break;
+			case 3:
+				//Caso C: Registro de un usuario Administrador
+				baseDeDatos = InicializacionAplicacion.getBDAdministradores();
+				break;
+		}
+		
+		//Busqueda de correo en la base de datos seleccionada
+		idcorreoRegistrado = idCorreo(baseDeDatos, correoIngresado);
+		
+		if (idcorreoRegistrado != -1) {
+			//Caso A: Se ha encontrado el correo
+			if (baseDeDatos.get(idcorreoRegistrado).getPassword().equals(contrasenaIngresada)) {
+				
+				InicializacionAplicacion.usuarioActivo = baseDeDatos.get(idcorreoRegistrado);
+	    		OpcionDeMenu.controlError = true;
+				return "Sesión iniciada correctamente, bienvenido a TRADER-MAX " + InicializacionAplicacion.usuarioActivo.getNombre() + ".\n";
+			}
+			else {
+				return "Contraseña incorrecta.\n";
+			}
+		}
+		else {
+			//Caso B: No se ha encontrado el correo
+			return "El correo no se encuentra registrado.\n";
+		}
+	}
+	
+	//Método para buscar correo en las bases de datos de las cuentas, para ahorrar espácio en el método iniciar sesión
+	private static int idCorreo(HashMap <Integer, ? extends Cuenta> HM, String correoIngresado) {
+		
+		for (Map.Entry <Integer, ? extends Cuenta> entry : HM.entrySet()) {
+			if((entry.getValue().getCorreo().equals(correoIngresado))) {
+				return entry.getKey();
+			}
+		}
+		return -1;
+	}
 }

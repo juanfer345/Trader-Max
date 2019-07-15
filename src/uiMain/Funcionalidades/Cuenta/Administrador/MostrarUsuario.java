@@ -49,7 +49,6 @@ public class MostrarUsuario extends OpcionDeMenu {
 		}
 	}
 	
-	public String toString() {
-		return "Mostrar información de usuario";
-	}
+	@Override
+	public String toString() {return "Mostrar información de usuario";}
 }

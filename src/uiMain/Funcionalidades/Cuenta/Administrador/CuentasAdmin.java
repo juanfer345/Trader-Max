@@ -12,7 +12,5 @@ public class CuentasAdmin extends OpcionDeMenu {
 	}
 
 	@Override
-	public String toString() {
-		return "Numero de cuentas ";
-	}
+	public String toString() {return "Numero de cuentas";}
 }

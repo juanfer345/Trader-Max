@@ -69,8 +69,7 @@ public class EliminarOpcion extends OpcionDeMenu {
 			if (!controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
 		}
 	}
-
-	public String toString() {
-		return "Eliminar opción de menú";
-	}
+	
+	@Override
+	public String toString() {return "Eliminar opción de menú";}
 }
