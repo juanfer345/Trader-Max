@@ -12,6 +12,8 @@ import uiMain.Funcionalidades.Cuenta.Administrador.AgregarOpcion;
 import uiMain.Funcionalidades.Cuenta.Administrador.CuentasAdmin;
 import uiMain.Funcionalidades.Cuenta.Administrador.EliminarCuenta;
 import uiMain.Funcionalidades.Cuenta.Administrador.EliminarOpcion;
+import uiMain.Funcionalidades.Cuenta.Administrador.MostrarMenu;
+import uiMain.Funcionalidades.Cuenta.Administrador.MostrarUsuario;
 
 /*PROPUESTA por juanfer: ya que administrador debería heredar algunos atributos de cuenta (pero no todos), 
 						 que les parece si se quita cuenta y en su remplazo creamos dos interfaces, de tal manera que una interfaz tenga todo lo de cuenta, pero sin 
@@ -19,6 +21,8 @@ import uiMain.Funcionalidades.Cuenta.Administrador.EliminarOpcion;
 */
 
 public class Administrador extends CuentaUsuario {
+	
+	private static String codigoSecreto = "Es un secretooo";
 	
 	private static ArrayList <OpcionDeMenu> opcionComp;
 	
@@ -36,13 +40,16 @@ public class Administrador extends CuentaUsuario {
 	public Administrador() { }
 	
 	public void setOpcionesDeMenuPredeterminadas() {
-		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new EliminarOpcion(), new AgregarOpcion(), 
-										  new EliminarCuenta(), new CuentasAdmin(), new CerrarSesion(), new Salir()})));
+		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
+									   new MostrarUsuario(), new MostrarMenu(), new EliminarOpcion(), 
+									   new AgregarOpcion(), new EliminarCuenta(), new CuentasAdmin(), 
+									   new CerrarSesion(), new Salir()})));
 	}
 	
 	public ArrayList <OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
-		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new EliminarOpcion(), new AgregarOpcion(), 
-										  new EliminarCuenta(), new CuentasAdmin(), new CerrarSesion(), new Salir()}));
+		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
+				   new MostrarUsuario(), new MostrarMenu(), new EliminarOpcion(), new AgregarOpcion(), 
+				   new EliminarCuenta(), new CuentasAdmin(), new CerrarSesion(), new Salir()}));
 	}
 
 	public ArrayList <OpcionDeMenu> getOpcionesDeMenu() {return menu.getOpcionesActivas();}
@@ -280,4 +287,6 @@ public class Administrador extends CuentaUsuario {
     	}
 		return sb.toString();
 	}
+
+	public static String getCodigoSecreto() {return codigoSecreto;}
 }

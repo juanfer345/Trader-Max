@@ -3,6 +3,7 @@ package uiMain.Funcionalidades.Visitante;
 import java.io.IOException;
 
 import gestorAplicacion.InicializacionAplicacion;
+import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.MenuDeConsola;
 
@@ -32,17 +33,36 @@ public class Registrar extends ControlErrorDatosUsuario {
 		
 		//Control de ingreso de contraseña
 		System.out.print("Contraseña: ");
-		if (MenuDeConsola.esNumeroEntero(contrasenaIngresada = br.readLine().trim()) == 0) {
+		if (MenuDeConsola.esByte(contrasenaIngresada = br.readLine().trim()) == 0) {
 			System.out.println(); 
 			return;
 		}
 		if (!controlContrasena(contrasenaIngresada)) {System.out.println(); return;}
 		
+		//Control de ingreso de contraseña secreta para usuarios administradores
+		if (tipoDeCuenta == 3) {
+			while (true) {
+				System.out.print("Contraseña secreta de administradores: ");
+				String contrasenaSecreta;
+				if (MenuDeConsola.esByte(contrasenaSecreta = br.readLine().trim()) != 0) {
+					if (contrasenaSecreta.equals(Administrador.getCodigoSecreto())) {
+						break;
+					}
+					else {
+						System.out.println("Contraseña incorrecta, el FBI pronto llegará a su casa");
+					}
+				}
+				else {
+					System.out.println(); return;
+				}
+			}
+		}
+		
 		//Ejecución del método de registro con control de error
 		while (!controlError) {
 			
 			//Ejecución e impresión del método
-			System.out.println(usuario.Registrarse((byte) tipoDeCuenta, nombreIngresado, 
+			System.out.println(usuario.registrarse((byte) tipoDeCuenta, nombreIngresado, 
 					           correoIngresado, (int) cedulaIngresada, contrasenaIngresada));
 			
 			if(!controlError) {

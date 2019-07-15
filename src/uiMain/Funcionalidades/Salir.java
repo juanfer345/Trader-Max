@@ -23,7 +23,7 @@ public class Salir extends OpcionDeMenu {
 			
 		    //Ingreso de valores y control de error de ingreso de valores no numéricos 
 			System.out.print(sb);
-			seleccion = (byte) MenuDeConsola.esNumeroEntero(br.readLine().trim());
+			seleccion = MenuDeConsola.esByte(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
 			System.out.println(InicializacionAplicacion.usuarioActivo.salir(seleccion));

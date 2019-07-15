@@ -10,6 +10,7 @@ import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.BuscarProducto;
+import uiMain.Funcionalidades.MostrarCatalogo;
 import uiMain.Funcionalidades.MostrarPorCategoria;
 import uiMain.Funcionalidades.Salir;
 import uiMain.Funcionalidades.Cuenta.CerrarSesion;
@@ -24,32 +25,35 @@ import uiMain.Funcionalidades.Cuenta.Comprador.VaciarCarrito;
 public class Comprador extends CuentaUsuario {
 
 	private CarritoDeCompras carrito;
-	private HashMap<Integer, Producto> historial = new HashMap<>();
+	private HashMap<Integer, Producto> historial;
 
 	public Comprador() {
 		super();
-		this.totalDeOpcionesDefault = 11;
+		totalDeOpcionesDefault = 11;
 		setOpcionesDeMenuPredeterminadas();
 	}
 
 	public Comprador(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
-		this.totalDeOpcionesDefault = 11;
+		carrito = new CarritoDeCompras(this);
+		historial = new HashMap<>();
+		totalDeOpcionesDefault = 11;
 		setOpcionesDeMenuPredeterminadas();
 	}
 
 	public void setOpcionesDeMenuPredeterminadas() {
-		Cuenta.menu.setOpcionesActivas(new ArrayList<OpcionDeMenu>(
-				Arrays.asList(new OpcionDeMenu[] { new AgregarACarrito(), new BorrarHistorial(), new MostrarHistorial(),
-						new VaciarCarrito(), new ComprarProducto(), new QuitarProductoCarrito(), new AgregarResena(),
-						new MostrarPorCategoria(), new BuscarProducto(), new CerrarSesion(), new Salir() })));
+		Cuenta.menu.setOpcionesActivas(new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
+				new AgregarACarrito(), new BorrarHistorial(), new MostrarHistorial(), new VaciarCarrito(), 
+				new ComprarProducto(), new QuitarProductoCarrito(), new AgregarResena(),
+				new BuscarProducto(), new MostrarPorCategoria(), new MostrarCatalogo(), new CerrarSesion(), 
+				new Salir()})));
 	}
 
 	public ArrayList<OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
-		return new ArrayList<OpcionDeMenu>(
-				Arrays.asList(new OpcionDeMenu[] { new AgregarACarrito(), new BorrarHistorial(), new MostrarHistorial(),
-						new VaciarCarrito(), new ComprarProducto(), new QuitarProductoCarrito(), new AgregarResena(),
-						new MostrarPorCategoria(), new BuscarProducto(), new CerrarSesion(), new Salir() }));
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
+					new AgregarACarrito(), new BorrarHistorial(), new MostrarHistorial(),
+					new VaciarCarrito(), new ComprarProducto(), new QuitarProductoCarrito(), new AgregarResena(),
+					new MostrarPorCategoria(), new BuscarProducto(), new CerrarSesion(), new Salir()}));
 	}
 
 	public ArrayList<OpcionDeMenu> getOpcionesDeMenu() {

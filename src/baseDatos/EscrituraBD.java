@@ -179,7 +179,7 @@ public class EscrituraBD {
 		for (Map.Entry <Integer, CuentaBancaria> entry : HM.entrySet()) {
 			val = entry.getValue();									//Extracción de valores de la tabla hash
 			sb.append(entry.getKey() + ';'); 						//Identificador único de la cuenta bancaria
-			sb.append(val.getPropietario() + ';');					//Titular de la cuenta bancaria
+//			sb.append(val.getPropietario() + ';');					//Titular de la cuenta bancaria
 			sb.append(val.getSaldo()+ ';'+ '\n');					//Saldo de la cuenta bancaria y salto de renglón
 		}
 		sb.append("#");				//Indicador de fin de datos

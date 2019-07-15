@@ -13,7 +13,7 @@ public class CambiarPrecio extends OpcionDeMenu {
 		long pre;
 		System.out.println("Ingrese 0 para volver\nIngrese el nombre del producto");
 		nom = br.readLine();
-		comprobNom=  MenuDeConsola.esNumeroEntero(nom); // ver si es un numero el nombre	
+		comprobNom = MenuDeConsola.esLong(nom); // ver si es un numero el nombre	
 		//control de ingreso nombre
 		while(comprobNom !=-1) {
 			//ver si es un 0 para devolverse	
@@ -23,14 +23,14 @@ public class CambiarPrecio extends OpcionDeMenu {
 			else {
 				System.out.println("Ingresar un nombre valido");
 				nom = br.readLine().trim();
-				comprobNom = MenuDeConsola.esNumeroEntero(nom);
+				comprobNom = MenuDeConsola.esLong(nom);
 			}
 		}		
 		System.out.println("Ingrese el nuevo precio");
-		pre =  MenuDeConsola.esNumeroEntero(br.readLine().trim());
+		pre =  MenuDeConsola.esLong(br.readLine().trim());
 		while(pre ==-1) {							
 			System.out.println("Ingresar un precio valido: ");
-			pre = MenuDeConsola.esNumeroEntero(br.readLine().trim());
+			pre = MenuDeConsola.esLong(br.readLine().trim());
 		}
 		//ver si es un 0 para devolverse
 		if (pre==0){ 					

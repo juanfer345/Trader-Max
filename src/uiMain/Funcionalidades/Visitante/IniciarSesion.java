@@ -27,7 +27,7 @@ public class IniciarSesion extends ControlErrorDatosUsuario {
 			
 			//Ingreso de contraseña
 			System.out.print("Contraseña: ");
-			if (MenuDeConsola.esNumeroEntero(contrasenaIngresada = br.readLine().trim()) == 0) {
+			if (MenuDeConsola.esByte(contrasenaIngresada = br.readLine().trim()) == 0) {
 				System.out.println(); return;
 			}
 			

@@ -9,7 +9,6 @@ abstract public class CuentaUsuario extends Cuenta {
 	private CuentaBancaria cuentaBancaria;
 
 	public CuentaUsuario(String nombre, String correo, String password, int cedula) {
-		//Cambiar, para que use el super()
 		super(nombre, correo, password, cedula);
 		cuentaBancaria = new CuentaBancaria(1000000, this);
 	}

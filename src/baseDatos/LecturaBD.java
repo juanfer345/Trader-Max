@@ -198,7 +198,7 @@ public class LecturaBD {
         while (!(Dat = br.readLine().split(";"))[0].equals("#")) {
 	    	val = new CuentaBancaria();
 	    	val.setId(Integer.parseInt(Dat[0]));					//Identificador único de la cuenta bancaria
-	    	val.setPropietario(Dat[1]);								//Titular de la cuenta bancaria
+//	    	val.setPropietario(Dat[1]);								//Titular de la cuenta bancaria
 	    	val.setSaldo(Double.parseDouble(Dat[2]));				//Saldo de la cuenta bancaria
 	    }
 		//Mensaje de confirmación

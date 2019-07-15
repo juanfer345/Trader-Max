@@ -4,8 +4,8 @@ import gestorAplicacion.Usuarios.*;
 
 public class CuentaBancaria {
 	private double saldo;
-	private int id;
-	private String propietario;
+	private int id;		// El id de cuenta bancaria si debería ser el mismo del usuario??
+	private CuentaUsuario propietario;
 
 	public CuentaBancaria(Comprador cuenta) {
 		this(0, cuenta);
@@ -18,7 +18,7 @@ public class CuentaBancaria {
 	public CuentaBancaria(int saldo, CuentaUsuario cuenta) {
 		this.saldo = saldo;
 		this.id = cuenta.getId();
-		this.setPropietario(cuenta.getNombre());
+		this.propietario = cuenta;
 	}
 
 	// Se necesita el constructor por default para la BD (Juanfer)
@@ -34,12 +34,12 @@ public class CuentaBancaria {
 		return cb1.getSaldo();
 	}
 
-	// Generado los set i get de ID y propietario para la base de datos (Juanfer)
+	// Generado los set y get de ID y propietario para la base de datos (Juanfer)
 	public int getId() {return id;}
 
 	public void setId(int id) {this.id = id;}
 
-	public String getPropietario() {return propietario;}
+	public CuentaUsuario getPropietario() {return propietario;}
 
-	public void setPropietario(String propietario) {this.propietario = propietario;}
+	public void setPropietario(CuentaUsuario propietario) {this.propietario = propietario;}
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
+import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.BuscarProducto;
 import uiMain.Funcionalidades.MostrarCatalogo;
@@ -24,13 +25,15 @@ public class Visitante extends Cuenta {
 	}
 	
 	public void setOpcionesDeMenuPredeterminadas() {
-		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new IniciarSesion(), new Registrar(), 
-										  new BuscarProducto(), new MostrarPorCategoria(), new MostrarCatalogo(), new Salir()})));
+		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
+									   new IniciarSesion(), new Registrar(), new BuscarProducto(), 
+									   new MostrarPorCategoria(), new MostrarCatalogo(), new Salir()})));
 	}
 	
 	public ArrayList <OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
-		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {new IniciarSesion(), new Registrar(), 
-				  new BuscarProducto(), new MostrarPorCategoria(), new MostrarCatalogo(), new Salir()}));
+		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
+				   new IniciarSesion(), new Registrar(), new BuscarProducto(), new MostrarPorCategoria(), 
+				   new MostrarCatalogo(), new Salir()}));
 	}
 	
 	public ArrayList <OpcionDeMenu> getOpcionesDeMenu() {
@@ -42,24 +45,25 @@ public class Visitante extends Cuenta {
 	}
 	
 	//Método para registrar usuarios
-	public String Registrarse(byte tipoDeCuenta, String nombreDado, String correoIngresado, int cedulaIngresada, String contrasenaIngresada) {
+	public String registrarse(byte tipoDeCuenta, String nombreDado, String correoIngresado, int cedulaIngresada, String contrasenaIngresada) {
 		
+		Cuenta usuarioActivo = null;
 		HashMap <Integer, ? extends Cuenta> baseDeDatos = null;
 		boolean correoRegistrado = false;
 
 		switch (tipoDeCuenta) {
-			case 1:
-				//Caso A: Registro de un usuario vendedor
-				baseDeDatos = InicializacionAplicacion.getBDCompradores();
-				break;
-			case 2:
-				//Caso B: Registro de un usuario Comprador
-				baseDeDatos = InicializacionAplicacion.getBDVendedores();
-				break;
-			case 3:
-				//Caso C: Registro de un usuario Administrador
-				baseDeDatos = InicializacionAplicacion.getBDAdministradores();
-				break;
+		case 1:
+			//Caso A: Registro de un usuario comprador
+			baseDeDatos = InicializacionAplicacion.getBDCompradores();
+			break;
+		case 2:
+			//Caso B: Registro de un usuario vendedor
+			baseDeDatos = InicializacionAplicacion.getBDVendedores();
+			break;
+		case 3:
+			//Caso C: Registro de un usuario Administrador
+			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
+			break;
 		}
 		
 		//Busqueda de correo en la base de datos seleccionada
@@ -70,23 +74,25 @@ public class Visitante extends Cuenta {
 			
 			switch (tipoDeCuenta) {
 				case 1:
-					//Caso A: Registro de un usuario vendedor
-					InicializacionAplicacion.usuarioActivo = new Comprador(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
-					InicializacionAplicacion.getBDCompradores().put(InicializacionAplicacion.usuarioActivo.getId(), (Comprador) InicializacionAplicacion.usuarioActivo);
+					//Caso A: Registro de un usuario comprador
+					usuarioActivo = new Comprador(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
+					InicializacionAplicacion.getBDCompradores().put(usuarioActivo.getId(), (Comprador) usuarioActivo);
 					break;
 				case 2:
-					//Caso B: Registro de un usuario Comprador
-					InicializacionAplicacion.usuarioActivo = new Vendedor(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
-					InicializacionAplicacion.getBDVendedores().put(InicializacionAplicacion.usuarioActivo.getId(), (Vendedor) InicializacionAplicacion.usuarioActivo);
+					//Caso B: Registro de un usuario vendedor
+					usuarioActivo = new Vendedor(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
+					InicializacionAplicacion.getBDVendedores().put(usuarioActivo.getId(), (Vendedor) usuarioActivo);
 					break;
 				case 3:
 					//Caso C: Registro de un usuario Administrador
-					InicializacionAplicacion.usuarioActivo = new Administrador(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
-					InicializacionAplicacion.getBDAdministradores().put(InicializacionAplicacion.usuarioActivo.getId(), (Administrador) InicializacionAplicacion.usuarioActivo);
+					usuarioActivo = new Administrador(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
+					InicializacionAplicacion.getBDAdministradores().put(usuarioActivo.getId(), (Administrador) usuarioActivo);
 					break;
 			}
+			MenuDeConsola.opcionesUsuarioActivo = usuarioActivo.getOpcionesDeMenu();
+			InicializacionAplicacion.usuarioActivo = usuarioActivo;
     		OpcionDeMenu.controlError = true;
-			return "Registro exitoso, bienvenido a TRADER-MAX " + InicializacionAplicacion.usuarioActivo.getNombre() + ".\n";
+			return "Registro exitoso, bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
 		}
 		else {
 			//Caso B: El correo se encuentra repetido
@@ -110,7 +116,7 @@ public class Visitante extends Cuenta {
 		
 		HashMap <Integer, ? extends Cuenta> baseDeDatos = null;
 		int idcorreoRegistrado;
-
+		
 		switch (tipoDeCuenta) {
 			case 1:
 				//Caso A: Registro de un usuario vendedor
@@ -134,6 +140,7 @@ public class Visitante extends Cuenta {
 			if (baseDeDatos.get(idcorreoRegistrado).getPassword().equals(contrasenaIngresada)) {
 				
 				InicializacionAplicacion.usuarioActivo = baseDeDatos.get(idcorreoRegistrado);
+				MenuDeConsola.opcionesUsuarioActivo = InicializacionAplicacion.usuarioActivo.getOpcionesDeMenu();
 	    		OpcionDeMenu.controlError = true;
 				return "Sesión iniciada correctamente, bienvenido a TRADER-MAX " + InicializacionAplicacion.usuarioActivo.getNombre() + ".\n";
 			}

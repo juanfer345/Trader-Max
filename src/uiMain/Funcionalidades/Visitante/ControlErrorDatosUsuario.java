@@ -19,21 +19,21 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 
 	    //Guardado de mensaje
 		sb.append("\nPor favor elija su tipo de usuario:\n");
-		sb.append("1: Vendedor\n");
-		sb.append("2: Comprador\n");
+		sb.append("1: Comprador\n");
+		sb.append("2: Vendedor\n");
 		sb.append("3: Administrador\n");
 		sb.append("=> ");
 		
 		while (true) {
 			//Impresión de mensaje y recepción de datos
 			System.out.print(sb);
-			tipoDeCuenta = (byte) MenuDeConsola.esNumeroEntero(br.readLine().trim());
+			tipoDeCuenta = MenuDeConsola.esByte(br.readLine().trim());
 			
 			//Control de error
 			if (tipoDeCuenta != 0) {
 				if (tipoDeCuenta >= 1 && tipoDeCuenta  <= 3) {return tipoDeCuenta;}
 				else {
-					System.out.println("Por favor ingrese un número entero en el rango [1,2]");
+					System.out.println("Por favor ingrese un número entero en el rango [1,3]");
 				}
 				if (!controlError) System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
 			}
@@ -50,7 +50,7 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 			//Impresión de mensaje y recepción de datos
 			System.out.print("Nombre: ");
 			nombreIngresado = br.readLine().trim();
-			comprobacion = (byte) MenuDeConsola.esNumeroEntero(nombreIngresado);
+			comprobacion = (byte) MenuDeConsola.esByte(nombreIngresado);
 			
 			//Control de error
 			if (comprobacion != 0) {
@@ -73,7 +73,7 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 			//Impresión de mensaje y recepción de datos
 			System.out.print("Correo: ");
 			correoIngresado = br.readLine().trim();
-			comprobacion = (byte) MenuDeConsola.esNumeroEntero(correoIngresado);
+			comprobacion = (byte) MenuDeConsola.esByte(correoIngresado);
 			
 			//Control de error
 			if (comprobacion != 0) {
@@ -101,7 +101,7 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 		while (true) {
 			//Impresión de mensaje y recepción de datos
 			System.out.print("Cedula: ");
-			cedulaIngresada = (int) MenuDeConsola.esNumeroEntero(br.readLine().trim());
+			cedulaIngresada = MenuDeConsola.esInt(br.readLine().trim());
 			
 			//Control de error
 			if (cedulaIngresada != 0) {
@@ -124,7 +124,7 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 			//Impresión de mensaje y recepción de datos
 			System.out.print("Confirmar contraseña: ");
 			contrasenaComprobada = br.readLine().trim();
-			comprobacion = (byte) MenuDeConsola.esNumeroEntero(contrasenaComprobada);
+			comprobacion = (byte) MenuDeConsola.esByte(contrasenaComprobada);
 			
 			//Control de error
 			if (comprobacion != 0) {

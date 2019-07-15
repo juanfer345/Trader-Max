@@ -20,7 +20,7 @@ public class MostrarCatalogo extends OpcionDeMenu {
 		while (!controlError) {
 			
 			System.out.println(sb);
-			comprobOpc = (byte) MenuDeConsola.esNumeroEntero(br.readLine().trim());
+			comprobOpc = MenuDeConsola.esByte(br.readLine().trim());
 			
 			if (comprobOpc != 0) {
 				if (comprobOpc == -1) {

@@ -15,13 +15,13 @@ public class Vendedor extends CuentaUsuario {
 
 	public Vendedor() {
 		super();
-		this.totalDeOpcionesDefault = 4;
+		totalDeOpcionesDefault = 4;
 		setOpcionesDeMenuPredeterminadas();
 	}
 
 	public Vendedor(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
-		this.totalDeOpcionesDefault = 4;
+		totalDeOpcionesDefault = 4;
 		setOpcionesDeMenuPredeterminadas();
 	}
 

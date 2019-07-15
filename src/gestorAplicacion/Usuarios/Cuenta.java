@@ -22,11 +22,11 @@ public abstract class Cuenta {
 	Cuenta(){}
 	
 	Cuenta(String nombre, String correo, String password, int cedula) {
-		this.setNombre(nombre);
-		this.setCorreo(correo);
-		this.setPassword(password);
-		this.setCedula(cedula);
-		id = contador++;
+		this.nombre = nombre;
+		this.correo = correo;
+		this.password = password;
+		this.cedula = cedula;
+		this.id = contador++;
 		totalCuentas++;
 	}
 	

@@ -27,12 +27,12 @@ public class MostrarHistorial extends OpcionDeMenu {
 
 			System.out.println(sb);
 			opcion = br.readLine().trim();
-			comprobOpc = (int) MenuDeConsola.esNumeroEntero(opcion);
+			comprobOpc = MenuDeConsola.esInt(opcion);
 
 			while (comprobOpc == -1) {
 				System.out.println("El dato que ingreso es invalido, vuelva a intentarlo");
 				opcion = br.readLine().trim();
-				comprobOpc = (int) MenuDeConsola.esNumeroEntero(opcion);
+				comprobOpc = (int) MenuDeConsola.esInt(opcion);
 			}
 			if (comprobOpc == 0) {
 				// ver si es un 0 para devolverse

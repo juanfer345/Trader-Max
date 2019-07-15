@@ -9,24 +9,19 @@ public class CarritoDeCompras {
 	private int totalProductos;
 	private double precioTotal;
 	private Comprador titular;
-	public HashMap<Integer, Integer> productos = new HashMap<>();
-	// Carrito {Codigo, Cantidad};
-	private int id;
+	public HashMap <Integer, Integer> productos;
+	private int id;		//para que es este id?
 
-	public CarritoDeCompras() {
+	public CarritoDeCompras() {}
+
+	public CarritoDeCompras(Comprador comp) {
+		titular = comp;
+		productos = new HashMap <> ();
 	}
 
-	public CarritoDeCompras(Comprador c) {
-		this.titular = c;
-	}
+	public int getTotalproductos() {return totalProductos;}
 
-	public int getTotalproductos() {
-		return totalProductos;
-	}
-
-	public double getPrecioTotal() {
-		return precioTotal;
-	}
+	public double getPrecioTotal() {return precioTotal;}
 
 	public String comprarProductos() {
 		double total = 0;
@@ -94,25 +89,16 @@ public class CarritoDeCompras {
 		}
 	}
 
-	public int getId() {
-		return id;
-	}
+	public int getId() {return id;}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+	public void setId(int id) {this.id = id;}
 
-	public void setTotalproductos(int totalproductos) {
-		this.totalProductos = totalproductos;
-	}
+	public void setTotalproductos(int totalproductos) {this.totalProductos = totalproductos;}
 
-	public void setPrecioTotal(double precioTotal) {
-		this.precioTotal = precioTotal;
-	}
+	public void setPrecioTotal(double precioTotal) {this.precioTotal = precioTotal;}
 
 	@Override
 	public String toString() {
 		return "CarritoDeCompras [totalProductos=" + totalProductos + ", precioTotal=" + precioTotal + "]";
 	}
-
 }

@@ -25,7 +25,7 @@ public class MostrarPorCategoria extends OpcionDeMenu { // opcion 3
 		    
 			//Impresión de mensaje y recepción de datos
 			System.out.print(sb);
-			seleccion = (byte) MenuDeConsola.esNumeroEntero(br.readLine().trim());
+			seleccion = MenuDeConsola.esByte(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
 			if (seleccion != 0) {
