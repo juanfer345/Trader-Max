@@ -85,11 +85,6 @@ public class Producto {
 		return mostrar;
 	}
 
-	public String anadirResena(Resena res) {
-
-		return "";
-	}
-
 	@Override
 	public String toString() {
 		return "Producto [Nombre: " + nombreProducto + ", Categoria: " + categoria + ", Precio: " + precio

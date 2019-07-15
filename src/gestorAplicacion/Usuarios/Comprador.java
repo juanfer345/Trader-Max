@@ -104,7 +104,7 @@ public class Comprador extends CuentaUsuario {
 		this.carrito = carrito;
 	}
 
-	public String añadirReseña(int codigo, Resena r) {
+	public String anadirResena(int codigo, Resena r) {
 		if (historial.containsKey(codigo)) {
 			Producto p = historial.get(codigo);
 			int indice = p.getResenas().size();
