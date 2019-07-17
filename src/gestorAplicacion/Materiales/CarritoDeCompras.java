@@ -6,17 +6,19 @@ import gestorAplicacion.Usuarios.Comprador;
 import gestorAplicacion.Usuarios.Vendedor;
 
 public class CarritoDeCompras {
+
 	private int totalProductos;
 	private double precioTotal;
 	private Comprador titular;
-	public HashMap <Integer, Integer> productos;
-	private int id;		//para que es este id?
+	public HashMap<Integer, Integer> productos;
+	private int id; // para que es este id?
 
-	public CarritoDeCompras() {}
+	public CarritoDeCompras() {
+	}
 
 	public CarritoDeCompras(Comprador comp) {
 		titular = comp;
-		productos = new HashMap <> ();
+		productos = new HashMap<>();
 	}
 
 	public int getTotalproductos() {return totalProductos;}
@@ -67,7 +69,8 @@ public class CarritoDeCompras {
 	}
 
 	public String quitarProducto(int codigo, int cantidad) {
-		if (cantidad > 0) {
+
+		if (cantidad > 0 && codigo > 0) {
 			if (productos.containsKey(codigo)) {
 				if (productos.get(codigo) >= cantidad) {
 					productos.put(codigo, productos.get(codigo) - cantidad);
@@ -85,7 +88,7 @@ public class CarritoDeCompras {
 				return "El producto no está en el carrito";
 			}
 		} else {
-			return "La cantidad ingresada debe ser mayor a cero";
+			return "Tanto la cantidad como el codigo ingresado deben ser mayor a cero";
 		}
 	}
 
@@ -93,9 +96,13 @@ public class CarritoDeCompras {
 
 	public void setId(int id) {this.id = id;}
 
-	public void setTotalproductos(int totalproductos) {this.totalProductos = totalproductos;}
+	public void setTotalproductos(int totalproductos) {
+		this.totalProductos = totalproductos;
+	}
 
-	public void setPrecioTotal(double precioTotal) {this.precioTotal = precioTotal;}
+	public void setPrecioTotal(double precioTotal) {
+		this.precioTotal = precioTotal;
+	}
 
 	@Override
 	public String toString() {

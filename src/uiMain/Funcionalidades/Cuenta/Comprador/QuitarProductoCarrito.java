@@ -11,55 +11,63 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 	@Override
 	public void ejecutar() throws NumberFormatException, IOException {
 
-		sb.append("\n Para devolverse al menú, ingrese el numero '0'");
-		sb.append("\n Si alguno de los 2 datos ingresados es '0', se saldrá de esta opcion");
+		System.out.println("\nUsted ha elegido la opcion para quitar un producto de su carrito. ");
 
 		controlError = false;
 		String codigo, cantidad;
 		int compCod, compCant;
 
-		while (!controlError) {
+		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
+		if (!comp.getCarrito().productos.isEmpty()) {
+			
+			sb.append("\nNOTA: se puede cancelar la operación ingresando en cualquiera de los dos datos el número '0'");
 
-			System.out.println(sb);
-			System.out.println("Ingrese el codigo del producto que desea eliminar: ");
-			codigo = br.readLine().trim();
-			compCod =  MenuDeConsola.esInt(codigo);
-			System.out.println("Ingrese la cantidad de elementos que desea quitar: ");
-			cantidad = br.readLine().trim();
-			compCant = (int) MenuDeConsola.esInt(cantidad);
-
-			while (compCod == -1) {
-				System.out.println("El dato que ingreso como codigo es invalido, vuelva a intentarlo");
-				System.out.println("Ingrese el codigo del producto que desea eliminar: ");
+			while (!controlError) {
+				System.out.println(sb);
+				System.out.print("\nIngrese el codigo del producto que desea eliminar => ");
 				codigo = br.readLine().trim();
-				compCod = (int) MenuDeConsola.esInt(codigo);
-			}
-			while (compCant == -1) {
-				System.out.println("El dato que ingreso como cantidad es invalido, vuelva a intentarlo");
-				System.out.println("Ingrese la cantidad de elementos que desea quitar: ");
+				compCod = MenuDeConsola.esInt(codigo);
+				System.out.print("\nIngrese la cantidad de elementos que desea quitar => ");
 				cantidad = br.readLine().trim();
 				compCant = (int) MenuDeConsola.esInt(cantidad);
-			}
-			if (compCod == 0 || compCant == 0) {
-				// ver si alguna de las dos es 0 para devolverse
-				controlError = true;
-			} else {
-				// Si el usuario no quiere salir, continua el proceso
-				Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
-				String str = comp.getCarrito().quitarProducto(compCod, compCant);
 
-				if (str.equals("La cantidad ingresada excede la existente")
-						|| str.equals("El producto no está en el carrito")
-						|| str.equals("La cantidad ingresada debe ser mayor a cero")) {
-					System.out.println(str);
-					System.out.println("Repita el proceso con datos correctos");
-					// Aquí vuelve al inicio, hace de nuevo el control :)
-				} else {
-					System.out.println(str);
+				while (compCod == -1) {
+					System.out.println("\nEl dato que ingreso como codigo es invalido, vuelva a intentarlo.");
+					System.out.print("Ingrese el codigo del producto que desea eliminar => ");
+					codigo = br.readLine().trim();
+					compCod = (int) MenuDeConsola.esInt(codigo);
+				}
+				while (compCant == -1) {
+					System.out.println("\nEl dato que ingreso como cantidad es invalido, vuelva a intentarlo.");
+					System.out.print("Ingrese la cantidad de elementos que desea quitar => ");
+					cantidad = br.readLine().trim();
+					compCant = (int) MenuDeConsola.esInt(cantidad);
+				}
+				if (compCod == 0 || compCant == 0) {
+					// ver si alguna de las dos es 0 para devolverse
 					controlError = true;
+					System.out.println(" ");
+				} else {
+					// Si el usuario no quiere salir, continua el proceso
+					String str = comp.getCarrito().quitarProducto(compCod, compCant);
+
+					if (str.equals("La cantidad ingresada excede la existente")
+							|| str.equals("El producto no está en el carrito")
+							|| str.equals("Tanto la cantidad como el codigo ingresado deben ser mayor a cero")) {
+						System.out.println("\n" + str);
+						System.out.println("Repita el proceso con datos correctos");
+						// Aquí vuelve al inicio, hace de nuevo el control :)
+					} else {
+						System.out.println("\n" + str + "\n");
+						controlError = true;
+					}
 				}
 			}
+		} else {
+			System.out.println("Su carrito de compras esta vacio, no puede quitar productos. \n");
+			controlError = true;
 		}
+
 	}
 
 	@Override
