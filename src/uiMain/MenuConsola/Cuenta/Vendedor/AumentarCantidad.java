@@ -35,7 +35,7 @@ public class AumentarCantidad extends OpcionDeMenu{
 		System.out.println();
 		System.out.println("Ingrese el nombre del producto: ");
 		nombre = br.readLine();
-		comprobNom = esint(nombre); // ver si es un numero el nombre
+		comprobNom = esInt(nombre); // ver si es un numero el nombre
 		//control de ingreso nombre
 		while(comprobNom !=-1) {
 			//ver si es un 0 para devolverse	
@@ -52,7 +52,7 @@ public class AumentarCantidad extends OpcionDeMenu{
 		cantidad = esInt(br.readLine().trim());
 		while(cantidad ==-1) {							
 			System.out.println("Ingresar una cantidad valida: ");
-			cantidad = esLong(br.readLine().trim());
+			cantidad = esInt(br.readLine().trim());
 		}
 		//ver si es un 0 para devolverse
 		if (cantidad==0){ 					

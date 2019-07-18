@@ -18,7 +18,7 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 		int compCod, compCant;
 
 		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
-		if (!comp.getCarrito().productos.isEmpty()) {
+		if (!comp.getCarrito().getProductos().isEmpty()) {
 			
 			sb.append("\nNOTA: se puede cancelar la operación ingresando en cualquiera de los dos datos el número '0'");
 

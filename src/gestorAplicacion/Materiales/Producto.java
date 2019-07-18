@@ -23,17 +23,7 @@ public class Producto {
 	public Producto(int codigoProducto, String nombreProducto, String categoria, double precio, int cantidad) {
 		this.nombreProducto = nombreProducto;
 		this.categoria = categoria;
-		this.codigoProducto = cont++;
-	}
-
-	public Vendedor getVendedor() {
-		return this.vendedor;
-	}
-
-	public void setPrecio(double precio) {
-		this.precio = precio;
-		this.id = codigoProducto;
-		this.cantidad = cantidad;
+		this.id = contador++;
 	}
 	
 	//Constructor para productos nuevos
@@ -53,7 +43,11 @@ public class Producto {
 	public Vendedor getVendedor() {return vendedor;}
 
 	public double getPrecio() {return precio;}
-	public void setPrecio(double precio) {this.precio = precio;}
+	public void setPrecio(double precio) {
+		this.precio = precio;
+		this.id = id;
+		this.cantidad = cantidad;
+	}
 
 	public String getNombreProducto() {return nombreProducto;}
 	public void setNombreProducto(String nombreProducto) {this.nombreProducto = nombreProducto;}
@@ -69,12 +63,6 @@ public class Producto {
     		aux = idResenas.poll();
     		resenas.put(aux, InicializacionAplicacion.getBDResenas().get(aux));
     	}
-	public HashMap<Integer, Resena> getResenas() {
-		return this.Resenas;
-	}
-
-	public int getCodigoProducto() {
-		return this.codigoProducto;
 	}
 	
 	public int getId() {return id;}
