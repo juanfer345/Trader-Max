@@ -1,6 +1,10 @@
 package uiMain.Funcionalidades.Cuenta.Vendedor;
 
 import java.io.IOException;
+import java.util.Map;
+
+import gestorAplicacion.InicializacionAplicacion;
+import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
@@ -11,8 +15,27 @@ public class CambiarPrecio extends OpcionDeMenu {
 		String nom;
 		long comprobNom;
 		long pre;
+		int cantidadDeproductos=0;
+		//imprimir la lista de sus productos
+		System.out.println("Sus productos en el catalogo: ");
+		System.out.println ();
+		for (Map.Entry<Integer, Producto> entry : Vendedor.catalogo.entrySet()) {
+			Producto iteradorCatalogo = entry.getValue();
+			if (iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
+				System.out.println("-"+ iteradorCatalogo.getNombreProducto()+" precio: "+iteradorCatalogo.getPrecio());
+				cantidadDeproductos++;
+			}
+
+		}
+		//comprobar que si tenga productos propios en el catalogo
+		if (cantidadDeproductos ==0) {
+			System.out.println("Usted no tiene producos en el catalogo");
+			System.out.println();
+			return;
+		}
+		System.out.println();
 		System.out.println("Ingrese 0 para volver\nIngrese el nombre del producto");
-		nom = br.readLine();
+		nom = br.readLine().trim();
 		comprobNom = MenuDeConsola.esLong(nom); // ver si es un numero el nombre	
 		//control de ingreso nombre
 		while(comprobNom !=-1) {

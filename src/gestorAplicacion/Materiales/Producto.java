@@ -30,15 +30,15 @@ public class Producto {
 	}
 
 	public int getCantidad() {
-		return cantidad;
+		return this.cantidad;
 	}
 
 	public Vendedor getVendedor() {
-		return vendedor;
+		return this.vendedor;
 	}
 
 	public double getPrecio() {
-		return precio;
+		return this.precio;
 	}
 
 	public void setPrecio(double precio) {
@@ -50,7 +50,7 @@ public class Producto {
 	}
 
 	public String getNombreProducto() {
-		return nombreProducto;
+		return this.nombreProducto;
 	}
 
 	public void setNombreProducto(String nombreProducto) {
@@ -58,7 +58,7 @@ public class Producto {
 	}
 
 	public String getCategoria() {
-		return categoria;
+		return this.categoria;
 	}
 
 	public void setCategoria(String categoria) {
@@ -66,11 +66,11 @@ public class Producto {
 	}
 
 	public HashMap<Integer, Resena> getResenas() {
-		return Resenas;
+		return this.Resenas;
 	}
 
 	public int getCodigoProducto() {
-		return codigoProducto;
+		return this.codigoProducto;
 	}
 
 	public void setCodigoProducto(int codigoProducto) {

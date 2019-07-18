@@ -128,7 +128,7 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 			
 			//Control de error
 			if (comprobacion != 0) {
-				if (comprobacion == -1 && contrasenaComprobada.equals(contrasenaIngresada))  {return true;}
+				if (contrasenaComprobada.equals(contrasenaIngresada))  {return true;}
 				else {
 					System.out.println("\nLas contraseñas no coinciden.");
 				}
