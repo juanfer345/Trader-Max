@@ -8,40 +8,40 @@ import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.Salir;
-import uiMain.Funcionalidades.Cuenta.CerrarSesion;
-import uiMain.Funcionalidades.Cuenta.Vendedor.ModificarCantidad;
-import uiMain.Funcionalidades.Cuenta.Vendedor.CambiarPrecio;
-import uiMain.Funcionalidades.Cuenta.Vendedor.EliminarProductoCatalogo;
-import uiMain.Funcionalidades.Cuenta.Vendedor.SubirProducto;
+import uiMain.MenuConsola.Cuenta.CerrarSesion;
+import uiMain.MenuConsola.Cuenta.Vendedor.CambiarPrecio;
+import uiMain.MenuConsola.Cuenta.Vendedor.EliminarProductoCatalogo;
+import uiMain.MenuConsola.Cuenta.Vendedor.ModificarCantidad;
+import uiMain.MenuConsola.Cuenta.Vendedor.SubirProducto;
 
-public class Vendedor extends CuentaUsuario {
+public class Vendedor extends CuentaConBanco {
 
-	public Vendedor() {
-		super();
-		totalDeOpcionesDefault = 4;
-		setOpcionesDeMenuPredeterminadas();
+	private static final int totalDeOpcionesDefault = 6;
+	
+	//Constructor para usuarios existentes
+	public Vendedor(int idCuenta, String nombre, String correo, String password, int cedula) {
+		super(idCuenta, nombre, correo, password, cedula);
 	}
 
+	//Constructor para usuarios nuevos
 	public Vendedor(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
-		totalDeOpcionesDefault = 4;
-		setOpcionesDeMenuPredeterminadas();
 	}
-
-	public void setOpcionesDeMenuPredeterminadas() {
-		Cuenta.menu.setOpcionesActivas(new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] {
-				new SubirProducto(), new EliminarProductoCatalogo(), new ModificarCantidad(),new CambiarPrecio(),new CerrarSesion(),new Salir() })));
+	
+	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
+				new ModificarCantidad(), new CambiarPrecio(), new EliminarProductoCatalogo(), 
+				new SubirProducto(), new CerrarSesion(), new Salir() }));
 	}
-
-	public ArrayList<OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
-		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new SubirProducto(),
-				new EliminarProductoCatalogo(),new ModificarCantidad(),new CambiarPrecio(), new CerrarSesion(), new Salir() }));
+	
+	public int getTotalDeOpcionesDefault() {
+		return totalDeOpcionesDefault;
 	}
-
+	
 	public static void subirProducto(Vendedor vendedor, String nombreProducto, String categoria, double precio,
 			int cantidad) {
-		Producto p = new Producto(vendedor, precio, cantidad, nombreProducto, categoria);
-		catalogo.put(p.getCodigoProducto(), p);
+		Producto p = new Producto(nombreProducto, categoria, vendedor, precio, cantidad);
+		catalogo.put(p.getId(), p);
 	}
 
 	public static String cambiarPrecio(String nombre, double precio) {
@@ -65,7 +65,7 @@ public class Vendedor extends CuentaUsuario {
 		}
 	}
 
-	public static String modificarCantidad(String nombre, int valorOperar,String operador) {
+	public static String ModificarCantidad(String nombre, int valorOperar,String operador) {
 		Producto comprobarProducto = null;
 		//comprobar que el producto esta en el catalogo
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
@@ -99,12 +99,11 @@ public class Vendedor extends CuentaUsuario {
 		}
 	}
 
-
 	public String eliminarProductoCatalogo(int cod) {
 		Producto mens = null;
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
 			Producto p = entry.getValue();
-			if (p.getCodigoProducto() == cod) {
+			if (p.getId() == cod) {
 				mens = p;
 				break;
 			}
@@ -122,10 +121,4 @@ public class Vendedor extends CuentaUsuario {
 			}
 		}
 	}
-
-	@Override
-	public ArrayList<OpcionDeMenu> getOpcionesDeMenu() {
-		return menu.getOpcionesActivas();
-	}
-
 }
