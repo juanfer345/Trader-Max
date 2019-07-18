@@ -1,8 +1,7 @@
-package uiMain.Funcionalidades.Visitante;
+package uiMain.MenuConsola.Visitante;
 
 import java.io.IOException;
 
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
@@ -27,7 +26,7 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 		while (true) {
 			//Impresión de mensaje y recepción de datos
 			System.out.print(sb);
-			tipoDeCuenta = MenuDeConsola.esByte(br.readLine().trim());
+			tipoDeCuenta = esByte(br.readLine().trim());
 			
 			//Control de error
 			if (tipoDeCuenta != 0) {
@@ -50,7 +49,7 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 			//Impresión de mensaje y recepción de datos
 			System.out.print("Nombre: ");
 			nombreIngresado = br.readLine().trim();
-			comprobacion = (byte) MenuDeConsola.esByte(nombreIngresado);
+			comprobacion = esByte(nombreIngresado);
 			
 			//Control de error
 			if (comprobacion != 0) {
@@ -65,25 +64,38 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 	}
 	
 	String controlCorreo() throws IOException {
-		
+
+		String [] correoDividido;
 		String correoIngresado;
 		byte comprobacion;
+		boolean ingresoCorrecto = false;
 		
 		while (true) {
 			//Impresión de mensaje y recepción de datos
 			System.out.print("Correo: ");
 			correoIngresado = br.readLine().trim();
-			comprobacion = (byte) MenuDeConsola.esByte(correoIngresado);
+			comprobacion = esByte(correoIngresado);
 			
-			//Control de error
+			//Condicional de cancelación
 			if (comprobacion != 0) {
+				//Condicional de que se ha ingresado una cadena
 				if (comprobacion == -1)  {
-					if (correoIngresado.contains("@") && correoIngresado.contains(".") && correoIngresado.length() >= 7) {
-						return correoIngresado;
+					//Condicional de que el correo contiene una @ y un .
+					if (correoIngresado.contains("@") && correoIngresado.contains(".")) {
+						correoDividido = correoIngresado.split("@");
+						//Condicional de que se tiene algo antes del @
+						if (correoDividido.length > 1) {
+							correoDividido = correoDividido[1].split("\\.");
+							//Condicional de que hay algo antes y despues del .
+							if (correoDividido.length > 1) {
+								ingresoCorrecto = true;
+							}
+						}
 					}
-					else {
-						System.out.println("Ingresar un correo valido de la forma: 'ejemplo@dirección.com'");
-					}
+					
+					//Resultado según ingreso
+					if (ingresoCorrecto) {return correoIngresado;}
+					else {System.out.println("Ingresar un correo valido de la forma: 'ejemplo@dirección.com'");}
 				}
 				else {
 					System.out.println("\nSe está ingresando un número en lugar de un correo.");
@@ -101,7 +113,7 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 		while (true) {
 			//Impresión de mensaje y recepción de datos
 			System.out.print("Cedula: ");
-			cedulaIngresada = MenuDeConsola.esInt(br.readLine().trim());
+			cedulaIngresada = esInt(br.readLine().trim());
 			
 			//Control de error
 			if (cedulaIngresada != 0) {
@@ -124,7 +136,7 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 			//Impresión de mensaje y recepción de datos
 			System.out.print("Confirmar contraseña: ");
 			contrasenaComprobada = br.readLine().trim();
-			comprobacion = (byte) MenuDeConsola.esByte(contrasenaComprobada);
+			comprobacion = esByte(contrasenaComprobada);
 			
 			//Control de error
 			if (comprobacion != 0) {

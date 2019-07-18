@@ -1,8 +1,8 @@
 package uiMain.Funcionalidades;
 
 import java.io.IOException;
+
 import gestorAplicacion.InicializacionAplicacion;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class Salir extends OpcionDeMenu {
@@ -23,7 +23,7 @@ public class Salir extends OpcionDeMenu {
 			
 		    //Ingreso de valores y control de error de ingreso de valores no numéricos 
 			System.out.print(sb);
-			seleccion = MenuDeConsola.esByte(br.readLine().trim());
+			seleccion = esByte(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
 			System.out.println(InicializacionAplicacion.usuarioActivo.salir(seleccion));

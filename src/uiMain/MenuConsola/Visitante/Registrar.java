@@ -1,11 +1,10 @@
-package uiMain.Funcionalidades.Visitante;
+package uiMain.MenuConsola.Visitante;
 
 import java.io.IOException;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Visitante;
-import uiMain.MenuDeConsola;
 
 public class Registrar extends ControlErrorDatosUsuario {
 	
@@ -33,7 +32,7 @@ public class Registrar extends ControlErrorDatosUsuario {
 		
 		//Control de ingreso de contraseña
 		System.out.print("Contraseña: ");
-		if (MenuDeConsola.esByte(contrasenaIngresada = br.readLine().trim()) == 0) {
+		if (esByte(contrasenaIngresada = br.readLine().trim()) == 0) {
 			System.out.println(); 
 			return;
 		}
@@ -44,7 +43,7 @@ public class Registrar extends ControlErrorDatosUsuario {
 			while (true) {
 				System.out.print("Contraseña secreta de administradores: ");
 				String contrasenaSecreta;
-				if (MenuDeConsola.esByte(contrasenaSecreta = br.readLine().trim()) != 0) {
+				if (esByte(contrasenaSecreta = br.readLine().trim()) != 0) {
 					if (contrasenaSecreta.equals(Administrador.getCodigoSecreto())) {
 						break;
 					}

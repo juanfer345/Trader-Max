@@ -1,4 +1,4 @@
-package uiMain.Funcionalidades.Cuenta.Administrador;
+package uiMain.MenuConsola.Cuenta.Administrador;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Administrador;

@@ -1,26 +1,35 @@
 package gestorAplicacion.Usuarios;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
+
 import gestorAplicacion.Materiales.Producto;
 import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public abstract class Cuenta {
 
-	public static HashMap <Integer, Producto> catalogo = new HashMap <> ();
-	protected static MenuDeConsola menu = new MenuDeConsola();
+	public static HashMap <Integer, Producto> catalogo = new HashMap<>();
+	ArrayList <OpcionDeMenu> menu;
 	protected static ArrayList <OpcionDeMenu> cambioOpDeMen;
-	protected int totalDeOpcionesDefault;
 	private String nombre, correo, password;
 	public int id;
 	private int cedula;
-	static protected int contador;	//realmente hace falta este atributo??
-	static int totalCuentas;		//no seria menos enredado borrarlo y sacarle el tamaño a las tablas hash cada vez que se desee saber el total de las cuentas?
+	static int contador;
+	static int totalCuentas;
 	
-	Cuenta(){}
+	//Constructor para usuarios existentes	
+	public Cuenta(int id, String nombre, String correo, String password, int cedula) {
+		this.id = id;
+		this.nombre = nombre;
+		this.correo = correo;
+		this.password = password;
+		this.cedula = cedula;
+	}
 	
+	//Constructor para usuarios nuevos
 	Cuenta(String nombre, String correo, String password, int cedula) {
 		this.nombre = nombre;
 		this.correo = correo;
@@ -28,34 +37,52 @@ public abstract class Cuenta {
 		this.cedula = cedula;
 		this.id = contador++;
 		totalCuentas++;
+		setMenuPredeterminado();
 	}
 	
-	public String getNombre() {return nombre;}
+	public Cuenta() {setMenuPredeterminado();}
 	
+	public String getNombre() {return nombre;}
 	public void setNombre(String nombre) {this.nombre = nombre;}
 	
 	public String getCorreo() {return correo;}
-	
 	public void setCorreo(String correo) {this.correo = correo;}
 	
 	public int getId() {return id;}
-	
 	public void setId(int id) {this.id = id;}
 	
 	public int getCedula() {return cedula;}
-	
 	public void setCedula(int cedula) {this.cedula = cedula;}
 	
 	public String getPassword() {return password;}
-	
 	public void setPassword(String password) {this.password = password;}
 		
-	public abstract ArrayList <OpcionDeMenu> getOpcionesDeMenu();
+	public static int getTotalCuentas() {return totalCuentas;}
+	public static void setTotalCuentas(int totalCuentas) {Cuenta.totalCuentas = totalCuentas;}
 	
-	abstract void setOpcionesDeMenuPredeterminadas();
-	abstract ArrayList <OpcionDeMenu> getOpcionesDeMenuPredeterminadas();
+	public static void setMaxID(int contador) {
+		Cuenta.contador = contador + 1;
+	}
 	
-	//Comando para salir de la aplicación
+	public ArrayList <OpcionDeMenu> getMenu(){
+		return menu;
+	};
+	
+	public void setMenu(Deque <Integer> idOpciones) {
+		ArrayList<OpcionDeMenu> menuTotal = OpcionDeMenu.getTodasLasOpciones();
+		menu = new ArrayList<>();
+		while (!idOpciones.isEmpty()) {
+			menu.add(menuTotal.get(idOpciones.poll()));
+		}
+	}
+	
+	abstract ArrayList<OpcionDeMenu> getMenuPredeterminado();
+	
+	void setMenuPredeterminado() {
+		menu = getMenuPredeterminado();
+	};
+	
+	//Método para salir de la aplicación
 	public String salir (byte seleccion) {
 		if (seleccion == 1) {
 			OpcionDeMenu.controlError = true; 
@@ -171,10 +198,6 @@ public abstract class Cuenta {
 			OpcionDeMenu.controlError = true;
 			return "El catálogo se encuentra vacío.\n";
 		}
-	}
-
-	public int getTotalDeOpcionesDefault() {
-		return totalDeOpcionesDefault;
 	}
 
 	public static ArrayList<OpcionDeMenu> getCambioOpDeMen() {

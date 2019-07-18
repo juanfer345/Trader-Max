@@ -1,13 +1,11 @@
-package uiMain.Funcionalidades.Cuenta.Administrador;
+package uiMain.MenuConsola.Cuenta.Administrador;
 
 import java.io.IOException;
-
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
-public class MostrarUsuario extends OpcionDeMenu {
+public class MostrarMenu extends OpcionDeMenu {
 	public void ejecutar() throws NumberFormatException, IOException {
 		
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
@@ -15,7 +13,7 @@ public class MostrarUsuario extends OpcionDeMenu {
 	    byte tipoUsuario;
 
 	    //Guardado de mensaje principal
-		sb.append("Elija el tipo de cuenta de la cual desea obtener información:\n");
+		sb.append("Elija el tipo de cuenta de la cual desea ver sus opciones de menú:\n");
 		sb.append("1: Comprador\n");
 		sb.append("2: Vendedor\n");
 		sb.append("=> ");
@@ -37,8 +35,8 @@ public class MostrarUsuario extends OpcionDeMenu {
 					System.out.print("=> ");
 					idUsuario = Integer.parseInt(br.readLine().trim());
 					
-					//Mostrado de información del usuario
-					System.out.println(usuario.mostrarUsuario(idUsuario, tipoUsuario));
+					//Mostrado de opciones de menú del usuario
+					System.out.println(usuario.mostrarOpcionesDeMenu(idUsuario, tipoUsuario));
 				}
 			}
 			else {
@@ -50,5 +48,5 @@ public class MostrarUsuario extends OpcionDeMenu {
 	}
 	
 	@Override
-	public String toString() {return "Mostrar información de usuario";}
+	public String toString() {return "Mostrar menú";}
 }

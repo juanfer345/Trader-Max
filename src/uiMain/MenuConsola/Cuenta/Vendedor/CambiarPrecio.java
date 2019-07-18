@@ -1,4 +1,4 @@
-package uiMain.Funcionalidades.Cuenta.Vendedor;
+package uiMain.MenuConsola.Cuenta.Vendedor;
 
 import java.io.IOException;
 import java.util.Map;
@@ -6,7 +6,6 @@ import java.util.Map;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Vendedor;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class CambiarPrecio extends OpcionDeMenu {
@@ -35,8 +34,8 @@ public class CambiarPrecio extends OpcionDeMenu {
 		}
 		System.out.println();
 		System.out.println("Ingrese 0 para volver\nIngrese el nombre del producto");
-		nom = br.readLine().trim();
-		comprobNom = MenuDeConsola.esLong(nom); // ver si es un numero el nombre	
+		nom = br.readLine();
+		comprobNom = esLong(nom); // ver si es un numero el nombre
 		//control de ingreso nombre
 		while(comprobNom !=-1) {
 			//ver si es un 0 para devolverse	
@@ -46,14 +45,14 @@ public class CambiarPrecio extends OpcionDeMenu {
 			else {
 				System.out.println("Ingresar un nombre valido");
 				nom = br.readLine().trim();
-				comprobNom = MenuDeConsola.esLong(nom);
+				comprobNom = esLong(nom);
 			}
 		}		
 		System.out.println("Ingrese el nuevo precio");
-		pre =  MenuDeConsola.esLong(br.readLine().trim());
+		pre =  esLong(br.readLine().trim());
 		while(pre ==-1) {							
 			System.out.println("Ingresar un precio valido: ");
-			pre = MenuDeConsola.esLong(br.readLine().trim());
+			pre = esLong(br.readLine().trim());
 		}
 		//ver si es un 0 para devolverse
 		if (pre==0){ 					
