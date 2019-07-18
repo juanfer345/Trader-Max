@@ -17,7 +17,7 @@ import uiMain.MenuConsola.Cuenta.Vendedor.SubirProducto;
 public class Vendedor extends CuentaConBanco {
 
 	private static final int totalDeOpcionesDefault = 6;
-	
+
 	//Constructor para usuarios existentes
 	public Vendedor(int idCuenta, String nombre, String correo, String password, int cedula) {
 		super(idCuenta, nombre, correo, password, cedula);
@@ -27,17 +27,17 @@ public class Vendedor extends CuentaConBanco {
 	public Vendedor(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
 	}
-	
+
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
 				new ModificarCantidad(), new CambiarPrecio(), new EliminarProductoCatalogo(), 
 				new SubirProducto(), new CerrarSesion(), new Salir() }));
 	}
-	
+
 	public int getTotalDeOpcionesDefault() {
 		return totalDeOpcionesDefault;
 	}
-	
+
 	public static void subirProducto(Vendedor vendedor, String nombreProducto, String categoria, double precio,
 			int cantidad) {
 		Producto p = new Producto(nombreProducto, categoria, vendedor, precio, cantidad);
@@ -66,50 +66,38 @@ public class Vendedor extends CuentaConBanco {
 	}
 
 	public static String ModificarCantidad(String nombre, int valorOperar,String operador) {
-//		Producto comprobarProducto = null;
-//		//comprobar que el producto esta en el catalogo
-//		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-//			Producto iteradorCatalogo = entry.getValue();
-//			if (iteradorCatalogo.getNombreProducto().equals(nombre) && iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
-//				comprobarProducto = iteradorCatalogo;
-//				break;
-//			}
-//		}
-//		if (comprobarProducto == null) {
-//			return "El producto no existe, no se puede aumentar la cantidad\n";
-//		} 
-//		//aumentar la cantidad 
-//		else {
-//			int can_final = comprobarProducto.getCantidad() + aumento;
-//			comprobarProducto.setCantidad(comprobarProducto.getCantidad() + aumento);
-//			return "Se aumentó la cantidad del producto: " + comprobarProducto.getNombreProducto() + " cantidad actual: " + can_final +"\n";
-//		}
-		return "";
-	}
-
-	public static String disminuirCantidad(String nombre, int resta) {
-		Producto mens = null;
+		Producto comprobarProducto = null;
+		//comprobar que el producto esta en el catalogo
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-			Producto p = entry.getValue();
-			if (p.getNombreProducto() == nombre) {
-				mens = p;
+			Producto iteradorCatalogo = entry.getValue();
+			if (iteradorCatalogo.getNombreProducto().equals(nombre) && iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
+				comprobarProducto = iteradorCatalogo;
 				break;
 			}
 		}
-		if (mens == null) {
-			return "El producto no existe, no se puede disminuir la cantidad";
-		} else {
-			int can_final = mens.getCantidad() - resta;
-			if (can_final >= 0) {
-				mens.setCantidad(mens.getCantidad() - resta);
-				return "Se redujo la cantidad del producto: " + mens.getNombreProducto() + " cantidad actual: "
-				+ can_final;
-			} else {
-				return "No hay suficientes productos, no se puede disminuir su cantidad";
+		if (comprobarProducto == null) {
+			return "El producto no existe, no se puede modificar la cantidad\n";
+		} 
+		else {
+			//aumentar cantidad
+			if(operador == "+"){			
+			int can_final = comprobarProducto.getCantidad() + valorOperar;
+			comprobarProducto.setCantidad(comprobarProducto.getCantidad() + valorOperar);
+			return "Se aumentó la cantidad del producto: " + comprobarProducto.getNombreProducto() + " cantidad actual: " + can_final +"\n";
 			}
+			//disminuir cantidad
+			else {
+				int can_final = comprobarProducto.getCantidad() - valorOperar;
+				if (can_final>=0) {									
+				comprobarProducto.setCantidad(comprobarProducto.getCantidad() - valorOperar);
+				return "Se redujo la cantidad del producto: " + comprobarProducto.getNombreProducto() + " cantidad actual: " + can_final +"\n";
+			}
+				else {
+				 return "No hay suficientes productos, no se puede disminuir su cantidad";
+				}
+				}
 		}
 	}
-
 	public String eliminarProductoCatalogo(int cod) {
 		Producto mens = null;
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
