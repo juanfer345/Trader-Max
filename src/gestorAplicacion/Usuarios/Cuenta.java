@@ -108,11 +108,7 @@ public abstract class Cuenta {
 
 			prod = catalogo.get(codigo);
 			sb.append("\nEl producto fue encontrado: \n");
-			sb.append("[Nombre: " + prod.getNombreProducto() + ",/n");
-			sb.append("Categoria: " + prod.getCategoria() + ",/n");
-			sb.append("Precio: " + prod.getPrecio() + ",/n");
-			sb.append("Código: " + codigo + ",/n");
-			sb.append("Cantidad: " + prod.getCantidad() + "]/n");
+			sb.append(prod.toString());
 			OpcionDeMenu.controlError = true;
 			return sb.toString();
 		}
