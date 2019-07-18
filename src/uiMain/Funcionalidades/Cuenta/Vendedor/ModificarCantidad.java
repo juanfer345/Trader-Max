@@ -9,13 +9,14 @@ import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
-public class AumentarCantidad extends OpcionDeMenu{
+public class ModificarCantidad extends OpcionDeMenu{
 
 	public void ejecutar() throws IOException {
 		String nombre;
 		long comprobNom;
 		int cantidad;
 		int cantidadDeproductos=0;
+		String operacion;
 		//imprimir la lista de sus productos
 		System.out.println("Sus productos en el catalogo: ");
 		System.out.println();
@@ -40,7 +41,8 @@ public class AumentarCantidad extends OpcionDeMenu{
 		//control de ingreso nombre
 		while(comprobNom !=-1) {
 			//ver si es un 0 para devolverse	
-			if (comprobNom==0){  	
+			if (comprobNom==0){ 
+				System.out.println();
 				return; //								
 			}	
 			else {
@@ -49,18 +51,29 @@ public class AumentarCantidad extends OpcionDeMenu{
 				comprobNom = MenuDeConsola.esLong(nombre);
 			}
 		}		
-		System.out.println("Ingrese la cantidad a agregar: ");		
+		System.out.println("Ingrese la cantidad a modificar: ");		
 		cantidad = MenuDeConsola.esInt(br.readLine().trim());
 		while(cantidad ==-1) {							
 			System.out.println("Ingresar una cantidad valida: ");
 			cantidad = MenuDeConsola.esInt(br.readLine().trim());
 		}
 		//ver si es un 0 para devolverse
-		if (cantidad==0){ 					
+		if (cantidad==0){ 		
+			System.out.println();
 			return; //								
 		}	
+		System.out.println("Ingrese + si desea amuentar o - si desea restar esta cantidad: ");
+		operacion = br.readLine().trim();
+		while (operacion.equals("0")||operacion.equals("+")||operacion.equals("-")){
+			System.out.println("Ingrese un operador valido o el numero 0 para cancelar: ");
+			operacion = br.readLine().trim();
+		}
+		if (operacion.equals("0")){
+			System.out.println();
+			return;
+		}
 
-		String str = Vendedor.aumentarCantidad(nombre, cantidad);
+		String str = Vendedor.modificarCantidad(nombre, cantidad,operacion);
 		System.out.println(str);
 	}
 
