@@ -50,7 +50,7 @@ public class ModificarCantidad extends OpcionDeMenu{
 				comprobNom = esLong(nombre);
 			}
 		}		
-		System.out.println("Ingrese la cantidad a modificar: ");		
+		System.out.println("Ingrese la cantidad a aumentar o disminuir: ");		
 		cantidad = esInt(br.readLine().trim());
 		while(cantidad ==-1) {							
 			System.out.println("Ingresar una cantidad valida: ");
@@ -63,7 +63,7 @@ public class ModificarCantidad extends OpcionDeMenu{
 		}	
 		System.out.println("Ingrese + si desea amuentar o - si desea restar esta cantidad: ");
 		operacion = br.readLine().trim();
-		while (operacion.equals("0")||operacion.equals("+")||operacion.equals("-")){
+		while (!(operacion.equals("0")||operacion.equals("+")||operacion.equals("-"))){
 			System.out.println("Ingrese un operador valido o el numero 0 para cancelar: ");
 			operacion = br.readLine().trim();
 		}
@@ -77,6 +77,6 @@ public class ModificarCantidad extends OpcionDeMenu{
 	}
 
 	public String toString() {
-		return "Aumentar cantidad de producto";
+		return "Modificar la cantidad de un producto";
 	}
 }

@@ -80,7 +80,7 @@ public class Vendedor extends CuentaConBanco {
 		} 
 		else {
 			//aumentar cantidad
-			if(operador == "+"){			
+			if(operador.equals("+")){			
 			int can_final = comprobarProducto.getCantidad() + valorOperar;
 			comprobarProducto.setCantidad(comprobarProducto.getCantidad() + valorOperar);
 			return "Se aumentó la cantidad del producto: " + comprobarProducto.getNombreProducto() + " cantidad actual: " + can_final +"\n";
