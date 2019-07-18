@@ -1,4 +1,4 @@
-package uiMain.MenuConsola.Cuenta.Comprador;
+package uiMain.Funcionalidades.Cuenta.Comprador;
 import java.io.IOException;
 
 import gestorAplicacion.InicializacionAplicacion;
@@ -24,10 +24,10 @@ public class AgregarResena extends OpcionDeMenu { // opcion 10
 		int estrellas = Integer.parseInt(br.readLine().trim());
 		System.out.println("Ingrese comentario: ");
 		String comentario = br.readLine();
-//		Resena rese = new Resena(comentario, estrellas); //Asignar el comprador!!
+		Resena rese = new Resena(comentario, estrellas);
 //		String str = P.anadirResena(rese);
-//		String str = comp.anadirResena(codigoP,rese);
-//		System.out.println(str);
+		String str = comp.anadirResena(codigoP,rese);
+		System.out.println(str);
 	}
 	@Override
 	public String toString() {

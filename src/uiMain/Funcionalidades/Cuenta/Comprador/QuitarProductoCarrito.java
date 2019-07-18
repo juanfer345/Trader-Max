@@ -1,9 +1,9 @@
-package uiMain.MenuConsola.Cuenta.Comprador;
+package uiMain.Funcionalidades.Cuenta.Comprador;
 
 import java.io.IOException;
-
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Comprador;
+import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
@@ -18,7 +18,7 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 		int compCod, compCant;
 
 		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
-		if (!comp.getCarrito().getProductos().isEmpty()) {
+		if (!comp.getCarrito().productos.isEmpty()) {
 			
 			sb.append("\nNOTA: se puede cancelar la operación ingresando en cualquiera de los dos datos el número '0'");
 
@@ -26,22 +26,22 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 				System.out.println(sb);
 				System.out.print("\nIngrese el codigo del producto que desea eliminar => ");
 				codigo = br.readLine().trim();
-				compCod = esInt(codigo);
+				compCod = MenuDeConsola.esInt(codigo);
 				System.out.print("\nIngrese la cantidad de elementos que desea quitar => ");
 				cantidad = br.readLine().trim();
-				compCant = esInt(cantidad);
+				compCant = (int) MenuDeConsola.esInt(cantidad);
 
 				while (compCod == -1) {
 					System.out.println("\nEl dato que ingreso como codigo es invalido, vuelva a intentarlo.");
 					System.out.print("Ingrese el codigo del producto que desea eliminar => ");
 					codigo = br.readLine().trim();
-					compCod = esInt(codigo);
+					compCod = (int) MenuDeConsola.esInt(codigo);
 				}
 				while (compCant == -1) {
 					System.out.println("\nEl dato que ingreso como cantidad es invalido, vuelva a intentarlo.");
 					System.out.print("Ingrese la cantidad de elementos que desea quitar => ");
 					cantidad = br.readLine().trim();
-					compCant = esInt(cantidad);
+					compCant = (int) MenuDeConsola.esInt(cantidad);
 				}
 				if (compCod == 0 || compCant == 0) {
 					// ver si alguna de las dos es 0 para devolverse

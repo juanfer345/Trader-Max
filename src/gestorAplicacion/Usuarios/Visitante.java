@@ -7,22 +7,37 @@ import java.util.Map;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
+import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.BuscarProducto;
 import uiMain.Funcionalidades.MostrarCatalogo;
 import uiMain.Funcionalidades.MostrarPorCategoria;
 import uiMain.Funcionalidades.Salir;
-import uiMain.MenuConsola.Visitante.IniciarSesion;
-import uiMain.MenuConsola.Visitante.Registrar;
+import uiMain.Funcionalidades.Visitante.IniciarSesion;
+import uiMain.Funcionalidades.Visitante.Registrar;
 
 public class Visitante extends Cuenta {
+
+	public Visitante() {
+		super();
+		this.totalDeOpcionesDefault = 5;
+		setOpcionesDeMenuPredeterminadas();
+	}
 	
-	public Visitante() { }
+	public void setOpcionesDeMenuPredeterminadas() {
+		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
+									   new IniciarSesion(), new Registrar(), new BuscarProducto(), 
+									   new MostrarPorCategoria(), new MostrarCatalogo(), new Salir()})));
+	}
 	
-	public ArrayList <OpcionDeMenu> getMenuPredeterminado() {
+	public ArrayList <OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
 		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
-				   new IniciarSesion(), new Registrar(), new BuscarProducto(), 
-				   new MostrarCatalogo(), new MostrarPorCategoria(), new Salir()}));
+				   new IniciarSesion(), new Registrar(), new BuscarProducto(), new MostrarPorCategoria(), 
+				   new MostrarCatalogo(), new Salir()}));
+	}
+	
+	public ArrayList <OpcionDeMenu> getOpcionesDeMenu() {
+		return menu.getOpcionesActivas();
 	}
 	
 	public HashMap <Integer,Producto> verProductos() {
@@ -74,7 +89,8 @@ public class Visitante extends Cuenta {
 					InicializacionAplicacion.getBDAdministradores().put(usuarioActivo.getId(), (Administrador) usuarioActivo);
 					break;
 			}
-			InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
+			MenuDeConsola.opcionesUsuarioActivo = usuarioActivo.getOpcionesDeMenu();
+			InicializacionAplicacion.usuarioActivo = usuarioActivo;
     		OpcionDeMenu.controlError = true;
 			return "Registro exitoso, bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
 		}
@@ -122,8 +138,9 @@ public class Visitante extends Cuenta {
 		if (idcorreoRegistrado != -1) {
 			//Caso A: Se ha encontrado el correo
 			if (baseDeDatos.get(idcorreoRegistrado).getPassword().equals(contrasenaIngresada)) {
-
-				InicializacionAplicacion.setUsuarioActivo(baseDeDatos.get(idcorreoRegistrado));
+				
+				InicializacionAplicacion.usuarioActivo = baseDeDatos.get(idcorreoRegistrado);
+				MenuDeConsola.opcionesUsuarioActivo = InicializacionAplicacion.usuarioActivo.getOpcionesDeMenu();
 	    		OpcionDeMenu.controlError = true;
 				return "Sesión iniciada correctamente, bienvenido a TRADER-MAX " + InicializacionAplicacion.usuarioActivo.getNombre() + ".\n";
 			}
@@ -133,7 +150,7 @@ public class Visitante extends Cuenta {
 		}
 		else {
 			//Caso B: No se ha encontrado el correo
-			return "El correo no se encuentra registrado, por favor intentelo de nuevo.\n";
+			return "El correo no se encuentra registrado.\n";
 		}
 	}
 	

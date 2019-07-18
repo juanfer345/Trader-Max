@@ -14,34 +14,34 @@ import uiMain.Funcionalidades.Cuenta.Vendedor.CambiarPrecio;
 import uiMain.Funcionalidades.Cuenta.Vendedor.EliminarProductoCatalogo;
 import uiMain.Funcionalidades.Cuenta.Vendedor.SubirProducto;
 
-public class Vendedor extends CuentaConBanco {
+public class Vendedor extends CuentaUsuario {
 
-	private static final int totalDeOpcionesDefault = 6;
-
-	//Constructor para usuarios existentes
-	public Vendedor(int idCuenta, String nombre, String correo, String password, int cedula) {
-		super(idCuenta, nombre, correo, password, cedula);
+	public Vendedor() {
+		super();
+		totalDeOpcionesDefault = 4;
+		setOpcionesDeMenuPredeterminadas();
 	}
 
-	//Constructor para usuarios nuevos
 	public Vendedor(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
+		totalDeOpcionesDefault = 4;
+		setOpcionesDeMenuPredeterminadas();
 	}
 
-	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
-		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] {
-				new ModificarCantidad(), new CambiarPrecio(), new EliminarProductoCatalogo(),
-				new SubirProducto(), new CerrarSesion(), new Salir() }));
+	public void setOpcionesDeMenuPredeterminadas() {
+		Cuenta.menu.setOpcionesActivas(new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] {
+				new SubirProducto(), new EliminarProductoCatalogo(), new ModificarCantidad(),new CambiarPrecio(),new CerrarSesion(),new Salir() })));
 	}
 
-	public int getTotalDeOpcionesDefault() {
-		return totalDeOpcionesDefault;
+	public ArrayList<OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new SubirProducto(),
+				new EliminarProductoCatalogo(),new ModificarCantidad(),new CambiarPrecio(), new CerrarSesion(), new Salir() }));
 	}
-	
+
 	public static void subirProducto(Vendedor vendedor, String nombreProducto, String categoria, double precio,
 			int cantidad) {
-		Producto p = new Producto(nombreProducto, categoria, vendedor, precio, cantidad);
-		catalogo.put(p.getId(), p);
+		Producto p = new Producto(vendedor, precio, cantidad, nombreProducto, categoria);
+		catalogo.put(p.getCodigoProducto(), p);
 	}
 
 	public static String cambiarPrecio(String nombre, double precio) {
@@ -77,18 +77,18 @@ public class Vendedor extends CuentaConBanco {
 		}
 		if (comprobarProducto == null) {
 			return "El producto no existe, no se puede modificar la cantidad\n";
-		}
+		} 
 		else {
 			//aumentar cantidad
-			if(operador == "+"){
+			if(operador == "+"){			
 			int can_final = comprobarProducto.getCantidad() + valorOperar;
 			comprobarProducto.setCantidad(comprobarProducto.getCantidad() + valorOperar);
-			return "Se aumentï¿½ la cantidad del producto: " + comprobarProducto.getNombreProducto() + " cantidad actual: " + can_final +"\n";
+			return "Se aumentó la cantidad del producto: " + comprobarProducto.getNombreProducto() + " cantidad actual: " + can_final +"\n";
 			}
 			//disminuir cantidad
 			else {
 				int can_final = comprobarProducto.getCantidad() - valorOperar;
-				if (can_final>=0) {
+				if (can_final>=0) {									
 				comprobarProducto.setCantidad(comprobarProducto.getCantidad() - valorOperar);
 				return "Se redujo la cantidad del producto: " + comprobarProducto.getNombreProducto() + " cantidad actual: " + can_final +"\n";
 			}
@@ -104,7 +104,7 @@ public class Vendedor extends CuentaConBanco {
 		Producto mens = null;
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
 			Producto p = entry.getValue();
-			if (p.getId() == cod) {
+			if (p.getCodigoProducto() == cod) {
 				mens = p;
 				break;
 			}
@@ -116,10 +116,16 @@ public class Vendedor extends CuentaConBanco {
 			int id_mens = mens.getVendedor().getId();
 			if (id == id_mens) {
 				catalogo.remove(cod);
-				return "Se eliminï¿½ el producto exitosamente";
+				return "Se eliminó el producto exitosamente";
 			} else {
 				return "No es un producto propio, no puede ser eliminado";
 			}
 		}
 	}
+
+	@Override
+	public ArrayList<OpcionDeMenu> getOpcionesDeMenu() {
+		return menu.getOpcionesActivas();
+	}
+
 }

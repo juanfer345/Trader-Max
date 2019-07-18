@@ -1,4 +1,4 @@
-package uiMain.MenuConsola.Cuenta.Vendedor;
+package uiMain.Funcionalidades.Cuenta.Vendedor;
 
 import java.io.IOException;
 
