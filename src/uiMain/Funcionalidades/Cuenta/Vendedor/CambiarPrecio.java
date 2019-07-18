@@ -1,4 +1,4 @@
-package uiMain.MenuConsola.Cuenta.Vendedor;
+package uiMain.Funcionalidades.Cuenta.Vendedor;
 
 import java.io.IOException;
 import java.util.Map;
@@ -6,22 +6,23 @@ import java.util.Map;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Vendedor;
+import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
-public class AumentarCantidad extends OpcionDeMenu{
+public class CambiarPrecio extends OpcionDeMenu {
 
 	public void ejecutar() throws IOException {
-		String nombre;
+		String nom;
 		long comprobNom;
-		int cantidad;
+		long pre;
 		int cantidadDeproductos=0;
 		//imprimir la lista de sus productos
 		System.out.println("Sus productos en el catalogo: ");
-		System.out.println();
+		System.out.println ();
 		for (Map.Entry<Integer, Producto> entry : Vendedor.catalogo.entrySet()) {
 			Producto iteradorCatalogo = entry.getValue();
 			if (iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
-				System.out.println("-"+iteradorCatalogo.getNombreProducto()+ " cantidad: "+iteradorCatalogo.getCantidad());
+				System.out.println("-"+ iteradorCatalogo.getNombreProducto()+" precio: "+iteradorCatalogo.getPrecio());
 				cantidadDeproductos++;
 			}
 
@@ -33,9 +34,9 @@ public class AumentarCantidad extends OpcionDeMenu{
 			return;
 		}
 		System.out.println();
-		System.out.println("Ingrese el nombre del producto: ");
-		nombre = br.readLine();
-		comprobNom = esInt(nombre); // ver si es un numero el nombre
+		System.out.println("Ingrese 0 para volver\nIngrese el nombre del producto");
+		nom = br.readLine().trim();
+		comprobNom = MenuDeConsola.esLong(nom); // ver si es un numero el nombre	
 		//control de ingreso nombre
 		while(comprobNom !=-1) {
 			//ver si es un 0 para devolverse	
@@ -44,26 +45,25 @@ public class AumentarCantidad extends OpcionDeMenu{
 			}	
 			else {
 				System.out.println("Ingresar un nombre valido");
-				nombre = br.readLine().trim();
-				comprobNom = esLong(nombre);
+				nom = br.readLine().trim();
+				comprobNom = MenuDeConsola.esLong(nom);
 			}
 		}		
-		System.out.println("Ingrese la cantidad a agregar: ");
-		cantidad = esInt(br.readLine().trim());
-		while(cantidad ==-1) {							
-			System.out.println("Ingresar una cantidad valida: ");
-			cantidad = esInt(br.readLine().trim());
+		System.out.println("Ingrese el nuevo precio");
+		pre =  MenuDeConsola.esLong(br.readLine().trim());
+		while(pre ==-1) {							
+			System.out.println("Ingresar un precio valido: ");
+			pre = MenuDeConsola.esLong(br.readLine().trim());
 		}
 		//ver si es un 0 para devolverse
-		if (cantidad==0){ 					
+		if (pre==0){ 					
 			return; //								
 		}	
-
-		String str = Vendedor.aumentarCantidad(nombre, cantidad);
+		String str = Vendedor.cambiarPrecio(nom,(double) pre);
 		System.out.println(str);
 	}
 
 	public String toString() {
-		return "Aumentar cantidad de producto";
+		return "Cambiarle el precio a un producto";
 	}
 }

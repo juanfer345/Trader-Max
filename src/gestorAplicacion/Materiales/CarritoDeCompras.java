@@ -1,6 +1,5 @@
 package gestorAplicacion.Materiales;
 
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 import gestorAplicacion.Usuarios.Comprador;
@@ -8,49 +7,24 @@ import gestorAplicacion.Usuarios.Vendedor;
 
 public class CarritoDeCompras {
 
-	private int id;
 	private int totalProductos;
 	private double precioTotal;
 	private Comprador titular;
-	private HashMap <Integer, Integer> productos;
-	private static int contador;
+	public HashMap<Integer, Integer> productos;
+	private int id; // para que es este id?
 
-	//Constructor para carritos existentes
-	public CarritoDeCompras(int id, int totalProductos, double precioTotal) {
-		this.id = id;
-		this.totalProductos = totalProductos;
-		this.precioTotal = precioTotal;
+	public CarritoDeCompras() {
 	}
 
-	//Constructor para carritos nuevos
 	public CarritoDeCompras(Comprador comp) {
-		id = contador++;
 		titular = comp;
 		productos = new HashMap<>();
 	}
-	
-	public HashMap<Integer, Integer> getProductos() {return productos;}
-	public void setProductos(int codigo, int cantidad) {productos.put(codigo, cantidad);}
-	
-	public void setProductos(Deque <Integer> idCantidadProd) {
-		productos = new HashMap <> ();
-    	while(!idCantidadProd.isEmpty()) {
-    		productos.put(idCantidadProd.poll(), idCantidadProd.poll());
-    	}
-	}
-	
-	public void setComprador(Comprador titular) {
-		this.titular = titular;
-	}
-	
+
 	public int getTotalproductos() {return totalProductos;}
 
 	public double getPrecioTotal() {return precioTotal;}
-	
-	public static void setMaxID(int contador) {
-		CarritoDeCompras.contador = contador + 1;
-	}
-	
+
 	public String comprarProductos() {
 		double total = 0;
 

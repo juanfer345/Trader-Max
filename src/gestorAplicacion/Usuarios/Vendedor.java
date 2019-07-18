@@ -8,40 +8,40 @@ import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.Salir;
-import uiMain.MenuConsola.Cuenta.CerrarSesion;
-import uiMain.MenuConsola.Cuenta.Vendedor.AumentarCantidad;
-import uiMain.MenuConsola.Cuenta.Vendedor.CambiarPrecio;
-import uiMain.MenuConsola.Cuenta.Vendedor.EliminarProductoCatalogo;
-import uiMain.MenuConsola.Cuenta.Vendedor.SubirProducto;
+import uiMain.Funcionalidades.Cuenta.CerrarSesion;
+import uiMain.Funcionalidades.Cuenta.Vendedor.ModificarCantidad;
+import uiMain.Funcionalidades.Cuenta.Vendedor.CambiarPrecio;
+import uiMain.Funcionalidades.Cuenta.Vendedor.EliminarProductoCatalogo;
+import uiMain.Funcionalidades.Cuenta.Vendedor.SubirProducto;
 
-public class Vendedor extends CuentaConBanco {
+public class Vendedor extends CuentaUsuario {
 
-	private static final int totalDeOpcionesDefault = 6;
-	
-	//Constructor para usuarios existentes
-	public Vendedor(int idCuenta, String nombre, String correo, String password, int cedula) {
-		super(idCuenta, nombre, correo, password, cedula);
+	public Vendedor() {
+		super();
+		totalDeOpcionesDefault = 4;
+		setOpcionesDeMenuPredeterminadas();
 	}
 
-	//Constructor para usuarios nuevos
 	public Vendedor(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
+		totalDeOpcionesDefault = 4;
+		setOpcionesDeMenuPredeterminadas();
 	}
-	
-	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
-		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-				new AumentarCantidad(), new CambiarPrecio(), new EliminarProductoCatalogo(), 
-				new SubirProducto(), new CerrarSesion(), new Salir() }));
+
+	public void setOpcionesDeMenuPredeterminadas() {
+		Cuenta.menu.setOpcionesActivas(new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] {
+				new SubirProducto(), new EliminarProductoCatalogo(), new ModificarCantidad(),new CambiarPrecio(),new CerrarSesion(),new Salir() })));
 	}
-	
-	public int getTotalDeOpcionesDefault() {
-		return totalDeOpcionesDefault;
+
+	public ArrayList<OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new SubirProducto(),
+				new EliminarProductoCatalogo(),new ModificarCantidad(),new CambiarPrecio(), new CerrarSesion(), new Salir() }));
 	}
-	
+
 	public static void subirProducto(Vendedor vendedor, String nombreProducto, String categoria, double precio,
 			int cantidad) {
-		Producto p = new Producto(nombreProducto, categoria, vendedor, precio, cantidad);
-		catalogo.put(p.getId(), p);
+		Producto p = new Producto(vendedor, precio, cantidad, nombreProducto, categoria);
+		catalogo.put(p.getCodigoProducto(), p);
 	}
 
 	public static String cambiarPrecio(String nombre, double precio) {
@@ -65,7 +65,7 @@ public class Vendedor extends CuentaConBanco {
 		}
 	}
 
-	public static String aumentarCantidad(String nombre, int aumento) {
+	public static String modificarCantidad(String nombre, int valorOperar,String operador) {
 		Producto comprobarProducto = null;
 		//comprobar que el producto esta en el catalogo
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
@@ -76,44 +76,35 @@ public class Vendedor extends CuentaConBanco {
 			}
 		}
 		if (comprobarProducto == null) {
-			return "El producto no existe, no se puede aumentar la cantidad\n";
+			return "El producto no existe, no se puede modificar la cantidad\n";
 		} 
-		//aumentar la cantidad 
 		else {
-			int can_final = comprobarProducto.getCantidad() + aumento;
-			comprobarProducto.setCantidad(comprobarProducto.getCantidad() + aumento);
+			//aumentar cantidad
+			if(operador == "+"){			
+			int can_final = comprobarProducto.getCantidad() + valorOperar;
+			comprobarProducto.setCantidad(comprobarProducto.getCantidad() + valorOperar);
 			return "Se aumentó la cantidad del producto: " + comprobarProducto.getNombreProducto() + " cantidad actual: " + can_final +"\n";
+			}
+			//disminuir cantidad
+			else {
+				int can_final = comprobarProducto.getCantidad() - valorOperar;
+				if (can_final>=0) {									
+				comprobarProducto.setCantidad(comprobarProducto.getCantidad() - valorOperar);
+				return "Se redujo la cantidad del producto: " + comprobarProducto.getNombreProducto() + " cantidad actual: " + can_final +"\n";
+			}
+				else {
+				 return "No hay suficientes productos, no se puede disminuir su cantidad";
+				}
+				}
 		}
 	}
 
-	public static String disminuirCantidad(String nombre, int resta) {
-		Producto mens = null;
-		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-			Producto p = entry.getValue();
-			if (p.getNombreProducto() == nombre) {
-				mens = p;
-				break;
-			}
-		}
-		if (mens == null) {
-			return "El producto no existe, no se puede disminuir la cantidad";
-		} else {
-			int can_final = mens.getCantidad() - resta;
-			if (can_final >= 0) {
-				mens.setCantidad(mens.getCantidad() - resta);
-				return "Se redujo la cantidad del producto: " + mens.getNombreProducto() + " cantidad actual: "
-				+ can_final;
-			} else {
-				return "No hay suficientes productos, no se puede disminuir su cantidad";
-			}
-		}
-	}
 
 	public String eliminarProductoCatalogo(int cod) {
 		Producto mens = null;
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
 			Producto p = entry.getValue();
-			if (p.getId() == cod) {
+			if (p.getCodigoProducto() == cod) {
 				mens = p;
 				break;
 			}
@@ -131,4 +122,10 @@ public class Vendedor extends CuentaConBanco {
 			}
 		}
 	}
+
+	@Override
+	public ArrayList<OpcionDeMenu> getOpcionesDeMenu() {
+		return menu.getOpcionesActivas();
+	}
+
 }

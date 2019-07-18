@@ -5,21 +5,13 @@
 */
 package gestorAplicacion;
 
+import uiMain.MenuDeConsola;
+
 import java.io.IOException;
 import java.util.HashMap;
-
-import baseDatos.EscrituraBD;
-import baseDatos.LecturaBD;
-import gestorAplicacion.Materiales.CarritoDeCompras;
-import gestorAplicacion.Materiales.CuentaBancaria;
-import gestorAplicacion.Materiales.Producto;
-import gestorAplicacion.Materiales.Resena;
-import gestorAplicacion.Usuarios.Administrador;
-import gestorAplicacion.Usuarios.Comprador;
-import gestorAplicacion.Usuarios.Cuenta;
-import gestorAplicacion.Usuarios.Vendedor;
-import gestorAplicacion.Usuarios.Visitante;
-import uiMain.MenuDeConsola;
+import baseDatos.*;
+import gestorAplicacion.Materiales.*;
+import gestorAplicacion.Usuarios.*;
 
 public class InicializacionAplicacion {
 
@@ -35,7 +27,7 @@ public class InicializacionAplicacion {
 	public static void main(String[] args) throws IOException {
 		
 		//Aquí debería ir una primera entrada que permita ingresar el nombre de una base de datos para cargar o que indique que no existe (pendiente)
-		
+	    
 		//Ejecución de la lectura de la base de datos
 		System.out.println("LECTURA DE BASE DE DATOS - [INICIO]\n");
 		LecturaBD.PrincipalLecturaBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Carritos de Compras", "Catálogo", "Productos", "Reseñas");
@@ -46,7 +38,7 @@ public class InicializacionAplicacion {
 		System.out.println("Bienvenido invitado.\n");
 		
 		//Creación de un usuario visitante
-		setUsuarioActivo (new Visitante());
+		usuarioActivo = new Visitante();
 		
 		//Ciclo de control para ejecutar el menú hasta que se desee salir de la aplicación
 		MenuDeConsola.LanzarMenu();
@@ -72,9 +64,4 @@ public class InicializacionAplicacion {
 	public static HashMap <Integer, Producto> getBDProductos() {return BDProductos;}
 
 	public static HashMap <Integer, Resena> getBDResenas() {return BDResenas;}
-
-	public static void setUsuarioActivo(Cuenta usuario) {
-		usuarioActivo = usuario;
-		MenuDeConsola.menuActivo = usuario.getMenu();
-	}
 }
