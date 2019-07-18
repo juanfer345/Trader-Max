@@ -1,6 +1,9 @@
 package gestorAplicacion.Materiales;
 
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Vendedor;
+
+import java.util.Deque;
 import java.util.HashMap;
 
 public class Producto {
@@ -8,87 +11,81 @@ public class Producto {
 	public static String categorias[] = { "Belleza", "Vehículos", "Deportes", "Electrodomésticos", "Hogar", "Juegos",
 			"Libros", "Música", "Tecnología", "Vestimenta", "Vivienda" };
 
-	public HashMap<Integer, Resena> Resenas = new HashMap<>();
+	public HashMap<Integer, Resena> resenas;
 	private Vendedor vendedor;
 	private String nombreProducto;
 	private String categoria;
 	private double precio;
-	private int codigoProducto;
-	private static int cont;
-	private int cantidad;
-
-	public Producto() {
+	private int id, cantidad;
+	private static int contador;
+	
+	//Constructor para productos existentes
+	public Producto(int codigoProducto, String nombreProducto, String categoria, double precio, int cantidad) {
+		this.nombreProducto = nombreProducto;
+		this.categoria = categoria;
+		this.id = contador++;
 	}
-
-	public Producto(Vendedor vendedor, double precio, int cant, String nombre, String categoria) {
+	
+	//Constructor para productos nuevos
+	public Producto(String nombreProducto, String categoria, Vendedor vendedor, double precio, int cantidad) {
 		this.vendedor = vendedor;
 		this.precio = precio;
-		this.cantidad = cant;
-		this.nombreProducto = nombre;
+		this.cantidad = cantidad;
+		this.nombreProducto = nombreProducto;
 		this.categoria = categoria;
-		this.codigoProducto = cont++;
+		this.id = contador++;
+		resenas = new HashMap<>();
+		InicializacionAplicacion.getBDProductos().put(id, this);
 	}
 
-	public int getCantidad() {
-		return this.cantidad;
-	}
+	public int getCantidad() {return cantidad;}
+	public void setCantidad(int cantidad) {this.cantidad = cantidad;}
 
-	public Vendedor getVendedor() {
-		return this.vendedor;
-	}
+	public Vendedor getVendedor() {return vendedor;}
 
-	public double getPrecio() {
-		return this.precio;
-	}
-
+	public double getPrecio() {return precio;}
 	public void setPrecio(double precio) {
 		this.precio = precio;
-	}
-
-	public void setCantidad(int cantidad) {
+		this.id = id;
 		this.cantidad = cantidad;
 	}
 
-	public String getNombreProducto() {
-		return this.nombreProducto;
-	}
+	public String getNombreProducto() {return nombreProducto;}
+	public void setNombreProducto(String nombreProducto) {this.nombreProducto = nombreProducto;}
 
-	public void setNombreProducto(String nombreProducto) {
-		this.nombreProducto = nombreProducto;
-	}
+	public String getCategoria() {return categoria;}
+	public void setCategoria(String categoria) {this.categoria = categoria;}
 
-	public String getCategoria() {
-		return this.categoria;
+	public HashMap<Integer, Resena> getResenas() {return resenas;}
+	public void setResenas(Deque <Integer> idResenas) {
+		resenas = new HashMap <> ();
+		int aux;
+    	while(!idResenas.isEmpty()) {
+    		aux = idResenas.poll();
+    		resenas.put(aux, InicializacionAplicacion.getBDResenas().get(aux));
+    	}
 	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	
+	public int getId() {return id;}
+	public void setId(int id) {this.id = id;}
+	
+	public static void setMaxID(int contador) {
+		Producto.contador = contador + 1;
 	}
-
-	public HashMap<Integer, Resena> getResenas() {
-		return this.Resenas;
-	}
-
-	public int getCodigoProducto() {
-		return this.codigoProducto;
-	}
-
-	public void setCodigoProducto(int codigoProducto) {
-		this.codigoProducto = codigoProducto;
-	}
-
+	
 	public static String[] getCategorias() {
 		String mostrar[] = new String[10];
 		for (int i = 0; i < 10; i++) { // Recorrer el Array de categorias
 			mostrar[i] = categorias[i];
 		}
+		//Creo que el to String de los arreglos debería hacer lo mismo no?
 		return mostrar;
 	}
 
 	@Override
 	public String toString() {
 		return "Producto [Nombre: " + nombreProducto + ", Categoria: " + categoria + ", Precio: " + precio
-				+ ", Código: " + codigoProducto + ", Cantidad: " + cantidad + "]";
+				+ ", Código: " + id + ", Cantidad: " + cantidad + "]";
 	}
 
 	public void setVendedor(Vendedor vendedor) {

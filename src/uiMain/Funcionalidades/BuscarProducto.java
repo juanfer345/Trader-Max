@@ -1,8 +1,8 @@
 package uiMain.Funcionalidades;
 
 import java.io.IOException;
+
 import gestorAplicacion.InicializacionAplicacion;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class BuscarProducto extends OpcionDeMenu {
@@ -24,7 +24,7 @@ public class BuscarProducto extends OpcionDeMenu {
 			
 			//Impresión de mensaje y recepción de datos
 			System.out.print(sb);
-			seleccion = MenuDeConsola.esByte(br.readLine().trim());
+			seleccion = esByte(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
 			if (seleccion == 0) {System.out.println(); return;}
@@ -33,7 +33,7 @@ public class BuscarProducto extends OpcionDeMenu {
 				if (seleccion == 1) {
 					while (!controlError) {
 						System.out.print("Ingrese el código del producto => ");
-						seleccion = (byte) MenuDeConsola.esByte(br.readLine().trim());
+						seleccion = (byte) esByte(br.readLine().trim());
 						
 						if (seleccion != 0) {
 							if (seleccion != -1) {
@@ -51,7 +51,7 @@ public class BuscarProducto extends OpcionDeMenu {
 					while (!controlError) {
 						System.out.print("Ingrese el nombre del producto => ");
 						selecc = br.readLine().trim();
-						seleccion = (byte) MenuDeConsola.esByte(selecc);
+						seleccion = (byte) esByte(selecc);
 
 						if (seleccion != 0) {
 							if (seleccion == -1) {
