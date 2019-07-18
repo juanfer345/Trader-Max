@@ -1,4 +1,4 @@
-package uiMain.MenuConsola.Cuenta;
+package uiMain.Funcionalidades.Cuenta;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ public class CerrarSesion extends OpcionDeMenu {
 	    byte seleccion;
 
 	    //Guardado de mensaje principal
-		sb.append("\nDesea cerrar sesión?\n");
+		sb.append("Desea cerrar sesión?\n");
 		sb.append("1: Si\n");
 		sb.append("2: No\n");
 		sb.append("=> ");
@@ -23,8 +23,8 @@ public class CerrarSesion extends OpcionDeMenu {
 		while (!controlError) {
 			
 		    //Ingreso de valores
-			System.out.print(sb);
-			seleccion = esByte(br.readLine().trim());
+			System.out.println(sb);
+			seleccion = Byte.parseByte(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
 			System.out.println(usuario.cerrarSesion(seleccion));

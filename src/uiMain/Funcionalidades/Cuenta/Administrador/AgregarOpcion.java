@@ -1,4 +1,4 @@
-package uiMain.MenuConsola.Cuenta.Administrador;
+package uiMain.Funcionalidades.Cuenta.Administrador;
 
 import java.io.IOException;
 import gestorAplicacion.InicializacionAplicacion;

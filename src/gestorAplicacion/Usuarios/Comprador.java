@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
@@ -14,59 +13,60 @@ import uiMain.Funcionalidades.BuscarProducto;
 import uiMain.Funcionalidades.MostrarCatalogo;
 import uiMain.Funcionalidades.MostrarPorCategoria;
 import uiMain.Funcionalidades.Salir;
-import uiMain.MenuConsola.Cuenta.CerrarSesion;
-import uiMain.MenuConsola.Cuenta.Comprador.AgregarACarrito;
-import uiMain.MenuConsola.Cuenta.Comprador.AgregarResena;
-import uiMain.MenuConsola.Cuenta.Comprador.BorrarHistorial;
-import uiMain.MenuConsola.Cuenta.Comprador.ComprarProducto;
-import uiMain.MenuConsola.Cuenta.Comprador.MostrarHistorial;
-import uiMain.MenuConsola.Cuenta.Comprador.QuitarProductoCarrito;
-import uiMain.MenuConsola.Cuenta.Comprador.VaciarCarrito;
+import uiMain.Funcionalidades.Cuenta.CerrarSesion;
+import uiMain.Funcionalidades.Cuenta.Comprador.AgregarACarrito;
+import uiMain.Funcionalidades.Cuenta.Comprador.AgregarResena;
+import uiMain.Funcionalidades.Cuenta.Comprador.BorrarHistorial;
+import uiMain.Funcionalidades.Cuenta.Comprador.ComprarProducto;
+import uiMain.Funcionalidades.Cuenta.Comprador.MostrarHistorial;
+import uiMain.Funcionalidades.Cuenta.Comprador.QuitarProductoCarrito;
+import uiMain.Funcionalidades.Cuenta.Comprador.VaciarCarrito;
 
-public class Comprador extends CuentaConBanco {
+public class Comprador extends CuentaUsuario {
 
 	private CarritoDeCompras carrito;
 	private HashMap<Integer, Producto> historial;
-	private static final int totalDeOpcionesDefault = 11;
-	
-	//Constructor para usuarios existentes
-	public Comprador(int idCuenta, String nombre, String correo, String password, int cedula) {
-		super(idCuenta, nombre, correo, password, cedula);
-		historial = new HashMap<>();
+
+	public Comprador() {
+		super();
+		totalDeOpcionesDefault = 11;
+		setOpcionesDeMenuPredeterminadas();
 	}
 
-	//Constructor para usuarios nuevos
 	public Comprador(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
 		carrito = new CarritoDeCompras(this);
 		historial = new HashMap<>();
-		InicializacionAplicacion.getBDCarritos().put(carrito.getId(), carrito);
+		totalDeOpcionesDefault = 11;
+		setOpcionesDeMenuPredeterminadas();
 	}
-	
-	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
+
+	public void setOpcionesDeMenuPredeterminadas() {
+		Cuenta.menu.setOpcionesActivas(new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
+				new AgregarACarrito(), new BorrarHistorial(), new MostrarHistorial(), new VaciarCarrito(), 
+				new ComprarProducto(), new QuitarProductoCarrito(), new AgregarResena(),
+				new BuscarProducto(), new MostrarPorCategoria(), new MostrarCatalogo(), new CerrarSesion(), 
+				new Salir()})));
+	}
+
+	public ArrayList<OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-					new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(),
-					new AgregarACarrito(), new AgregarResena(), new BorrarHistorial(), 
-					new ComprarProducto(), new MostrarHistorial(), new QuitarProductoCarrito(), 
-					new VaciarCarrito(), new CerrarSesion(), new Salir()}));
+					new AgregarACarrito(), new BorrarHistorial(), new MostrarHistorial(),
+					new VaciarCarrito(), new ComprarProducto(), new QuitarProductoCarrito(), new AgregarResena(),
+					new MostrarPorCategoria(), new BuscarProducto(), new CerrarSesion(), new Salir()}));
 	}
-	
-	public int getTotalDeOpcionesDefault() {
-		return totalDeOpcionesDefault;
+
+	public ArrayList<OpcionDeMenu> getOpcionesDeMenu() {
+		return menu.getOpcionesActivas();
 	}
-	
-	public CarritoDeCompras getCarrito() {return carrito;}
-	public void setCarrito(CarritoDeCompras carrito) {this.carrito = carrito;}
-	
-	public HashMap<Integer, Producto> getHistorial() {return historial;}
-	
+
 	public String agregarACarrito(int codigo, int cantidad) {
 
 		if (cantidad > 0) {
 			if (catalogo.containsKey(codigo)) {
 				Producto p = catalogo.get(codigo);
 				if (p.getCantidad() >= cantidad) {
-					carrito.setProductos(codigo, cantidad);
+					carrito.productos.put(codigo, cantidad);
 					carrito.setTotalproductos(carrito.getTotalproductos() + cantidad);
 					carrito.setPrecioTotal(carrito.getPrecioTotal() + (cantidad * p.getPrecio()));
 					OpcionDeMenu.controlError = true;
@@ -90,6 +90,18 @@ public class Comprador extends CuentaConBanco {
 	public String borrarHistorial() {
 		historial.clear();
 		return "El historial se ha borrado exitosamente";
+	}
+
+	public HashMap<Integer, Producto> getHistorial() {
+		return historial;
+	}
+
+	public CarritoDeCompras getCarrito() {
+		return carrito;
+	}
+
+	public void setCarrito(CarritoDeCompras carrito) {
+		this.carrito = carrito;
 	}
 
 	public String anadirResena(int codigo, Resena r) {

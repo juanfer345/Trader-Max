@@ -7,13 +7,13 @@ import java.util.HashMap;
 import gestorAplicacion.InicializacionAplicacion;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.Salir;
-import uiMain.MenuConsola.Cuenta.CerrarSesion;
-import uiMain.MenuConsola.Cuenta.Administrador.AgregarOpcion;
-import uiMain.MenuConsola.Cuenta.Administrador.CuentasAdmin;
-import uiMain.MenuConsola.Cuenta.Administrador.EliminarCuenta;
-import uiMain.MenuConsola.Cuenta.Administrador.EliminarOpcion;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenu;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarUsuario;
+import uiMain.Funcionalidades.Cuenta.CerrarSesion;
+import uiMain.Funcionalidades.Cuenta.Administrador.AgregarOpcion;
+import uiMain.Funcionalidades.Cuenta.Administrador.CuentasAdmin;
+import uiMain.Funcionalidades.Cuenta.Administrador.EliminarCuenta;
+import uiMain.Funcionalidades.Cuenta.Administrador.EliminarOpcion;
+import uiMain.Funcionalidades.Cuenta.Administrador.MostrarMenu;
+import uiMain.Funcionalidades.Cuenta.Administrador.MostrarUsuario;
 
 /*PROPUESTA por juanfer: ya que administrador debería heredar algunos atributos de cuenta (pero no todos), 
 						 que les parece si se quita cuenta y en su remplazo creamos dos interfaces, de tal manera que una interfaz tenga todo lo de cuenta, pero sin 
@@ -23,31 +23,36 @@ import uiMain.MenuConsola.Cuenta.Administrador.MostrarUsuario;
 public class Administrador extends CuentaUsuario {
 	
 	private static String codigoSecreto = "Es un secretooo";
+	
 	private static ArrayList <OpcionDeMenu> opcionComp;
-	private static final int totalDeOpcionesDefault = 6;
-
-	//Constructor para usuarios existentes
-	public Administrador(int idCuenta, String nombre, String correo, String password, int cedula) {
-		super(idCuenta, nombre, correo, password, cedula);
-	}
-
-	//Constructor para usuarios nuevos
-	public Administrador(String nombre, String correo, String password, int cedula) {
-		super(nombre, correo, password, cedula);
-	}
-	
-	public ArrayList <OpcionDeMenu> getMenuPredeterminado() {
-		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
-				   new AgregarOpcion(), new CuentasAdmin(), new EliminarCuenta(), 
-				   new EliminarOpcion(),new MostrarMenu(), new MostrarUsuario(),  
-				   new CerrarSesion(), new Salir()}));
-	}
-	
-	public int getTotalDeOpcionesDefault() {
-		return totalDeOpcionesDefault;
-	}
 	
 	public static int getNumeroCuentas() {return Cuenta.totalCuentas;}
+
+	public Administrador(String nombre, String correo, String password, int cedula) {
+		this.setNombre(nombre);
+		this.setCorreo(correo);
+		this.setPassword(password);
+		this.setCedula(cedula);
+		this.totalDeOpcionesDefault = 6;
+		setOpcionesDeMenuPredeterminadas();
+	}
+	
+	public Administrador() { }
+	
+	public void setOpcionesDeMenuPredeterminadas() {
+		Cuenta.menu.setOpcionesActivas(new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
+									   new MostrarUsuario(), new MostrarMenu(), new EliminarOpcion(), 
+									   new AgregarOpcion(), new EliminarCuenta(), new CuentasAdmin(), 
+									   new CerrarSesion(), new Salir()})));
+	}
+	
+	public ArrayList <OpcionDeMenu> getOpcionesDeMenuPredeterminadas() {
+		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
+				   new MostrarUsuario(), new MostrarMenu(), new EliminarOpcion(), new AgregarOpcion(), 
+				   new EliminarCuenta(), new CuentasAdmin(), new CerrarSesion(), new Salir()}));
+	}
+
+	public ArrayList <OpcionDeMenu> getOpcionesDeMenu() {return menu.getOpcionesActivas();}
 	
 	//Mostrado de las opciones de menú ingresando el id del usuario
 	public String mostrarOpcionesDeMenu(int idUsuario, byte tipoUsuario) {
@@ -71,7 +76,7 @@ public class Administrador extends CuentaUsuario {
 	    }
 	    
     	if (baseDeDatos.containsKey(idUsuario)) {
-    		menu = baseDeDatos.get(idUsuario).getMenu();
+    		menu = baseDeDatos.get(idUsuario).getOpcionesDeMenu();
     		sb.append("A continuación se muestra el menú del " + usuario + "\n");
     		for (i = 0; i < menu.size(); i++) {
     			sb.append((i + 1) + ". " + menu.get(i).toString() + "\n");
@@ -102,7 +107,7 @@ public class Administrador extends CuentaUsuario {
 	    	//Caso B: Vendedor
 	    	baseDeDatos = InicializacionAplicacion.getBDVendedores();
 	    }
-    	menu = baseDeDatos.get(idUsuario).getMenu();	//Obtención de opciones de menú del usuario
+    	menu = baseDeDatos.get(idUsuario).getOpcionesDeMenu();	//Obtención de opciones de menú del usuario
 	    
 	    //Condicional para identificar si es el caso de agregado o eliminación de opciones
 	    if (borradoAgregado == 1) {
@@ -113,7 +118,7 @@ public class Administrador extends CuentaUsuario {
     		if (menu.size() < baseDeDatos.get(idUsuario).getTotalDeOpcionesDefault()) {
     			
     			//Caso A.a: El menú del usuario no tiene la cantidad máxima posible de opciones
-    			opcionComp = baseDeDatos.get(idUsuario).getMenuPredeterminado();
+    			opcionComp = baseDeDatos.get(idUsuario).getOpcionesDeMenuPredeterminadas();
 	    		
     			//Ciclo para descartar las opciones que ya posee el menú del usuario
     			for (i = 0; i < menu.size(); i++) {
@@ -177,7 +182,7 @@ public class Administrador extends CuentaUsuario {
 	    	//Caso B: Vendedor
 	    	baseDeDatos = InicializacionAplicacion.getBDVendedores();
 	    }
-    	menu = baseDeDatos.get(idUsuario).getMenu();	//Obtención de opciones de menú del usuario
+    	menu = baseDeDatos.get(idUsuario).getOpcionesDeMenu();	//Obtención de opciones de menú del usuario
     	
     	try {
     		menu.add(opcionComp.get(indice));				//Agregado de la opción correspondiente
@@ -206,7 +211,7 @@ public class Administrador extends CuentaUsuario {
 	    	//Caso B: Vendedor
 	    	baseDeDatos = InicializacionAplicacion.getBDVendedores();
 	    }
-    	menu = baseDeDatos.get(idUsuario).getMenu();	//Obtención de opciones de menú del usuario
+    	menu = baseDeDatos.get(idUsuario).getOpcionesDeMenu();	//Obtención de opciones de menú del usuario
     	
     	try {
     		menu.remove(menu.get(indice));				//Agregado de la opción correspondiente
@@ -282,9 +287,6 @@ public class Administrador extends CuentaUsuario {
     	}
 		return sb.toString();
 	}
-	
-	//FALTA LO DE MOSTRAR TODAS LAS OPCIONES DE MENU y mostrar por tipo de usuario Y ADEMÁS MODIFICAR PARA QUE SE PUEDA AÑADIR CUALQUIER OPCION A CUALQUIER CUENTA
-	
-	
+
 	public static String getCodigoSecreto() {return codigoSecreto;}
 }
