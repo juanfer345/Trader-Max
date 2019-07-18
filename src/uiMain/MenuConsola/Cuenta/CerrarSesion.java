@@ -1,35 +1,36 @@
-package uiMain.Funcionalidades;
+package uiMain.MenuConsola.Cuenta;
 
 import java.io.IOException;
 
 import gestorAplicacion.InicializacionAplicacion;
+import gestorAplicacion.Usuarios.CuentaUsuario;
 import uiMain.OpcionDeMenu;
 
-public class Salir extends OpcionDeMenu {
+public class CerrarSesion extends OpcionDeMenu {
 
-	@Override
 	public void ejecutar() throws IOException {
 		
+		CuentaUsuario usuario = (CuentaUsuario) InicializacionAplicacion.usuarioActivo;
 	    byte seleccion;
-	    
+
 	    //Guardado de mensaje principal
-	    sb.append("\nEstá seguro que desea salir de la aplicación?\n");
+		sb.append("\nDesea cerrar sesión?\n");
 		sb.append("1: Si\n");
 		sb.append("2: No\n");
 		sb.append("=> ");
-		
+
 		//Ciclo para control de error
 		while (!controlError) {
 			
-		    //Ingreso de valores y control de error de ingreso de valores no numéricos 
+		    //Ingreso de valores
 			System.out.print(sb);
 			seleccion = esByte(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
-			System.out.println(InicializacionAplicacion.usuarioActivo.salir(seleccion));
+			System.out.println(usuario.cerrarSesion(seleccion));
 		}
 	}
 	
 	@Override
-	public String toString() {return "Salir";}
+	public String toString() {return "Cerrar sesión";}
 }

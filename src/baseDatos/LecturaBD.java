@@ -23,15 +23,17 @@ import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Comprador;
+import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Vendedor;
 
 public class LecturaBD {
 
-    static BufferedReader br = null;
-	static String BDactual;
+    private static BufferedReader br = null;
+    private static String BDactual;
+    private static int maxID = 0;
     
 	public static void PrincipalLecturaBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCarr, 
-										  String BDCat, String BDProd, String BDRes) throws IOException {
+										  String BDCat, String BDProd, String BDRes) {
 		/*
 	  		Método PrincipalLecturaBD (público)
 		   	
@@ -48,17 +50,21 @@ public class LecturaBD {
 	   		- BDProd: Nombre de la base de datos de los productos.
 	   		- BDRes: Nombre de la base de datos de las reseñas.
 	   	*/
-		Deque <Integer> auxComp = new LinkedList <>();
-		Deque <Integer> auxVend = new LinkedList <>();
-		Deque <Integer> auxCarr = new LinkedList <>();
-		Deque <Integer> auxCat = new LinkedList <>();
-		Deque <Integer> auxProd = new LinkedList <>();
+		HashMap <Integer, Deque <Integer>> auxComp = new HashMap<>();
+		Deque <Integer> cnProdComp = new LinkedList <>();
+		HashMap <Integer, Deque <Integer>> auxVend = new HashMap<>();
+		HashMap <Integer, Deque <Integer>> auxAdmi = new HashMap<>();
+		HashMap <Integer, Deque <Integer>> auxCarr = new HashMap<>();
+		Deque <Integer> auxCat = new LinkedList<>();
+		HashMap <Integer, Deque <Integer>> auxProd = new HashMap<>();
+		HashMap <Integer, Integer> auxRes = new HashMap<>();
+
         
         try {
     		//Lectura de las cuentas
-        	lecturaCompradores(BDComp, InicializacionAplicacion.getBDCompradores(), auxComp);
+        	lecturaCompradores(BDComp, InicializacionAplicacion.getBDCompradores(), auxComp, cnProdComp);
     		lecturaVendedores(BDVend, InicializacionAplicacion.getBDVendedores(), auxVend);
-    		lecturaAdministradores(BDAdm, InicializacionAplicacion.getBDAdministradores());
+    		lecturaAdministradores(BDAdm, InicializacionAplicacion.getBDAdministradores(), auxAdmi);
     		
     		//Lectura de las cuentas bancarias
     		lecturaCuentasBancarias(BDCuentBanc, InicializacionAplicacion.getBDCuentasBancarias());
@@ -73,309 +79,353 @@ public class LecturaBD {
     		lecturaProductos(BDProd, InicializacionAplicacion.getBDProductos(), auxProd);
     		
     		//Lectura de las reseñas
-    		lecturaResenas(BDRes, InicializacionAplicacion.getBDResenas());
+    		lecturaResenas(BDRes, InicializacionAplicacion.getBDResenas(), auxRes);
         }
         catch (FileNotFoundException ex){
-        	mensajeError(ex); br.close();	
-        }	
-		
+        	mensajeError(ex, "Base de datos \"" + BDactual + ".txt\" no encontrada");
+        }
+        catch (IOException ex) {
+        	mensajeError(ex, "No fue posible leer la base de datos \"" + BDactual + ".txt\"");
+        }
+        finally {
+        	try {
+        		br.close();
+        	}
+        	catch (IOException ex) {
+            	mensajeError(ex, "No fue posible cerrar (lectura) la base de datos \"" + BDactual + ".txt\"");
+        	}
+        }
+        
 		//Asignando los elementos restantes utilizando las colas auxiliares
 		complementoLectura(InicializacionAplicacion.getBDCompradores(), InicializacionAplicacion.getBDVendedores(),
-				  		   InicializacionAplicacion.getBDAdministradores(), Vendedor.catalogo, 
+				  		   InicializacionAplicacion.getBDAdministradores(), Cuenta.catalogo, 
 				  		   InicializacionAplicacion.getBDCuentasBancarias(), InicializacionAplicacion.getBDCarritos(), 
 				  		   InicializacionAplicacion.getBDProductos(), InicializacionAplicacion.getBDResenas(), 
-				  		   auxComp, auxVend, auxCarr, auxCat, auxProd);
+				  		   auxComp, cnProdComp, auxAdmi, auxVend, auxCarr, auxCat, auxProd, auxRes);
 	}
-
-	private static void lecturaCompradores(String NombreBD, HashMap <Integer, Comprador> HM, Deque <Integer> aux) throws IOException {
+	
+	private static void lecturaCompradores(String NombreBD, HashMap <Integer, Comprador> HM, HashMap <Integer, Deque <Integer>> mapAux, Deque <Integer> colaAuxProd) throws IOException {
 		
-		Comprador val;
-	    String [] Dat, auxS;
+		Deque <Integer> colaAux;
+		Comprador usuario;
+	    String [] dat;
 	    
-	    //Asignación de nombre de base de datos para control de error
-	    BDactual = NombreBD;
+	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de error
 	    
 		//Apertura de la base de datos
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
 
 	    //Ciclo para obtener la información
-        while (!(Dat = br.readLine().split(";"))[0].equals("#")) {
-	    	val = new Comprador();
-	    	val.setId(Integer.parseInt(Dat[0]));					//Identificador único de comprador
-	    	val.setNombre(Dat[1]);									//Nombre comprador
-	    	val.setCorreo(Dat[2]);									//Correo comprador
-	    	val.setPassword(Dat[3]);								//Contraseña comprador
-	    	val.setCedula(Integer.parseInt(Dat[4]));				//Cédula comprador
-	    	aux.add(Integer.parseInt(Dat[5]));						//Apuntador a cuenta bancaria de comprador
-	    	aux.add(Integer.parseInt(Dat[6]));						//Apuntador a carrito de compras
-	    	auxS = Dat[7].split(",");								//Apuntadores a productos del historial del comprador
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
+
+    		//Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;IDcarrN;IDprodhist1,...,IDprodhistN;IDopmen1,...,IDopmenN
+        	
+        	//Creación del Comprador
+        	usuario = new Comprador(Integer.parseInt(dat[0]), dat[1], dat[2], dat[3], Integer.parseInt(dat[4]));
+        	
+	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
+        	colaAux.add(Integer.parseInt(dat[5]));		//Referencia a la cuenta bancaria
+        	colaAux.add(Integer.parseInt(dat[6]));		//Referencia al carrito de compras
+        	colaAux = subDatos(dat[7], colaAux);		//Referencias a los productos del historial
+        	
+        	//Condicional para guardar la condición de que se tienen productos en el historial
+        	if (!colaAux.isEmpty()) {
+            	colaAuxProd.add(colaAux.size() - 2);
+        	} else {
+            	colaAuxProd.add(0);
+        	}
+        	colaAux = subDatos(dat[8], colaAux);		//Referencias a las opciones de menú
 	    	
-	    	//Condicional para el caso donde no existe historial
-	    	if (!auxS[0].equals("##")) {
-    	    	for (int i = 0; i < auxS.length; i++) {
-    	    		aux.add(Integer.parseInt(auxS[i]));				//Asignación de apuntadores a productos del historial del comprador	
-    	    	}
-	    	}
-	        HM.put(val.getId(), val);								//Asignación del objeto a la estructura de datos correspondiente
+	        HM.put(usuario.getId(), usuario);			//Asignación del comprador a la estructura de datos correspondiente
+	        mapAux.put(usuario.getId(), colaAux);		//Guardado de las referencias en el mapa auxiliar
+	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-		//Mensaje de confirmación
-       mensajeConfirmacion(!HM.isEmpty(), NombreBD);
-        
-		//Cerrado de la base de datos
-	    br.close();
+        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
-	private static void lecturaVendedores(String NombreBD, HashMap <Integer, Vendedor> HM, Deque <Integer> aux) throws IOException {
-		
-		Vendedor val;
-	    String [] Dat;
-	    
-	    //Asignación de nombre de base de datos para control de error
-	    BDactual = NombreBD;
+	private static void lecturaVendedores(String NombreBD, HashMap <Integer, Vendedor> HM, HashMap <Integer, Deque <Integer>> mapAux) throws IOException {
+
+		Deque <Integer> colaAux;
+		Vendedor usuario;
+	    String [] dat;
+
+	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de error
 
 		//Apertura de la base de datos
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
 
 	    //Ciclo para obtener la información
-        while (!(Dat = br.readLine().split(";"))[0].equals("#")) {
-	    	val = new Vendedor();
-	    	val.setId(Integer.parseInt(Dat[0]));					//Identificador único de vendedor
-	    	val.setNombre(Dat[1]);									//Nombre vendedor
-	    	val.setCorreo(Dat[2]);									//Correo vendedor
-	    	val.setPassword(Dat[3]);								//Contraseña vendedor
-    		val.setCedula(Integer.parseInt(Dat[4]));				//Cédula vendedor
-	    	aux.add(Integer.parseInt(Dat[5]));						//Apuntador a cuenta bancaria del vendedor
-	        HM.put(val.getId(), val);								//Asignación del objeto a la estructura de datos correspondiente
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
+        	
+    		//Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;IDopmen1,...,IDopmenN
+        	
+        	//Creación del vendedor
+	    	usuario = new Vendedor(Integer.parseInt(dat[0]), dat[1], dat[2], dat[3], Integer.parseInt(dat[4]));
+        	
+	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
+	    	colaAux.add(Integer.parseInt(dat[5]));		//Referencia a la cuenta bancaria
+        	colaAux = subDatos(dat[6], colaAux);		//Referencias a las opciones de menú
+        	
+    		HM.put(usuario.getId(), usuario);			//Asignación del vendedor a la estructura de datos correspondiente
+	        mapAux.put(usuario.getId(), colaAux);		//Guardado de las referencias en el mapa auxiliar
+	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-		//Mensaje de confirmación
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD);
-        
-		//Cerrado de la base de datos
-	    br.close();
+        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
-	private static void lecturaAdministradores(String NombreBD, HashMap <Integer, Administrador> HM) throws IOException {
-		
-		Administrador val;
-	    String [] Dat;
+	private static void lecturaAdministradores(String NombreBD, HashMap <Integer, Administrador> HM, HashMap <Integer, Deque <Integer>> mapAux) throws IOException {
+
+		Deque <Integer> colaAux;
+		Administrador usuario;
+	    String [] dat;
 	    
-	    //Asignación de nombre de base de datos para control de error
-	    BDactual = NombreBD;
+	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de error
 	    
 		//Apertura de la base de datos
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
         
 	    //Ciclo para obtener la información
-        while (!(Dat = br.readLine().split(";"))[0].equals("#")) {
-	    	val = new Administrador();
-	    	val.setId(Integer.parseInt(Dat[0])); 					//Identificador único de administrador
-	    	val.setNombre(Dat[1]);									//Nombre administrador
-	    	val.setCorreo(Dat[2]);									//Correo administrador
-	    	val.setPassword(Dat[3]);								//Contraseña administrador
-	    	val.setCedula(Integer.parseInt(Dat[4]));				//Cédula administrador
-	        HM.put(val.getId(), val);								//Asignación del objeto a la estructura de datos correspondiente
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
+        	
+    		//Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDopmen1,...,IDopmenN
+
+        	//Creación del administrador
+	    	usuario = new Administrador(Integer.parseInt(dat[0]), dat[1], dat[2], dat[3], Integer.parseInt(dat[4]));
+
+	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
+        	colaAux = subDatos(dat[5], colaAux);		//Referencias a las opciones de menú
+	    	HM.put(usuario.getId(), usuario);			//Asignación del administrador a la estructura de datos correspondiente
+	        mapAux.put(usuario.getId(), colaAux);		//Guardado de las referencias en el mapa auxiliar
+	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-        
-		//Mensaje de confirmación
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD);
-        
-		//Cerrado de la base de datos
-	    br.close();
+        Cuenta.setMaxID(maxID); maxID = 0;
+        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
 	private static void lecturaCuentasBancarias(String NombreBD, HashMap <Integer, CuentaBancaria> HM) throws NumberFormatException, IOException {
 		
-		CuentaBancaria val;
-	    String [] Dat;
-	    
-	    //Asignación de nombre de base de datos para control de error
-	    BDactual = NombreBD;
+		CuentaBancaria cuenta;
+	    String [] dat;
+
+	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de erro
 
 		//Apertura de la base de datos
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
         
 	    //Ciclo para obtener la información
-        while (!(Dat = br.readLine().split(";"))[0].equals("#")) {
-	    	val = new CuentaBancaria();
-	    	val.setId(Integer.parseInt(Dat[0]));					//Identificador único de la cuenta bancaria
-//	    	val.setPropietario(Dat[1]);								//Titular de la cuenta bancaria
-	    	val.setSaldo(Double.parseDouble(Dat[2]));				//Saldo de la cuenta bancaria
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
+        	
+    		//Ejemplo de datos: ID;Saldo
+        	
+        	//Creación de una nueva cuenta bancaria
+        	cuenta = new CuentaBancaria(Integer.parseInt(dat[0]), Double.parseDouble(dat[1]));
+	    	HM.put(cuenta.getId(), cuenta);			//Asignación de la cuenta bancaria a la estructura de datos correspondiente
+	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-		//Mensaje de confirmación
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD);
-        
-		//Cerrado de la base de datos
-	    br.close();
+        CuentaBancaria.setMaxID(maxID); maxID = 0;
+        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
-	private static void lecturaCarritos(String NombreBD, HashMap <Integer, CarritoDeCompras> HM, Deque <Integer> aux) throws IOException {
-		
-		CarritoDeCompras val;
-	    String [] Dat, auxS;
-	    
-	    //Asignación de nombre de base de datos para control de error
-	    BDactual = NombreBD;
+	private static void lecturaCarritos(String NombreBD, HashMap <Integer, CarritoDeCompras> HM, HashMap <Integer, Deque <Integer>> mapAux) throws IOException {
+
+		Deque <Integer> colaAux;
+		CarritoDeCompras carrito;
+	    String [] dat;
+
+	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de error
 
 		//Apertura de la base de datos
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
-
+        
 	    //Ciclo para obtener la información
-        while (!(Dat = br.readLine().split(";"))[0].equals("#")) {
-	    	val = new CarritoDeCompras();
-	    	val.setId(Integer.parseInt(Dat[0])); 					//Identificador único del carrito
-	    	val.setTotalproductos(Integer.parseInt(Dat[1]));		//Total de productos del carrito
-	    	val.setPrecioTotal(Double.parseDouble(Dat[2]));			//Precio total de los productos en el carrito
-	    	auxS = Dat[3].split(",");								//Apuntadores a productos del carrito
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
+        	
+    		//Ejemplo de datos: ID;TotalProd;PrecioTot;(IDprodcarr1,CantidadProdCarr1),...,(IDprodcarrN,CantidadProdCarrN)
+        	
+        	carrito = new CarritoDeCompras(Integer.parseInt(dat[0]), Integer.parseInt(dat[1]),Double.parseDouble(dat[2]));
+
+	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
+        	colaAux = subDatos(dat[3], colaAux);		//Referencias a los productos del carrito
+	        HM.put(carrito.getId(), carrito);			//Asignación del carrito a la estructura de datos correspondiente
+	        mapAux.put(carrito.getId(), colaAux);		//Guardado de las referencias en el mapa auxiliar
+	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
+	    }
+        CarritoDeCompras.setMaxID(maxID); maxID = 0;
+        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
+	}
+	
+	private static void lecturaCatalogo(String NombreBD, Deque <Integer> colaAux) throws IOException {
+
+	    String dat;
+
+	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de error
+
+		//Apertura de la base de datos
+        br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
+        
+	    //Ciclo para obtener la información
+        while (!(dat = br.readLine()).equals("#")) {
+    		//Ejemplo de datos: IDProducto (por cada fila)
+        	colaAux.add(Integer.parseInt(dat));	//Referencias a los productos del catálogo
+	    }
+        mensajeConfirmacion(!colaAux.isEmpty(), NombreBD); 	//Mensaje de confirmación
+	}
+	
+	private static void lecturaProductos(String NombreBD, HashMap <Integer, Producto> HM, HashMap <Integer, Deque <Integer>> mapAux) throws NumberFormatException, IOException {
+
+		Deque <Integer> colaAux;
+		Producto prod;
+	    String [] dat;
+	    
+	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de error
+	    
+		//Apertura de la base de datos
+        br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
+        
+	    //Ciclo para obtener la información
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
+        	
+    		//Ejemplo de datos: ID;Nombre;Categoria;Precio;Cantidad;IDVendedor;IDresprod1,...,IDresprodN
+        	
+        	//Creación del producto
+	    	prod = new Producto(Integer.parseInt(dat[0]), dat[1], dat[2], Double.parseDouble(dat[3]), Integer.parseInt(dat[4]));
 	    	
-	    	//Condicional para el caso donde el carrito no tiene productos
-	    	if (!auxS[0].equals("##")) {
-    	    	for (int i = 0; i < auxS.length; i++) {
-    	    		aux.add(Integer.parseInt(auxS[i]));				//Asignación de apuntadores a productos del carrito
-    	    	}
-	    	}
-	        HM.put(val.getId(), val);								//Asignación del objeto a la estructura de datos correspondiente
+	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
+	    	colaAux.add(Integer.parseInt(dat[5]));		//Referencia al vendedor del producto
+        	colaAux = subDatos(dat[6], colaAux);		//Referencia a las reseñas del producto
+        	
+	        HM.put(prod.getId(), prod);					//Asignación del producto a la estructura de datos correspondiente
+	        mapAux.put(prod.getId(), colaAux);			//Guardado de las referencias en el mapa auxiliar
+	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-		//Mensaje de confirmación
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD);
-        
-		//Cerrado de la base de datos
-	    br.close();
+        Producto.setMaxID(maxID); maxID = 0;
+        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
-	private static void lecturaCatalogo(String NombreBD, Deque <Integer> aux) throws IOException {
-
-	    String [] Dat;
-	    
-	    //Asignación de nombre de base de datos para control de error
-	    BDactual = NombreBD;
-
-		//Apertura de la base de datos
-        br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
-        
-	    //Ciclo para obtener la información
-        Dat = br.readLine().split(",");
-        if (!Dat[0].equals("#")) {
-            for (int i = 0; i < Dat.length; i++) {
-            	aux.add(Integer.parseInt(Dat[i]));
-            }
-        }
-	    
-		//Mensaje de confirmación
-        mensajeConfirmacion(!aux.isEmpty(), NombreBD);
-        
-		//Cerrado de la base de datos
-	    br.close();
-	}
-	
-	private static void lecturaProductos(String NombreBD, HashMap <Integer, Producto> HM, Deque <Integer> aux) throws NumberFormatException, IOException {
+	private static void lecturaResenas(String NombreBD, HashMap <Integer, Resena> HM, HashMap <Integer, Integer> mapAux) throws NumberFormatException, IOException {
 		
-		Producto val;
-	    String [] Dat, auxS;
-	    
-	    //Asignación de nombre de base de datos para control de error
-	    BDactual = NombreBD;
+		Resena res;
+	    String [] dat;
+
+	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de error
 
 		//Apertura de la base de datos
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
-
+        
 	    //Ciclo para obtener la información
-        while (!(Dat = br.readLine().split(";"))[0].equals("#")) {
-	    	val = new Producto();
-	    	val.setCodigoProducto(Integer.parseInt(Dat[0]));	//Identificador único del producto
-	    	val.setNombreProducto(Dat[1]);						//Nombre del producto
-	    	aux.add(Integer.parseInt(Dat[2]));					//Apuntador al vendedor del producto
-	    	val.setPrecio(Double.parseDouble(Dat[3]));			//Precio total del producto
-	    	val.setCategoria(Dat[4]);							//Categoría del producto
-	    	val.setCantidad(Integer.parseInt(Dat[5]));			//Cantidad del producto 
-	    	auxS = Dat[6].split(",");							//Apuntadores de reseñas del producto
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
+
+    		//Ejemplo de datos: ID;Comentario;Estrellas;IDcomprador
+        	
+        	//Creación de la reseña
+	    	res = new Resena(Integer.parseInt(dat[0]), dat[1], Integer.parseInt(dat[2]));
 	    	
-	    	//Condicional para el caso donde el producto no tiene reseñas
-	    	if (!auxS[0].equals("##")) {
-    	    	for (int i = 0; i < auxS.length; i++) {
-    	    		aux.add(Integer.parseInt(auxS[i]));			//Asignación de apuntadores de reseñas del producto	
-    	    	}
-	    	}
-	        HM.put(val.getCodigoProducto(), val);				//Asignación del objeto a la estructura de datos correspondiente
+	    	mapAux.put(res.getId(), Integer.parseInt(dat[3]));	//Referencia al usuario comprador, autor de la reseña
+	        HM.put(res.getId(), res);							//Asignación de la reseña a la estructura de datos correspondiente
+	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-	    
-		//Mensaje de confirmación
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD);
-        
-		//Cerrado de la base de datos
-	    br.close();
-	}
-	
-	private static void lecturaResenas(String NombreBD, HashMap <Integer, Resena> HM) throws NumberFormatException, IOException {
-		
-		Resena val;
-	    String [] Dat;
-	    
-	    //Asignación de nombre de base de datos para control de error
-	    BDactual = NombreBD;
-
-		//Apertura de la base de datos
-        br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
-        
-	    //Ciclo para obtener la información
-        while (!(Dat = br.readLine().split(";"))[0].equals("#")) {
-	    	val = new Resena();
-	    	val.setId(Integer.parseInt(Dat[0])); 					//Identificador único de la reseña
-	    	val.setEstrellas(Integer.parseInt(Dat[1]));				//Nombre administrador
-	    	val.setComentario(Dat[2]);								////Comentario de la reseña
-	        HM.put(val.getId(), val);								//Asignación del objeto a la estructura de datos correspondiente
-	    }
-	    
-		//Mensaje de confirmación
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD);
-        
-		//Cerrado de la base de datos
-	    br.close();
+        Resena.setMaxID(maxID); maxID = 0;
+        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
 	private static void complementoLectura(HashMap <Integer, Comprador> BDCompradores, HashMap <Integer, Vendedor> BDVendedores, 
 										   HashMap <Integer, Administrador> BDAdministradores, HashMap <Integer, Producto> catalogo, 
-										   HashMap <Integer, CuentaBancaria> BDCuentasBancarias, HashMap <Integer, CarritoDeCompras> bdCarritos, 
+										   HashMap <Integer, CuentaBancaria> BDCuentasBancarias, HashMap <Integer, CarritoDeCompras> BDCarritos, 
 										   HashMap <Integer, Producto> BDProductos, HashMap <Integer, Resena> BDResenas, 
-										   Deque <Integer> auxComp, Deque <Integer> auxVend, Deque <Integer> auxCarr, Deque <Integer> auxCat, 
-										   Deque <Integer> auxProd) {
-		int i, j;
+										   HashMap<Integer, Deque<Integer>> auxComp, Deque<Integer> cnProdComp, HashMap<Integer, Deque<Integer>> auxVend, 
+										   HashMap<Integer, Deque<Integer>> auxAdmi, HashMap<Integer, Deque<Integer>> auxCarr, Deque <Integer> auxCat, 
+										   HashMap<Integer, Deque<Integer>> auxProd, HashMap<Integer, Integer> auxRes) {
+		
+		int i, j, n, aux;
+		
+		//Asignando el total de las cuentas
+		Cuenta.setTotalCuentas(BDCompradores.size() + BDVendedores.size() + BDAdministradores.size());
 		
 		//Completando la información de los compradores
         for (Map.Entry <Integer, Comprador> entry : BDCompradores.entrySet()) {
-            entry.getValue().setCuentaBancaria(BDCuentasBancarias.get(auxComp.poll())); //Asignación de cuenta bancaria
-            ((Comprador) entry.getValue()).setCarrito(bdCarritos.get(auxComp.poll()));				//Asignación de carrito
+         	//Asignación de cuenta bancaria a comprador y viceversa
+        	aux = auxComp.get(entry.getKey()).poll();
+            entry.getValue().setCuentaBancaria(BDCuentasBancarias.get(aux));
+            BDCuentasBancarias.get(aux).setPropietario(entry.getValue());
+            
+            //Asignación de carrito al comprador y viceversa
+        	aux = auxComp.get(entry.getKey()).poll();
+            entry.getValue().setCarrito(BDCarritos.get(aux));
+            BDCarritos.get(aux).setComprador(entry.getValue());
             
             //Asignación de productos al historial del comprador
-            for (i = 0; i < auxComp.size(); i++) {
-            	j = auxComp.poll();
-            	((Comprador) entry.getValue()).getHistorial().put(j, BDProductos.get(j));
+            if ((n = cnProdComp.poll()) != 0) {
+                for (i = 0; i < n; i++) {
+                	j = (auxComp.get(entry.getKey())).poll();
+                	entry.getValue().getHistorial().put(j, BDProductos.get(j));
+                }
+            }
+            
+            //Asignación de las opciones de menú
+            if (!(auxComp.get(entry.getKey())).isEmpty()) {
+            	entry.getValue().setMenu(auxComp.get(entry.getKey()));
             }
         }
 
 		//Completando la información de los vendedores
         for (Map.Entry <Integer, Vendedor> entry : BDVendedores.entrySet()) {
-            entry.getValue().setCuentaBancaria(BDCuentasBancarias.get(auxVend.poll())); //Asignación de cuenta bancaria
-        }
-
-		//Completando la información de los carritos
-        for (Map.Entry <Integer, CarritoDeCompras> entry : bdCarritos.entrySet()) {
-            //Asignación de productos al carrito
-            for (i = 0; i < auxCarr.size(); i++) {
-            	entry.getValue().productos.put(auxCarr.poll(), auxCarr.poll());
+        	//Asignación de cuenta bancaria al vendedor y viceversa
+        	aux = auxVend.get(entry.getKey()).poll();
+            entry.getValue().setCuentaBancaria(BDCuentasBancarias.get(aux));
+            BDCuentasBancarias.get(aux).setPropietario(entry.getValue());
+            
+            //Asignación de las opciones de menú
+            if (!(auxVend.get(entry.getKey())).isEmpty()) {
+            	entry.getValue().setMenu(auxVend.get(entry.getKey()));
             }
+        }
+        
+        //Completando la información de los administradores
+        for (Map.Entry <Integer, Administrador> entry : BDAdministradores.entrySet()) {
+            //Asignación de las opciones de menú
+            if (!(auxAdmi.get(entry.getKey())).isEmpty()) {
+            	entry.getValue().setMenu(auxAdmi.get(entry.getKey()));
+            }
+        }
+        
+		//Completando la información de los carritos
+        for (Map.Entry <Integer, CarritoDeCompras> entry : BDCarritos.entrySet()) {
+            //Asignación de productos al carrito
+        	entry.getValue().setProductos(auxCarr.get(entry.getKey()));
+        }
+        
+        //Completando la información del catálogo
+        while (!auxCat.isEmpty()) {
+        	j = auxCat.poll();
+        	catalogo.put(j, BDProductos.get(j));
         }
         
 		//Completando la información de los productos
         for (Map.Entry <Integer, Producto> entry : BDProductos.entrySet()) {
-        	entry.getValue().setVendedor((Vendedor) BDVendedores.get(auxProd.poll()));
-            //Asignación de productos al carrito
-            for (i = 0; i < auxProd.size(); i++) {
-            	j = auxProd.poll();
-            	entry.getValue().getResenas().put(j, BDResenas.get(j));
-            }
+        	entry.getValue().setVendedor(BDVendedores.get((auxProd.get(entry.getKey()).poll())));	//Asignación del vendedor
+        	entry.getValue().setResenas(auxProd.get(entry.getKey()));								//Asignación de reseñas al producto
+        }
+        
+        //Completando la información de las reseñas
+        for (Map.Entry <Integer, Resena> entry : BDResenas.entrySet()) {
+        	entry.getValue().setComprador(BDCompradores.get((auxRes.get(entry.getKey()))));
         }
 	}
-
+	
+	private static Deque <Integer> subDatos (String dat, Deque <Integer> colaAux){
+		
+		String subDat[];
+		
+		//Condicional para el caso donde no existen elementos en el subconjunto de datos
+		if (!dat.equals("#")) {
+			subDat = dat.split(",");
+	    	for (int i = 0; i < subDat.length; i++) {
+	    		colaAux.add(Integer.parseInt(subDat[i]));	//Asignación de referencias
+	    	}
+		}
+		return colaAux;
+	}
+	
 	private static void mensajeConfirmacion(boolean BDvacia, String NombreBD) {
         if (BDvacia) {
         	//Caso A: La base de datos se cargó correctamente
@@ -387,8 +437,8 @@ public class LecturaBD {
         }
 	}
 	
-	private static void mensajeError(Exception ex) {
-        System.err.println(ex.getMessage() + " Base de datos \"" + BDactual + ".txt\" no encontrada");
+	private static void mensajeError(Exception ex, String mensaje) {
+        System.err.println(ex.getMessage() + '\n' + mensaje);
         System.exit(0);
 	}
 }
