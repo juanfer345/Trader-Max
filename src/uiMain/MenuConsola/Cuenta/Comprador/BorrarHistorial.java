@@ -1,4 +1,4 @@
-package uiMain.Funcionalidades.Cuenta.Comprador;
+package uiMain.MenuConsola.Cuenta.Comprador;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Comprador;

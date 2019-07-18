@@ -1,9 +1,9 @@
-package uiMain.Funcionalidades.Cuenta.Comprador;
+package uiMain.MenuConsola.Cuenta.Comprador;
 
 import java.io.IOException;
+
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Comprador;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class VaciarCarrito extends OpcionDeMenu { // opcion 8
@@ -23,12 +23,12 @@ public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 
 			System.out.println(sb);
 			opcion = br.readLine().trim();
-			comprobOpc = MenuDeConsola.esInt(opcion);
+			comprobOpc = esInt(opcion);
 
 			while (comprobOpc == -1) {
 				System.out.println("El dato que ingreso es invalido, vuelva a intentarlo");
 				opcion = br.readLine().trim();
-				comprobOpc = (int) MenuDeConsola.esInt(opcion);
+				comprobOpc = esInt(opcion);
 			}
 			if (comprobOpc == 0) {
 				// ver si es un 0 para devolverse

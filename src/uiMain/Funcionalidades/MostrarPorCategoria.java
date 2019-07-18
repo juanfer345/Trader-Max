@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class MostrarPorCategoria extends OpcionDeMenu { // opcion 3
@@ -25,7 +24,7 @@ public class MostrarPorCategoria extends OpcionDeMenu { // opcion 3
 		    
 			//Impresión de mensaje y recepción de datos
 			System.out.print(sb);
-			seleccion = MenuDeConsola.esByte(br.readLine().trim());
+			seleccion = esByte(br.readLine().trim());
 			
 			//Ejecución del método e impresión de respuesta
 			if (seleccion != 0) {

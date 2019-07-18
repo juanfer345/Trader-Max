@@ -1,47 +1,36 @@
 package gestorAplicacion.Usuarios;
 
 import gestorAplicacion.InicializacionAplicacion;
-import gestorAplicacion.Materiales.CuentaBancaria;
 import uiMain.OpcionDeMenu;
 
 abstract public class CuentaUsuario extends Cuenta {
 
-	private CuentaBancaria cuentaBancaria;
+	abstract public int getTotalDeOpcionesDefault();
+	
+	//Constructor para usuarios existentes	
+	public CuentaUsuario(int id, String nombre, String correo, String password, int cedula) {
+		super(id, nombre, correo, password, cedula);
+	}
 
+	//Constructor para usuarios nuevos
 	public CuentaUsuario(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
-		cuentaBancaria = new CuentaBancaria(1000000, this);
 	}
 	
-	public CuentaUsuario() {
-		totalCuentas++;
-	}
+	public CuentaUsuario() {}
 	
-	public CuentaBancaria getCuentaBancaria() {
-		return cuentaBancaria;
-	}
-
-	public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {
-		this.cuentaBancaria = cuentaBancaria;
-	}
-
-	// Método para cerrar sesión
+	//Método para cerrar sesión
 	public String cerrarSesion(byte seleccion) {
 		if (seleccion == 1) {
-			InicializacionAplicacion.usuarioActivo = new Visitante();
+			InicializacionAplicacion.setUsuarioActivo(new Visitante());
 			OpcionDeMenu.controlError = true;
-			return "\nSe ha cerrado sesión correctamente mijin\n";
+			return "\nSe ha cerrado sesión correctamente mijin\n" + 
+					"\nBienvenido invitado.\n";
 		} else if (seleccion == 2) {
 			OpcionDeMenu.controlError = true;
 			return "";
 		} else {
-			OpcionDeMenu.controlError = false;
-			return "\nPor favor ingrese un número válido\n";
+			return "Por favor ingrese un número entero en el rango [1,2].";
 		}
-	}
-
-	@Override
-	public String toString() {
-		return super.toString() + ", cuentaBancaria=" + cuentaBancaria;
 	}
 }

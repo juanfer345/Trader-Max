@@ -38,7 +38,7 @@ public class InicializacionAplicacion {
 		System.out.println("Bienvenido invitado.\n");
 		
 		//Creación de un usuario visitante
-		usuarioActivo = new Visitante();
+		setUsuarioActivo (new Visitante());
 		
 		//Ciclo de control para ejecutar el menú hasta que se desee salir de la aplicación
 		MenuDeConsola.LanzarMenu();
@@ -64,4 +64,9 @@ public class InicializacionAplicacion {
 	public static HashMap <Integer, Producto> getBDProductos() {return BDProductos;}
 
 	public static HashMap <Integer, Resena> getBDResenas() {return BDResenas;}
+
+	public static void setUsuarioActivo(Cuenta usuarioActivo) {
+		InicializacionAplicacion.usuarioActivo = usuarioActivo;
+		MenuDeConsola.menuActivo = usuarioActivo.getMenu();
+	}
 }

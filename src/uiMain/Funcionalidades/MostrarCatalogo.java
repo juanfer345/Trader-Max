@@ -1,8 +1,8 @@
 package uiMain.Funcionalidades;
 
 import java.io.IOException;
+
 import gestorAplicacion.InicializacionAplicacion;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class MostrarCatalogo extends OpcionDeMenu {
@@ -20,7 +20,7 @@ public class MostrarCatalogo extends OpcionDeMenu {
 		while (!controlError) {
 			
 			System.out.println(sb);
-			comprobOpc = MenuDeConsola.esByte(br.readLine().trim());
+			comprobOpc = esByte(br.readLine().trim());
 			
 			if (comprobOpc != 0) {
 				if (comprobOpc == -1) {

@@ -1,8 +1,8 @@
-package uiMain.Funcionalidades.Cuenta.Vendedor;
+package uiMain.MenuConsola.Cuenta.Vendedor;
 
 import java.io.IOException;
+
 import gestorAplicacion.Usuarios.Vendedor;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
 public class AumentarCantidad extends OpcionDeMenu{
@@ -13,7 +13,7 @@ public class AumentarCantidad extends OpcionDeMenu{
 		long cantidad;
 		System.out.println("Ingrese el nombre del producto: ");
 		nombre = br.readLine();
-		comprobNom = MenuDeConsola.esLong(nombre); // ver si es un numero el nombre	
+		comprobNom = esLong(nombre); // ver si es un numero el nombre	
 		//control de ingreso nombre
 		while(comprobNom !=-1) {
 			//ver si es un 0 para devolverse	
@@ -23,14 +23,14 @@ public class AumentarCantidad extends OpcionDeMenu{
 			else {
 				System.out.println("Ingresar un nombre valido");
 				nombre = br.readLine().trim();
-				comprobNom = MenuDeConsola.esLong(nombre);
+				comprobNom = esLong(nombre);
 			}
 		}		
 		System.out.println("Ingrese la cantidad a agregar: ");		
-		cantidad = MenuDeConsola.esLong(br.readLine().trim());
+		cantidad = esLong(br.readLine().trim());
 		while(cantidad ==-1) {							
 			System.out.println("Ingresar una cantidad valida: ");
-			cantidad = MenuDeConsola.esLong(br.readLine().trim());
+			cantidad = esLong(br.readLine().trim());
 		}
 		//ver si es un 0 para devolverse
 		if (cantidad==0){ 					

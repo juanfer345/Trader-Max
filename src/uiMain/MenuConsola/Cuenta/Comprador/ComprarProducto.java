@@ -1,21 +1,19 @@
-package uiMain.Funcionalidades.Cuenta.Comprador;
+package uiMain.MenuConsola.Cuenta.Comprador;
 
 import java.io.IOException;
-import java.util.Map;
+
 import gestorAplicacion.InicializacionAplicacion;
-import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Comprador;
-import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
-public class MostrarHistorial extends OpcionDeMenu {
+public class ComprarProducto extends OpcionDeMenu { // opcion 7
 
 	@Override
-	public void ejecutar() throws IOException {
+	public void ejecutar() throws NumberFormatException, IOException {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("\n Usted ha elegido la opcion para mostrar su historial de compras");
+		sb.append("\n Usted ha elegido la opcion para comprar los productos de su carrito");
 		sb.append("\n Para regresar y cancelar el proceso ingrese el '0'");
 		sb.append("\n Para continuar con el proceso ingrese '1'");
 
@@ -27,24 +25,23 @@ public class MostrarHistorial extends OpcionDeMenu {
 
 			System.out.println(sb);
 			opcion = br.readLine().trim();
-			comprobOpc = MenuDeConsola.esInt(opcion);
+			comprobOpc = esInt(opcion);
 
 			while (comprobOpc == -1) {
 				System.out.println("El dato que ingreso es invalido, vuelva a intentarlo");
 				opcion = br.readLine().trim();
-				comprobOpc = (int) MenuDeConsola.esInt(opcion);
+				comprobOpc = esInt(opcion);
 			}
 			if (comprobOpc == 0) {
 				// ver si es un 0 para devolverse
 				controlError = true;
 			} else if (comprobOpc == 1) {
 				Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
-				System.out.println("Total de productos del historial = " + comp.getHistorial().size() + "\n");
-				for (Map.Entry<Integer, Producto> entry : comp.getHistorial().entrySet()) {
-					Producto p = entry.getValue();
-					System.out.println(p);
-				}
-				comp = null;
+				System.out.println("Su carrito tiene " + comp.getCarrito().getTotalproductos() + " productos ");
+				System.out.println("El costo total es: " + comp.getCarrito().getPrecioTotal());
+				System.out.println("Su saldo actual es: " + comp.getCuentaBancaria().getSaldo());
+				String str = comp.getCarrito().comprarProductos();
+				System.out.println(str);
 				controlError = true;
 			} else {
 				/*
@@ -58,6 +55,7 @@ public class MostrarHistorial extends OpcionDeMenu {
 
 	@Override
 	public String toString() {
-		return "Mostrar historial";
+		return "Comprar productos en el carrito";
 	}
+
 }

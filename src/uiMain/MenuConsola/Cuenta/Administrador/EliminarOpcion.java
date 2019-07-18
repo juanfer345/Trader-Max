@@ -1,19 +1,19 @@
-package uiMain.Funcionalidades.Cuenta.Administrador;
+package uiMain.MenuConsola.Cuenta.Administrador;
 
 import java.io.IOException;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
 import uiMain.OpcionDeMenu;
 
-public class MostrarMenu extends OpcionDeMenu {
+public class EliminarOpcion extends OpcionDeMenu {
 	public void ejecutar() throws NumberFormatException, IOException {
 		
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
 	    int idUsuario;
-	    byte tipoUsuario;
+	    byte tipoUsuario, opcionUsuario;
 
 	    //Guardado de mensaje principal
-		sb.append("Elija el tipo de cuenta de la cual desea ver sus opciones de menú:\n");
+		sb.append("Elija el tipo de cuenta a la cual se le desea agregar la opción:\n");
 		sb.append("1: Comprador\n");
 		sb.append("2: Vendedor\n");
 		sb.append("=> ");
@@ -37,6 +37,29 @@ public class MostrarMenu extends OpcionDeMenu {
 					
 					//Mostrado de opciones de menú del usuario
 					System.out.println(usuario.mostrarOpcionesDeMenu(idUsuario, tipoUsuario));
+					
+					//Selección de opción a agregar en caso de que la cuenta exista
+					if (controlError) {
+						controlError = false;
+						
+						//Impresión de las opciones disponibles a agregar
+						while (!controlError) {
+							System.out.println(usuario.comprobarCantidadOpciones(idUsuario, tipoUsuario, (byte) 2));
+
+							if (controlError) {
+								controlError = false;
+								//Eliminación de la opción seleccionada
+								opcionUsuario = (byte) (Byte.parseByte(br.readLine().trim()) - 1);
+								System.out.println(usuario.eliminarOpcion(idUsuario, tipoUsuario, opcionUsuario));								
+								}
+							else {
+								System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");
+							}
+						}
+					}
+					else {
+						System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");
+					}
 				}
 			}
 			else {
@@ -48,5 +71,5 @@ public class MostrarMenu extends OpcionDeMenu {
 	}
 	
 	@Override
-	public String toString() {return "Mostrar menú";}
+	public String toString() {return "Eliminar opción de menú";}
 }
