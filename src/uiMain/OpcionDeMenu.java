@@ -6,10 +6,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import uiMain.Funcionalidades.BuscarProducto;
-import uiMain.Funcionalidades.MostrarCatalogo;
-import uiMain.Funcionalidades.MostrarPorCategoria;
-import uiMain.Funcionalidades.Salir;
+import uiMain.MenuConsola.BuscarProducto;
+import uiMain.MenuConsola.MostrarCatalogo;
+import uiMain.MenuConsola.MostrarPorCategoria;
+import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Administrador.AgregarOpcion;
 import uiMain.MenuConsola.Cuenta.Administrador.CuentasAdmin;
@@ -24,7 +24,7 @@ import uiMain.MenuConsola.Cuenta.Comprador.ComprarProducto;
 import uiMain.MenuConsola.Cuenta.Comprador.MostrarHistorial;
 import uiMain.MenuConsola.Cuenta.Comprador.QuitarProductoCarrito;
 import uiMain.MenuConsola.Cuenta.Comprador.VaciarCarrito;
-import uiMain.MenuConsola.Cuenta.Vendedor.AumentarCantidad;
+import uiMain.MenuConsola.Cuenta.Vendedor.ModificarCantidad;
 import uiMain.MenuConsola.Cuenta.Vendedor.CambiarPrecio;
 import uiMain.MenuConsola.Cuenta.Vendedor.EliminarProductoCatalogo;
 import uiMain.MenuConsola.Cuenta.Vendedor.SubirProducto;
@@ -47,7 +47,7 @@ public abstract class OpcionDeMenu {
 					new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(), 
 					new AgregarACarrito(), new AgregarResena(), new BorrarHistorial(), 
 					new ComprarProducto(), new MostrarHistorial(), new QuitarProductoCarrito(), 
-					new VaciarCarrito(), new AumentarCantidad(), new CambiarPrecio(), 
+					new VaciarCarrito(), new ModificarCantidad(), new CambiarPrecio(), 
 					new EliminarProductoCatalogo(), new SubirProducto(), 
 					new BuscarProducto(), new AgregarOpcion(), new CuentasAdmin(), 
 					new EliminarCuenta(), new EliminarOpcion(), new MostrarMenu(), 

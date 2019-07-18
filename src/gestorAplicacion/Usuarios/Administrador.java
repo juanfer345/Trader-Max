@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import gestorAplicacion.InicializacionAplicacion;
 import uiMain.OpcionDeMenu;
-import uiMain.Funcionalidades.Salir;
+import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Administrador.AgregarOpcion;
 import uiMain.MenuConsola.Cuenta.Administrador.CuentasAdmin;

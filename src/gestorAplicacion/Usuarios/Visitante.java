@@ -8,10 +8,10 @@ import java.util.Map;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
-import uiMain.Funcionalidades.BuscarProducto;
-import uiMain.Funcionalidades.MostrarCatalogo;
-import uiMain.Funcionalidades.MostrarPorCategoria;
-import uiMain.Funcionalidades.Salir;
+import uiMain.MenuConsola.BuscarProducto;
+import uiMain.MenuConsola.MostrarCatalogo;
+import uiMain.MenuConsola.MostrarPorCategoria;
+import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Visitante.IniciarSesion;
 import uiMain.MenuConsola.Visitante.Registrar;
 

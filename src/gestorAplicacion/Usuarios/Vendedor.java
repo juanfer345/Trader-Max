@@ -7,7 +7,7 @@ import java.util.Map;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
-import uiMain.Funcionalidades.Salir;
+import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Vendedor.CambiarPrecio;
 import uiMain.MenuConsola.Cuenta.Vendedor.EliminarProductoCatalogo;
@@ -66,24 +66,25 @@ public class Vendedor extends CuentaConBanco {
 	}
 
 	public static String ModificarCantidad(String nombre, int valorOperar,String operador) {
-		Producto comprobarProducto = null;
-		//comprobar que el producto esta en el catalogo
-		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-			Producto iteradorCatalogo = entry.getValue();
-			if (iteradorCatalogo.getNombreProducto().equals(nombre) && iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
-				comprobarProducto = iteradorCatalogo;
-				break;
-			}
-		}
-		if (comprobarProducto == null) {
-			return "El producto no existe, no se puede aumentar la cantidad\n";
-		} 
-		//aumentar la cantidad 
-		else {
-			int can_final = comprobarProducto.getCantidad() + aumento;
-			comprobarProducto.setCantidad(comprobarProducto.getCantidad() + aumento);
-			return "Se aumentó la cantidad del producto: " + comprobarProducto.getNombreProducto() + " cantidad actual: " + can_final +"\n";
-		}
+//		Producto comprobarProducto = null;
+//		//comprobar que el producto esta en el catalogo
+//		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
+//			Producto iteradorCatalogo = entry.getValue();
+//			if (iteradorCatalogo.getNombreProducto().equals(nombre) && iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
+//				comprobarProducto = iteradorCatalogo;
+//				break;
+//			}
+//		}
+//		if (comprobarProducto == null) {
+//			return "El producto no existe, no se puede aumentar la cantidad\n";
+//		} 
+//		//aumentar la cantidad 
+//		else {
+//			int can_final = comprobarProducto.getCantidad() + aumento;
+//			comprobarProducto.setCantidad(comprobarProducto.getCantidad() + aumento);
+//			return "Se aumentó la cantidad del producto: " + comprobarProducto.getNombreProducto() + " cantidad actual: " + can_final +"\n";
+//		}
+		return "";
 	}
 
 	public static String disminuirCantidad(String nombre, int resta) {
