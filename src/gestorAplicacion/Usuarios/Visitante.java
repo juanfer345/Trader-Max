@@ -17,15 +17,12 @@ import uiMain.MenuConsola.Visitante.Registrar;
 
 public class Visitante extends Cuenta {
 	
-	public Visitante() {
-		super();
-		setMenuPredeterminado();
-	}
+	public Visitante() { }
 	
 	public ArrayList <OpcionDeMenu> getMenuPredeterminado() {
 		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
-				   new IniciarSesion(), new Registrar(), new BuscarProducto(), new MostrarPorCategoria(), 
-				   new MostrarCatalogo(), new Salir()}));
+				   new IniciarSesion(), new Registrar(), new BuscarProducto(), 
+				   new MostrarCatalogo(), new MostrarPorCategoria(), new Salir()}));
 	}
 	
 	public HashMap <Integer,Producto> verProductos() {

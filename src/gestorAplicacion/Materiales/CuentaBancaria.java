@@ -1,5 +1,6 @@
 package gestorAplicacion.Materiales;
 
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.*;
 
 public class CuentaBancaria {
@@ -19,6 +20,7 @@ public class CuentaBancaria {
 		this.saldo = saldo;
 		this.id = contador++;
 		this.propietario = cuenta;
+		InicializacionAplicacion.getBDCuentasBancarias().put(id, this);
 	}
 	
 	public double Transaccion(CuentaBancaria cb1, CuentaBancaria cb2, double precio) {

@@ -11,7 +11,7 @@ import uiMain.OpcionDeMenu;
 
 public abstract class Cuenta {
 
-	public static HashMap <Integer, Producto> catalogo;
+	public static HashMap <Integer, Producto> catalogo = new HashMap<>();
 	ArrayList <OpcionDeMenu> menu;
 	protected static ArrayList <OpcionDeMenu> cambioOpDeMen;
 	private String nombre, correo, password;
@@ -37,9 +37,10 @@ public abstract class Cuenta {
 		this.cedula = cedula;
 		this.id = contador++;
 		totalCuentas++;
+		setMenuPredeterminado();
 	}
 	
-	public Cuenta() {}
+	public Cuenta() {setMenuPredeterminado();}
 	
 	public String getNombre() {return nombre;}
 	public void setNombre(String nombre) {this.nombre = nombre;}

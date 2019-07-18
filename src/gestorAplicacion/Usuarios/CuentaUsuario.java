@@ -17,8 +17,6 @@ abstract public class CuentaUsuario extends Cuenta {
 		super(nombre, correo, password, cedula);
 	}
 	
-	public CuentaUsuario() {}
-	
 	//Método para cerrar sesión
 	public String cerrarSesion(byte seleccion) {
 		if (seleccion == 1) {

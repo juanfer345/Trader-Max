@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.BuscarProducto;
+import uiMain.Funcionalidades.MostrarCatalogo;
 import uiMain.Funcionalidades.MostrarPorCategoria;
 import uiMain.Funcionalidades.Salir;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
@@ -38,16 +40,15 @@ public class Comprador extends CuentaConBanco {
 		super(nombre, correo, password, cedula);
 		carrito = new CarritoDeCompras(this);
 		historial = new HashMap<>();
-		setMenuPredeterminado();
+		InicializacionAplicacion.getBDCarritos().put(carrito.getId(), carrito);
 	}
-	
-	public Comprador() {}
 	
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-					new AgregarACarrito(), new BorrarHistorial(), new MostrarHistorial(),
-					new VaciarCarrito(), new ComprarProducto(), new QuitarProductoCarrito(), new AgregarResena(),
-					new MostrarPorCategoria(), new BuscarProducto(), new CerrarSesion(), new Salir()}));
+					new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(),
+					new AgregarACarrito(), new AgregarResena(), new BorrarHistorial(), 
+					new ComprarProducto(), new MostrarHistorial(), new QuitarProductoCarrito(), 
+					new VaciarCarrito(), new CerrarSesion(), new Salir()}));
 	}
 	
 	public int getTotalDeOpcionesDefault() {

@@ -35,6 +35,7 @@ public class Producto {
 		this.categoria = categoria;
 		this.id = contador++;
 		resenas = new HashMap<>();
+		InicializacionAplicacion.getBDProductos().put(id, this);
 	}
 
 	public int getCantidad() {return cantidad;}

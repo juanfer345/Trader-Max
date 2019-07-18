@@ -48,7 +48,7 @@ public abstract class OpcionDeMenu {
 					new AgregarACarrito(), new AgregarResena(), new BorrarHistorial(), 
 					new ComprarProducto(), new MostrarHistorial(), new QuitarProductoCarrito(), 
 					new VaciarCarrito(), new AumentarCantidad(), new CambiarPrecio(), 
-					new EliminarProductoCatalogo(), new SubirProducto(), new MostrarPorCategoria(), 
+					new EliminarProductoCatalogo(), new SubirProducto(), 
 					new BuscarProducto(), new AgregarOpcion(), new CuentasAdmin(), 
 					new EliminarCuenta(), new EliminarOpcion(), new MostrarMenu(), 
 					new MostrarUsuario(), new IniciarSesion(), new CerrarSesion(), 

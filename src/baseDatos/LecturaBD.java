@@ -116,7 +116,7 @@ public class LecturaBD {
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
 
 	    //Ciclo para obtener la información
-        while (!(dat = br.readLine().split(";"))[0].equals(null)) {
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
 
     		//Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;IDcarrN;IDprodhist1,...,IDprodhistN;IDopmen1,...,IDopmenN
         	
@@ -155,7 +155,7 @@ public class LecturaBD {
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
 
 	    //Ciclo para obtener la información
-        while (!(dat = br.readLine().split(";"))[0].equals(null)) {
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
         	
     		//Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;IDopmen1,...,IDopmenN
         	
@@ -185,7 +185,7 @@ public class LecturaBD {
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
         
 	    //Ciclo para obtener la información
-        while (!(dat = br.readLine().split(";"))[0].equals(null)) {
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
         	
     		//Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDopmen1,...,IDopmenN
 
@@ -213,12 +213,12 @@ public class LecturaBD {
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
         
 	    //Ciclo para obtener la información
-        while (!(dat = br.readLine().split(";"))[0].equals(null)) {
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
         	
     		//Ejemplo de datos: ID;Saldo
         	
         	//Creación de una nueva cuenta bancaria
-        	cuenta = new CuentaBancaria(Integer.parseInt(dat[0]), Double.parseDouble(dat[2]));
+        	cuenta = new CuentaBancaria(Integer.parseInt(dat[0]), Double.parseDouble(dat[1]));
 	    	HM.put(cuenta.getId(), cuenta);			//Asignación de la cuenta bancaria a la estructura de datos correspondiente
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
@@ -238,7 +238,7 @@ public class LecturaBD {
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
         
 	    //Ciclo para obtener la información
-        while (!(dat = br.readLine().split(";"))[0].equals(null)) {
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
         	
     		//Ejemplo de datos: ID;TotalProd;PrecioTot;(IDprodcarr1,CantidadProdCarr1),...,(IDprodcarrN,CantidadProdCarrN)
         	
@@ -283,7 +283,7 @@ public class LecturaBD {
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
         
 	    //Ciclo para obtener la información
-        while (!(dat = br.readLine().split(";"))[0].equals(null)) {
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
         	
     		//Ejemplo de datos: ID;Nombre;Categoria;Precio;Cantidad;IDVendedor;IDresprod1,...,IDresprodN
         	
@@ -313,7 +313,7 @@ public class LecturaBD {
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
         
 	    //Ciclo para obtener la información
-        while (!(dat = br.readLine().split(";"))[0].equals(null)) {
+        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
 
     		//Ejemplo de datos: ID;Comentario;Estrellas;IDcomprador
         	
@@ -336,15 +336,22 @@ public class LecturaBD {
 										   HashMap<Integer, Deque<Integer>> auxAdmi, HashMap<Integer, Deque<Integer>> auxCarr, Deque <Integer> auxCat, 
 										   HashMap<Integer, Deque<Integer>> auxProd, HashMap<Integer, Integer> auxRes) {
 		
-		int i, j, n;
+		int i, j, n, aux;
 		
 		//Asignando el total de las cuentas
 		Cuenta.setTotalCuentas(BDCompradores.size() + BDVendedores.size() + BDAdministradores.size());
 		
 		//Completando la información de los compradores
         for (Map.Entry <Integer, Comprador> entry : BDCompradores.entrySet()) {
-            entry.getValue().setCuentaBancaria(BDCuentasBancarias.get((auxComp.get(entry.getKey()).poll()))); 	//Asignación de cuenta bancaria
-            entry.getValue().setCarrito(BDCarritos.get((auxComp.get(entry.getKey()).poll())));					//Asignación de carrito
+         	//Asignación de cuenta bancaria a comprador y viceversa
+        	aux = auxComp.get(entry.getKey()).poll();
+            entry.getValue().setCuentaBancaria(BDCuentasBancarias.get(aux));
+            BDCuentasBancarias.get(aux).setPropietario(entry.getValue());
+            
+            //Asignación de carrito al comprador y viceversa
+        	aux = auxComp.get(entry.getKey()).poll();
+            entry.getValue().setCarrito(BDCarritos.get(aux));
+            BDCarritos.get(aux).setComprador(entry.getValue());
             
             //Asignación de productos al historial del comprador
             if ((n = cnProdComp.poll()) != 0) {
@@ -362,7 +369,10 @@ public class LecturaBD {
 
 		//Completando la información de los vendedores
         for (Map.Entry <Integer, Vendedor> entry : BDVendedores.entrySet()) {
-            entry.getValue().setCuentaBancaria(BDCuentasBancarias.get((auxVend.get(entry.getKey()).poll()))); 	//Asignación de cuenta bancaria
+        	//Asignación de cuenta bancaria al vendedor y viceversa
+        	aux = auxVend.get(entry.getKey()).poll();
+            entry.getValue().setCuentaBancaria(BDCuentasBancarias.get(aux));
+            BDCuentasBancarias.get(aux).setPropietario(entry.getValue());
             
             //Asignación de las opciones de menú
             if (!(auxVend.get(entry.getKey())).isEmpty()) {
@@ -372,7 +382,6 @@ public class LecturaBD {
         
         //Completando la información de los administradores
         for (Map.Entry <Integer, Administrador> entry : BDAdministradores.entrySet()) {
-            
             //Asignación de las opciones de menú
             if (!(auxAdmi.get(entry.getKey())).isEmpty()) {
             	entry.getValue().setMenu(auxAdmi.get(entry.getKey()));
@@ -401,7 +410,6 @@ public class LecturaBD {
         for (Map.Entry <Integer, Resena> entry : BDResenas.entrySet()) {
         	entry.getValue().setComprador(BDCompradores.get((auxRes.get(entry.getKey()))));
         }
-        
 	}
 	
 	private static Deque <Integer> subDatos (String dat, Deque <Integer> colaAux){

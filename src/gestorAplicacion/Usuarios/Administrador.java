@@ -30,18 +30,17 @@ public class Administrador extends CuentaUsuario {
 	public Administrador(int idCuenta, String nombre, String correo, String password, int cedula) {
 		super(idCuenta, nombre, correo, password, cedula);
 	}
-	
+
+	//Constructor para usuarios nuevos
 	public Administrador(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
-		setMenuPredeterminado();
 	}
-
-	public Administrador() {}
 	
 	public ArrayList <OpcionDeMenu> getMenuPredeterminado() {
 		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
-				   new MostrarUsuario(), new MostrarMenu(), new EliminarOpcion(), new AgregarOpcion(), 
-				   new EliminarCuenta(), new CuentasAdmin(), new CerrarSesion(), new Salir()}));
+				   new AgregarOpcion(), new CuentasAdmin(), new EliminarCuenta(), 
+				   new EliminarOpcion(),new MostrarMenu(), new MostrarUsuario(),  
+				   new CerrarSesion(), new Salir()}));
 	}
 	
 	public int getTotalDeOpcionesDefault() {

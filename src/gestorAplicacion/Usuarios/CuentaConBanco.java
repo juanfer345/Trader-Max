@@ -23,8 +23,6 @@ public abstract class CuentaConBanco extends CuentaUsuario {
 		super(nombre, correo, password, cedula);
 		cuentaBancaria = InicializacionAplicacion.getBDCuentasBancarias().get(idCuentaBancaria);
 	}
-
-	public CuentaConBanco() {}
 		
 	public CuentaBancaria getCuentaBancaria() {return cuentaBancaria;}
 	public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {

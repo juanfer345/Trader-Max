@@ -26,14 +26,12 @@ public class Vendedor extends CuentaConBanco {
 	//Constructor para usuarios nuevos
 	public Vendedor(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
-		setMenuPredeterminado();
 	}
-
-	public Vendedor() {}
 	
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
-		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new SubirProducto(),
-				new EliminarProductoCatalogo(), new AumentarCantidad(), new CambiarPrecio(), new CerrarSesion(), new Salir() }));
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
+				new AumentarCantidad(), new CambiarPrecio(), new EliminarProductoCatalogo(), 
+				new SubirProducto(), new CerrarSesion(), new Salir() }));
 	}
 	
 	public int getTotalDeOpcionesDefault() {

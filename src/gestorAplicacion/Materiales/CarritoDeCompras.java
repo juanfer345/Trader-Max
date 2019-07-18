@@ -38,7 +38,11 @@ public class CarritoDeCompras {
     		productos.put(idCantidadProd.poll(), idCantidadProd.poll());
     	}
 	}
-
+	
+	public void setComprador(Comprador titular) {
+		this.titular = titular;
+	}
+	
 	public int getTotalproductos() {return totalProductos;}
 
 	public double getPrecioTotal() {return precioTotal;}
