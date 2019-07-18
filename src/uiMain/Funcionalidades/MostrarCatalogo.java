@@ -23,7 +23,7 @@ public class MostrarCatalogo extends OpcionDeMenu {
 			comprobOpc = esByte(br.readLine().trim());
 			
 			if (comprobOpc != 0) {
-				if (comprobOpc == -1) {
+				if (comprobOpc == 1) {
 					System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCatalogo());
 				}
 				else {
