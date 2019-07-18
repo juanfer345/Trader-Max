@@ -11,9 +11,9 @@ public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 	@Override
 	public void ejecutar() throws IOException {
 
-		sb.append("\n Usted ha elegido la opcion para vaciar su carrito de compras");
-		sb.append("\n Para regresar y cancelar el proceso ingrese el '0'");
-		sb.append("\n Para continuar con el proceso ingrese '1'");
+		sb.append("\nUsted ha elegido la opcion para mostrar su vaciar su carrito de compras. ¿Que desea hacer?");
+		sb.append("\n0. Devolverse al menú y cancelar el proceso ");
+		sb.append("\n1. Continuar con el proceso ");
 
 		controlError = false;
 		String opcion;
@@ -22,22 +22,25 @@ public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 		while (!controlError) {
 
 			System.out.println(sb);
+			System.out.print("=> ");
 			opcion = br.readLine().trim();
 			comprobOpc = esInt(opcion);
 
 			while (comprobOpc == -1) {
-				System.out.println("El dato que ingreso es invalido, vuelva a intentarlo");
+				System.out.println("\nEl dato que ingreso es invalido, vuelva a intentarlo");
+				System.out.print("Ingrese su eleccion => ");
 				opcion = br.readLine().trim();
 				comprobOpc = esInt(opcion);
 			}
 			if (comprobOpc == 0) {
 				// ver si es un 0 para devolverse
 				controlError = true;
+				System.out.println(" ");
 			} else if (comprobOpc == 1) {
 				Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
-				System.out.println("Su carrito tiene " + comp.getCarrito().getTotalproductos() + " productos ");
+				System.out.println("\nSu carrito tiene " + comp.getCarrito().getTotalproductos() + " productos ");
 				String str = comp.getCarrito().vaciarCarrito();
-				System.out.println(str);
+				System.out.println(str + "\n");
 				controlError = true;
 			} else {
 				/*

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
 import uiMain.Funcionalidades.Salir;
@@ -46,38 +47,44 @@ public class Vendedor extends CuentaConBanco {
 	}
 
 	public static String cambiarPrecio(String nombre, double precio) {
-		Producto mens = null;
+		Producto comprobarProducto = null;
+		//comprobar que el producto este en el catalogo
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-			Producto p = entry.getValue();
-			if (p.getNombreProducto() == nombre) {
-				mens = p;
+			Producto iteradorCatalogo = entry.getValue();
+			if (iteradorCatalogo.getNombreProducto().equals(nombre) && iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
+				comprobarProducto = iteradorCatalogo;
 				break;
 			}
 		}
-		if (mens == null) {
-			return "El producto no existe, no se puede cambiar el precio";
-		} else {
-			mens.setPrecio(precio);
-			return "Se ha cambiado el precio del producto: " + mens.getNombreProducto() + ". Precio actual: "
-					+ mens.getPrecio();
+		if (comprobarProducto == null) {
+			return "El producto no existe, no se puede cambiar el precio\n";
+		}
+		//cambiar precio
+		else {
+			comprobarProducto.setPrecio(precio);
+			return "Se ha cambiado el precio del producto: " + comprobarProducto.getNombreProducto() + ". Precio actual: "
+			+ comprobarProducto.getPrecio()+"\n";
 		}
 	}
 
 	public static String aumentarCantidad(String nombre, int aumento) {
-		Producto mens = null;
+		Producto comprobarProducto = null;
+		//comprobar que el producto esta en el catalogo
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-			Producto p = entry.getValue();
-			if (p.getNombreProducto() == nombre) {
-				mens = p;
+			Producto iteradorCatalogo = entry.getValue();
+			if (iteradorCatalogo.getNombreProducto().equals(nombre) && iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
+				comprobarProducto = iteradorCatalogo;
 				break;
 			}
 		}
-		if (mens == null) {
-			return "El producto no existe, no se puede aumentar la cantidad";
-		} else {
-			int can_final = mens.getCantidad() + aumento;
-			mens.setCantidad(mens.getCantidad() + aumento);
-			return "Se aumentó la cantidad del producto: " + mens.getNombreProducto() + "cantidad actual: " + can_final;
+		if (comprobarProducto == null) {
+			return "El producto no existe, no se puede aumentar la cantidad\n";
+		} 
+		//aumentar la cantidad 
+		else {
+			int can_final = comprobarProducto.getCantidad() + aumento;
+			comprobarProducto.setCantidad(comprobarProducto.getCantidad() + aumento);
+			return "Se aumentó la cantidad del producto: " + comprobarProducto.getNombreProducto() + " cantidad actual: " + can_final +"\n";
 		}
 	}
 
@@ -96,8 +103,8 @@ public class Vendedor extends CuentaConBanco {
 			int can_final = mens.getCantidad() - resta;
 			if (can_final >= 0) {
 				mens.setCantidad(mens.getCantidad() - resta);
-				return "Se redujo la cantidad del producto: " + mens.getNombreProducto() + "cantidad actual: "
-						+ can_final;
+				return "Se redujo la cantidad del producto: " + mens.getNombreProducto() + " cantidad actual: "
+				+ can_final;
 			} else {
 				return "No hay suficientes productos, no se puede disminuir su cantidad";
 			}

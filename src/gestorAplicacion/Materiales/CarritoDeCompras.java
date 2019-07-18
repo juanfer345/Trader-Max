@@ -26,7 +26,7 @@ public class CarritoDeCompras {
 	public CarritoDeCompras(Comprador comp) {
 		id = contador++;
 		titular = comp;
-		productos = new HashMap <> ();
+		productos = new HashMap<>();
 	}
 	
 	public HashMap<Integer, Integer> getProductos() {return productos;}
@@ -91,7 +91,8 @@ public class CarritoDeCompras {
 	}
 
 	public String quitarProducto(int codigo, int cantidad) {
-		if (cantidad > 0) {
+
+		if (cantidad > 0 && codigo > 0) {
 			if (productos.containsKey(codigo)) {
 				if (productos.get(codigo) >= cantidad) {
 					productos.put(codigo, productos.get(codigo) - cantidad);
@@ -109,7 +110,7 @@ public class CarritoDeCompras {
 				return "El producto no está en el carrito";
 			}
 		} else {
-			return "La cantidad ingresada debe ser mayor a cero";
+			return "Tanto la cantidad como el codigo ingresado deben ser mayor a cero";
 		}
 	}
 
@@ -117,9 +118,13 @@ public class CarritoDeCompras {
 
 	public void setId(int id) {this.id = id;}
 
-	public void setTotalproductos(int totalproductos) {this.totalProductos = totalproductos;}
+	public void setTotalproductos(int totalproductos) {
+		this.totalProductos = totalproductos;
+	}
 
-	public void setPrecioTotal(double precioTotal) {this.precioTotal = precioTotal;}
+	public void setPrecioTotal(double precioTotal) {
+		this.precioTotal = precioTotal;
+	}
 
 	@Override
 	public String toString() {

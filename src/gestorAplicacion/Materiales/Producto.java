@@ -23,6 +23,14 @@ public class Producto {
 	public Producto(int codigoProducto, String nombreProducto, String categoria, double precio, int cantidad) {
 		this.nombreProducto = nombreProducto;
 		this.categoria = categoria;
+		this.codigoProducto = cont++;
+	}
+
+	public Vendedor getVendedor() {
+		return this.vendedor;
+	}
+
+	public void setPrecio(double precio) {
 		this.precio = precio;
 		this.id = codigoProducto;
 		this.cantidad = cantidad;
@@ -61,6 +69,12 @@ public class Producto {
     		aux = idResenas.poll();
     		resenas.put(aux, InicializacionAplicacion.getBDResenas().get(aux));
     	}
+	public HashMap<Integer, Resena> getResenas() {
+		return this.Resenas;
+	}
+
+	public int getCodigoProducto() {
+		return this.codigoProducto;
 	}
 	
 	public int getId() {return id;}
