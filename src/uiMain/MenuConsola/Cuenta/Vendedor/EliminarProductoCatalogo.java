@@ -1,3 +1,13 @@
+/* 
+   Clase EliminarProductoCatalogo (pública, hereda de OpcionDeMenu)
+   
+   Propósito:
+   Opción de menú del usuario, le permite realizar acciones en el programa 
+   manipulando sus atributos y elementos
+   
+   Estructuras de datos relevantes:
+ */
+
 package uiMain.MenuConsola.Cuenta.Vendedor;
 
 import java.io.IOException;
@@ -11,7 +21,13 @@ import uiMain.OpcionDeMenu;
 public class EliminarProductoCatalogo extends OpcionDeMenu {
 
 	public void ejecutar() throws NumberFormatException, IOException {
+		
+		/*
+		   Propósito: Ejecutar el método eliminarProductoCatalogo() haciendo los respectivos 
+		              controles de error del ingreso de datos
+		 */
 
+		// Atributos
 		StringBuilder sb = new StringBuilder();
 		int cod;
 		int cantidadDeproductos = 0;
@@ -48,7 +64,8 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 					// Apartir de aquí no se generan errores
 					if (cod == 0) { // Por si se quiere salir el usuario
 						controlError = true;
-					} else { // Si el usuario no quiere salir, continua el proceso
+					} else {
+						// Si el usuario no quiere salir, continua el proceso
 						// Analiza el codigo introducido para eliminar producto
 						Vendedor comp = (Vendedor) InicializacionAplicacion.usuarioActivo;
 						String str = comp.eliminarProductoCatalogo(cod);
@@ -57,7 +74,7 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 								|| str.equals("No es un producto propio, no puede ser eliminado")) {
 							System.out.println(str);
 						} else {
-							System.out.println(str+"/n");
+							System.out.println(str + "/n");
 							controlError = true;
 						}
 
