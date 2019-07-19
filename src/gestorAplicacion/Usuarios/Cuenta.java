@@ -63,6 +63,7 @@ public abstract class Cuenta {
 	public static void setMaxID(int contador) {
 		Cuenta.contador = contador + 1;
 	}
+	public HashMap<Integer, Producto> getCatalogo() {return catalogo;}
 	
 	public ArrayList <OpcionDeMenu> getMenu(){
 		return menu;

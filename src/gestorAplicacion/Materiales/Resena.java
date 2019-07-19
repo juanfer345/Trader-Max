@@ -6,7 +6,7 @@ public class Resena {
 	
     private Comprador comp;
 	private String comentario;
-	private int estrellas, id;
+	private int estrellas, id=1;
 	static int contador;
     
 	//Constructor para reseñas existentes

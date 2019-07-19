@@ -72,7 +72,16 @@ public class Producto {
 	public static void setMaxID(int contador) {
 		Producto.contador = contador + 1;
 	}
-	
+	public String mostrarResenas() {
+		if(!resenas.isEmpty()) {
+			resenas.forEach((k, v) -> {
+				System.out.println(v);
+			});
+			return "";
+		}else {
+			return "Este producto no tiene reseñas. ";
+		}
+	}
 	public static String[] getCategorias() {
 		String mostrar[] = new String[10];
 		for (int i = 0; i < 10; i++) { // Recorrer el Array de categorias
