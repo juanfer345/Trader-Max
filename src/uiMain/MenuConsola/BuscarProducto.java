@@ -1,3 +1,8 @@
+/*	Clase BuscarProducto (pública)        
+	
+	Propósito: Opción de menú del usuario, le permite realizar acciones en el programa 
+	           manipulando sus atributos y elementos
+*/
 package uiMain.MenuConsola;
 
 import java.io.IOException;
@@ -9,6 +14,11 @@ public class BuscarProducto extends OpcionDeMenu {
 
 	@Override
 	public void ejecutar() throws NumberFormatException, IOException {
+		/*
+		 Propósito: Ejecutar el metodo buscarProducto() haciendo los respectivos
+		            controles de error del ingreso de datos
+		            (Dependiendo del parámetro se ejecuta el método que corresponde)
+		 */
 
 	    String selecc;
 	    byte seleccion;
@@ -30,8 +40,11 @@ public class BuscarProducto extends OpcionDeMenu {
 			if (seleccion == 0) {System.out.println(); return;}
 			
 			if (seleccion != -1) {
+				
+				// Selección 1: Búsqueda del producto por código
 				if (seleccion == 1) {
 					while (!controlError) {
+						// Ingreso de datos por parte del usuario
 						System.out.print("Ingrese el código del producto => ");
 						seleccion = (byte) esByte(br.readLine().trim());
 						
@@ -47,8 +60,10 @@ public class BuscarProducto extends OpcionDeMenu {
 						else {System.out.println(); return;}
 					}
 				}
+				// Selección 2: Búsqueda del producto por nombre
 				else if (seleccion == 2) {
 					while (!controlError) {
+						// Ingreso de datos por parte del usuario
 						System.out.print("Ingrese el nombre del producto => ");
 						selecc = br.readLine().trim();
 						seleccion = (byte) esByte(selecc);

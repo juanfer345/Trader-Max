@@ -1,3 +1,8 @@
+/*	Clase Salir(pública)        
+	
+	Propósito: Opción de menú del usuario, le permite realizar acciones en el programa 
+	           manipulando sus atributos y elementos
+*/
 package uiMain.MenuConsola;
 
 import java.io.IOException;
@@ -9,7 +14,10 @@ public class Salir extends OpcionDeMenu {
 
 	@Override
 	public void ejecutar() throws IOException {
-		
+		/*
+		 Propósito: Ejecutar el metodo Salir() haciendo los respectivos
+		            controles de error del ingreso de datos
+		 */
 	    byte seleccion;
 	    
 	    //Guardado de mensaje principal
