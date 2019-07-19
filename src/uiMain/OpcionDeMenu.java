@@ -1,3 +1,14 @@
+/* 
+   Clase OpcionDeMenu (pública abstracta)
+   
+   Propósito:
+   Es la base para todas las opciones de menú existentes
+   Tambien contiene algunos metodos para comprobar el tipo de dato ingresado
+   
+   Estructuras de datos relevantes:
+   - ArrayList<OpcionDeMenu>: Contiene a todas las opciones de menú del programa
+ */
+
 package uiMain;
 
 import java.io.BufferedReader;
@@ -32,28 +43,34 @@ import uiMain.MenuConsola.Visitante.IniciarSesion;
 import uiMain.MenuConsola.Visitante.Registrar;
 
 public abstract class OpcionDeMenu {
-	
+
+	//Atributos
 	public static boolean controlError;
 	protected static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    protected static StringBuilder sb = new StringBuilder();
-	
+	protected static StringBuilder sb = new StringBuilder();
+
 	abstract public void ejecutar() throws IOException;
 
 	abstract public String toString();
-	
-	public static ArrayList<OpcionDeMenu> getTodasLasOpciones(){
 
-		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-					new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(), 
-					new AgregarACarrito(), new AgregarResena(), new BorrarHistorial(), 
-					new ComprarProducto(), new MostrarHistorial(), new QuitarProductoCarrito(), 
-					new VaciarCarrito(), new ModificarCantidad(), new CambiarPrecio(), 
-					new EliminarProductoCatalogo(), new SubirProducto(), 
-					new BuscarProducto(), new AgregarOpcion(), new CuentasAdmin(), 
-					new EliminarCuenta(), new EliminarOpcion(), new MostrarMenu(), 
-					new MostrarUsuario(), new IniciarSesion(), new CerrarSesion(), 
-					new Registrar(), new Salir()}));
+	// Lista de todas las opciones de menú
+	public static ArrayList<OpcionDeMenu> getTodasLasOpciones() {
+		/*
+		   Propósito: Crear todas las opciones de menú y meterlas a una ArrayList
+		   
+		   Parámetros de salida:
+		   - ArrayList<OpcionDeMenu>: Con todas las opciones
+		 */
+
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new BuscarProducto(),
+				new MostrarCatalogo(), new MostrarPorCategoria(), new AgregarACarrito(), new AgregarResena(),
+				new BorrarHistorial(), new ComprarProducto(), new MostrarHistorial(), new QuitarProductoCarrito(),
+				new VaciarCarrito(), new ModificarCantidad(), new CambiarPrecio(), new EliminarProductoCatalogo(),
+				new SubirProducto(), new BuscarProducto(), new AgregarOpcion(), new CuentasAdmin(),
+				new EliminarCuenta(), new EliminarOpcion(), new MostrarMenu(), new MostrarUsuario(),
+				new IniciarSesion(), new CerrarSesion(), new Registrar(), new Salir() }));
 	}
+
 	// Método para comprobar si una entrada de tipo String es numérica (long)
 	public static long esLong(String input) {
 		try {
@@ -76,7 +93,7 @@ public abstract class OpcionDeMenu {
 		}
 	}
 
-	// Método para comprobar si una entrada de tipo String es numérica
+	// Método para comprobar si una entrada de tipo String es numérica (byte)
 	public static byte esByte(String input) {
 		try {
 			Byte.parseByte(input);
