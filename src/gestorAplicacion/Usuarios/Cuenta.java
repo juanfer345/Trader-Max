@@ -158,11 +158,12 @@ public abstract class Cuenta {
 	    StringBuilder sb = new StringBuilder();
 
 		if (!catalogo.isEmpty()) {
+			sb.append("\nCatálogo de TRADER-MAX: \n");
 			for (Map.Entry <Integer, Producto> entry : catalogo.entrySet()) {
 				sb.append(entry.getValue().toString() + '\n');
 			}
 			OpcionDeMenu.controlError = true;
-			return sb.append("\nCatálogo de TRADER-MAX: \n" + sb).toString();
+			return sb.toString();
 		}
 		else {
 			OpcionDeMenu.controlError = true;

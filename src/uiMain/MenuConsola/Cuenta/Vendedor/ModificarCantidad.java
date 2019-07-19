@@ -22,7 +22,7 @@ public class ModificarCantidad extends OpcionDeMenu{
 		for (Map.Entry<Integer, Producto> entry : Vendedor.catalogo.entrySet()) {
 			Producto iteradorCatalogo = entry.getValue();
 			if (iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
-				System.out.println("-"+iteradorCatalogo.getNombreProducto()+ " cantidad: "+iteradorCatalogo.getCantidad());
+				System.out.println("-"+iteradorCatalogo.getNombreProducto()+ "/n Cantidad: "+iteradorCatalogo.getCantidad());
 				cantidadDeproductos++;
 			}
 
@@ -52,7 +52,7 @@ public class ModificarCantidad extends OpcionDeMenu{
 		}		
 		System.out.println("Ingrese la cantidad a aumentar o disminuir: ");		
 		cantidad = esInt(br.readLine().trim());
-		while(cantidad ==-1) {							
+		while(cantidad < 1) {							
 			System.out.println("Ingresar una cantidad valida: ");
 			cantidad = esInt(br.readLine().trim());
 		}

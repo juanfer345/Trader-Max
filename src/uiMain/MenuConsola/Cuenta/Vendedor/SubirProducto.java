@@ -26,7 +26,7 @@ public class SubirProducto extends OpcionDeMenu {
 
 			System.out.println(sb);
 		
-			System.out.println("\n Ingrese el nombre del producto o el número 0: ");
+			System.out.print("\n Ingrese el nombre del producto o el número 0: ");
 			nombre = br.readLine().trim();
 			
 			if (nombre.equals("0")) {
@@ -34,31 +34,31 @@ public class SubirProducto extends OpcionDeMenu {
 			} else { 
 				//Si el usuario no quiere salir, continua el proceso
 				try {
-					System.out.println("\n Ingrese la cantidad: ");
+					System.out.print("\n Ingrese la cantidad: ");
 					cant = Integer.parseInt(br.readLine().trim());
-					System.out.println("\n Ingrese el precio: ");
+					System.out.print("\n Ingrese el precio: ");
 					precio = Double.parseDouble(br.readLine().trim());
 					//El for para las categorias, aquí comienza
 					for (int i=0; i<11; i++) {
 						System.out.println((i+1) + ": " + Producto.categorias[i]);
 					}
-					System.out.println("\n Ingrese el número de alguna de las anteriores categorias: ");
+					System.out.print("\n Ingrese el número de alguna de las anteriores categorias: ");
 					cat = Byte.parseByte(br.readLine().trim());
 					//El while es por si el usuario ingresa una categoria inexistente
 					while(cat<0 || cat>10) {
-						System.out.println("\n Ingrese el número de alguna de las anteriores categorias: ");
+						System.out.print("\n Ingrese el número de alguna de las anteriores categorias: ");
 						cat = Byte.parseByte(br.readLine().trim());
 					}
-					categoria = Producto.categorias[cat];
+					categoria = Producto.categorias[cat-1];
 					//Hasta aquí llega lo de las categorias
 					vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
 					Vendedor.subirProducto(vend, nombre, categoria, precio, cant);
-					System.out.println("\n Se ha subido el producto exitosamente");
+					System.out.println("\n Se ha subido el producto exitosamente \n");
 					controlError = true;
 					
 				} catch (NumberFormatException nfe) {
 					controlError = false;
-					System.out.println("/n Por favor asegurese de ingresar un número");
+					System.out.println("\n Por favor asegurese de ingresar un número");
 				}
 			}
 		}

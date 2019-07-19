@@ -21,7 +21,7 @@ public class CambiarPrecio extends OpcionDeMenu {
 		for (Map.Entry<Integer, Producto> entry : Vendedor.catalogo.entrySet()) {
 			Producto iteradorCatalogo = entry.getValue();
 			if (iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
-				System.out.println("-"+ iteradorCatalogo.getNombreProducto()+" precio: "+iteradorCatalogo.getPrecio());
+				System.out.println("-"+ iteradorCatalogo.getNombreProducto()+"/n Precio: "+iteradorCatalogo.getPrecio());
 				cantidadDeproductos++;
 			}
 
