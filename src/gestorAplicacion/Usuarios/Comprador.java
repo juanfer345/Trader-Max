@@ -61,32 +61,44 @@ public class Comprador extends CuentaConBanco {
 	public HashMap<Integer, Producto> getHistorial() {return historial;}
 	
 	public String agregarACarrito(int codigo, int cantidad) {
-
-		if (cantidad > 0) {
-			if (catalogo.containsKey(codigo)) {
-				Producto p = catalogo.get(codigo);
-				if (p.getCantidad() >= cantidad) {
-					carrito.setProductos(codigo, cantidad);
-					carrito.setTotalproductos(carrito.getTotalproductos() + cantidad);
-					carrito.setPrecioTotal(carrito.getPrecioTotal() + (cantidad * p.getPrecio()));
-					OpcionDeMenu.controlError = true;
-					if (cantidad == 1) {
-						return "Se ha agregado el producto " + p.getNombreProducto() + " al carrito exitosamente.";
+		if (!catalogo.isEmpty()) {
+			if (cantidad > 0) {
+				if (catalogo.containsKey(codigo)) {
+					Producto p = catalogo.get(codigo);
+					if (p.getCantidad() >= cantidad) {
+						carrito.setProductos(codigo, cantidad);
+						carrito.setTotalproductos(carrito.getTotalproductos() + cantidad);
+						carrito.setPrecioTotal(carrito.getPrecioTotal() + (cantidad * p.getPrecio()));
+						OpcionDeMenu.controlError = true;
+						if (cantidad == 1) {
+							return "Se ha agregado el producto " + p.getNombreProducto() + " al carrito exitosamente.";
+						} else {
+							return "Se han agregado " + cantidad + " " + p.getNombreProducto()
+									+ " al carrito exitosamente.";
+						}
 					} else {
-						return "Se han agregado " + cantidad + " " + p.getNombreProducto()
-								+ " al carrito exitosamente.";
+						return "La cantidad ingresada es mayor a la existente en el catálogo.";
 					}
 				} else {
-					return "La cantidad ingresada es mayor a la existente en el catálogo.";
+					return "El producto no existe, código inválido.";
 				}
 			} else {
-				return "El producto no existe, código inválido.";
+				return "La cantidad ingresada debe ser mayor a cero.";
 			}
 		} else {
-			return "La cantidad ingresada debe ser mayor a cero.";
+			return "El catálogo está vacío";
 		}
 	}
-
+	
+	public void mostrarHistorial() {
+		if(!historial.isEmpty()) {
+			historial.forEach((k, v) -> {
+				System.out.println(v);
+			});
+		}else {
+			System.out.println("El historial está vacío. ");
+		}
+	}
 	public String borrarHistorial() {
 		historial.clear();
 		return "El historial se ha borrado exitosamente";
