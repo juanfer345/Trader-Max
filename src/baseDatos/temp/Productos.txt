@@ -1,2 +1,2 @@
-1;chanclas;Vivienda;23.0;602;#
+1;chanclas;Vivienda;23.0;60;2;#
 #
