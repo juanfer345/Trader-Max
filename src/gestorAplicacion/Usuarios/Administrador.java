@@ -34,7 +34,7 @@ import uiMain.MenuConsola.Cuenta.Administrador.MostrarUsuario;
 public class Administrador extends CuentaUsuario {
     
 	private static String codigoSecreto = "Es un secretooo";
-	private static final int totalDeOpcionesDefault = 6;
+	private static final int totalDeOpcionesDisponibles = 14;
 
 	public Administrador(int idCuenta, String nombre, String correo, String password, int cedula) {
 	/*
@@ -74,8 +74,8 @@ public class Administrador extends CuentaUsuario {
 	}
 
 	// Devuelve el total de opciones por defecto que tiene este tipo de usuario
-	public int getTotalDeOpcionesDefault() {
-		return totalDeOpcionesDefault;
+	public int getTotalDeOpcionesDisponibles() {
+		return totalDeOpcionesDisponibles;
 	}
     //
 	public ArrayList<OpcionDeMenu> getMenuDisponible() {
@@ -178,8 +178,6 @@ public class Administrador extends CuentaUsuario {
 		}
 		return sb.toString();
 	}
-
-	// FALTA LO DE MOSTRAR TODAS LAS OPCIONES DE MENU y ADEMÁS MODIFICAR PARA QUE SE PUEDA AÑADIR CUALQUIER OPCION A CUALQUIER CUENTA
 
 	public static String getCodigoSecreto() {
 		return codigoSecreto;

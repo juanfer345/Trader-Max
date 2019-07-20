@@ -38,7 +38,7 @@ public class Comprador extends CuentaConBanco {
 
 	private CarritoDeCompras carrito;
 	private HashMap<Integer, Producto> historial;
-	private static final int totalDeOpcionesDefault = 11;
+	private static final int totalDeOpcionesDisponibles = 14;
 
 	public Comprador(int idCuenta, String nombre, String correo, String password, int cedula) {
 		/*
@@ -83,8 +83,8 @@ public class Comprador extends CuentaConBanco {
 	}
 
 	// Devuelve el numero total de opciones que tiene por defecto
-	public int getTotalDeOpcionesDefault() {
-		return totalDeOpcionesDefault;
+	public int getTotalDeOpcionesDisponibles() {
+		return totalDeOpcionesDisponibles;
 	}
 
 	// Devuelve el carrito que le corresponde al comprador

@@ -21,7 +21,7 @@ import uiMain.OpcionDeMenu;
 abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias{
     
 	// Atributos
-	abstract public int getTotalDeOpcionesDefault();
+	abstract public int getTotalDeOpcionesDisponibles();
 
 	// Constructor para usuarios existentes (Llama al super)
 	public CuentaUsuario(int id, String nombre, String correo, String password, int cedula) {
