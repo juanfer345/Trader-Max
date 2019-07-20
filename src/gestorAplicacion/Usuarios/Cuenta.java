@@ -21,7 +21,7 @@ import uiMain.OpcionDeMenu;
 public abstract class Cuenta {
 
 	public static HashMap<Integer, Producto> catalogo = new HashMap<>();
-	ArrayList<OpcionDeMenu> menu;
+	MenuDeConsola menu;
 	protected static ArrayList<OpcionDeMenu> cambioOpDeMen;
 	private String nombre, correo, password;
 	public int id;
@@ -100,7 +100,7 @@ public abstract class Cuenta {
     
 	// Devuelve el menú del usuario (ArrayList de opciones de menú)
 	public ArrayList<OpcionDeMenu> getMenu() {
-        return menu;
+        return menu.getmenuUsuario();
 	}
 
 	public void setMenu(Deque<Integer> idOpciones) {
@@ -112,18 +112,19 @@ public abstract class Cuenta {
 		- Deque<Integer> idOpciones: Contiene las opciones para hacer el cambio
     */
 		ArrayList<OpcionDeMenu> menuTotal = OpcionDeMenu.getTodasLasOpciones();
-		menu = new ArrayList<>(); // Creacion de nuevo menú
+		menu = new MenuDeConsola(); // Creacion de nuevo menú
+		ArrayList<OpcionDeMenu> opciones = menu.getmenuUsuario();
 		while (!idOpciones.isEmpty()) {
-			menu.add(menuTotal.get(idOpciones.poll())); 
+			opciones.add(menuTotal.get(idOpciones.poll())); 
 			// Se pasan los elementos de una estructura a otra
 		}
 	}
 
-	abstract ArrayList<OpcionDeMenu> getMenuPredeterminado(); // Método que deben implmentar las clases derivadas
+	public abstract ArrayList<OpcionDeMenu> getMenuPredeterminado(); // Método que deben implmentar las clases derivadas
 
 	// Cambio del menú predeterminado 
 	void setMenuPredeterminado() {
-		menu = getMenuPredeterminado();
+		menu.setmenuUsuario(getMenuPredeterminado());
 	}
 
 	public String salir(byte seleccion) {
