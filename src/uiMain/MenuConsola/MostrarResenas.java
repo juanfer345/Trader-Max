@@ -6,7 +6,7 @@ import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.OpcionDeMenu;
 
-class MostrarResenas extends OpcionDeMenu {
+public class MostrarResenas extends OpcionDeMenu {
 	public void ejecutar() throws IOException{
 		controlError = false;
 		String codigo;

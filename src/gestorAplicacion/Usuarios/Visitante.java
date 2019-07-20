@@ -12,6 +12,7 @@ import uiMain.MenuConsola.BuscarProducto;
 import uiMain.MenuConsola.MostrarCatalogo;
 import uiMain.MenuConsola.MostrarPorCategoria;
 import uiMain.MenuConsola.Salir;
+import uiMain.MenuConsola.MostrarResenas;
 import uiMain.MenuConsola.Visitante.IniciarSesion;
 import uiMain.MenuConsola.Visitante.Registrar;
 
@@ -22,7 +23,7 @@ public class Visitante extends Cuenta {
 	public ArrayList <OpcionDeMenu> getMenuPredeterminado() {
 		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
 				   new IniciarSesion(), new Registrar(), new BuscarProducto(), 
-				   new MostrarCatalogo(), new MostrarPorCategoria(), new Salir()}));
+				   new MostrarCatalogo(), new MostrarPorCategoria(),new MostrarResenas(), new Salir()}));
 	}
 	
 	public HashMap <Integer,Producto> verProductos() {

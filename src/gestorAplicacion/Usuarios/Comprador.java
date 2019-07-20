@@ -14,6 +14,7 @@ import uiMain.MenuConsola.BuscarProducto;
 import uiMain.MenuConsola.MostrarCatalogo;
 import uiMain.MenuConsola.MostrarPorCategoria;
 import uiMain.MenuConsola.Salir;
+import uiMain.MenuConsola.MostrarResenas;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Comprador.AgregarACarrito;
 import uiMain.MenuConsola.Cuenta.Comprador.AgregarResena;
@@ -47,7 +48,7 @@ public class Comprador extends CuentaConBanco {
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
 					new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(),
 					new AgregarACarrito(), new AgregarResena(), new BorrarHistorial(), 
-					new ComprarProducto(), new MostrarHistorial(), new QuitarProductoCarrito(), 
+					new ComprarProducto(), new MostrarHistorial(),new MostrarResenas() ,new QuitarProductoCarrito(), 
 					new VaciarCarrito(), new CerrarSesion(), new Salir()}));
 	}
 	

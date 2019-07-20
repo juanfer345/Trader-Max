@@ -8,6 +8,7 @@ import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
 import uiMain.MenuConsola.Salir;
+import uiMain.MenuConsola.MostrarResenas;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Vendedor.CambiarPrecio;
 import uiMain.MenuConsola.Cuenta.Vendedor.EliminarProductoCatalogo;
@@ -30,7 +31,7 @@ public class Vendedor extends CuentaConBanco {
 
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-				new ModificarCantidad(), new CambiarPrecio(), new EliminarProductoCatalogo(), 
+				new ModificarCantidad(), new MostrarResenas(),new CambiarPrecio(), new EliminarProductoCatalogo(), 
 				new SubirProducto(), new CerrarSesion(), new Salir() }));
 	}
 
