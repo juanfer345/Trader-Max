@@ -36,7 +36,7 @@ public class MostrarMenu extends OpcionDeMenu {
 					idUsuario = Integer.parseInt(br.readLine().trim());
 					
 					//Mostrado de opciones de menú del usuario
-					System.out.println(usuario.mostrarOpcionesDeMenu(idUsuario, tipoUsuario));
+					System.out.println(usuario.getMenuDeConsola().mostrarOpcionesDeMenu(idUsuario, tipoUsuario));
 				}
 			}
 			else {

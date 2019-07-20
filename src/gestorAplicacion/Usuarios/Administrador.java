@@ -158,7 +158,7 @@ public class Administrador extends CuentaUsuario {
 		return sb.toString();
 	}
 
-	// FALTA LO DE MOSTRAR TODAS LAS OPCIONES DE MENU y mostrar por tipo de usuario Y ADEMÁS MODIFICAR PARA QUE SE PUEDA AÑADIR CUALQUIER OPCION A CUALQUIER CUENTA
+	// FALTA LO DE MOSTRAR TODAS LAS OPCIONES DE MENU y ADEMÁS MODIFICAR PARA QUE SE PUEDA AÑADIR CUALQUIER OPCION A CUALQUIER CUENTA
 
 	public static String getCodigoSecreto() {
 		return codigoSecreto;

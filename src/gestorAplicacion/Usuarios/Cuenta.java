@@ -64,7 +64,6 @@ public abstract class Cuenta {
 	}
 	
 	// Metodos de retorno y modificación de los atributos de la clase
-	
 	public Cuenta() {setMenuPredeterminado();}
 	
 	public String getNombre() {return nombre;}
@@ -97,7 +96,12 @@ public abstract class Cuenta {
 	public HashMap<Integer, Producto> getCatalogo() {
 		return catalogo;
 	}
-    
+
+	//Devuelve el menu de consola del usuario 
+	public MenuDeConsola getMenuDeConsola() {
+		return menu;
+	}
+	
 	// Devuelve el menú del usuario (ArrayList de opciones de menú)
 	public ArrayList<OpcionDeMenu> getMenu() {
         return menu.getmenuUsuario();
@@ -127,6 +131,16 @@ public abstract class Cuenta {
 		menu.setmenuUsuario(getMenuPredeterminado());
 	}
 
+	// Devuelve el ArrayList con las opciones de menú
+	public static ArrayList<OpcionDeMenu> getCambioOpDeMen() {
+		return cambioOpDeMen;
+	}
+    
+	// Modificación del menú ingresando el ArrayList por el cual se desea cambiar
+	public static void setCambioOpDeMen(ArrayList<OpcionDeMenu> cambioOpDeMen) {
+		Cuenta.cambioOpDeMen = cambioOpDeMen;
+	}
+	
 	public String salir(byte seleccion) {
 	/*
 	    Propósito: Dar la posibilidad al usuario de salir de la aplicación
@@ -274,16 +288,6 @@ public abstract class Cuenta {
 			OpcionDeMenu.controlError = true;
 			return "El catálogo se encuentra vacío.\n";
 		}
-	}
-
-	// Devuelve el ArrayList con las opciones de menú
-	public static ArrayList<OpcionDeMenu> getCambioOpDeMen() {
-		return cambioOpDeMen;
-	}
-    
-	// Modificación del menú ingresando el ArrayList por el cual se desea cambiar
-	public static void setCambioOpDeMen(ArrayList<OpcionDeMenu> cambioOpDeMen) {
-		Cuenta.cambioOpDeMen = cambioOpDeMen;
 	}
 
 	@Override

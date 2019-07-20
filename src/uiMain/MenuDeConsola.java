@@ -66,13 +66,17 @@ public class MenuDeConsola {
 		}
 	}
 
+	// Devuelve las opciones de menu activas
 	public ArrayList<OpcionDeMenu> getMenuActivo() {
 		return menuActivo;
 	}
 	
+	// Devuelve las opciones de menu de cada usuario
 	public  ArrayList<OpcionDeMenu> getmenuUsuario(){
 		return this.menuUsuario;
 	}
+	
+	// Modificacion de opciones de menu de cada usuario
 	public void setmenuUsuario(ArrayList<OpcionDeMenu> menuUsuario) {
 		this.menuUsuario = menuUsuario; 
 	}

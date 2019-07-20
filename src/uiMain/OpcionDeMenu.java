@@ -35,9 +35,9 @@ import uiMain.MenuConsola.Cuenta.Comprador.ComprarProducto;
 import uiMain.MenuConsola.Cuenta.Comprador.MostrarHistorial;
 import uiMain.MenuConsola.Cuenta.Comprador.QuitarProductoCarrito;
 import uiMain.MenuConsola.Cuenta.Comprador.VaciarCarrito;
-import uiMain.MenuConsola.Cuenta.Vendedor.ModificarCantidad;
 import uiMain.MenuConsola.Cuenta.Vendedor.CambiarPrecio;
 import uiMain.MenuConsola.Cuenta.Vendedor.EliminarProductoCatalogo;
+import uiMain.MenuConsola.Cuenta.Vendedor.ModificarCantidad;
 import uiMain.MenuConsola.Cuenta.Vendedor.SubirProducto;
 import uiMain.MenuConsola.Visitante.IniciarSesion;
 import uiMain.MenuConsola.Visitante.Registrar;
@@ -69,6 +69,18 @@ public abstract class OpcionDeMenu {
 				new SubirProducto(), new BuscarProducto(), new AgregarOpcion(), new CuentasAdmin(),
 				new EliminarCuenta(), new EliminarOpcion(), new MostrarMenu(), new MostrarUsuario(),
 				new IniciarSesion(), new CerrarSesion(), new Registrar(), new Salir() }));
+	}
+	//Mostrar todas las opciones disponibles 
+	protected static String ImprimirTodasLasOpciones() {
+     
+		ArrayList<OpcionDeMenu> todasLasOpciones = getTodasLasOpciones();
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("Todas las opciones de menu son: \n");
+		for (int i = 0; i < todasLasOpciones.size(); i++) {
+			OpcionDeMenu.sb.append((i + 1) + ". " + todasLasOpciones.get(i).toString() + ".\n");
+		}
+		return sb.toString();
 	}
 
 	// Método para comprobar si una entrada de tipo String es numérica (long)

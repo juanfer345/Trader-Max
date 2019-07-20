@@ -37,7 +37,7 @@ public class AgregarOpcion extends OpcionDeMenu {
 					idUsuario = Integer.parseInt(br.readLine().trim());
 					
 					//Mostrado de opciones de menú del usuario
-					System.out.println(usuario.mostrarOpcionesDeMenu(idUsuario, tipoUsuario));
+					System.out.println(usuario.getMenuDeConsola().mostrarOpcionesDeMenu(idUsuario, tipoUsuario));
 					
 					//Selección de opción a agregar en caso de que la cuenta exista
 					if (controlError) {
@@ -45,13 +45,13 @@ public class AgregarOpcion extends OpcionDeMenu {
 						
 						//Impresión de las opciones disponibles a agregar
 						while (!controlError) {
-							System.out.println(usuario.comprobarCantidadOpciones(idUsuario, tipoUsuario, (byte) 1));
+							System.out.println(usuario.getMenuDeConsola().comprobarCantidadOpciones(idUsuario, tipoUsuario, (byte) 1));
 							
 							if (controlError) {
 								controlError = false;
 								//Agregado de la opción seleccionada
 								opcionUsuario = (byte) (Byte.parseByte(br.readLine().trim()) - 1);
-								System.out.println(usuario.agregarOpcion(idUsuario, tipoUsuario, opcionUsuario));								
+								System.out.println(usuario.getMenuDeConsola().agregarOpcion(idUsuario, tipoUsuario, opcionUsuario));								
 								}
 							else {
 								System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");
