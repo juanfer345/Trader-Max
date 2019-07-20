@@ -18,7 +18,7 @@ import gestorAplicacion.Materiales.Producto;
 import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
-public abstract class Cuenta {
+public abstract class Cuenta implements InterfazCategorias {
 
 	public static HashMap<Integer, Producto> catalogo = new HashMap<>();
 	MenuDeConsola menu;
@@ -128,7 +128,7 @@ public abstract class Cuenta {
 
 	// Cambio del menú predeterminado 
 	void setMenuPredeterminado() {
-		menu  = new MenuDeConsola();
+		menu = new MenuDeConsola();
 		menu.setmenuUsuario(getMenuPredeterminado());
 	}
 

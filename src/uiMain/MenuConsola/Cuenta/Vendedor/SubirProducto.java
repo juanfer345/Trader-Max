@@ -14,10 +14,11 @@ import java.io.IOException;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
+import gestorAplicacion.Usuarios.InterfazCategorias;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.OpcionDeMenu;
 
-public class SubirProducto extends OpcionDeMenu {
+public class SubirProducto extends OpcionDeMenu implements InterfazCategorias{
 
 	@Override
 	public void ejecutar() throws IOException {

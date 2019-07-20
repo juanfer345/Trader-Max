@@ -109,6 +109,10 @@ public class MenuDeConsola {
 			// Caso B: Vendedor
 			baseDeDatos = InicializacionAplicacion.getBDVendedores();
 			usuario = "vendedor";
+		} else if (tipoUsuario == 2) {
+			// Caso B: Vendedor
+			baseDeDatos = InicializacionAplicacion.getBDVendedores();
+			usuario = "vendedor";
 		}
 
 		if (baseDeDatos.containsKey(idUsuario)) {

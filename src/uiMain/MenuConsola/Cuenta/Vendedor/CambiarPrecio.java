@@ -43,7 +43,6 @@ public class CambiarPrecio extends OpcionDeMenu {
 						"-" + iteradorCatalogo.getNombreProducto() + "/n Precio: " + iteradorCatalogo.getPrecio());
 				cantidadDeproductos++;
 			}
-
 		}
 		
 		// Comprobar que si tenga productos propios en el catálogo
