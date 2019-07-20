@@ -28,7 +28,7 @@ import java.util.HashMap;
  */
 
 public class Producto {
-	
+
 	// Atributos
 	public static String categorias[] = { "Belleza", "Vehículos", "Deportes", "Electrodomésticos", "Hogar", "Juegos",
 			"Libros", "Música", "Tecnología", "Vestimenta", "Vivienda" };
@@ -39,35 +39,33 @@ public class Producto {
 	private double precio;
 	private int id, cantidad;
 	private static int contador;
-	
+
 	// Constructor para productos existentes
 	public Producto(int codigoProducto, String nombreProducto, String categoria, double precio, int cantidad) {
 		/*
-		   Propósito: Modificar algunos datos de un Producto ya existente
-		   
-		   Parámetros de entrada: 
-		   - int codigoProducto: Codigo del producto a crear 
-		   - String nombreProducto: Nombre del producto 
-		   - String categoria: Categoría en la cual encaja el producto 
-		   - double precio: Precio del producto 
-		   - int cantidad: Cantidad de unidades del producto
-		 */	
+		 * Propósito: Modificar algunos datos de un Producto ya existente
+		 * 
+		 * Parámetros de entrada: - int codigoProducto: Codigo del producto a crear -
+		 * String nombreProducto: Nombre del producto - String categoria: Categoría en
+		 * la cual encaja el producto - double precio: Precio del producto - int
+		 * cantidad: Cantidad de unidades del producto
+		 */
+		this.cantidad = codigoProducto;
 		this.nombreProducto = nombreProducto;
 		this.categoria = categoria;
-		this.id = contador++;
+		this.precio = precio;
+		this.cantidad = cantidad;
 	}
-	
+
 	// Constructor para productos nuevos
 	public Producto(String nombreProducto, String categoria, Vendedor vendedor, double precio, int cantidad) {
-		/* 
-		   Propósito: Crear un nuevo producto con todos sus datos
-		   
-		   Parámetros de entrada:
-		   - String nombreProducto: Nombre del producto
-		   - String categoria: Categoría en la cual encaja el producto
-		   - Vendedor vendedor: Vendedor al cual se le asignará el producto
-		   - double precio: Precio del producto
-		   - int cantidad: Cantidad de unidades del producto
+		/*
+		 * Propósito: Crear un nuevo producto con todos sus datos
+		 * 
+		 * Parámetros de entrada: - String nombreProducto: Nombre del producto - String
+		 * categoria: Categoría en la cual encaja el producto - Vendedor vendedor:
+		 * Vendedor al cual se le asignará el producto - double precio: Precio del
+		 * producto - int cantidad: Cantidad de unidades del producto
 		 */
 		this.vendedor = vendedor;
 		this.precio = precio;
@@ -78,7 +76,7 @@ public class Producto {
 		resenas = new HashMap<>();
 		InicializacionAplicacion.getBDProductos().put(id, this);
 	}
-	
+
 	// Retorna el atributo cantidad
 	public int getCantidad() {
 		return cantidad;
@@ -88,7 +86,7 @@ public class Producto {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	 
+
 	// Retorna el atributo vendedor
 	public Vendedor getVendedor() {
 		return vendedor;
@@ -124,7 +122,8 @@ public class Producto {
 		this.categoria = categoria;
 	}
 
-	// Retorna el atributo resenas el cual es una tabla hash que trae las reseñas de un producto
+	// Retorna el atributo resenas el cual es una tabla hash que trae las reseñas de
+	// un producto
 	public HashMap<Integer, Resena> getResenas() {
 		return resenas;
 	}
@@ -173,7 +172,7 @@ public class Producto {
 		for (int i = 0; i < 10; i++) { // Recorrer el Array de categorias
 			mostrar[i] = categorias[i];
 		}
-		
+
 		return mostrar;
 	}
 
