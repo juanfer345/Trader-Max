@@ -50,25 +50,14 @@ public void ejecutar() throws IOException {
 				// Mira si es cero para devolverse
 				if (cuentaCod == 0) {
 					controlError = true;
-					System.out.println(" ");
+					System.out.println("");
 				} else {
 					if (!cuenta.getCatalogo().containsKey(cuentaCod)) {
 						System.out.println("Código invalido");
 					} else {
 						// Ejecuta el método correspondiente
 						Producto prod = cuenta.getCatalogo().get(cuentaCod);
-						String str = prod.mostrarResenas();
-						if (str.equals("Este producto no tiene reseñas. ")) {
-							System.out.println(str);
-							System.out.println("Ingrese 0 para salir o cualquier otro caracter para repetir el proceso.");
-							String op = br.readLine().trim();
-							opcion = esInt(op);
-							if (opcion == 0) {
-								controlError = true;
-							}
-						} else {
-							controlError = true;
-						}
+						System.out.println(prod.mostrarResenas());
 					}
 				}
 			}

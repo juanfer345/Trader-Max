@@ -79,7 +79,7 @@ public class Comprador extends CuentaConBanco {
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new BuscarProducto(),
 				new MostrarCatalogo(), new MostrarPorCategoria(), new AgregarACarrito(), new AgregarResena(),
 				new BorrarHistorial(), new ComprarProducto(), new MostrarHistorial(), new MostrarResenas(),
-				new QuitarProductoCarrito(), new VaciarCarrito(), new MostrarCarrito(), new CerrarSesion(), new Salir() }));
+				new QuitarProductoCarrito(), new VaciarCarrito(), new MostrarCarrito(), new MostrarResenas(), new CerrarSesion(), new Salir() }));
 	}
 
 	// Devuelve el numero total de opciones que tiene por defecto
@@ -196,6 +196,7 @@ public class Comprador extends CuentaConBanco {
 			Producto p = historial.get(codigo);
 			int indice = p.getResenas().size();
 			p.getResenas().put(indice, r);
+			InicializacionAplicacion.getBDResenas().put(indice, r);
 			return "Reseña del producto: " + p.getNombreProducto() + "ha sido añadida";
 		} else {
 			return "No ha comprado este producto, no puede añadir una reseña";

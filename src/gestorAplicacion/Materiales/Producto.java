@@ -16,6 +16,7 @@ package gestorAplicacion.Materiales;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.InterfazCategorias;
 import gestorAplicacion.Usuarios.Vendedor;
+import uiMain.OpcionDeMenu;
 
 import java.util.Deque;
 import java.util.HashMap;
@@ -151,8 +152,10 @@ public class Producto implements InterfazCategorias {
 			resenas.forEach((k, v) -> {
 				sb.append(v);
 			});
+			OpcionDeMenu.controlError = true;
 			return sb.toString();
 		} else {
+			OpcionDeMenu.controlError = true;
 			return "Este producto no tiene reseñas. ";
 		}
 	}

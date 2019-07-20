@@ -20,6 +20,7 @@ import java.util.Arrays;
 import uiMain.MenuConsola.BuscarProducto;
 import uiMain.MenuConsola.MostrarCatalogo;
 import uiMain.MenuConsola.MostrarPorCategoria;
+import uiMain.MenuConsola.MostrarResenas;
 import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Administrador.AgregarOpcion;
@@ -27,11 +28,13 @@ import uiMain.MenuConsola.Cuenta.Administrador.CuentasAdmin;
 import uiMain.MenuConsola.Cuenta.Administrador.EliminarCuenta;
 import uiMain.MenuConsola.Cuenta.Administrador.EliminarOpcion;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenu;
+import uiMain.MenuConsola.Cuenta.Administrador.MostrarTodasLasOpciones;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarUsuario;
 import uiMain.MenuConsola.Cuenta.Comprador.AgregarACarrito;
 import uiMain.MenuConsola.Cuenta.Comprador.AgregarResena;
 import uiMain.MenuConsola.Cuenta.Comprador.BorrarHistorial;
 import uiMain.MenuConsola.Cuenta.Comprador.ComprarProducto;
+import uiMain.MenuConsola.Cuenta.Comprador.MostrarCarrito;
 import uiMain.MenuConsola.Cuenta.Comprador.MostrarHistorial;
 import uiMain.MenuConsola.Cuenta.Comprador.QuitarProductoCarrito;
 import uiMain.MenuConsola.Cuenta.Comprador.VaciarCarrito;
@@ -62,13 +65,15 @@ public abstract class OpcionDeMenu {
 		   - ArrayList<OpcionDeMenu>: Con todas las opciones
 		 */
 
-		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new BuscarProducto(),
-				new MostrarCatalogo(), new MostrarPorCategoria(), new AgregarACarrito(), new AgregarResena(),
-				new BorrarHistorial(), new ComprarProducto(), new MostrarHistorial(), new QuitarProductoCarrito(),
-				new VaciarCarrito(), new ModificarCantidad(), new CambiarPrecio(), new EliminarProductoCatalogo(),
-				new SubirProducto(), new BuscarProducto(), new AgregarOpcion(), new CuentasAdmin(),
-				new EliminarCuenta(), new EliminarOpcion(), new MostrarMenu(), new MostrarUsuario(),
-				new IniciarSesion(), new CerrarSesion(), new Registrar(), new Salir() }));
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
+				new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(), new AgregarACarrito(), 
+				new AgregarResena(), new BorrarHistorial(), new ComprarProducto(), new MostrarHistorial(), 
+				new QuitarProductoCarrito(), new VaciarCarrito(), new ModificarCantidad(), 
+				new CambiarPrecio(), new EliminarProductoCatalogo(), new SubirProducto(), new BuscarProducto(), 
+				new AgregarOpcion(), new CuentasAdmin(), new EliminarCuenta(), new EliminarOpcion(),
+				new MostrarCatalogo(),new MostrarCarrito(), new MostrarMenu(), new MostrarUsuario(), 
+				new IniciarSesion(), new MostrarTodasLasOpciones(), new MostrarResenas(),
+				new CerrarSesion(), new Registrar(), new Salir() }));
 	}
 	//Mostrar todas las opciones disponibles 
 	protected static String ImprimirTodasLasOpciones() {

@@ -45,7 +45,6 @@ abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias
 		 * mostrara al usuario dependiendo de la opción que haya elegido
 		 */
 		if (seleccion == 1) {
-			InicializacionAplicacion.setUsuarioActivo(new Visitante());
 			// se devuelve la cantidad de productos que habian al carrito.
 			if (InicializacionAplicacion.usuarioActivo instanceof Comprador) {
 				Comprador comp = ((Comprador) InicializacionAplicacion.usuarioActivo); //se obtiene el catalogo
@@ -65,8 +64,9 @@ abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias
 
 				}
 			}
+			InicializacionAplicacion.setUsuarioActivo(new Visitante());
 			OpcionDeMenu.controlError = true;
-			return "\nSe ha cerrado sesión correctamente mijin\n" + "\nBienvenido invitado.\n";
+			return "\nSe ha cerrado sesión correctamente\n" + "\nBienvenido invitado.\n";
 		} else if (seleccion == 2) {
 			OpcionDeMenu.controlError = true;
 			return "";

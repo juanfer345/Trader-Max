@@ -45,7 +45,7 @@ public class Vendedor extends CuentaConBanco {
 
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
 				new ModificarCantidad(), new MostrarResenas(),new CambiarPrecio(), new EliminarProductoCatalogo(), 
-				new SubirProducto(), new CerrarSesion(), new Salir() }));
+				new SubirProducto(),new MostrarResenas(), new CerrarSesion(), new Salir() }));
 
 	}
 
