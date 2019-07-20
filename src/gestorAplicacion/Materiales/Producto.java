@@ -182,7 +182,7 @@ public class Producto {
 	// Para imprimir un Producto
 	public String toString() {
 		return "Producto [Nombre: " + nombreProducto + ", Categoria: " + categoria + ", Precio: " + precio
-				+ ", Código: " + id + ", Cantidad: " + cantidad + "]";
+				+ ", Código: " + id + ", Disponible: " + cantidad + "]";
 	}
 
 	// Para cambiar el atributo vendedor

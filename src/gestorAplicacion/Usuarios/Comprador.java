@@ -126,6 +126,11 @@ public class Comprador extends CuentaConBanco {
 						// Se cambia el total de productos que tiene el carrito
 						carrito.setPrecioTotal(carrito.getPrecioTotal() + (cantidad * p.getPrecio()));
 						// Se le va aumentando el precio al carrito a medida que se agregan productos
+						
+						//	Se obtiene la cantidad actual del producto en el catalogo
+						//	Se resta esta cantidad a la que ingreso el comprador mientras la sesion esto activa
+						p.setCantidad(p.getCantidad()-cantidad);
+						
 						OpcionDeMenu.controlError = true;
 						if (cantidad == 1) {
 							return "Se ha agregado el producto " + p.getNombreProducto() + " al carrito exitosamente.";
@@ -134,15 +139,19 @@ public class Comprador extends CuentaConBanco {
 									+ " al carrito exitosamente.";
 						}
 					} else {
+						OpcionDeMenu.controlError = true;
 						return "La cantidad ingresada es mayor a la existente en el catálogo.";
 					}
 				} else {
+					OpcionDeMenu.controlError = true;
 					return "El producto no existe, código inválido.";
 				}
 			} else {
+				OpcionDeMenu.controlError = true;
 				return "Tanto la cantidad como el codigo ingresado deben ser mayor a cero.";
 			}
 		} else {
+			OpcionDeMenu.controlError = true;
 			return "El catálogo está vacío";
 		}
 	}
@@ -175,7 +184,7 @@ public class Comprador extends CuentaConBanco {
 				int cant = entry.getValue();
 				Producto prod = catalogo.get(cod); // se obtiene el producto correspondiente al codigo
 				System.out.println(prod);
-				System.out.println("Cantidad: "+cant);
+				System.out.println("En el carrito: "+cant);
 			}
 		} else {
 			System.out.println("El carrito está vacio");

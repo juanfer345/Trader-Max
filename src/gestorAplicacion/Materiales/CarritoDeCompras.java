@@ -12,7 +12,9 @@ package gestorAplicacion.Materiales;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
+
 import gestorAplicacion.Usuarios.Comprador;
+import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Vendedor;
 
 public class CarritoDeCompras {
@@ -141,11 +143,23 @@ public class CarritoDeCompras {
 		Variables de salida:
 		- String con mensaje confirmando el proceso.
     */
-		productos.clear();
-		totalProductos = 0;
-		setPrecioTotal(0);
-		return "Su carrito ya está vacío";
-	}
+		if (totalProductos > 0) {
+
+			for (Map.Entry<Integer, Integer> entry : productos.entrySet()) {
+
+				int cant = entry.getValue(); // Extracción de la cantidad en la hash
+				int cod = entry.getKey(); // el codigo del producto
+				Producto prod = Cuenta.catalogo.get(cod);  //se obtiene el producto correspondiente al codigo 
+				prod.setCantidad(prod.getCantidad() + cant); //se asigna la cantidad que estaba al principio
+			}
+			productos.clear();
+			totalProductos = 0;
+			setPrecioTotal(0);
+			return "El carrito se vació correctamente";
+		}else {
+
+			return "Su carrito ya está vacío";
+		}}
 
 
 	public String quitarProducto(int codigo, int cantidad) {

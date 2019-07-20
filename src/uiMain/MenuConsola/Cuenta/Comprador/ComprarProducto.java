@@ -56,10 +56,10 @@ public class ComprarProducto extends OpcionDeMenu { // opcion 7
 				Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
 				if (!comp.getCarrito().getProductos().isEmpty()) {
 					System.out.println("\nSu carrito tiene " + comp.getCarrito().getTotalproductos() + " productos ");
-					System.out.println("El costo total es: " + comp.getCarrito().getPrecioTotal());
-					System.out.println("Su saldo actual es: " + comp.getCuentaBancaria().getSaldo());
+					System.out.println("El costo total: " + comp.getCarrito().getPrecioTotal());
+					System.out.println("Su saldo disponible es: " + comp.getCuentaBancaria().getSaldo());
 					String str = comp.getCarrito().comprarProductos();
-					System.out.println(str + "\n");
+					System.out.println("\n"+str + "\n");
 				} else {
 					System.out.println("\nSu carrito de compras esta vacio \n");
 				}
