@@ -50,7 +50,7 @@ public void ejecutar() throws IOException {
 				// Mira si es cero para devolverse
 				if (cuentaCod == 0) {
 					controlError = true;
-					System.out.println(" ");
+					System.out.println("");
 				} else {
 					if (!cuenta.getCatalogo().containsKey(cuentaCod)) {
 						System.out.println("Código invalido");

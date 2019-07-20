@@ -197,6 +197,7 @@ public class Comprador extends CuentaConBanco {
 			Producto p = historial.get(codigo);
 			int indice = p.getResenas().size();
 			p.getResenas().put(indice, r);
+			InicializacionAplicacion.getBDResenas().put(indice, r);
 			return "Reseña del producto: " + p.getNombreProducto() + "ha sido añadida";
 		} else {
 			return "No ha comprado este producto, no puede añadir una reseña";
