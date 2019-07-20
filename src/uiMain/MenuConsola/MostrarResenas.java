@@ -24,7 +24,7 @@ public void ejecutar() throws IOException {
 
 		controlError = false;
 		String codigo;
-		int cuentaCod, opcion;
+		int cuentaCod;
 		Cuenta cuenta = InicializacionAplicacion.usuarioActivo;
 		
 		if (!cuenta.getCatalogo().isEmpty()) {

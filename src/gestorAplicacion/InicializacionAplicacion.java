@@ -10,7 +10,6 @@ import java.util.HashMap;
 
 import baseDatos.EscrituraBD;
 import baseDatos.LecturaBD;
-import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.CuentaBancaria;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
@@ -27,7 +26,6 @@ public class InicializacionAplicacion {
     private static HashMap <Integer, Vendedor> BDVendedores = new HashMap <> ();
     private static HashMap <Integer, Administrador> BDAdministradores = new HashMap <> ();
     private static HashMap <Integer, CuentaBancaria> BDCuentasBancarias = new HashMap <> ();
-    private static HashMap <Integer, CarritoDeCompras> BDCarritos = new HashMap <> ();
     private static HashMap <Integer, Producto> BDProductos = new HashMap <> ();
     private static HashMap <Integer, Resena> BDResenas = new HashMap <> ();
 	public static Cuenta usuarioActivo;
@@ -66,8 +64,6 @@ public class InicializacionAplicacion {
 	public static HashMap <Integer, Administrador> getBDAdministradores() {return BDAdministradores;}
 
 	public static HashMap <Integer, CuentaBancaria> getBDCuentasBancarias() {return BDCuentasBancarias;}
-
-	public static HashMap <Integer, CarritoDeCompras> getBDCarritos() {return BDCarritos;}
 
 	public static HashMap <Integer, Producto> getBDProductos() {return BDProductos;}
 

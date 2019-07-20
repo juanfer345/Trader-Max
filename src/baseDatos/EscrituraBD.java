@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import gestorAplicacion.InicializacionAplicacion;
-import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.CuentaBancaria;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
@@ -58,9 +57,6 @@ public class EscrituraBD {
 
 			//Escritura de las cuentas bancarias
 			escrituraCuentasBancarias(BDCuentBanc, InicializacionAplicacion.getBDCuentasBancarias());
-
-			//Escritura de los carritos de compras
-			escrituraCarritos(BDCarr, InicializacionAplicacion.getBDCarritos());
 
 			//Escritura del catálogo
 			escrituraCatalogo(BDCat, Vendedor.catalogo);
@@ -213,38 +209,6 @@ public class EscrituraBD {
 			val = entry.getValue();									//Extracción de valores de la tabla hash
 			sb.append(entry.getKey()).append(';'); 						//Identificador único
 			sb.append(val.getSaldo()).append('\n');					//Saldo de la cuenta bancaria y salto de renglón
-		}
-		sb.append("#");				//Indicador de fin de archivo
-		bw.append(sb);	//Impresión de información en el archivo
-		mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
-		sb.delete(0, sb.length());	//Borrado del contenido del StringBuilder
-
-		//Cerrado y guardado del archivo
-    	try {bw.close();}
-    	catch (IOException ex) {mensajeError(ex, "No fue posible cerrar (escritura) la base de datos \"" + BDactual + ".txt\"");}
-	}
-
-	private static void escrituraCarritos(String NombreBD, HashMap <Integer, CarritoDeCompras> HM) throws IOException {
-
-		CarritoDeCompras val;
-
-		//Creación o sobreescritura de la base de datos
-		bw = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" +  NombreBD + ".txt"));
-
-		for (Map.Entry <Integer, CarritoDeCompras> entry : HM.entrySet()) {
-			val = entry.getValue();							//Extracción de valores de la tabla hash
-			sb.append(entry.getKey()).append(';'); 				//Identificador único
-			sb.append(val.getTotalproductos()).append(';');		//Total de productos
-			sb.append(val.getPrecioTotal()).append(';');			//Precio total de los productos en el carrito
-
-			//Referencias a los productos del carrito y su cantidad
-			if (!val.getProductos().isEmpty()){
-				for (Map.Entry <Integer, Integer> prod : val.getProductos().entrySet()) {
-					sb.append(prod.getKey()).append(',').append(prod.getValue()).append(',');
-				}
-				sb.delete(sb.length() - 1, sb.length());
-			} else {sb.append("#");}
-			sb.append('\n');	//salto de renglón
 		}
 		sb.append("#");				//Indicador de fin de archivo
 		bw.append(sb);	//Impresión de información en el archivo

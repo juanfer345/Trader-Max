@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import gestorAplicacion.InicializacionAplicacion;
-import gestorAplicacion.Materiales.CuentaBancaria;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
 

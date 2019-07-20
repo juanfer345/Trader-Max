@@ -17,7 +17,6 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import gestorAplicacion.InicializacionAplicacion;
-import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.CuentaBancaria;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
@@ -54,7 +53,6 @@ public class LecturaBD {
 		Deque <Integer> cnProdComp = new LinkedList <>();
 		HashMap <Integer, Deque <Integer>> auxVend = new HashMap<>();
 		HashMap <Integer, Deque <Integer>> auxAdmi = new HashMap<>();
-		HashMap <Integer, Deque <Integer>> auxCarr = new HashMap<>();
 		Deque <Integer> auxCat = new LinkedList<>();
 		HashMap <Integer, Deque <Integer>> auxProd = new HashMap<>();
 		HashMap <Integer, Integer> auxRes = new HashMap<>();
@@ -68,9 +66,6 @@ public class LecturaBD {
     		
     		//Lectura de las cuentas bancarias
     		lecturaCuentasBancarias(BDCuentBanc, InicializacionAplicacion.getBDCuentasBancarias());
-    		
-    		//Lectura de los carritos de compras
-    		lecturaCarritos(BDCarr, InicializacionAplicacion.getBDCarritos(), auxCarr);
     		
     		//Lectura del catálogo
     		lecturaCatalogo(BDCat, auxCat);
@@ -99,9 +94,9 @@ public class LecturaBD {
 		//Asignando los elementos restantes utilizando las colas auxiliares
 		complementoLectura(InicializacionAplicacion.getBDCompradores(), InicializacionAplicacion.getBDVendedores(),
 				  		   InicializacionAplicacion.getBDAdministradores(), Cuenta.catalogo, 
-				  		   InicializacionAplicacion.getBDCuentasBancarias(), InicializacionAplicacion.getBDCarritos(), 
-				  		   InicializacionAplicacion.getBDProductos(), InicializacionAplicacion.getBDResenas(), 
-				  		   auxComp, cnProdComp,  auxVend, auxAdmi, auxCarr, auxCat, auxProd, auxRes);
+				  		   InicializacionAplicacion.getBDCuentasBancarias(), InicializacionAplicacion.getBDProductos(), 
+				  		   InicializacionAplicacion.getBDResenas(), auxComp, cnProdComp,  auxVend, auxAdmi, auxCat, 
+				  		   auxProd, auxRes);
 	}
 	
 	private static void lecturaCompradores(String NombreBD, HashMap <Integer, Comprador> HM, HashMap <Integer, Deque <Integer>> mapAux, Deque <Integer> colaAuxProd) throws IOException {
@@ -226,34 +221,6 @@ public class LecturaBD {
         mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
-	private static void lecturaCarritos(String NombreBD, HashMap <Integer, CarritoDeCompras> HM, HashMap <Integer, Deque <Integer>> mapAux) throws IOException {
-
-		Deque <Integer> colaAux;
-		CarritoDeCompras carrito;
-	    String [] dat;
-
-	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de error
-
-		//Apertura de la base de datos
-        br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
-        
-	    //Ciclo para obtener la información
-        while (!(dat = br.readLine().split(";"))[0].equals("#")) {
-        	
-    		//Ejemplo de datos: ID;TotalProd;PrecioTot;(IDprodcarr1,CantidadProdCarr1),...,(IDprodcarrN,CantidadProdCarrN)
-        	
-        	carrito = new CarritoDeCompras(Integer.parseInt(dat[0]), Integer.parseInt(dat[1]),Double.parseDouble(dat[2]));
-
-	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
-        	colaAux = subDatos(dat[3], colaAux);		//Referencias a los productos del carrito
-	        HM.put(carrito.getId(), carrito);			//Asignación del carrito a la estructura de datos correspondiente
-	        mapAux.put(carrito.getId(), colaAux);		//Guardado de las referencias en el mapa auxiliar
-	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
-	    }
-        CarritoDeCompras.setMaxID(maxID); maxID = 0;
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
-	}
-	
 	private static void lecturaCatalogo(String NombreBD, Deque <Integer> colaAux) throws IOException {
 
 	    String dat;
@@ -330,11 +297,11 @@ public class LecturaBD {
 	
 	private static void complementoLectura(HashMap <Integer, Comprador> BDCompradores, HashMap <Integer, Vendedor> BDVendedores, 
 										   HashMap <Integer, Administrador> BDAdministradores, HashMap <Integer, Producto> catalogo, 
-										   HashMap <Integer, CuentaBancaria> BDCuentasBancarias, HashMap <Integer, CarritoDeCompras> BDCarritos, 
-										   HashMap <Integer, Producto> BDProductos, HashMap <Integer, Resena> BDResenas, 
-										   HashMap<Integer, Deque<Integer>> auxComp, Deque<Integer> cnProdComp, HashMap<Integer, Deque<Integer>> auxVend, 
-										   HashMap<Integer, Deque<Integer>> auxAdmi, HashMap<Integer, Deque<Integer>> auxCarr, Deque <Integer> auxCat, 
-										   HashMap<Integer, Deque<Integer>> auxProd, HashMap<Integer, Integer> auxRes) {
+										   HashMap <Integer, CuentaBancaria> BDCuentasBancarias, HashMap <Integer, Producto> BDProductos, 
+										   HashMap <Integer, Resena> BDResenas, HashMap<Integer, Deque<Integer>> auxComp, 
+										   Deque<Integer> cnProdComp, HashMap<Integer, Deque<Integer>> auxVend, 
+										   HashMap<Integer, Deque<Integer>> auxAdmi, Deque <Integer> auxCat, HashMap<Integer, 
+										   Deque<Integer>> auxProd, HashMap<Integer, Integer> auxRes) {
 		
 		int i, j, n, aux;
 		
@@ -350,8 +317,6 @@ public class LecturaBD {
             
             //Asignación de carrito al comprador y viceversa
         	aux = auxComp.get(entry.getKey()).poll();
-            entry.getValue().setCarrito(BDCarritos.get(aux));
-            BDCarritos.get(aux).setComprador(entry.getValue());
             
             //Asignación de productos al historial del comprador
             if ((n = cnProdComp.poll()) != 0) {
@@ -386,12 +351,6 @@ public class LecturaBD {
             if (!(auxAdmi.get(entry.getKey())).isEmpty()) {
             	entry.getValue().setMenu(auxAdmi.get(entry.getKey()));
             }
-        }
-        
-		//Completando la información de los carritos
-        for (Map.Entry <Integer, CarritoDeCompras> entry : BDCarritos.entrySet()) {
-            //Asignación de productos al carrito
-        	entry.getValue().setProductos(auxCarr.get(entry.getKey()));
         }
         
         //Completando la información del catálogo

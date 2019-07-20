@@ -63,8 +63,6 @@ public class Comprador extends CuentaConBanco {
 		super(nombre, correo, password, cedula); // LLamado al contructor de CuentaConBanco
 		carrito = new CarritoDeCompras(this);
 		historial = new HashMap<>();
-		InicializacionAplicacion.getBDCarritos().put(carrito.getId(), carrito);
-		// Guarda el nuevo carrito en un HashMap
 	}
 
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
