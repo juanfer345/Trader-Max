@@ -15,11 +15,12 @@ import uiMain.OpcionDeMenu;
 
 public class MostrarResenas extends OpcionDeMenu {
 	
-		/*
-		 Propósito: Ejecutar el metodo mostrarReseñas() haciendo los respectivos
-		            controles de error del ingreso de datos
-		 */
-		
+public void ejecutar() throws IOException {
+	
+	/*
+	 Propósito: Ejecutar el metodo mostrarReseñas() haciendo los respectivos
+	            controles de error del ingreso de datos
+	 */
 
 		controlError = false;
 		String codigo;
