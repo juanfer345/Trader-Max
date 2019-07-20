@@ -89,6 +89,6 @@ public class Resena {
 
 	@Override
 	public String toString() {
-		return "Reseña [Estrellas=" + estrellas + "\n Comentario=" + comentario + "]";
+		return "Reseña [Estrellas = " + estrellas + "\n Comentario = " + comentario + "]";
 	}
 }

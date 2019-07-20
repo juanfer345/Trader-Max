@@ -6,7 +6,7 @@
 
 package uiMain.MenuConsola.Cuenta.Comprador;
 
-import java.io.IOException; 
+import java.io.IOException;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Comprador;
 import uiMain.OpcionDeMenu;
@@ -16,8 +16,8 @@ public class MostrarHistorial extends OpcionDeMenu {
 	@Override
 	public void ejecutar() throws IOException {
 		/*
-		 Propósito: Ejecutar el metodo mostrarHistorial() haciendo los respectivos
-		            controles de error del ingreso de datos
+		 * Propósito: Ejecutar el metodo mostrarHistorial() haciendo los respectivos
+		 * controles de error del ingreso de datos
 		 */
 
 		StringBuilder sb = new StringBuilder();
@@ -38,9 +38,9 @@ public class MostrarHistorial extends OpcionDeMenu {
 			comprobOpc = esInt(opcion);
 
 			/*
-			  Ciclo de control de error para la opcion ingresada, pide un número hasta que
-			  sea válido (puede ingresar el 0 para salir)
-			*/
+			 * Ciclo de control de error para la opcion ingresada, pide un número hasta que
+			 * sea válido (puede ingresar el 0 para salir)
+			 */
 			while (comprobOpc == -1) {
 				System.out.println("\nEl dato que ingreso es invalido, vuelva a intentarlo");
 				System.out.print("Ingrese su eleccion => ");
@@ -54,14 +54,17 @@ public class MostrarHistorial extends OpcionDeMenu {
 			} else if (comprobOpc == 1) {
 				// Se ejecuta el codigo cuando el usuario decide continuar
 				Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
-				System.out.println("\nTotal de productos del historial = " + comp.getHistorial().size());
+				int size = comp.getHistorial().size();
+				if (size != 0) {
+					System.out.println("\nTotal de productos en el historial = " + size);
+				}
 				comp.mostrarHistorial();
 				controlError = true;
 			} else {
 				/*
-				 Si ingresa un numero diferente pero no es ninguna de las disponibles debe
-				 empezar de nuevo (Empezara de nuevo el control)
-				*/
+				 * Si ingresa un numero diferente pero no es ninguna de las disponibles debe
+				 * empezar de nuevo (Empezara de nuevo el control)
+				 */
 				System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo");
 			}
 		}

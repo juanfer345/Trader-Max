@@ -176,18 +176,11 @@ public abstract class Cuenta implements InterfazCategorias {
 	      Busqueda exitosa ---> Devuelve la informacion del producto {Código, nombre, precio, categoría, cantidad}
     */
 		Producto prod;
-		StringBuilder sb = new StringBuilder();
 
 		if (catalogo.containsKey(codigo)) {
 			prod = catalogo.get(codigo);
-			sb.append("\nEl producto fue encontrado: \n");
-			sb.append("[Nombre: " + prod.getNombreProducto() + ",/n");
-			sb.append("Categoria: " + prod.getCategoria() + ",/n");
-			sb.append("Precio: " + prod.getPrecio() + ",/n");
-			sb.append("Código: " + codigo + ",/n");
-			sb.append("Cantidad: " + prod.getCantidad() + "]/n");
 			OpcionDeMenu.controlError = true;
-			return sb.toString();
+			return prod.toString();
 		} else if (catalogo.isEmpty()) {
 			OpcionDeMenu.controlError = true;
 			return "El catálogo se encuentra vacío.\n";
@@ -270,16 +263,17 @@ public abstract class Cuenta implements InterfazCategorias {
 
 		// Verificación de catalogo no vacío
 		if (!catalogo.isEmpty()) {
-			// Verificación de índice válido
+			// Verificación de índice válido 
+			cat--;
 			if (cat > 0 && cat < Producto.categorias.length) {
 
 				// Ciclo para hallar cada producto de la categoría adecuada
-				(catalogo).forEach((k, v) -> {
-					Producto prod = catalogo.get(k);
+				for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
+					Producto prod = entry.getValue();
 					if (prod.getCategoria() == Producto.categorias[cat]) {
 						sb.append(prod.toString() + '\n');
 					}
-				});
+				}
 				OpcionDeMenu.controlError = true;
 				return "Categoría " + Producto.categorias[cat] + ":\n" + sb.toString();
 			} else {
