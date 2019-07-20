@@ -177,7 +177,7 @@ public class EscrituraBD {
 			sb.append(val.getNombre()).append(';');			//Nombre
 			sb.append(val.getCorreo()).append(';');			//Correo
 			sb.append(val.getPassword()).append(';');			//Contraseña
-			sb.append(val.getCedula());					//Cédula
+			sb.append(val.getCedula()).append(';');					//Cédula
 			
 			//Referencias a las opciones de menu
 			if (!val.getMenu().isEmpty()){
@@ -287,7 +287,7 @@ public class EscrituraBD {
 			sb.append(val.getNombreProducto()).append(';');		//Nombre
 			sb.append(val.getCategoria()).append(';');			//Categoría
 			sb.append(val.getPrecio()).append(';');				//Precio
-			sb.append(val.getCantidad()+ ';');				//Cantidad
+			sb.append(val.getCantidad()).append(';');				//Cantidad
 			sb.append(val.getVendedor().getId()).append(';');		//Referencia al vendedor
 
 			//Referencias a las reseñas del producto

@@ -298,7 +298,7 @@ public class LecturaBD {
 	        mapAux.put(prod.getId(), colaAux);			//Guardado de las referencias en el mapa auxiliar
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-        Producto.setMaxID(maxID); maxID = 0;
+        
         mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	

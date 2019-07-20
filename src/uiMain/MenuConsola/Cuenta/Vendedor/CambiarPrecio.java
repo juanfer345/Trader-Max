@@ -1,3 +1,13 @@
+/* 
+   Clase CambiarPrecio (pública, hereda de OpcionDeMenu)
+   
+   Propósito:
+   Opción de menú del usuario, le permite realizar acciones en el programa 
+   manipulando sus atributos y elementos
+   
+   Estructuras de datos relevantes:
+ */
+
 package uiMain.MenuConsola.Cuenta.Vendedor;
 
 import java.io.IOException;
@@ -11,23 +21,33 @@ import uiMain.OpcionDeMenu;
 public class CambiarPrecio extends OpcionDeMenu {
 
 	public void ejecutar() throws IOException {
+		
+		/*
+		   Propósito: Ejecutar el método cambiarPrecio() haciendo los respectivos 
+		              controles de error del ingreso de datos
+		 */
+		
+		// Atributos
 		String nom;
 		long comprobNom;
 		long pre;
-		int cantidadDeproductos=0;
-		//imprimir la lista de sus productos
+		int cantidadDeproductos = 0;
+		
+		// Imprimir la lista de sus productos
 		System.out.println("Sus productos en el catalogo: ");
-		System.out.println ();
+		System.out.println();
 		for (Map.Entry<Integer, Producto> entry : Vendedor.catalogo.entrySet()) {
 			Producto iteradorCatalogo = entry.getValue();
 			if (iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
-				System.out.println("-"+ iteradorCatalogo.getNombreProducto()+" precio: "+iteradorCatalogo.getPrecio());
+				System.out.println(
+						"-" + iteradorCatalogo.getNombreProducto() + "/n Precio: " + iteradorCatalogo.getPrecio());
 				cantidadDeproductos++;
 			}
 
 		}
-		//comprobar que si tenga productos propios en el catalogo
-		if (cantidadDeproductos ==0) {
+		
+		// Comprobar que si tenga productos propios en el catálogo
+		if (cantidadDeproductos == 0) {
 			System.out.println("Usted no tiene producos en el catalogo");
 			System.out.println();
 			return;
@@ -35,30 +55,31 @@ public class CambiarPrecio extends OpcionDeMenu {
 		System.out.println();
 		System.out.println("Ingrese 0 para volver\nIngrese el nombre del producto");
 		nom = br.readLine();
-		comprobNom = esLong(nom); // ver si es un numero el nombre
-		//control de ingreso nombre
-		while(comprobNom !=-1) {
-			//ver si es un 0 para devolverse	
-			if (comprobNom==0){  	
-				return; //								
-			}	
-			else {
+		comprobNom = esLong(nom); // Ver si es un número el nombre
+		
+		// Control de ingreso nombre
+		while (comprobNom != -1) {
+			// Ver si es un 0 para devolverse
+			if (comprobNom == 0) {
+				return; //
+			} else {
 				System.out.println("Ingresar un nombre valido");
 				nom = br.readLine().trim();
 				comprobNom = esLong(nom);
 			}
-		}		
+		}
 		System.out.println("Ingrese el nuevo precio");
-		pre =  esLong(br.readLine().trim());
-		while(pre ==-1) {							
+		pre = esLong(br.readLine().trim());
+		while (pre == -1) {
 			System.out.println("Ingresar un precio valido: ");
 			pre = esLong(br.readLine().trim());
 		}
-		//ver si es un 0 para devolverse
-		if (pre==0){ 					
-			return; //								
-		}	
-		String str = Vendedor.cambiarPrecio(nom,(double) pre);
+		
+		// Ver si es un 0 para devolverse
+		if (pre == 0) {
+			return;
+		}
+		String str = Vendedor.cambiarPrecio(nom, (double) pre);
 		System.out.println(str);
 	}
 

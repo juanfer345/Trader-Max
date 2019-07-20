@@ -1,3 +1,9 @@
+/*	Clase MostrarPorCategoria (pública)        
+	
+	Propósito: Opción de menú del usuario, le permite realizar acciones en el programa 
+	           manipulando sus atributos y elementos
+*/
+
 package uiMain.MenuConsola;
 
 import java.io.IOException;
@@ -8,7 +14,11 @@ import uiMain.OpcionDeMenu;
 
 public class MostrarPorCategoria extends OpcionDeMenu { // opcion 3
 
-	public void ejecutar() throws NumberFormatException, IOException { //pa la logica
+	public void ejecutar() throws NumberFormatException, IOException { 
+		/*
+		 Propósito: Ejecutar el metodo mostrarCategoria() haciendo los respectivos
+		            controles de error del ingreso de datos
+		 */
 
 	    byte seleccion, i;
 	    

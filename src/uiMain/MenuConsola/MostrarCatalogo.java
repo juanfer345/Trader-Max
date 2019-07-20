@@ -1,3 +1,8 @@
+/*	Clase MostrarCatalogo (pública)        
+	
+	Propósito: Opción de menú del usuario, le permite realizar acciones en el programa 
+	           manipulando sus atributos y elementos
+*/
 package uiMain.MenuConsola;
 
 import java.io.IOException;
@@ -10,16 +15,22 @@ public class MostrarCatalogo extends OpcionDeMenu {
 
 	@Override
 	public void ejecutar() throws IOException {
+		/*
+		 Propósito: Ejecutar el metodo mostrarCatalogo() haciendo los respectivos
+		            controles de error del ingreso de datos
+		 */
 
 		byte comprobOpc;
 		
-		sb.append("\n Usted ha elegido la opcion para mostrar el catalogo de los productos");
-		sb.append("\n Para regresar y cancelar el proceso ingrese el '0'");
-		sb.append("\n Para continuar con el proceso ingrese '1'");
+		sb.append("\nUsted ha elegido la opcion para mostrar el catalogo de productos. ¿Que desea hacer?");
+		sb.append("\n0. Devolverse al menú y cancelar el proceso ");
+		sb.append("\n1. Continuar con el proceso ");
 
 		while (!controlError) {
 			
+			// Ingreso del dato por parte del usuario
 			System.out.println(sb);
+			System.out.print("=> ");
 			comprobOpc = esByte(br.readLine().trim());
 			
 			if (comprobOpc != 0) {
@@ -31,7 +42,7 @@ public class MostrarCatalogo extends OpcionDeMenu {
 							           + " vuelva a intentarlo");
 				}
 			}
-			else {System.out.println(); return;}
+			else {System.out.println(); return;} // Si es 0 se devuelve al menú principal
 		}
 	}
 

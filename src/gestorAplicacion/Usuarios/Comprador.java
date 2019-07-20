@@ -1,10 +1,17 @@
+/*	Clase Comprador (pública)        
+	
+	Propósito: Tipo de usuario del sistema que podrá adquirir productos
+	
+	Estructuras de datos relevantes:
+	- HashMap historial: Estructura para almacenar historial del comprador, contiene todos
+	                     los productos que ha comprado
+*/
 
 package gestorAplicacion.Usuarios;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.Arrays;
 import java.util.HashMap;
-
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.Producto;
@@ -29,47 +36,97 @@ public class Comprador extends CuentaConBanco {
 	private CarritoDeCompras carrito;
 	private HashMap<Integer, Producto> historial;
 	private static final int totalDeOpcionesDefault = 11;
-	
-	//Constructor para usuarios existentes
+
 	public Comprador(int idCuenta, String nombre, String correo, String password, int cedula) {
-		super(idCuenta, nombre, correo, password, cedula);
+	/*
+		Propósito: Constructor de Comprador para usuarios existentes			
+		           
+		Variables de entrada:
+		- int idCuenta: Identificador de la cuenta como comprador
+		- String nombre, int cedula: Datos personales del usuario
+		- String correo, password: Datos asignados al usuario para ingreso al programa
+    */
+		super(idCuenta, nombre, correo, password, cedula); // Llamado a contructor de CuentaConBanco
 		historial = new HashMap<>();
 	}
 
-	//Constructor para usuarios nuevos
 	public Comprador(String nombre, String correo, String password, int cedula) {
-		super(nombre, correo, password, cedula);
-		carrito = new CarritoDeCompras(this);
+	/*
+	    Propósito: Constructor de Comprador para usuarios nuevos		
+		           
+		Variables de entrada:
+		- String nombre, int cedula: Datos personales del usuario
+		- String correo, password: Datos asignados al usuario para ingreso al programa
+    */
+		super(nombre, correo, password, cedula); // LLamado al contructor de CuentaConBanco
+		carrito = new CarritoDeCompras(this); 
 		historial = new HashMap<>();
-		InicializacionAplicacion.getBDCarritos().put(carrito.getId(), carrito);
+		InicializacionAplicacion.getBDCarritos().put(carrito.getId(), carrito); 
+		// Guarda el nuevo carrito en un HashMap
 	}
-	
+
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
+
+	/*
+		Propósito: Asignar al comprador un menú predeterminado de acuerdo a su perfil		
+		
+		Variables de salida:
+		- ArrayList con las opciones de menú que tendrá predeterminadas el usuario.
+    */
+
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
 					new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(),
 					new AgregarACarrito(), new AgregarResena(), new BorrarHistorial(), 
 					new ComprarProducto(), new MostrarHistorial(),new MostrarResenas() ,new QuitarProductoCarrito(), 
 					new VaciarCarrito(), new CerrarSesion(), new Salir()}));
+
+
+		
 	}
-	
+
+	// Devuelve el numero total de opciones que tiene por defecto
 	public int getTotalDeOpcionesDefault() {
 		return totalDeOpcionesDefault;
 	}
 	
-	public CarritoDeCompras getCarrito() {return carrito;}
-	public void setCarrito(CarritoDeCompras carrito) {this.carrito = carrito;}
-	
-	public HashMap<Integer, Producto> getHistorial() {return historial;}
-	
+    // Devuelve el carrito que le corresponde al comprador
+	public CarritoDeCompras getCarrito() {
+		return carrito;
+	}
+    
+	// Cambia el carrito de compras
+	public void setCarrito(CarritoDeCompras carrito) {
+		this.carrito = carrito;
+	}
+    
+	// Devuelve un HashMap que contiene los productos del historial (Productos qu han sido comprados)
+	public HashMap<Integer, Producto> getHistorial() {
+		return historial;
+	}
+
 	public String agregarACarrito(int codigo, int cantidad) {
+	/*
+		Propósito: Agregar al carrito cierta cantidad de un producto específico
+		
+		Variables de entrada:
+		- int codigo: Código del producto que se desea agregar
+		- int cantidad: Cantidad de elementos que desea agregar del respectivo producto	
+		
+		Variables de salida:
+		- String con mensaje dependiendo si el proceso fue o no exitoso.
+		  Se mostrará el fallo que tiene el usuario en el ingreso de los datos
+    */
 		if (!catalogo.isEmpty()) {
-			if (cantidad > 0) {
+			if (cantidad > 0 && codigo > 0) {
 				if (catalogo.containsKey(codigo)) {
 					Producto p = catalogo.get(codigo);
 					if (p.getCantidad() >= cantidad) {
+						// Verificación de que se tiene la cantidad del producto en el catálogo
 						carrito.setProductos(codigo, cantidad);
 						carrito.setTotalproductos(carrito.getTotalproductos() + cantidad);
+						// Se cambia el total de productos que tiene el carrito
 						carrito.setPrecioTotal(carrito.getPrecioTotal() + (cantidad * p.getPrecio()));
+						// Se le va aumentando el precio al carrito a medida que se agregan productos
 						OpcionDeMenu.controlError = true;
 						if (cantidad == 1) {
 							return "Se ha agregado el producto " + p.getNombreProducto() + " al carrito exitosamente.";
@@ -84,28 +141,45 @@ public class Comprador extends CuentaConBanco {
 					return "El producto no existe, código inválido.";
 				}
 			} else {
-				return "La cantidad ingresada debe ser mayor a cero.";
+				return "Tanto la cantidad como el codigo ingresado deben ser mayor a cero.";
 			}
 		} else {
 			return "El catálogo está vacío";
 		}
 	}
-	
+
 	public void mostrarHistorial() {
-		if(!historial.isEmpty()) {
-			historial.forEach((k, v) -> {
+	/*
+		Propósito: Mostrar los productos que el usuario ha comprado
+    */
+		if (!historial.isEmpty()) {
+			historial.forEach((k, v) -> { //Ciclo para obtención e impresión de los productos
 				System.out.println(v);
 			});
-		}else {
+		} else {
 			System.out.println("El historial está vacío. ");
 		}
 	}
+
 	public String borrarHistorial() {
+	/*
+		Propósito: Borrar el historial de compras del usuario
+    */
 		historial.clear();
 		return "El historial se ha borrado exitosamente";
 	}
 
 	public String anadirResena(int codigo, Resena r) {
+	/*
+		Propósito: Añadir una reseña a un producto comprado
+		
+		Variables de entrada:
+		- int codigo: Código del producto al cual se le agregará una reseña
+		- Reseña r: Reseña (comentario, estrellas) que se le quiere agregar al producto
+		
+		Variables de salida:
+		- String con mensaje dependiendo si el proceso fue o no exitoso.
+    */
 		if (historial.containsKey(codigo)) {
 			Producto p = historial.get(codigo);
 			int indice = p.getResenas().size();
