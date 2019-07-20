@@ -13,11 +13,12 @@
 
 package gestorAplicacion.Materiales;
 
-import gestorAplicacion.InicializacionAplicacion;
-import gestorAplicacion.Usuarios.Vendedor;
-
 import java.util.Deque;
 import java.util.HashMap;
+
+import gestorAplicacion.InicializacionAplicacion;
+import gestorAplicacion.Usuarios.Vendedor;
+import uiMain.OpcionDeMenu;
 
 /* Propósito:
    
@@ -160,8 +161,10 @@ public class Producto {
 			resenas.forEach((k, v) -> {
 				sb.append(v);
 			});
+			OpcionDeMenu.controlError = true;
 			return sb.toString();
 		} else {
+			OpcionDeMenu.controlError = true;
 			return "Este producto no tiene reseñas. ";
 		}
 	}

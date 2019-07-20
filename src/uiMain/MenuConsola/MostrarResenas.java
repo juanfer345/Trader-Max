@@ -57,18 +57,7 @@ public void ejecutar() throws IOException {
 					} else {
 						// Ejecuta el método correspondiente
 						Producto prod = cuenta.getCatalogo().get(cuentaCod);
-						String str = prod.mostrarResenas();
-						if (str.equals("Este producto no tiene reseñas. ")) {
-							System.out.println(str);
-							System.out.println("Ingrese 0 para salir o cualquier otro caracter para repetir el proceso.");
-							String op = br.readLine().trim();
-							opcion = esInt(op);
-							if (opcion == 0) {
-								controlError = true;
-							}
-						} else {
-							controlError = true;
-						}
+						System.out.println(prod.mostrarResenas());
 					}
 				}
 			}

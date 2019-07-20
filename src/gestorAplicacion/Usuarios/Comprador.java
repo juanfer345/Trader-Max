@@ -79,7 +79,7 @@ public class Comprador extends CuentaConBanco {
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new BuscarProducto(),
 				new MostrarCatalogo(), new MostrarPorCategoria(), new AgregarACarrito(), new AgregarResena(),
 				new BorrarHistorial(), new ComprarProducto(), new MostrarHistorial(), new MostrarResenas(),
-				new QuitarProductoCarrito(), new VaciarCarrito(), new MostrarCarrito(), new CerrarSesion(), new Salir() }));
+				new QuitarProductoCarrito(), new VaciarCarrito(), new MostrarCarrito(), new MostrarResenas(), new CerrarSesion(), new Salir() }));
 
 	}
 
