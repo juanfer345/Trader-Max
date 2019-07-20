@@ -50,7 +50,7 @@ public class Producto {
 		 * la cual encaja el producto - double precio: Precio del producto - int
 		 * cantidad: Cantidad de unidades del producto
 		 */
-		this.cantidad = codigoProducto;
+		this.id = codigoProducto;
 		this.nombreProducto = nombreProducto;
 		this.categoria = categoria;
 		this.precio = precio;

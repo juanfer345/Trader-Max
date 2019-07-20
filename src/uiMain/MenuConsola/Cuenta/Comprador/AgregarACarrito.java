@@ -79,6 +79,10 @@ public class AgregarACarrito extends OpcionDeMenu {
 					} else {
 						// Cuando el proceso es exitoso, imprime y vuelve al menú
 						System.out.println("\n" + str + "\n");
+						//	Se obtiene la cantidad actual del producto en el catálogo
+						int cant = comp.getCatalogo().get(compCod).getCantidad();
+						//	Se resta esta cantidad a la que ingresó el comprador mientras la sesión esté activa
+						comp.getCatalogo().get(compCod).setCantidad(cant-compCant);
 						controlError = true;
 					}
 				}
