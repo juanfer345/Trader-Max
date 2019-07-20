@@ -7,12 +7,12 @@
 package uiMain.MenuConsola;
 
 import java.io.IOException;
-
+import gestorAplicacion.Usuarios.InterfazCategorias;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
 
-public class MostrarPorCategoria extends OpcionDeMenu { // opcion 3
+public class MostrarPorCategoria extends OpcionDeMenu implements InterfazCategorias { // opcion 3
 
 	public void ejecutar() throws NumberFormatException, IOException { 
 		/*

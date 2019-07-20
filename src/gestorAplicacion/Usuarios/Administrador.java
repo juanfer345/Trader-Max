@@ -6,11 +6,16 @@
 
 package gestorAplicacion.Usuarios;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
 import gestorAplicacion.InicializacionAplicacion;
 import uiMain.OpcionDeMenu;
+import uiMain.MenuConsola.BuscarProducto;
+import uiMain.MenuConsola.MostrarCatalogo;
+import uiMain.MenuConsola.MostrarPorCategoria;
+import uiMain.MenuConsola.MostrarResenas;
 import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Administrador.AgregarOpcion;
@@ -18,6 +23,7 @@ import uiMain.MenuConsola.Cuenta.Administrador.CuentasAdmin;
 import uiMain.MenuConsola.Cuenta.Administrador.EliminarCuenta;
 import uiMain.MenuConsola.Cuenta.Administrador.EliminarOpcion;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenu;
+import uiMain.MenuConsola.Cuenta.Administrador.MostrarTodasLasOpciones;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarUsuario;
 
 /*PROPUESTA por juanfer: ya que administrador debería heredar algunos atributos de cuenta (pero no todos), 
@@ -26,7 +32,7 @@ import uiMain.MenuConsola.Cuenta.Administrador.MostrarUsuario;
 */
 
 public class Administrador extends CuentaUsuario {
-
+    
 	private static String codigoSecreto = "Es un secretooo";
 	private static final int totalDeOpcionesDefault = 6;
 
@@ -61,16 +67,31 @@ public class Administrador extends CuentaUsuario {
 		- ArrayList <OpcionDeMenu>: Arraylist con las opciones de menú por defecto que 
 		                           tendrá un usuario administrador
     */
-		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new AgregarOpcion(), new CuentasAdmin(),
-				new EliminarCuenta(), new EliminarOpcion(), new MostrarMenu(), new MostrarUsuario(), new CerrarSesion(),
-				new Salir() }));
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
+				new AgregarOpcion(), new CuentasAdmin(), new EliminarCuenta(), 
+				new EliminarOpcion(), new MostrarMenu(), new MostrarUsuario(), 
+				new MostrarTodasLasOpciones(),new CerrarSesion(), new Salir() }));
 	}
 
 	// Devuelve el total de opciones por defecto que tiene este tipo de usuario
 	public int getTotalDeOpcionesDefault() {
 		return totalDeOpcionesDefault;
 	}
-    
+    //
+	public ArrayList<OpcionDeMenu> getMenuDisponible() {
+		/*
+		Proposito: Asignar un menú predeterminado con las opciones de menú que se pueden agregar al menu de administrador.
+		
+		Variables de salida:
+		- ArrayList <OpcionDeMenu>: Arraylist con las opciones de menú que podran agragarse
+    */
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
+				new BuscarProducto(), new MostrarCatalogo(),new MostrarPorCategoria(),
+				new MostrarResenas(),new AgregarOpcion(), new CuentasAdmin(),
+				new EliminarCuenta(), new EliminarOpcion(), new MostrarMenu(),
+				new MostrarUsuario(), new MostrarTodasLasOpciones(),new CerrarSesion(),
+				new Salir() }));
+	}
 	// Devuelve el numero total de cuentas existentes 
 	public static int getNumeroCuentas() {
 		return Cuenta.totalCuentas;

@@ -14,24 +14,15 @@
 package gestorAplicacion.Materiales;
 
 import gestorAplicacion.InicializacionAplicacion;
+import gestorAplicacion.Usuarios.InterfazCategorias;
 import gestorAplicacion.Usuarios.Vendedor;
 
 import java.util.Deque;
 import java.util.HashMap;
 
-/* Propósito:
-   
-   Parámetros de entrada:
-   -
-   Parámetros de salida:
-   -
- */
-
-public class Producto {
+public class Producto implements InterfazCategorias {
 
 	// Atributos
-	public static String categorias[] = { "Belleza", "Vehículos", "Deportes", "Electrodomésticos", "Hogar", "Juegos",
-			"Libros", "Música", "Tecnología", "Vestimenta", "Vivienda" };
 	public HashMap<Integer, Resena> resenas;
 	private Vendedor vendedor;
 	private String nombreProducto;

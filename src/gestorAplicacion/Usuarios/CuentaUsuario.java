@@ -18,8 +18,8 @@ import gestorAplicacion.Materiales.CuentaBancaria;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
 
-abstract public class CuentaUsuario extends Cuenta {
-
+abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias{
+    
 	// Atributos
 	abstract public int getTotalDeOpcionesDefault();
 
