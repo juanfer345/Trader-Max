@@ -128,6 +128,7 @@ public abstract class Cuenta {
 
 	// Cambio del menú predeterminado 
 	void setMenuPredeterminado() {
+		menu  = new MenuDeConsola();
 		menu.setmenuUsuario(getMenuPredeterminado());
 	}
 
