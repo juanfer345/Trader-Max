@@ -101,7 +101,7 @@ public class LecturaBD {
 				  		   InicializacionAplicacion.getBDAdministradores(), Cuenta.catalogo, 
 				  		   InicializacionAplicacion.getBDCuentasBancarias(), InicializacionAplicacion.getBDCarritos(), 
 				  		   InicializacionAplicacion.getBDProductos(), InicializacionAplicacion.getBDResenas(), 
-				  		   auxComp, cnProdComp, auxAdmi, auxVend, auxCarr, auxCat, auxProd, auxRes);
+				  		   auxComp, cnProdComp,  auxVend, auxAdmi, auxCarr, auxCat, auxProd, auxRes);
 	}
 	
 	private static void lecturaCompradores(String NombreBD, HashMap <Integer, Comprador> HM, HashMap <Integer, Deque <Integer>> mapAux, Deque <Integer> colaAuxProd) throws IOException {
