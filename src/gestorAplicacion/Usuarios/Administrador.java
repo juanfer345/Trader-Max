@@ -1,5 +1,5 @@
 /*
-	Clase Administrador (pública)   
+	Clase Administrador (pública, hereda de CuentaUsuario)   
 	
 	Propósito: Usuario que tendrá control sobre el programa y sobre las acciones de los usuarios
 */

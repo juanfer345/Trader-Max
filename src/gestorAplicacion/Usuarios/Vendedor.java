@@ -43,8 +43,8 @@ public class Vendedor extends CuentaConBanco {
 	// Crea un nuevo menú por defecto
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
 
-		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new ModificarCantidad(),
-				new MostrarResenas(), new CambiarPrecio(), new EliminarProductoCatalogo(), new SubirProducto(),
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] {  new SubirProducto(), new EliminarProductoCatalogo(),
+				new ModificarCantidad(), new MostrarResenas(), new CambiarPrecio(),
 				new MostrarResenas(), new CerrarSesion(), new Salir() }));
 
 	}
