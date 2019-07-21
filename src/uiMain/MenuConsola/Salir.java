@@ -21,9 +21,9 @@ public class Salir extends OpcionDeMenu {
 	    byte seleccion;
 	    
 	    //Guardado de mensaje principal
-	    sb.append("\nEstá seguro que desea salir de la aplicación?\n");
-		sb.append("1: Si\n");
-		sb.append("2: No\n");
+	    sb.append("\n¿Está seguro que desea salir de la aplicación?\n");
+		sb.append("1: Si.\n");
+		sb.append("2: No.\n");
 		sb.append("=> ");
 		
 		//Ciclo para control de error
@@ -39,5 +39,5 @@ public class Salir extends OpcionDeMenu {
 	}
 	
 	@Override
-	public String toString() {return "Salir";}
+	public String toString() {return "Salir. ";}
 }

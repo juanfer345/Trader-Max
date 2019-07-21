@@ -16,14 +16,14 @@ public class MostrarCatalogo extends OpcionDeMenu {
 	@Override
 	public void ejecutar() throws IOException {
 		/*
-		 Propósito: Ejecutar el metodo mostrarCatalogo() haciendo los respectivos
+		 Propósito: Ejecutar el método mostrarCatalogo() haciendo los respectivos
 		            controles de error del ingreso de datos
 		 */
 
 		byte comprobOpc;
 		
 		sb.append("\nUsted ha elegido la opcion para mostrar el catalogo de productos. ¿Que desea hacer?");
-		sb.append("\n0. Devolverse al menú y cancelar el proceso ");
+		sb.append("\n0. Volver al menú y cancelar el proceso ");
 		sb.append("\n1. Continuar con el proceso ");
 
 		while (!controlError) {
@@ -38,7 +38,7 @@ public class MostrarCatalogo extends OpcionDeMenu {
 					System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCatalogo());
 				}
 				else {
-					System.out.println("El dato que ingreso es invalido, solo puede ingresar '0' o '1', "
+					System.out.println("El dato que ingresó es inválido, solo puede ingresar '0' o '1', "
 							           + " vuelva a intentarlo");
 				}
 			}

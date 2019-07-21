@@ -18,23 +18,23 @@ public class MostrarResenas extends OpcionDeMenu {
 public void ejecutar() throws IOException {
 	
 	/*
-	 Propósito: Ejecutar el metodo mostrarReseñas() haciendo los respectivos
+	 Propósito: Ejecutar el método mostrarReseñas() haciendo los respectivos
 	            controles de error del ingreso de datos
 	 */
 
 		controlError = false;
 		String codigo;
-		int cuentaCod, opcion;
+		int cuentaCod;
 		Cuenta cuenta = InicializacionAplicacion.usuarioActivo;
 		
 		if (!cuenta.getCatalogo().isEmpty()) {
-			sb.append("\nNOTA: se puede cancelar la operación ingresando en cualquiera de los dos datos el número '0'");
+			sb.append("\nNOTA: se puede cancelar la operación ingresando en cualquiera de los dos datos el número '0'.\n");
 			
 			while (!controlError) {
 				
 				// Ingreso de datos por parte del usuario
 				System.out.println(sb);
-				System.out.println("Ingrese el codigo del producto al cual le quiere ver las reseñas => ");
+				System.out.println("Ingrese el código del producto al cual le quiere ver las reseñas \n=> ");
 				codigo = br.readLine().trim();
 				cuentaCod = esInt(codigo);
 				/*
@@ -42,8 +42,8 @@ public void ejecutar() throws IOException {
 				 (código) hasta que sea válido (puede ingresar el 0 para salir)
 				*/
 				while (cuentaCod == -1) {
-					System.out.println("\nEl dato que ingreso como codigo es invalido, vuelva a intentarlo.");
-					System.out.print("Ingrese el codigo del producto al cual le quiere ver las reseñas => ");
+					System.out.println("\nEl dato que ingresó como codigo es inválido, vuelva a intentarlo.");
+					System.out.print("Ingrese el código del producto al cual le quiere ver las reseñas \n=> ");
 					codigo = br.readLine().trim();
 					cuentaCod = esInt(codigo);
 				}
@@ -53,7 +53,7 @@ public void ejecutar() throws IOException {
 					System.out.println("");
 				} else {
 					if (!cuenta.getCatalogo().containsKey(cuentaCod)) {
-						System.out.println("Código invalido");
+						System.out.println("Código inválido.");
 					} else {
 						// Ejecuta el método correspondiente
 						Producto prod = cuenta.getCatalogo().get(cuentaCod);
@@ -62,7 +62,7 @@ public void ejecutar() throws IOException {
 				}
 			}
 		} else {
-			System.out.println("El catálogo está vacio");
+			System.out.println("El catálogo está vacío.");
 			controlError = true;
 		}
 	}

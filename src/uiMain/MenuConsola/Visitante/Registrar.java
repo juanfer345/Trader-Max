@@ -79,7 +79,7 @@ public class Registrar extends ControlErrorDatosUsuario {
 					if (contrasenaSecreta.equals(Administrador.getCodigoSecreto())) {
 						break;
 					} else {
-						System.out.println("Contraseña incorrecta, el FBI pronto llegará a su casa");
+						System.out.println("Contraseña incorrecta, el FBI pronto llegará a su casa.");
 					}
 				} else {
 					System.out.println();
@@ -107,6 +107,6 @@ public class Registrar extends ControlErrorDatosUsuario {
 
 	@Override
 	public String toString() {
-		return "Registrarse";
+		return "Registrarse.";
 	}
 }

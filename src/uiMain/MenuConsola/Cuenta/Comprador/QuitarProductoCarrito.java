@@ -19,7 +19,7 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 		 Propósito: Ejecutar el metodo quitarProducto() haciendo los respectivos 
 		            controles de error del ingreso de datos
 		*/
-		System.out.println("\nUsted ha elegido la opcion para quitar un producto de su carrito. ");
+		System.out.println("\nUsted ha elegido la opción para quitar un producto de su carrito. ");
 
 		controlError = false;
 		String codigo, cantidad;
@@ -35,10 +35,10 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 				
 				// Ingreso de datos por parte del usuario
 				System.out.println(sb);
-				System.out.print("\nIngrese el codigo del producto que desea eliminar => ");
+				System.out.print("\nIngrese el codigo del producto que desea eliminar \n=> ");
 				codigo = br.readLine().trim();
 				compCod = esInt(codigo);
-				System.out.print("\nIngrese la cantidad de elementos que desea quitar => ");
+				System.out.print("\nIngrese la cantidad de elementos que desea quitar \n=> ");
 				cantidad = br.readLine().trim();
 				compCant = esInt(cantidad);
 
@@ -47,8 +47,8 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 				 (código) hasta que sea válido (puede ingresar el 0 para salir)
 				*/
 				while (compCod == -1) {
-					System.out.println("\nEl dato que ingreso como codigo es invalido, vuelva a intentarlo.");
-					System.out.print("Ingrese el codigo del producto que desea eliminar => ");
+					System.out.println("\nEl dato que ingresó como código es inválido, vuelva a intentarlo.");
+					System.out.print("Ingrese el código del producto que desea eliminar \n=> ");
 					codigo = br.readLine().trim();
 					compCod = esInt(codigo);
 				}
@@ -58,8 +58,8 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 				 (cantidad) hasta que sea válido (puede ingresar el 0 para salir)
 				*/
 				while (compCant == -1) {
-					System.out.println("\nEl dato que ingreso como cantidad es invalido, vuelva a intentarlo.");
-					System.out.print("Ingrese la cantidad de elementos que desea quitar => ");
+					System.out.println("\nEl dato que ingresó como cantidad es inválido, vuelva a intentarlo.");
+					System.out.print("Ingrese la cantidad de elementos que desea quitar \n=> ");
 					cantidad = br.readLine().trim();
 					compCant = esInt(cantidad);
 				}
@@ -73,11 +73,11 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 					String str = comp.getCarrito().quitarProducto(compCod, compCant);
 
 					// Si el usuario tuvo otros errores en el ingreso de los datos le permite repetir el proceso
-					if (str.equals("La cantidad ingresada excede la existente")
-							|| str.equals("El producto no está en el carrito")
-							|| str.equals("Tanto la cantidad como el codigo ingresado deben ser mayor a cero")) {
+					if (str.equals("La cantidad ingresada excede la existente.")
+							|| str.equals("El producto no está en el carrito.")
+							|| str.equals("Tanto la cantidad como el código ingresado deben ser mayores a cero.")) {
 						System.out.println("\n" + str);
-						System.out.println("Repita el proceso con datos correctos");
+						System.out.println("Repita el proceso con datos correctos.");
 						// Aquí vuelve al inicio, hace de nuevo el control :)
 					} else {
 						// Cuando el proceso es exitoso, imprime y vuelve al menú
@@ -87,7 +87,7 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 				}
 			}
 		} else {
-			System.out.println("Su carrito de compras esta vacio, no puede quitar productos. \n");
+			System.out.println("Su carrito de compras esta vacío, no puede quitar productos. \n");
 			controlError = true;
 		}
 
@@ -95,6 +95,6 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 
 	@Override
 	public String toString() {
-		return "Quitar producto del carrito";
+		return "Quitar producto del carrito.";
 	}
 }

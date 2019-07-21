@@ -24,9 +24,9 @@ public class BuscarProducto extends OpcionDeMenu {
 	    byte seleccion;
 	    
 	    //Guardado de mensaje principal
-		sb.append("\nPor favor elija el método de búsqueda:\n");
-		sb.append("1: Por código\n");
-		sb.append("2: Por nombre\n");
+		sb.append("\nPor favor elija el método de búsqueda =\n");
+		sb.append("1: Por código.\n");
+		sb.append("2: Por nombre.\n");
 		sb.append("=> ");
 		
 		//Ciclo para control de error
@@ -45,7 +45,7 @@ public class BuscarProducto extends OpcionDeMenu {
 				if (seleccion == 1) {
 					while (!controlError) {
 						// Ingreso de datos por parte del usuario
-						System.out.print("Ingrese el código del producto => ");
+						System.out.print("Ingrese el código del producto \n=> ");
 						seleccion = (byte) esByte(br.readLine().trim());
 						
 						if (seleccion != 0) {
@@ -64,7 +64,7 @@ public class BuscarProducto extends OpcionDeMenu {
 				else if (seleccion == 2) {
 					while (!controlError) {
 						// Ingreso de datos por parte del usuario
-						System.out.print("Ingrese el nombre del producto => ");
+						System.out.print("Ingrese el nombre del producto \n=> ");
 						selecc = br.readLine().trim();
 						seleccion = (byte) esByte(selecc);
 
@@ -90,5 +90,5 @@ public class BuscarProducto extends OpcionDeMenu {
 	}
 	
 	@Override
-	public String toString() {return "Buscar producto";}
+	public String toString() {return "Buscar producto.";}
 }
