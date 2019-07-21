@@ -28,7 +28,7 @@ import uiMain.MenuConsola.Cuenta.Vendedor.SubirProducto;
 public class Vendedor extends CuentaConBanco {
 
 	// Atributos
-	private static final int totalDeOpcionesDefault = 6;
+	private static final int totalDeOpcionesDisponibles = 8;
 
 	// Constructor para usuarios existentes (Llama al super)
 	public Vendedor(int idCuenta, String nombre, String correo, String password, int cedula) {
@@ -48,9 +48,9 @@ public class Vendedor extends CuentaConBanco {
 				new MostrarResenas(), new CerrarSesion(), new Salir() }));
 
 	}
-    // Devuelve el numero de opciones de menú por defecto de este usuario
-	public int getTotalDeOpcionesDefault() {
-		return totalDeOpcionesDefault;
+
+	public int getTotalDeOpcionesDisponibles() {
+		return totalDeOpcionesDisponibles;
 	}
 
 	// Crea e ingresa un nuevo producto al catálogo

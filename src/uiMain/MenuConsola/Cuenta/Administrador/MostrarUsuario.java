@@ -14,37 +14,51 @@ public class MostrarUsuario extends OpcionDeMenu {
 	    byte tipoUsuario;
 
 	    //Guardado de mensaje principal
-		sb.append("Elija el tipo de cuenta de la cual desea obtener información:\n");
+	    //Guardado de mensaje principal
+		sb.append("\nPor favor elija su tipo de usuario:\n");
 		sb.append("1: Comprador\n");
 		sb.append("2: Vendedor\n");
+		sb.append("3: Administrador\n");
 		sb.append("=> ");
 		
 		//Ciclo para control de error
-		while (!controlError) {
-			
-			//Impresión de mensaje y recepción de datos
-			System.out.println(sb);
-			tipoUsuario = Byte.parseByte(br.readLine().trim());
-			
-			//Ejecución del método e impresión de respuesta
+		while (true) {
+			// Impresión de mensaje y recepción de datos
+			System.out.print(sb);
+			tipoUsuario =esByte(br.readLine().trim());
+
+			// Control de error
 			if (tipoUsuario != 0) {
-
-				while (!controlError) {
-
-					//Impresión de mensaje y recepción de datos
-					System.out.println("\nPor favor ingrese el identificador del usuario");
-					System.out.print("=> ");
-					idUsuario = Integer.parseInt(br.readLine().trim());
-					
-					//Mostrado de información del usuario
+				if (tipoUsuario >= 1 && tipoUsuario <= 3) {
+					break;
+				} else {
+					System.out.println("Por favor ingrese un número entero en el rango [1,3]");
+				}
+				if (!controlError)
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
+			} else {
+				System.out.println(); controlError = true;
+			}
+		}
+		
+		while (!controlError) {
+			//Impresión de mensaje y recepción de datos
+			System.out.println("\nPor favor ingrese el identificador del usuario");
+			System.out.print("=> ");
+			idUsuario = esInt(br.readLine().trim());
+			if(idUsuario!=0) {
+				if(idUsuario!=-1) {
 					System.out.println(usuario.mostrarUsuario(idUsuario, tipoUsuario));
 				}
+				else {
+					System.out.println("El identificador de usuario debe ser un número entero");
+				}
+				if (!controlError)
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
 			}
 			else {
-				controlError = true;
+				System.out.println(); controlError = true;
 			}
-			//Impresión de mensaje de cancelación en caso de que se haya producido un error
-			if (!controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
 		}
 	}
 	

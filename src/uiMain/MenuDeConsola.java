@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import gestorAplicacion.InicializacionAplicacion;
+import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.CuentaUsuario;
 
@@ -109,10 +110,10 @@ public class MenuDeConsola {
 			// Caso B: Vendedor
 			baseDeDatos = InicializacionAplicacion.getBDVendedores();
 			usuario = "vendedor";
-		} else if (tipoUsuario == 2) {
-			// Caso B: Vendedor
-			baseDeDatos = InicializacionAplicacion.getBDVendedores();
-			usuario = "vendedor";
+		} else if (tipoUsuario == 3) {
+			// Caso C: Administrador
+			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
+			usuario = "administrador";
 		}
 
 		if (baseDeDatos.containsKey(idUsuario)) {
@@ -154,6 +155,9 @@ public class MenuDeConsola {
 		} else if (tipoUsuario == 2) {
 			// Caso B: Vendedor
 			baseDeDatos = InicializacionAplicacion.getBDVendedores();
+		} else if (tipoUsuario == 3) {
+			// Caso C: Administrador
+			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
 		}
 		menu = baseDeDatos.get(idUsuario).getMenu(); // Obtención de opciones de menú del usuario
 
@@ -163,10 +167,15 @@ public class MenuDeConsola {
 			// Caso A: Se está agregando una opción - [Inicio]
 
 			// Resultado según cantidad de opciones del usuario seleccionado
-			if (menu.size() < baseDeDatos.get(idUsuario).getTotalDeOpcionesDefault()) {
+			if (menu.size() < baseDeDatos.get(idUsuario).getTotalDeOpcionesDisponibles()) {
 
 				// Caso A.a: El menú del usuario no tiene la cantidad máxima posible de opciones
-				opcionComp = baseDeDatos.get(idUsuario).getMenuPredeterminado();
+				if(tipoUsuario != 3) {
+					opcionComp = baseDeDatos.get(idUsuario).getMenuPredeterminado();
+				}
+				else {
+					opcionComp = ((Administrador)baseDeDatos.get(idUsuario)).getMenuDisponible();
+				}
 
 				// Ciclo para descartar las opciones que ya posee el menú del usuario
 				for (i = 0; i < menu.size(); i++) {
@@ -184,7 +193,8 @@ public class MenuDeConsola {
 				sb.append("Ingrese el indice de la opción que desea agregar \n");
 				sb.append("=> ");
 				OpcionDeMenu.controlError = true;
-			} else if (menu.size() == baseDeDatos.get(idUsuario).getTotalDeOpcionesDefault()) {
+			}
+			else if (menu.size() == baseDeDatos.get(idUsuario).getTotalDeOpcionesDisponibles()) {
 
 				// Caso A.b: El menú del usuario tiene la cantidad máxima posible de opciones
 				sb.append("\nEsta cuenta ya posee la máxima cantidad de opciones de menú\n");
@@ -201,7 +211,7 @@ public class MenuDeConsola {
 				sb.append("Ingrese el indice de la opción que desea eliminar \n");
 				sb.append("=> ");
 				OpcionDeMenu.controlError = true;
-			} else if (menu.size() == baseDeDatos.get(idUsuario).getTotalDeOpcionesDefault()) {
+			} else if (menu.size() == baseDeDatos.get(idUsuario).getTotalDeOpcionesDisponibles()) {
 
 				// Caso B.b: El menú del usuario se encuentra vacío
 				sb.append("\nEsta cuenta ya no posee ninguna opción de menú, no es posible borrar más\n");
@@ -234,6 +244,9 @@ public class MenuDeConsola {
 		} else if (tipoUsuario == 2) {
 			// Caso B: Vendedor
 			baseDeDatos = InicializacionAplicacion.getBDVendedores();
+		} else if (tipoUsuario == 3) {
+			// Caso C: Administrador
+			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
 		}
 		menu = baseDeDatos.get(idUsuario).getMenu(); // Obtención de opciones de menú del usuario
 
@@ -272,6 +285,9 @@ public class MenuDeConsola {
 		} else if (tipoUsuario == 2) {
 			// Caso B: Vendedor
 			baseDeDatos = InicializacionAplicacion.getBDVendedores();
+		} else if (tipoUsuario == 3) {
+			// Caso C: Administrador
+			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
 		}
 		menu = baseDeDatos.get(idUsuario).getMenu(); // Obtención de opciones de menú del usuario
 
@@ -287,5 +303,21 @@ public class MenuDeConsola {
 		return sb.toString();
 	}
 	
+	private void getBDUsuario (HashMap<Integer, ? extends CuentaUsuario> baseDeDatos, byte tipoUsuario, String usuario){
+		// Condicional para distinguir entre comprador, vendedor o administrador
+		if (tipoUsuario == 1) {
+			// Caso A: Comprador
+			usuario = "comprador";
+			baseDeDatos = InicializacionAplicacion.getBDCompradores();
+		} else if (tipoUsuario == 2) {
+			// Caso B: Vendedor
+			usuario = "vendedor";
+			baseDeDatos = InicializacionAplicacion.getBDVendedores();
+		} else if (tipoUsuario == 3) {
+			// Caso C: Administrador
+			usuario = "administrador";
+			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
+		}
+	}
 	 
 }
