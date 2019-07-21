@@ -120,8 +120,7 @@ public class LecturaBD {
         	
 	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
         	colaAux.add(Integer.parseInt(dat[5]));		//Referencia a la cuenta bancaria
-        	colaAux.add(Integer.parseInt(dat[6]));		//Referencia al carrito de compras
-        	colaAux = subDatos(dat[7], colaAux);		//Referencias a los productos del historial
+        	colaAux = subDatos(dat[6], colaAux);		//Referencias a los productos del historial
         	
         	// Condicional para guardar la condición de que se tienen productos en el historial
         	if (!colaAux.isEmpty()) {
@@ -129,7 +128,7 @@ public class LecturaBD {
         	} else {
             	colaAuxProd.add(0);
         	}
-        	colaAux = subDatos(dat[8], colaAux);		//Referencias a las opciones de menú
+        	colaAux = subDatos(dat[7], colaAux);		//Referencias a las opciones de menú
 	    	
 	        HM.put(usuario.getId(), usuario);			//Asignación del comprador a la estructura de datos correspondiente
 	        mapAux.put(usuario.getId(), colaAux);		//Guardado de las referencias en el mapa auxiliar
