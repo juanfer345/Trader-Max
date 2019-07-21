@@ -11,11 +11,9 @@
 package uiMain.MenuConsola.Cuenta.Vendedor;
 
 import java.io.IOException;
-import java.util.Map;
-
 import gestorAplicacion.InicializacionAplicacion;
-import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Vendedor;
+import uiMain.ControlErrorDatos;
 import uiMain.OpcionDeMenu;
 
 public class ModificarCantidad extends OpcionDeMenu {
@@ -28,70 +26,39 @@ public class ModificarCantidad extends OpcionDeMenu {
 		 */
 		
 		//Atributos
-		String nombre;
-		long comprobNom;
-		int cantidad;
-		int cantidadDeproductos = 0;
-		String operacion;
-		
-		// Imprimir la lista de sus productos
-		System.out.println("Sus productos en el catalogo: ");
-		System.out.println();
-		for (Map.Entry<Integer, Producto> entry : Vendedor.catalogo.entrySet()) {
-			Producto iteradorCatalogo = entry.getValue();
-			if (iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
-				System.out.println(
-						"-" + iteradorCatalogo.getNombreProducto() + "/n Cantidad: " + iteradorCatalogo.getCantidad());
-				cantidadDeproductos++;
-			}
+		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
+		int idProducto, cantidad;
+		byte operacion;
 
-		}
-		// Comprobar que si tenga productos propios en el catalogo
-		if (cantidadDeproductos == 0) {
-			System.out.println("Usted no tiene producos en el catalogo");
-			System.out.println();
-			return;
-		}
-		System.out.println();
-		System.out.println("Ingrese el nombre del producto: ");
-		nombre = br.readLine().trim();
-		comprobNom = esInt(nombre); // Ver si es un número el nombre
-		// Control de ingreso nombre
-		while (comprobNom != -1) {
-			// Ver si es un 0 para devolverse
-			if (comprobNom == 0) {
-				System.out.println();
-				return; //
-			} else {
-				System.out.println("Ingresar un nombre valido");
-				nombre = br.readLine().trim();
-				comprobNom = esLong(nombre);
+		//Condicional para vendedores sin productos subidos
+		if (vend.getTotalDeProductosSubidos() == 0) {
+
+			//Guardado de mensaje principal (incluyendo lista de productos)
+			sb.append("\nEsta opción es para cambiar la cantidad un producto del catálogo");
+			sb.append("\nRecuerde que el producto debe ser de su propiedad \n");
+			sb.append(vend.mostrarProductos());
+
+			while(!controlError) {
+
+				//Impresión del mensaje principal
+				System.out.println(sb);
+
+				//Ingreso del código del producto
+				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto al que le desea cambiar el precio", "Por favor ingrese un número entero positivo");
+				if (controlError) {System.out.println(); return;}
+
+				//Ingreso de la cantidad del producto
+				cantidad = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el nuevo precio del producto", "Por favor ingrese un número entero positivo");
+				if (controlError) {System.out.println(); return;}
+
+				//Ingreso del tipo de operación
+				operacion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, "Ingrese 1 para sumar la cantidad y 2 para restarla", "Por favor ingrese un número entero positivo");
+				if (controlError) {System.out.println(); return;}
+				
+				//Ejecución del método
+				System.out.println(vend.modificarCantidad(idProducto, cantidad, operacion));
 			}
 		}
-		System.out.println("Ingrese la cantidad a aumentar o disminuir: ");
-		cantidad = esInt(br.readLine().trim());
-		while (cantidad < 1) {
-			System.out.println("Ingresar una cantidad valida: ");
-			cantidad = esInt(br.readLine().trim());
-		}
-		// Ver si es un 0 para devolverse
-		if (cantidad == 0) {
-			System.out.println();
-			return; //
-		}
-		System.out.println("Ingrese + si desea amuentar o - si desea restar esta cantidad: ");
-		operacion = br.readLine().trim();
-		while (!(operacion.equals("0") || operacion.equals("+") || operacion.equals("-"))) {
-			System.out.println("Ingrese un operador valido o el numero 0 para cancelar: ");
-			operacion = br.readLine().trim();
-		}
-		if (operacion.equals("0")) {
-			System.out.println();
-			return;
-		}
-
-		String str = Vendedor.ModificarCantidad(nombre, cantidad, operacion);
-		System.out.println(str);
 	}
 
 	public String toString() {

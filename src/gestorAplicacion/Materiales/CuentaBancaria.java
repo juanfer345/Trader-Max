@@ -42,19 +42,19 @@ public class CuentaBancaria {
 		InicializacionAplicacion.getBDCuentasBancarias().put(id, this);
 	}
 	
-	public void Transaccion(CuentaBancaria cb1, CuentaBancaria cb2, double precio) {
-	/*
-		Propósito: Realizar la transacción de dinero de una cuenta a otra cuando se haya  
-		           comprado un producto
-		           
-		Variables de entrada:
-		- CuentaBancaria cb1: Cuenta bancaria de quien hace el traspaso del dinero 
-		- CuentaBancaria cb2: Cuenta bancaria del usuario que recibe el dinero
-		- double precio: Valor de la transacción, precio del producto		
-		
-    */
-		cb2.setSaldo(cb2.getSaldo() + precio);
-		cb1.setSaldo(cb1.getSaldo() - precio);
+	public void Transaccion(CuentaConBanco cuentaDestino, double valor) {
+		/*
+			Propósito: Realizar la transacción de dinero de una cuenta a otra cuando se haya  
+			           comprado un producto
+	
+			Variables de entrada:
+			- CuentaBancaria cb1: Cuenta bancaria de quien hace el traspaso del dinero 
+			- CuentaBancaria cb2: Cuenta bancaria del usuario que recibe el dinero
+			- double precio: Valor de la transacción, precio del producto
+		 */
+
+		cuentaDestino.getCuentaBancaria().setSaldo(cuentaDestino.getCuentaBancaria().getSaldo() + valor);
+		this.setSaldo(saldo - valor);
 	}
 
 	// Devuelve el saldo actual de la cuenta bancaria

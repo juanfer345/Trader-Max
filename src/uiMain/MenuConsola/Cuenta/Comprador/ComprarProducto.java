@@ -1,14 +1,14 @@
 /*	Clase ComprarProducto (pública)        
-	
+
 	Propósito: Opción de menú del usuario, le permite realizar acciones en el programa 
 	           manipulando sus atributos y elementos
-*/
+ */
 package uiMain.MenuConsola.Cuenta.Comprador;
 
 import java.io.IOException;
 
-import gestorAplicacion.InicializacionAplicacion;
-import gestorAplicacion.Usuarios.Comprador;
+import gestorAplicacion.Materiales.CarritoDeCompras;
+import uiMain.ControlErrorDatos;
 import uiMain.OpcionDeMenu;
 
 public class ComprarProducto extends OpcionDeMenu { // opcion 7
@@ -21,56 +21,25 @@ public class ComprarProducto extends OpcionDeMenu { // opcion 7
 		 */
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("\nUsted ha elegido la opcion para comprar los productos de su carrito. ¿Que desea hacer?");
-		sb.append("\n0. Devolverse al menú y cancelar el proceso ");
-		sb.append("\n1. Continuar con el proceso ");
 
-		controlError = false;
-		String opcion;
-		int comprobOpc;
+		if (!CarritoDeCompras.getProductos().isEmpty()) {
 
-		while (!controlError) {
-			
+			sb.append("\nSu carrito tiene ").append(CarritoDeCompras.getTotalproductos()).append(" productos.\n");
+			sb.append("El costo total de los productos es de ").append(CarritoDeCompras.getPrecioTotal()).append(" pesos.\n");
+			sb.append("Su saldo disponible es de ").append(CarritoDeCompras.getTitular()).append(" pesos.\n");
+			sb.append("\n¿Está seguro de que desea realizar la compra?");
+			sb.append("\n0. Volver al menú y cancelar el proceso ");
+			sb.append("\n1. Continuar con el proceso ");
+
 			// Ingreso del dato por parte del usuario
-			System.out.println(sb);
-			System.out.print("=> ");
-			opcion = br.readLine().trim();
-			comprobOpc = esInt(opcion);
+			ControlErrorDatos.controlByte((byte) 1, (byte) 1, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
+			if (controlError) {System.out.println(); return;}
 
-			/*
-			 Ciclo de control de error para la opcion ingresada, pide un número
-			 hasta que sea válido (puede ingresar el 0 para salir)
-			*/
-			while (comprobOpc == -1) {
-				System.out.println("\nEl dato que ingreso es invalido, vuelva a intentarlo");
-				System.out.print("Ingrese su eleccion => ");
-				opcion = br.readLine().trim();
-				comprobOpc = esInt(opcion);
-			}
-			// Verifica si alguno es cero para salirse de la opcion
-			if (comprobOpc == 0) {
-				controlError = true;
-				System.out.println(" ");
-			} else if (comprobOpc == 1) {
-				// Se ejecuta el codigo cuando el usuario decide continuar
-				Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
-				if (!comp.getCarrito().getProductos().isEmpty()) {
-					System.out.println("\nSu carrito tiene " + comp.getCarrito().getTotalproductos() + " productos ");
-					System.out.println("El costo total: " + comp.getCarrito().getPrecioTotal());
-					System.out.println("Su saldo disponible es: " + comp.getCuentaBancaria().getSaldo());
-					String str = comp.getCarrito().comprarProductos();
-					System.out.println("\n"+str + "\n");
-				} else {
-					System.out.println("\nSu carrito de compras esta vacio \n");
-				}
-				controlError = true;
-			} else {
-				/*
-				 Si ingresa un numero diferente pero no es ninguna de las disponibles debe
-				 empezar de nuevo (Empezara de nuevo el control)
-				*/
-				System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo");
-			}
+			//Ejecución del método
+			System.out.println(CarritoDeCompras.comprarProductos());
+		}
+		else {
+			System.out.println("\nSu carrito de compras esta vacío \n");
 		}
 	}
 
@@ -78,5 +47,4 @@ public class ComprarProducto extends OpcionDeMenu { // opcion 7
 	public String toString() {
 		return "Comprar productos en el carrito";
 	}
-
 }

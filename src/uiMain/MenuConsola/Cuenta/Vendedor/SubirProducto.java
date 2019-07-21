@@ -16,6 +16,7 @@ import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.InterfazCategorias;
 import gestorAplicacion.Usuarios.Vendedor;
+import uiMain.ControlErrorDatos;
 import uiMain.OpcionDeMenu;
 
 public class SubirProducto extends OpcionDeMenu implements InterfazCategorias{
@@ -29,63 +30,41 @@ public class SubirProducto extends OpcionDeMenu implements InterfazCategorias{
 		 */
 		
 		// Atributos
-		StringBuilder sb = new StringBuilder();
-		String nombre, categoria;
-		int cant;
+		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
+		String nombre;
 		double precio;
-		Vendedor vend;
-		byte cat;
+		int cant, i;
+		byte categoria;
 
-		sb.append("\n Esta opción es para registrar un produto");
-		sb.append("\n Para devolverse al menú anterior, ingrese el número '0'");
-
+		//Guardado de mensaje principal
+		sb.append("\nPor favor elija la categoría ingresando su índice:\n");
+		for (i = 0; i < categorias.length; i++) {
+			sb.append((i + 1) + ". " + categorias[i] + '\n');
+		}
+		
+		
 		while (!controlError) {
 
-			System.out.println(sb);
+			//Impresión del mensaje principal
+			System.out.println("\nPor favor ingrese los datos del producto.");
 
-			System.out.print("\n Ingrese el nombre del producto o el número 0: ");
-			nombre = br.readLine().trim();
+			//Ingreso del nombre del producto
+			nombre = ControlErrorDatos.controlString("Nombre", "Se está ingresando un número en lugar de un nombre");
+			
+			//Ingreso del precio del producto
+			precio = ControlErrorDatos.controlReal(0.1, Double.MAX_VALUE, "Precio", "Por favor ingrese un número real");
+			
+			//Ingreso de la cantidad del producto
+			cant = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Cantidad", "Por favor ingrese un número entero positivo");
+			
+			//Ingreso de la categoría
+			categoria = ControlErrorDatos.controlByte((byte) 1, (byte) Producto.categorias.length, sb.toString(), "Por favor ingrese un número entero");
+			if (controlError) {System.out.println(); return;}
 
-			if (nombre.equals("0")) {
-				controlError = true;
-			} else {
-				// Si el usuario no quiere salir, continua el proceso
-				try {
-					System.out.print("\n Ingrese la cantidad: ");
-					cant = Integer.parseInt(br.readLine().trim());
-					System.out.print("\n Ingrese el precio: ");
-					precio = Double.parseDouble(br.readLine().trim());
-					
-					// El for para las categorias, aquí comienza
-					for (int i = 0; i < 11; i++) {
-						System.out.println((i + 1) + ": " + Producto.categorias[i]);
-					}
-					System.out.print("\n Ingrese el número de alguna de las anteriores categorias: ");
-					cat = Byte.parseByte(br.readLine().trim());
-					
-					// El while es por si el usuario ingresa una categoria inexistente
-					while (cat < 0 || cat > 10) {
-						System.out.print("\n Ingrese el número de alguna de las anteriores categorias: ");
-						cat = Byte.parseByte(br.readLine().trim());
-					}
-					categoria = Producto.categorias[cat - 1];
-					// Hasta aquí llega lo de las categorias
-					
-					vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
-					Vendedor.subirProducto(vend, nombre, categoria, precio, cant);
-					System.out.println("\n Se ha subido el producto exitosamente \n");
-					controlError = true;
-
-				} catch (NumberFormatException nfe) {
-					controlError = false;
-					System.out.println("\n Por favor asegurese de ingresar un número");
-				}
-			}
+			System.out.println(vend.subirProducto(nombre, categoria, precio, cant));
 		}
 	}
 
 	@Override
-	public String toString() {
-		return "Subir producto";
-	}
+	public String toString() {return "Subir producto";}
 }

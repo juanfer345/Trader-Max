@@ -20,15 +20,14 @@ import uiMain.OpcionDeMenu;
 
 public abstract class Cuenta implements InterfazCategorias {
 
-	public static HashMap<Integer, Producto> catalogo = new HashMap<>();
+	protected static HashMap<Integer, Producto> catalogo = new HashMap<>();
 	MenuDeConsola menu;
-	protected static ArrayList<OpcionDeMenu> cambioOpDeMen;
+//	protected static ArrayList<OpcionDeMenu> cambioOpDeMen;
 	private String nombre, correo, password;
 	public int id;
 	private int cedula;
 	static int contador;
 	static int totalCuentas;
-
 
 	public Cuenta(int id, String nombre, String correo, String password, int cedula) {
 	/*
@@ -63,8 +62,10 @@ public abstract class Cuenta implements InterfazCategorias {
 		setMenuPredeterminado();
 	}
 	
-	// Metodos de retorno y modificación de los atributos de la clase
+	//Constructor vacío
 	public Cuenta() {setMenuPredeterminado();}
+	
+	// Metodos de retorno y modificación de los atributos de la clase
 	
 	public String getNombre() {return nombre;}
 	
@@ -93,14 +94,10 @@ public abstract class Cuenta implements InterfazCategorias {
 	public static void setMaxID(int contador) {Cuenta.contador = contador + 1;}
 
 	// Devuelve el catálogo (HashMap) con todos los productos disponibles
-	public HashMap<Integer, Producto> getCatalogo() {
-		return catalogo;
-	}
+	public static HashMap<Integer, Producto> getCatalogo() {return catalogo;}
 
 	//Devuelve el menu de consola del usuario 
-	public MenuDeConsola getMenuDeConsola() {
-		return menu;
-	}
+	public MenuDeConsola getMenuDeConsola() {return menu;}
 	
 	// Devuelve el menú del usuario (ArrayList de opciones de menú)
 	public ArrayList<OpcionDeMenu> getMenu() {
@@ -132,15 +129,15 @@ public abstract class Cuenta implements InterfazCategorias {
 		menu.setmenuUsuario(getMenuPredeterminado());
 	}
 
-	// Devuelve el ArrayList con las opciones de menú
-	public static ArrayList<OpcionDeMenu> getCambioOpDeMen() {
-		return cambioOpDeMen;
-	}
-    
-	// Modificación del menú ingresando el ArrayList por el cual se desea cambiar
-	public static void setCambioOpDeMen(ArrayList<OpcionDeMenu> cambioOpDeMen) {
-		Cuenta.cambioOpDeMen = cambioOpDeMen;
-	}
+//	// Devuelve el ArrayList con las opciones de menú
+//	public static ArrayList<OpcionDeMenu> getCambioOpDeMen() {
+//		return cambioOpDeMen;
+//	}
+//    
+//	// Modificación del menú ingresando el ArrayList por el cual se desea cambiar
+//	public static void setCambioOpDeMen(ArrayList<OpcionDeMenu> cambioOpDeMen) {
+//		Cuenta.cambioOpDeMen = cambioOpDeMen;
+//	}
 	
 	public String salir(byte seleccion) {
 	/*
@@ -156,11 +153,9 @@ public abstract class Cuenta implements InterfazCategorias {
 			OpcionDeMenu.controlError = true;
 			MenuDeConsola.SalirApp = true;
 			return "\nLa aplicación será cerrada";
-		} else if (seleccion == 2) { // 2 para continuar en la aplicación
+		} else { // 2 para continuar en la aplicación
 			OpcionDeMenu.controlError = true;
 			return "";
-		} else {
-			return "Por favor ingrese un número entero en el rango [1,2].";
 		}
 	}
 
@@ -181,9 +176,6 @@ public abstract class Cuenta implements InterfazCategorias {
 			prod = catalogo.get(codigo);
 			OpcionDeMenu.controlError = true;
 			return prod.toString() + "\n";
-		} else if (catalogo.isEmpty()) {
-			OpcionDeMenu.controlError = true;
-			return "El catálogo se encuentra vacío.\n";
 		} else {
 			return "Producto no encontrado.\n";
 		}
@@ -214,9 +206,6 @@ public abstract class Cuenta implements InterfazCategorias {
 		if (sb.length() > 0) {
 			OpcionDeMenu.controlError = true;
 			return "\nEl producto fue encontrado: \n" + sb.toString();
-		} else if (catalogo.isEmpty()) {
-			OpcionDeMenu.controlError = true;
-			return "El catálogo se encuentra vacío.\n";
 		} else {
 			return "Producto no encontrado.\n";
 		}
@@ -234,17 +223,12 @@ public abstract class Cuenta implements InterfazCategorias {
 
 		StringBuilder sb = new StringBuilder();
 
-		if (!catalogo.isEmpty()) {
-			sb.append("\nCatálogo de TRADER-MAX: \n");
-			for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-				sb.append(entry.getValue().toString() + '\n');
-			}
-			OpcionDeMenu.controlError = true;
-			return sb.toString();
-		} else {
-			OpcionDeMenu.controlError = true;
-			return "El catálogo se encuentra vacío.\n";
+		sb.append("\nCatálogo de TRADER-MAX: \n");
+		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
+			sb.append(entry.getValue().toString() + '\n');
 		}
+		OpcionDeMenu.controlError = true;
+		return sb.toString();
 	}
 
 	public String mostrarCategoria(byte cat) {
@@ -261,32 +245,26 @@ public abstract class Cuenta implements InterfazCategorias {
     */
 		StringBuilder sb = new StringBuilder();
 
-		// Verificación de catalogo no vacío
-		if (!catalogo.isEmpty()) {
-			// Verificación de índice válido 
-			cat--;
-			if (cat >= 0 && cat < categorias.length) {
+		// Verificación de índice válido 
+		cat--;
+		if (cat >= 0 && cat < categorias.length) {
 
-				// Ciclo para hallar cada producto de la categoría adecuada
-				for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-					Producto prod = entry.getValue();
-					if (prod.getCategoria() == Producto.categorias[cat]) {
-						sb.append(prod.toString() + '\n');
-					}
+			// Ciclo para hallar cada producto de la categoría adecuada
+			for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
+				Producto prod = entry.getValue();
+				if (prod.getCategoria() == Producto.categorias[cat]) {
+					sb.append(prod.toString() + '\n');
 				}
-				OpcionDeMenu.controlError = true;
-				if (sb.length() > 0) {
-					return "Categoría " + Producto.categorias[cat] + ":\n" + sb.toString();
-				} else {
-					return "La categoría se enguentra vacia.\n";
-				} 
-				
-			} else {
-				return "Categoria inválida, por favor ingrese un índice dentro del rango establecido.";
 			}
-		} else {
 			OpcionDeMenu.controlError = true;
-			return "El catálogo se encuentra vacío.\n";
+			if (sb.length() > 0) {
+				return "Categoría " + Producto.categorias[cat] + ":\n" + sb.toString();
+			} else {
+				return "La categoría se enguentra vacia.\n";
+			} 
+
+		} else {
+			return "Categoria inválida, por favor ingrese un índice dentro del rango establecido.";
 		}
 	}
 

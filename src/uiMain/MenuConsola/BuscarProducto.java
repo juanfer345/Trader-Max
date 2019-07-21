@@ -1,13 +1,15 @@
 /*	Clase BuscarProducto (pública)        
-	
+
 	Propósito: Opción de menú del usuario, le permite realizar acciones en el programa 
 	           manipulando sus atributos y elementos
-*/
+ */
 package uiMain.MenuConsola;
 
 import java.io.IOException;
 
 import gestorAplicacion.InicializacionAplicacion;
+import gestorAplicacion.Usuarios.Cuenta;
+import uiMain.ControlErrorDatos;
 import uiMain.OpcionDeMenu;
 
 public class BuscarProducto extends OpcionDeMenu {
@@ -20,75 +22,54 @@ public class BuscarProducto extends OpcionDeMenu {
 		            (Dependiendo del parámetro se ejecuta el método que corresponde)
 		 */
 
-	    String selecc;
-	    byte seleccion;
-	    
-	    //Guardado de mensaje principal
-		sb.append("\nPor favor elija el método de búsqueda =\n");
-		sb.append("1: Por código.\n");
-		sb.append("2: Por nombre.\n");
-		sb.append("=> ");
-		
-		//Ciclo para control de error
-		while (!controlError) {
-			
-			//Impresión de mensaje y recepción de datos
-			System.out.print(sb);
-			seleccion = esByte(br.readLine().trim());
-			
-			//Ejecución del método e impresión de respuesta
-			if (seleccion == 0) {System.out.println(); return;}
-			
-			if (seleccion != -1) {
-				
-				// Selección 1: Búsqueda del producto por código
-				if (seleccion == 1) {
-					while (!controlError) {
-						// Ingreso de datos por parte del usuario
-						System.out.print("Ingrese el código del producto \n=> ");
-						seleccion = (byte) esByte(br.readLine().trim());
-						
-						if (seleccion != 0) {
-							if (seleccion != -1) {
-								System.out.println(InicializacionAplicacion.usuarioActivo.buscarProducto(seleccion));
-							}
-							else {
-								System.out.println("\nPor favor ingrese un número entero mayor a 0.");
-							}
-							if (!controlError) System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
-						}
-						else {System.out.println(); return;}
-					}
-				}
-				// Selección 2: Búsqueda del producto por nombre
-				else if (seleccion == 2) {
-					while (!controlError) {
-						// Ingreso de datos por parte del usuario
-						System.out.print("Ingrese el nombre del producto \n=> ");
-						selecc = br.readLine().trim();
-						seleccion = (byte) esByte(selecc);
+		String nombreProducto;
+		int idProducto;
+		byte seleccion;
 
-						if (seleccion != 0) {
-							if (seleccion == -1) {
-								System.out.println(InicializacionAplicacion.usuarioActivo.buscarProducto(selecc));
-							}
-							else {
-								System.out.println("\nSe está ingresando un número en lugar de un nombre.");
-							}
-							if (!controlError) System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
-						}
-						else {System.out.println(); return;}
-					}
+		// Verificación de catalogo no vacío
+		if (!Cuenta.getCatalogo().isEmpty()) {
+
+			//Guardado de mensaje principal
+			sb.append("\nPor favor elija el método de búsqueda:\n");
+			sb.append("1: Por código.\n");
+			sb.append("2: Por nombre.\n");
+
+			//Selección por parte del usuario
+			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
+			if (seleccion == 0) {System.out.println(); return;}
+
+			//Condicional según selección
+			if (seleccion == 1) {
+
+				// Selección 1: Búsqueda del producto por código
+				while (!controlError) {
+
+					//Control del ingreso de datos
+					idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto", "El dato que ingreso como código es invalido, vuelva a intentarlo");
+					if (controlError) {System.out.println(); return;}
+
+					//Búsqueda por código
+					System.out.println(InicializacionAplicacion.usuarioActivo.buscarProducto(idProducto));
 				}
 			}
-			else {
-				//Impresión de mensaje de cancelación en caso de que se haya producido un error
-				System.out.println("Por favor ingrese un número entero en el rango [1,2].\n" + 
-						"Nota: Se puede cancelar la operación ingresando el número '0'.");
+			else if (seleccion == 2) {
+				// Selección 2: Búsqueda del producto por nombre
+				while (!controlError) {
+
+					//Control del ingreso de datos
+					nombreProducto = ControlErrorDatos.controlString("Ingrese el nombre del producto", "Ha ingresado un número en lugar de texto");
+					if (controlError) {System.out.println(); return;}
+
+					//Búsqueda por nombre
+					System.out.println(InicializacionAplicacion.usuarioActivo.buscarProducto(nombreProducto));
+				}
 			}
 		}
+		else {
+			System.out.println("El catálogo se encuentra vacío.\n");
+		}
 	}
-	
+
 	@Override
 	public String toString() {return "Buscar producto.";}
 }

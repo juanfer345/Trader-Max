@@ -36,7 +36,7 @@ public class InicializacionAplicacion {
 		
 		//Ejecución de la lectura de la base de datos
 		System.out.println("LECTURA DE BASE DE DATOS - [INICIO]\n");
-		LecturaBD.PrincipalLecturaBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Carritos de Compras", "Catálogo", "Productos", "Reseñas");
+		LecturaBD.PrincipalLecturaBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Catálogo", "Productos", "Reseñas");
 		System.out.println("\nLECTURA DE BASE DE DATOS - [FIN]\n");
 		
 		//Mensaje de inicialización
@@ -51,7 +51,7 @@ public class InicializacionAplicacion {
 		
 		//Ejecución de la escritura en la base de datos
 		System.out.println("\nGUARDADO DE BASE DE DATOS - [INICIO]\n");
-		EscrituraBD.PrincipalEscrituraBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Carritos de Compras", "Catálogo", "Productos", "Reseñas");
+		EscrituraBD.PrincipalEscrituraBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Catálogo", "Productos", "Reseñas");
 		System.out.println("\nGUARDADO DE BASE DE DATOS - [FIN]\n");
 		
 		//Cerrado de la aplicación (pendiente)

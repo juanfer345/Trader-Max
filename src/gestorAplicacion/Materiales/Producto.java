@@ -13,13 +13,13 @@
 
 package gestorAplicacion.Materiales;
 
+import java.util.Deque;
+import java.util.HashMap;
+
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.InterfazCategorias;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.OpcionDeMenu;
-
-import java.util.Deque;
-import java.util.HashMap;
 
 public class Producto implements InterfazCategorias {
 
@@ -30,7 +30,7 @@ public class Producto implements InterfazCategorias {
 	private String categoria;
 	private double precio;
 	private int id, cantidad;
-	private static int contador = 1;
+	private static int contador;
 
 	// Constructor para productos existentes
 	public Producto(int codigoProducto, String nombreProducto, String categoria, double precio, int cantidad) {
@@ -123,7 +123,7 @@ public class Producto implements InterfazCategorias {
 		return resenas;
 	}
 
-	// Funciona para agregar reseñas a una tabla hash
+	// Funciona para agregar reseñas a una tabla hash usando sus códigos
 	public void setResenas(Deque<Integer> idResenas) {
 		resenas = new HashMap<>();
 		int aux;
@@ -133,6 +133,11 @@ public class Producto implements InterfazCategorias {
 		}
 	}
 
+	//Funciona para agregar una reseña a un producto
+	public void setResenas(Resena res) {
+		resenas.put(res.getId(), res);
+	}
+	
 	// Retorna el atributo id
 	public int getId() {
 		return id;
@@ -150,7 +155,9 @@ public class Producto implements InterfazCategorias {
 
 	// Para mostrar la reseñas de un producto en caso de que tenga
 	public String mostrarResenas() {
+
 		StringBuilder sb = new StringBuilder();
+
 		if (!resenas.isEmpty()) {
 			resenas.forEach((k, v) -> {
 				sb.append(v);
@@ -159,7 +166,7 @@ public class Producto implements InterfazCategorias {
 			return sb.toString();
 		} else {
 			OpcionDeMenu.controlError = true;
-			return "Este producto no tiene reseñas. ";
+			return "Este producto no tiene reseñas.\n";
 		}
 	}
 
@@ -176,7 +183,7 @@ public class Producto implements InterfazCategorias {
 	// Para imprimir un Producto
 	public String toString() {
 		return "Producto [Nombre: " + nombreProducto + ", Categoria: " + categoria + ", Precio: " + precio
-				+ ", Código: " + id + ", Disponible: " + cantidad + "]";
+				+ ", Código: " + id;
 	}
 
 	// Para cambiar el atributo vendedor

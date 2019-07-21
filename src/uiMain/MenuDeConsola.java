@@ -15,8 +15,9 @@ import java.util.HashMap;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
-import gestorAplicacion.Usuarios.Cuenta;
+import gestorAplicacion.Usuarios.Comprador;
 import gestorAplicacion.Usuarios.CuentaUsuario;
+import gestorAplicacion.Usuarios.Vendedor;
 
 public class MenuDeConsola {
 
@@ -42,15 +43,15 @@ public class MenuDeConsola {
 		while (!SalirApp) {
 
 			OpcionDeMenu.sb.append("Elija una opción:\n");
-			for (int i = 0; i < menuActivo.size(); i++) {
-				OpcionDeMenu.sb.append((i + 1) + ". " + menuActivo.get(i).toString() + ".\n");
-			} // Ciclo para listar por pantalla las opciones de menú
+			
+			// Ciclo para listar por pantalla las opciones de menú
+			OpcionDeMenu.sb.append(prepararMenuImpresion(menuActivo));
 
 			while (true) {
 				System.out.print(OpcionDeMenu.sb.toString() + "=> ");
 				opcionSeleccionada = OpcionDeMenu.esByte(OpcionDeMenu.br.readLine().trim());
-				// Se realiza la eleccion de la opcion
-
+				
+				// Se realiza la eleccion de la opción
 				if (opcionSeleccionada > 0 && opcionSeleccionada <= menuActivo.size()) {
 					break;
 				} else {
@@ -68,27 +69,53 @@ public class MenuDeConsola {
 	}
 
 	// Devuelve las opciones de menu activas
-	public ArrayList<OpcionDeMenu> getMenuActivo() {
-		return menuActivo;
-	}
+	public ArrayList<OpcionDeMenu> getMenuActivo() {return menuActivo;}
 	
 	// Devuelve las opciones de menu de cada usuario
-	public  ArrayList<OpcionDeMenu> getmenuUsuario(){
-		return this.menuUsuario;
-	}
+	public  ArrayList<OpcionDeMenu> getmenuUsuario(){return this.menuUsuario;}
 	
 	// Modificacion de opciones de menu de cada usuario
-	public void setmenuUsuario(ArrayList<OpcionDeMenu> menuUsuario) {
-		this.menuUsuario = menuUsuario; 
-	}
+	public void setmenuUsuario(ArrayList<OpcionDeMenu> menuUsuario) {this.menuUsuario = menuUsuario;	}
 
+	public String mostrarOpcionesDisponibles(byte tipoUsuario) {
+		/*
+		Proposito: Mostrar las opciones disponibles del menú de un tipo de usuario.
+
+		Variables de entrada:
+		- int idUsuario: Número de identificación del usuario.
+		- byte tipoUsuario: Número {1, 2, 3} del tipo de usuario sobre el cual se realiza el método.
+
+		Variables de salida:
+		- String con mensaje dependiendo si el proceso fue o no exitoso.
+		  En caso de que sea exitoso se muestra el menú que tiene el tipo usuario.
+		 */
+		
+		String cuenta = null, menu = null;
+
+		// Condicional para distinguir entre comprador, vendedor y administrador
+		if (tipoUsuario == 1) {
+			// Caso A: Comprador
+			menu = prepararMenuImpresion((new Comprador()).getMenuPredeterminado());
+			cuenta = "compradores";
+		} else if (tipoUsuario == 2) {
+			// Caso B: Vendedor
+			menu = prepararMenuImpresion((new Vendedor()).getMenuPredeterminado());
+			cuenta = "vendedores";
+		} else if (tipoUsuario == 3) {
+			// Caso C: Administrador
+			menu = prepararMenuImpresion((new Administrador()).getMenuPredeterminado());
+			cuenta = "administradores";
+		}
+		return "A continuación se muestran todas las opciones de menú disponubles para los usuarios " + cuenta + ":" + menu;
+	}
+	
 	public String mostrarOpcionesDeMenu(int idUsuario, byte tipoUsuario) {
 		/*
 		Proposito: Mostrar las opciones de menú del usuario.
 
 		Variables de entrada:
 		- int idUsuario: Número de identificación del usuario.
-		- byte tipoUsuario: Número {1, 2} del tipo de usuario sobre el cual se realiza el método.
+		- byte tipoUsuario: Número {1, 2, 3} del tipo de usuario sobre el cual se realiza el método.
 
 		Variables de salida:
 		- String con mensaje dependiendo si el proceso fue o no exitoso.
@@ -99,9 +126,8 @@ public class MenuDeConsola {
 		ArrayList<OpcionDeMenu> menu;
 		StringBuilder sb = new StringBuilder();
 		String usuario = null;
-		int i;
 
-		// Condicional para distinguir entre comprador y vendedor
+		// Condicional para distinguir entre comprador, vendedor y administrador
 		if (tipoUsuario == 1) {
 			// Caso A: Comprador
 			baseDeDatos = InicializacionAplicacion.getBDCompradores();
@@ -119,9 +145,7 @@ public class MenuDeConsola {
 		if (baseDeDatos.containsKey(idUsuario)) {
 			menu = baseDeDatos.get(idUsuario).getMenu();
 			sb.append("A continuación se muestra el menú del " + usuario + "\n");
-			for (i = 0; i < menu.size(); i++) {
-				sb.append((i + 1) + ". " + menu.get(i).toString() + "\n");
-			}
+			sb.append(prepararMenuImpresion(menu));
 			OpcionDeMenu.controlError = true;
 		} else {
 			sb.append("El " + usuario + " no fue encontrado, por favor revise el código ingresado");
@@ -136,7 +160,7 @@ public class MenuDeConsola {
 
 		Variables de entrada:
 		- int idUsuario: Número de identificación del usuario.
-		- byte tipoUsuario: Número {1, 2} del tipo de usuario sobre el cual se realiza el método.
+		- byte tipoUsuario: Número {1, 2, 3} del tipo de usuario sobre el cual se realiza el método.
 		- byte borradoAgregado: Número {1, 2} que se ingresa dependiendo si es agregar o eliminar opción.
 
 		Variables de salida:
@@ -148,7 +172,7 @@ public class MenuDeConsola {
 		StringBuilder sb = new StringBuilder();
 		int i;
 
-		// Condicional para distinguir entre comprador y vendedor
+		// Condicional para distinguir entre comprador, vendedor y administrador
 		if (tipoUsuario == 1) {
 			// Caso A: Comprador
 			baseDeDatos = InicializacionAplicacion.getBDCompradores();
@@ -183,15 +207,12 @@ public class MenuDeConsola {
 						opcionComp.remove(menu.get(i));
 					}
 				}
-				Cuenta.setCambioOpDeMen(opcionComp); // Guardado de las opciones que no posee el menú del usuario
 
 				// Ciclo para retornarla como string cada opción disponible
 				sb.append("\nA continuación se muestran las opciones disponibles que pueden agregarse:\n");
 				for (i = 0; i < opcionComp.size(); i++) {
 					sb.append((i + 1) + ". " + opcionComp.get(i).toString() + "\n");
 				}
-				sb.append("Ingrese el indice de la opción que desea agregar \n");
-				sb.append("=> ");
 				OpcionDeMenu.controlError = true;
 			}
 			else if (menu.size() == baseDeDatos.get(idUsuario).getTotalDeOpcionesDisponibles()) {
@@ -227,7 +248,7 @@ public class MenuDeConsola {
 
 		Variables de entrada:
 		- int idUsuario: Número de identificación del usuario
-		- byte tipoUsuario: Número {1, 2} del tipo de usuario sobre el cual se realiza el método
+		- byte tipoUsuario: Número {1, 2, 3} del tipo de usuario sobre el cual se realiza el método
 		- byte indice: Número de la opción de menú que se desea agregar
 
 		Variables de salida:
@@ -237,7 +258,7 @@ public class MenuDeConsola {
 		ArrayList<OpcionDeMenu> menu;
 		StringBuilder sb = new StringBuilder();
 
-		// Condicional para distinguir entre comprador y vendedor
+		// Condicional para distinguir entre comprador, vendedor y administrador
 		if (tipoUsuario == 1) {
 			// Caso A: Comprador
 			baseDeDatos = InicializacionAplicacion.getBDCompradores();
@@ -268,33 +289,35 @@ public class MenuDeConsola {
 
 			Variables de entrada:
 			- int idUsuario: Número de identificación del usuario 
-			- byte tipoUsuario: Número {1, 2} del tipo de usuario sobre el cual se realiza el método
+			- byte tipoUsuario: Número {1, 2, 3} del tipo de usuario sobre el cual se realiza el método
 			- byte indice: Número de la opción de menú que se desea eliminar
 
 			Variables de salida:
 			- String con mensaje dependiendo si el proceso fue o no exitoso.
 		 */
-		HashMap<Integer, ? extends CuentaUsuario> baseDeDatos = null;
+		HashMap<Integer, ? extends CuentaUsuario> baseDeDatos = new HashMap <>();
 		ArrayList<OpcionDeMenu> menu;
 		StringBuilder sb = new StringBuilder();
-
-		// Condicional para distinguir entre comprador y vendedor
-		if (tipoUsuario == 1) {
-			// Caso A: Comprador
-			baseDeDatos = InicializacionAplicacion.getBDCompradores();
-		} else if (tipoUsuario == 2) {
-			// Caso B: Vendedor
-			baseDeDatos = InicializacionAplicacion.getBDVendedores();
-		} else if (tipoUsuario == 3) {
-			// Caso C: Administrador
-			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
-		}
+		String h = null;
+		
+		// Condicional para distinguir entre comprador, vendedor y administrador
+//		if (tipoUsuario == 1) {
+//			// Caso A: Comprador
+//			baseDeDatos = InicializacionAplicacion.getBDCompradores();
+//		} else if (tipoUsuario == 2) {
+//			// Caso B: Vendedor
+//			baseDeDatos = InicializacionAplicacion.getBDVendedores();
+//		} else if (tipoUsuario == 3) {
+//			// Caso C: Administrador
+//			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
+//		}
+		getBDUsuario(baseDeDatos, tipoUsuario, h);
+		
 		menu = baseDeDatos.get(idUsuario).getMenu(); // Obtención de opciones de menú del usuario
 
 		try {
-			menu.remove(menu.get(indice)); // Agregado de la opción correspondiente
-
-			sb.append(mostrarOpcionesDeMenu(idUsuario, tipoUsuario)); // Guardado del mensaje mostrando el nuevo menú
+			menu.remove(menu.get(indice)); 								// Agregado de la opción correspondiente
+			sb.append(mostrarOpcionesDeMenu(idUsuario, tipoUsuario)); 	// Guardado del mensaje mostrando el nuevo menú
 			OpcionDeMenu.controlError = true;
 			sb.append("/nSe ha eliminado la opción correctamente/n");
 		} catch (IndexOutOfBoundsException e) {
@@ -303,20 +326,51 @@ public class MenuDeConsola {
 		return sb.toString();
 	}
 	
-//	private void getBDUsuario (HashMap<Integer, ? extends CuentaUsuario> baseDeDatos, byte tipoUsuario, String usuario){
+	private void getBDUsuario (HashMap<Integer, ? extends CuentaUsuario> baseDeDatos, byte tipoUsuario, String usuario){
+		// Condicional para distinguir entre comprador, vendedor o administrador
+		if (tipoUsuario == 1) {
+			// Caso A: Comprador
+			usuario = "comprador";
+			baseDeDatos = InicializacionAplicacion.getBDCompradores();
+		} else if (tipoUsuario == 2) {
+			// Caso B: Vendedor
+			usuario = "vendedor";
+			baseDeDatos = InicializacionAplicacion.getBDVendedores();
+		} else if (tipoUsuario == 3) {
+			// Caso C: Administrador
+			usuario = "administrador";
+			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
+		}
+	}
+	
+//	private HashMap<Integer, CuentaUsuario> getBDUsuario (byte tipoUsuario, String usuario){
 //		// Condicional para distinguir entre comprador, vendedor o administrador
 //		if (tipoUsuario == 1) {
 //			// Caso A: Comprador
 //			usuario = "comprador";
-//			baseDeDatos = InicializacionAplicacion.getBDCompradores();
+//			return InicializacionAplicacion.getBDCompradores();
 //		} else if (tipoUsuario == 2) {
 //			// Caso B: Vendedor
 //			usuario = "vendedor";
-//			baseDeDatos = InicializacionAplicacion.getBDVendedores();
+//			return InicializacionAplicacion.getBDVendedores();
 //		} else if (tipoUsuario == 3) {
 //			// Caso C: Administrador
 //			usuario = "administrador";
-//			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
+//			return InicializacionAplicacion.getBDAdministradores();
 //		}
 //	}
+	
+	//Se devuelven las opciones de menu de un menu dado con su respectivo índice para su posterior impresión
+	public static String prepararMenuImpresion(ArrayList<OpcionDeMenu> menu) {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		for (int i = 0; i < menu.size(); i++) {
+			sb.append((i + 1) + ". " + menu.get(i).toString() + "\n");
+		}
+		return sb.toString();
+	}
+	
+	//Devuelve el tamaño del arreglo de las opciones de menú usadas en los métodos para agregar o eliminar opciones de menú con fines de impresión
+	public static byte getsizeOpcionesComp() {return (byte) opcionComp.size();}
 }

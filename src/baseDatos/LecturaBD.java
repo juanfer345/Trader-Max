@@ -31,8 +31,8 @@ public class LecturaBD {
     private static String BDactual;
     private static int maxID = 0;
     
-	public static void PrincipalLecturaBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCarr, 
-										  String BDCat, String BDProd, String BDRes) {
+	public static void PrincipalLecturaBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCat, 
+										  String BDProd, String BDRes) {
 		/*
 	  		Método PrincipalLecturaBD (público)
 		   	
@@ -44,7 +44,6 @@ public class LecturaBD {
 	   		- BDVend: Nombre de la base de datos de los vendedores.
 	   		- BDAdm: Nombre de la base de datos de los administradores.
 	   		- BDCuentBanc: Nombre de la base de datos de las cuentas bancarias.
-	   		- BDCarr: Nombre de la base de datos de los carritos de compras.
 	   		- BDCat: Nombre de la base de datos del catálogo.
 	   		- BDProd: Nombre de la base de datos de los productos.
 	   		- BDRes: Nombre de la base de datos de las reseñas.
@@ -93,7 +92,7 @@ public class LecturaBD {
         
 		// Asignando los elementos restantes utilizando las colas auxiliares
 		complementoLectura(InicializacionAplicacion.getBDCompradores(), InicializacionAplicacion.getBDVendedores(),
-				  		   InicializacionAplicacion.getBDAdministradores(), Cuenta.catalogo, 
+				  		   InicializacionAplicacion.getBDAdministradores(), Cuenta.getCatalogo(), 
 				  		   InicializacionAplicacion.getBDCuentasBancarias(), InicializacionAplicacion.getBDProductos(), 
 				  		   InicializacionAplicacion.getBDResenas(), auxComp, cnProdComp,  auxVend, auxAdmi, auxCat, 
 				  		   auxProd, auxRes);
@@ -113,7 +112,7 @@ public class LecturaBD {
 	    // Ciclo para obtener la información
         while (!(dat = br.readLine().split(";"))[0].equals("#")) {
 
-    		// Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;IDcarrN;IDprodhist1,...,IDprodhistN;IDopmen1,...,IDopmenN
+    		// Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;IDcarrN;(IDprodhist1,Cantprodhist1),...,(IDprodhistN,CantprodhistN);IDopmen1,...,IDopmenN
         	
         	// Creación del Comprador
         	usuario = new Comprador(Integer.parseInt(dat[0]), dat[1], dat[2], dat[3], Integer.parseInt(dat[4]));
@@ -192,7 +191,7 @@ public class LecturaBD {
 	        mapAux.put(usuario.getId(), colaAux);		//Guardado de las referencias en el mapa auxiliar
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-        Cuenta.setMaxID(maxID); maxID = 0;
+        Cuenta.setMaxID(maxID); maxID = 0;				//Asignación de ID para las cuentas
         mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
@@ -216,7 +215,7 @@ public class LecturaBD {
 	    	HM.put(cuenta.getId(), cuenta);			//Asignación de la cuenta bancaria a la estructura de datos correspondiente
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-        CuentaBancaria.setMaxID(maxID); maxID = 0;
+        CuentaBancaria.setMaxID(maxID); maxID = 0;		//Asignación de ID para las cuentas bancarias
         mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 
@@ -264,7 +263,7 @@ public class LecturaBD {
 	        mapAux.put(prod.getId(), colaAux);			//Guardado de las referencias en el mapa auxiliar
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-        Producto.setMaxID(maxID); maxID = 0;
+        Producto.setMaxID(maxID); maxID = 0;			//Asignación de ID para los productos
         mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
@@ -290,7 +289,7 @@ public class LecturaBD {
 	        HM.put(res.getId(), res);							//Asignación de la reseña a la estructura de datos correspondiente
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-        Resena.setMaxID(maxID); maxID = 0;
+        Resena.setMaxID(maxID); maxID = 0;				//Asignación de ID para las reseñas
         mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
@@ -314,14 +313,10 @@ public class LecturaBD {
             entry.getValue().setCuentaBancaria(BDCuentasBancarias.get(aux));
             BDCuentasBancarias.get(aux).setPropietario(entry.getValue());
             
-            // Asignación de carrito al comprador y viceversa
-        	aux = auxComp.get(entry.getKey()).poll();
-            
             // Asignación de productos al historial del comprador
             if ((n = cnProdComp.poll()) != 0) {
                 for (i = 0; i < n; i++) {
-                	j = (auxComp.get(entry.getKey())).poll();
-                	entry.getValue().getHistorial().put(j, BDProductos.get(j));
+                	entry.getValue().getHistorial().put((auxComp.get(entry.getKey())).poll(), (auxComp.get(entry.getKey())).poll());
                 }
             }
             

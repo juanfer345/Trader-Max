@@ -1,6 +1,6 @@
 /* 
    Clase CambiarPrecio (pública, hereda de OpcionDeMenu) 
-   
+
    Propósito: Opción de menú del usuario, le permite realizar acciones en el programa 
               manipulando sus atributos y elementos
  */
@@ -8,11 +8,9 @@
 package uiMain.MenuConsola.Cuenta.Vendedor;
 
 import java.io.IOException;
-import java.util.Map;
-
 import gestorAplicacion.InicializacionAplicacion;
-import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Vendedor;
+import uiMain.ControlErrorDatos;
 import uiMain.OpcionDeMenu;
 
 public class CambiarPrecio extends OpcionDeMenu {
@@ -24,74 +22,38 @@ public class CambiarPrecio extends OpcionDeMenu {
 		 * controles de error del ingreso de datos
 		 */
 
-		sb.append("\nEsta opción es para cambiar el precio de un producto del catálogo");
-		sb.append("\nRecuerde que el producto a eliminar debe ser de su propiedad \n");
-
 		// Atributos
-		String nom;
-		long comprobNom;
-		long pre;
-		int cantidadDeproductos = 0;
+		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
+		double precio;
+		int idProducto;
 
-		System.out.println(sb);
+		//Condicional para vendedores sin productos subidos
+		if (vend.getTotalDeProductosSubidos() == 0) {
 
-		// Imprimir la lista de sus productos
-		System.out.println("Sus productos en el catalogo: ");
-		System.out.println();
-		for (Map.Entry<Integer, Producto> entry : Vendedor.catalogo.entrySet()) {
-			Producto iteradorCatalogo = entry.getValue();
-			if (iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
-				System.out.println(
-						"- " + iteradorCatalogo.getNombreProducto() + ". Precio: " + iteradorCatalogo.getPrecio());
-				cantidadDeproductos++;
+			//Guardado de mensaje principal (incluyendo lista de productos)
+			sb.append("\nEsta opción es para cambiar el precio de un producto del catálogo");
+			sb.append("\nRecuerde que el producto debe ser de su propiedad \n");
+			sb.append(vend.mostrarProductos());
+
+			while(!controlError) {
+
+				//Impresión del mensaje principal
+				System.out.println(sb);
+
+				//Ingreso del código del producto
+				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto al que le desea cambiar el precio", "El dato que ingresó no es válido");
+				if (controlError) {System.out.println(); return;}
+
+				//Ingreso del precio del producto
+				precio = ControlErrorDatos.controlReal(0.1, Double.MAX_VALUE, "Ingrese el nuevo precio del producto", "El dato que ingresó no es válido");
+				if (controlError) {System.out.println(); return;}
+
+				//Ejecución del método
+				System.out.println(vend.cambiarPrecio(idProducto, precio));
 			}
 		}
-
-		// Comprobar que si tenga productos propios en el catálogo
-		if (cantidadDeproductos == 0) {
-			System.out.println("Usted no tiene producos en el catalogo");
-			System.out.println();
-			return;
-		}
-
-		while (!controlError) {
-
-			System.out.println();
-			System.out.print("Ingrese 0 para volver\nIngrese el nombre del producto => ");
-			nom = br.readLine();
-			comprobNom = esLong(nom); // Ver si es un número el nombre
-
-			// Control de ingreso nombre
-			while (comprobNom != -1) {
-				// Ver si es un 0 para devolverse
-				if (comprobNom == 0) {
-					controlError = true;
-				} else {
-					System.out.print("Ingresar un nombre valido => ");
-					nom = br.readLine().trim();
-					comprobNom = esLong(nom);
-				}
-			}
-			System.out.print("Ingrese el nuevo precio => ");
-			pre = esLong(br.readLine().trim());
-			while (pre == -1) {
-				System.out.print("Ingresar un precio valido => ");
-				pre = esLong(br.readLine().trim());
-			}
-
-			// Ver si es un 0 para devolverse
-			if (pre == 0) {
-				controlError = true;
-			} else {
-				String str = Vendedor.cambiarPrecio(nom, (double) pre);
-				if (str.equals("El producto no existe, no se puede cambiar el precio") 
-						|| str.equals("El precio debe ser mayor a cero")) {
-					System.out.println("\n" + str);
-				}else {
-					System.out.println("\n" + str);
-					controlError = true;
-				}
-			}
+		else {
+			System.out.println("Usted aún no ha subido ningún producto\n");
 		}
 	}
 

@@ -14,20 +14,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
-import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
-import uiMain.MenuConsola.Salir;
+import uiMain.MenuConsola.BuscarProducto;
+import uiMain.MenuConsola.MostrarCatalogo;
+import uiMain.MenuConsola.MostrarPorCategoria;
 import uiMain.MenuConsola.MostrarResenas;
+import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Vendedor.CambiarPrecio;
 import uiMain.MenuConsola.Cuenta.Vendedor.EliminarProductoCatalogo;
 import uiMain.MenuConsola.Cuenta.Vendedor.ModificarCantidad;
 import uiMain.MenuConsola.Cuenta.Vendedor.SubirProducto;
+import uiMain.MenuConsola.Cuenta.Vendedor.VerProductos;
 
-public class Vendedor extends CuentaConBanco {
+public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 
 	// Atributos
+	private int totalDeProductosSubidos;
 	private static final int totalDeOpcionesDisponibles = 8;
 
 	// Constructor para usuarios existentes (Llama al super)
@@ -40,22 +44,43 @@ public class Vendedor extends CuentaConBanco {
 		super(nombre, correo, password, cedula);
 	}
 
+	//Constructor vacío
+	public Vendedor() {}
+	
 	// Crea un nuevo menú por defecto
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
-
-		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] {  new SubirProducto(), new EliminarProductoCatalogo(),
-				new ModificarCantidad(), new MostrarResenas(), new CambiarPrecio(),
-				new MostrarResenas(), new CerrarSesion(), new Salir() }));
-
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] {
+				new SubirProducto(), new EliminarProductoCatalogo(), new ModificarCantidad(), 
+				new CambiarPrecio(), new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(), 
+				new MostrarResenas(), new VerProductos(), new CerrarSesion(), new Salir()}));
 	}
 
 	public int getTotalDeOpcionesDisponibles() {
 		return totalDeOpcionesDisponibles;
 	}
 
+	public int getTotalDeProductosSubidos() {return totalDeProductosSubidos;}
+
+	public void setTotalDeProductosSubidos(int candidadAgregada) {this.totalDeProductosSubidos += candidadAgregada;}
+
+	//Muestra la información de todos los productos subidos que se encuentran en el catálogo
+	public String mostrarProductos() {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("\nTotal de productos subidos: ").append(totalDeProductosSubidos).append('\n');
+		
+		for (Map.Entry<Integer, Producto> entry : Cuenta.getCatalogo().entrySet()) {
+			if (entry.getValue().getVendedor().getId() == id) {
+				sb.append(entry.getValue().toString()).append(", Cantidad: ").
+				append(entry.getValue().getCantidad()).append("]\n");
+			}
+		}
+		return sb.toString();
+	}
+	
 	// Crea e ingresa un nuevo producto al catálogo
-	public static void subirProducto(Vendedor vendedor, String nombreProducto, String categoria, double precio,
-			int cantidad) {
+	public String subirProducto(String nombreProducto, byte categoria, double precio, int cantidad) {
 		/*
 		  Propósito: Crea un nuevo producto con los Parámetros ingresados y lo agrega al catálogo
 		  
@@ -63,48 +88,51 @@ public class Vendedor extends CuentaConBanco {
 		  -Vendedor vendedor: El que esta crea el Producto
 		  -String nombreProducto, String categoria, dobule precio, int cantidad: Características del Producto
 		 */
-		Producto p = new Producto(nombreProducto, categoria, vendedor, precio, cantidad);
-		catalogo.put(p.getId(), p);
+		
+		Producto prod = new Producto(nombreProducto, categorias[categoria], this, precio, cantidad);
+		catalogo.put(prod.getId(), prod);
+		
+		return "Se ha agregado correctamente el producto al catálogo con la siguiente información:" + 
+		prod.toString() + ", Cantidad: " + cantidad + "]\n";
+		
 	}
 
-	public static String cambiarPrecio(String nombre, double precio) {
+	public String cambiarPrecio(int codigoProducto, double precio) {
 		/*
-		  Propósito: Poderle cambiar el precio a un Producto en caso de ser necesario
-		  
-		  Parámetros de entrada: 
-		  -String nombre: El nombre del producto al cual se le modificará precio 
-		  -dobule precio: Nuevo precio
-		 
-		  Parámetros de salida: 
-		  -String: Un mensaje que indica si se cambio el precio
+			  Propósito: Poderle cambiar el precio a un Producto en caso de ser necesario
+			  
+			  Parámetros de entrada: 
+			  -String nombre: El nombre del producto al cual se le modificará precio 
+			  -dobule precio: Nuevo precio
+			 
+			  Parámetros de salida: 
+			  -String: Un mensaje que indica si se cambio el precio
 		 */
 
-		Producto comprobarProducto = null;
+		Producto prod = null;
+
 		// Comprobar que el producto este en el catalogo
-		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-			Producto iteradorCatalogo = entry.getValue();
-			if (iteradorCatalogo.getNombreProducto().equals(nombre)
-					&& iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
-				comprobarProducto = iteradorCatalogo;
-				break;
+		if (catalogo.containsKey(codigoProducto)) {
+
+			prod = catalogo.get(codigoProducto);
+			
+			//Comprobar que el vendedor es dueño del producto
+			if (prod.getVendedor().equals(this)) {
+				prod.setPrecio(precio);
+				
+				OpcionDeMenu.controlError = true;
+				return "Se ha cambiado el precio del producto: " + prod.getNombreProducto() + ". Precio nuevo: " + prod.getPrecio() + "\n";
 			}
-		}
-		if (comprobarProducto == null) {
-			return "El producto no existe, no se puede cambiar el precio";
-		}
-		// Cambiar precio
-		else {
-			if (precio > 0) {
-				comprobarProducto.setPrecio(precio);
-				return "Se ha cambiado el precio del producto: " + comprobarProducto.getNombreProducto()
-						+ ". Precio actual: " + comprobarProducto.getPrecio() + "\n";
-			} else {
-				return "El precio debe ser mayor a cero";
+			else {
+				return "Usted no es propietario de este producto";
 			}
+			
+		} else {
+			return "Producto no encontrado, no se puede cambiar el precio.\n";
 		}
 	}
 
-	public static String ModificarCantidad(String nombre, int valorOperar, String operador) {
+	public String modificarCantidad(int codigoProducto, int cantidad, byte operador) {
 		/*
 		  Propósito: Poderle cambiar la cantidad del un Producto
 		  
@@ -117,42 +145,44 @@ public class Vendedor extends CuentaConBanco {
 		   -String: Un mensaje que indica lo que sucedio con el proceso
 		 */
 
-		Producto comprobarProducto = null;
-		// Comprobar que el producto esta en el catalogo
-		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-			Producto iteradorCatalogo = entry.getValue();
-			if (iteradorCatalogo.getNombreProducto().equals(nombre)
-					&& iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
-				comprobarProducto = iteradorCatalogo;
-				break;
-			}
-		}
-		if (comprobarProducto == null) {
-			return "El producto no existe, no se puede modificar la cantidad\n";
-		} else {
-			// Aumentar cantidad
-			if (operador.equals("+")) {
-				int can_final = comprobarProducto.getCantidad() + valorOperar;
-				comprobarProducto.setCantidad(comprobarProducto.getCantidad() + valorOperar);
-				return "Se aumentó la cantidad del producto: " + comprobarProducto.getNombreProducto()
-						+ " cantidad actual: " + can_final + "\n";
-			}
-			// Disminuir cantidad
-			else {
-				int can_final = comprobarProducto.getCantidad() - valorOperar;
-				if (can_final >= 0) {
-					comprobarProducto.setCantidad(comprobarProducto.getCantidad() - valorOperar);
-					return "Se redujo la cantidad del producto: " + comprobarProducto.getNombreProducto()
-							+ " cantidad actual: " + can_final + "\n";
-				} else {
-					return "No hay suficientes productos, no se puede disminuir su cantidad";
+		Producto prod = null;
+
+		// Comprobar que el producto este en el catalogo
+		if (catalogo.containsKey(codigoProducto)) {
+
+			prod = catalogo.get(codigoProducto);
+
+			//Comprobar que el vendedor es dueño del producto
+			if (prod.getVendedor().equals(this)) {
+				if (operador == 1) {
+					//Sumando la cantidad
+					prod.setCantidad(prod.getCantidad() + cantidad);
+					OpcionDeMenu.controlError = true;
+					return "Se aumentó la cantidad del producto: " + prod.getNombreProducto() + ". Cantidad actual: " + prod.getCantidad() + "\n";
+				}
+				else {
+					//Disminuyendo la cantidad
+
+					//Condicional para cantidades resultantes negativas
+					if (prod.getCantidad() - cantidad >= 0) {
+						prod.setCantidad(prod.getCantidad() + cantidad);
+						OpcionDeMenu.controlError = true;
+						return "Se redujo la cantidad del producto: " + prod.getNombreProducto() + ". Cantidad actual: " + prod.getCantidad() + "\n";
+					} else {
+						return "No hay suficientes productos, no se puede disminuir esta cantidad";
+					}
 				}
 			}
+			else {
+				return "Usted no es propietario de este producto.\n";
+			}
+		} else {
+			return "Producto no encontrado, no se puede cambiar su cantidad.\n";
 		}
 	}
 
 	// Elimina un producto por codigo
-	public String eliminarProductoCatalogo(int cod) {
+	public String eliminarProductoCatalogo(int codigoProducto) {
 		/*
 		  Propósito: Poder eliminar un producto del catálogo propio mediante el codigo
 		  
@@ -163,25 +193,27 @@ public class Vendedor extends CuentaConBanco {
 		  -String: Un mensaje que indica si se eliminó elproducto
 		 */
 
-		Producto mens = null;
-		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-			Producto p = entry.getValue();
-			if (p.getId() == cod) {
-				mens = p;
-				break;
+		Producto prod = null;
+
+		// Comprobar que el producto este en el catalogo
+		if (catalogo.containsKey(codigoProducto)) {
+
+			prod = catalogo.get(codigoProducto);
+			
+			//Comprobar que el vendedor es dueño del producto
+			if (prod.getVendedor().equals(this)) {
+				
+				catalogo.remove(codigoProducto);
+				
+				OpcionDeMenu.controlError = true;
+				return "Se ha cambiado eliminado el producto: " + prod.getNombreProducto() + " del catálogo\n";
 			}
-		}
-		if (mens == null) {
-			return "No existe el producto con ese código, ingrese un código correcto";
+			else {
+				return "Usted no es propietario de este producto";
+			}
+			
 		} else {
-			int id = this.id;
-			int id_mens = mens.getVendedor().getId();
-			if (id == id_mens) {
-				catalogo.remove(cod);
-				return "Se eliminó el producto exitosamente";
-			} else {
-				return "No es un producto propio, no puede ser eliminado";
-			}
+			return "Producto no encontrado, no se puede eliminar.\n";
 		}
 	}
 }

@@ -8,6 +8,7 @@ package uiMain.MenuConsola;
 import java.io.IOException;
 
 import gestorAplicacion.InicializacionAplicacion;
+import uiMain.ControlErrorDatos;
 import uiMain.OpcionDeMenu;
 
 public class Salir extends OpcionDeMenu {
@@ -24,18 +25,14 @@ public class Salir extends OpcionDeMenu {
 	    sb.append("\n¿Está seguro que desea salir de la aplicación?\n");
 		sb.append("1: Si.\n");
 		sb.append("2: No.\n");
-		sb.append("=> ");
 		
-		//Ciclo para control de error
-		while (!controlError) {
-			
-		    //Ingreso de valores y control de error de ingreso de valores no numéricos 
-			System.out.print(sb);
-			seleccion = esByte(br.readLine().trim());
-			
-			//Ejecución del método e impresión de respuesta
-			System.out.println(InicializacionAplicacion.usuarioActivo.salir(seleccion));
-		}
+	    //Ingreso de valores y control de error
+		System.out.print(sb);
+		seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
+		if (controlError) {System.out.println(); return;}
+		
+		//Ejecución del método e impresión de respuesta
+		System.out.println(InicializacionAplicacion.usuarioActivo.salir(seleccion));
 	}
 	
 	@Override

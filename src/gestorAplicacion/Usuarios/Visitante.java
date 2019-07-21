@@ -30,9 +30,8 @@ public class Visitante extends Cuenta {
 	// Crea un nuevo menú por defecto
 	public ArrayList <OpcionDeMenu> getMenuPredeterminado() {
 		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
-				   new IniciarSesion(), new Registrar(), new BuscarProducto(), 
-				   new MostrarCatalogo(), new MostrarPorCategoria(),new MostrarResenas(), new Salir()}));
-
+				   new IniciarSesion(), new Registrar(), new BuscarProducto(), new MostrarCatalogo(), 
+				   new MostrarPorCategoria(), new MostrarResenas(), new Salir()}));
 	}
 
 	// Retorna el catálogo
@@ -102,7 +101,7 @@ public class Visitante extends Cuenta {
 			return "\nRegistro exitoso, bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
 		} else {
 			// Caso B: El correo se encuentra repetido
-			return "El correo ya se encuentra registrado.\n";
+			return "Este correo ya se encuentra registrado.\n";
 		}
 	}
 

@@ -14,12 +14,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import gestorAplicacion.InicializacionAplicacion;
+import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
 
 abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias{
-    
-	// Atributos
+
 	abstract public int getTotalDeOpcionesDisponibles();
 
 	// Constructor para usuarios existentes (Llama al super)
@@ -32,6 +32,9 @@ abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias
 		super(nombre, correo, password, cedula);
 	}
 
+	//Constructor vacío
+	public CuentaUsuario() {}
+	
 	// Método para cerrar sesión
 	public String cerrarSesion(byte seleccion) {
 		/*
@@ -48,12 +51,11 @@ abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias
 			// se devuelve la cantidad de productos que tenía el carrito.
 			if (InicializacionAplicacion.usuarioActivo instanceof Comprador) {
 				
-				Comprador comp = ((Comprador) InicializacionAplicacion.usuarioActivo); //se obtiene el catalogo
-				HashMap<Integer, Producto> cat = comp.getCatalogo();
+				HashMap<Integer, Producto> cat = Cuenta.getCatalogo();
 				
-				if (comp.getCarrito().getTotalproductos() > 0) {
+				if (CarritoDeCompras.getTotalproductos() > 0) {
 					//Se buscan los productos en el carrito
-					for (Map.Entry<Integer, Integer> entry : comp.getCarrito().getProductos().entrySet()) {
+					for (Map.Entry<Integer, Integer> entry : CarritoDeCompras.getProductos().entrySet()) {
 						int cant = entry.getValue(); 					// Extracción de la cantidad en la hash
 						int cod = entry.getKey(); 						// el codigo del producto
 						Producto prod = cat.get(cod);  					//se obtiene el producto correspondiente al codigo 

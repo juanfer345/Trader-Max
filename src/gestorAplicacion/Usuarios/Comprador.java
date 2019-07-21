@@ -12,7 +12,6 @@ package gestorAplicacion.Usuarios;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
@@ -22,8 +21,8 @@ import uiMain.OpcionDeMenu;
 import uiMain.MenuConsola.BuscarProducto;
 import uiMain.MenuConsola.MostrarCatalogo;
 import uiMain.MenuConsola.MostrarPorCategoria;
-import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.MostrarResenas;
+import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Comprador.AgregarACarrito;
 import uiMain.MenuConsola.Cuenta.Comprador.AgregarResena;
@@ -37,7 +36,7 @@ import uiMain.MenuConsola.Cuenta.Comprador.VaciarCarrito;
 public class Comprador extends CuentaConBanco {
 
 	private static CarritoDeCompras carrito;
-	private HashMap<Integer, Producto> historial;
+	private HashMap<Integer, Integer> historial;
 	private static final int totalDeOpcionesDisponibles = 14;
 
 	public Comprador(int idCuenta, String nombre, String correo, String password, int cedula) {
@@ -65,7 +64,10 @@ public class Comprador extends CuentaConBanco {
 		carrito = new CarritoDeCompras(this);
 		historial = new HashMap<>();
 	}
-
+	
+	//Constructor vacío
+	public Comprador() {}
+	
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
 
 		/*
@@ -75,10 +77,11 @@ public class Comprador extends CuentaConBanco {
 		 - ArrayList con las opciones de menú que tendrá predeterminadas el usuario.
 		 */
 
-		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new BuscarProducto(),
-				new MostrarCatalogo(), new MostrarPorCategoria(), new AgregarACarrito(), new AgregarResena(),
-				new BorrarHistorial(), new ComprarProducto(), new MostrarHistorial(), new MostrarResenas(),
-				new QuitarProductoCarrito(), new VaciarCarrito(), new MostrarCarrito(), new MostrarResenas(), new CerrarSesion(), new Salir() }));
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
+				new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(), new AgregarACarrito(), 
+				new AgregarResena(), new BorrarHistorial(), new ComprarProducto(), new MostrarHistorial(), 
+				new MostrarResenas(), new QuitarProductoCarrito(), new VaciarCarrito(), new MostrarCarrito(), 
+				new CerrarSesion(), new Salir() }));
 	}
 
 	// Devuelve el numero total de opciones que tiene por defecto
@@ -87,7 +90,7 @@ public class Comprador extends CuentaConBanco {
 	}
 
 	// Devuelve el carrito que le corresponde al comprador
-	public CarritoDeCompras getCarrito() {
+	public static CarritoDeCompras getCarrito() {
 		return carrito;
 	}
 
@@ -98,74 +101,26 @@ public class Comprador extends CuentaConBanco {
 
 	// Devuelve un HashMap que contiene los productos del historial (Productos qu
 	// han sido comprados)
-	public HashMap<Integer, Producto> getHistorial() {
-		return historial;
-	}
+	public HashMap<Integer, Integer> getHistorial() {return historial;}
 
-	public String agregarACarrito(int codigo, int cantidad) {
-		/*
-		  Propósito: Agregar al carrito cierta cantidad de un producto específico
-		  
-		  Variables de entrada: 
-		  - int codigo: Código del producto que se desea agregar
-		  - int cantidad: Cantidad de elementos que desea agregar del respectivo producto
-		  
-		  Variables de salida: 
-		  - String con mensaje dependiendo si el proceso fue o no exitoso. 
-		    Se mostrará el fallo que tiene el usuario en el ingreso de los datos
-		 */
-		if (!catalogo.isEmpty()) {
-			if (cantidad > 0 && codigo > 0) {
-				if (catalogo.containsKey(codigo)) {
-					Producto p = catalogo.get(codigo);
-					if (p.getCantidad() >= cantidad) {
-						// Verificación de que se tiene la cantidad del producto en el catálogo
-						carrito.setProductos(codigo, cantidad);
-						carrito.setTotalproductos(carrito.getTotalproductos() + cantidad);
-						// Se cambia el total de productos que tiene el carrito
-						carrito.setPrecioTotal(carrito.getPrecioTotal() + (cantidad * p.getPrecio()));
-						// Se le va aumentando el precio al carrito a medida que se agregan productos
-						
-						//	Se obtiene la cantidad actual del producto en el catalogo
-						//	Se resta esta cantidad a la que ingreso el comprador mientras la sesion esto activa
-						p.setCantidad(p.getCantidad()-cantidad);
-						
-						OpcionDeMenu.controlError = true;
-						if (cantidad == 1) {
-							return "Se ha agregado el producto " + p.getNombreProducto() + " al carrito exitosamente.";
-						} else {
-							return "Se han agregado " + cantidad + " " + p.getNombreProducto()
-									+ " al carrito exitosamente.";
-						}
-					} else {
-						OpcionDeMenu.controlError = true;
-						return "La cantidad ingresada es mayor a la existente en el catálogo.";
-					}
-				} else {
-					OpcionDeMenu.controlError = true;
-					return "El producto no existe, código inválido.";
-				}
-			} else {
-				OpcionDeMenu.controlError = true;
-				return "Tanto la cantidad como el codigo ingresado deben ser mayor a cero.";
-			}
-		} else {
-			OpcionDeMenu.controlError = true;
-			return "El catálogo está vacío";
-		}
-	}
+	public void setHistorial(int codigoProducto, int cantidadProducto) {historial.put(codigoProducto, cantidadProducto);}
+	
 
-	public void mostrarHistorial() {
+
+	public String mostrarHistorial() {
 		/*
 		 Propósito: Mostrar los productos que el usuario ha comprado
 		 */
-		if (!historial.isEmpty()) {
-			historial.forEach((k, v) -> { // Ciclo para obtención e impresión de los productos
-				System.out.println(v);
-			});
-		} else {
-			System.out.println("El historial está vacío. ");
-		}
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("\nTotal de productos en el historial = ").append(historial.size()).append('\n');
+		
+		historial.forEach((k, v) -> { // Ciclo para obtención e impresión de los productos
+			sb.append(v).append('\n');
+		});
+
+		OpcionDeMenu.controlError = true;
+		return sb.toString();
 	}
 
 	public String borrarHistorial() {
@@ -176,21 +131,7 @@ public class Comprador extends CuentaConBanco {
 		return "El historial se ha borrado exitosamente";
 	}
 
-	public void mostrarCarrito() {
-		if (!carrito.getProductos().isEmpty()) {
-			for (Map.Entry<Integer, Integer> entry : carrito.getProductos().entrySet()) {
-				int cod = entry.getKey(); // el codigo del producto
-				int cant = entry.getValue();
-				Producto prod = catalogo.get(cod); // se obtiene el producto correspondiente al codigo
-				System.out.println(prod);
-				System.out.println("En el carrito: "+cant);
-			}
-		} else {
-			System.out.println("El carrito está vacio");
-		}
-	}
-
-	public String anadirResena(int codigo, Resena r) {
+	public String anadirResena(int codigo, int estrellas, String comentario) {
 		/*
 		 Propósito: Añadir una reseña a un producto comprado
 		  
@@ -201,14 +142,19 @@ public class Comprador extends CuentaConBanco {
 		 Variables de salida: 
 		 - String con mensaje dependiendo si el proceso fue o no exitoso.
 		 */
+		
+		//Comprobación de que el producto ya fue comprado
 		if (historial.containsKey(codigo)) {
-			Producto p = historial.get(codigo);
-			int indice = p.getResenas().size();
-			p.getResenas().put(indice, r);
-			InicializacionAplicacion.getBDResenas().put(indice, r);
-			return "Reseña del producto: " + p.getNombreProducto() + "ha sido añadida";
-		} else {
-			return "No ha comprado este producto, no puede añadir una reseña";
+			
+			Producto prod = catalogo.get(codigo);								//Obtención del apuntador al producto
+			Resena rese = new Resena(this, comentario, estrellas);				//Creación nueva reseña
+			prod.setResenas(new Resena(this, comentario, estrellas));			//Añadido de la reseña al producto
+			InicializacionAplicacion.getBDResenas().put(rese.getId(), rese);	//Añadido de las reseñas en la base de datos
+			
+			return "La reseña del producto: " + prod.getNombreProducto() + "ha sido añadida.\n";
+		} 
+		else {
+			return "No ha comprado este producto, no puede añadir una reseña.\n";
 		}
 
 	}

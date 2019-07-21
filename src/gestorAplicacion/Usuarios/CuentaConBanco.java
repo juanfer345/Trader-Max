@@ -34,13 +34,12 @@ public abstract class CuentaConBanco extends CuentaUsuario {
 		cuentaBancaria = InicializacionAplicacion.getBDCuentasBancarias().get(idCuentaBancaria);
 	}
 
-	public CuentaBancaria getCuentaBancaria() {
-		return cuentaBancaria;
-	}
+	//Constructor vacío
+	public CuentaConBanco() {}
+	
+	public CuentaBancaria getCuentaBancaria() {return cuentaBancaria;}
 
-	public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {
-		this.cuentaBancaria = cuentaBancaria;
-	}
+	public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {this.cuentaBancaria = cuentaBancaria;}
 
 	@Override
 	public String toString() {

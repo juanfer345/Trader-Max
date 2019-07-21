@@ -23,6 +23,7 @@ import uiMain.MenuConsola.Cuenta.Administrador.CuentasAdmin;
 import uiMain.MenuConsola.Cuenta.Administrador.EliminarCuenta;
 import uiMain.MenuConsola.Cuenta.Administrador.EliminarOpcion;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenu;
+import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenuDisponible;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarTodasLasOpciones;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarUsuario;
 
@@ -68,11 +69,14 @@ public class Administrador extends CuentaUsuario {
 		                           tendrá un usuario administrador
     */
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-				new AgregarOpcion(), new CuentasAdmin(), new EliminarCuenta(), 
-				new EliminarOpcion(), new MostrarMenu(), new MostrarUsuario(), 
-				new MostrarTodasLasOpciones(),new CerrarSesion(), new Salir() }));
+				new MostrarMenu(), new MostrarMenuDisponible(), new AgregarOpcion(), new CuentasAdmin(), 
+				new EliminarCuenta(), new EliminarOpcion(), new MostrarUsuario(), new MostrarTodasLasOpciones(),
+				new CerrarSesion(), new Salir() }));
 	}
 
+	//Constructor vacío
+	public Administrador() {}
+	
 	// Devuelve el total de opciones por defecto que tiene este tipo de usuario
 	public int getTotalDeOpcionesDisponibles() {
 		return totalDeOpcionesDisponibles;

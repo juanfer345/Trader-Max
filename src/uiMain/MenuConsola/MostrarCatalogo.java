@@ -1,13 +1,15 @@
 /*	Clase MostrarCatalogo (pública)        
-	
+
 	Propósito: Opción de menú del usuario, le permite realizar acciones en el programa 
 	           manipulando sus atributos y elementos
-*/
+ */
 package uiMain.MenuConsola;
 
 import java.io.IOException;
 
 import gestorAplicacion.InicializacionAplicacion;
+import gestorAplicacion.Usuarios.Cuenta;
+import uiMain.ControlErrorDatos;
 import uiMain.OpcionDeMenu;
 
 public class MostrarCatalogo extends OpcionDeMenu {
@@ -20,29 +22,20 @@ public class MostrarCatalogo extends OpcionDeMenu {
 		            controles de error del ingreso de datos
 		 */
 
-		byte comprobOpc;
-		
 		sb.append("\nUsted ha elegido la opcion para mostrar el catalogo de productos. ¿Que desea hacer?");
 		sb.append("\n0. Volver al menú y cancelar el proceso ");
 		sb.append("\n1. Continuar con el proceso ");
 
-		while (!controlError) {
+		if (!Cuenta.getCatalogo().isEmpty()) {
 			
-			// Ingreso del dato por parte del usuario
-			System.out.println(sb);
-			System.out.print("=> ");
-			comprobOpc = esByte(br.readLine().trim());
+			//Selección por parte del usuario
+			ControlErrorDatos.controlByte((byte) 1, (byte) 1, sb.toString(), "Por favor ingrese un número entero");
+			if (controlError) {System.out.println(); return;}
 			
-			if (comprobOpc != 0) {
-				if (comprobOpc == 1) {
-					System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCatalogo());
-				}
-				else {
-					System.out.println("El dato que ingresó es inválido, solo puede ingresar '0' o '1', "
-							           + " vuelva a intentarlo");
-				}
-			}
-			else {System.out.println(); return;} // Si es 0 se devuelve al menú principal
+			System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCatalogo());
+		}
+		else {
+			System.out.println("El catálogo se encuentra vacío.\n");
 		}
 	}
 

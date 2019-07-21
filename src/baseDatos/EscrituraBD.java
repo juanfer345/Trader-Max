@@ -21,6 +21,7 @@ import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Comprador;
+import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.OpcionDeMenu;
 
@@ -30,8 +31,8 @@ public class EscrituraBD {
 	static StringBuilder sb = new StringBuilder();
 	static String BDactual;
 
-	public static void PrincipalEscrituraBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCarr, 
-											String BDCat, String BDProd, String BDRes) {
+	public static void PrincipalEscrituraBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCat, 
+											String BDProd, String BDRes) {
 		/*
 	  		Método PrincipalEscrituraBD (público)
 
@@ -43,7 +44,6 @@ public class EscrituraBD {
 	   		- BDVend: Nombre de la base de datos de los vendedores.
 	   		- BDAdm: Nombre de la base de datos de los administradores.
 	   		- BDCuentBanc: Nombre de la base de datos de las cuentas bancarias.
-	   		- BDCarr: Nombre de la base de datos de los carritos de compras.
 	   		- BDCat: Nombre de la base de datos del catálogo.
 	   		- BDProd: Nombre de la base de datos de los productos.
 	   		- BDRes: Nombre de la base de datos de las reseñas.
@@ -59,7 +59,7 @@ public class EscrituraBD {
 			escrituraCuentasBancarias(BDCuentBanc, InicializacionAplicacion.getBDCuentasBancarias());
 
 			//Escritura del catálogo
-			escrituraCatalogo(BDCat, Vendedor.catalogo);
+			escrituraCatalogo(BDCat, Cuenta.getCatalogo());
 
 			//Escritura de los productos
 			escrituraProductos(BDProd, InicializacionAplicacion.getBDProductos());
@@ -80,18 +80,18 @@ public class EscrituraBD {
 		bw = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" +  NombreBD + ".txt"));
 
 		for (Map.Entry <Integer, Comprador> entry : HM.entrySet()) {
-			val = entry.getValue();								//Extracción de valores de la tabla hash
+			val = entry.getValue();									//Extracción de valores de la tabla hash
 			sb.append(entry.getKey()).append(';'); 					//Identificador único
 			sb.append(val.getNombre()).append(';');					//Nombre
 			sb.append(val.getCorreo()).append(';');					//Correo
-			sb.append(val.getPassword()).append(';');					//Contraseña
+			sb.append(val.getPassword()).append(';');				//Contraseña
 			sb.append(val.getCedula()).append(';');					//Cédula
 			sb.append(val.getCuentaBancaria().getId()).append(';');	//Referencia a la cuenta bancaria
 
 			//Referencias a los productos del historial
 			if (!val.getHistorial().isEmpty()){
-				for (Map.Entry <Integer, Producto> his: val.getHistorial().entrySet()) {
-					sb.append(his.getValue().getId()).append(',');
+				for (Map.Entry <Integer, Integer> his: val.getHistorial().entrySet()) {
+					sb.append(his.getKey()).append(',').append(his.getValue()).append(',');
 				}
 				sb.delete(sb.length() - 1, sb.length());
 			} else {sb.append("#");}
@@ -110,10 +110,10 @@ public class EscrituraBD {
 			} else {sb.append("#");}
 			sb.append('\n');	//salto de renglón
 		}
-		sb.append("#");				//Indicador de fin de archivo
-		bw.append(sb);	//Impresión de información en el archivo
+		sb.append("#");										//Indicador de fin de archivo
+		bw.append(sb);										//Impresión de información en el archivo
 		mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
-		sb.delete(0, sb.length());	//Borrado del contenido del StringBuilder
+		sb.delete(0, sb.length());							//Borrado del contenido del StringBuilder
 		
 		//Cerrado y guardado del archivo
     	try {bw.close();}
@@ -128,11 +128,11 @@ public class EscrituraBD {
 		bw = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" +  NombreBD + ".txt"));
 
 		for (Map.Entry <Integer, Vendedor> entry : HM.entrySet()) {
-			val = entry.getValue();									//Extracción de valores de la tabla hash
+			val = entry.getValue();										//Extracción de valores de la tabla hash
 			sb.append(entry.getKey()).append(';'); 						//Identificador único
 			sb.append(val.getNombre()).append(';');						//Nombre
 			sb.append(val.getCorreo()).append(';');						//Correo
-			sb.append(val.getPassword()).append(';');						//Contraseña
+			sb.append(val.getPassword()).append(';');					//Contraseña
 			sb.append(val.getCedula()).append(';');						//Cédula
 			sb.append(val.getCuentaBancaria().getId()).append(';');		//Referencia a la cuenta bancaria
 			
@@ -167,12 +167,12 @@ public class EscrituraBD {
 		bw = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" +  NombreBD + ".txt"));
 
 		for (Map.Entry <Integer, Administrador> entry : HM.entrySet()) {
-			val = entry.getValue();						//Extracción de valores de la tabla hash
+			val = entry.getValue();							//Extracción de valores de la tabla hash
 			sb.append(entry.getKey()).append(';'); 			//Identificador único
 			sb.append(val.getNombre()).append(';');			//Nombre
 			sb.append(val.getCorreo()).append(';');			//Correo
-			sb.append(val.getPassword()).append(';');			//Contraseña
-			sb.append(val.getCedula()).append(';');					//Cédula
+			sb.append(val.getPassword()).append(';');		//Contraseña
+			sb.append(val.getCedula()).append(';');			//Cédula
 			
 			//Referencias a las opciones de menu
 			if (!val.getMenu().isEmpty()){
@@ -187,10 +187,10 @@ public class EscrituraBD {
 			} else {sb.append("#");}
 			sb.append('\n');	//salto de renglón
 		}
-		sb.append("#");				//Indicador de fin de archivo
-		bw.append(sb);	//Impresión de información en el archivo
+		sb.append("#");										//Indicador de fin de archivo
+		bw.append(sb);										//Impresión de información en el archivo
 		mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
-		sb.delete(0, sb.length());	//Borrado del contenido del StringBuilder
+		sb.delete(0, sb.length());							//Borrado del contenido del StringBuilder
 
 		//Cerrado y guardado del archivo
     	try {bw.close();}
@@ -205,14 +205,14 @@ public class EscrituraBD {
 		bw = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" +  NombreBD + ".txt"));
 
 		for (Map.Entry <Integer, CuentaBancaria> entry : HM.entrySet()) {
-			val = entry.getValue();									//Extracción de valores de la tabla hash
-			sb.append(entry.getKey()).append(';'); 						//Identificador único
-			sb.append(val.getSaldo()).append('\n');					//Saldo de la cuenta bancaria y salto de renglón
+			val = entry.getValue();							//Extracción de valores de la tabla hash
+			sb.append(entry.getKey()).append(';'); 			//Identificador único
+			sb.append(val.getSaldo()).append('\n');			//Saldo de la cuenta bancaria y salto de renglón
 		}
-		sb.append("#");				//Indicador de fin de archivo
-		bw.append(sb);	//Impresión de información en el archivo
+		sb.append("#");										//Indicador de fin de archivo
+		bw.append(sb);										//Impresión de información en el archivo
 		mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
-		sb.delete(0, sb.length());	//Borrado del contenido del StringBuilder
+		sb.delete(0, sb.length());							//Borrado del contenido del StringBuilder
 
 		//Cerrado y guardado del archivo
     	try {bw.close();}
@@ -227,10 +227,10 @@ public class EscrituraBD {
 		for (Map.Entry <Integer, Producto> entry : HM.entrySet()) {
 			sb.append(entry.getKey()).append('\n'); 						//Referencia al producto del catálogo
 		}
-		sb.append("#");				//Indicador de fin de archivo
-		bw.append(sb);	//Impresión de información en el archivo
+		sb.append("#");										//Indicador de fin de archivo
+		bw.append(sb);										//Impresión de información en el archivo
 		mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
-		sb.delete(0, sb.length());	//Borrado del contenido del StringBuilder
+		sb.delete(0, sb.length());							//Borrado del contenido del StringBuilder
 
 		//Cerrado y guardado del archivo
     	try {bw.close();}
@@ -245,13 +245,13 @@ public class EscrituraBD {
 		bw = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" +  NombreBD + ".txt"));
 
 		for (Map.Entry <Integer, Producto> entry : HM.entrySet()) {
-			val = entry.getValue();							//Extracción de valores de la tabla hash
+			val = entry.getValue();								//Extracción de valores de la tabla hash
 			sb.append(entry.getKey()).append(';'); 				//Identificador único
 			sb.append(val.getNombreProducto()).append(';');		//Nombre
 			sb.append(val.getCategoria()).append(';');			//Categoría
 			sb.append(val.getPrecio()).append(';');				//Precio
-			sb.append(val.getCantidad()).append(';');				//Cantidad
-			sb.append(val.getVendedor().getId()).append(';');		//Referencia al vendedor
+			sb.append(val.getCantidad()).append(';');			//Cantidad
+			sb.append(val.getVendedor().getId()).append(';');	//Referencia al vendedor
 
 			//Referencias a las reseñas del producto
 			if (!entry.getValue().getResenas().isEmpty()){
@@ -262,10 +262,10 @@ public class EscrituraBD {
 			} else {sb.append("#");}
 			sb.append('\n');	//salto de renglón
 		}
-		sb.append("#");				//Indicador de fin de archivo
-		bw.append(sb);	//Impresión de información en el archivo
-		mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
-		sb.delete(0, sb.length());	//Borrado del contenido del StringBuilder
+		sb.append("#");											//Indicador de fin de archivo
+		bw.append(sb);											//Impresión de información en el archivo
+		mensajeConfirmacion(sb.length() != 1, NombreBD); 		//Mensaje de confirmación
+		sb.delete(0, sb.length());								//Borrado del contenido del StringBuilder
 
 		//Cerrado y guardado del archivo
     	try {bw.close();}
@@ -280,17 +280,17 @@ public class EscrituraBD {
 		bw = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" +  NombreBD + ".txt"));
 
 		for (Map.Entry <Integer, Resena> entry : HM.entrySet()) {
-			val = entry.getValue();					//Extracción de valores de la tabla hash
-			sb.append(entry.getKey()).append(';'); 		//Identificador único
-			sb.append(val.getComentario()).append(';');	//Comentario
-			sb.append(val.getEstrellas()).append(';');	//Estrellas
-			sb.append(val.getComprador().getId());	//Identificador único comprador
-			sb.append('\n');//salto de renglón
+			val = entry.getValue();								//Extracción de valores de la tabla hash
+			sb.append(entry.getKey()).append(';'); 				//Identificador único
+			sb.append(val.getComentario()).append(';');			//Comentario
+			sb.append(val.getEstrellas()).append(';');			//Estrellas
+			sb.append(val.getComprador().getId());				//Identificador único comprador
+			sb.append('\n');									//salto de renglón
 		}
-		sb.append("#");				//Indicador de fin de archivo
-		bw.append(sb);	//Impresión de información en el archivo
-		mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
-		sb.delete(0, sb.length());	//Borrado del contenido del StringBuilder
+		sb.append("#");											//Indicador de fin de archivo
+		bw.append(sb);											//Impresión de información en el archivo
+		mensajeConfirmacion(sb.length() != 1, NombreBD); 		//Mensaje de confirmación
+		sb.delete(0, sb.length());								//Borrado del contenido del StringBuilder
 
 		//Cerrado y guardado del archivo
     	try {bw.close();}

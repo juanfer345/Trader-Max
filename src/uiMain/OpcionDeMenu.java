@@ -28,6 +28,7 @@ import uiMain.MenuConsola.Cuenta.Administrador.CuentasAdmin;
 import uiMain.MenuConsola.Cuenta.Administrador.EliminarCuenta;
 import uiMain.MenuConsola.Cuenta.Administrador.EliminarOpcion;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenu;
+import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenuDisponible;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarTodasLasOpciones;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarUsuario;
 import uiMain.MenuConsola.Cuenta.Comprador.AgregarACarrito;
@@ -42,6 +43,7 @@ import uiMain.MenuConsola.Cuenta.Vendedor.CambiarPrecio;
 import uiMain.MenuConsola.Cuenta.Vendedor.EliminarProductoCatalogo;
 import uiMain.MenuConsola.Cuenta.Vendedor.ModificarCantidad;
 import uiMain.MenuConsola.Cuenta.Vendedor.SubirProducto;
+import uiMain.MenuConsola.Cuenta.Vendedor.VerProductos;
 import uiMain.MenuConsola.Visitante.IniciarSesion;
 import uiMain.MenuConsola.Visitante.Registrar;
 
@@ -66,15 +68,16 @@ public abstract class OpcionDeMenu {
 		 */
 
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-				new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(), new AgregarACarrito(), 
-				new AgregarResena(), new BorrarHistorial(), new ComprarProducto(), new MostrarHistorial(), 
-				new QuitarProductoCarrito(), new VaciarCarrito(), new ModificarCantidad(), 
-				new CambiarPrecio(), new EliminarProductoCatalogo(), new SubirProducto(), new BuscarProducto(), 
-				new AgregarOpcion(), new CuentasAdmin(), new EliminarCuenta(), new EliminarOpcion(),
-				new MostrarCatalogo(),new MostrarCarrito(), new MostrarMenu(), new MostrarUsuario(), 
-				new IniciarSesion(), new MostrarTodasLasOpciones(), new MostrarResenas(),
-				new CerrarSesion(), new Registrar(), new Salir() }));
+				new IniciarSesion(), new Registrar(), new BuscarProducto(), new MostrarCatalogo(), 
+				new MostrarPorCategoria(), new MostrarResenas(), new AgregarACarrito(), new AgregarResena(), 
+				new BorrarHistorial(), new ComprarProducto(), new MostrarCarrito(), new MostrarHistorial(), 
+				new QuitarProductoCarrito(), new VaciarCarrito(), new CambiarPrecio(), new EliminarProductoCatalogo(), 
+				new ModificarCantidad(), new SubirProducto(), new VerProductos(), new AgregarOpcion(), 
+				new CuentasAdmin(), new EliminarCuenta(), new EliminarOpcion(), new MostrarMenu(), 
+				new MostrarMenuDisponible(), new MostrarTodasLasOpciones(), new MostrarUsuario(), new CerrarSesion(), 
+				new Salir() }));
 	}
+	
 	//Mostrar todas las opciones disponibles 
 	protected static String ImprimirTodasLasOpciones() {
      
@@ -87,7 +90,18 @@ public abstract class OpcionDeMenu {
 		}
 		return sb.toString();
 	}
+	
+	// Método para comprobar si una entrada de tipo String es numérica (double)
+	public static double esDouble(String input) {
+		try {
+			Double.parseDouble(input);
+			return Double.parseDouble(input);
 
+		} catch (NumberFormatException g) {
+			return -1;
+		}
+	}
+	
 	// Método para comprobar si una entrada de tipo String es numérica (long)
 	public static long esLong(String input) {
 		try {

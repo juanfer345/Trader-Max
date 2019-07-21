@@ -14,8 +14,10 @@ import java.io.IOException;
 
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Visitante;
+import uiMain.ControlErrorDatos;
+import uiMain.OpcionDeMenu;
 
-public class IniciarSesion extends ControlErrorDatosUsuario {
+public class IniciarSesion extends OpcionDeMenu {
 	
 	public void ejecutar() throws IOException {
 		
@@ -30,33 +32,25 @@ public class IniciarSesion extends ControlErrorDatosUsuario {
 		byte tipoDeCuenta;
 
 		// Control de ingreso tipo de usuario
-		tipoDeCuenta = controlTipoDeCuenta();
-		if (controlError) {
-			System.out.println();
-			return;
-		}
+		tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero");
+		if (controlError) {System.out.println(); return;}
 
 		// Ejecución del método principal con control de error
 		while (!controlError) {
 
 			// Control de ingreso de correo
-			correoIngresado = controlCorreo();
-			if (controlError) {
-				System.out.println();
-				return;
-			}
+			correoIngresado = ControlErrorDatos.controlCorreo();
+			if (controlError) {System.out.println();return;}
 
 			// Ingreso de contraseña
 			System.out.print("Contraseña: ");
 			if (esByte(contrasenaIngresada = br.readLine().trim()) == 0) {
-				System.out.println();
-				return;
+				System.out.println(); return;
 			}
 
-			// Ejecución e impresión del método
+			//Inicio de sesión
 			System.out.println(usuario.iniciarSesion(tipoDeCuenta, correoIngresado, contrasenaIngresada));
-			if (!controlError)
-				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
+			if (!controlError) System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
 		}
 	}
 

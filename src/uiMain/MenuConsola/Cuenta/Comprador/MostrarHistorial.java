@@ -1,14 +1,15 @@
 /*	Clase MostrarHistorial (pública)        
-	
+
 	Propósito: Opción de menú del usuario, le permite realizar acciones en el programa 
 	           manipulando sus atributos y elementos
-*/
+ */
 
 package uiMain.MenuConsola.Cuenta.Comprador;
 
 import java.io.IOException;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Comprador;
+import uiMain.ControlErrorDatos;
 import uiMain.OpcionDeMenu;
 
 public class MostrarHistorial extends OpcionDeMenu {
@@ -20,58 +21,26 @@ public class MostrarHistorial extends OpcionDeMenu {
 		 * controles de error del ingreso de datos
 		 */
 
-		StringBuilder sb = new StringBuilder();
-		sb.append("\nUsted ha elegido la opcion para mostrar su historial de compras. ¿Que desea hacer?");
-		sb.append("\n0. Devolverse al menú y cancelar el proceso ");
-		sb.append("\n1. Continuar con el proceso ");
+		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
 
-		controlError = false;
-		String opcion;
-		int comprobOpc;
+		if (!comp.getHistorial().isEmpty()) {
 
-		while (!controlError) {
+			sb.append("\nUsted ha elegido la opcion para mostrar su historial de compras. ¿Que desea hacer?");
+			sb.append("\n0. Volver al menú y cancelar el proceso\n");
+			sb.append("\n1. Continuar con el proceso\n");
 
 			// Ingreso del dato por parte del usuario
-			System.out.println(sb);
-			System.out.print("=> ");
-			opcion = br.readLine().trim();
-			comprobOpc = esInt(opcion);
+			ControlErrorDatos.controlByte((byte) 1, (byte) 1, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
+			if (controlError) {System.out.println(); return;}
 
-			/*
-			 * Ciclo de control de error para la opcion ingresada, pide un número hasta que
-			 * sea válido (puede ingresar el 0 para salir)
-			 */
-			while (comprobOpc == -1) {
-				System.out.println("\nEl dato que ingreso es invalido, vuelva a intentarlo");
-				System.out.print("Ingrese su eleccion => ");
-				opcion = br.readLine().trim();
-				comprobOpc = esInt(opcion);
-			}
-			// Verifica si alguno es cero para salirse de la opcion
-			if (comprobOpc == 0) {
-				controlError = true;
-				System.out.println(" ");
-			} else if (comprobOpc == 1) {
-				// Se ejecuta el codigo cuando el usuario decide continuar
-				Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
-				int size = comp.getHistorial().size();
-				if (size != 0) {
-					System.out.println("\nTotal de productos en el historial = " + size);
-				}
-				comp.mostrarHistorial();
-				controlError = true;
-			} else {
-				/*
-				 * Si ingresa un numero diferente pero no es ninguna de las disponibles debe
-				 * empezar de nuevo (Empezara de nuevo el control)
-				 */
-				System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo");
-			}
+			// Ejecución del método
+			System.out.println(comp.mostrarHistorial());
+		}
+		else {
+			System.out.println("El historial está vacío.\n");
 		}
 	}
 
 	@Override
-	public String toString() {
-		return "Mostrar historial";
-	}
+	public String toString() {return "Mostrar historial";}
 }
