@@ -59,21 +59,21 @@ public class LecturaBD {
 
         
         try {
-    		//Lectura de las cuentas
+    		// Lectura de las cuentas
         	lecturaCompradores(BDComp, InicializacionAplicacion.getBDCompradores(), auxComp, cnProdComp);
     		lecturaVendedores(BDVend, InicializacionAplicacion.getBDVendedores(), auxVend);
     		lecturaAdministradores(BDAdm, InicializacionAplicacion.getBDAdministradores(), auxAdmi);
     		
-    		//Lectura de las cuentas bancarias
+    		// Lectura de las cuentas bancarias
     		lecturaCuentasBancarias(BDCuentBanc, InicializacionAplicacion.getBDCuentasBancarias());
     		
     		//Lectura del catálogo
     		lecturaCatalogo(BDCat, auxCat);
     		
-    		//Lectura de los productos
+    		// Lectura de los productos
     		lecturaProductos(BDProd, InicializacionAplicacion.getBDProductos(), auxProd);
     		
-    		//Lectura de las reseñas
+    		// Lectura de las reseñas
     		lecturaResenas(BDRes, InicializacionAplicacion.getBDResenas(), auxRes);
         }
         catch (FileNotFoundException ex){
@@ -91,7 +91,7 @@ public class LecturaBD {
         	}
         }
         
-		//Asignando los elementos restantes utilizando las colas auxiliares
+		// Asignando los elementos restantes utilizando las colas auxiliares
 		complementoLectura(InicializacionAplicacion.getBDCompradores(), InicializacionAplicacion.getBDVendedores(),
 				  		   InicializacionAplicacion.getBDAdministradores(), Cuenta.catalogo, 
 				  		   InicializacionAplicacion.getBDCuentasBancarias(), InicializacionAplicacion.getBDProductos(), 
@@ -105,17 +105,17 @@ public class LecturaBD {
 		Comprador usuario;
 	    String [] dat;
 	    
-	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de error
+	    BDactual = NombreBD;	// Asignación de nombre de base de datos para control de error
 	    
-		//Apertura de la base de datos
+		// Apertura de la base de datos
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
 
-	    //Ciclo para obtener la información
+	    // Ciclo para obtener la información
         while (!(dat = br.readLine().split(";"))[0].equals("#")) {
 
-    		//Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;IDcarrN;IDprodhist1,...,IDprodhistN;IDopmen1,...,IDopmenN
+    		// Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;IDcarrN;IDprodhist1,...,IDprodhistN;IDopmen1,...,IDopmenN
         	
-        	//Creación del Comprador
+        	// Creación del Comprador
         	usuario = new Comprador(Integer.parseInt(dat[0]), dat[1], dat[2], dat[3], Integer.parseInt(dat[4]));
         	
 	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
@@ -123,7 +123,7 @@ public class LecturaBD {
         	colaAux.add(Integer.parseInt(dat[6]));		//Referencia al carrito de compras
         	colaAux = subDatos(dat[7], colaAux);		//Referencias a los productos del historial
         	
-        	//Condicional para guardar la condición de que se tienen productos en el historial
+        	// Condicional para guardar la condición de que se tienen productos en el historial
         	if (!colaAux.isEmpty()) {
             	colaAuxProd.add(colaAux.size() - 2);
         	} else {
@@ -144,17 +144,17 @@ public class LecturaBD {
 		Vendedor usuario;
 	    String [] dat;
 
-	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de error
+	    BDactual = NombreBD;	// Asignación de nombre de base de datos para control de error
 
-		//Apertura de la base de datos
+		// Apertura de la base de datos
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
 
-	    //Ciclo para obtener la información
+	    // Ciclo para obtener la información
         while (!(dat = br.readLine().split(";"))[0].equals("#")) {
         	
-    		//Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;IDopmen1,...,IDopmenN
+    		// Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;IDopmen1,...,IDopmenN
         	
-        	//Creación del vendedor
+        	// Creación del vendedor
 	    	usuario = new Vendedor(Integer.parseInt(dat[0]), dat[1], dat[2], dat[3], Integer.parseInt(dat[4]));
         	
 	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
@@ -165,7 +165,7 @@ public class LecturaBD {
 	        mapAux.put(usuario.getId(), colaAux);		//Guardado de las referencias en el mapa auxiliar
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
+        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	// Mensaje de confirmación
 	}
 	
 	private static void lecturaAdministradores(String NombreBD, HashMap <Integer, Administrador> HM, HashMap <Integer, Deque <Integer>> mapAux) throws IOException {
@@ -174,15 +174,15 @@ public class LecturaBD {
 		Administrador usuario;
 	    String [] dat;
 	    
-	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de error
+	    BDactual = NombreBD;	// Asignación de nombre de base de datos para control de error
 	    
-		//Apertura de la base de datos
+		// Apertura de la base de datos
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
         
-	    //Ciclo para obtener la información
+	    // Ciclo para obtener la información
         while (!(dat = br.readLine().split(";"))[0].equals("#")) {
         	
-    		//Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDopmen1,...,IDopmenN
+    		// Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDopmen1,...,IDopmenN
 
         	//Creación del administrador
 	    	usuario = new Administrador(Integer.parseInt(dat[0]), dat[1], dat[2], dat[3], Integer.parseInt(dat[4]));
@@ -204,15 +204,15 @@ public class LecturaBD {
 
 	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de erro
 
-		//Apertura de la base de datos
+		// Apertura de la base de datos
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
         
-	    //Ciclo para obtener la información
+	    // Ciclo para obtener la información
         while (!(dat = br.readLine().split(";"))[0].equals("#")) {
         	
-    		//Ejemplo de datos: ID;Saldo
+    		// Ejemplo de datos: ID;Saldo
         	
-        	//Creación de una nueva cuenta bancaria
+        	// Creación de una nueva cuenta bancaria
         	cuenta = new CuentaBancaria(Integer.parseInt(dat[0]), Double.parseDouble(dat[1]));
 	    	HM.put(cuenta.getId(), cuenta);			//Asignación de la cuenta bancaria a la estructura de datos correspondiente
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
@@ -220,7 +220,7 @@ public class LecturaBD {
         CuentaBancaria.setMaxID(maxID); maxID = 0;
         mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
-	
+
 	private static void lecturaCatalogo(String NombreBD, Deque <Integer> colaAux) throws IOException {
 
 	    String dat;
@@ -230,9 +230,9 @@ public class LecturaBD {
 		//Apertura de la base de datos
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
         
-	    //Ciclo para obtener la información
+	    // Ciclo para obtener la información
         while (!(dat = br.readLine()).equals("#")) {
-    		//Ejemplo de datos: IDProducto (por cada fila)
+    		// Ejemplo de datos: IDProducto (por cada fila)
         	colaAux.add(Integer.parseInt(dat));	//Referencias a los productos del catálogo
 	    }
         mensajeConfirmacion(!colaAux.isEmpty(), NombreBD); 	//Mensaje de confirmación
@@ -246,15 +246,15 @@ public class LecturaBD {
 	    
 	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de error
 	    
-		//Apertura de la base de datos
+		// Apertura de la base de datos
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
         
-	    //Ciclo para obtener la información
+	    // Ciclo para obtener la información
         while (!(dat = br.readLine().split(";"))[0].equals("#")) {
         	
-    		//Ejemplo de datos: ID;Nombre;Categoria;Precio;Cantidad;IDVendedor;IDresprod1,...,IDresprodN
+    		// Ejemplo de datos: ID;Nombre;Categoria;Precio;Cantidad;IDVendedor;IDresprod1,...,IDresprodN
         	
-        	//Creación del producto
+        	// Creación del producto
 	    	prod = new Producto(Integer.parseInt(dat[0]), dat[1], dat[2], Double.parseDouble(dat[3]), Integer.parseInt(dat[4]));
 	    	
 	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
@@ -265,7 +265,7 @@ public class LecturaBD {
 	        mapAux.put(prod.getId(), colaAux);			//Guardado de las referencias en el mapa auxiliar
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-        
+        Producto.setMaxID(maxID); maxID = 0;
         mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
@@ -274,17 +274,17 @@ public class LecturaBD {
 		Resena res;
 	    String [] dat;
 
-	    BDactual = NombreBD;	//Asignación de nombre de base de datos para control de error
+	    BDactual = NombreBD;	// Asignación de nombre de base de datos para control de error
 
-		//Apertura de la base de datos
+		// Apertura de la base de datos
         br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\src\\baseDatos\\temp\\" + NombreBD + ".txt"));
         
-	    //Ciclo para obtener la información
+	    // Ciclo para obtener la información
         while (!(dat = br.readLine().split(";"))[0].equals("#")) {
 
-    		//Ejemplo de datos: ID;Comentario;Estrellas;IDcomprador
+    		// Ejemplo de datos: ID;Comentario;Estrellas;IDcomprador
         	
-        	//Creación de la reseña
+        	// Creación de la reseña
 	    	res = new Resena(Integer.parseInt(dat[0]), dat[1], Integer.parseInt(dat[2]));
 	    	
 	    	mapAux.put(res.getId(), Integer.parseInt(dat[3]));	//Referencia al usuario comprador, autor de la reseña
@@ -305,20 +305,20 @@ public class LecturaBD {
 		
 		int i, j, n, aux;
 		
-		//Asignando el total de las cuentas
+		// Asignando el total de las cuentas
 		Cuenta.setTotalCuentas(BDCompradores.size() + BDVendedores.size() + BDAdministradores.size());
 		
-		//Completando la información de los compradores
+		// Completando la información de los compradores
         for (Map.Entry <Integer, Comprador> entry : BDCompradores.entrySet()) {
-         	//Asignación de cuenta bancaria a comprador y viceversa
+         	// Asignación de cuenta bancaria a comprador y viceversa
         	aux = auxComp.get(entry.getKey()).poll();
             entry.getValue().setCuentaBancaria(BDCuentasBancarias.get(aux));
             BDCuentasBancarias.get(aux).setPropietario(entry.getValue());
             
-            //Asignación de carrito al comprador y viceversa
+            // Asignación de carrito al comprador y viceversa
         	aux = auxComp.get(entry.getKey()).poll();
             
-            //Asignación de productos al historial del comprador
+            // Asignación de productos al historial del comprador
             if ((n = cnProdComp.poll()) != 0) {
                 for (i = 0; i < n; i++) {
                 	j = (auxComp.get(entry.getKey())).poll();
@@ -326,46 +326,46 @@ public class LecturaBD {
                 }
             }
             
-            //Asignación de las opciones de menú
+            // Asignación de las opciones de menú
             if (!(auxComp.get(entry.getKey())).isEmpty()) {
             	entry.getValue().setMenu(auxComp.get(entry.getKey()));
             }
         }
 
-		//Completando la información de los vendedores
+		// Completando la información de los vendedores
         for (Map.Entry <Integer, Vendedor> entry : BDVendedores.entrySet()) {
         	//Asignación de cuenta bancaria al vendedor y viceversa
         	aux = auxVend.get(entry.getKey()).poll();
             entry.getValue().setCuentaBancaria(BDCuentasBancarias.get(aux));
             BDCuentasBancarias.get(aux).setPropietario(entry.getValue());
             
-            //Asignación de las opciones de menú
+            // Asignación de las opciones de menú
             if (!(auxVend.get(entry.getKey())).isEmpty()) {
             	entry.getValue().setMenu(auxVend.get(entry.getKey()));
             }
         }
         
-        //Completando la información de los administradores
+        // Completando la información de los administradores
         for (Map.Entry <Integer, Administrador> entry : BDAdministradores.entrySet()) {
-            //Asignación de las opciones de menú
+            // Asignación de las opciones de menú
             if (!(auxAdmi.get(entry.getKey())).isEmpty()) {
             	entry.getValue().setMenu(auxAdmi.get(entry.getKey()));
             }
         }
         
-        //Completando la información del catálogo
+        // Completando la información del catálogo
         while (!auxCat.isEmpty()) {
         	j = auxCat.poll();
         	catalogo.put(j, BDProductos.get(j));
         }
         
-		//Completando la información de los productos
+		// Completando la información de los productos
         for (Map.Entry <Integer, Producto> entry : BDProductos.entrySet()) {
         	entry.getValue().setVendedor(BDVendedores.get((auxProd.get(entry.getKey()).poll())));	//Asignación del vendedor
         	entry.getValue().setResenas(auxProd.get(entry.getKey()));								//Asignación de reseñas al producto
         }
         
-        //Completando la información de las reseñas
+        // Completando la información de las reseñas
         for (Map.Entry <Integer, Resena> entry : BDResenas.entrySet()) {
         	entry.getValue().setComprador(BDCompradores.get((auxRes.get(entry.getKey()))));
         }
@@ -375,7 +375,7 @@ public class LecturaBD {
 		
 		String subDat[];
 		
-		//Condicional para el caso donde no existen elementos en el subconjunto de datos
+		// Condicional para el caso donde no existen elementos en el subconjunto de datos
 		if (!dat.equals("#")) {
 			subDat = dat.split(",");
 	    	for (int i = 0; i < subDat.length; i++) {
@@ -387,11 +387,11 @@ public class LecturaBD {
 	
 	private static void mensajeConfirmacion(boolean BDvacia, String NombreBD) {
         if (BDvacia) {
-        	//Caso A: La base de datos se cargó correctamente
+        	// Caso A: La base de datos se cargó correctamente
         	System.out.println("Base de datos \"" + NombreBD + ".txt\"" + " cargada exitosamente");
         	
         } else {
-        	//Caso B: La base de datos se encontraba vacía
+        	// Caso B: La base de datos se encontraba vacía
         	System.out.println("Advertencia: la base de datos \"" + NombreBD + ".txt\"" + " se encuentra vacía");
         }
 	}

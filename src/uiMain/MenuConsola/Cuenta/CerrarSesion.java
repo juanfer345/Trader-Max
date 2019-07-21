@@ -14,9 +14,9 @@ public class CerrarSesion extends OpcionDeMenu {
 	    byte seleccion;
 
 	    //Guardado de mensaje principal
-		sb.append("\nDesea cerrar sesión?\n");
-		sb.append("1: Si\n");
-		sb.append("2: No\n");
+		sb.append("\n¿Desea cerrar sesión?\n");
+		sb.append("1: Si.\n");
+		sb.append("2: No.\n");
 		sb.append("=> ");
 
 		//Ciclo para control de error
@@ -32,5 +32,5 @@ public class CerrarSesion extends OpcionDeMenu {
 	}
 	
 	@Override
-	public String toString() {return "Cerrar sesión";}
+	public String toString() {return "Cerrar sesión.";}
 }

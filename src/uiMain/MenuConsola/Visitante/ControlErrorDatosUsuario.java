@@ -35,9 +35,9 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 
 		// Guardado de mensaje
 		sb.append("\nPor favor elija su tipo de usuario:\n");
-		sb.append("1: Comprador\n");
-		sb.append("2: Vendedor\n");
-		sb.append("3: Administrador\n");
+		sb.append("1: Comprador.\n");
+		sb.append("2: Vendedor.\n");
+		sb.append("3: Administrador.\n");
 		sb.append("=> ");
 
 		while (true) {
@@ -50,7 +50,7 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 				if (tipoDeCuenta >= 1 && tipoDeCuenta <= 3) {
 					return tipoDeCuenta;
 				} else {
-					System.out.println("Por favor ingrese un número entero en el rango [1,3]");
+					System.out.println("Por favor ingrese un número entero en el rango [1,3].");
 				}
 				if (!controlError)
 					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
@@ -135,7 +135,7 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 					if (ingresoCorrecto) {
 						return correoIngresado;
 					} else {
-						System.out.println("Ingresar un correo valido de la forma: 'ejemplo@dirección.com'");
+						System.out.println("Ingresar un correo válido de la forma: 'ejemplo@dirección.com'.");
 					}
 				} else {
 					System.out.println("\nSe está ingresando un número en lugar de un correo.");
@@ -170,7 +170,7 @@ abstract class ControlErrorDatosUsuario extends OpcionDeMenu {
 				if (cedulaIngresada != -1) {
 					return cedulaIngresada;
 				} else {
-					System.out.println("Por favor ingrese una cédula válida");
+					System.out.println("Por favor ingrese una cédula válida.");
 				}
 				if (!controlError)
 					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");

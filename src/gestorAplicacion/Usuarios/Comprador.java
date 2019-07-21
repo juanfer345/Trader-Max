@@ -1,4 +1,4 @@
-/*	Clase Comprador (pública)        
+/*	Clase Comprador (pública, hereda de CuentaConBanco)        
 	
 	Propósito: Tipo de usuario del sistema que podrá adquirir productos
 	
@@ -42,11 +42,12 @@ public class Comprador extends CuentaConBanco {
 
 	public Comprador(int idCuenta, String nombre, String correo, String password, int cedula) {
 		/*
-		 * Propósito: Constructor de Comprador para usuarios existentes
-		 * 
-		 * Variables de entrada: - int idCuenta: Identificador de la cuenta como
-		 * comprador - String nombre, int cedula: Datos personales del usuario - String
-		 * correo, password: Datos asignados al usuario para ingreso al programa
+		  Propósito: Constructor de Comprador para usuarios existentes
+		  
+		 Variables de entrada: 
+		 - int idCuenta: Identificador de la cuenta como comprador 
+		 - String nombre, int cedula: Datos personales del usuario 
+		 - String correo, password: Datos asignados al usuario para ingreso al programa
 		 */
 		super(idCuenta, nombre, correo, password, cedula); // Llamado a contructor de CuentaConBanco
 		historial = new HashMap<>();
@@ -54,11 +55,11 @@ public class Comprador extends CuentaConBanco {
 
 	public Comprador(String nombre, String correo, String password, int cedula) {
 		/*
-		 * Propósito: Constructor de Comprador para usuarios nuevos
-		 * 
-		 * Variables de entrada: - String nombre, int cedula: Datos personales del
-		 * usuario - String correo, password: Datos asignados al usuario para ingreso al
-		 * programa
+		 Propósito: Constructor de Comprador para usuarios nuevos
+		  
+		 Variables de entrada: 
+		 - String nombre, int cedula: Datos personales del usuario 
+		 - String correo, password: Datos asignados al usuario para ingreso al programa
 		 */
 		super(nombre, correo, password, cedula); // LLamado al contructor de CuentaConBanco
 		carrito = new CarritoDeCompras(this);
@@ -68,10 +69,10 @@ public class Comprador extends CuentaConBanco {
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
 
 		/*
-		 * Propósito: Asignar al comprador un menú predeterminado de acuerdo a su perfil
-		 * 
-		 * Variables de salida: - ArrayList con las opciones de menú que tendrá
-		 * predeterminadas el usuario.
+		 Propósito: Asignar al comprador un menú predeterminado de acuerdo a su perfil
+		 
+		 Variables de salida: 
+		 - ArrayList con las opciones de menú que tendrá predeterminadas el usuario.
 		 */
 
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new BuscarProducto(),
@@ -103,14 +104,15 @@ public class Comprador extends CuentaConBanco {
 
 	public String agregarACarrito(int codigo, int cantidad) {
 		/*
-		 * Propósito: Agregar al carrito cierta cantidad de un producto específico
-		 * 
-		 * Variables de entrada: - int codigo: Código del producto que se desea agregar
-		 * - int cantidad: Cantidad de elementos que desea agregar del respectivo
-		 * producto
-		 * 
-		 * Variables de salida: - String con mensaje dependiendo si el proceso fue o no
-		 * exitoso. Se mostrará el fallo que tiene el usuario en el ingreso de los datos
+		  Propósito: Agregar al carrito cierta cantidad de un producto específico
+		  
+		  Variables de entrada: 
+		  - int codigo: Código del producto que se desea agregar
+		  - int cantidad: Cantidad de elementos que desea agregar del respectivo producto
+		  
+		  Variables de salida: 
+		  - String con mensaje dependiendo si el proceso fue o no exitoso. 
+		    Se mostrará el fallo que tiene el usuario en el ingreso de los datos
 		 */
 		if (!catalogo.isEmpty()) {
 			if (cantidad > 0 && codigo > 0) {
@@ -155,7 +157,7 @@ public class Comprador extends CuentaConBanco {
 
 	public void mostrarHistorial() {
 		/*
-		 * Propósito: Mostrar los productos que el usuario ha comprado
+		 Propósito: Mostrar los productos que el usuario ha comprado
 		 */
 		if (!historial.isEmpty()) {
 			historial.forEach((k, v) -> { // Ciclo para obtención e impresión de los productos
@@ -168,7 +170,7 @@ public class Comprador extends CuentaConBanco {
 
 	public String borrarHistorial() {
 		/*
-		 * Propósito: Borrar el historial de compras del usuario
+		 Propósito: Borrar el historial de compras del usuario
 		 */
 		historial.clear();
 		return "El historial se ha borrado exitosamente";
@@ -190,14 +192,14 @@ public class Comprador extends CuentaConBanco {
 
 	public String anadirResena(int codigo, Resena r) {
 		/*
-		 * Propósito: Añadir una reseña a un producto comprado
-		 * 
-		 * Variables de entrada: - int codigo: Código del producto al cual se le
-		 * agregará una reseña - Reseña r: Reseña (comentario, estrellas) que se le
-		 * quiere agregar al producto
-		 * 
-		 * Variables de salida: - String con mensaje dependiendo si el proceso fue o no
-		 * exitoso.
+		 Propósito: Añadir una reseña a un producto comprado
+		  
+		 Variables de entrada: 
+		 - int codigo: Código del producto al cual se le agregará una reseña 
+		 - Reseña r: Reseña (comentario, estrellas) que se le quiere agregar al producto
+		 
+		 Variables de salida: 
+		 - String con mensaje dependiendo si el proceso fue o no exitoso.
 		 */
 		if (historial.containsKey(codigo)) {
 			Producto p = historial.get(codigo);

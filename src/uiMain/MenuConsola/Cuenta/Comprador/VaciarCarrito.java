@@ -19,9 +19,9 @@ public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 		  Propósito: Ejecutar el metodo vaciarCarrito() haciendo los respectivos
 		             controles de error del ingreso de datos
 		 */
-		sb.append("\nUsted ha elegido la opcion para mostrar su vaciar su carrito de compras. ¿Que desea hacer?");
-		sb.append("\n0. Devolverse al menú y cancelar el proceso ");
-		sb.append("\n1. Continuar con el proceso ");
+		sb.append("\nUsted ha elegido la opción para mostrar su vaciar su carrito de compras. ¿Que desea hacer?");
+		sb.append("\n0. Devolverse al menú y cancelar el proceso. ");
+		sb.append("\n1. Continuar con el proceso. ");
 
 		controlError = false;
 		String opcion;
@@ -40,8 +40,8 @@ public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 			 sea válido (puede ingresar el 0 para salir)
 			*/
 			while (comprobOpc == -1) {
-				System.out.println("\nEl dato que ingreso es invalido, vuelva a intentarlo");
-				System.out.print("Ingrese su eleccion => ");
+				System.out.println("\nEl dato que ingresó es inválido, vuelva a intentarlo.");
+				System.out.print("Ingrese su elección \n=> ");
 				opcion = br.readLine().trim();
 				comprobOpc = esInt(opcion);
 			}
@@ -61,13 +61,13 @@ public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 				 Si ingresa un numero diferente pero no es ninguna de las disponibles debe
 				 empezar de nuevo (Empezara de nuevo el control)
 				*/
-				System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo");
+				System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo.");
 			}
 		}
 	}
 
 	@Override
 	public String toString() {
-		return "Vaciar carrito";
+		return "Vaciar el carrito.";
 	}
 }

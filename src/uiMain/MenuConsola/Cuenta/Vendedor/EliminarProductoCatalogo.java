@@ -1,11 +1,8 @@
 /* 
-   Clase EliminarProductoCatalogo (pública, hereda de OpcionDeMenu)
+   Clase EliminarProductoCatalogo (pública, hereda de OpcionDeMenu) 
    
-   Propósito:
-   Opción de menú del usuario, le permite realizar acciones en el programa 
-   manipulando sus atributos y elementos
-   
-   Estructuras de datos relevantes:
+   Propósito: Opción de menú del usuario, le permite realizar acciones en el programa 
+              manipulando sus atributos y elementos
  */
 
 package uiMain.MenuConsola.Cuenta.Vendedor;
@@ -21,21 +18,20 @@ import uiMain.OpcionDeMenu;
 public class EliminarProductoCatalogo extends OpcionDeMenu {
 
 	public void ejecutar() throws NumberFormatException, IOException {
-		
+
 		/*
-		   Propósito: Ejecutar el método eliminarProductoCatalogo() haciendo los respectivos 
-		              controles de error del ingreso de datos
+		  Propósito: Ejecutar el método eliminarProductoCatalogo() haciendo los
+		             respectivos controles de error del ingreso de datos
 		 */
 
 		// Atributos
 		StringBuilder sb = new StringBuilder();
-		int cod;
+		String cod;
+		int comproCod;
 		int cantidadDeproductos = 0;
 
-		sb.append("\n Esta opción es para eliminar un producto de tu catalogo");
-		sb.append("\n Recuerde que el producto a eliminar debe ser de su propiedad");
-		sb.append("\n Para devolverse al menú anterior, ingrese el número '0' /n");
-		sb.append("\n Ingrese el código del producto a eliminar o el número '0': ");
+		sb.append("\nEsta opción es para eliminar un producto del cátalogo");
+		sb.append("\nRecuerde que el producto a eliminar debe ser de su propiedad");
 
 		System.out.println("Sus productos en el catalogo: ");
 		System.out.println();
@@ -43,45 +39,46 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 			Producto iteradorCatalogo = entry.getValue();
 			if (iteradorCatalogo.getVendedor().getId() == InicializacionAplicacion.usuarioActivo.getId()) {
 				System.out
-						.println("-" + iteradorCatalogo.getNombreProducto() + "/n Codigo: " + iteradorCatalogo.getId());
+						.println("-" + iteradorCatalogo.getNombreProducto() + ". Codigo: " + iteradorCatalogo.getId());
 				cantidadDeproductos++;
 			}
-
 		}
 		if (cantidadDeproductos == 0) {
 			System.out.println("Usted no tiene producos en el catalogo");
 			System.out.println();
 			return;
-		} else {
+		}
+		System.out.print(sb);
+		while (!controlError) {
 
-			while (!controlError) {
+			System.out.println();
+			System.out.print("Ingrese 0 para volver\nIngrese el código del producto => ");
+			cod = br.readLine();
+			comproCod = esInt(cod); // Ver si es un número el nombre
 
-				System.out.print(sb);
+			// Control de ingreso código
+			while (comproCod == -1) {
+				System.out.print("Ingresar un codigo válido => ");
+				cod = br.readLine().trim();
+				comproCod = esInt(cod);
+			}
 
-				try {
-					cod = Integer.parseInt(br.readLine().trim()); // Puede que se genere un error (depende del dato)
+			// Ver si es un 0 para devolverse
+			if (comproCod == 0) {
+				return;
+				
+			} else { // Si el usuario no quiere salir, continua el proceso
+				// Analiza el codigo introducido para eliminar producto
+				Vendedor comp = (Vendedor) InicializacionAplicacion.usuarioActivo;
+				String str = comp.eliminarProductoCatalogo(comproCod);
 
-					// Apartir de aquí no se generan errores
-					if (cod == 0) { // Por si se quiere salir el usuario
-						controlError = true;
-					} else {
-						// Si el usuario no quiere salir, continua el proceso
-						// Analiza el codigo introducido para eliminar producto
-						Vendedor comp = (Vendedor) InicializacionAplicacion.usuarioActivo;
-						String str = comp.eliminarProductoCatalogo(cod);
-
-						if (str.equals("No existe el producto")
-								|| str.equals("No es un producto propio, no puede ser eliminado")) {
-							System.out.println(str);
-						} else {
-							System.out.println(str + "/n");
-							controlError = true;
-						}
-
-					}
-
-				} catch (NumberFormatException nfe) {
-					System.out.println("\n El codigo que ingreso es invalido");
+				if (str.equals("No existe el producto con ese código, ingrese un código correcto")
+						|| str.equals("No es un producto propio, no puede ser eliminado")) {
+					System.out.println("\n" + str);
+					System.out.println("Repita el proceso con datos correctos");
+				} else {
+					System.out.println("\n" + str + "\n");
+					controlError = true;
 				}
 			}
 		}
