@@ -43,24 +43,22 @@ abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias
 		 * Parámetros de salida: - String: Retorna un mensaje el cual sera el que se
 		 * mostrara al usuario dependiendo de la opción que haya elegido
 		 */
+		
 		if (seleccion == 1) {
-			// se devuelve la cantidad de productos que habian al carrito.
+			// se devuelve la cantidad de productos que tenía el carrito.
 			if (InicializacionAplicacion.usuarioActivo instanceof Comprador) {
+				
 				Comprador comp = ((Comprador) InicializacionAplicacion.usuarioActivo); //se obtiene el catalogo
 				HashMap<Integer, Producto> cat = comp.getCatalogo();
+				
 				if (comp.getCarrito().getTotalproductos() > 0) {
-
-					for (Map.Entry<Integer, Integer> entry : comp.getCarrito().getProductos().entrySet()) {// se buscan
-																											// los
-																											// productos
-																											// en el
-																											// carrito
-						int cant = entry.getValue(); // Extracción de la cantidad en la hash
-						int cod = entry.getKey(); // el codigo del producto
-						Producto prod = cat.get(cod);  //se obtiene el producto correspondiente al codigo 
-						prod.setCantidad(prod.getCantidad() + cant); //se asigna la cantidad que estaba al principio
+					//Se buscan los productos en el carrito
+					for (Map.Entry<Integer, Integer> entry : comp.getCarrito().getProductos().entrySet()) {
+						int cant = entry.getValue(); 					// Extracción de la cantidad en la hash
+						int cod = entry.getKey(); 						// el codigo del producto
+						Producto prod = cat.get(cod);  					//se obtiene el producto correspondiente al codigo 
+						prod.setCantidad(prod.getCantidad() + cant); 	//se asigna la cantidad que estaba al principio
 					}
-
 				}
 			}
 			InicializacionAplicacion.setUsuarioActivo(new Visitante());

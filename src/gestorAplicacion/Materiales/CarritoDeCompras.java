@@ -19,26 +19,10 @@ import gestorAplicacion.Usuarios.Vendedor;
 
 public class CarritoDeCompras {
 
-	private int id;
 	private int totalProductos;
 	private double precioTotal;
 	private Comprador titular;
 	private HashMap<Integer, Integer> productos;
-	private static int contador;
-
-	public CarritoDeCompras(int id, int totalProductos, double precioTotal) {
-	/*
-		Propósito: Constructor para carritos existentes 		
-		           
-		Variables de entrada:
-		- int id: Identificación del carrito
-		- int totalProductos: Número que se asigna para el total de productos
-		- double precioTotal: Precio asignado al costo total del carrito
-    */
-		this.id = id;
-		this.totalProductos = totalProductos;
-		this.precioTotal = precioTotal;
-	}
 
 	public CarritoDeCompras(Comprador comp) {
 	/*
@@ -47,7 +31,6 @@ public class CarritoDeCompras {
 		Variables de entrada:
 		- Comprador comp: Recibe un comprador el cual se le asigna como titular.
     */
-		id = contador++;
 		titular = comp;
 		productos = new HashMap<>();
 	}
@@ -69,11 +52,6 @@ public class CarritoDeCompras {
 			productos.put(idCantidadProd.poll(), idCantidadProd.poll());
 		}
 	}
-	
-   // Cambia el titular del carrito
-	public void setComprador(Comprador titular) {
-		this.titular = titular;
-	}
 
 	// Devuelve el total de productos que tiene el carrito
 	public int getTotalproductos() {
@@ -83,11 +61,6 @@ public class CarritoDeCompras {
     // Devuelve el costo total actual del carrito
 	public double getPrecioTotal() {
 		return precioTotal;
-	}
-
-	// Cambia el contador del carrito
-	public static void setMaxID(int contador) {
-		CarritoDeCompras.contador = contador + 1;
 	}
 
 	public String comprarProductos() {
@@ -196,15 +169,6 @@ public class CarritoDeCompras {
 		} else {
 			return "Tanto la cantidad como el codigo ingresado deben ser mayor a cero";
 		}
-	}
-    // Retorno del id del carrito
-	public int getId() {
-		return id;
-	}
-
-	// Cambio del id del carrito
-	public void setId(int id) {
-		this.id = id;
 	}
 	
 	// Cambia el total de productos 

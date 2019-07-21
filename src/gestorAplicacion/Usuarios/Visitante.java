@@ -168,6 +168,11 @@ public class Visitante extends Cuenta {
 				// Se loguea como el usuario que ingreso
 
 				InicializacionAplicacion.setUsuarioActivo(baseDeDatos.get(idcorreoRegistrado));
+				
+				if (baseDeDatos.get(idcorreoRegistrado) instanceof Comprador) {
+					((Comprador) baseDeDatos.get(idcorreoRegistrado)).setCarrito();
+				}
+				
 				OpcionDeMenu.controlError = true;
 				return "Sesión iniciada correctamente, bienvenido a TRADER-MAX "
 						+ InicializacionAplicacion.usuarioActivo.getNombre() + ".\n";

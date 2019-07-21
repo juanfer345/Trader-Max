@@ -36,7 +36,7 @@ import uiMain.MenuConsola.Cuenta.Comprador.VaciarCarrito;
 
 public class Comprador extends CuentaConBanco {
 
-	private CarritoDeCompras carrito;
+	private static CarritoDeCompras carrito;
 	private HashMap<Integer, Producto> historial;
 	private static final int totalDeOpcionesDisponibles = 14;
 
@@ -91,8 +91,8 @@ public class Comprador extends CuentaConBanco {
 	}
 
 	// Cambia el carrito de compras
-	public void setCarrito(CarritoDeCompras carrito) {
-		this.carrito = carrito;
+	public void setCarrito() {
+		Comprador.carrito = new CarritoDeCompras(this);
 	}
 
 	// Devuelve un HashMap que contiene los productos del historial (Productos qu
@@ -209,10 +209,5 @@ public class Comprador extends CuentaConBanco {
 			return "No ha comprado este producto, no puede añadir una reseña";
 		}
 
-	}
-
-	@Override
-	public String toString() {
-		return super.toString() + ", carrito#=" + carrito.getId() + "]";
 	}
 }

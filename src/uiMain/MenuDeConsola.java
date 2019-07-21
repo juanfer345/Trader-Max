@@ -303,21 +303,20 @@ public class MenuDeConsola {
 		return sb.toString();
 	}
 	
-	private void getBDUsuario (HashMap<Integer, ? extends CuentaUsuario> baseDeDatos, byte tipoUsuario, String usuario){
-		// Condicional para distinguir entre comprador, vendedor o administrador
-		if (tipoUsuario == 1) {
-			// Caso A: Comprador
-			usuario = "comprador";
-			baseDeDatos = InicializacionAplicacion.getBDCompradores();
-		} else if (tipoUsuario == 2) {
-			// Caso B: Vendedor
-			usuario = "vendedor";
-			baseDeDatos = InicializacionAplicacion.getBDVendedores();
-		} else if (tipoUsuario == 3) {
-			// Caso C: Administrador
-			usuario = "administrador";
-			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
-		}
-	}
-	 
+//	private void getBDUsuario (HashMap<Integer, ? extends CuentaUsuario> baseDeDatos, byte tipoUsuario, String usuario){
+//		// Condicional para distinguir entre comprador, vendedor o administrador
+//		if (tipoUsuario == 1) {
+//			// Caso A: Comprador
+//			usuario = "comprador";
+//			baseDeDatos = InicializacionAplicacion.getBDCompradores();
+//		} else if (tipoUsuario == 2) {
+//			// Caso B: Vendedor
+//			usuario = "vendedor";
+//			baseDeDatos = InicializacionAplicacion.getBDVendedores();
+//		} else if (tipoUsuario == 3) {
+//			// Caso C: Administrador
+//			usuario = "administrador";
+//			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
+//		}
+//	}
 }

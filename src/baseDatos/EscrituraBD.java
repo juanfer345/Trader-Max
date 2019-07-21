@@ -87,7 +87,6 @@ public class EscrituraBD {
 			sb.append(val.getPassword()).append(';');					//Contraseña
 			sb.append(val.getCedula()).append(';');					//Cédula
 			sb.append(val.getCuentaBancaria().getId()).append(';');	//Referencia a la cuenta bancaria
-			sb.append(val.getCarrito().getId()).append(';');			//Referencia a carrito de compras y salto de renglón
 
 			//Referencias a los productos del historial
 			if (!val.getHistorial().isEmpty()){
