@@ -1,5 +1,5 @@
 /* 
-   Clase Producto (pública)
+   Clase Producto (pública implementa InterfazCategorias)
    
    Propósito:
    Se definen todos los metodos y atributos que tendra cada Producto

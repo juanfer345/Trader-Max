@@ -1,13 +1,10 @@
 /* 
-   Clase Visitante (pública, hereda de Cuenta)
+   Clase Visitante (pública, hereda de Cuenta) 
    
-   Propósito:
-   Tipo de usuario en el programa, el más básico de todos, 
-   solo podrá acceder a algúnas opciones.
+   Propósito: Tipo de usuario en el programa, el más básico de todos, 
+              solo podrá acceder a algúnas opciones.
    
-   Estructuras de datos relevantes:
  */
-
 package gestorAplicacion.Usuarios;
 
 import java.util.ArrayList;
@@ -46,11 +43,12 @@ public class Visitante extends Cuenta {
 	// Método para registrar usuarios
 	public String registrarse(byte tipoDeCuenta, String nombreDado, String correoIngresado, int cedulaIngresada,
 			String contrasenaIngresada) {
-		/* Propósito: Para registrarse como un nuevo tipo de usuario
+		/* 
+		   Propósito: Para registrarse como un nuevo tipo de usuario
 		   
 		   Parámetros de entrada:
-		   -byte tipoDeCuenta, String nombreDado, String correoIngresado, int cedulaIngresada, String contrasenaIngresada: 
-		   Datos básicos de la cuenta
+		   -byte tipoDeCuenta, String nombreDado, String correoIngresado: Datos básicos de la cuenta
+		   - int cedulaIngresada, String contrasenaIngresada: Datos básicos de la cuenta
 		   
 		   Parámetros de salida:
 		   String: Mensaje que indica lo sucedido
@@ -75,7 +73,7 @@ public class Visitante extends Cuenta {
 			break;
 		}
 
-		// Busqueda de correo en la base de datos seleccionada
+		// Búsqueda de correo en la base de datos seleccionada
 		correoRegistrado = busquedaCorreo(baseDeDatos, correoIngresado);
 
 		if (!correoRegistrado) {
@@ -101,17 +99,18 @@ public class Visitante extends Cuenta {
 			}
 			InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
 			OpcionDeMenu.controlError = true;
-			return "\n Registro exitoso, bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
+			return "\nRegistro exitoso, bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
 		} else {
 			// Caso B: El correo se encuentra repetido
 			return "El correo ya se encuentra registrado.\n";
 		}
 	}
 
-	// Método para buscar correo en las bases de datos de las cuentas, 
-	// para ahorrar espácio en el método registrarse
+
 	private static boolean busquedaCorreo(HashMap<Integer, ? extends Cuenta> HM, String correoIngresado) {
-		/* Propósito: Para buscar un correo que ya se encuentre registrado
+		/* 
+		   Propósito: Para buscar un correo y saber si se encuentra registrado
+		              (Ahorra espacio en método registrarse)
 		   
 		   Parámetros de entrada:
 		   -HashMap<Integer, ? extends Cuenta> HM: Tabla donde se encuentran los usuarios ya registrados
@@ -129,9 +128,9 @@ public class Visitante extends Cuenta {
 		return false;
 	}
 
-	// Método para iniciar sesión
 	public String iniciarSesion(byte tipoDeCuenta, String correoIngresado, String contrasenaIngresada) {
-		/* Propósito: Loguearse como un usuario diferente a Invitado
+		/* 
+		   Propósito: Loguearse como un usuario diferente a Invitado 
 		   
 		   Parámetros de entrada:
 		   -byte tipoDeCuenta: Tipo de cuenta a la cual quiere ingresar
@@ -180,11 +179,12 @@ public class Visitante extends Cuenta {
 		}
 	}
 
-	// Método para buscar correo en las bases de datos de las cuentas, 
-	// para ahorrar espácio en el método iniciar sesión
+
 	private static int idCorreo(HashMap<Integer, ? extends Cuenta> HM, String correoIngresado) {
-		/* Propósito: Para buscar una id de correo que ya se encuentre registrado
-		   
+		/* 
+		   Propósito: buscar correo en las bases de datos de las cuentas
+		              (ahorra espacio en el método registrar)
+		              
 		   Parámetros de entrada:
 		   -HashMap<Integer, ? extends Cuenta> HM: Tabla donde se encuentran los usuarios ya registrados
 		   -String correoIngresado: Correo para analizar

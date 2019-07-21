@@ -1,3 +1,8 @@
+/* 
+   Interfaz (pública) 
+   
+   Propósito: Ser implementada por otras clases las cuales harán uso de sus elementos
+ */
 package gestorAplicacion.Usuarios;
 
 public interface InterfazCategorias {
