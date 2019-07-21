@@ -101,7 +101,7 @@ public class Visitante extends Cuenta {
 			}
 			InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
 			OpcionDeMenu.controlError = true;
-			return "Registro exitoso, bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
+			return "\n Registro exitoso, bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
 		} else {
 			// Caso B: El correo se encuentra repetido
 			return "El correo ya se encuentra registrado.\n";

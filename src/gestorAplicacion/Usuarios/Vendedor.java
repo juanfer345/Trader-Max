@@ -43,12 +43,12 @@ public class Vendedor extends CuentaConBanco {
 	// Crea un nuevo menú por defecto
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
 
-		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-				new ModificarCantidad(), new MostrarResenas(),new CambiarPrecio(), new EliminarProductoCatalogo(), 
-				new SubirProducto(),new MostrarResenas(), new CerrarSesion(), new Salir() }));
+		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { new ModificarCantidad(),
+				new MostrarResenas(), new CambiarPrecio(), new EliminarProductoCatalogo(), new SubirProducto(),
+				new MostrarResenas(), new CerrarSesion(), new Salir() }));
 
 	}
-
+    // Devuelve el numero de opciones de menú por defecto de este usuario
 	public int getTotalDeOpcionesDefault() {
 		return totalDeOpcionesDefault;
 	}
@@ -56,28 +56,29 @@ public class Vendedor extends CuentaConBanco {
 	// Crea e ingresa un nuevo producto al catálogo
 	public static void subirProducto(Vendedor vendedor, String nombreProducto, String categoria, double precio,
 			int cantidad) {
-		/* Propósito: Crea un nuevo producto con los Parámetros ingresados y lo agrega al catálogo
-		   
-		   Parámetros de entrada:
-		   -Vendedor vendedor: El que esta crea el Producto
-		   -String nombreProducto, String categoria, dobule precio, int cantidad: Características del Producto
+		/*
+		  Propósito: Crea un nuevo producto con los Parámetros ingresados y lo agrega al catálogo
+		  
+		  Parámetros de entrada: 
+		  -Vendedor vendedor: El que esta crea el Producto
+		  -String nombreProducto, String categoria, dobule precio, int cantidad: Características del Producto
 		 */
 		Producto p = new Producto(nombreProducto, categoria, vendedor, precio, cantidad);
 		catalogo.put(p.getId(), p);
 	}
 
-	// Cambia el precio de un Producto
 	public static String cambiarPrecio(String nombre, double precio) {
-		/* Propósito: Poderle cambiar el precio a un Producto en caso de ser necesario 
-		   
-		   Parámetros de entrada:
-		   -String nombre: El nombre del producto al cual se le modificará precio
-		   -dobule precio: Nuevo precio
-		   
-		   Parámetros de salida:
-		   -String: Un mensaje que indica si se cambio el precio
+		/*
+		  Propósito: Poderle cambiar el precio a un Producto en caso de ser necesario
+		  
+		  Parámetros de entrada: 
+		  -String nombre: El nombre del producto al cual se le modificará precio 
+		  -dobule precio: Nuevo precio
+		 
+		  Parámetros de salida: 
+		  -String: Un mensaje que indica si se cambio el precio
 		 */
-		
+
 		Producto comprobarProducto = null;
 		// Comprobar que el producto este en el catalogo
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
@@ -89,29 +90,33 @@ public class Vendedor extends CuentaConBanco {
 			}
 		}
 		if (comprobarProducto == null) {
-			return "El producto no existe, no se puede cambiar el precio\n";
+			return "El producto no existe, no se puede cambiar el precio";
 		}
 		// Cambiar precio
 		else {
-			comprobarProducto.setPrecio(precio);
-			return "Se ha cambiado el precio del producto: " + comprobarProducto.getNombreProducto()
-					+ ". Precio actual: " + comprobarProducto.getPrecio() + "\n";
+			if (precio > 0) {
+				comprobarProducto.setPrecio(precio);
+				return "Se ha cambiado el precio del producto: " + comprobarProducto.getNombreProducto()
+						+ ". Precio actual: " + comprobarProducto.getPrecio() + "\n";
+			} else {
+				return "El precio debe ser mayor a cero";
+			}
 		}
 	}
 
-	// Modifica la cantidad de un Producto
 	public static String ModificarCantidad(String nombre, int valorOperar, String operador) {
-		/* Propósito: Poderle cambiar la cantidad del un Producto
-		   
-		   Parámetros de entrada:
-		   -String nombre: El nombre del producto al cual se le modificará la cantidad
-		   -int valorOperar: Cuantos productos van a agregar o quitar
-		   -String operador: Decide si se van a sumar o restar a la cantidad actual
-		   
-		   Parámetros de salida:
+		/*
+		  Propósito: Poderle cambiar la cantidad del un Producto
+		  
+		  Parámetros de entrada: 
+		  -String nombre: El nombre del producto al cual se le modificará la cantidad 
+		  -int valorOperar: Cuantos productos van a agregar o quitar 
+		  -String operador: Decide si se van a sumar o restar a la cantidad  actual
+		 
+		   Parámetros de salida: 
 		   -String: Un mensaje que indica lo que sucedio con el proceso
 		 */
-		
+
 		Producto comprobarProducto = null;
 		// Comprobar que el producto esta en el catalogo
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
@@ -148,15 +153,16 @@ public class Vendedor extends CuentaConBanco {
 
 	// Elimina un producto por codigo
 	public String eliminarProductoCatalogo(int cod) {
-		/* Propósito: Poder eliminar un producto del catálogo propio mediante el codigo
-		   
-		   Parámetros de entrada:
-		   -int cod: Código del Producto
-		   
-		   Parámetros de salida:
-		   -String: Un mensaje que indica si se eliminó el producto
+		/*
+		  Propósito: Poder eliminar un producto del catálogo propio mediante el codigo
+		  
+		  Parámetros de entrada: 
+		  -int cod: Código del Producto
+		 
+		  Parámetros de salida: 
+		  -String: Un mensaje que indica si se eliminó elproducto
 		 */
-		
+
 		Producto mens = null;
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
 			Producto p = entry.getValue();
@@ -166,7 +172,7 @@ public class Vendedor extends CuentaConBanco {
 			}
 		}
 		if (mens == null) {
-			return "No existe el producto";
+			return "No existe el producto con ese código, ingrese un código correcto";
 		} else {
 			int id = this.id;
 			int id_mens = mens.getVendedor().getId();
