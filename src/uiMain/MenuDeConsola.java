@@ -63,21 +63,21 @@ public class MenuDeConsola {
 			// Llamado al metodo ejecutar de la opción de menú elegida
 			OpcionDeMenu.sb.delete(0, OpcionDeMenu.sb.length());
 
-			// El ciclo sigue hasta que el usuario ingrese la opcion Salir
+			// El ciclo sigue hasta que el usuario ingrese la opción Salir
 		}
 	}
 
-	// Devuelve las opciones de menu activas
+	// Devuelve las opciones de menú activas
 	public ArrayList<OpcionDeMenu> getMenuActivo() {
 		return menuActivo;
 	}
 	
-	// Devuelve las opciones de menu de cada usuario
+	// Devuelve las opciones de menú de cada usuario
 	public  ArrayList<OpcionDeMenu> getmenuUsuario(){
 		return this.menuUsuario;
 	}
 	
-	// Modificacion de opciones de menu de cada usuario
+	// Modificacion de opciones de menú de cada usuario
 	public void setmenuUsuario(ArrayList<OpcionDeMenu> menuUsuario) {
 		this.menuUsuario = menuUsuario; 
 	}
@@ -251,7 +251,7 @@ public class MenuDeConsola {
 		menu = baseDeDatos.get(idUsuario).getMenu(); // Obtención de opciones de menú del usuario
 
 		try {
-			menu.add(opcionComp.get(indice)); // Agregado de la opción correspondiente
+			menu.add(opcionComp.get(indice)); // Adición de la opción correspondiente
 			opcionComp.clear(); // Eliminación de las opciones de comparación para evitar errores
 
 			sb.append(mostrarOpcionesDeMenu(idUsuario, tipoUsuario)); // Guardado del mensaje mostrando el nuevo menú
@@ -292,7 +292,7 @@ public class MenuDeConsola {
 		menu = baseDeDatos.get(idUsuario).getMenu(); // Obtención de opciones de menú del usuario
 
 		try {
-			menu.remove(menu.get(indice)); // Agregado de la opción correspondiente
+			menu.remove(menu.get(indice)); // Adición de la opción correspondiente
 
 			sb.append(mostrarOpcionesDeMenu(idUsuario, tipoUsuario)); // Guardado del mensaje mostrando el nuevo menú
 			OpcionDeMenu.controlError = true;

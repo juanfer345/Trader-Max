@@ -22,8 +22,8 @@ public class MostrarHistorial extends OpcionDeMenu {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("\nUsted ha elegido la opcion para mostrar su historial de compras. ¿Que desea hacer?");
-		sb.append("\n0. Devolverse al menú y cancelar el proceso ");
-		sb.append("\n1. Continuar con el proceso ");
+		sb.append("\n0. Devolverse al menú y cancelar el proceso. ");
+		sb.append("\n1. Continuar con el proceso. ");
 
 		controlError = false;
 		String opcion;
@@ -38,11 +38,11 @@ public class MostrarHistorial extends OpcionDeMenu {
 			comprobOpc = esInt(opcion);
 
 			/*
-			 * Ciclo de control de error para la opcion ingresada, pide un número hasta que
+			 * Ciclo de control de error para la opción ingresada, pide un número hasta que
 			 * sea válido (puede ingresar el 0 para salir)
 			 */
 			while (comprobOpc == -1) {
-				System.out.println("\nEl dato que ingreso es invalido, vuelva a intentarlo");
+				System.out.println("\nEl dato que ingreso es inválido, vuelva a intentarlo.");
 				System.out.print("Ingrese su eleccion => ");
 				opcion = br.readLine().trim();
 				comprobOpc = esInt(opcion);
@@ -62,10 +62,10 @@ public class MostrarHistorial extends OpcionDeMenu {
 				controlError = true;
 			} else {
 				/*
-				 * Si ingresa un numero diferente pero no es ninguna de las disponibles debe
+				 * Si ingresa un número diferente pero no es ninguna de las disponibles debe
 				 * empezar de nuevo (Empezara de nuevo el control)
 				 */
-				System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo");
+				System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo.");
 			}
 		}
 	}

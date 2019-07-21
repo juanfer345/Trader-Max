@@ -16,14 +16,14 @@ public class ComprarProducto extends OpcionDeMenu { // opcion 7
 	@Override
 	public void ejecutar() throws NumberFormatException, IOException {
 		/*
-		 Propósito: Ejecutar el metodo comprarProductos() haciendo los respectivos 
+		 Propósito: Ejecutar el método comprarProductos() haciendo los respectivos 
 		            controles de error del ingreso de datos
 		 */
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("\nUsted ha elegido la opcion para comprar los productos de su carrito. ¿Que desea hacer?");
-		sb.append("\n0. Devolverse al menú y cancelar el proceso ");
-		sb.append("\n1. Continuar con el proceso ");
+		sb.append("\nUsted ha elegido la opción para comprar los productos de su carrito. ¿Qué desea hacer?");
+		sb.append("\n0. Devolverse al menú y cancelar el proceso. ");
+		sb.append("\n1. Continuar con el proceso. ");
 
 		controlError = false;
 		String opcion;
@@ -42,12 +42,12 @@ public class ComprarProducto extends OpcionDeMenu { // opcion 7
 			 hasta que sea válido (puede ingresar el 0 para salir)
 			*/
 			while (comprobOpc == -1) {
-				System.out.println("\nEl dato que ingreso es invalido, vuelva a intentarlo");
-				System.out.print("Ingrese su eleccion => ");
+				System.out.println("\nEl dato que ingresó es inválido, vuelva a intentarlo");
+				System.out.print("Ingrese su elección \n=> ");
 				opcion = br.readLine().trim();
 				comprobOpc = esInt(opcion);
 			}
-			// Verifica si alguno es cero para salirse de la opcion
+			// Verifica si alguno es cero para salirse de la opción
 			if (comprobOpc == 0) {
 				controlError = true;
 				System.out.println(" ");
@@ -61,7 +61,7 @@ public class ComprarProducto extends OpcionDeMenu { // opcion 7
 					String str = comp.getCarrito().comprarProductos();
 					System.out.println("\n"+str + "\n");
 				} else {
-					System.out.println("\nSu carrito de compras esta vacio \n");
+					System.out.println("\nSu carrito de compras está vacío. \n");
 				}
 				controlError = true;
 			} else {
@@ -69,7 +69,7 @@ public class ComprarProducto extends OpcionDeMenu { // opcion 7
 				 Si ingresa un numero diferente pero no es ninguna de las disponibles debe
 				 empezar de nuevo (Empezara de nuevo el control)
 				*/
-				System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo");
+				System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo.");
 			}
 		}
 	}

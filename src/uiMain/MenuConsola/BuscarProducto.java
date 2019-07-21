@@ -84,11 +84,11 @@ public class BuscarProducto extends OpcionDeMenu {
 			else {
 				//Impresión de mensaje de cancelación en caso de que se haya producido un error
 				System.out.println("Por favor ingrese un número entero en el rango [1,2].\n" + 
-						"Nota: Se puede cancelar la operación ingresando el número '0'.");
+						"NOTA: Se puede cancelar la operación ingresando el número '0'.");
 			}
 		}
 	}
 	
 	@Override
-	public String toString() {return "Buscar producto.";}
+	public String toString() {return "Buscar producto";}
 }

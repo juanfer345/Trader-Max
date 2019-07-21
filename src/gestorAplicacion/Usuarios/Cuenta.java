@@ -155,7 +155,7 @@ public abstract class Cuenta implements InterfazCategorias {
 		if (seleccion == 1) { // 1 para salir de la aplicación
 			OpcionDeMenu.controlError = true;
 			MenuDeConsola.SalirApp = true;
-			return "\nLa aplicación será cerrada";
+			return "\nLa aplicación será cerrada.";
 		} else if (seleccion == 2) { // 2 para continuar en la aplicación
 			OpcionDeMenu.controlError = true;
 			return "";

@@ -19,7 +19,7 @@ public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 		  Propósito: Ejecutar el metodo vaciarCarrito() haciendo los respectivos
 		             controles de error del ingreso de datos
 		 */
-		sb.append("\nUsted ha elegido la opción para mostrar su vaciar su carrito de compras. ¿Que desea hacer?");
+		sb.append("\nUsted ha elegido la opción para vaciar su carrito de compras. ¿Qué desea hacer?");
 		sb.append("\n0. Devolverse al menú y cancelar el proceso. ");
 		sb.append("\n1. Continuar con el proceso. ");
 
@@ -52,7 +52,7 @@ public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 			} else if (comprobOpc == 1) {
 				// Se ejecuta el codigo cuando el usuario decide continuar
 				Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
-				System.out.println("\nSu carrito tiene " + comp.getCarrito().getTotalproductos() + " productos ");
+				System.out.println("\nSu carrito tiene " + comp.getCarrito().getTotalproductos() + " productos. ");
 				String str = comp.getCarrito().vaciarCarrito();
 				System.out.println(str + "\n");
 				controlError = true;
@@ -68,6 +68,6 @@ public class VaciarCarrito extends OpcionDeMenu { // opcion 8
 
 	@Override
 	public String toString() {
-		return "Vaciar el carrito.";
+		return "Vaciar el carrito";
 	}
 }

@@ -22,9 +22,9 @@ public class MostrarCatalogo extends OpcionDeMenu {
 
 		byte comprobOpc;
 		
-		sb.append("\nUsted ha elegido la opcion para mostrar el catalogo de productos. ¿Que desea hacer?");
-		sb.append("\n0. Volver al menú y cancelar el proceso ");
-		sb.append("\n1. Continuar con el proceso ");
+		sb.append("\nUsted ha elegido la opción para mostrar el catálogo de productos. ¿Qué desea hacer?");
+		sb.append("\n0. Volver al menú y cancelar el proceso. ");
+		sb.append("\n1. Continuar con el proceso. ");
 
 		while (!controlError) {
 			

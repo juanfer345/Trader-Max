@@ -105,7 +105,7 @@ public class CarritoDeCompras {
 
 		} else {
 			// En caso de que no tenga el dinero suficiente para la adquisión de productos
-			return "Saldo insuficiente, no se pueden comprar los productos";
+			return "Saldo insuficiente, no se pueden comprar los productos.";
 		}
 	}
 
@@ -128,10 +128,10 @@ public class CarritoDeCompras {
 			productos.clear();
 			totalProductos = 0;
 			setPrecioTotal(0);
-			return "El carrito se vació correctamente";
+			return "El carrito se vació correctamente.";
 		}else {
 
-			return "Su carrito ya está vacío";
+			return "Su carrito ya está vacío.";
 		}}
 
 
@@ -161,13 +161,13 @@ public class CarritoDeCompras {
 								+ " del carrito";
 					}
 				} else {
-					return "La cantidad ingresada excede la existente";
+					return "La cantidad ingresada excede la existente.";
 				}
 			} else {
-				return "El producto no está en el carrito";
+				return "El producto no está en el carrito.";
 			}
 		} else {
-			return "Tanto la cantidad como el codigo ingresado deben ser mayor a cero";
+			return "Tanto la cantidad como el código ingresados deben ser mayores a cero.";
 		}
 	}
 	

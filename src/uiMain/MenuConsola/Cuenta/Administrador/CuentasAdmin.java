@@ -13,9 +13,9 @@ public class CuentasAdmin extends OpcionDeMenu {
 		
 		int seleccion;
 		
-		sb.append("\nUsted ha elegido la opción para mostrar el número total de cuentas");
-		sb.append("\n0: Volver al menú");
-		sb.append("\n1: Continuar");
+		sb.append("\nUsted ha elegido la opción para mostrar el número total de cuentas ¿Qué desea hacer?");
+		sb.append("\n0: Volver al menú.");
+		sb.append("\n1: Continuar.");
 		
 		while (!controlError) {
 			
@@ -28,7 +28,7 @@ public class CuentasAdmin extends OpcionDeMenu {
 					//Ejecución del método e impresión de respuesta
 					System.out.println(((Administrador) InicializacionAplicacion.usuarioActivo).numeroCuentas());
 				} else {
-					System.out.println("Por favor ingrese un número entero");
+					System.out.println("Por favor ingrese un número entero.");
 				}
 				if (!controlError)
 					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");

@@ -13,9 +13,9 @@ public class MostrarMenu extends OpcionDeMenu {
 	    byte tipoUsuario;
 
 	    //Guardado de mensaje principal
-		sb.append("Elija el tipo de cuenta de la cual desea ver sus opciones de menú:\n");
-		sb.append("1: Comprador\n");
-		sb.append("2: Vendedor\n");
+		sb.append("Elija el tipo de cuenta de la cual desea ver sus opciones de menú\n");
+		sb.append("1: Comprador.\n");
+		sb.append("2: Vendedor.\n");
 		sb.append("=> ");
 		
 		
@@ -49,7 +49,7 @@ public class MostrarMenu extends OpcionDeMenu {
 					System.out.println(usuario.getMenuDeConsola().mostrarOpcionesDeMenu(idUsuario, tipoUsuario));
 				}
 				else {
-					System.out.println("El identificador de usuario debe ser un número entero");
+					System.out.println("El identificador de usuario debe ser un número entero.");
 				}
 				if (!controlError)
 					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");

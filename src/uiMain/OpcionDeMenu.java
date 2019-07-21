@@ -81,7 +81,7 @@ public abstract class OpcionDeMenu {
 		ArrayList<OpcionDeMenu> todasLasOpciones = getTodasLasOpciones();
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("Todas las opciones de menu son: \n");
+		sb.append("Todas las opciones de menú son: \n");
 		for (int i = 0; i < todasLasOpciones.size(); i++) {
 			OpcionDeMenu.sb.append((i + 1) + ". " + todasLasOpciones.get(i).toString() + ".\n");
 		}

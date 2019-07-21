@@ -51,7 +51,7 @@ public class MostrarUsuario extends OpcionDeMenu {
 					System.out.println(usuario.mostrarUsuario(idUsuario, tipoUsuario));
 				}
 				else {
-					System.out.println("El identificador de usuario debe ser un número entero");
+					System.out.println("El identificador de usuario debe ser un número entero.");
 				}
 				if (!controlError)
 					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");

@@ -18,7 +18,7 @@ public class AgregarACarrito extends OpcionDeMenu {
 		 Propósito: Ejecutar el metodo agregarACarrito() haciendo los respectivos
 		            controles de error del ingreso de datos
 		 */
-		sb.append("\nUsted ha elegido la opcion para agregar un producto a su carrito. \n");
+		sb.append("\nUsted ha elegido la opción para agregar un producto a su carrito. \n");
 
 		controlError = false;
 		String codigo, cantidad;
@@ -29,7 +29,7 @@ public class AgregarACarrito extends OpcionDeMenu {
 		while (true) {
 			// Ingreso de datos por parte del usuario
 			System.out.print(sb);
-			System.out.print("\nIngrese el codigo del producto que desea agregar => ");
+			System.out.print("\nIngrese el código del producto que desea agregar \n=>");
 			codigo = br.readLine().trim();
 			compCod = esInt(codigo);
 
@@ -42,8 +42,8 @@ public class AgregarACarrito extends OpcionDeMenu {
 					break;
 				}
 				else {
-					System.out.print("\nEl dato que ingreso como codigo es invalido, vuelva a intentarlo.\n"+
-							"\nNOTA: se puede cancelar la operación el número '0'");
+					System.out.print("\nEl dato que ingresó como código es inválido, vuelva a intentarlo.\n"+
+							"\nNOTA: se puede cancelar la operación ingresando el número '0'");
 				}
 			}
 			else {System.out.println(); return;}
@@ -51,7 +51,7 @@ public class AgregarACarrito extends OpcionDeMenu {
 
 		while (true) {
 			// Ingreso de datos por parte del usuario
-			System.out.print("\nIngrese la cantidad de elementos que desea agregar => ");
+			System.out.print("\nIngrese la cantidad de elementos que desea agregar\n=> ");
 			cantidad = br.readLine().trim();
 			compCant = esInt(cantidad);
 
@@ -64,8 +64,8 @@ public class AgregarACarrito extends OpcionDeMenu {
 					break;
 				}
 				else {
-					System.out.print("\nEl dato que ingreso como cantidad es invalido, vuelva a intentarlo.\n"+
-							"\nNOTA: se puede cancelar la operación el número '0'");
+					System.out.print("\nEl dato que ingresó como cantidad es inválido, vuelva a intentarlo.\n"+
+							"\nNOTA: se puede cancelar la operación el número '0'.");
 				}
 			}
 			else {System.out.println(); return;}
@@ -76,7 +76,7 @@ public class AgregarACarrito extends OpcionDeMenu {
 			// Si el usuario no quiere salir, continua el proceso
 			System.out.println(comp.agregarACarrito(compCod, compCant));
 			if (!controlError) {
-				System.out.println("NOTA: se puede cancelar la operación el número '0'\n");
+				System.out.println("NOTA: se puede cancelar la operación el número '0'.\n");
 			}
 		}
 	}

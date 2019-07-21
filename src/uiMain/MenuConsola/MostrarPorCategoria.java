@@ -23,7 +23,7 @@ public class MostrarPorCategoria extends OpcionDeMenu implements InterfazCategor
 	    byte seleccion, i;
 	    
 	    //Guardado de mensaje principal
-		sb.append("\nPor favor elija la categoría ingresando su índice =\n");
+		sb.append("\nPor favor elija la categoría ingresando su índice \n");
 		for (i = 0; i < Producto.categorias.length; i++) {
 			sb.append((i + 1) + ". " + Producto.categorias[i] + '\n');
 		}

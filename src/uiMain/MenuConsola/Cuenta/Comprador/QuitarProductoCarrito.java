@@ -75,7 +75,7 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 					// Si el usuario tuvo otros errores en el ingreso de los datos le permite repetir el proceso
 					if (str.equals("La cantidad ingresada excede la existente.")
 							|| str.equals("El producto no está en el carrito.")
-							|| str.equals("Tanto la cantidad como el código ingresado deben ser mayores a cero.")) {
+							|| str.equals("Tanto la cantidad como el código ingresados deben ser mayores a cero.")) {
 						System.out.println("\n" + str);
 						System.out.println("Repita el proceso con datos correctos.");
 						// Aquí vuelve al inicio, hace de nuevo el control :)
@@ -95,6 +95,6 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 
 	@Override
 	public String toString() {
-		return "Quitar producto del carrito.";
+		return "Quitar producto del carrito";
 	}
 }

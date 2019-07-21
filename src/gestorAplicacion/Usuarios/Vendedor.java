@@ -90,7 +90,7 @@ public class Vendedor extends CuentaConBanco {
 			}
 		}
 		if (comprobarProducto == null) {
-			return "El producto no existe, no se puede cambiar el precio";
+			return "El producto no existe, no se le puede cambiar el precio.";
 		}
 		// Cambiar precio
 		else {
@@ -99,7 +99,7 @@ public class Vendedor extends CuentaConBanco {
 				return "Se ha cambiado el precio del producto: " + comprobarProducto.getNombreProducto()
 						+ ". Precio actual: " + comprobarProducto.getPrecio() + "\n";
 			} else {
-				return "El precio debe ser mayor a cero";
+				return "El precio debe ser mayor a cero.";
 			}
 		}
 	}
@@ -128,14 +128,14 @@ public class Vendedor extends CuentaConBanco {
 			}
 		}
 		if (comprobarProducto == null) {
-			return "El producto no existe, no se puede modificar la cantidad\n";
+			return "El producto no existe, no se le puede modificar la cantidad\n";
 		} else {
 			// Aumentar cantidad
 			if (operador.equals("+")) {
 				int can_final = comprobarProducto.getCantidad() + valorOperar;
 				comprobarProducto.setCantidad(comprobarProducto.getCantidad() + valorOperar);
 				return "Se aumentó la cantidad del producto: " + comprobarProducto.getNombreProducto()
-						+ " cantidad actual: " + can_final + "\n";
+						+ " cantidad actual: " + can_final + ".\n";
 			}
 			// Disminuir cantidad
 			else {
@@ -145,7 +145,7 @@ public class Vendedor extends CuentaConBanco {
 					return "Se redujo la cantidad del producto: " + comprobarProducto.getNombreProducto()
 							+ " cantidad actual: " + can_final + "\n";
 				} else {
-					return "No hay suficientes productos, no se puede disminuir su cantidad";
+					return "No hay suficientes productos, no se puede disminuir su cantidad.";
 				}
 			}
 		}
@@ -172,7 +172,7 @@ public class Vendedor extends CuentaConBanco {
 			}
 		}
 		if (mens == null) {
-			return "No existe el producto con ese código, ingrese un código correcto";
+			return "No existe un producto con ese código, ingrese un código correcto.";
 		} else {
 			int id = this.id;
 			int id_mens = mens.getVendedor().getId();
@@ -180,7 +180,7 @@ public class Vendedor extends CuentaConBanco {
 				catalogo.remove(cod);
 				return "Se eliminó el producto exitosamente";
 			} else {
-				return "No es un producto propio, no puede ser eliminado";
+				return "No es un producto propio, no lo puede eliminar.";
 			}
 		}
 	}

@@ -73,7 +73,7 @@ public class Registrar extends ControlErrorDatosUsuario {
 		// Control de ingreso de contraseña secreta para usuarios administradores
 		if (tipoDeCuenta == 3) {
 			while (true) {
-				System.out.print("Contraseña secreta de administradores: ");
+				System.out.println("Contraseña secreta de administradores: ");
 				String contrasenaSecreta;
 				if (esByte(contrasenaSecreta = br.readLine().trim()) != 0) {
 					if (contrasenaSecreta.equals(Administrador.getCodigoSecreto())) {
@@ -107,6 +107,6 @@ public class Registrar extends ControlErrorDatosUsuario {
 
 	@Override
 	public String toString() {
-		return "Registrarse.";
+		return "Registrarse";
 	}
 }

@@ -20,9 +20,9 @@ public class BorrarHistorial extends OpcionDeMenu { // opcion 5
 		            controles de error del ingreso de datos
 		 */
 		
-		sb.append("\nUsted ha elegido la opción para borrar su historial de compras. ¿Que desea hacer?");
-		sb.append("\n0. Devolverse al menú y cancelar el proceso ");
-		sb.append("\n1. Continuar con el proceso ");
+		sb.append("\nUsted ha elegido la opción para borrar su historial de compras. ¿Qué desea hacer?");
+		sb.append("\n0. Devolverse al menú y cancelar el proceso. ");
+		sb.append("\n1. Continuar con el proceso. ");
 
 		controlError = false;
 		String opcion;
@@ -41,8 +41,8 @@ public class BorrarHistorial extends OpcionDeMenu { // opcion 5
 			 hasta que sea válido (puede ingresar el 0 para salir)
 			*/
 			while (comprobOpc == -1) {
-				System.out.println("\nEl dato que ingreso es invalido, vuelva a intentarlo");
-				System.out.print("Ingrese su eleccion => ");
+				System.out.println("\nEl dato que ingresó es inválido, vuelva a intentarlo.");
+				System.out.print("Ingrese su elección \n=> ");
 				opcion = br.readLine().trim();
 				comprobOpc = esInt(opcion);
 			}
@@ -58,7 +58,7 @@ public class BorrarHistorial extends OpcionDeMenu { // opcion 5
 						String str = comp.borrarHistorial();
 						System.out.println(str);
 				} else {
-					System.out.println("El historial ya esta vacio.");
+					System.out.println("El historial ya está vacío.");
 				}
 				controlError = true;
 			} else {
@@ -66,7 +66,7 @@ public class BorrarHistorial extends OpcionDeMenu { // opcion 5
 				  Si ingresa un numero diferente pero no es ninguna de las disponibles debe
 				  empezar de nuevo (Empezara de nuevo el control)
 				*/
-				System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo");
+				System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo.");
 			}
 		}
 	}

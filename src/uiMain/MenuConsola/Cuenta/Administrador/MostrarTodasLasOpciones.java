@@ -11,9 +11,9 @@ public class MostrarTodasLasOpciones extends OpcionDeMenu {
 	    byte seleccion;
 
 	    //Guardado de mensaje principal
-		sb.append("Usted ha elegido mostrar todas las opciones de menu:\n");
-		sb.append("0: Cancelar\n");
-		sb.append("1: Continuar\n");
+		sb.append("Usted ha elegido mostrar todas las opciones de menú ¿Qué desea hacer?");
+		sb.append("0: Cancelar.\n");
+		sb.append("1: Continuar.\n");
 		sb.append("=> ");
 		
 		//Ciclo para control de error
@@ -31,7 +31,7 @@ public class MostrarTodasLasOpciones extends OpcionDeMenu {
 				controlError = true;
 			}
 			//Impresión de mensaje de cancelación en caso de que se haya producido un error
-			if (!controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0' \n");}
+			if (!controlError) {System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'. \n");}
 		}
 	}
 	

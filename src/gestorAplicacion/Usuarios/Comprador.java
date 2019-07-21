@@ -147,7 +147,7 @@ public class Comprador extends CuentaConBanco {
 				}
 			} else {
 				OpcionDeMenu.controlError = true;
-				return "Tanto la cantidad como el codigo ingresado deben ser mayor a cero.";
+				return "Tanto la cantidad como el código ingresado deben ser mayores a cero.";
 			}
 		} else {
 			OpcionDeMenu.controlError = true;
@@ -208,7 +208,7 @@ public class Comprador extends CuentaConBanco {
 			InicializacionAplicacion.getBDResenas().put(indice, r);
 			return "Reseña del producto: " + p.getNombreProducto() + "ha sido añadida";
 		} else {
-			return "No ha comprado este producto, no puede añadir una reseña";
+			return "No ha comprado este producto, no le puede añadir una reseña.";
 		}
 
 	}

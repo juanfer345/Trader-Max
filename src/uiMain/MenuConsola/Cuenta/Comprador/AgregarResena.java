@@ -27,20 +27,20 @@ public class AgregarResena extends OpcionDeMenu { // opcion 10
 		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
 		
 		if (!comp.getHistorial().isEmpty()) {
-			sb.append("\nNOTA: se puede cancelar la operación ingresando en cualquiera de los dos datos el número '0'");
+			sb.append("\nNOTA: se puede cancelar la operación ingresando en cualquiera de los dos datos el número '0'.");
 			
 			while (!controlError) {
 				System.out.println(sb);
 				//Ingreso de dato por parte del usuario
-				System.out.println("Historial de productos comprados => ");
+				System.out.println("Historial de productos comprados \n");
 				comp.mostrarHistorial();
-				System.out.println("Ingrese el codigo del producto => ");
+				System.out.println("Ingrese el código del producto\n=>");
 				codigo = br.readLine().trim();
 				compCod = esInt(codigo);
-				System.out.println("Ingrese el numero de estrellas => ");
+				System.out.println("Ingrese el número de estrellas\n=>");
 				estrellas = br.readLine().trim();
 				compEst = esInt(estrellas);
-				System.out.println("Ingrese comentario: ");
+				System.out.println("Ingrese el comentario\n=>");
 				compCom = br.readLine();
 				
 				/*
@@ -48,8 +48,8 @@ public class AgregarResena extends OpcionDeMenu { // opcion 10
 				 (código) hasta que sea válido (puede ingresar el 0 para salir)
 				*/
 				while (compCod == -1) {
-					System.out.println("\nEl dato que ingreso como codigo es invalido, vuelva a intentarlo.");
-					System.out.print("Ingrese el codigo del producto => ");
+					System.out.println("\nEl dato que ingresó como código es inválido, vuelva a intentarlo.");
+					System.out.print("Ingrese el codigo del producto\n=>");
 					codigo = br.readLine().trim();
 					compCod = esInt(codigo);
 				}
@@ -59,8 +59,8 @@ public class AgregarResena extends OpcionDeMenu { // opcion 10
 				 (cantidad estrellas) hasta que sea válido (puede ingresar el 0 para salir)
 				*/
 				while (compEst == -1) {
-					System.out.println("\nEl dato que ingreso como numero de estrellas es invalido, vuelva a intentarlo.");
-					System.out.print("Ingrese el numero de estrellas => ");
+					System.out.println("\nEl dato que ingresó como número de estrellas es inválido, vuelva a intentarlo.");
+					System.out.print("Ingrese el numero de estrellas\n=>");
 					estrellas = br.readLine().trim();
 					compEst = esInt(estrellas);
 				}
@@ -73,9 +73,9 @@ public class AgregarResena extends OpcionDeMenu { // opcion 10
 					Resena rese = new Resena(comp, compCom, compEst); 
 					String str = comp.anadirResena(compCod, rese);
 					// Control de errores en cuanto a lógica del programa
-					if (str.equals("No ha comprado este producto, no puede añadir una reseña")) {
+					if (str.equals("No ha comprado este producto, no le puede añadir una reseña.")) {
 						System.out.println("\n" + str);
-						System.out.println("Repita el proceso con datos correctos");
+						System.out.println("Repita el proceso con datos correctos.");
 					} else {
 						System.out.println("\n" + str + "\n");
 						controlError = true;

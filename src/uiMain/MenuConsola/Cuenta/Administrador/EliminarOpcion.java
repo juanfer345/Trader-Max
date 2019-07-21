@@ -13,9 +13,9 @@ public class EliminarOpcion extends OpcionDeMenu {
 		byte tipoUsuario = 0, opcionUsuario = 0;
 
 	    //Guardado de mensaje principal
-		sb.append("Elija el tipo de cuenta a la cual se le desea agregar la opción:\n");
-		sb.append("1: Comprador\n");
-		sb.append("2: Vendedor\n");
+		sb.append("Elija el tipo de cuenta a la cual se le desea agregar la opción\n");
+		sb.append("1: Comprador.\n");
+		sb.append("2: Vendedor.\n");
 		sb.append("=> ");
 		
 		//Verificacion de tipo de usuario
@@ -49,7 +49,7 @@ public class EliminarOpcion extends OpcionDeMenu {
 					System.out.println(usuario.getMenuDeConsola().mostrarOpcionesDeMenu(idUsuario, tipoUsuario));
 				}
 				else {
-					System.out.println("El identificador de usuario debe ser un número entero");
+					System.out.println("El identificador de usuario debe ser un número entero.");
 				}
 				if (!controlError)
 					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
@@ -70,7 +70,7 @@ public class EliminarOpcion extends OpcionDeMenu {
 					System.out.println(usuario.getMenuDeConsola().eliminarOpcion(idUsuario, tipoUsuario, (byte) (opcionUsuario - 1)));
 				}
 				else {
-					System.out.println("El identificador de usuario debe ser un número entero");
+					System.out.println("El identificador de usuario debe ser un número entero.");
 				}
 				if (!controlError)
 					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");

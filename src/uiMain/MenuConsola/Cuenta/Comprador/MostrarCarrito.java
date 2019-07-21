@@ -11,13 +11,13 @@ public class MostrarCarrito extends OpcionDeMenu {
 	@Override
 	public void ejecutar() throws IOException {
 		/*
-		 Propósito: Ejecutar el metodo mostrar carrito haciendo los respectivos 
+		 Propósito: Ejecutar el método mostrar carrito haciendo los respectivos 
 		            controles de error del ingreso de datos
 		 */
 		
-		sb.append("\nUsted ha elegido la opción para mostrar los elementos en el carrito. ¿Que desea hacer?");
-		sb.append("\n0. Devolverse al menú y cancelar el proceso ");
-		sb.append("\n1. Continuar con el proceso ");
+		sb.append("\nUsted ha elegido la opción para mostrar los elementos en el carrito. ¿Qué desea hacer?");
+		sb.append("\n0. Devolverse al menú y cancelar el proceso. ");
+		sb.append("\n1. Continuar con el proceso. ");
 
 		controlError = false;
 		String opcion;
@@ -36,13 +36,13 @@ public class MostrarCarrito extends OpcionDeMenu {
 			 hasta que sea válido (puede ingresar el 0 para salir)
 			*/
 			while (comprobOpc == -1) {
-				System.out.println("\nEl dato que ingreso es invalido, vuelva a intentarlo");
-				System.out.print("Ingrese su eleccion => ");
+				System.out.println("\nEl dato que ingresó es inválido, vuelva a intentarlo.");
+				System.out.print("Ingrese su elección \n=> ");
 				opcion = br.readLine().trim();
 				comprobOpc = esInt(opcion);
 			}
 			
-			// Verifica si alguno es cero para salirse de la opcion
+			// Verifica si alguno es cero para salirse de la opción
 			if (comprobOpc == 0) {
 				controlError = true;
 				System.out.println(" ");
@@ -53,10 +53,10 @@ public class MostrarCarrito extends OpcionDeMenu {
 				controlError = true;
 			} else {
 				/*
-				  Si ingresa un numero diferente pero no es ninguna de las disponibles debe
-				  empezar de nuevo (Empezara de nuevo el control)
+				  Si ingresa un número diferente pero no corresponde a ninguna de las opciones 
+				  disponibles debe empezar de nuevo (Empezará de nuevo el control)
 				*/
-				System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo");
+				System.out.println("Solo puede ingresar '0' o '1', vuelva a intentarlo.");
 			}
 		}
 		
