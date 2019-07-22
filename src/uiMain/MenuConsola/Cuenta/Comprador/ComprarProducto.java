@@ -16,11 +16,9 @@ public class ComprarProducto extends OpcionDeMenu { // opcion 7
 	@Override
 	public void ejecutar() throws NumberFormatException, IOException {
 		/*
-		 Propósito: Ejecutar el metodo comprarProductos() haciendo los respectivos 
+		 Propósito: Ejecutar el método comprarProductos() haciendo los respectivos 
 		            controles de error del ingreso de datos
 		 */
-
-		StringBuilder sb = new StringBuilder();
 
 		if (!CarritoDeCompras.getProductos().isEmpty()) {
 

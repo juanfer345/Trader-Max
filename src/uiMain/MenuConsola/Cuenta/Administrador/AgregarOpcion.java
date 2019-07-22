@@ -17,14 +17,19 @@ public class AgregarOpcion extends OpcionDeMenu {
 		int idUsuario = 0;
 		byte tipoDeCuenta = 0, opcionUsuario = 0;
 
+		//Guardado de mensaje principal
+		sb.append("Elija el tipo de cuenta a la cual se le desea eliminar la opción\n");
+		sb.append("1: Comprador.\n");
+		sb.append("2: Vendedor.\n");
+		sb.append("3: Administrador.\n");
+		sb.append("=> ");
+
 		//Control de ingreso tipo de usuario
 		tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero");
 		if (controlError) {System.out.println(); return;}
 
 		//Control de ingreso de identificación de usuario
 		idUsuario = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Por favor ingrese el número identificador del usuario", "El identificador del usuario debe ser un número entero");
-
-		//Ejecución del método en caso de que no se haya ordenado salir
 		if (controlError) {System.out.println(); return;}
 
 		//Impresión de las opciones de menú del usuario

@@ -104,8 +104,6 @@ public class Comprador extends CuentaConBanco {
 	public HashMap<Integer, Integer> getHistorial() {return historial;}
 
 	public void setHistorial(int codigoProducto, int cantidadProducto) {historial.put(codigoProducto, cantidadProducto);}
-	
-
 
 	public String mostrarHistorial() {
 		/*
@@ -145,7 +143,7 @@ public class Comprador extends CuentaConBanco {
 		
 		//Comprobación de que el producto ya fue comprado
 		if (historial.containsKey(codigo)) {
-			
+
 			Producto prod = catalogo.get(codigo);								//Obtención del apuntador al producto
 			Resena rese = new Resena(this, comentario, estrellas);				//Creación nueva reseña
 			prod.setResenas(new Resena(this, comentario, estrellas));			//Añadido de la reseña al producto
@@ -156,6 +154,5 @@ public class Comprador extends CuentaConBanco {
 		else {
 			return "No ha comprado este producto, no puede añadir una reseña.\n";
 		}
-
 	}
 }

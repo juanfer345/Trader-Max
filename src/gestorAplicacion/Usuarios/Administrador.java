@@ -175,10 +175,10 @@ public class Administrador extends CuentaUsuario {
 
 		if (baseDeDatos.containsKey(idUsuario)) {
 			baseDeDatos.remove(idUsuario);
-			sb.append("Se ha removido la cuenta correctamente");
+			sb.append("Se ha removido la cuenta correctamente.");
 			OpcionDeMenu.controlError = true;
 		} else {
-			sb.append("El " + usuario + " no fue encontrado, por favor revise el código ingresado");
+			sb.append("El " + usuario + " no fue encontrado, por favor revise el código ingresado.");
 		}
 		return sb.toString();
 	}

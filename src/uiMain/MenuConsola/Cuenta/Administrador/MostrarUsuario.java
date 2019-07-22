@@ -14,6 +14,13 @@ public class MostrarUsuario extends OpcionDeMenu {
 	    int idCuenta;
 	    byte tipoDeCuenta;
 
+	    //Guardado de mensaje principal
+		sb.append("\nPor favor elija su tipo de usuario:\n");
+		sb.append("1: Comprador\n");
+		sb.append("2: Vendedor\n");
+		sb.append("3: Administrador\n");
+		sb.append("=> ");
+
 	    while (!controlError) {
 		    //Control de ingreso tipo de usuario
 			tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");

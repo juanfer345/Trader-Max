@@ -21,7 +21,10 @@ public class MostrarHistorial extends OpcionDeMenu {
 		 * controles de error del ingreso de datos
 		 */
 
-		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
+		StringBuilder sb = new StringBuilder();
+		sb.append("\nUsted ha elegido la opcion para mostrar su historial de compras. ¿Que desea hacer?");
+		sb.append("\n0. Devolverse al menú y cancelar el proceso. ");
+		sb.append("\n1. Continuar con el proceso. ");
 
 		if (!comp.getHistorial().isEmpty()) {
 

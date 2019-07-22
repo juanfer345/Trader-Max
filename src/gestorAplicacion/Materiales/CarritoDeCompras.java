@@ -162,18 +162,23 @@ public class CarritoDeCompras {
 		Variables de salida:
 		- String con mensaje confirmando el proceso.
     */
+		if (totalProductos > 0) {
 
-		for (Map.Entry<Integer, Integer> entry : productos.entrySet()) {
+			for (Map.Entry<Integer, Integer> entry : productos.entrySet()) {
 
-			int cant = entry.getValue(); // Extracción de la cantidad en la hash
-			int cod = entry.getKey(); // el codigo del producto
-			Producto prod = Cuenta.getCatalogo().get(cod);  //se obtiene el producto correspondiente al codigo 
-			prod.setCantidad(prod.getCantidad() + cant); //se asigna la cantidad que estaba al principio
+				int cant = entry.getValue(); // Extracción de la cantidad en la hash
+				int cod = entry.getKey(); // el codigo del producto
+				Producto prod = Cuenta.catalogo.get(cod);  //se obtiene el producto correspondiente al codigo 
+				prod.setCantidad(prod.getCantidad() + cant); //se asigna la cantidad que estaba al principio
+			}
+			productos.clear();
+			totalProductos = 0;
+			precioTotal = 0;
+			return "El carrito se vació correctamente.";
+		}else {
+
+			return "Su carrito ya está vacío.";
 		}
-		productos.clear();
-		totalProductos = 0;
-		precioTotal = 0;
-		return "El carrito se vació correctamente";
 	}
 
 	public static String quitarProducto(int codigo, int cantidad) {

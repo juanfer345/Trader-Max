@@ -11,7 +11,7 @@ public class MostrarCarrito extends OpcionDeMenu {
 	@Override
 	public void ejecutar() throws IOException {
 		/*
-		 Propósito: Ejecutar el metodo mostrar carrito haciendo los respectivos 
+		 Propósito: Ejecutar el método mostrar carrito haciendo los respectivos 
 		            controles de error del ingreso de datos
 		 */
 

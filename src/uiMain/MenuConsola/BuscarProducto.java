@@ -71,5 +71,5 @@ public class BuscarProducto extends OpcionDeMenu {
 	}
 
 	@Override
-	public String toString() {return "Buscar producto.";}
+	public String toString() {return "Buscar producto";}
 }

@@ -29,7 +29,6 @@ public class AgregarResena extends OpcionDeMenu{
 
 			sb.append("Historial de productos comprados:\n");
 			sb.append(comp.mostrarHistorial());
-
 			while (!controlError) {
 
 				//Impresión del historial

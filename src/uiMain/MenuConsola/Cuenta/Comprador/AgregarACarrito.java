@@ -27,19 +27,16 @@ public class AgregarACarrito extends OpcionDeMenu {
 			
 			while(!controlError) {
 				//Ingreso del código
-				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea agregar", "El dato que ingreso como código es invalido, vuelva a intentarlo");
+				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea agregar", "El dato que ingresó como código es inválido, vuelva a intentarlo");
 				if (controlError) {System.out.println(); return;}
 
 				//Ingreso de la cantidad del producto
-				cantProd = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese la cantidad de elementos que desea agregar", "El dato que ingreso como cantidad es invalido, vuelva a intentarlo");
+				cantProd = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese la cantidad de elementos que desea agregar", "El dato que ingresó como cantidad es inválido, vuelva a intentarlo");
 				if (controlError) {System.out.println(); return;}
 				
 				//Ejecución del método
 				System.out.println(CarritoDeCompras.agregarACarrito(idProducto, cantProd));
 			}
-		}
-		else {
-			System.out.println("El catálogo se encuentra vacío.\n");
 		}
 	}
 

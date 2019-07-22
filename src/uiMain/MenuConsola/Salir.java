@@ -36,5 +36,5 @@ public class Salir extends OpcionDeMenu {
 	}
 	
 	@Override
-	public String toString() {return "Salir. ";}
+	public String toString() {return "Salir";}
 }
