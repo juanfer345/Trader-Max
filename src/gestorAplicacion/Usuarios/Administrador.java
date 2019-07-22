@@ -19,8 +19,8 @@ import uiMain.MenuConsola.MostrarResenas;
 import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Administrador.AgregarOpcion;
-import uiMain.MenuConsola.Cuenta.Administrador.CuentasAdmin;
-import uiMain.MenuConsola.Cuenta.Administrador.EliminarCuenta;
+import uiMain.MenuConsola.Cuenta.Administrador.BloquearCuenta;
+import uiMain.MenuConsola.Cuenta.Administrador.MostrarCuentasAvtivas;
 import uiMain.MenuConsola.Cuenta.Administrador.EliminarOpcion;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenu;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenuDisponible;
@@ -69,9 +69,9 @@ public class Administrador extends CuentaUsuario {
 		                           tendrá un usuario administrador
     */
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-				new MostrarMenu(), new MostrarMenuDisponible(), new AgregarOpcion(), new CuentasAdmin(), 
-				new EliminarCuenta(), new EliminarOpcion(), new MostrarUsuario(), new MostrarTodasLasOpciones(),
-				new CerrarSesion(), new Salir() }));
+				new MostrarUsuario(), new MostrarMenu(), new MostrarMenuDisponible(), 
+				new MostrarTodasLasOpciones(), new AgregarOpcion(), new EliminarOpcion(),
+				new BloquearCuenta(), new MostrarCuentasAvtivas(), new CerrarSesion(), new Salir()}));
 	}
 
 	//Constructor vacío
@@ -91,8 +91,8 @@ public class Administrador extends CuentaUsuario {
     */
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
 				new BuscarProducto(), new MostrarCatalogo(),new MostrarPorCategoria(),
-				new MostrarResenas(),new AgregarOpcion(), new CuentasAdmin(),
-				new EliminarCuenta(), new EliminarOpcion(), new MostrarMenu(),
+				new MostrarResenas(),new AgregarOpcion(), new MostrarCuentasAvtivas(),
+				new BloquearCuenta(), new EliminarOpcion(), new MostrarMenu(),
 				new MostrarUsuario(), new MostrarTodasLasOpciones(),new CerrarSesion(),
 				new Salir() }));
 	}

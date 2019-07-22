@@ -182,7 +182,7 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 			OpcionDeMenu.controlError = true;
 			return "\nEl producto ha sido encontrado:\n" + prod.toString() + ", Cantidad: " + prod.getCantidad() + "]\n";
 		} else {
-			return "Producto no encontrado, intentalo de nuevo.\n";
+			return "\nProducto no encontrado, intentalo de nuevo.";
 		}
 	}
 
@@ -213,7 +213,7 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 			OpcionDeMenu.controlError = true;
 			return "\nSu busqueda produjo resultados: \n" + sb.toString();
 		} else {
-			return "\nNombre de producto no encontrado, intentalo de nuevo.\n";
+			return "\nNombre de producto no encontrado, intentalo de nuevo.";
 		}
 	}
 
@@ -289,6 +289,6 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 
 	@Override
 	public String toString() {
-		return "[Código:" + id + ", Nombre:" + nombre + ", Correo:" + correo + ", Contraseña:" + password + ", cedula:" + cedula;
+		return "[Código:" + id + ", Nombre:" + nombre + ", Correo:" + correo + ", Contraseña:" + password + ", Cédula:" + cedula;
 	}
 }

@@ -7,7 +7,7 @@ import gestorAplicacion.Usuarios.Administrador;
 import uiMain.ControlErrorDatos;
 import uiMain.OpcionDeMenu;
 
-public class EliminarCuenta extends OpcionDeMenu {
+public class BloquearCuenta extends OpcionDeMenu {
 
 	@Override
 	public void ejecutar() throws IOException {
@@ -32,5 +32,5 @@ public class EliminarCuenta extends OpcionDeMenu {
 	}
 
 	@Override
-	public String toString() {return "Eliminar cuenta de usuario";}
+	public String toString() {return "Bloquear la cuenta de un usuario";}
 }

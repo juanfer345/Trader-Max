@@ -28,12 +28,11 @@ public class CambiarPrecio extends OpcionDeMenu {
 		int idProducto;
 
 		//Condicional para vendedores sin productos subidos
-		if (vend.getTotalDeProductosSubidos() == 0) {
+		if (vend.getTotalDeProductosSubidos() != 0) {
 
 			//Guardado de mensaje principal (incluyendo lista de productos)
-			System.out.println();
-			sb.append("Esta opción es para cambiar el precio de un producto del catálogo");
-			sb.append("\nRecuerde que el producto debe ser de su propiedad \n");
+			System.out.println("\nEsta opción es para cambiar el precio de un producto del catálogo." +
+							   "\nRecuerde que el producto debe ser de su propiedad.");
 			sb.append(vend.mostrarProductos());
 
 			while(!controlError) {
@@ -52,7 +51,7 @@ public class CambiarPrecio extends OpcionDeMenu {
 				//Ejecución del método
 				System.out.println(vend.cambiarPrecio(idProducto, precio));
 				if (!OpcionDeMenu.controlError)
-					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
 			}
 		}
 		else {

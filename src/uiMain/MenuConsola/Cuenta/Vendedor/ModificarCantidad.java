@@ -31,12 +31,11 @@ public class ModificarCantidad extends OpcionDeMenu {
 		byte operacion;
 
 		//Condicional para vendedores sin productos subidos
-		if (vend.getTotalDeProductosSubidos() == 0) {
+		if (vend.getTotalDeProductosSubidos() != 0) {
 
 			//Guardado de mensaje principal (incluyendo lista de productos)
-			System.out.println();
-			sb.append("Esta opción es para cambiar la cantidad un producto del catálogo");
-			sb.append("\nRecuerde que el producto debe ser de su propiedad \n");
+			System.out.println("\nEsta opción es para cambiar la cantidad un producto del catálogo." + 
+			                   "\nRecuerde que el producto debe ser de su propiedad.");
 			sb.append(vend.mostrarProductos());
 
 			while(!controlError) {
@@ -45,11 +44,11 @@ public class ModificarCantidad extends OpcionDeMenu {
 				System.out.println(sb);
 
 				//Ingreso del código del producto
-				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto al que le desea cambiar el precio", "Por favor ingrese un número entero positivo");
+				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto al que le desea cambiar su cantidad", "Por favor ingrese un número entero positivo");
 				if (controlError) {System.out.println(); return;}
 
 				//Ingreso de la cantidad del producto
-				cantidad = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el nuevo precio del producto", "Por favor ingrese un número entero positivo");
+				cantidad = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese cantidad a sumar o restar", "Por favor ingrese un número entero positivo");
 				if (controlError) {System.out.println(); return;}
 
 				//Ingreso del tipo de operación
@@ -59,8 +58,11 @@ public class ModificarCantidad extends OpcionDeMenu {
 				//Ejecución del método
 				System.out.println(vend.modificarCantidad(idProducto, cantidad, operacion));
 				if (!OpcionDeMenu.controlError)
-					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
 			}
+		}
+		else {
+			System.out.println("Usted aún no ha subido ningún producto.\n");
 		}
 	}
 

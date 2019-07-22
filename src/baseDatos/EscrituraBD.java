@@ -30,6 +30,7 @@ public class EscrituraBD {
 	static BufferedWriter bw = null;
 	static StringBuilder sb = new StringBuilder();
 	static String BDactual;
+	static boolean cnConfirmacion = false;
 
 	public static void PrincipalEscrituraBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCat, 
 											String BDProd, String BDRes) {
@@ -49,6 +50,8 @@ public class EscrituraBD {
 	   		- BDRes: Nombre de la base de datos de las reseñas.
 		 */
 
+		if (cnConfirmacion) System.out.println("\nGUARDADO DE BASE DE DATOS - [FIN]\n");
+		
 		try {
 			//Escritura de las cuentas
 			escrituraCompradores(BDComp, InicializacionAplicacion.getBDCompradores());
@@ -70,6 +73,8 @@ public class EscrituraBD {
 		} catch (IOException ex) {
 			mensajeError(ex, "Error al intentar guardar la base de datos \"" + BDactual + ".txt\"");
 		}
+		
+		if (cnConfirmacion) System.out.println("\nGUARDADO DE BASE DE DATOS - [INICIO]\n");
 	}
 
 	private static void escrituraCompradores(String NombreBD, HashMap <Integer, Comprador> HM) throws IOException {
@@ -110,10 +115,10 @@ public class EscrituraBD {
 			} else {sb.append("#");}
 			sb.append('\n');	//salto de renglón
 		}
-		sb.append("#");										//Indicador de fin de archivo
-		bw.append(sb);										//Impresión de información en el archivo
-		mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
-		sb.delete(0, sb.length());							//Borrado del contenido del StringBuilder
+		sb.append("#");															//Indicador de fin de archivo
+		bw.append(sb);															//Impresión de información en el archivo
+		if (cnConfirmacion) mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
+		sb.delete(0, sb.length());												//Borrado del contenido del StringBuilder
 		
 		//Cerrado y guardado del archivo
     	try {bw.close();}
@@ -149,10 +154,10 @@ public class EscrituraBD {
 			} else {sb.append("#");}
 			sb.append('\n');	//salto de renglón
 		}
-		sb.append("#");				//Indicador de fin de archivo
-		bw.append(sb);	//Impresión de información en el archivo
-		mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
-		sb.delete(0, sb.length());	//Borrado del contenido del StringBuilder
+		sb.append("#");															//Indicador de fin de archivo
+		bw.append(sb);															//Impresión de información en el archivo
+		if (cnConfirmacion) mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
+		sb.delete(0, sb.length());												//Borrado del contenido del StringBuilder
 		
 		//Cerrado y guardado del archivo
     	try {bw.close();}
@@ -187,10 +192,10 @@ public class EscrituraBD {
 			} else {sb.append("#");}
 			sb.append('\n');	//salto de renglón
 		}
-		sb.append("#");										//Indicador de fin de archivo
-		bw.append(sb);										//Impresión de información en el archivo
-		mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
-		sb.delete(0, sb.length());							//Borrado del contenido del StringBuilder
+		sb.append("#");															//Indicador de fin de archivo
+		bw.append(sb);															//Impresión de información en el archivo
+		if (cnConfirmacion) mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
+		sb.delete(0, sb.length());												//Borrado del contenido del StringBuilder
 
 		//Cerrado y guardado del archivo
     	try {bw.close();}
@@ -209,10 +214,10 @@ public class EscrituraBD {
 			sb.append(entry.getKey()).append(';'); 			//Identificador único
 			sb.append(val.getSaldo()).append('\n');			//Saldo de la cuenta bancaria y salto de renglón
 		}
-		sb.append("#");										//Indicador de fin de archivo
-		bw.append(sb);										//Impresión de información en el archivo
-		mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
-		sb.delete(0, sb.length());							//Borrado del contenido del StringBuilder
+		sb.append("#");															//Indicador de fin de archivo
+		bw.append(sb);															//Impresión de información en el archivo
+		if (cnConfirmacion) mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
+		sb.delete(0, sb.length());												//Borrado del contenido del StringBuilder
 
 		//Cerrado y guardado del archivo
     	try {bw.close();}
@@ -227,10 +232,10 @@ public class EscrituraBD {
 		for (Map.Entry <Integer, Producto> entry : HM.entrySet()) {
 			sb.append(entry.getKey()).append('\n'); 						//Referencia al producto del catálogo
 		}
-		sb.append("#");										//Indicador de fin de archivo
-		bw.append(sb);										//Impresión de información en el archivo
-		mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
-		sb.delete(0, sb.length());							//Borrado del contenido del StringBuilder
+		sb.append("#");															//Indicador de fin de archivo
+		bw.append(sb);															//Impresión de información en el archivo
+		if (cnConfirmacion) mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
+		sb.delete(0, sb.length());												//Borrado del contenido del StringBuilder
 
 		//Cerrado y guardado del archivo
     	try {bw.close();}
@@ -262,10 +267,10 @@ public class EscrituraBD {
 			} else {sb.append("#");}
 			sb.append('\n');	//salto de renglón
 		}
-		sb.append("#");											//Indicador de fin de archivo
-		bw.append(sb);											//Impresión de información en el archivo
-		mensajeConfirmacion(sb.length() != 1, NombreBD); 		//Mensaje de confirmación
-		sb.delete(0, sb.length());								//Borrado del contenido del StringBuilder
+		sb.append("#");															//Indicador de fin de archivo
+		bw.append(sb);															//Impresión de información en el archivo
+		if (cnConfirmacion) mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
+		sb.delete(0, sb.length());												//Borrado del contenido del StringBuilder
 
 		//Cerrado y guardado del archivo
     	try {bw.close();}
@@ -287,10 +292,10 @@ public class EscrituraBD {
 			sb.append(val.getComprador().getId());				//Identificador único comprador
 			sb.append('\n');									//salto de renglón
 		}
-		sb.append("#");											//Indicador de fin de archivo
-		bw.append(sb);											//Impresión de información en el archivo
-		mensajeConfirmacion(sb.length() != 1, NombreBD); 		//Mensaje de confirmación
-		sb.delete(0, sb.length());								//Borrado del contenido del StringBuilder
+		sb.append("#");															//Indicador de fin de archivo
+		bw.append(sb);															//Impresión de información en el archivo
+		if (cnConfirmacion) mensajeConfirmacion(sb.length() != 1, NombreBD); 	//Mensaje de confirmación
+		sb.delete(0, sb.length());												//Borrado del contenido del StringBuilder
 
 		//Cerrado y guardado del archivo
     	try {bw.close();}

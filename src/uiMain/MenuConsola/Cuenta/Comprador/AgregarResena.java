@@ -56,7 +56,6 @@ public class AgregarResena extends OpcionDeMenu{
 			}
 		} else {
 			System.out.println("Su historial está vacio, no puede agregar reseñas.\n");
-			controlError = true;
 		}
 	}
 

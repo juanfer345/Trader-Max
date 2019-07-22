@@ -130,7 +130,7 @@ public class Comprador extends CuentaConBanco {
 		else {sb.append(" producto.\n");}
 		
 		historial.forEach((k, v) -> { // Ciclo para obtención e impresión de los productos
-			sb.append(catalogo.get(k)).append(", Cantidad comprada: " + v + "]\n");
+			sb.append(InicializacionAplicacion.getBDProductos().get(k)).append(", Cantidad comprada: " + v + "]\n");
 		});
 
 		return sb.toString();

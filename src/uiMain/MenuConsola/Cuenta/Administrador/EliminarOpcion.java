@@ -53,5 +53,5 @@ public class EliminarOpcion extends OpcionDeMenu  {
 	}
 	
 	@Override
-	public String toString() {return "Eliminar opción de menú";}
+	public String toString() {return "Eliminar opción de menú de un usuario";}
 }

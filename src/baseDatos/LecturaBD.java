@@ -30,6 +30,7 @@ public class LecturaBD {
     private static BufferedReader br = null;
     private static String BDactual;
     private static int maxID = 0;
+    private static boolean cnConfirmacion = true;
     
 	public static void PrincipalLecturaBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCat, 
 										  String BDProd, String BDRes) {
@@ -56,6 +57,7 @@ public class LecturaBD {
 		HashMap <Integer, Deque <Integer>> auxProd = new HashMap<>();
 		HashMap <Integer, Integer> auxRes = new HashMap<>();
 
+		if (cnConfirmacion) System.out.println("LECTURA DE BASE DE DATOS - [INICIO]\n");
         
         try {
     		// Lectura de las cuentas
@@ -96,6 +98,8 @@ public class LecturaBD {
 				  		   InicializacionAplicacion.getBDCuentasBancarias(), InicializacionAplicacion.getBDProductos(), 
 				  		   InicializacionAplicacion.getBDResenas(), auxComp, cnProdComp,  auxVend, auxAdmi, auxCat, 
 				  		   auxProd, auxRes);
+
+		if (cnConfirmacion) System.out.println("\nLECTURA DE BASE DE DATOS - [FIN]\n");
 	}
 	
 	private static void lecturaCompradores(String NombreBD, HashMap <Integer, Comprador> HM, HashMap <Integer, Deque <Integer>> mapAux, Deque <Integer> colaAuxProd) throws IOException {
@@ -133,7 +137,7 @@ public class LecturaBD {
 	        mapAux.put(usuario.getId(), colaAux);		//Guardado de las referencias en el mapa auxiliar
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
+        if (cnConfirmacion) mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
 	private static void lecturaVendedores(String NombreBD, HashMap <Integer, Vendedor> HM, HashMap <Integer, Deque <Integer>> mapAux) throws IOException {
@@ -163,7 +167,7 @@ public class LecturaBD {
 	        mapAux.put(usuario.getId(), colaAux);		//Guardado de las referencias en el mapa auxiliar
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	// Mensaje de confirmación
+        if (cnConfirmacion) mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
 	private static void lecturaAdministradores(String NombreBD, HashMap <Integer, Administrador> HM, HashMap <Integer, Deque <Integer>> mapAux) throws IOException {
@@ -192,7 +196,7 @@ public class LecturaBD {
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
         Cuenta.setMaxID(maxID); maxID = 0;				//Asignación de ID para las cuentas
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
+        if (cnConfirmacion) mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
 	private static void lecturaCuentasBancarias(String NombreBD, HashMap <Integer, CuentaBancaria> HM) throws NumberFormatException, IOException {
@@ -216,7 +220,7 @@ public class LecturaBD {
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
         CuentaBancaria.setMaxID(maxID); maxID = 0;		//Asignación de ID para las cuentas bancarias
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
+        if (cnConfirmacion) mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 
 	private static void lecturaCatalogo(String NombreBD, Deque <Integer> colaAux) throws IOException {
@@ -233,7 +237,7 @@ public class LecturaBD {
     		// Ejemplo de datos: IDProducto (por cada fila)
         	colaAux.add(Integer.parseInt(dat));	//Referencias a los productos del catálogo
 	    }
-        mensajeConfirmacion(!colaAux.isEmpty(), NombreBD); 	//Mensaje de confirmación
+        if (cnConfirmacion) mensajeConfirmacion(!colaAux.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
 	private static void lecturaProductos(String NombreBD, HashMap <Integer, Producto> HM, HashMap <Integer, Deque <Integer>> mapAux) throws NumberFormatException, IOException {
@@ -264,7 +268,7 @@ public class LecturaBD {
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
         Producto.setMaxID(maxID); maxID = 0;			//Asignación de ID para los productos
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
+        if (cnConfirmacion) mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
 	private static void lecturaResenas(String NombreBD, HashMap <Integer, Resena> HM, HashMap <Integer, Integer> mapAux) throws NumberFormatException, IOException {
@@ -290,7 +294,7 @@ public class LecturaBD {
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
         Resena.setMaxID(maxID); maxID = 0;				//Asignación de ID para las reseñas
-        mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
+        if (cnConfirmacion) mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
 	private static void complementoLectura(HashMap <Integer, Comprador> BDCompradores, HashMap <Integer, Vendedor> BDVendedores, 
@@ -356,6 +360,7 @@ public class LecturaBD {
 		// Completando la información de los productos
         for (Map.Entry <Integer, Producto> entry : BDProductos.entrySet()) {
         	entry.getValue().setVendedor(BDVendedores.get((auxProd.get(entry.getKey()).poll())));	//Asignación del vendedor
+        	entry.getValue().getVendedor().setTotalDeProductosSubidos(1);
         	entry.getValue().setResenas(auxProd.get(entry.getKey()));								//Asignación de reseñas al producto
         }
         

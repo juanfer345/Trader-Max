@@ -57,5 +57,5 @@ public class AgregarOpcion extends OpcionDeMenu {
 	}
 
 	@Override
-	public String toString() {return "Agregar opción de menú";}
+	public String toString() {return "Agregar opción de menú a un usuario";}
 }

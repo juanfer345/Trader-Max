@@ -37,7 +37,7 @@ public class SubirProducto extends OpcionDeMenu implements InterfazCategorias{
 		byte categoria;
 
 		//Guardado de mensaje principal
-		sb.append("Por favor elija la categoría del producto ingresando su índice:\n");
+		sb.append("\nPor favor elija la categoría del producto ingresando su índice:\n");
 		sb.append(Producto.getCategorias());
 		sb.append("selección");
 

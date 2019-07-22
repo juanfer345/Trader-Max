@@ -13,27 +13,27 @@ public class VerProductos extends OpcionDeMenu {
 	public void ejecutar() throws IOException {
 		
 		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
+		byte seleccion;
 		
 		//Condicional para vendedores sin productos subidos
-		if (vend.getTotalDeProductosSubidos() == 0) {
+		if (vend.getTotalDeProductosSubidos() != 0) {
 
 			//Guardado de mensaje principal
 			System.out.println();
 			sb.append("Usted ha elegido mostrar todos sus productos subidos:\n");
-			sb.append("0: Cancelar\n");
 			sb.append("1: Continuar\n");
+			sb.append("2: Cancelar\n");
+			sb.append("Seleccion");
 
 			// Ingreso del dato por parte del usuario
-			ControlErrorDatos.controlByte((byte) 1, (byte) 1, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
-			if (controlError) {System.out.println(); return;}
+			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
+			if (controlError || seleccion == 2) {System.out.println(); return;}
 			
 			//Ejecución del método
 			System.out.println(vend.mostrarProductos());
-			if (!OpcionDeMenu.controlError)
-				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 		}
 		else {
-			System.out.println("Usted aún no ha subido ningún producto\n");
+			System.out.println("Usted aún no ha subido ningún producto.\n");
 		}
 	}
 

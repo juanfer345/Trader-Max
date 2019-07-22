@@ -32,12 +32,8 @@ public class InicializacionAplicacion {
     
 	public static void main(String[] args) throws IOException {
 		
-		//Aquí debería ir una primera entrada que permita ingresar el nombre de una base de datos para cargar o que indique que no existe (pendiente)
-		
 		//Ejecución de la lectura de la base de datos
-		System.out.println("LECTURA DE BASE DE DATOS - [INICIO]\n");
 		LecturaBD.PrincipalLecturaBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Catálogo", "Productos", "Reseñas");
-		System.out.println("\nLECTURA DE BASE DE DATOS - [FIN]\n");
 		
 		//Mensaje de inicialización
 		System.out.println("           TRADER-MAX INC           \n");
@@ -50,11 +46,7 @@ public class InicializacionAplicacion {
 		MenuDeConsola.LanzarMenu();
 		
 		//Ejecución de la escritura en la base de datos
-		System.out.println("\nGUARDADO DE BASE DE DATOS - [INICIO]\n");
 		EscrituraBD.PrincipalEscrituraBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Catálogo", "Productos", "Reseñas");
-		System.out.println("\nGUARDADO DE BASE DE DATOS - [FIN]\n");
-		
-		//Cerrado de la aplicación (pendiente)
 	}
 
 	public static HashMap <Integer, Comprador> getBDCompradores() {return BDCompradores;}

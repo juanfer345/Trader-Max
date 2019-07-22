@@ -13,6 +13,7 @@ package uiMain.MenuConsola.Visitante;
 import java.io.IOException;
 
 import gestorAplicacion.InicializacionAplicacion;
+import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.ControlErrorDatos;
 import uiMain.OpcionDeMenu;
@@ -31,35 +32,41 @@ public class IniciarSesion extends OpcionDeMenu {
 		String correoIngresado, contrasenaIngresada;
 		byte tipoDeCuenta;
 
-		// Guardado de mensaje
-		System.out.println();
-		sb.append("Por favor elija su tipo de usuario:\n");
-		sb.append("1: Comprador.\n");
-		sb.append("2: Vendedor.\n");
-		sb.append("3: Administrador.\n");
-		sb.append("Seleccion");
-		
-		// Control de ingreso tipo de usuario
-		tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
-		if (controlError) {System.out.println(); return;}
+		if (Cuenta.getTotalCuentas() != 0) {
+			
+			// Guardado de mensaje
+			System.out.println();
+			sb.append("Por favor elija su tipo de usuario:\n");
+			sb.append("1: Comprador.\n");
+			sb.append("2: Vendedor.\n");
+			sb.append("3: Administrador.\n");
+			sb.append("Seleccion");
+			
+			// Control de ingreso tipo de usuario
+			tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
+			if (controlError) {System.out.println(); return;}
 
-		// Ejecución del método principal con control de error
-		while (!controlError) {
+			// Ejecución del método principal con control de error
+			while (!controlError) {
 
-			// Control de ingreso de correo
-			correoIngresado = ControlErrorDatos.controlCorreo();
-			if (controlError) {System.out.println();return;}
+				// Control de ingreso de correo
+				correoIngresado = ControlErrorDatos.controlCorreo();
+				if (controlError) {System.out.println();return;}
 
-			// Ingreso de contraseña
-			System.out.print("Contraseña => ");
-			if (esByte(contrasenaIngresada = br.readLine().trim()) == 0) {
-				System.out.println(); return;
+				// Ingreso de contraseña
+				System.out.print("Contraseña => ");
+				if (esByte(contrasenaIngresada = br.readLine().trim()) == 0) {
+					System.out.println(); return;
+				}
+
+				//Inicio de sesión
+				System.out.println(usuario.iniciarSesion(tipoDeCuenta, correoIngresado, contrasenaIngresada));
+				if (!OpcionDeMenu.controlError)
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			}
-
-			//Inicio de sesión
-			System.out.println(usuario.iniciarSesion(tipoDeCuenta, correoIngresado, contrasenaIngresada));
-			if (!OpcionDeMenu.controlError)
-				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
+		}
+		else {
+			System.out.println("No hay cuentas registradas en la base de datos.\n");	
 		}
 	}
 

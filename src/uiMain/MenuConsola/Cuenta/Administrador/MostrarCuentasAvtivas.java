@@ -7,7 +7,7 @@ import gestorAplicacion.Usuarios.Administrador;
 import uiMain.ControlErrorDatos;
 import uiMain.OpcionDeMenu;
 
-public class CuentasAdmin extends OpcionDeMenu {
+public class MostrarCuentasAvtivas extends OpcionDeMenu {
 
 	@Override
 	public void ejecutar() throws IOException {
@@ -28,5 +28,5 @@ public class CuentasAdmin extends OpcionDeMenu {
 	}
 
 	@Override
-	public String toString() {return "Mostrar el numero de cuentas inscritas";}
+	public String toString() {return "Mostrar el numero de cuentas activas en la aplicación";}
 }

@@ -35,7 +35,7 @@ public class MostrarCarrito extends OpcionDeMenu {
 				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 		}
 		else {
-			System.out.println("Su carrito de compras está vacio.\n");
+			System.out.println("Su carrito de compras está vacío.\n");
 		}
 	}
 

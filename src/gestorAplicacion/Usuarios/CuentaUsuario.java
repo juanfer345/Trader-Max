@@ -50,7 +50,9 @@ abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias
 			}
 			InicializacionAplicacion.setUsuarioActivo(new Visitante());
 			OpcionDeMenu.controlError = true;
-			return "\nSe ha cerrado sesión correctamente.\n" + "\nBienvenido invitado.\n";
+
+			System.out.println();
+			return "Se ha cerrado sesión correctamente.\n" + "\n           TRADER-MAX INC           \n" + "\nBienvenido invitado.\n";
 		} else if (seleccion == 2) {
 			OpcionDeMenu.controlError = true;
 			return "";

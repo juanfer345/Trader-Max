@@ -24,14 +24,14 @@ public class MostrarCatalogo extends OpcionDeMenu {
 
 		byte seleccion; 
 		
-		System.out.println();
-		sb.append("Usted ha elegido la opción para mostrar el catálogo de productos. ¿Qué desea hacer?");
-		sb.append("\n1. Continuar con el proceso.");
-		sb.append("\n2. Volver al menú y cancelar el proceso.\n");
-		sb.append("Seleccion");
-		
 		if (!Cuenta.getCatalogo().isEmpty()) {
-
+			
+			System.out.println();
+			sb.append("Usted ha elegido la opción para mostrar el catálogo de productos. ¿Qué desea hacer?");
+			sb.append("\n1. Continuar con el proceso.");
+			sb.append("\n2. Volver al menú y cancelar el proceso.\n");
+			sb.append("Seleccion");
+			
 			//Selección por parte del usuario
 			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
 			if (controlError || seleccion == 2) {System.out.println(); return;}

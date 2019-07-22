@@ -29,12 +29,11 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 		int idProducto;
 
 		//Condicional para vendedores sin productos subidos
-		if (vend.getTotalDeProductosSubidos() == 0) {
+		if (vend.getTotalDeProductosSubidos() != 0) {
 
 			//Guardado de mensaje principal (incluyendo lista de productos)
 			System.out.println();
-			sb.append("Esta opción es para eliminar un producto del cátalogo");
-			sb.append("\nRecuerde que el producto a eliminar debe ser de su propiedad");
+			System.out.println("Recuerde que el producto a eliminar debe ser de su propiedad.");
 			sb.append(vend.mostrarProductos());
 
 			while (!controlError) {
@@ -45,11 +44,14 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 				//Ingreso del código del producto
 				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea eliminar del catálogo", "Por favor ingrese un número entero positivo");
 				if (controlError) {System.out.println(); return;}
-
+				
 				System.out.println(vend.eliminarProductoCatalogo(idProducto));
 				if (!OpcionDeMenu.controlError)
-					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
 			}
+		}
+		else {
+			System.out.println("Usted aún no ha subido ningún producto.\n");
 		}
 	}
 

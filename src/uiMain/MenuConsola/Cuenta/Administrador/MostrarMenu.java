@@ -39,5 +39,5 @@ public class MostrarMenu extends OpcionDeMenu {
 	}
 
 	@Override
-	public String toString() {return "Mostrar menú de un usuaio";}
+	public String toString() {return "Mostrar menú de un usuario";}
 }

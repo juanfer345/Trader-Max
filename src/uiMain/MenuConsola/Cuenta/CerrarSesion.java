@@ -32,8 +32,6 @@ public class CerrarSesion extends OpcionDeMenu {
 		
 		//Ejecución del método e impresión de respuesta
 		System.out.println(usuario.cerrarSesion(seleccion));
-		if (!OpcionDeMenu.controlError)
-			System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 	}
 	
 	@Override

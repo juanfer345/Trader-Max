@@ -22,8 +22,8 @@ public class MostrarHistorial extends OpcionDeMenu {
 		 */
 
 		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
-byte seleccion;
-		
+		byte seleccion;
+
 		//Guardado de mensaje principal
 
 		if (!comp.getHistorial().isEmpty()) {

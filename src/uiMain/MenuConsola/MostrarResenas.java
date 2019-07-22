@@ -40,7 +40,7 @@ public class MostrarResenas extends OpcionDeMenu {
 					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			}
 		} else {
-			System.out.println("El catálogo está vacío.\n");
+			System.out.println("El catálogo se ecuentra vacío.\n");
 			controlError = true;
 		}
 	}

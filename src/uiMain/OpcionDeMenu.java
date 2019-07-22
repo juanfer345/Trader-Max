@@ -24,8 +24,8 @@ import uiMain.MenuConsola.MostrarResenas;
 import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Administrador.AgregarOpcion;
-import uiMain.MenuConsola.Cuenta.Administrador.CuentasAdmin;
-import uiMain.MenuConsola.Cuenta.Administrador.EliminarCuenta;
+import uiMain.MenuConsola.Cuenta.Administrador.MostrarCuentasAvtivas;
+import uiMain.MenuConsola.Cuenta.Administrador.BloquearCuenta;
 import uiMain.MenuConsola.Cuenta.Administrador.EliminarOpcion;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenu;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenuDisponible;
@@ -73,7 +73,7 @@ public abstract class OpcionDeMenu {
 				new BorrarHistorial(), new ComprarProducto(), new MostrarCarrito(), new MostrarHistorial(), 
 				new QuitarProductoCarrito(), new VaciarCarrito(), new CambiarPrecio(), new EliminarProductoCatalogo(), 
 				new ModificarCantidad(), new SubirProducto(), new VerProductos(), new AgregarOpcion(), 
-				new CuentasAdmin(), new EliminarCuenta(), new EliminarOpcion(), new MostrarMenu(), 
+				new MostrarCuentasAvtivas(), new BloquearCuenta(), new EliminarOpcion(), new MostrarMenu(), 
 				new MostrarMenuDisponible(), new MostrarTodasLasOpciones(), new MostrarUsuario(), new CerrarSesion(), 
 				new Salir() }));
 	}

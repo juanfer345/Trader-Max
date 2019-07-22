@@ -55,9 +55,10 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 	// Crea un nuevo menú por defecto
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] {
-				new SubirProducto(), new EliminarProductoCatalogo(), new ModificarCantidad(), 
-				new CambiarPrecio(), new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(), 
-				new MostrarResenas(), new VerProductos(), new CerrarSesion(), new Salir()}));
+				new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(), 
+				new MostrarResenas(), new SubirProducto(), new VerProductos(), 
+				new ModificarCantidad(), new CambiarPrecio(), new EliminarProductoCatalogo(), 
+				new CerrarSesion(), new Salir()}));
 	}
 
 	public int getTotalDeOpcionesDisponibles() {
@@ -65,6 +66,7 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 	}
 
 	public int getTotalDeProductosSubidos() {return totalDeProductosSubidos;}
+	public void setTotalDeProductosSubidos(int total) {totalDeProductosSubidos += total;}
 
 	//Muestra la información de todos los productos subidos que se encuentran en el catálogo
 	public String mostrarProductos() {
@@ -95,7 +97,7 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 		Producto prod = new Producto(nombreProducto, categorias[categoria], this, precio, cantidad);
 		catalogo.put(prod.getId(), prod);
 		totalDeProductosSubidos ++;
-		return "\nSe ha agregado correctamente el producto al catálogo con la siguiente información: " + 
+		return "\nSe ha agregado correctamente el producto al catálogo con la siguiente información: \n" + 
 		prod.toString() + ", Cantidad: " + cantidad + "]\n";
 		
 	}
@@ -124,14 +126,14 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 				prod.setPrecio(precio);
 				
 				OpcionDeMenu.controlError = true;
-				return "Se ha cambiado el precio del producto: " + prod.getNombreProducto() + ". Precio nuevo: " + prod.getPrecio() + "\n";
+				return "Se ha cambiado el precio del producto \"" + prod.getNombreProducto() + "\". Nuevo precio: " + prod.getPrecio() + "\n";
 			}
 			else {
-				return "Usted no es propietario de este producto";
+				return "\nUsted no es propietario de este producto.";
 			}
 			
 		} else {
-			return "Producto no encontrado, no se puede cambiar el precio.\n";
+			return "\nProducto no encontrado, no se puede cambiar el precio.";
 		}
 	}
 
@@ -161,26 +163,26 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 					//Sumando la cantidad
 					prod.setCantidad(prod.getCantidad() + cantidad);
 					OpcionDeMenu.controlError = true;
-					return "Se aumentó la cantidad del producto: " + prod.getNombreProducto() + ". Cantidad actual: " + prod.getCantidad() + "\n";
+					return "Se aumentó la cantidad del producto \"" + prod.getNombreProducto() + "\". Nueva cantidad: " + prod.getCantidad() + "\n";
 				}
 				else {
 					//Disminuyendo la cantidad
 
 					//Condicional para cantidades resultantes negativas
 					if (prod.getCantidad() - cantidad >= 0) {
-						prod.setCantidad(prod.getCantidad() + cantidad);
+						prod.setCantidad(prod.getCantidad() - cantidad);
 						OpcionDeMenu.controlError = true;
-						return "Se redujo la cantidad del producto: " + prod.getNombreProducto() + ". Cantidad actual: " + prod.getCantidad() + "\n";
+						return "Se redujo la cantidad del producto \"" + prod.getNombreProducto() + "\". Nueva cantidad: " + prod.getCantidad() + "\n";
 					} else {
 						return "No hay suficientes productos, no se puede disminuir esta cantidad";
 					}
 				}
 			}
 			else {
-				return "Usted no es propietario de este producto.\n";
+				return "\nUsted no es propietario de este producto.";
 			}
 		} else {
-			return "Producto no encontrado, no se puede cambiar su cantidad.\n";
+			return "\nProducto no encontrado, no se puede cambiar su cantidad.";
 		}
 	}
 
@@ -209,19 +211,19 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 				catalogo.remove(codigoProducto);
 				totalDeProductosSubidos --;
 				OpcionDeMenu.controlError = true;
-				return "Se ha cambiado eliminado el producto: " + prod.getNombreProducto() + " del catálogo\n";
+				return "Se ha cambiado eliminado el producto \"" + prod.getNombreProducto() + "\" del catálogo\n";
 			}
 			else {
 				return "Usted no es propietario de este producto";
 			}
 			
 		} else {
-			return "Producto no encontrado, no se puede eliminar.\n";
+			return "Producto no encontrado, no se puede eliminar.";
 		}
 	}
 
 	@Override
 	public String toString() {
-		return super.toString() + "Publicaciones en el catálogo:" + totalDeProductosSubidos + "]";
+		return super.toString() + ", Publicaciones en el catálogo:" + totalDeProductosSubidos + "]";
 	}
 }
