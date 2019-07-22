@@ -10,6 +10,7 @@ public class MostrarTodasLasOpciones extends OpcionDeMenu {
 	public void ejecutar() throws NumberFormatException, IOException {
 
 		//Guardado de mensaje principal
+		System.out.println();
 		sb.append("Usted ha elegido mostrar todas las opciones de menu:\n");
 		sb.append("0: Cancelar\n");
 		sb.append("1: Continuar\n");
@@ -20,6 +21,8 @@ public class MostrarTodasLasOpciones extends OpcionDeMenu {
 
 		//Mostrado de todas las opciones
 		System.out.println(ImprimirTodasLasOpciones());
+		if (!OpcionDeMenu.controlError)
+			System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 	}
 
 	@Override

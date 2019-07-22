@@ -22,24 +22,27 @@ public class AgregarResena extends OpcionDeMenu{
 		 */
 
 		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
-		int idProducto, cantEst;
+		int idProducto;
+		byte cantEst;
 		String comentario = "";
 
 		if (!comp.getHistorial().isEmpty()) {
 
-			sb.append("Historial de productos comprados:\n");
+			System.out.println();
+			sb.append("A continuación se muestra el historial con los productos que compraste. \n");
 			sb.append(comp.mostrarHistorial());
+			
 			while (!controlError) {
 
 				//Impresión del historial
 				System.out.println(sb);
 
 				//Ingreso del código
-				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto", "El dato que ingresó como código es invalido, vuelva a intentarlo");
+				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto al que le desea añadir la reseña", "El dato que ingresó como código es invalido, vuelva a intentarlo");
 				if (controlError) {System.out.println(); return;}
 
 				//Ingreso de las estrellas
-				cantEst = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el numero de estrellas", "El dato que ingresó como numero de estrellas es invalido, vuelva a intentarlo");
+				cantEst = ControlErrorDatos.controlByte((byte) 1, (byte) 5, "Ingrese el numero de estrellas", "El dato que ingresó como numero de estrellas es invalido, vuelva a intentarlo");
 				if (controlError) {System.out.println(); return;}
 
 				//Ingreso del comentario
@@ -48,6 +51,8 @@ public class AgregarResena extends OpcionDeMenu{
 
 				//Ejecución del método
 				System.out.println(comp.anadirResena(idProducto, cantEst, comentario));
+				if (!OpcionDeMenu.controlError)
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			}
 		} else {
 			System.out.println("Su historial está vacio, no puede agregar reseñas.\n");

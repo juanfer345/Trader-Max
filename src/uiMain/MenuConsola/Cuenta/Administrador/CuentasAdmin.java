@@ -11,8 +11,9 @@ public class CuentasAdmin extends OpcionDeMenu {
 
 	@Override
 	public void ejecutar() throws IOException {
-		
-		sb.append("\nUsted ha elegido la opción para mostrar el número total de cuentas.");
+
+		System.out.println();
+		sb.append("Usted ha elegido la opción para mostrar el número total de cuentas.");
 		sb.append("\n0: Volver al menú");
 		sb.append("\n1: Continuar\n");
 		
@@ -22,8 +23,10 @@ public class CuentasAdmin extends OpcionDeMenu {
 
 		//Impresión del total de cuentas
 		System.out.println(((Administrador) InicializacionAplicacion.usuarioActivo).numeroCuentas());
+		if (!OpcionDeMenu.controlError)
+			System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 	}
 
 	@Override
-	public String toString() {return "Numero de cuentas";}
+	public String toString() {return "Mostrar el numero de cuentas inscritas";}
 }

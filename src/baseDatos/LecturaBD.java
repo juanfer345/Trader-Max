@@ -122,8 +122,8 @@ public class LecturaBD {
         	colaAux = subDatos(dat[6], colaAux);		//Referencias a los productos del historial
         	
         	// Condicional para guardar la condición de que se tienen productos en el historial
-        	if (!colaAux.isEmpty()) {
-            	colaAuxProd.add(colaAux.size() - 2);
+        	if (colaAux.size() > 1) {
+            	colaAuxProd.add(colaAux.size() - 1);
         	} else {
             	colaAuxProd.add(0);
         	}
@@ -314,8 +314,8 @@ public class LecturaBD {
             BDCuentasBancarias.get(aux).setPropietario(entry.getValue());
             
             // Asignación de productos al historial del comprador
-            if ((n = cnProdComp.poll()) != 0) {
-                for (i = 0; i < n; i++) {
+            if ((n = cnProdComp.poll()) > 0) {
+                for (i = 0; i < n / 2; i++) {
                 	entry.getValue().getHistorial().put((auxComp.get(entry.getKey())).poll(), (auxComp.get(entry.getKey())).poll());
                 }
             }

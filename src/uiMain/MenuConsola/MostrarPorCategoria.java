@@ -8,14 +8,13 @@ package uiMain.MenuConsola;
 
 import java.io.IOException;
 
-import gestorAplicacion.Usuarios.Cuenta;
-import gestorAplicacion.Usuarios.InterfazCategorias;
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
+import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.ControlErrorDatos;
 import uiMain.OpcionDeMenu;
 
-public class MostrarPorCategoria extends OpcionDeMenu implements InterfazCategorias { // opcion 3
+public class MostrarPorCategoria extends OpcionDeMenu { // opcion 3
 
 	public void ejecutar() throws NumberFormatException, IOException { 
 		/*
@@ -23,22 +22,24 @@ public class MostrarPorCategoria extends OpcionDeMenu implements InterfazCategor
 		            controles de error del ingreso de datos
 		 */
 
-		byte seleccion, i;
+		byte seleccion;
 
 		if (!Cuenta.getCatalogo().isEmpty()) {
 
 			//Guardado de mensaje principal
-			sb.append("\nPor favor elija la categoría ingresando su índice:\n");
-			for (i = 0; i < categorias.length; i++) {
-				sb.append((i + 1) + ". " + categorias[i] + '\n');
-			}
+			System.out.println();
+			sb.append("Por favor elija la categoría ingresando su índice:\n");
+			sb.append(Producto.getCategorias());
+			sb.append("Seleccion");
 			
 			//Selección por parte del usuario
 			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) Producto.categorias.length, sb.toString(), "Por favor ingrese un número entero");
 			if (controlError) {System.out.println(); return;}
 			
 			//Ejecución del método
-			System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCategoria(seleccion));
+			System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCategoria((byte) (seleccion - 1)));
+			if (!OpcionDeMenu.controlError)
+				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			
 		}
 		else {

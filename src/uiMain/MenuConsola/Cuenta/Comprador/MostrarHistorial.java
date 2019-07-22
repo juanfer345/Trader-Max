@@ -21,26 +21,28 @@ public class MostrarHistorial extends OpcionDeMenu {
 		 * controles de error del ingreso de datos
 		 */
 
-		StringBuilder sb = new StringBuilder();
-		sb.append("\nUsted ha elegido la opcion para mostrar su historial de compras. ¿Que desea hacer?");
-		sb.append("\n0. Devolverse al menú y cancelar el proceso. ");
-		sb.append("\n1. Continuar con el proceso. ");
+		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
+byte seleccion;
+		
+		//Guardado de mensaje principal
 
 		if (!comp.getHistorial().isEmpty()) {
 
-			sb.append("\nUsted ha elegido la opcion para mostrar su historial de compras. ¿Que desea hacer?");
-			sb.append("\n0. Volver al menú y cancelar el proceso\n");
-			sb.append("\n1. Continuar con el proceso\n");
+			System.out.println();
+			sb.append("Usted ha elegido la opcion para mostrar su historial de compras. ¿Que desea hacer?");
+			sb.append("\n1. Continuar con el proceso.");
+			sb.append("\n2. Volver al menú y cancelar el proceso.\n");
+			sb.append("Selección");
 
 			// Ingreso del dato por parte del usuario
-			ControlErrorDatos.controlByte((byte) 1, (byte) 1, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
-			if (controlError) {System.out.println(); return;}
+			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
+			if (controlError || seleccion == 2) {System.out.println(); return;}
 
 			// Ejecución del método
 			System.out.println(comp.mostrarHistorial());
 		}
 		else {
-			System.out.println("El historial está vacío.\n");
+			System.out.println("Su historial se encuentra vacío, no hay reseñas para mostrar.\n");
 		}
 	}
 

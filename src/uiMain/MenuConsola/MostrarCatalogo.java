@@ -21,18 +21,24 @@ public class MostrarCatalogo extends OpcionDeMenu {
 		 Propósito: Ejecutar el método mostrarCatalogo() haciendo los respectivos
 		            controles de error del ingreso de datos
 		 */
-		
-		sb.append("\nUsted ha elegido la opción para mostrar el catálogo de productos. ¿Qué desea hacer?");
-		sb.append("\n0. Volver al menú y cancelar el proceso. ");
-		sb.append("\n1. Continuar con el proceso. ");
 
+		byte seleccion; 
+		
+		System.out.println();
+		sb.append("Usted ha elegido la opción para mostrar el catálogo de productos. ¿Qué desea hacer?");
+		sb.append("\n1. Continuar con el proceso.");
+		sb.append("\n2. Volver al menú y cancelar el proceso.\n");
+		sb.append("Seleccion");
+		
 		if (!Cuenta.getCatalogo().isEmpty()) {
-			
+
 			//Selección por parte del usuario
-			ControlErrorDatos.controlByte((byte) 1, (byte) 1, sb.toString(), "Por favor ingrese un número entero");
-			if (controlError) {System.out.println(); return;}
-			
+			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
+			if (controlError || seleccion == 2) {System.out.println(); return;}
+
 			System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCatalogo());
+			if (!OpcionDeMenu.controlError)
+				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 		}
 		else {
 			System.out.println("El catálogo se encuentra vacío.\n");

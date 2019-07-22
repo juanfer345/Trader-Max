@@ -20,6 +20,8 @@ public class MostrarMenuDisponible extends OpcionDeMenu {
 
 		//Ejecución del método
 		System.out.println(usuario.getMenuDeConsola().mostrarOpcionesDisponibles(tipoDeCuenta));
+		if (!OpcionDeMenu.controlError)
+			System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 	}
 
 	@Override

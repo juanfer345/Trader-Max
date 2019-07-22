@@ -14,17 +14,19 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
+import gestorAplicacion.InicializacionAplicacion;
+import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.MenuDeConsola;
 import uiMain.OpcionDeMenu;
 
-public abstract class Cuenta implements InterfazCategorias {
+public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 
 	protected static HashMap<Integer, Producto> catalogo = new HashMap<>();
 	MenuDeConsola menu;
 //	protected static ArrayList<OpcionDeMenu> cambioOpDeMen;
 	private String nombre, correo, password;
-	public int id;
+	private int id;
 	private int cedula;
 	static int contador;
 	static int totalCuentas;
@@ -66,7 +68,6 @@ public abstract class Cuenta implements InterfazCategorias {
 	public Cuenta() {setMenuPredeterminado();}
 	
 	// Metodos de retorno y modificación de los atributos de la clase
-	
 	public String getNombre() {return nombre;}
 	
 	public void setNombre(String nombre) {this.nombre = nombre;}
@@ -152,6 +153,10 @@ public abstract class Cuenta implements InterfazCategorias {
 		if (seleccion == 1) { // 1 para salir de la aplicación
 			OpcionDeMenu.controlError = true;
 			MenuDeConsola.SalirApp = true;
+			//Devolviendo los productos no comprados en caso de ser comprador
+			if (InicializacionAplicacion.usuarioActivo instanceof Comprador) {
+				CarritoDeCompras.devolverProductos();
+			}
 			return "\nLa aplicación será cerrada";
 		} else { // 2 para continuar en la aplicación
 			OpcionDeMenu.controlError = true;
@@ -175,9 +180,9 @@ public abstract class Cuenta implements InterfazCategorias {
 		if (catalogo.containsKey(codigo)) {
 			prod = catalogo.get(codigo);
 			OpcionDeMenu.controlError = true;
-			return prod.toString() + "\n";
+			return "\nEl producto ha sido encontrado:\n" + prod.toString() + ", Cantidad: " + prod.getCantidad() + "]\n";
 		} else {
-			return "Producto no encontrado.\n";
+			return "Producto no encontrado, intentalo de nuevo.\n";
 		}
 	}
 
@@ -193,21 +198,22 @@ public abstract class Cuenta implements InterfazCategorias {
 	      Busqueda exitosa ---> Devuelve la informacion del producto {Código, nombre, precio, categoría, cantidad}
     */
 		StringBuilder sb = new StringBuilder();
-
+		Producto prod;
+		
 		// Búsqueda de cada producto
-		catalogo.forEach((k, v) -> {
-			Producto prod = catalogo.get(k);
+		for (Map.Entry<Integer, Producto> entry: catalogo.entrySet()) {
+			prod = entry.getValue();
 			if (prod.getNombreProducto().contains(nombre)) {
-				sb.append(prod.toString()).append('\n');
+				sb.append(prod.toString()).append(", Cantidad: ").append(prod.getCantidad()).append("]\n");
 			}
-		});
+		}
 
 		// Comprobación del resultado
 		if (sb.length() > 0) {
 			OpcionDeMenu.controlError = true;
-			return "\nEl producto fue encontrado: \n" + sb.toString();
+			return "\nSu busqueda produjo resultados: \n" + sb.toString();
 		} else {
-			return "Producto no encontrado.\n";
+			return "\nNombre de producto no encontrado, intentalo de nuevo.\n";
 		}
 	}
 
@@ -222,10 +228,12 @@ public abstract class Cuenta implements InterfazCategorias {
     */
 
 		StringBuilder sb = new StringBuilder();
-
+		Producto prod;
+		
 		sb.append("\nCatálogo de TRADER-MAX: \n");
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-			sb.append(entry.getValue().toString() + '\n');
+		prod = entry.getValue();
+			sb.append(prod.toString()).append(", Cantidad: ").append(prod.getCantidad()).append("]\n");
 		}
 		OpcionDeMenu.controlError = true;
 		return sb.toString();
@@ -244,23 +252,23 @@ public abstract class Cuenta implements InterfazCategorias {
 	                            {Código, nombre, precio, cantidad..}
     */
 		StringBuilder sb = new StringBuilder();
-
+		Producto prod;
+		
 		// Verificación de índice válido 
-		cat--;
 		if (cat >= 0 && cat < categorias.length) {
-
+				
 			// Ciclo para hallar cada producto de la categoría adecuada
 			for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-				Producto prod = entry.getValue();
-				if (prod.getCategoria() == Producto.categorias[cat]) {
-					sb.append(prod.toString() + '\n');
+				prod = entry.getValue();
+				if (prod.getCategoria().equals(Producto.categorias[cat])) {
+					sb.append(prod.toString()).append(", Cantidad: ").append(prod.getCantidad()).append("]\n");
 				}
 			}
 			OpcionDeMenu.controlError = true;
 			if (sb.length() > 0) {
-				return "Categoría " + Producto.categorias[cat] + ":\n" + sb.toString();
+				return "\nCategoría " + Producto.categorias[cat] + ":\n" + sb.toString();
 			} else {
-				return "La categoría se enguentra vacia.\n";
+				return "La categoría \"" + Producto.categorias[cat] + "\" se encuentra vacia.\n";
 			} 
 
 		} else {
@@ -269,8 +277,18 @@ public abstract class Cuenta implements InterfazCategorias {
 	}
 
 	@Override
+	//Comparador de cuentas (devuelve 0 si las cuentas tienen los mismos atributos comunes)
+	public int compareTo(Cuenta cuenta) {
+		int result;
+		result = nombre.compareTo(cuenta.nombre);
+		if (result == 0) {result = correo.compareTo(cuenta.correo);}
+		if (result == 0) {result = password.compareTo(cuenta.password);}
+		if (result == 0) {result = Integer.compare(cedula, cuenta.cedula);}
+		return result;
+	}
+
+	@Override
 	public String toString() {
-		return "Cuenta [nombre=" + nombre + ", correo=" + correo + ", password=" + password + ", id=" + id + ", cedula="
-				+ cedula;
+		return "[Código:" + id + ", Nombre:" + nombre + ", Correo:" + correo + ", Contraseña:" + password + ", cedula:" + cedula;
 	}
 }

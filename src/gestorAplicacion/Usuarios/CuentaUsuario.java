@@ -10,12 +10,8 @@
 
 package gestorAplicacion.Usuarios;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
-import gestorAplicacion.Materiales.Producto;
 import uiMain.OpcionDeMenu;
 
 abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias{
@@ -50,18 +46,7 @@ abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias
 		if (seleccion == 1) {
 			// se devuelve la cantidad de productos que tenía el carrito.
 			if (InicializacionAplicacion.usuarioActivo instanceof Comprador) {
-				
-				HashMap<Integer, Producto> cat = Cuenta.getCatalogo();
-				
-				if (CarritoDeCompras.getTotalproductos() > 0) {
-					//Se buscan los productos en el carrito
-					for (Map.Entry<Integer, Integer> entry : CarritoDeCompras.getProductos().entrySet()) {
-						int cant = entry.getValue(); 					// Extracción de la cantidad en la hash
-						int cod = entry.getKey(); 						// el codigo del producto
-						Producto prod = cat.get(cod);  					//se obtiene el producto correspondiente al codigo 
-						prod.setCantidad(prod.getCantidad() + cant); 	//se asigna la cantidad que estaba al principio
-					}
-				}
+				CarritoDeCompras.devolverProductos();
 			}
 			InicializacionAplicacion.setUsuarioActivo(new Visitante());
 			OpcionDeMenu.controlError = true;

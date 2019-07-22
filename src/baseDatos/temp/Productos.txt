@@ -1,1 +1,5 @@
+1;zapatos;Vivienda;400.0;4;11;1
+2;barquito;Deportes;90.0;143;11;#
+3;pezuña;Vestimenta;785.215;433;11;#
+4;armario;Vivienda;80.0;32;2;#
 #

@@ -15,7 +15,8 @@ public class MostrarUsuario extends OpcionDeMenu {
 	    byte tipoDeCuenta;
 
 	    //Guardado de mensaje principal
-		sb.append("\nPor favor elija su tipo de usuario:\n");
+		System.out.println();
+		sb.append("Por favor elija su tipo de usuario:\n");
 		sb.append("1: Comprador\n");
 		sb.append("2: Vendedor\n");
 		sb.append("3: Administrador\n");
@@ -32,6 +33,8 @@ public class MostrarUsuario extends OpcionDeMenu {
 			
 			//Ejecución del método
 			System.out.println(usuario.mostrarUsuario(idCuenta, tipoDeCuenta));
+			if (!OpcionDeMenu.controlError)
+				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 	    }
 	}
 	

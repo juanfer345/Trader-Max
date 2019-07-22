@@ -31,8 +31,16 @@ public class IniciarSesion extends OpcionDeMenu {
 		String correoIngresado, contrasenaIngresada;
 		byte tipoDeCuenta;
 
+		// Guardado de mensaje
+		System.out.println();
+		sb.append("Por favor elija su tipo de usuario:\n");
+		sb.append("1: Comprador.\n");
+		sb.append("2: Vendedor.\n");
+		sb.append("3: Administrador.\n");
+		sb.append("Seleccion");
+		
 		// Control de ingreso tipo de usuario
-		tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero");
+		tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
 		if (controlError) {System.out.println(); return;}
 
 		// Ejecución del método principal con control de error
@@ -43,14 +51,15 @@ public class IniciarSesion extends OpcionDeMenu {
 			if (controlError) {System.out.println();return;}
 
 			// Ingreso de contraseña
-			System.out.print("Contraseña: ");
+			System.out.print("Contraseña => ");
 			if (esByte(contrasenaIngresada = br.readLine().trim()) == 0) {
 				System.out.println(); return;
 			}
 
 			//Inicio de sesión
 			System.out.println(usuario.iniciarSesion(tipoDeCuenta, correoIngresado, contrasenaIngresada));
-			if (!controlError) System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
+			if (!OpcionDeMenu.controlError)
+				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 		}
 	}
 

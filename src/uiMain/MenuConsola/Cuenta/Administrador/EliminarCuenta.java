@@ -26,6 +26,8 @@ public class EliminarCuenta extends OpcionDeMenu {
 
 			//Ejecución del método
 			System.out.println(usuario.eliminarCuenta(idCuenta, tipoDeCuenta));
+			if (!OpcionDeMenu.controlError)
+				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 		}
 	}
 

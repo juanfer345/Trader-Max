@@ -46,7 +46,7 @@ public class Resena {
 	// Constructor para reseñas nuevas
 	public Resena(Comprador comp, String comentario, int estrellas) {
 		this.comp = comp;
-		this.comentario = comentario;
+		this.comentario = "\"" + comentario + "\"";
 		this.estrellas = estrellas;
 		id = contador++;
 	}
@@ -89,6 +89,6 @@ public class Resena {
 
 	@Override
 	public String toString() {
-		return "Reseña [Estrellas = " + estrellas + "\n Comentario = " + comentario + "]";
+		return "[Comprador: " + comp.getNombre() + ", Estrellas: " + estrellas + ", Comentario: " + comentario + "]";
 	}
 }

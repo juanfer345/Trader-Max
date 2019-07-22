@@ -18,6 +18,7 @@ public class EliminarOpcion extends OpcionDeMenu  {
 		byte tipoDeCuenta = 0, opcionUsuario = 0;
 
 	    //Guardado de mensaje principal
+		System.out.println();
 		sb.append("Elija el tipo de cuenta a la cual se le desea agregar la opción\n");
 		sb.append("1: Comprador.\n");
 		sb.append("2: Vendedor.\n");
@@ -46,6 +47,9 @@ public class EliminarOpcion extends OpcionDeMenu  {
 
 			//Ejecución del método principal
 			System.out.println(usuario.getMenuDeConsola().eliminarOpcion(idUsuario, tipoDeCuenta, (byte) (opcionUsuario - 1)));
+			if (!OpcionDeMenu.controlError)
+				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
+		}
 	}
 	
 	@Override

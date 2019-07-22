@@ -32,7 +32,8 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 		if (vend.getTotalDeProductosSubidos() == 0) {
 
 			//Guardado de mensaje principal (incluyendo lista de productos)
-			sb.append("\nEsta opción es para eliminar un producto del cátalogo");
+			System.out.println();
+			sb.append("Esta opción es para eliminar un producto del cátalogo");
 			sb.append("\nRecuerde que el producto a eliminar debe ser de su propiedad");
 			sb.append(vend.mostrarProductos());
 
@@ -46,6 +47,8 @@ public class EliminarProductoCatalogo extends OpcionDeMenu {
 				if (controlError) {System.out.println(); return;}
 
 				System.out.println(vend.eliminarProductoCatalogo(idProducto));
+				if (!OpcionDeMenu.controlError)
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			}
 		}
 	}

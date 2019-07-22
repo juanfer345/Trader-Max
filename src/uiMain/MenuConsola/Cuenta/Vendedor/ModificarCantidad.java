@@ -34,7 +34,8 @@ public class ModificarCantidad extends OpcionDeMenu {
 		if (vend.getTotalDeProductosSubidos() == 0) {
 
 			//Guardado de mensaje principal (incluyendo lista de productos)
-			sb.append("\nEsta opción es para cambiar la cantidad un producto del catálogo");
+			System.out.println();
+			sb.append("Esta opción es para cambiar la cantidad un producto del catálogo");
 			sb.append("\nRecuerde que el producto debe ser de su propiedad \n");
 			sb.append(vend.mostrarProductos());
 
@@ -57,6 +58,8 @@ public class ModificarCantidad extends OpcionDeMenu {
 				
 				//Ejecución del método
 				System.out.println(vend.modificarCantidad(idProducto, cantidad, operacion));
+				if (!OpcionDeMenu.controlError)
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			}
 		}
 	}

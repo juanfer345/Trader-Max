@@ -366,7 +366,7 @@ public class MenuDeConsola {
 		StringBuilder sb = new StringBuilder();
 		
 		for (int i = 0; i < menu.size(); i++) {
-			sb.append((i + 1) + ". " + menu.get(i).toString() + "\n");
+			sb.append((i + 1) + ". " + menu.get(i).toString() + ".\n");
 		}
 		return sb.toString();
 	}

@@ -22,6 +22,8 @@ public class AgregarACarrito extends OpcionDeMenu {
 
 		int idProducto, cantProd;
 
+		System.out.println();
+		
 		// Verificación de catalogo no vacío
 		if (!Cuenta.getCatalogo().isEmpty()) {
 			
@@ -36,6 +38,8 @@ public class AgregarACarrito extends OpcionDeMenu {
 				
 				//Ejecución del método
 				System.out.println(CarritoDeCompras.agregarACarrito(idProducto, cantProd));
+				if (!OpcionDeMenu.controlError)
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			}
 		}
 	}

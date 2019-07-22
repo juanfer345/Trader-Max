@@ -29,15 +29,17 @@ public class QuitarProductoCarrito extends OpcionDeMenu { // opcion 9
 			while (!controlError) {
 
 				//Ingreso del código del producto
-				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea eliminar", "El dato que ingreso como código es invalido, vuelva a intentarlo");
+				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea eliminar", "El dato que ingresó como código es invalido, vuelva a intentarlo");
 				if (controlError) {System.out.println(); return;}
 
 				//Ingreso de la cantidad de producto
-				cantidadProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "IIngrese la cantidad de elementos que desea eliminar", "El dato que ingreso como cantidad es invalido, vuelva a intentarlo");
+				cantidadProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese la cantidad de elementos que desea eliminar", "El dato que ingresó como cantidad es invalido, vuelva a intentarlo");
 				if (controlError) {System.out.println(); return;}
 
 				//Ejecución del método
 				System.out.println(CarritoDeCompras.quitarProducto(idProducto, cantidadProducto));
+				if (!OpcionDeMenu.controlError)
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			}
 		} 
 		else {

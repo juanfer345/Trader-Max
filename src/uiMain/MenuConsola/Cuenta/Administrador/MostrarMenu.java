@@ -16,6 +16,7 @@ public class MostrarMenu extends OpcionDeMenu {
 		byte tipoDeCuenta;
 
 	    //Guardado de mensaje principal
+		System.out.println();
 		sb.append("Elija el tipo de cuenta de la cual desea ver sus opciones de menú\n");
 		sb.append("1: Comprador.\n");
 		sb.append("2: Vendedor.\n");
@@ -32,6 +33,8 @@ public class MostrarMenu extends OpcionDeMenu {
 
 			//Ejecución del método
 			System.out.println(usuario.getMenuDeConsola().mostrarOpcionesDeMenu(idCuenta, tipoDeCuenta));
+			if (!OpcionDeMenu.controlError)
+				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 		}
 	}
 

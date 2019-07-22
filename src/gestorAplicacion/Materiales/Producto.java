@@ -149,41 +149,40 @@ public class Producto implements InterfazCategorias {
 	}
 
 	// Modifica el atributo contador
-	public static void setMaxID(int contador) {
-		Producto.contador = contador + 1;
-	}
+	public static void setMaxID(int contador) {Producto.contador = contador + 1;}
 
 	// Para mostrar la reseñas de un producto en caso de que tenga
 	public String mostrarResenas() {
 
 		StringBuilder sb = new StringBuilder();
-
+		
+		sb.append("\nLas reseñas del producto: \n" + toString() + ", Cantidad: " + cantidad + "]\n" + "Se muestran a continuación:\n\n");
+		
 		if (!resenas.isEmpty()) {
 			resenas.forEach((k, v) -> {
-				sb.append(v);
+				int i = 1;
+				sb.append(i++).append(". ").append(v).append('\n');
 			});
 			OpcionDeMenu.controlError = true;
 			return sb.toString();
 		} else {
 			OpcionDeMenu.controlError = true;
-			return "Este producto no tiene reseñas.\n";
+			return "\nEl producto no posee reseñas:\n" + toString() + ", Cantidad: " + cantidad + "]\n";
 		}
 	}
 
-	// Retorna la una lista de las categorías
-	public static String[] getCategorias() {
-		String mostrar[] = new String[10];
-		for (int i = 0; i < 10; i++) { // Recorrer el Array de categorias
-			mostrar[i] = categorias[i];
+	// Retorna la una lista de las categorías con fines de impresión
+	public static String getCategorias() {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < categorias.length; i++) {
+			sb.append((i + 1) + ". " + categorias[i] + '\n');
 		}
-
-		return mostrar;
+		return sb.toString();
 	}
 
 	// Para imprimir un Producto
 	public String toString() {
-		return "Producto [Nombre: " + nombreProducto + ", Categoria: " + categoria + ", Precio: " + precio
-				+ ", Código: " + id;
+		return "[Código: " + id + ", Nombre: " + nombreProducto + ", Categoria: " + categoria + ", Precio: " + precio + ", Reseñas: " + resenas.size();
 	}
 
 	// Para cambiar el atributo vendedor

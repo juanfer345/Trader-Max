@@ -31,7 +31,7 @@ import uiMain.MenuConsola.Cuenta.Vendedor.VerProductos;
 public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 
 	// Atributos
-	private int totalDeProductosSubidos;
+	private int totalDeProductosSubidos = 0;
 	private static final int totalDeOpcionesDisponibles = 8;
 
 	// Constructor para usuarios existentes (Llama al super)
@@ -39,6 +39,11 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 		super(idCuenta, nombre, correo, password, cedula);
 	}
 
+	// Constructor para usuarios existentes con cuenta repetida (Llama al super)
+	public Vendedor(int idCuenta, String nombre, String correo, String password, int cedula, int idCuentaBancaria) {
+		super(idCuenta, nombre, correo, password, cedula, idCuentaBancaria);
+	}
+	
 	// Constructor para usuarios nuevos (Llama al super)
 	public Vendedor(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
@@ -61,8 +66,6 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 
 	public int getTotalDeProductosSubidos() {return totalDeProductosSubidos;}
 
-	public void setTotalDeProductosSubidos(int candidadAgregada) {this.totalDeProductosSubidos += candidadAgregada;}
-
 	//Muestra la información de todos los productos subidos que se encuentran en el catálogo
 	public String mostrarProductos() {
 		
@@ -71,7 +74,7 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 		sb.append("\nTotal de productos subidos: ").append(totalDeProductosSubidos).append('\n');
 		
 		for (Map.Entry<Integer, Producto> entry : Cuenta.getCatalogo().entrySet()) {
-			if (entry.getValue().getVendedor().getId() == id) {
+			if (entry.getValue().getVendedor().getId() == getId()) {
 				sb.append(entry.getValue().toString()).append(", Cantidad: ").
 				append(entry.getValue().getCantidad()).append("]\n");
 			}
@@ -91,8 +94,8 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 		
 		Producto prod = new Producto(nombreProducto, categorias[categoria], this, precio, cantidad);
 		catalogo.put(prod.getId(), prod);
-		
-		return "Se ha agregado correctamente el producto al catálogo con la siguiente información:" + 
+		totalDeProductosSubidos ++;
+		return "\nSe ha agregado correctamente el producto al catálogo con la siguiente información: " + 
 		prod.toString() + ", Cantidad: " + cantidad + "]\n";
 		
 	}
@@ -204,7 +207,7 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 			if (prod.getVendedor().equals(this)) {
 				
 				catalogo.remove(codigoProducto);
-				
+				totalDeProductosSubidos --;
 				OpcionDeMenu.controlError = true;
 				return "Se ha cambiado eliminado el producto: " + prod.getNombreProducto() + " del catálogo\n";
 			}
@@ -215,5 +218,10 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 		} else {
 			return "Producto no encontrado, no se puede eliminar.\n";
 		}
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "Publicaciones en el catálogo:" + totalDeProductosSubidos + "]";
 	}
 }

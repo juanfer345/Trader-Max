@@ -18,8 +18,8 @@ import uiMain.OpcionDeMenu;
 import uiMain.MenuConsola.BuscarProducto;
 import uiMain.MenuConsola.MostrarCatalogo;
 import uiMain.MenuConsola.MostrarPorCategoria;
-import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.MostrarResenas;
+import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Visitante.IniciarSesion;
 import uiMain.MenuConsola.Visitante.Registrar;
 
@@ -54,8 +54,10 @@ public class Visitante extends Cuenta {
 		 */
 
 		Cuenta usuarioActivo = null;
+		CuentaConBanco usuarioRepetido = null;
 		HashMap<Integer, ? extends Cuenta> baseDeDatos = null;
-		boolean correoRegistrado = false;
+		String mensaje = null;
+		int correoRegistrado = 0;
 
 		switch (tipoDeCuenta) {
 		case 1:
@@ -75,38 +77,109 @@ public class Visitante extends Cuenta {
 		// Búsqueda de correo en la base de datos seleccionada
 		correoRegistrado = busquedaCorreo(baseDeDatos, correoIngresado);
 
-		if (!correoRegistrado) {
+		if (correoRegistrado == -1) {
 			// Caso A: El correo no se encuentra repetido
 
 			switch (tipoDeCuenta) {
 			case 1:
 				// Caso A: Registro de un usuario comprador
-				usuarioActivo = new Comprador(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
-				InicializacionAplicacion.getBDCompradores().put(usuarioActivo.getId(), (Comprador) usuarioActivo);
+				
+				//Condicional para cuentas con el mismo correo
+				baseDeDatos = InicializacionAplicacion.getBDVendedores();
+				if ((correoRegistrado = busquedaCorreo(baseDeDatos, correoIngresado)) == -1) {
+					
+					//Caso A.a: El correo no se encuentra registrado como Vendedor
+					usuarioActivo = new Comprador(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
+					InicializacionAplicacion.setBDCompradores(usuarioActivo.getId(), (Comprador) usuarioActivo);
+					InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
+					OpcionDeMenu.controlError = true;
+					mensaje = "\nRegistro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
+				}
+				else {
+					//Caso A.b: El correo se encuentra registrado como Vendedor
+					usuarioActivo = new Comprador();
+					usuarioActivo.setNombre(nombreDado);
+					usuarioActivo.setCorreo(correoIngresado);
+					usuarioActivo.setPassword(contrasenaIngresada);
+					usuarioActivo.setCedula(cedulaIngresada);
+					
+					usuarioRepetido = (Vendedor) baseDeDatos.get(correoRegistrado);
+					
+					//Verificación de que ambas cuentas posean los mismos elementos
+					if (usuarioRepetido.compareTo(usuarioActivo) == 0) {
+						//Las cuentas coinciden
+						usuarioActivo = new Comprador(usuarioRepetido.getId(), nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada, usuarioRepetido.getCuentaBancaria().getId());
+						InicializacionAplicacion.setBDCompradores(usuarioActivo.getId(), (Comprador) usuarioActivo);
+						InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
+						OpcionDeMenu.controlError = true;
+						mensaje = "\nRegistro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n" + 
+						          "el correo ingresado ya se encuentra registrado como Vendedor, por ello comparte la cuenta "
+						          + "bancaria con su cuenta registrada como Comprador.\n";
+					}
+					else {
+						mensaje = "\nEste correo ingresado ya se encuentra registrado ya se encuentra registrado como Vendedor, "
+								+ "por ello los atributos de ambas deben coincidir, por favor intentelo de nuevo.\n";
+					}
+				}
 				break;
 			case 2:
 				// Caso B: Registro de un usuario vendedor
-				usuarioActivo = new Vendedor(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
-				InicializacionAplicacion.getBDVendedores().put(usuarioActivo.getId(), (Vendedor) usuarioActivo);
+				
+				//Condicional para cuentas con el mismo correo
+				baseDeDatos = InicializacionAplicacion.getBDCompradores();
+				if ((correoRegistrado = busquedaCorreo(baseDeDatos, correoIngresado)) == -1) {
+					
+					//Caso A.a: El correo no se encuentra registrado como Comprador
+					usuarioActivo = new Vendedor(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
+					InicializacionAplicacion.getBDVendedores().put(usuarioActivo.getId(), (Vendedor) usuarioActivo);
+					InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
+					OpcionDeMenu.controlError = true;
+					mensaje = "\nRegistro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
+				}
+				else {
+					//Caso A.b: El correo se encuentra registrado como Comprador
+					usuarioActivo = new Vendedor();
+					usuarioActivo.setNombre(nombreDado);
+					usuarioActivo.setCorreo(correoIngresado);
+					usuarioActivo.setPassword(contrasenaIngresada);
+					usuarioActivo.setCedula(cedulaIngresada);
+					
+					usuarioRepetido = (Comprador) baseDeDatos.get(correoRegistrado);
+					
+					//Verificación de que ambas cuentas posean los mismos elementos
+					if (usuarioRepetido.compareTo(usuarioActivo) == 0) {
+						//Las cuentas coinciden
+						usuarioActivo = new Vendedor(usuarioRepetido.getId(), nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada, usuarioRepetido.getCuentaBancaria().getId());
+						InicializacionAplicacion.getBDVendedores().put(usuarioActivo.getId(), (Vendedor) usuarioActivo);
+						InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
+						OpcionDeMenu.controlError = true;
+						mensaje = "\nRegistro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n" + 
+						          "el correo ingresado ya se encuentra registrado como Vendedor, por ello comparte la cuenta "
+						          + "bancaria con su cuenta registrada como Comprador.\n";
+					}
+					else {
+						mensaje = "\nEste correo ingresado ya se encuentra registrado ya se encuentra registrado como Comprador, "
+								+ "por ello los atributos de ambas deben coincidir, por favor intentelo de nuevo.\n";
+					}
+				}
 				break;
 			case 3:
 				// Caso C: Registro de un usuario Administrador
 				usuarioActivo = new Administrador(nombreDado, correoIngresado, contrasenaIngresada, cedulaIngresada);
-				InicializacionAplicacion.getBDAdministradores().put(usuarioActivo.getId(),
-						(Administrador) usuarioActivo);
+				InicializacionAplicacion.getBDAdministradores().put(usuarioActivo.getId(), (Administrador) usuarioActivo);
+				InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
+				OpcionDeMenu.controlError = true;
+				mensaje = "\nRegistro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
 				break;
 			}
-			InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
-			OpcionDeMenu.controlError = true;
-			return "\nRegistro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
+			return mensaje;
 		} else {
 			// Caso B: El correo se encuentra repetido
-			return "Este correo ya se encuentra registrado.\n";
+			return "Este correo ya se encuentra registrado, ingresa otro correo.\n";
 		}
 	}
 
-
-	private static boolean busquedaCorreo(HashMap<Integer, ? extends Cuenta> HM, String correoIngresado) {
+	private static int busquedaCorreo(HashMap<Integer, ? extends Cuenta> HM, String correoIngresado) {
 		/* 
 		   Propósito: Para buscar un correo y saber si se encuentra registrado
 		              (Ahorra espacio en método registrarse)
@@ -121,10 +194,10 @@ public class Visitante extends Cuenta {
 
 		for (Map.Entry<Integer, ? extends Cuenta> entry : HM.entrySet()) {
 			if ((entry.getValue().getCorreo().equals(correoIngresado))) {
-				return true;
+				return entry.getKey();
 			}
 		}
-		return false;
+		return -1;
 	}
 
 	public String iniciarSesion(byte tipoDeCuenta, String correoIngresado, String contrasenaIngresada) {
@@ -182,7 +255,6 @@ public class Visitante extends Cuenta {
 			return "El correo no se encuentra registrado, por favor intentelo de nuevo.\n";
 		}
 	}
-
 
 	private static int idCorreo(HashMap<Integer, ? extends Cuenta> HM, String correoIngresado) {
 		/* 

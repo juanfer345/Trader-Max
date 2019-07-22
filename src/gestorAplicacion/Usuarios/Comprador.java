@@ -52,13 +52,28 @@ public class Comprador extends CuentaConBanco {
 		historial = new HashMap<>();
 	}
 
-	public Comprador(String nombre, String correo, String password, int cedula) {
+	public Comprador(int idCuenta, String nombre, String correo, String password, int cedula, int idCuentaBancaria) {
 		/*
-		 Propósito: Constructor de Comprador para usuarios nuevos
+		  Propósito: Constructor de Comprador para usuarios nuevos con cuenta repetida
 		  
 		 Variables de entrada: 
+		 - int idCuenta: Identificador de la cuenta como comprador 
 		 - String nombre, int cedula: Datos personales del usuario 
 		 - String correo, password: Datos asignados al usuario para ingreso al programa
+		 */
+		super(idCuenta, nombre, correo, password, cedula, idCuentaBancaria); // Llamado a contructor de CuentaConBanco
+		carrito = new CarritoDeCompras(this);
+		historial = new HashMap<>();
+	}
+	
+	public Comprador(String nombre, String correo, String password, int cedula) {
+		/*
+			 Propósito: Constructor de Comprador para usuarios nuevos
+			  
+			 Variables de entrada: 
+			 - String nombre, int cedula: Datos personales del usuario 
+			 - String correo, password: Datos asignados al usuario para ingreso al programa
+			 - boolean match: Condicional para el caso de cuentas existentes con el mismo correo
 		 */
 		super(nombre, correo, password, cedula); // LLamado al contructor de CuentaConBanco
 		carrito = new CarritoDeCompras(this);
@@ -78,9 +93,9 @@ public class Comprador extends CuentaConBanco {
 		 */
 
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-				new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(), new AgregarACarrito(), 
-				new AgregarResena(), new BorrarHistorial(), new ComprarProducto(), new MostrarHistorial(), 
-				new MostrarResenas(), new QuitarProductoCarrito(), new VaciarCarrito(), new MostrarCarrito(), 
+				new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(), new MostrarResenas(), 
+				new AgregarACarrito(), new MostrarCarrito(), new ComprarProducto(), new QuitarProductoCarrito(), 
+				new VaciarCarrito(), new AgregarResena(), new MostrarHistorial(), new BorrarHistorial(), 
 				new CerrarSesion(), new Salir() }));
 	}
 
@@ -99,8 +114,7 @@ public class Comprador extends CuentaConBanco {
 		Comprador.carrito = new CarritoDeCompras(this);
 	}
 
-	// Devuelve un HashMap que contiene los productos del historial (Productos qu
-	// han sido comprados)
+	// Devuelve un HashMap que contiene los productos del historial (Productos que han sido comprados)
 	public HashMap<Integer, Integer> getHistorial() {return historial;}
 
 	public void setHistorial(int codigoProducto, int cantidadProducto) {historial.put(codigoProducto, cantidadProducto);}
@@ -110,14 +124,15 @@ public class Comprador extends CuentaConBanco {
 		 Propósito: Mostrar los productos que el usuario ha comprado
 		 */
 		StringBuilder sb = new StringBuilder();
+		sb.append("\nEl historial posee un total de ").append(historial.size());
 		
-		sb.append("\nTotal de productos en el historial = ").append(historial.size()).append('\n');
+		if (historial.size() > 1) {sb.append(" productos.\n");}
+		else {sb.append(" producto.\n");}
 		
 		historial.forEach((k, v) -> { // Ciclo para obtención e impresión de los productos
-			sb.append(v).append('\n');
+			sb.append(catalogo.get(k)).append(", Cantidad comprada: " + v + "]\n");
 		});
 
-		OpcionDeMenu.controlError = true;
 		return sb.toString();
 	}
 
@@ -126,7 +141,7 @@ public class Comprador extends CuentaConBanco {
 		 Propósito: Borrar el historial de compras del usuario
 		 */
 		historial.clear();
-		return "El historial se ha borrado exitosamente";
+		return "\nEl historial se ha borrado exitosamente.\n";
 	}
 
 	public String anadirResena(int codigo, int estrellas, String comentario) {
@@ -146,13 +161,18 @@ public class Comprador extends CuentaConBanco {
 
 			Producto prod = catalogo.get(codigo);								//Obtención del apuntador al producto
 			Resena rese = new Resena(this, comentario, estrellas);				//Creación nueva reseña
-			prod.setResenas(new Resena(this, comentario, estrellas));			//Añadido de la reseña al producto
+			prod.setResenas(rese);												//Añadido de la reseña al producto
 			InicializacionAplicacion.getBDResenas().put(rese.getId(), rese);	//Añadido de las reseñas en la base de datos
-			
-			return "La reseña del producto: " + prod.getNombreProducto() + "ha sido añadida.\n";
+			OpcionDeMenu.controlError = true;
+			return "La reseña del producto \"" + prod.getNombreProducto() + "\" ha sido añadida.\n";
 		} 
 		else {
-			return "No ha comprado este producto, no puede añadir una reseña.\n";
+			return "No has comprado el producto identificado con este código, no puedes añadir una reseña.\n";
 		}
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + " Productos comprados:" + historial.size() + "]";
 	}
 }

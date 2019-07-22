@@ -58,6 +58,7 @@ public class InicializacionAplicacion {
 	}
 
 	public static HashMap <Integer, Comprador> getBDCompradores() {return BDCompradores;}
+	public static void setBDCompradores(int idComprador, Comprador comp) {BDCompradores.put(idComprador, comp);}
 
 	public static HashMap <Integer, Vendedor> getBDVendedores() {return BDVendedores;}
 

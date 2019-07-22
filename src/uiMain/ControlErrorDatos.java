@@ -25,7 +25,7 @@ public abstract class ControlErrorDatos {
 		double numeroReal;
 		
 		while (true) {
-			System.out.print(ingreso + "=> ");
+			System.out.print(ingreso + " => ");
 			numeroReal = OpcionDeMenu.esDouble(OpcionDeMenu.br.readLine().trim());
 			if(numeroReal != 0) {
 				if(numeroReal != -1) {
@@ -37,10 +37,10 @@ public abstract class ControlErrorDatos {
 					}
 				}
 				else {
-					System.out.print('\n' + Error);
+					System.out.println(Error);
 				}
 				if (!OpcionDeMenu.controlError)
-					System.out.println("\nNOTA: se puede cancelar la operación ingresando el número '0'.");
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			}
 			else {
 				OpcionDeMenu.controlError = true; return -1;
@@ -59,7 +59,7 @@ public abstract class ControlErrorDatos {
 		int numeroEntero;
 		
 		while (true) {
-			System.out.print(ingreso + "=> ");
+			System.out.print(ingreso + " => ");
 			numeroEntero = OpcionDeMenu.esInt(OpcionDeMenu.br.readLine().trim());
 			if(numeroEntero != 0) {
 				if(numeroEntero != -1) {
@@ -71,10 +71,10 @@ public abstract class ControlErrorDatos {
 					}
 				}
 				else {
-					System.out.print('\n' + Error);
+					System.out.println(Error);
 				}
 				if (!OpcionDeMenu.controlError)
-					System.out.println("\nNOTA: se puede cancelar la operación ingresando el número '0'.");
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			}
 			else {
 				OpcionDeMenu.controlError = true; return -1;
@@ -93,7 +93,7 @@ public abstract class ControlErrorDatos {
 		byte numeroEntero;
 		
 		while (true) {
-			System.out.print(ingreso + "=> ");
+			System.out.print(ingreso + " => ");
 			numeroEntero = OpcionDeMenu.esByte(OpcionDeMenu.br.readLine().trim());
 			if(numeroEntero != 0) {
 				if(numeroEntero != -1) {
@@ -105,10 +105,10 @@ public abstract class ControlErrorDatos {
 					}
 				}
 				else {
-					System.out.print('\n' + Error);
+					System.out.println(Error);
 				}
 				if (!OpcionDeMenu.controlError)
-					System.out.println("\nNOTA: se puede cancelar la operación ingresando el número '0'.");
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			}
 			else {
 				OpcionDeMenu.controlError = true; return -1;
@@ -125,23 +125,25 @@ public abstract class ControlErrorDatos {
 
 		// Atributos
 		String nombreIngresado;
-		byte comprobacion;
+		long comprobacionL;
+		double comprobacionD;
 
 		while (true) {
 			// Impresión de mensaje y recepción de datos
 			System.out.print(ingreso + " => ");
 			nombreIngresado = OpcionDeMenu.br.readLine().trim();
-			comprobacion = OpcionDeMenu.esByte(nombreIngresado);
-
+			comprobacionL = OpcionDeMenu.esLong(nombreIngresado);
+			comprobacionD = OpcionDeMenu.esDouble(nombreIngresado);
+			
 			// Control de error
-			if (comprobacion != 0) {
-				if (comprobacion == -1) {
+			if (comprobacionL != 0) {
+				if (comprobacionL == -1 && comprobacionD == -1) {
 					return nombreIngresado;
 				} else {
-					System.out.print('\n' + Error);
+					System.out.println(Error);
 				}
 				if (!OpcionDeMenu.controlError)
-					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			} else {
 				OpcionDeMenu.controlError = true; return "";
 			}
@@ -159,14 +161,14 @@ public abstract class ControlErrorDatos {
 		// Atributos
 		String[] correoDividido;
 		String correoIngresado;
-		byte comprobacion;
+		long comprobacion;
 		boolean ingresoCorrecto = false;
 
 		while (true) {
 			// Impresión de mensaje y recepción de datos
-			System.out.print("Correo =>");
+			System.out.print("Correo => ");
 			correoIngresado = OpcionDeMenu.br.readLine().trim();
-			comprobacion = OpcionDeMenu.esByte(correoIngresado);
+			comprobacion = OpcionDeMenu.esLong(correoIngresado);
 
 			// Condicional de cancelación
 			if (comprobacion != 0) {
@@ -194,7 +196,7 @@ public abstract class ControlErrorDatos {
 					System.out.println("\nSe está ingresando un número en lugar de un correo.");
 				}
 				if (!!OpcionDeMenu.controlError)
-					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			} else {
 				OpcionDeMenu.controlError = true; return "";
 			}
@@ -211,13 +213,13 @@ public abstract class ControlErrorDatos {
 
 		// Atributos
 		String contrasenaComprobada;
-		byte comprobacion;
+		long comprobacion;
 
 		while (true) {
 			// Impresión de mensaje y recepción de datos
-			System.out.print("Confirmar contraseña =>");
+			System.out.print("Confirmar contraseña => ");
 			contrasenaComprobada = OpcionDeMenu.br.readLine().trim();
-			comprobacion = OpcionDeMenu.esByte(contrasenaComprobada);
+			comprobacion = OpcionDeMenu.esLong(contrasenaComprobada);
 
 			// Control de error
 			if (comprobacion != 0) {
@@ -227,7 +229,7 @@ public abstract class ControlErrorDatos {
 					System.out.println("\nLas contraseñas no coinciden.");
 				}
 				if (!!OpcionDeMenu.controlError)
-					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
+					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			} else {
 				return false;
 			}

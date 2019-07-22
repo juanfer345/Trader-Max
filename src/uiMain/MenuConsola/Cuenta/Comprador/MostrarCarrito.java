@@ -15,26 +15,32 @@ public class MostrarCarrito extends OpcionDeMenu {
 		            controles de error del ingreso de datos
 		 */
 
+		byte seleccion;
+		
 		if (!CarritoDeCompras.getProductos().isEmpty()) {
 
-			sb.append("\nUsted ha elegido la opcion para mostrar su historial de compras. ¿Que desea hacer?");
-			sb.append("\n0. Volver al menú y cancelar el proceso\n");
-			sb.append("\n1. Continuar con el proceso\n");
+			System.out.println();
+			sb.append("Usted ha elegido la opcion para mostrar su historial de compras. ¿Que desea hacer?\n");
+			sb.append("1. Continuar con el proceso\n");
+			sb.append("2. Volver al menú y cancelar el proceso\n");
+			sb.append("Selección");
 
 			// Ingreso del dato por parte del usuario
-			ControlErrorDatos.controlByte((byte) 1, (byte) 1, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
-			if (controlError) {System.out.println(); return;}
+			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
+			if (controlError || seleccion == 2) {System.out.println(); return;}
 
 			// Ejecución del método
 			System.out.println(CarritoDeCompras.mostrarCarrito());
+			if (!OpcionDeMenu.controlError)
+				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 		}
 		else {
-			System.out.println("El carrito está vacio\n");
+			System.out.println("Su carrito de compras está vacio.\n");
 		}
 	}
 
 	@Override
 	public String toString() {
-		return "Ver el carrito de compras";
+		return "Ver los productos del carrito";
 	}
 }

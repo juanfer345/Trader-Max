@@ -22,21 +22,25 @@ public class BorrarHistorial extends OpcionDeMenu {
 		 */
 
 		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
+		byte seleccion;
 		
 		if (!comp.getHistorial().isEmpty()) {
-			sb.append("\nUsted ha elegido la opción para borrar su historial de compras. ¿Que desea hacer?");
-			sb.append("\n0. Volver al menú y cancelar el proceso.");
-			sb.append("\n1. Continuar con el proceso.\n");
+			
+			System.out.println();
+			sb.append("Usted ha elegido la opción para borrar su historial de compras. ¿Que desea hacer?");
+			sb.append("\n1. Continuar con el proceso.");
+			sb.append("\n2. Volver al menú y cancelar el proceso.\n");
+			sb.append("Selección");
 			
 			// Ingreso del dato por parte del usuario
-			ControlErrorDatos.controlByte((byte) 1, (byte) 1, sb.toString() + "Ingrese su eleccion", "El dato que ingresó es inválido, vuelva a intentarlo");
-			if (controlError) {System.out.println(); return;}
+			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
+			if (controlError || seleccion == 2) {System.out.println(); return;}
 		
 			//Ejecución del método
 			System.out.println(comp.borrarHistorial());
 			
 		} else {
-			System.out.println("El historial ya esta vacio.\n");
+			System.out.println("Su historial ya se encuentra vacío.\n");
 		}
 	}
 

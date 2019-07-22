@@ -19,23 +19,25 @@ public class VaciarCarrito extends OpcionDeMenu {
 		  Propósito: Ejecutar el metodo vaciarCarrito() haciendo los respectivos
 		             controles de error del ingreso de datos
 		 */
-
+		byte seleccion;
 		if (CarritoDeCompras.getTotalproductos() != 0) {
 
-			sb.append("\nSu carrito tiene " + CarritoDeCompras.getTotalproductos() + " productos\n");
-			sb.append("\n¿Está seguro de que dese vaciar su carrito de compras?");
-			sb.append("\n0. Volver al menú y cancelar el proceso.");
+			System.out.println();
+			sb.append("Su carrito tiene un total de " + CarritoDeCompras.getTotalproductos() + " productos. ");
+			sb.append("¿Está seguro de que desea eliminarlos todos?");
 			sb.append("\n1. Continuar con el proceso.");
+			sb.append("\n2. Volver al menú y cancelar el proceso.\n");
+			sb.append("Selección");
 
 			//Ingreso de valores y control de error
-			ControlErrorDatos.controlByte((byte) 1, (byte) 1, sb.toString(), "Por favor ingrese un número entero");
-			if (controlError) {System.out.println(); return;}
+			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
+			if (controlError || seleccion == 2) {System.out.println(); return;}
 
 			//Ejecución del método
 			System.out.println(CarritoDeCompras.vaciarCarrito());
 		}
 		else {
-			System.out.println("Su carrito ya se encuentra vacío\n");
+			System.out.println("Su carrito ya se encuentra vacío.\n");
 		}
 	}
 

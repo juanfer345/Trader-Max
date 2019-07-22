@@ -30,13 +30,15 @@ public class BuscarProducto extends OpcionDeMenu {
 		if (!Cuenta.getCatalogo().isEmpty()) {
 
 			//Guardado de mensaje principal
-			sb.append("\nPor favor elija el método de búsqueda:\n");
+			System.out.println();
+			sb.append("Por favor elija el método de búsqueda:\n");
 			sb.append("1: Por código.\n");
 			sb.append("2: Por nombre.\n");
-
+			sb.append("selección");
+			
 			//Selección por parte del usuario
 			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
-			if (seleccion == 0) {System.out.println(); return;}
+			if (controlError) {System.out.println(); return;}
 
 			//Condicional según selección
 			if (seleccion == 1) {
@@ -45,11 +47,13 @@ public class BuscarProducto extends OpcionDeMenu {
 				while (!controlError) {
 
 					//Control del ingreso de datos
-					idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto", "El dato que ingreso como código es invalido, vuelva a intentarlo");
+					idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto", "El dato que ingresó como código es invalido, vuelva a intentarlo");
 					if (controlError) {System.out.println(); return;}
 
 					//Búsqueda por código
 					System.out.println(InicializacionAplicacion.usuarioActivo.buscarProducto(idProducto));
+					if (!OpcionDeMenu.controlError)
+						System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 				}
 			}
 			else if (seleccion == 2) {
@@ -62,6 +66,8 @@ public class BuscarProducto extends OpcionDeMenu {
 
 					//Búsqueda por nombre
 					System.out.println(InicializacionAplicacion.usuarioActivo.buscarProducto(nombreProducto));
+					if (!OpcionDeMenu.controlError)
+						System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 				}
 			}
 		}

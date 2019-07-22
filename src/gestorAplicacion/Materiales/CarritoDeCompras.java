@@ -13,6 +13,7 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
+import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Comprador;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.OpcionDeMenu;
@@ -64,11 +65,13 @@ public class CarritoDeCompras {
 	public static String mostrarCarrito() {
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("El carrito posee un total de ").append(totalProductos).append('\n');
+		sb.append("\nEl carrito posee un total de ").append(totalProductos).append(" productos con total acumulado de ").
+		append(precioTotal).append(" pesos:\n");
 		
 		for (Map.Entry<Integer, Integer> entry : CarritoDeCompras.getProductos().entrySet()) {
 			Producto prod = Cuenta.getCatalogo().get(entry.getKey()); 	// se obtiene el producto correspondiente al codigo
-			sb.append(prod.toString()).append(", Cantidad en el carrito: ").append(entry.getValue()).append(" ]");
+			sb.append(prod.toString()).append(", Cantidad en el carrito: ").append(entry.getValue()).
+			append(", Precio total: ").append(prod.getPrecio() * entry.getValue()).append("]\n");
 		}
 		return sb.toString();
 	}
@@ -89,8 +92,11 @@ public class CarritoDeCompras {
 		//Verificación de que el catálogo contiene al producto
 		if (Cuenta.getCatalogo().containsKey(codigo)) {
 
+			//Verificación de que el usuario no agrega productos que el haya subido
+			if (!InicializacionAplicacion.getBDVendedores().containsKey(titular.getId())) {
+			
 			Producto prod = Cuenta.getCatalogo().get(codigo);	//Obtención del apuntador al producto
-
+			
 			// Verificación de que se tiene la cantidad solicitada de producto en el catálogo
 			if (prod.getCantidad() >= cantidad) {
 
@@ -103,15 +109,19 @@ public class CarritoDeCompras {
 				OpcionDeMenu.controlError = true;
 
 				if (cantidad == 1) {
-					return "Se ha agregado una unidad del producto " + prod.getNombreProducto() + " al carrito";
+					return "Se ha agregado una unidad del producto \"" + prod.getNombreProducto() + "\" al carrito.\n";
 				} else {
-					return "Se han agregado " + cantidad + " unidades del producto " + prod.getNombreProducto() + " del carrito";
+					return "Se han agregado " + cantidad + " unidades del producto \"" + prod.getNombreProducto() + "\" al carrito.\n";
 				}
 			} else {
-				return "La cantidad ingresada es mayor a la existente en el catálogo.";
+				return "La cantidad ingresada es mayor a la disponilble (" + prod.getCantidad() + "), intentalo de nuevo.";
+			}
+			}
+			else {
+				return "No se permite comprar productos que tu mismo hayas subido.\n";
 			}
 		} else {
-			return "El producto no existe, código inválido.";
+			return "Este producto no existe, intentalo de nuevo.";
 		}
 	}
 
@@ -137,21 +147,23 @@ public class CarritoDeCompras {
 				//Llamado al método en clase CuentaBancaria para hacer la transacción del costo
 				titular.getCuentaBancaria().Transaccion(prod.getVendedor(), prod.getPrecio() * entry.getValue());
 				
-				//Actualizando el total del producto en el catálogo
-				prod.setCantidad(prod.getCantidad() - entry.getValue()); 
-				
 				//Agrega al historial del comprador el producto que fue adquirido
-				titular.setHistorial(entry.getKey(), entry.getValue()); 
+				if (!titular.getHistorial().containsKey(entry.getKey())) {
+					titular.setHistorial(entry.getKey(), entry.getValue()); 
+				}
+				else {
+					titular.setHistorial(entry.getKey(), titular.getHistorial().get(entry.getKey()) + entry.getValue()); 
+				}
 			}
 			productos.clear();
 			totalProductos = 0;
 			precioTotal = 0;
 
-			return "Se han comprado los productos. Saldo restante: " + titular.getCuentaBancaria().getSaldo() + '\n';
+			return "Se han comprado los productos. Saldo restante: " + titular.getCuentaBancaria().getSaldo() + ".\n";
 		} 
 		else {
 			// En caso de que no tenga el dinero suficiente para la adquisión de productos
-			return "Saldo insuficiente, no se pueden comprar los productos\n";
+			return "Saldo insuficiente, no se pueden comprar los productos.\n";
 		}
 	}
 
@@ -161,24 +173,19 @@ public class CarritoDeCompras {
 		
 		Variables de salida:
 		- String con mensaje confirmando el proceso.
-    */
-		if (totalProductos > 0) {
+	 */
 
-			for (Map.Entry<Integer, Integer> entry : productos.entrySet()) {
+		for (Map.Entry<Integer, Integer> entry : productos.entrySet()) {
 
-				int cant = entry.getValue(); // Extracción de la cantidad en la hash
-				int cod = entry.getKey(); // el codigo del producto
-				Producto prod = Cuenta.catalogo.get(cod);  //se obtiene el producto correspondiente al codigo 
-				prod.setCantidad(prod.getCantidad() + cant); //se asigna la cantidad que estaba al principio
-			}
-			productos.clear();
-			totalProductos = 0;
-			precioTotal = 0;
-			return "El carrito se vació correctamente.";
-		}else {
-
-			return "Su carrito ya está vacío.";
+			int cant = entry.getValue(); // Extracción de la cantidad en la hash
+			int cod = entry.getKey(); // el codigo del producto
+			Producto prod = Cuenta.getCatalogo().get(cod);  //se obtiene el producto correspondiente al codigo 
+			prod.setCantidad(prod.getCantidad() + cant); //se asigna la cantidad que estaba al principio
 		}
+		productos.clear();
+		totalProductos = 0;
+		precioTotal = 0;
+		return "\nEl carrito se vació correctamente.\n";
 	}
 
 	public static String quitarProducto(int codigo, int cantidad) {
@@ -200,6 +207,8 @@ public class CarritoDeCompras {
 
 			if (productos.get(codigo) == cantidad) {
 				//Caso A: Se desea eliminar todo el producto
+
+				Cuenta.getCatalogo().get(codigo).setCantidad(Cuenta.getCatalogo().get(codigo).getCantidad() + cantidad); 	//se asigna la cantidad que estaba al principio
 				productos.remove(codigo);
 				OpcionDeMenu.controlError = true;
 				return "El producto ha sido eliminado del carrito\n";
@@ -207,13 +216,16 @@ public class CarritoDeCompras {
 			else if (productos.get(codigo) > cantidad) {
 				//Caso B: Se desean eliminar algunas unidades del producto
 				productos.put(codigo, productos.get(codigo) - cantidad);
+				Cuenta.getCatalogo().get(codigo).setCantidad(Cuenta.getCatalogo().get(codigo).getCantidad() + cantidad);
+				totalProductos -= cantidad;
+				precioTotal -= Cuenta.getCatalogo().get(codigo).getPrecio() * cantidad;
 				OpcionDeMenu.controlError = true;
 				if (cantidad == 1) {
-					return "Se ha quitado una unidad del producto " + Cuenta.getCatalogo().get(codigo).getNombreProducto()
-							+ " del carrito";
+					return "Se ha quitado una unidad del producto \"" + Cuenta.getCatalogo().get(codigo).getNombreProducto()
+							+ "\" del carrito.\n";
 				} else {
-					return "Se han quitado " + cantidad + " unidades del producto " + Cuenta.getCatalogo().get(codigo).getNombreProducto()
-							+ " del carrito";
+					return "Se han quitado " + cantidad + " unidades del producto \"" + Cuenta.getCatalogo().get(codigo).getNombreProducto()
+							+ "\" del carrito.\n";
 				}
 			} 
 			else {
@@ -221,10 +233,25 @@ public class CarritoDeCompras {
 				return "La cantidad ingresada excede la existente en el carrito.\n";}
 		} 
 		else {
-			return "El producto no está en el carrito";
+			return "Este producto no se ha agregado al carrito.\n";
 		}
 	}
 
+	//Se devuelven los productos en caso de que se salga de la aplicación antes de comprarlos
+	public static void devolverProductos() {
+		
+		HashMap<Integer, Producto> cat = Cuenta.getCatalogo();
+		if (CarritoDeCompras.getTotalproductos() > 0) {
+			//Se buscan los productos en el carrito
+			for (Map.Entry<Integer, Integer> entry : CarritoDeCompras.getProductos().entrySet()) {
+				int cant = entry.getValue(); 					// Extracción de la cantidad en la hash
+				int cod = entry.getKey(); 						// el codigo del producto
+				Producto prod = cat.get(cod);  					//se obtiene el producto correspondiente al codigo 
+				prod.setCantidad(prod.getCantidad() + cant); 	//se asigna la cantidad que estaba al principio
+			}
+		}
+	}
+	
 	// Cambia el total de productos 
 	public static void setTotalproductos(int totalproductos) {
 		CarritoDeCompras.totalProductos = totalproductos;
