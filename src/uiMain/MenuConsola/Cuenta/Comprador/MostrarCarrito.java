@@ -20,7 +20,7 @@ public class MostrarCarrito extends OpcionDeMenu {
 		if (!CarritoDeCompras.getProductos().isEmpty()) {
 
 			System.out.println();
-			sb.append("Usted ha elegido la opcion para mostrar su historial de compras. ¿Que desea hacer?\n");
+			sb.append("Usted ha elegido la opcion para mostrar su carrito de compras. ¿Que desea hacer?\n");
 			sb.append("1. Continuar con el proceso\n");
 			sb.append("2. Volver al menú y cancelar el proceso\n");
 			sb.append("Selección");
@@ -31,8 +31,6 @@ public class MostrarCarrito extends OpcionDeMenu {
 
 			// Ejecución del método
 			System.out.println(CarritoDeCompras.mostrarCarrito());
-			if (!OpcionDeMenu.controlError)
-				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 		}
 		else {
 			System.out.println("Su carrito de compras está vacío.\n");
