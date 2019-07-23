@@ -54,7 +54,7 @@ abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias
 		if (seleccion == 1) {
 			// se devuelve la cantidad de productos que tenía el carrito.
 			if (InicializacionAplicacion.usuarioActivo instanceof Comprador) {
-				CarritoDeCompras.devolverProductos();
+				CarritoDeCompras.vaciarCarrito();
 			}
 			InicializacionAplicacion.setUsuarioActivo(new Visitante());
 			OpcionDeMenu.controlError = true;

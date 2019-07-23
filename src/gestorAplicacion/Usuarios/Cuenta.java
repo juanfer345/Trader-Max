@@ -24,7 +24,6 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 
 	protected static HashMap<Integer, Producto> catalogo = new HashMap<>();
 	MenuDeConsola menu;
-//	protected static ArrayList<OpcionDeMenu> cambioOpDeMen;
 	private String nombre, correo, password;
 	private int id;
 	private int cedula;
@@ -125,16 +124,6 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 		menu = new MenuDeConsola();
 		menu.setmenuUsuario(getMenuPredeterminado());
 	}
-
-//	// Devuelve el ArrayList con las opciones de menú
-//	public static ArrayList<OpcionDeMenu> getCambioOpDeMen() {
-//		return cambioOpDeMen;
-//	}
-//    
-//	// Modificación del menú ingresando el ArrayList por el cual se desea cambiar
-//	public static void setCambioOpDeMen(ArrayList<OpcionDeMenu> cambioOpDeMen) {
-//		Cuenta.cambioOpDeMen = cambioOpDeMen;
-//	}
 	
 	public String salir(byte seleccion) {
 	/*
@@ -151,7 +140,7 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 			MenuDeConsola.SalirApp = true;
 			//Devolviendo los productos no comprados en caso de ser comprador
 			if (InicializacionAplicacion.usuarioActivo instanceof Comprador) {
-				CarritoDeCompras.devolverProductos();
+				CarritoDeCompras.vaciarCarrito();
 			}
 			return "\nLa aplicación será cerrada";
 		} else { // 2 para continuar en la aplicación

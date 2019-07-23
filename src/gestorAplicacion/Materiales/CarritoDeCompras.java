@@ -236,21 +236,6 @@ public class CarritoDeCompras {
 			return "Este producto no se ha agregado al carrito.\n";
 		}
 	}
-
-	//Se devuelven los productos en caso de que se salga de la aplicación antes de comprarlos
-	public static void devolverProductos() {
-		
-		HashMap<Integer, Producto> cat = Cuenta.getCatalogo();
-		if (CarritoDeCompras.getTotalproductos() > 0) {
-			//Se buscan los productos en el carrito
-			for (Map.Entry<Integer, Integer> entry : CarritoDeCompras.getProductos().entrySet()) {
-				int cant = entry.getValue(); 					// Extracción de la cantidad en la hash
-				int cod = entry.getKey(); 						// el codigo del producto
-				Producto prod = cat.get(cod);  					//se obtiene el producto correspondiente al codigo 
-				prod.setCantidad(prod.getCantidad() + cant); 	//se asigna la cantidad que estaba al principio
-			}
-		}
-	}
 	
 	// Cambia el total de productos 
 	public static void setTotalproductos(int totalproductos) {
