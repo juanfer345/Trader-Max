@@ -48,8 +48,7 @@ public class CuentaBancaria {
 			           comprado un producto
 	
 			Variables de entrada:
-			- CuentaBancaria cb1: Cuenta bancaria de quien hace el traspaso del dinero 
-			- CuentaBancaria cb2: Cuenta bancaria del usuario que recibe el dinero
+			- CuentaBancaria cuentaDestino: Cuenta bancaria del usuario que recibe el dinero
 			- double precio: Valor de la transacción, precio del producto
 		 */
 
