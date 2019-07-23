@@ -9,20 +9,21 @@ public class MostrarTodasLasOpciones extends OpcionDeMenu {
 
 	public void ejecutar() throws NumberFormatException, IOException {
 
+		byte seleccion;
+		
 		//Guardado de mensaje principal
 		System.out.println();
-		sb.append("Usted ha elegido mostrar todas las opciones de menu:\n");
-		sb.append("0: Cancelar\n");
-		sb.append("1: Continuar\n");
+		sb.append("Usted ha elegido mostrar todas las opciones de menu existentes. ¿Que desea hacer?\n");
+		sb.append("1. Continuar con el proceso\n");
+		sb.append("2. Volver al menú y cancelar el proceso\n");
+		sb.append("Selección");
 
 		// Ingreso del dato por parte del usuario
-		ControlErrorDatos.controlByte((byte) 1, (byte) 1, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
-		if (controlError) {System.out.println(); return;}
+		seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
+		if (controlError || seleccion == 2) {System.out.println(); return;}
 
 		//Mostrado de todas las opciones
 		System.out.println(ImprimirTodasLasOpciones());
-		if (!OpcionDeMenu.controlError)
-			System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 	}
 
 	@Override

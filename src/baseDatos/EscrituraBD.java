@@ -30,7 +30,7 @@ public class EscrituraBD {
 	static BufferedWriter bw = null;
 	static StringBuilder sb = new StringBuilder();
 	static String BDactual;
-	static boolean cnConfirmacion = false;
+	static boolean cnConfirmacion = true;
 
 	public static void PrincipalEscrituraBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCat, 
 											String BDProd, String BDRes) {
@@ -91,6 +91,7 @@ public class EscrituraBD {
 			sb.append(val.getCorreo()).append(';');					//Correo
 			sb.append(val.getPassword()).append(';');				//Contraseña
 			sb.append(val.getCedula()).append(';');					//Cédula
+			sb.append(val.isCuentaActiva()).append(';');			//Estado de la cuenta
 			sb.append(val.getCuentaBancaria().getId()).append(';');	//Referencia a la cuenta bancaria
 
 			//Referencias a los productos del historial
@@ -139,6 +140,7 @@ public class EscrituraBD {
 			sb.append(val.getCorreo()).append(';');						//Correo
 			sb.append(val.getPassword()).append(';');					//Contraseña
 			sb.append(val.getCedula()).append(';');						//Cédula
+			sb.append(val.isCuentaActiva()).append(';');				//Estado de la cuenta
 			sb.append(val.getCuentaBancaria().getId()).append(';');		//Referencia a la cuenta bancaria
 			
 			//Referencias a las opciones de menu
@@ -178,6 +180,7 @@ public class EscrituraBD {
 			sb.append(val.getCorreo()).append(';');			//Correo
 			sb.append(val.getPassword()).append(';');		//Contraseña
 			sb.append(val.getCedula()).append(';');			//Cédula
+			sb.append(val.isCuentaActiva()).append(';');	//Estado de la cuenta
 			
 			//Referencias a las opciones de menu
 			if (!val.getMenu().isEmpty()){

@@ -93,7 +93,7 @@ public class Visitante extends Cuenta {
 					InicializacionAplicacion.setBDCompradores(usuarioActivo.getId(), (Comprador) usuarioActivo);
 					InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
 					OpcionDeMenu.controlError = true;
-					mensaje = "\n                       TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
+					mensaje = "\n                     TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
 				}
 				else {
 					//Caso A.b: El correo se encuentra registrado como Vendedor
@@ -112,9 +112,9 @@ public class Visitante extends Cuenta {
 						InicializacionAplicacion.setBDCompradores(usuarioActivo.getId(), (Comprador) usuarioActivo);
 						InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
 						OpcionDeMenu.controlError = true;
-						mensaje = "\n                       TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + 
-								   usuarioActivo.getNombre() + ".\n" + "el correo ingresado ya se encuentra registrado como "
-								   + "Vendedor, por ello comparte la cuenta bancaria con su cuenta registrada como Vendedor.\n";
+						mensaje = "\n                     TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + 
+								   usuarioActivo.getNombre() + ".\n" + "El correo ingresado ya se encuentra registrado como "
+								   + "Vendedor, \npor ello esta nueva cuenta comparte la cuenta bancaria \ncon tu cuenta registrada como Vendedor.\n";
 					}
 					else {
 						mensaje = "\nEste correo ingresado ya se encuentra registrado ya se encuentra registrado como Vendedor, "
@@ -134,7 +134,7 @@ public class Visitante extends Cuenta {
 					InicializacionAplicacion.getBDVendedores().put(usuarioActivo.getId(), (Vendedor) usuarioActivo);
 					InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
 					OpcionDeMenu.controlError = true;
-					mensaje = "\n                       TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
+					mensaje = "\n                     TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
 				}
 				else {
 					//Caso A.b: El correo se encuentra registrado como Comprador
@@ -153,9 +153,9 @@ public class Visitante extends Cuenta {
 						InicializacionAplicacion.getBDVendedores().put(usuarioActivo.getId(), (Vendedor) usuarioActivo);
 						InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
 						OpcionDeMenu.controlError = true;
-						mensaje = "\n                       TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + 
+						mensaje = "\n                     TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + 
 								   usuarioActivo.getNombre() + ".\n" + "el correo ingresado ya se encuentra registrado como "
-								   + "Comprador, por ello comparte la cuenta bancaria con su cuenta registrada como Comprador.\n";
+								   + "Comprador, \npor ello comparte la cuenta bancaria con su cuenta \nregistrada como Comprador.\n";
 					}
 					else {
 						mensaje = "\nEste correo ya se encuentra registrado ya se encuentra registrado como Comprador, "
@@ -169,7 +169,7 @@ public class Visitante extends Cuenta {
 				InicializacionAplicacion.getBDAdministradores().put(usuarioActivo.getId(), (Administrador) usuarioActivo);
 				InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
 				OpcionDeMenu.controlError = true;
-				mensaje = "\n                      TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + 
+				mensaje = "\n                    TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + 
 				          usuarioActivo.getNombre() + ".\n";
 				break;
 			}
@@ -192,7 +192,7 @@ public class Visitante extends Cuenta {
 		   String: Mensaje que indica que sucedio con la operación
 		 */
 
-		HashMap<Integer, ? extends Cuenta> baseDeDatos = null;
+		HashMap<Integer, ? extends CuentaUsuario> baseDeDatos = null;
 		int idcorreoRegistrado;
 
 		switch (tipoDeCuenta) {
@@ -216,17 +216,24 @@ public class Visitante extends Cuenta {
 		if (idcorreoRegistrado != -1) {
 			// Caso A: Se ha encontrado el correo
 			if (baseDeDatos.get(idcorreoRegistrado).getPassword().equals(contrasenaIngresada)) {
-				// Se loguea como el usuario que ingreso
 
-				InicializacionAplicacion.setUsuarioActivo(baseDeDatos.get(idcorreoRegistrado));
-				
-				if (baseDeDatos.get(idcorreoRegistrado) instanceof Comprador) {
-					((Comprador) baseDeDatos.get(idcorreoRegistrado)).setCarrito();
+				//Checkeo de usuario no bloqueado
+				if (baseDeDatos.get(idcorreoRegistrado).isCuentaActiva()) {
+					
+					// Se loguea como el usuario que ingreso
+					InicializacionAplicacion.setUsuarioActivo(baseDeDatos.get(idcorreoRegistrado));
+
+					if (baseDeDatos.get(idcorreoRegistrado) instanceof Comprador) {
+						((Comprador) baseDeDatos.get(idcorreoRegistrado)).setCarrito();
+					}
+
+					OpcionDeMenu.controlError = true;
+					return  "\n                     TRADER-MAX INC                       \n" + "\nSesión iniciada correctamente, bienvenido a TRADER-MAX "
+					+ InicializacionAplicacion.usuarioActivo.getNombre() + ".\n";
 				}
-				
-				OpcionDeMenu.controlError = true;
-				return  "\n                       TRADER-MAX INC                       \n" + "\nSesión iniciada correctamente, bienvenido a TRADER-MAX "
-						+ InicializacionAplicacion.usuarioActivo.getNombre() + ".\n";
+				else {
+					return "Su usuario se encuentra bloqueado, no puede iniciar sesión.\n";
+				}
 			} else {
 				return "Contraseña incorrecta.\n";
 			}

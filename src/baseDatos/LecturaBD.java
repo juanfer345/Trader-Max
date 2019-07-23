@@ -116,14 +116,16 @@ public class LecturaBD {
 	    // Ciclo para obtener la información
         while (!(dat = br.readLine().split(";"))[0].equals("#")) {
 
-    		// Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;IDcarrN;(IDprodhist1,Cantprodhist1),...,(IDprodhistN,CantprodhistN);IDopmen1,...,IDopmenN
+    		// Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;Avtivo;(IDprodhist1,Cantprodhist1),...,(IDprodhistN,CantprodhistN);IDopmen1,...,IDopmenN
         	
         	// Creación del Comprador
-        	usuario = new Comprador(Integer.parseInt(dat[0]), dat[1], dat[2], dat[3], Integer.parseInt(dat[4]));
+        	usuario = new Comprador(Integer.parseInt(dat[0]), dat[1], dat[2], dat[3], Integer.parseInt(dat[4]), Boolean.parseBoolean(dat[5]));
+        	
+        	if (Boolean.parseBoolean(dat[5])) {Cuenta.setTotalCuentasActivas(1);}	//Sumando al total de cuentas activas
         	
 	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
-        	colaAux.add(Integer.parseInt(dat[5]));		//Referencia a la cuenta bancaria
-        	colaAux = subDatos(dat[6], colaAux);		//Referencias a los productos del historial
+        	colaAux.add(Integer.parseInt(dat[6]));		//Referencia a la cuenta bancaria
+        	subDatos(dat[7], colaAux);					//Referencias a los productos del historial
         	
         	// Condicional para guardar la condición de que se tienen productos en el historial
         	if (colaAux.size() > 1) {
@@ -131,7 +133,7 @@ public class LecturaBD {
         	} else {
             	colaAuxProd.add(0);
         	}
-        	colaAux = subDatos(dat[7], colaAux);		//Referencias a las opciones de menú
+        	subDatos(dat[8], colaAux);		//Referencias a las opciones de menú
 	    	
 	        HM.put(usuario.getId(), usuario);			//Asignación del comprador a la estructura de datos correspondiente
 	        mapAux.put(usuario.getId(), colaAux);		//Guardado de las referencias en el mapa auxiliar
@@ -154,14 +156,16 @@ public class LecturaBD {
 	    // Ciclo para obtener la información
         while (!(dat = br.readLine().split(";"))[0].equals("#")) {
         	
-    		// Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;IDopmen1,...,IDopmenN
+    		// Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDCuentaBancaria;Activo;IDopmen1,...,IDopmenN
         	
         	// Creación del vendedor
-	    	usuario = new Vendedor(Integer.parseInt(dat[0]), dat[1], dat[2], dat[3], Integer.parseInt(dat[4]));
+	    	usuario = new Vendedor(Integer.parseInt(dat[0]), dat[1], dat[2], dat[3], Integer.parseInt(dat[4]), Boolean.parseBoolean(dat[5]));
+
+        	if (Boolean.parseBoolean(dat[5])) {Cuenta.setTotalCuentasActivas(1);}	//Sumando al total de cuentas activas
         	
 	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
-	    	colaAux.add(Integer.parseInt(dat[5]));		//Referencia a la cuenta bancaria
-        	colaAux = subDatos(dat[6], colaAux);		//Referencias a las opciones de menú
+	    	colaAux.add(Integer.parseInt(dat[6]));		//Referencia a la cuenta bancaria
+        	subDatos(dat[7], colaAux);					//Referencias a las opciones de menú
         	
     		HM.put(usuario.getId(), usuario);			//Asignación del vendedor a la estructura de datos correspondiente
 	        mapAux.put(usuario.getId(), colaAux);		//Guardado de las referencias en el mapa auxiliar
@@ -184,13 +188,15 @@ public class LecturaBD {
 	    // Ciclo para obtener la información
         while (!(dat = br.readLine().split(";"))[0].equals("#")) {
         	
-    		// Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;IDopmen1,...,IDopmenN
+    		// Ejemplo de datos: ID;Nombre;Correo;Contraseña;Cedula;Activo;IDopmen1,...,IDopmenN
 
         	//Creación del administrador
-	    	usuario = new Administrador(Integer.parseInt(dat[0]), dat[1], dat[2], dat[3], Integer.parseInt(dat[4]));
+	    	usuario = new Administrador(Integer.parseInt(dat[0]), dat[1], dat[2], dat[3], Integer.parseInt(dat[4]), Boolean.parseBoolean(dat[5]));
 
+        	if (Boolean.parseBoolean(dat[5])) {Cuenta.setTotalCuentasActivas(1);}	//Sumando al total de cuentas activas
+        	
 	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
-        	colaAux = subDatos(dat[5], colaAux);		//Referencias a las opciones de menú
+        	subDatos(dat[6], colaAux);					//Referencias a las opciones de menú
 	    	HM.put(usuario.getId(), usuario);			//Asignación del administrador a la estructura de datos correspondiente
 	        mapAux.put(usuario.getId(), colaAux);		//Guardado de las referencias en el mapa auxiliar
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
@@ -219,7 +225,7 @@ public class LecturaBD {
 	    	HM.put(cuenta.getId(), cuenta);			//Asignación de la cuenta bancaria a la estructura de datos correspondiente
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-        CuentaBancaria.setMaxID(maxID); maxID = 0;		//Asignación de ID para las cuentas bancarias
+        CuentaBancaria.setMaxID(maxID); maxID = 0;							//Asignación de ID para las cuentas bancarias
         if (cnConfirmacion) mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 
@@ -261,13 +267,13 @@ public class LecturaBD {
 	    	
 	        colaAux = new LinkedList<>();               //Creación de cola auxiliar para guardar referencias
 	    	colaAux.add(Integer.parseInt(dat[5]));		//Referencia al vendedor del producto
-        	colaAux = subDatos(dat[6], colaAux);		//Referencia a las reseñas del producto
+        	subDatos(dat[6], colaAux);					//Referencia a las reseñas del producto
         	
 	        HM.put(prod.getId(), prod);					//Asignación del producto a la estructura de datos correspondiente
 	        mapAux.put(prod.getId(), colaAux);			//Guardado de las referencias en el mapa auxiliar
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-        Producto.setMaxID(maxID); maxID = 0;			//Asignación de ID para los productos
+        Producto.setMaxID(maxID); maxID = 0;								//Asignación de ID para los productos
         if (cnConfirmacion) mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	
@@ -293,7 +299,7 @@ public class LecturaBD {
 	        HM.put(res.getId(), res);							//Asignación de la reseña a la estructura de datos correspondiente
 	        if (Integer.parseInt(dat[0]) > maxID) maxID = Integer.parseInt(dat[0]);
 	    }
-        Resena.setMaxID(maxID); maxID = 0;				//Asignación de ID para las reseñas
+        Resena.setMaxID(maxID); maxID = 0;									//Asignación de ID para las reseñas
         if (cnConfirmacion) mensajeConfirmacion(!HM.isEmpty(), NombreBD); 	//Mensaje de confirmación
 	}
 	

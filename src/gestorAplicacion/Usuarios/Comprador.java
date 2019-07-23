@@ -39,7 +39,7 @@ public class Comprador extends CuentaConBanco {
 	private HashMap<Integer, Integer> historial;
 	private static final int totalDeOpcionesDisponibles = 14;
 
-	public Comprador(int idCuenta, String nombre, String correo, String password, int cedula) {
+	public Comprador(int idCuenta, String nombre, String correo, String password, int cedula, boolean activa) {
 		/*
 		  Propósito: Constructor de Comprador para usuarios existentes
 		  
@@ -48,7 +48,7 @@ public class Comprador extends CuentaConBanco {
 		 - String nombre, int cedula: Datos personales del usuario 
 		 - String correo, password: Datos asignados al usuario para ingreso al programa
 		 */
-		super(idCuenta, nombre, correo, password, cedula); // Llamado a contructor de CuentaConBanco
+		super(idCuenta, nombre, correo, password, cedula, activa); // Llamado a contructor de CuentaConBanco
 		historial = new HashMap<>();
 	}
 
@@ -173,6 +173,6 @@ public class Comprador extends CuentaConBanco {
 
 	@Override
 	public String toString() {
-		return super.toString() + " Productos comprados:" + historial.size() + "]";
+		return "Comprador:" + super.toString() + ", Productos comprados: " + historial.size() + "]";
 	}
 }

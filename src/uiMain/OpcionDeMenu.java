@@ -24,9 +24,9 @@ import uiMain.MenuConsola.MostrarResenas;
 import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Administrador.AgregarOpcion;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarCuentasAvtivas;
-import uiMain.MenuConsola.Cuenta.Administrador.BloquearCuenta;
+import uiMain.MenuConsola.Cuenta.Administrador.BloqueoDeCuenta;
 import uiMain.MenuConsola.Cuenta.Administrador.EliminarOpcion;
+import uiMain.MenuConsola.Cuenta.Administrador.MostrarCuentas;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenu;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenuDisponible;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarTodasLasOpciones;
@@ -73,7 +73,7 @@ public abstract class OpcionDeMenu {
 				new BorrarHistorial(), new ComprarProducto(), new MostrarCarrito(), new MostrarHistorial(), 
 				new QuitarProductoCarrito(), new VaciarCarrito(), new CambiarPrecio(), new EliminarProductoCatalogo(), 
 				new ModificarCantidad(), new SubirProducto(), new VerProductos(), new AgregarOpcion(), 
-				new MostrarCuentasAvtivas(), new BloquearCuenta(), new EliminarOpcion(), new MostrarMenu(), 
+				new MostrarCuentas(), new BloqueoDeCuenta(), new EliminarOpcion(), new MostrarMenu(), 
 				new MostrarMenuDisponible(), new MostrarTodasLasOpciones(), new MostrarUsuario(), new CerrarSesion(), 
 				new Salir() }));
 	}
@@ -81,13 +81,13 @@ public abstract class OpcionDeMenu {
 	//Mostrar todas las opciones disponibles 
 	protected static String ImprimirTodasLasOpciones() {
      
-		ArrayList<OpcionDeMenu> todasLasOpciones = getTodasLasOpciones();
 		StringBuilder sb = new StringBuilder();
-		
-		sb.append("Todas las opciones de menú son: \n");
-		for (int i = 0; i < todasLasOpciones.size(); i++) {
-			OpcionDeMenu.sb.append((i + 1) + ". " + todasLasOpciones.get(i).toString() + ".\n");
-		}
+
+		sb.append("\nA continuación se muestran todas las opciones de menú existentes:\n");
+		sb.append("\n" + "|-------------------------Inicio menú--------------------------|" + "\n\n");
+		sb.append(MenuDeConsola.prepararMenuImpresion(getTodasLasOpciones()));
+		sb.append("\n" + "|--------------------------Fin menú----------------------------|" + "\n");
+
 		return sb.toString();
 	}
 	

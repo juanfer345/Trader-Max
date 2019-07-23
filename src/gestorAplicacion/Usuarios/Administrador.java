@@ -9,6 +9,7 @@ package gestorAplicacion.Usuarios;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 import gestorAplicacion.InicializacionAplicacion;
 import uiMain.OpcionDeMenu;
@@ -19,9 +20,9 @@ import uiMain.MenuConsola.MostrarResenas;
 import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Administrador.AgregarOpcion;
-import uiMain.MenuConsola.Cuenta.Administrador.BloquearCuenta;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarCuentasAvtivas;
+import uiMain.MenuConsola.Cuenta.Administrador.BloqueoDeCuenta;
 import uiMain.MenuConsola.Cuenta.Administrador.EliminarOpcion;
+import uiMain.MenuConsola.Cuenta.Administrador.MostrarCuentas;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenu;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenuDisponible;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarTodasLasOpciones;
@@ -37,7 +38,7 @@ public class Administrador extends CuentaUsuario {
 	private static String codigoSecreto = "Es un secretooo";
 	private static final int totalDeOpcionesDisponibles = 14;
 
-	public Administrador(int idCuenta, String nombre, String correo, String password, int cedula) {
+	public Administrador(int idCuenta, String nombre, String correo, String password, int cedula, boolean activa) {
 	/*
 		Propósito: Constructor de Administrador para usuarios existentes			
 		           
@@ -46,7 +47,7 @@ public class Administrador extends CuentaUsuario {
 		- String nombre, int cedula: Datos personales del usuario
 		- String correo, password: Datos asignados al usuario para ingreso al programa
     */
-		super(idCuenta, nombre, correo, password, cedula); // Se llama al constructor de CuentaUsuario
+		super(idCuenta, nombre, correo, password, cedula, activa); // Se llama al constructor de CuentaUsuario
 	}
 
 	public Administrador(String nombre, String correo, String password, int cedula) {
@@ -71,17 +72,16 @@ public class Administrador extends CuentaUsuario {
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
 				new MostrarUsuario(), new MostrarMenu(), new MostrarMenuDisponible(), 
 				new MostrarTodasLasOpciones(), new AgregarOpcion(), new EliminarOpcion(),
-				new BloquearCuenta(), new MostrarCuentasAvtivas(), new CerrarSesion(), new Salir()}));
+				new BloqueoDeCuenta(), new MostrarCuentas(), new CerrarSesion(), new Salir()}));
 	}
 
 	//Constructor vacío
 	public Administrador() {}
 	
 	// Devuelve el total de opciones por defecto que tiene este tipo de usuario
-	public int getTotalDeOpcionesDisponibles() {
-		return totalDeOpcionesDisponibles;
-	}
-    //
+	public int getTotalDeOpcionesDisponibles() {return totalDeOpcionesDisponibles;}
+	
+    //Devuelve el menú con todas las opciones extras que se le pueden añadir al administrador
 	public ArrayList<OpcionDeMenu> getMenuDisponible() {
 		/*
 		Proposito: Asignar un menú predeterminado con las opciones de menú que se pueden agregar al menu de administrador.
@@ -91,63 +91,186 @@ public class Administrador extends CuentaUsuario {
     */
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
 				new BuscarProducto(), new MostrarCatalogo(),new MostrarPorCategoria(),
-				new MostrarResenas(),new AgregarOpcion(), new MostrarCuentasAvtivas(),
-				new BloquearCuenta(), new EliminarOpcion(), new MostrarMenu(),
-				new MostrarUsuario(), new MostrarTodasLasOpciones(),new CerrarSesion(),
-				new Salir() }));
+				new MostrarResenas(), new MostrarUsuario(), new MostrarMenu(), new MostrarMenuDisponible(), 
+				new MostrarTodasLasOpciones(), new AgregarOpcion(), new EliminarOpcion(),
+				new BloqueoDeCuenta(), new MostrarCuentas(), new CerrarSesion(), new Salir()}));
 	}
-	// Devuelve el numero total de cuentas existentes 
-	public static int getNumeroCuentas() {
-		return Cuenta.totalCuentas;
+
+	public static String getCodigoSecreto() {return codigoSecreto;}
+
+	public String mostrarUsuario(byte activas) {
+		/*
+			Proposito: Mostrar los datos de todos los usuarios
+
+		 */
+		StringBuilder sb = new StringBuilder();
+		String salida = null;
+		boolean sali = false;
+		
+		switch (activas) {
+		case 1:
+			//Caso A: Se muestran todas las cuentas
+			for (Map.Entry<Integer, Comprador> entry: InicializacionAplicacion.getBDCompradores().entrySet()) {
+				sb.append(entry.getValue() + "\n"); sali = true;
+			}
+			for (Map.Entry<Integer, Vendedor> entry: InicializacionAplicacion.getBDVendedores().entrySet()) {
+				sb.append(entry.getValue() + "\n"); sali = true;
+			}
+			for (Map.Entry<Integer, Administrador> entry: InicializacionAplicacion.getBDAdministradores().entrySet()) {
+				sb.append(entry.getValue() + "\n"); sali = true;
+			}
+			salida = "\nA continuación se muestran todas las cuentas inscritas en la aplicación, existe un total de " 
+				     + totalCuentas + " cuentas, de las cuales " + totalCuentasActivas + " están activas:\n" + sb.toString();
+
+		case 2:
+			//Caso B: Se muestran todas las cuentas activas
+			for (Map.Entry<Integer, Comprador> entry: InicializacionAplicacion.getBDCompradores().entrySet()) {
+				if (entry.getValue().isCuentaActiva()) sb.append(entry.getValue() + "\n"); sali = true;
+			}
+			for (Map.Entry<Integer, Vendedor> entry: InicializacionAplicacion.getBDVendedores().entrySet()) {
+				if (entry.getValue().isCuentaActiva()) sb.append(entry.getValue() + "\n"); sali = true;
+			}
+			for (Map.Entry<Integer, Administrador> entry: InicializacionAplicacion.getBDAdministradores().entrySet()) {
+				if (entry.getValue().isCuentaActiva()) sb.append(entry.getValue() + "\n"); sali = true;
+			}
+			
+			salida = "\nA continuación se muestran todas las cuentas activas inscritas en la aplicación, existe un total de " 
+		            + totalCuentasActivas + " cuentas:\n" + sb.toString();
+		case 3:
+			//Caso C: Se muestran todas las cuentas inactivas
+			for (Map.Entry<Integer, Comprador> entry: InicializacionAplicacion.getBDCompradores().entrySet()) {
+				if (!entry.getValue().isCuentaActiva()) sb.append(entry.getValue() + "\n"); sali = true;
+			}
+			for (Map.Entry<Integer, Vendedor> entry: InicializacionAplicacion.getBDVendedores().entrySet()) {
+				if (!entry.getValue().isCuentaActiva()) sb.append(entry.getValue() + "\n"); sali = true;
+			}
+			for (Map.Entry<Integer, Administrador> entry: InicializacionAplicacion.getBDAdministradores().entrySet()) {
+				if (!entry.getValue().isCuentaActiva()) sb.append(entry.getValue() + "\n"); sali = true;
+			}
+			
+			salida = "\nA continuación se muestran todas las cuentas inactivas inscritas en la aplicación, existe un total de " 
+		            + (totalCuentas - totalCuentasActivas) + " cuentas:\n" + sb.toString();
+		}
+
+		if (sali) {
+			return salida; 
+		}
+		else {
+			return "\nNo existen cuentas en esta categoría.\n";
+		}
 	}
 	
-	public String numeroCuentas() {
-	/*
-		Proposito: Mostrar el número de cuentas actuales en el programa
-		
-		Variables de salida:
-		- String con mensaje con el numero de cuentas existentes
-     */
-		int cuentas = Administrador.getNumeroCuentas();
-		return "Actualmente hay " + cuentas + " cuentas";
-	}
+	public String mostrarUsuario(byte tipoUsuario, byte activas) {
+		/*
+			Proposito: Mostrar los datos de todos los usuarios de una categoría específica
 
-	public String mostrarUsuario(int idUsuario, byte tipoUsuario) {
-	/*
-		Proposito: Mostrar datos de un usuario específico 
-		
-		Variables de entrada:
-		- int idUsuario: Número de identificación del usuario 
-		- byte tipoUsuario: Número {1, 2} del tipo de usuario sobre el cual se realiza el método
-		
-		Variables de salida:
-		- String con mensaje dependiendo si el proceso fue o no exitoso.
-    */
-		HashMap<Integer, ? extends CuentaUsuario> baseDeDatos = null;
+		 */
 		StringBuilder sb = new StringBuilder();
-		String usuario = null;
-
-		// Condicional para distinguir entre comprador y vendedor
-		if (tipoUsuario == 1) {
+		HashMap<Integer, ? extends CuentaUsuario> baseDeDatos = new HashMap <>();
+		String tipo = null, salida = null;
+		int contador = 0;
+		
+		//Selección de la base de datos correcta
+		switch (tipoUsuario) {
+		case 1:
 			// Caso A: Comprador
+			tipo = "comprador";
 			baseDeDatos = InicializacionAplicacion.getBDCompradores();
-			usuario = "comprador";
-		} else if (tipoUsuario == 2) {
+			break;
+		case 2:
 			// Caso B: Vendedor
+			tipo = "vendedor";
 			baseDeDatos = InicializacionAplicacion.getBDVendedores();
-			usuario = "vendedor";
+			break;
+		case 3:
+			// Caso C: Administrador
+			tipo = "administrador";
+			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
+			break;
 		}
+		
+		switch (activas) {
+		case 1:
+			//Caso A: Se muestran todas las cuentas
+			for (Map.Entry<Integer, ? extends CuentaUsuario> entry: baseDeDatos.entrySet()) {
+				sb.append(entry.getValue() + "\n"); contador++;
+			}
+			salida = "\nA continuación se muestran todas las cuentas de tipo \"" + tipo + "\""
+					+ " existe un total de \"" + contador + "\" cuentas:\n" + sb.toString();
+
+		case 2:
+			//Caso B: Se muestran las cuentas activas
+			for (Map.Entry<Integer, ? extends CuentaUsuario> entry: baseDeDatos.entrySet()) {
+				if (entry.getValue().isCuentaActiva()) {
+					sb.append(entry.getValue() + "\n"); contador++;
+				}
+			}
+			
+			salida = "\nA continuación se muestran todas las cuentas activas de tipo \"" + tipo + "\" inscritas en la aplicación, "
+					+ "existe un total de " + contador + " cuentas:\n" + sb.toString();
+		case 3:
+			//Caso C: Se muestran las cuentas inactivas
+			for (Map.Entry<Integer, ? extends CuentaUsuario> entry: baseDeDatos.entrySet()) {
+				if (!entry.getValue().isCuentaActiva()) {
+					sb.append(entry.getValue() + "\n"); contador++;
+				}
+			}
+			
+			salida = "\nA continuación se muestran todas las cuentas inactivas de tipo \"" + tipo + "\" inscritas en la aplicación, "
+					+ "existe un total de " + contador + " cuentas:\n" + sb.toString();
+		}
+		
+		if (contador != 0) {
+			return salida; 
+		}
+		else {
+			return "\nNo existen cuentas en esta categoría.\n";
+		}
+	}
+	
+	public String mostrarUsuario(int idUsuario, byte tipoUsuario) {
+		/*
+			Proposito: Mostrar datos de un usuario específico 
+			
+			Variables de entrada:
+			- int idUsuario: Número de identificación del usuario 
+			- byte tipoUsuario: Número {1, 2, 3} del tipo de usuario sobre el cual se realiza el método
+			
+			Variables de salida:
+			- String con mensaje dependiendo si el proceso fue o no exitoso.
+	    */
+		HashMap<Integer, ? extends CuentaUsuario> baseDeDatos = null;
+		String cuenta = null;
+		
+		//Selección de la base de datos correcta
+		switch (tipoUsuario) {
+		case 1:
+			// Caso A: Comprador
+			cuenta = "comprador";
+			baseDeDatos = InicializacionAplicacion.getBDCompradores();
+			break;
+		case 2:
+			// Caso B: Vendedor
+			cuenta = "vendedor";
+			baseDeDatos = InicializacionAplicacion.getBDVendedores();
+			break;
+		case 3:
+			// Caso C: Administrador
+			cuenta = "administrador";
+			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
+			break;
+		}
+		
 		//Condicional que verifica existencia del usuario en la base de datos
 		if (baseDeDatos.containsKey(idUsuario)) {
-			sb.append(baseDeDatos.get(idUsuario).toString());
 			OpcionDeMenu.controlError = true;
+			return "\nEl usuario ha sido encontrado:\n" + baseDeDatos.get(idUsuario).toString() + "\n";
 		} else {
-			sb.append("El " + usuario + " no fue encontrado, por favor revise el código ingresado");
+			return "\nEl usuario " + cuenta + " no fue encontrado, por favor revise el código ingresado.";
 		}
-		return sb.toString();
 	}
 
-	public String eliminarCuenta(int idUsuario, byte tipoUsuario) {
+	public String bloquearCuenta(int idUsuario, byte tipoUsuario, byte modificacion) {
 	/*
 		Proposito: Eliminar una cuenta de un usuario
 		
@@ -158,32 +281,59 @@ public class Administrador extends CuentaUsuario {
 		Variables de salida:
 		- String con mensaje dependiendo si el proceso fue o no exitoso.
     */
-		HashMap<Integer, ? extends CuentaUsuario> baseDeDatos = null;
+		HashMap<Integer, ? extends CuentaUsuario> baseDeDatos = new HashMap<>();
+		CuentaUsuario cuenta;
 		StringBuilder sb = new StringBuilder();
-		String usuario = null;
+		String tipo = null;
 
-		// Condicional para distinguir entre comprador y vendedor
-		if (tipoUsuario == 1) {
+		switch (tipoUsuario) {
+		case 1:
 			// Caso A: Comprador
+			tipo = "comprador";
 			baseDeDatos = InicializacionAplicacion.getBDCompradores();
-			usuario = "comprador";
-		} else if (tipoUsuario == 2) {
+			break;
+		case 2:
 			// Caso B: Vendedor
+			tipo = "vendedor";
 			baseDeDatos = InicializacionAplicacion.getBDVendedores();
-			usuario = "vendedor";
+			break;
+		case 3:
+			// Caso C: Administrador
+			tipo = "administrador";
+			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
+			break;
 		}
 
-		if (baseDeDatos.containsKey(idUsuario)) {
-			baseDeDatos.remove(idUsuario);
-			sb.append("Se ha removido la cuenta correctamente.");
-			OpcionDeMenu.controlError = true;
+		if (baseDeDatos.containsKey((idUsuario))) {
+
+			cuenta = baseDeDatos.get(idUsuario);
+			
+			if (modificacion == 1 && !cuenta.isCuentaActiva()) {
+				cuenta.setCuentaActiva(true);
+				totalCuentasActivas++;
+				OpcionDeMenu.controlError = true;
+				return "\nSe ha desbloqueado la cuenta:\n" + cuenta.toString() + "\n";
+			}
+			else if (modificacion == 1 && cuenta.isCuentaActiva()) {
+				return "\nEsta cuenta ya se encuentra activa, intentalo con otra cuenta:\n" + cuenta.toString() + "\n";
+			}
+			else if (modificacion == 2 && cuenta.isCuentaActiva()) {
+				baseDeDatos.get(idUsuario).setCuentaActiva(false);
+				totalCuentasActivas--;
+				OpcionDeMenu.controlError = true;
+				return "\nSe ha bloqueado la cuenta:\n" + cuenta.toString() + "\n";
+			}
+			else if (modificacion == 2 && !cuenta.isCuentaActiva()) {
+				return "\nEsta cuenta ya se encuentra inactiva, intentalo con otra cuenta:\n" + cuenta.toString() + "\n";
+			}
 		} else {
-			sb.append("El " + usuario + " no fue encontrado, por favor revise el código ingresado.");
+			sb.append("\nEl usuario de tipo " + tipo + " no fue encontrado, por favor revise el código ingresado.");
 		}
 		return sb.toString();
 	}
 
-	public static String getCodigoSecreto() {
-		return codigoSecreto;
+	@Override
+	public String toString() {
+		return "Administrador:" + super.toString() + "]";
 	}
 }

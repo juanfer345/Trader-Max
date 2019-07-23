@@ -8,34 +8,41 @@ import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.ControlErrorDatos;
 import uiMain.OpcionDeMenu;
 
-public class MostrarUsuario extends OpcionDeMenu {
-	public void ejecutar() throws NumberFormatException, IOException {
+public class BloqueoDeCuenta extends OpcionDeMenu {
 
+	@Override
+	public void ejecutar() throws IOException {
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
 		int idCuenta;
-		byte tipoDeCuenta;
+		byte tipoDeCuenta, modificacion;
+
 
 		if (Cuenta.getTotalCuentas() != 0) {
 
 			//Guardado de mensaje principal
 			System.out.println();
-			sb.append("Por favor elija el tipo de usuario:\n");
-			sb.append("1: Comprador\n");
-			sb.append("2: Vendedor\n");
-			sb.append("3: Administrador\n");
+			sb.append("Elija el tipo de cuenta a la cual se le desea modificar su estado (las cuentas inactivas no pueden iniciar sesión)\n");
+			sb.append("1: Comprador.\n");
+			sb.append("2: Vendedor.\n");
+			sb.append("3: Administrador.\n");
 			sb.append("Selección");
 
 			while (!controlError) {
+
 				//Control de ingreso tipo de usuario
 				tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
 				if (controlError) {System.out.println(); return;}
 
 				//Control de ingreso de identificación de usuario
-				idCuenta = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el número identificador del usuario", "Por favor ingrese un número entero positivo");
+				idCuenta = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "ID de usuario", "Por favor ingrese un número entero positivo");
+				if (controlError) {System.out.println(); return;}
+
+				//Control de ingreso de tipo de modificación
+				modificacion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, "Ingrese 1 para desbloquear la cuenta y 2 para bloquearla", "Por favor ingrese un número entero positivo");
 				if (controlError) {System.out.println(); return;}
 
 				//Ejecución del método
-				System.out.println(usuario.mostrarUsuario(idCuenta, tipoDeCuenta));
+				System.out.println(usuario.bloquearCuenta(idCuenta, tipoDeCuenta, modificacion));
 				if (!OpcionDeMenu.controlError)
 					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			}
@@ -44,7 +51,7 @@ public class MostrarUsuario extends OpcionDeMenu {
 			System.out.println("No hay usuarios resgistrados a parte de tu cuenta.\n");
 		}
 	}
-	
+
 	@Override
-	public String toString() {return "Mostrar información de un usuario";}
+	public String toString() {return "Bloquear/Desbloquear la cuenta de un usuario";}
 }

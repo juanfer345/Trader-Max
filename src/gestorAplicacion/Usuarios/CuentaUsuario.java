@@ -16,16 +16,24 @@ import uiMain.OpcionDeMenu;
 
 abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias{
 
+	private boolean cuentaActiva;
+	
+	//Este booleano se utiliza para saber si la cuenta está o no activa
+	public boolean isCuentaActiva() {return cuentaActiva;}
+	public void setCuentaActiva(boolean cuentaActiva) {this.cuentaActiva = cuentaActiva;}
+
 	abstract public int getTotalDeOpcionesDisponibles();
 
 	// Constructor para usuarios existentes (Llama al super)
-	public CuentaUsuario(int id, String nombre, String correo, String password, int cedula) {
+	public CuentaUsuario(int id, String nombre, String correo, String password, int cedula, boolean activa) {
 		super(id, nombre, correo, password, cedula);
+		cuentaActiva = activa;
 	}
 
 	// Constructor para usuarios nuevos (Llama al super)
 	public CuentaUsuario(String nombre, String correo, String password, int cedula) {
 		super(nombre, correo, password, cedula);
+		cuentaActiva = true;
 	}
 
 	//Constructor vacío
@@ -58,6 +66,15 @@ abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias
 			return "";
 		} else {
 			return "Por favor ingrese un número entero en el rango [1,2].";
+		}
+	}
+	@Override
+	public String toString() {		
+		if (isCuentaActiva()) {
+			return " (Activo) " + super.toString();
+		}
+		else {
+			return " (Inactivo) " + super.toString();
 		}
 	}
 }

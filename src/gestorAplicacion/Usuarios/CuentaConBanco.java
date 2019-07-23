@@ -18,8 +18,8 @@ public abstract class CuentaConBanco extends CuentaUsuario {
 	private CuentaBancaria cuentaBancaria;
 
 	// Constructor para usuarios existentes (Llama al super)
-	public CuentaConBanco(int idCuenta, String nombre, String correo, String password, int cedula) {
-		super(idCuenta, nombre, correo, password, cedula);
+	public CuentaConBanco(int idCuenta, String nombre, String correo, String password, int cedula, boolean activa) {
+		super(idCuenta, nombre, correo, password, cedula, activa);
 	}
 
 	// Constructor para usuarios nuevos (Llama al super)
@@ -30,7 +30,7 @@ public abstract class CuentaConBanco extends CuentaUsuario {
 
 	// Constructor para usuarios con dos cuentas (Llama al super)
 	public CuentaConBanco(int idCuenta, String nombre, String correo, String password, int cedula, int idCuentaBancaria) {
-		super(idCuenta, nombre, correo, password, cedula);
+		super(idCuenta, nombre, correo, password, cedula, true);
 		setMenuPredeterminado();
 		cuentaBancaria = InicializacionAplicacion.getBDCuentasBancarias().get(idCuentaBancaria);
 	}
@@ -44,6 +44,6 @@ public abstract class CuentaConBanco extends CuentaUsuario {
 
 	@Override
 	public String toString() {
-		return super.toString() + ", Código cuenta bancaria:" + cuentaBancaria.getId();
+		return super.toString() + ", Código cuenta bancaria: " + cuentaBancaria.getId();
 	}
 }

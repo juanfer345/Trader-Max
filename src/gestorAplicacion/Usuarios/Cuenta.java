@@ -30,6 +30,7 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 	private int cedula;
 	static int contador;
 	static int totalCuentas;
+	static int totalCuentasActivas;
 
 	public Cuenta(int id, String nombre, String correo, String password, int cedula) {
 	/*
@@ -69,28 +70,25 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 	
 	// Metodos de retorno y modificación de los atributos de la clase
 	public String getNombre() {return nombre;}
-	
 	public void setNombre(String nombre) {this.nombre = nombre;}
 
 	public String getCorreo() {return correo;}
-
 	public void setCorreo(String correo) {this.correo = correo;}
 
 	public int getId() {return id;}
-
 	public void setId(int id) {this.id = id;}
 
 	public int getCedula() {return cedula;}
-
 	public void setCedula(int cedula) {this.cedula = cedula;}
 
 	public String getPassword() {return password;}
-
 	public void setPassword(String password) {this.password = password;}
 
 	public static int getTotalCuentas() {return totalCuentas;}
-
 	public static void setTotalCuentas(int totalCuentas) {Cuenta.totalCuentas = totalCuentas;}
+
+	public static int getTotalCuentasActivas() {return totalCuentasActivas;}
+	public static void setTotalCuentasActivas(int totalCuentasActivas) {Cuenta.totalCuentasActivas += totalCuentasActivas;}
 
 	public static void setMaxID(int contador) {Cuenta.contador = contador + 1;}
 
@@ -101,9 +99,7 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 	public MenuDeConsola getMenuDeConsola() {return menu;}
 	
 	// Devuelve el menú del usuario (ArrayList de opciones de menú)
-	public ArrayList<OpcionDeMenu> getMenu() {
-        return menu.getmenuUsuario();
-	}
+	public ArrayList<OpcionDeMenu> getMenu() {return menu.getmenuUsuario();}
 
 	public void setMenu(Deque<Integer> idOpciones) {
 	/*
@@ -289,6 +285,6 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 
 	@Override
 	public String toString() {
-		return "[Código:" + id + ", Nombre:" + nombre + ", Correo:" + correo + ", Contraseña:" + password + ", Cédula:" + cedula;
+		return "[Código: " + id + ", Nombre: " + nombre + ", Correo: " + correo + ", Contraseña: " + password + ", Cédula: " + cedula;
 	}
 }

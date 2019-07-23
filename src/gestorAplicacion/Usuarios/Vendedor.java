@@ -35,8 +35,8 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 	private static final int totalDeOpcionesDisponibles = 8;
 
 	// Constructor para usuarios existentes (Llama al super)
-	public Vendedor(int idCuenta, String nombre, String correo, String password, int cedula) {
-		super(idCuenta, nombre, correo, password, cedula);
+	public Vendedor(int idCuenta, String nombre, String correo, String password, int cedula, boolean activa) {
+		super(idCuenta, nombre, correo, password, cedula, activa);
 	}
 
 	// Constructor para usuarios existentes con cuenta repetida (Llama al super)
@@ -211,7 +211,7 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 				catalogo.remove(codigoProducto);
 				totalDeProductosSubidos --;
 				OpcionDeMenu.controlError = true;
-				return "Se ha cambiado eliminado el producto \"" + prod.getNombreProducto() + "\" del catálogo\n";
+				return "Se ha eliminado el producto \"" + prod.getNombreProducto() + "\" del catálogo\n";
 			}
 			else {
 				return "Usted no es propietario de este producto";
@@ -224,6 +224,6 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 
 	@Override
 	public String toString() {
-		return super.toString() + ", Publicaciones en el catálogo:" + totalDeProductosSubidos + "]";
+		return "Vendedor:" + super.toString() + ", Publicaciones en el catálogo: " + totalDeProductosSubidos + "]";
 	}
 }
