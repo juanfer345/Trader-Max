@@ -121,6 +121,7 @@ public class Administrador extends CuentaUsuario {
 			}
 			salida = "\nA continuación se muestran todas las cuentas inscritas en la aplicación, existe un total de " 
 				     + totalCuentas + " cuentas, de las cuales " + totalCuentasActivas + " están activas:\n" + sb.toString();
+			break;
 
 		case 2:
 			//Caso B: Se muestran todas las cuentas activas
@@ -136,6 +137,8 @@ public class Administrador extends CuentaUsuario {
 			
 			salida = "\nA continuación se muestran todas las cuentas activas inscritas en la aplicación, existe un total de " 
 		            + totalCuentasActivas + " cuentas:\n" + sb.toString();
+			break;
+			
 		case 3:
 			//Caso C: Se muestran todas las cuentas inactivas
 			for (Map.Entry<Integer, Comprador> entry: InicializacionAplicacion.getBDCompradores().entrySet()) {
@@ -150,6 +153,7 @@ public class Administrador extends CuentaUsuario {
 			
 			salida = "\nA continuación se muestran todas las cuentas inactivas inscritas en la aplicación, existe un total de " 
 		            + (totalCuentas - totalCuentasActivas) + " cuentas:\n" + sb.toString();
+			break;	
 		}
 
 		if (sali) {
@@ -197,6 +201,7 @@ public class Administrador extends CuentaUsuario {
 			}
 			salida = "\nA continuación se muestran todas las cuentas de tipo \"" + tipo + "\""
 					+ " existe un total de \"" + contador + "\" cuentas:\n" + sb.toString();
+			break;
 
 		case 2:
 			//Caso B: Se muestran las cuentas activas
@@ -205,9 +210,10 @@ public class Administrador extends CuentaUsuario {
 					sb.append(entry.getValue() + "\n"); contador++;
 				}
 			}
-			
 			salida = "\nA continuación se muestran todas las cuentas activas de tipo \"" + tipo + "\" inscritas en la aplicación, "
 					+ "existe un total de " + contador + " cuentas:\n" + sb.toString();
+			break;
+			
 		case 3:
 			//Caso C: Se muestran las cuentas inactivas
 			for (Map.Entry<Integer, ? extends CuentaUsuario> entry: baseDeDatos.entrySet()) {
@@ -218,6 +224,7 @@ public class Administrador extends CuentaUsuario {
 			
 			salida = "\nA continuación se muestran todas las cuentas inactivas de tipo \"" + tipo + "\" inscritas en la aplicación, "
 					+ "existe un total de " + contador + " cuentas:\n" + sb.toString();
+			break;
 		}
 		
 		if (contador != 0) {
