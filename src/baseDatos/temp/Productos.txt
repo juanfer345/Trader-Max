@@ -1,1 +1,3 @@
+1;PlayStation 2;Juegos;200000.0;0;10;1
+2;Peliculas PlayStation 2;Juegos;1000.0;45;10;#
 #
