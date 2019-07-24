@@ -28,10 +28,6 @@ import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenuDisponible;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarTodasLasOpciones;
 import uiMain.MenuConsola.Cuenta.Administrador.MostrarUsuario;
 
-/*PROPUESTA por juanfer: ya que administrador debería heredar algunos atributos de cuenta (pero no todos), 
-						 que les parece si se quita cuenta y en su remplazo creamos dos interfaces, de tal manera que una interfaz tenga todo lo de cuenta, pero sin 
-						 ciertos atributos y otra interfaz tenga todo lo que le falte (además de esta manera vamos llenando los requisitos del trabajo)
-*/
 
 public class Administrador extends CuentaUsuario {
     
@@ -81,10 +77,11 @@ public class Administrador extends CuentaUsuario {
 	// Devuelve el total de opciones por defecto que tiene este tipo de usuario
 	public int getTotalDeOpcionesDisponibles() {return totalDeOpcionesDisponibles;}
 	
-    //Devuelve el menú con todas las opciones extras que se le pueden añadir al administrador
+  
 	public ArrayList<OpcionDeMenu> getMenuDisponible() {
-		/*
-		Proposito: Asignar un menú predeterminado con las opciones de menú que se pueden agregar al menu de administrador.
+	/*
+		Proposito: Asignar un menú predeterminado con las opciones de menú que se 
+		           pueden agregar al menu de administrador.
 		
 		Variables de salida:
 		- ArrayList <OpcionDeMenu>: Arraylist con las opciones de menú que podran agragarse
@@ -101,6 +98,12 @@ public class Administrador extends CuentaUsuario {
 	public String mostrarUsuario(byte activas) {
 		/*
 			Proposito: Mostrar los datos de todos los usuarios
+			
+			Variable de entrada:
+			- byte activas: Número de acuerdo a la accion que se desea hacer
+			
+			Variable de salida:
+			- String con informacion de acuerdo a opción elegida
 
 		 */
 		StringBuilder sb = new StringBuilder();
@@ -167,6 +170,13 @@ public class Administrador extends CuentaUsuario {
 	public String mostrarUsuario(byte tipoUsuario, byte activas) {
 		/*
 			Proposito: Mostrar los datos de todos los usuarios de una categoría específica
+			
+			Variables de entrada:
+			- byte tipoUsuario: {1, 2, 3} Dependiendo si es comprador, vendedor o administrador
+			- byte activas: Número de acuerdo a la accion que se desea hacer
+			
+			Variable de salida:
+			- String con informacion de acuerdo a opción elegida
 
 		 */
 		StringBuilder sb = new StringBuilder();
@@ -279,7 +289,7 @@ public class Administrador extends CuentaUsuario {
 
 	public String bloquearCuenta(int idUsuario, byte tipoUsuario, byte modificacion) {
 	/*
-		Proposito: Eliminar una cuenta de un usuario
+		Proposito: Bloquear el inicio de sesión de un usuario
 		
 		Variables de entrada:
 		- int idUsuario: Número de identificación del usuario 

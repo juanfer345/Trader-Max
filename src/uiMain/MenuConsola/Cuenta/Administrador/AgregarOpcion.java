@@ -1,3 +1,8 @@
+/*	Clase AgregarOpcion (pública)         
+
+	Propósito: Opción de menú del usuario, le permite realizar acciones en el programa 
+	           manipulando sus atributos y elementos (Funcionalidad solo usuario administrador)
+ */
 package uiMain.MenuConsola.Cuenta.Administrador;
 
 import java.io.IOException;
