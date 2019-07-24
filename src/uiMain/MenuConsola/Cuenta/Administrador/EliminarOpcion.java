@@ -37,8 +37,11 @@ public class EliminarOpcion extends OpcionDeMenu  {
 				idUsuario = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Por favor ingrese el número identificador del usuario", "El identificador del usuario debe ser un número entero");
 				if (controlError) {System.out.println(); return;}
 
-				if (idUsuario != usuario.getId()) {
+				if (idUsuario == usuario.getId() && tipoDeCuenta == 3) {
 
+					System.out.println("\nNo es permitido que elimines opciones de tu propia cuenta, ingresa otra identificación.\n");
+				}
+				else {
 					//Impresión de las opciones de menú del usuario
 					auxiliar = usuario.getMenuDeConsola().mostrarOpcionesDeMenu(idUsuario, tipoDeCuenta);
 					if (controlError) {
@@ -55,9 +58,6 @@ public class EliminarOpcion extends OpcionDeMenu  {
 						System.out.println("\n" + auxiliar);
 						System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 					}
-				}
-				else {
-					System.out.println("\nNo es permitido que elimines opciones de tu propia cuenta.\n"); return;
 				}
 			}
 
@@ -80,6 +80,7 @@ public class EliminarOpcion extends OpcionDeMenu  {
 			System.out.println("No hay usuarios resgistrados a parte de tu cuenta.\n");
 		}
 	}
+
 
 	@Override
 	public String toString() {return "Eliminar opción de menú de un usuario";}

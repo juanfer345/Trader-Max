@@ -32,7 +32,7 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 
 	// Atributos
 	private int totalDeProductosSubidos = 0;
-	private static final int totalDeOpcionesDisponibles = 8;
+	private static final int totalDeOpcionesDisponibles = 11;
 
 	// Constructor para usuarios existentes (Llama al super)
 	public Vendedor(int idCuenta, String nombre, String correo, String password, int cedula, boolean activa) {
