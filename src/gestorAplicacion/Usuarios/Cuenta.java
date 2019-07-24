@@ -1,4 +1,4 @@
-/*	Clase Cuenta (pública abstracta, implementa InterfazCategorias )      
+/*	Clase Cuenta (pública abstracta, implementa InterfazCategorias y Comparable )      
 	
 	Propósito: Tipo de usuario general del sistema, recoge caracteristicas comunes de los usuarios
 	

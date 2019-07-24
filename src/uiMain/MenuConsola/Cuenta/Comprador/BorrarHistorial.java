@@ -1,4 +1,4 @@
-/*	Clase BorrarHistorial (pública)        
+/*	Clase BorrarHistorial (pública)         
 
 	Propósito: Opción de menú del usuario, le permite realizar acciones en el programa 
 	           manipulando sus atributos y elementos
