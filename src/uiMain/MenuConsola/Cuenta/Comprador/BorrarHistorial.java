@@ -8,10 +8,10 @@ package uiMain.MenuConsola.Cuenta.Comprador;
 
 import java.io.IOException;
 
-import gestorAplicacion.InicializacionAplicacion;
+import control.ControlErrorDatos;
 import gestorAplicacion.Usuarios.Comprador;
-import uiMain.ControlErrorDatos;
-import uiMain.OpcionDeMenu;
+import uiMain.InicializacionAplicacion;
+import uiMain.MenuConsola.OpcionDeMenu;
 
 public class BorrarHistorial extends OpcionDeMenu {
 

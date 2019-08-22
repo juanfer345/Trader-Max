@@ -8,9 +8,11 @@
    Estructuras de datos relevantes:
  */
 
-package uiMain;
+package control;
 
 import java.io.IOException;
+
+import uiMain.MenuConsola.OpcionDeMenu;
 
 public abstract class ControlErrorDatos {
 

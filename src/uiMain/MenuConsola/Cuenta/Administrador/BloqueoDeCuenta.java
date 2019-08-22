@@ -8,11 +8,11 @@ package uiMain.MenuConsola.Cuenta.Administrador;
 
 import java.io.IOException;
 
-import gestorAplicacion.InicializacionAplicacion;
+import control.ControlErrorDatos;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Cuenta;
-import uiMain.ControlErrorDatos;
-import uiMain.OpcionDeMenu;
+import uiMain.InicializacionAplicacion;
+import uiMain.MenuConsola.OpcionDeMenu;
 
 public class BloqueoDeCuenta extends OpcionDeMenu {
 

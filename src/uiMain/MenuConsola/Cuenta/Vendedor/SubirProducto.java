@@ -12,12 +12,12 @@ package uiMain.MenuConsola.Cuenta.Vendedor;
 
 import java.io.IOException;
 
-import gestorAplicacion.InicializacionAplicacion;
+import control.ControlErrorDatos;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.InterfazCategorias;
 import gestorAplicacion.Usuarios.Vendedor;
-import uiMain.ControlErrorDatos;
-import uiMain.OpcionDeMenu;
+import uiMain.InicializacionAplicacion;
+import uiMain.MenuConsola.OpcionDeMenu;
 
 public class SubirProducto extends OpcionDeMenu implements InterfazCategorias{
 

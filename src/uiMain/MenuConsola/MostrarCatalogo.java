@@ -7,10 +7,9 @@ package uiMain.MenuConsola;
 
 import java.io.IOException;
 
-import gestorAplicacion.InicializacionAplicacion;
+import control.ControlErrorDatos;
 import gestorAplicacion.Usuarios.Cuenta;
-import uiMain.ControlErrorDatos;
-import uiMain.OpcionDeMenu;
+import uiMain.InicializacionAplicacion;
 
 public class MostrarCatalogo extends OpcionDeMenu {
 	// Recorre toda la tabla Hash mostrando los productos

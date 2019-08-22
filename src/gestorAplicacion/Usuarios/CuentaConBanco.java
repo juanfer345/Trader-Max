@@ -9,8 +9,8 @@
 
 package gestorAplicacion.Usuarios;
 
-import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.CuentaBancaria;
+import uiMain.InicializacionAplicacion;
 
 public abstract class CuentaConBanco extends CuentaUsuario {
 

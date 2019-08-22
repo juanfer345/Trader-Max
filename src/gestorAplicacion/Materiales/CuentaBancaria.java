@@ -5,8 +5,8 @@
  
 package gestorAplicacion.Materiales;
 
-import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.*;
+import uiMain.InicializacionAplicacion;
 
 public class CuentaBancaria {
 	

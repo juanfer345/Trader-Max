@@ -7,11 +7,10 @@ package uiMain.MenuConsola;
 
 import java.io.IOException;
 
-import gestorAplicacion.InicializacionAplicacion;
+import control.ControlErrorDatos;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Usuarios.Comprador;
-import uiMain.ControlErrorDatos;
-import uiMain.OpcionDeMenu;
+import uiMain.InicializacionAplicacion;
 
 public class Salir extends OpcionDeMenu {
 

@@ -7,9 +7,8 @@ package uiMain.MenuConsola;
 
 import java.io.IOException;
 
+import control.ControlErrorDatos;
 import gestorAplicacion.Usuarios.Cuenta;
-import uiMain.ControlErrorDatos;
-import uiMain.OpcionDeMenu;
 
 
 public class MostrarResenas extends OpcionDeMenu {

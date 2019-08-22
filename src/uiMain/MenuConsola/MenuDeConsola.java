@@ -7,7 +7,7 @@
 	Estructuras de datos relevantes:
 	- ArrayList <OpcionDeMenu> menuActivo: Estructura que contiene las opciones de menú del usuario
 */
-package uiMain;
+package uiMain.MenuConsola;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,11 +15,11 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Comprador;
 import gestorAplicacion.Usuarios.CuentaUsuario;
 import gestorAplicacion.Usuarios.Vendedor;
+import uiMain.InicializacionAplicacion;
 
 public class MenuDeConsola {
 

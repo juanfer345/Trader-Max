@@ -7,9 +7,9 @@ package uiMain.MenuConsola.Cuenta.Comprador;
 
 import java.io.IOException;
 
+import control.ControlErrorDatos;
 import gestorAplicacion.Materiales.CarritoDeCompras;
-import uiMain.ControlErrorDatos;
-import uiMain.OpcionDeMenu;
+import uiMain.MenuConsola.OpcionDeMenu;
 
 public class VaciarCarrito extends OpcionDeMenu {
 

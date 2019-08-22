@@ -14,11 +14,11 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
-import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.Producto;
-import uiMain.MenuDeConsola;
-import uiMain.OpcionDeMenu;
+import uiMain.InicializacionAplicacion;
+import uiMain.MenuConsola.MenuDeConsola;
+import uiMain.MenuConsola.OpcionDeMenu;
 
 public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 

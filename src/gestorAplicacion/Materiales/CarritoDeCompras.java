@@ -13,10 +13,10 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
-import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.Comprador;
 import gestorAplicacion.Usuarios.Cuenta;
-import uiMain.OpcionDeMenu;
+import uiMain.InicializacionAplicacion;
+import uiMain.MenuConsola.OpcionDeMenu;
 
 public class CarritoDeCompras {
 

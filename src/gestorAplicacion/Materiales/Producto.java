@@ -16,10 +16,10 @@ package gestorAplicacion.Materiales;
 import java.util.Deque;
 import java.util.HashMap;
 
-import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Usuarios.InterfazCategorias;
 import gestorAplicacion.Usuarios.Vendedor;
-import uiMain.OpcionDeMenu;
+import uiMain.InicializacionAplicacion;
+import uiMain.MenuConsola.OpcionDeMenu;
 
 public class Producto implements InterfazCategorias {
 

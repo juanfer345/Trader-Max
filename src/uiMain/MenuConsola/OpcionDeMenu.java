@@ -9,7 +9,7 @@
    - ArrayList<OpcionDeMenu>: Contiene a todas las opciones de menú del programa
  */
 
-package uiMain;
+package uiMain.MenuConsola;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,11 +17,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import uiMain.MenuConsola.BuscarProducto;
-import uiMain.MenuConsola.MostrarCatalogo;
-import uiMain.MenuConsola.MostrarPorCategoria;
-import uiMain.MenuConsola.MostrarResenas;
-import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Cuenta.CerrarSesion;
 import uiMain.MenuConsola.Cuenta.Administrador.AgregarOpcion;
 import uiMain.MenuConsola.Cuenta.Administrador.BloqueoDeCuenta;
@@ -51,7 +46,7 @@ public abstract class OpcionDeMenu {
 
 	//Atributos
 	public static boolean controlError;
-	protected static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	protected static StringBuilder sb = new StringBuilder();
 
 	abstract public void ejecutar() throws IOException;

@@ -12,13 +12,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.Producto;
-import uiMain.OpcionDeMenu;
+import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.BuscarProducto;
 import uiMain.MenuConsola.MostrarCatalogo;
 import uiMain.MenuConsola.MostrarPorCategoria;
 import uiMain.MenuConsola.MostrarResenas;
+import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.MenuConsola.Salir;
 import uiMain.MenuConsola.Visitante.IniciarSesion;
 import uiMain.MenuConsola.Visitante.Registrar;

@@ -10,9 +10,9 @@
 
 package gestorAplicacion.Usuarios;
 
-import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
-import uiMain.OpcionDeMenu;
+import uiMain.InicializacionAplicacion;
+import uiMain.MenuConsola.OpcionDeMenu;
 
 abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias{
 

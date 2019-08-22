@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.CuentaBancaria;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
@@ -24,6 +23,7 @@ import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Comprador;
 import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Vendedor;
+import uiMain.InicializacionAplicacion;
 
 public class LecturaBD {
 
@@ -32,7 +32,7 @@ public class LecturaBD {
     private static int maxID = 0;
     private static boolean cnConfirmacion = false;
     
-	public static void PrincipalLecturaBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCat, 
+	public void PrincipalLecturaBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCat, 
 										  String BDProd, String BDRes) {
 		/*
 	  		Método PrincipalLecturaBD (público)
@@ -57,8 +57,6 @@ public class LecturaBD {
 		HashMap <Integer, Deque <Integer>> auxProd = new HashMap<>();
 		HashMap <Integer, Integer> auxRes = new HashMap<>();
 
-		if (cnConfirmacion) System.out.println("LECTURA DE BASE DE DATOS - [INICIO]\n");
-        
         try {
     		// Lectura de las cuentas
         	lecturaCompradores(BDComp, InicializacionAplicacion.getBDCompradores(), auxComp, cnProdComp);
@@ -78,7 +76,7 @@ public class LecturaBD {
     		lecturaResenas(BDRes, InicializacionAplicacion.getBDResenas(), auxRes);
         }
         catch (FileNotFoundException ex){
-        	mensajeError(ex, "Base de datos \"" + BDactual + ".txt\" no encontrada");
+        	mensajeError(ex, "Base de datos \"" + BDactual + ".txt\" no encontrada"); //TODOS LOS MENSAJES DE ERROR DE LA BD SE DEBEN IMPRIMIR DESDE UNA CLASE DE UIMAIN
         }
         catch (IOException ex) {
         	mensajeError(ex, "No fue posible leer la base de datos \"" + BDactual + ".txt\"");
@@ -98,8 +96,6 @@ public class LecturaBD {
 				  		   InicializacionAplicacion.getBDCuentasBancarias(), InicializacionAplicacion.getBDProductos(), 
 				  		   InicializacionAplicacion.getBDResenas(), auxComp, cnProdComp,  auxVend, auxAdmi, auxCat, 
 				  		   auxProd, auxRes);
-
-		if (cnConfirmacion) System.out.println("\nLECTURA DE BASE DE DATOS - [FIN]\n");
 	}
 	
 	private static void lecturaCompradores(String NombreBD, HashMap <Integer, Comprador> HM, HashMap <Integer, Deque <Integer>> mapAux, Deque <Integer> colaAuxProd) throws IOException {

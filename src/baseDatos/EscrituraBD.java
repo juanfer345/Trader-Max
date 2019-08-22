@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import gestorAplicacion.InicializacionAplicacion;
 import gestorAplicacion.Materiales.CuentaBancaria;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
@@ -23,7 +22,8 @@ import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Comprador;
 import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Vendedor;
-import uiMain.OpcionDeMenu;
+import uiMain.InicializacionAplicacion;
+import uiMain.MenuConsola.OpcionDeMenu;
 
 public class EscrituraBD {
 
@@ -32,7 +32,7 @@ public class EscrituraBD {
 	static String BDactual;
 	static boolean cnConfirmacion = false;
 
-	public static void PrincipalEscrituraBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCat, 
+	public void PrincipalEscrituraBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCat, 
 											String BDProd, String BDRes) {
 		/*
 	  		Método PrincipalEscrituraBD (público)
@@ -49,8 +49,6 @@ public class EscrituraBD {
 	   		- BDProd: Nombre de la base de datos de los productos.
 	   		- BDRes: Nombre de la base de datos de las reseñas.
 		 */
-
-		if (cnConfirmacion) System.out.println("\nGUARDADO DE BASE DE DATOS - [FIN]\n");
 		
 		try {
 			//Escritura de las cuentas
@@ -73,8 +71,6 @@ public class EscrituraBD {
 		} catch (IOException ex) {
 			mensajeError(ex, "Error al intentar guardar la base de datos \"" + BDactual + ".txt\"");
 		}
-		
-		if (cnConfirmacion) System.out.println("\nGUARDADO DE BASE DE DATOS - [INICIO]\n");
 	}
 
 	private static void escrituraCompradores(String NombreBD, HashMap <Integer, Comprador> HM) throws IOException {

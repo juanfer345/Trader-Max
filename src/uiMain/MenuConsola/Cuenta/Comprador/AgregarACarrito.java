@@ -7,10 +7,10 @@ package uiMain.MenuConsola.Cuenta.Comprador;
 
 import java.io.IOException;
 
+import control.ControlErrorDatos;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Usuarios.Cuenta;
-import uiMain.ControlErrorDatos;
-import uiMain.OpcionDeMenu;
+import uiMain.MenuConsola.OpcionDeMenu;
 
 public class AgregarACarrito extends OpcionDeMenu {
 

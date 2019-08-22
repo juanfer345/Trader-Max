@@ -8,11 +8,10 @@ package uiMain.MenuConsola;
 
 import java.io.IOException;
 
-import gestorAplicacion.InicializacionAplicacion;
+import control.ControlErrorDatos;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Cuenta;
-import uiMain.ControlErrorDatos;
-import uiMain.OpcionDeMenu;
+import uiMain.InicializacionAplicacion;
 
 public class MostrarPorCategoria extends OpcionDeMenu { // opcion 3
 
