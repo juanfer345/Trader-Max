@@ -129,12 +129,9 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 					VentanaAplicacion.barraMenu.add(menuAyuda);
 
 					//Creación de los subitems del menú - [Fin]
-
 					
 					panel.removeAll();
-					
 					panel.add( new PanelUsuario());
-					
 					VentanaAplicacion.ventana.pack();
 				}
 				
