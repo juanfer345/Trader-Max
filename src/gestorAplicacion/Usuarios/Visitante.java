@@ -180,7 +180,7 @@ public class Visitante extends Cuenta {
 		}
 	}
 
-	public String iniciarSesion(byte tipoDeCuenta, String correoIngresado, String contrasenaIngresada) {
+	public static String iniciarSesion(String correoIngresado, String contrasenaIngresada) {
 		/* 
 		   Propósito: Loguearse como un usuario diferente a Invitado 
 		   
@@ -195,24 +195,23 @@ public class Visitante extends Cuenta {
 		HashMap<Integer, ? extends CuentaUsuario> baseDeDatos = null;
 		int idcorreoRegistrado;
 
-		switch (tipoDeCuenta) {
-		case 1:
-			// Caso A: Registro de un usuario vendedor
-			baseDeDatos = InicializacionAplicacion.getBDCompradores();
-			break;
-		case 2:
-			// Caso B: Registro de un usuario Comprador
-			baseDeDatos = InicializacionAplicacion.getBDVendedores();
-			break;
-		case 3:
-			// Caso C: Registro de un usuario Administrador
-			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
-			break;
-		}
-
-		// Busqueda de correo en la base de datos seleccionada
+		// Caso A: Busqueda de un usuario Comprador
+		baseDeDatos = InicializacionAplicacion.getBDCompradores();
 		idcorreoRegistrado = idCorreo(baseDeDatos, correoIngresado);
 
+		// Caso B: Busqueda de un usuario Cendedor 
+		if (idcorreoRegistrado == -1) {
+			baseDeDatos = InicializacionAplicacion.getBDVendedores();
+			idcorreoRegistrado = idCorreo(baseDeDatos, correoIngresado);
+		}
+
+		// Caso C: Busqueda de un usuario Administrador
+		if (idcorreoRegistrado == -1) {
+			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
+			idcorreoRegistrado = idCorreo(baseDeDatos, correoIngresado);
+		}
+
+		// Vericación de que el usuario existe
 		if (idcorreoRegistrado != -1) {
 			// Caso A: Se ha encontrado el correo
 			if (baseDeDatos.get(idcorreoRegistrado).getPassword().equals(contrasenaIngresada)) {
@@ -228,14 +227,14 @@ public class Visitante extends Cuenta {
 					}
 
 					OpcionDeMenu.controlError = true;
-					return  "\n                     TRADER-MAX INC                       \n" + "\nSesión iniciada correctamente, bienvenido a TRADER-MAX "
-					+ InicializacionAplicacion.usuarioActivo.getNombre() + ".\n";
+					return "Sesión iniciada correctamente, bienvenido a TRADER-MAX " + 
+							InicializacionAplicacion.usuarioActivo.getNombre() + ".\n";
 				}
 				else {
 					return "Su usuario se encuentra bloqueado, no puede iniciar sesión.\n";
 				}
 			} else {
-				return "Contraseña incorrecta.\n";
+				return "La contraseña ingresada es incorrecta.\n";
 			}
 		} else {
 			// Caso B: No se ha encontrado el correo

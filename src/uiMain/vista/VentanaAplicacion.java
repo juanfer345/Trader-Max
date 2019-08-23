@@ -3,13 +3,15 @@ package uiMain.vista;
 import java.awt.Container;
 
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
 public class VentanaAplicacion extends JFrame {
 
-//	public static JFrame ventana;
+	public static JFrame ventana;
 	public static Container panelPrincipal;
-
+	public static JMenuBar barraMenu = new JMenuBar();
+	
 	public VentanaAplicacion() {
 //		ventana = this;
 		PanelLogin panel = new PanelLogin();
@@ -23,6 +25,9 @@ public class VentanaAplicacion extends JFrame {
 		panelPrincipal = this.getContentPane();
 		panelPrincipal.removeAll();
 		panelPrincipal.add(panel);
+
+		// Barra de menú
+		setJMenuBar(barraMenu);
 	}
 	
 	public void lanzar() {
@@ -32,7 +37,7 @@ public class VentanaAplicacion extends JFrame {
 		organizar();
 	}
 	
-	public void organizar() {
+	private void organizar() {
 		pack();							// coloca los componentes
 		setLocationRelativeTo(null);	// centra la ventana en la pantalla
 		setVisible(true);				// visualiza la ventana

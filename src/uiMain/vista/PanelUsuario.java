@@ -5,15 +5,16 @@ import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import control.ControlLogin;
 
-public class PanelLogin extends JPanel {
+public class PanelUsuario extends JPanel {
 
 	// Etiquetas
 	public JLabel etiqueta_1;
@@ -30,9 +31,9 @@ public class PanelLogin extends JPanel {
 	// Textos
 	public JScrollPane texto_1;
 	public JTextField texto_2;
-	public JPasswordField texto_3;
+	public JTextField texto_3;
 
-	public PanelLogin() {
+	public PanelUsuario() {
 		
 		// Definición de las partes del panel - [Inicio]
 
@@ -61,7 +62,7 @@ public class PanelLogin extends JPanel {
 		etiqueta_2 = new JLabel("Ingrese su código de usuario y su clave");
 		etiqueta_2.setVisible(false);
 		
-		etiqueta_3 = new JLabel("Correo de usuario");
+		etiqueta_3 = new JLabel("Código de usuario");
 		etiqueta_3.setVisible(false);
 		
 		etiqueta_4 = new JLabel("Clave");
@@ -77,7 +78,7 @@ public class PanelLogin extends JPanel {
 		texto_1 = new JScrollPane(new JTextArea("Trader-Max es la solución para realizar compras y ventas "
 				+ "de todo lo que quieras a través de internet!"));
 		texto_2 = new JTextField(); texto_2.setVisible(false);
-		texto_3 = new JPasswordField(); texto_3.setVisible(false);
+		texto_3 = new JTextField(); texto_3.setVisible(false);
 		
 		// Definición de las partes del panel - [Fin]
 
