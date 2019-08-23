@@ -19,6 +19,7 @@ import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Vendedor;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.MenuConsola.MenuDeConsola;
+import uiMain.vista.VentanaAplicacion;
 
 public class InicializacionAplicacion {
 
@@ -35,6 +36,7 @@ public class InicializacionAplicacion {
 		//Creación de objetos de lectura y escritura
 		LecturaBD Lector = new LecturaBD();
 		EscrituraBD Escritor = new EscrituraBD();
+		VentanaAplicacion interfaz = new VentanaAplicacion();
 		
 		//Ejecución de la lectura de la base de datos
 		Lector.PrincipalLecturaBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Catálogo", "Productos", "Reseñas");
@@ -79,17 +81,15 @@ public class InicializacionAplicacion {
 //				// El ciclo sigue hasta que el usuario ingrese la opción Salir
 //		}
 		
-		
 		//Ciclo de control para ejecutar el menú hasta que se desee salir de la aplicación
-		MenuDeConsola.LanzarMenu();
+		interfaz.lanzar();
 		
 		//Ejecución de la escritura en la base de datos
-		Escritor.PrincipalEscrituraBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Catálogo", "Productos", "Reseñas");
+		//Escritor.PrincipalEscrituraBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Catálogo", "Productos", "Reseñas");
 	}
 
 	public static HashMap <Integer, Comprador> getBDCompradores() {return BDCompradores;}
 	public static void setBDCompradores(int idComprador, Comprador comp) {BDCompradores.put(idComprador, comp);}
-
 	public static HashMap <Integer, Vendedor> getBDVendedores() {return BDVendedores;}
 	public static HashMap <Integer, Administrador> getBDAdministradores() {return BDAdministradores;}
 	public static HashMap <Integer, CuentaBancaria> getBDCuentasBancarias() {return BDCuentasBancarias;}
