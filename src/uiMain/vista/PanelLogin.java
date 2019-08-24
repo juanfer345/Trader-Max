@@ -79,13 +79,14 @@ public class PanelLogin extends JPanel {
 
 		// Textos
 		JTextArea aux = new JTextArea("Trader-Max es la solución para realizar compras y ventas \n"
-				+ "de todo lo que quieras a través de internet!");
+				+ "de todo lo que quieras a través de internet!sdjkfnkjlljjjjjjjjjjjjjjjjjjjjjjj\njj"
+				+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjfsdfasdfsdfsadfasdfasdfsadfas\n"
+				+ "sdfasdf;lasdjflksadjfls;akdjf;asdlkf;jasdlkf");
 				aux.setEditable(false);
 				//FALTA DECIR QUIEN LO DESARROLLÓ Y COMO FUNCIONA
 				
-				
 		texto_1 = new JScrollPane(aux, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		texto_1.setSize(300, 500);
+		texto_1.setSize(300, 500);// ESTO NO AYUDA
 		
 		texto_2 = new JTextField(); texto_2.setVisible(false);
 		texto_3 = new JPasswordField(); texto_3.setVisible(false);

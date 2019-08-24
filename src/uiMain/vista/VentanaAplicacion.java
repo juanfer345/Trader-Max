@@ -13,7 +13,6 @@ public class VentanaAplicacion extends JFrame {
 	public static JMenuBar barraMenu = new JMenuBar();
 	
 	public VentanaAplicacion() {
-//		ventana = this;
 		PanelLogin panel = new PanelLogin();
 		panelPrincipal = this.getContentPane();
 		panelPrincipal.add(panel);
@@ -21,14 +20,13 @@ public class VentanaAplicacion extends JFrame {
 		panel.asignarOyente();
 	}
 	
-	public VentanaAplicacion(JPanel panel) {
-		panelPrincipal = this.getContentPane();
-		panelPrincipal.removeAll();
-		panelPrincipal.add(panel);
-		ventana = this;
-
+	public void setMenuBar () {
 		// Barra de menú
 		setJMenuBar(barraMenu);
+	}
+	
+	public VentanaAplicacion getVentana () {
+		return this;
 	}
 	
 	public void lanzar() {
