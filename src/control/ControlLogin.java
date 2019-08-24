@@ -53,7 +53,8 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 		switch (((String) arg.getActionCommand())) {
 			case "Administrador":
 				panel.boton_2.setText("Administrador Complete y Nuevamente Clic");
-				panel.boton_3.setText("UsuarioComún");
+				panel.boton_3.setText("Comprador");
+				panel.boton_5.setText("Vendedor");
 				panel.etiqueta_2.setVisible(true);
 				panel.etiqueta_3.setVisible(true);
 				panel.etiqueta_4.setVisible(true);
@@ -61,9 +62,10 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 				panel.texto_3.setVisible(true);
 				break;
 	
-			case "UsuarioComún":
+			case "Comprador":
 				panel.boton_2.setText("Administrador");
-				panel.boton_3.setText("UsuarioComún Complete y Nuevamente Clic");
+				panel.boton_3.setText("Comprador Complete y Nuevamente Clic");
+				panel.boton_5.setText("Vendedor");
 				panel.etiqueta_2.setVisible(true);
 				panel.etiqueta_3.setVisible(true);
 				panel.etiqueta_4.setVisible(true);
@@ -71,8 +73,19 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 				panel.texto_3.setVisible(true);
 				break;
 
+			case "Vendedor":
+				panel.boton_2.setText("Administrador");
+				panel.boton_3.setText("Comprador");
+				panel.boton_5.setText("Vendedor Complete y Nuevamente Clic");
+				panel.etiqueta_2.setVisible(true);
+				panel.etiqueta_3.setVisible(true);
+				panel.etiqueta_4.setVisible(true);
+				panel.texto_2.setVisible(true);
+				panel.texto_3.setVisible(true);
+				break;
+				
 			case "Administrador Complete y Nuevamente Clic":
-			case "UsuarioComún Complete y Nuevamente Clic":
+			case "Comprador Complete y Nuevamente Clic":
 	
 				OpcionDeMenu.controlError = false;
 				
