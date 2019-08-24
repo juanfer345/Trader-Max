@@ -2,7 +2,9 @@ package uiMain.vista;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -68,14 +70,23 @@ public class PanelLogin extends JPanel {
 		etiqueta_4.setVisible(false);
 
 		// Botones
-		boton_1 = new JButton("Haga clic para ver fotos de los autores del sistema");
+		ImageIcon imagen = new ImageIcon(System.getProperty("user.dir") + "\\src\\fotos\\foto1.png");
+		boton_1 = new JButton(new ImageIcon(imagen.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH)));
+		
 		boton_2 = new JButton("Administrador");
 		boton_3 = new JButton("UsuarioComún");
 		boton_4 = new JButton("Salir");
 
 		// Textos
-		texto_1 = new JScrollPane(new JTextArea("Trader-Max es la solución para realizar compras y ventas "
-				+ "de todo lo que quieras a través de internet!"));
+		JTextArea aux = new JTextArea("Trader-Max es la solución para realizar compras y ventas \n"
+				+ "de todo lo que quieras a través de internet!");
+				aux.setEditable(false);
+				//FALTA DECIR QUIEN LO DESARROLLÓ Y COMO FUNCIONA
+				
+				
+		texto_1 = new JScrollPane(aux, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		texto_1.setSize(300, 500);
+		
 		texto_2 = new JTextField(); texto_2.setVisible(false);
 		texto_3 = new JPasswordField(); texto_3.setVisible(false);
 		
@@ -113,8 +124,7 @@ public class PanelLogin extends JPanel {
 		// Declaración del oyente
 		ControlLogin oidor = new ControlLogin();
 		
-//		this.addMouseMotionListener(oidor);
-//		super.addMouseMotionListener(oidor);
+		this.addMouseMotionListener(oidor);
 		etiqueta_1.addMouseMotionListener(oidor);
 		boton_1.addActionListener(oidor);
 		boton_2.addActionListener(oidor);

@@ -16,8 +16,8 @@ public class VentanaAplicacion extends JFrame {
 //		ventana = this;
 		PanelLogin panel = new PanelLogin();
 		panelPrincipal = this.getContentPane();
-		panelPrincipal.removeAll();
 		panelPrincipal.add(panel);
+		ventana = this;
 		panel.asignarOyente();
 	}
 	
@@ -25,6 +25,7 @@ public class VentanaAplicacion extends JFrame {
 		panelPrincipal = this.getContentPane();
 		panelPrincipal.removeAll();
 		panelPrincipal.add(panel);
+		ventana = this;
 
 		// Barra de menú
 		setJMenuBar(barraMenu);
