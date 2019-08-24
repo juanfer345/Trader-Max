@@ -3,10 +3,12 @@ package uiMain.vista;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -14,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import control.ControlLogin;
+import control.ControlSalir;
 
 public class PanelLogin extends JPanel {
 
@@ -81,10 +84,12 @@ public class PanelLogin extends JPanel {
 		JTextArea aux = new JTextArea("Trader-Max es la solución para realizar compras y ventas \n"
 				+ "de todo lo que quieras a través de internet!sdjkfnkjlljjjjjjjjjjjjjjjjjjjjjjj\njj"
 				+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjfsdfasdfsdfsadfasdfasdfsadfas\n"
-				+ "sdfasdf;lasdjflksadjfls;akdjf;asdlkf;jasdlkf");
-				aux.setEditable(false);
+				+ "sdfasdf;lasdjflksadjfls;akdjf;asdlkf;jasdlkf"); 
+				aux.setEditable(false); 
 				//FALTA DECIR QUIEN LO DESARROLLÓ Y COMO FUNCIONA
-				
+
+
+				  	
 		texto_1 = new JScrollPane(aux, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		texto_1.setSize(300, 500);// ESTO NO AYUDA
 		
@@ -124,12 +129,12 @@ public class PanelLogin extends JPanel {
 	public void asignarOyente() {
 		// Declaración del oyente
 		ControlLogin oidor = new ControlLogin();
-		
+		ControlSalir oidor2 = new ControlSalir();
 		this.addMouseMotionListener(oidor);
 		etiqueta_1.addMouseMotionListener(oidor);
 		boton_1.addActionListener(oidor);
 		boton_2.addActionListener(oidor);
 		boton_3.addActionListener(oidor);
-		boton_4.addMouseMotionListener(oidor);
+		boton_4.addMouseMotionListener(oidor2);
 	}
 }

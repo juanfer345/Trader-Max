@@ -85,7 +85,7 @@ public class InicializacionAplicacion {
 		interfaz.lanzar();
 		
 		//Ejecución de la escritura en la base de datos
-		//Escritor.PrincipalEscrituraBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Catálogo", "Productos", "Reseñas");
+//		Escritor.PrincipalEscrituraBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Catálogo", "Productos", "Reseñas");
 	}
 
 	public static HashMap <Integer, Comprador> getBDCompradores() {return BDCompradores;}
