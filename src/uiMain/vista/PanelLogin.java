@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import control.ControlInicioSesion;
 import control.ControlLogin;
 
 public class PanelLogin extends JPanel {
@@ -124,13 +125,14 @@ public class PanelLogin extends JPanel {
 	public void asignarOyente() {
 		// Declaración del oyente
 		ControlLogin oidor = new ControlLogin();
+		ControlInicioSesion oidorIS = new ControlInicioSesion();
 		
 		this.addMouseMotionListener(oidor);
 		etiqueta_1.addMouseMotionListener(oidor);
 		boton_1.addActionListener(oidor);
-		boton_2.addActionListener(oidor);
-		boton_3.addActionListener(oidor);
-		boton_5.addActionListener(oidor);
+		boton_2.addActionListener(oidorIS);
+		boton_3.addActionListener(oidorIS);
+		boton_5.addActionListener(oidorIS);
 		boton_4.addMouseMotionListener(oidor);
 	}
 }
