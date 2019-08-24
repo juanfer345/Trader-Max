@@ -180,7 +180,7 @@ public class Visitante extends Cuenta {
 		}
 	}
 
-	public static String iniciarSesion(String correoIngresado, String contrasenaIngresada) {
+	public String iniciarSesion(byte tipoDeCuenta, String correoIngresado, String contrasenaIngresada) {
 		/* 
 		   Propósito: Loguearse como un usuario diferente a Invitado 
 		   
@@ -193,23 +193,26 @@ public class Visitante extends Cuenta {
 		 */
 
 		HashMap<Integer, ? extends CuentaUsuario> baseDeDatos = null;
-		int idcorreoRegistrado;
-
-		// Caso A: Busqueda de un usuario Comprador
-		baseDeDatos = InicializacionAplicacion.getBDCompradores();
-		idcorreoRegistrado = idCorreo(baseDeDatos, correoIngresado);
-
-		// Caso B: Busqueda de un usuario Cendedor 
-		if (idcorreoRegistrado == -1) {
+		int idcorreoRegistrado = -1;
+		
+		switch (tipoDeCuenta) {
+		case 1:
+			// Caso A: Registro de un usuario Comprador
+			baseDeDatos = InicializacionAplicacion.getBDCompradores();
+			break;
+			
+		case 2:
+			// Caso B: Registro de un usuario Vendedor
 			baseDeDatos = InicializacionAplicacion.getBDVendedores();
-			idcorreoRegistrado = idCorreo(baseDeDatos, correoIngresado);
-		}
-
-		// Caso C: Busqueda de un usuario Administrador
-		if (idcorreoRegistrado == -1) {
+			break;
+			
+		case 3:
+			// Caso C: Registro de un usuario Administrador
 			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
-			idcorreoRegistrado = idCorreo(baseDeDatos, correoIngresado);
+			break;
 		}
+		
+		idcorreoRegistrado = idCorreo(baseDeDatos, correoIngresado);
 
 		// Vericación de que el usuario existe
 		if (idcorreoRegistrado != -1) {
