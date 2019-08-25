@@ -1,5 +1,5 @@
 package control.Cuenta.Administrador;
 
-public class AgregarOpcion {
+public class ControlBloqueoDeCuenta {
 
 }
