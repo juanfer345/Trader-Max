@@ -37,7 +37,7 @@ public class Salir extends OpcionDeMenu {
 		if (controlError) {System.out.println(); return;}
 		
 		//Ejecución del método e impresión de respuesta
-		System.out.println(InicializacionAplicacion.usuarioActivo.salir(seleccion));
+		//System.out.println(InicializacionAplicacion.usuarioActivo.salir(seleccion));
 		if (!OpcionDeMenu.controlError)
 			System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 	}

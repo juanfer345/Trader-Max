@@ -3,20 +3,15 @@ package uiMain.vista;
 import java.awt.FlowLayout; 
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.util.Vector;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-import control.ControlInicioSesion;
 import control.ControlLogin;
 import control.ControlSalir;
 

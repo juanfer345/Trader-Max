@@ -125,29 +125,19 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 		menu.setmenuUsuario(getMenuPredeterminado());
 	}
 	
-	public String salir(byte seleccion) {
+	public String salir() {
 	/*
-	    Propósito: Dar la posibilidad al usuario de salir de la aplicación
-		           
-		Variables de entrada:
-		- byte seleccion: número que se ingresa dependiendo de si desea o no salir {1, 2}
+	    Propósito: Dar la posibilidad al usuario de salir de la aplicación	           
 		
 		Variables de salida:
 		- String con mensaje dependiendo si el proceso fue o no exitoso
     */
-		if (seleccion == 1) { // 1 para salir de la aplicación
 			OpcionDeMenu.controlError = true;
-			MenuDeConsola.SalirApp = true;
 			//Devolviendo los productos no comprados en caso de ser comprador
 			if (InicializacionAplicacion.usuarioActivo instanceof Comprador) {
 				CarritoDeCompras.vaciarCarrito();
 			}
-			return "\nLa aplicación será cerrada";
-		} else { // 2 para continuar en la aplicación
-			OpcionDeMenu.controlError = true;
-			return "";
-		}
-	}
+			return "\nLa aplicación será cerrada";}
 
 	public String buscarProducto(int codigo) {
 	/*
