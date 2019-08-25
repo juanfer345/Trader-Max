@@ -11,9 +11,9 @@ import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.MenuDeConsola;
 import uiMain.MenuConsola.OpcionDeMenu;
-import uiMain.vista.PanelLogin;
 import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
+import uiMain.vista.Visitante.PanelLogin;
 
 public class ControlInicioSesion extends OpcionDeMenu implements ActionListener {
 	
@@ -68,10 +68,8 @@ public class ControlInicioSesion extends OpcionDeMenu implements ActionListener 
 		VentanaAplicacion.ventana.pack();
 		VentanaAplicacion.ventana.setLocationRelativeTo(null);
 	}
-
-	@Override
+	
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Iniciar sesión";
 	}
 }

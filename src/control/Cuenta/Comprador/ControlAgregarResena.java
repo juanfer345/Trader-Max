@@ -43,6 +43,9 @@ public class ControlAgregarResena extends OpcionDeMenu implements ActionListener
 	}
 		
 	}
+	public String toString() {
+		return "Agregar reseña";
+	}
 
 	@Override
 	public String toString() {

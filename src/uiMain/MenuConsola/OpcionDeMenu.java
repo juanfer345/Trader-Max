@@ -78,7 +78,7 @@ public abstract class OpcionDeMenu implements ActionListener {
 	}
 	
 	//Mostrar todas las opciones disponibles 
-	protected static String ImprimirTodasLasOpciones() {
+	public static String ImprimirTodasLasOpciones() {
      
 		StringBuilder sb = new StringBuilder();
 

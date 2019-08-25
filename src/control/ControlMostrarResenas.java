@@ -34,6 +34,9 @@ public class ControlMostrarResenas extends OpcionDeMenu implements ActionListene
 		}
 		
 	}
+	public String toString() {
+		return "Mostrar reseñas";
+	}
 
 	@Override
 	public String toString() {

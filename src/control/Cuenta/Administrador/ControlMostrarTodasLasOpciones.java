@@ -2,21 +2,33 @@ package control.Cuenta.Administrador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import control.ControlErrorDatos;
+import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlMostrarTodasLasOpciones extends OpcionDeMenu implements ActionListener {
 
-	@Override
+
+public class ControlMostrarTodasLasOpciones implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
-	}
+		byte seleccion=0;
+		
+		//Guardado de mensaje principal
+		System.out.println();
+//		sb.append("Usted ha elegido mostrar todas las opciones de menu existentes. ¿Que desea hacer?\n");
+//		sb.append("1. Continuar con el proceso\n");
+//		sb.append("2. Volver al menú y cancelar el proceso\n");
+//		sb.append("Selección");
 
-	@Override
+		// Ingreso del dato por parte del usuario
+	//	seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
+		if (OpcionDeMenu.controlError || seleccion == 2) {System.out.println(); return;}
+
+		//Mostrado de todas las opciones
+		System.out.println(OpcionDeMenu.ImprimirTodasLasOpciones());
+	}
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+		return "Mostrar todas las opciones";
+	
 }

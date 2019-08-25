@@ -12,6 +12,8 @@ import control.ControlInformacionUsuario;
 import uiMain.MenuConsola.MenuDeConsola;
 import uiMain.MenuConsola.OpcionDeMenu;
 
+import uiMain.vista.Visitante.PanelLogin;
+
 public class VentanaAplicacion extends JFrame {
 
 	public static JFrame ventana;
