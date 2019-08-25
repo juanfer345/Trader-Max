@@ -1,5 +1,1 @@
-2;vend1;vend1@vend1.com;vend1;4846;true;2;2,3,4,5,17,18,16,14,15,27,28
-5;vend2;vedn2@vend2.com;vend2;123;true;4;2,3,4,5,17,18,16,14,15,27,28
-6;compVend;compV@compV.com;compV;123;true;5;2,3,4,5,17,18,16,14,15,27,28
-10;Juanma;jcardenasv@unal.edu.co;123789a;1000098647;true;7;2,3,4,5,17,18,16,14,15,27,28
 #

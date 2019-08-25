@@ -7,7 +7,7 @@ import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
-public class ControlEliminarProdCatalogo implements ActionListener {
+public class ControlEliminarProdCatalogo extends OpcionDeMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

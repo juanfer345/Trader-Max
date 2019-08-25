@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 import uiMain.InicializacionAplicacion;
 
-public class InformacionUsuario implements ActionListener {
+public class ControlInformacionUsuario implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg) {

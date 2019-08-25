@@ -13,35 +13,38 @@ package uiMain.MenuConsola;
 
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import uiMain.MenuConsola.Cuenta.CerrarSesion;
-import uiMain.MenuConsola.Cuenta.Administrador.AgregarOpcion;
-import uiMain.MenuConsola.Cuenta.Administrador.BloqueoDeCuenta;
-import uiMain.MenuConsola.Cuenta.Administrador.EliminarOpcion;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarCuentas;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenu;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenuDisponible;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarTodasLasOpciones;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarUsuario;
-import uiMain.MenuConsola.Cuenta.Comprador.AgregarACarrito;
-import uiMain.MenuConsola.Cuenta.Comprador.AgregarResena;
-import uiMain.MenuConsola.Cuenta.Comprador.BorrarHistorial;
-import uiMain.MenuConsola.Cuenta.Comprador.ComprarProducto;
-import uiMain.MenuConsola.Cuenta.Comprador.MostrarCarrito;
-import uiMain.MenuConsola.Cuenta.Comprador.MostrarHistorial;
-import uiMain.MenuConsola.Cuenta.Comprador.QuitarProductoCarrito;
-import uiMain.MenuConsola.Cuenta.Comprador.VaciarCarrito;
-import uiMain.MenuConsola.Cuenta.Vendedor.CambiarPrecio;
-import uiMain.MenuConsola.Cuenta.Vendedor.EliminarProductoCatalogo;
-import uiMain.MenuConsola.Cuenta.Vendedor.ModificarCantidad;
-import uiMain.MenuConsola.Cuenta.Vendedor.SubirProducto;
-import uiMain.MenuConsola.Cuenta.Vendedor.VerProductos;
-import uiMain.MenuConsola.Visitante.IniciarSesion;
-import uiMain.MenuConsola.Visitante.Registrar;
+import control.ControlBuscarProducto;
+import control.ControlCerrarSesion;
+import control.ControlInicioSesion;
+import control.ControlMostrarCatalogo;
+import control.ControlMostrarPorCategoria;
+import control.ControlMostrarResenas;
+import control.Cuenta.Administrador.ControlAgregarOpcion;
+import control.Cuenta.Administrador.ControlBloqueoDeCuenta;
+import control.Cuenta.Administrador.ControlEliminarOpcion;
+import control.Cuenta.Administrador.ControlMostrarCuentas;
+import control.Cuenta.Administrador.ControlMostrarMenu;
+import control.Cuenta.Administrador.ControlMostrarMenuDisponible;
+import control.Cuenta.Administrador.ControlMostrarTodasLasOpciones;
+import control.Cuenta.Administrador.ControlMostrarUsuario;
+import control.Cuenta.Comprador.ControlAgregarACarrito;
+import control.Cuenta.Comprador.ControlAgregarResena;
+import control.Cuenta.Comprador.ControlBorrarHistorial;
+import control.Cuenta.Comprador.ControlComprarProducto;
+import control.Cuenta.Comprador.ControlMostrarCarrito;
+import control.Cuenta.Comprador.ControlMostrarHistorial;
+import control.Cuenta.Comprador.ControlQuitarProductoCarrito;
+import control.Cuenta.Comprador.ControlVaciarCarrito;
+import control.Cuenta.Vendedor.ControlCambiarPrecio;
+import control.Cuenta.Vendedor.ControlEliminarProdCatalogo;
+import control.Cuenta.Vendedor.ControlModificarCantidad;
+import control.Cuenta.Vendedor.ControlSubirProducto;
+import control.Cuenta.Vendedor.ControlVerProductos;
+import control.Visitante.ControlRegistrar;
 
 public abstract class OpcionDeMenu implements ActionListener {
 
@@ -49,8 +52,6 @@ public abstract class OpcionDeMenu implements ActionListener {
 	public static boolean controlError;
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	protected static StringBuilder sb = new StringBuilder();
-
-	abstract public void ejecutar() throws IOException;
 
 	abstract public String toString();
 
@@ -64,14 +65,16 @@ public abstract class OpcionDeMenu implements ActionListener {
 		 */
 
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-				new IniciarSesion(), new Registrar(), new BuscarProducto(), new MostrarCatalogo(), 
-				new MostrarPorCategoria(), new MostrarResenas(), new AgregarACarrito(), new AgregarResena(), 
-				new BorrarHistorial(), new ComprarProducto(), new MostrarCarrito(), new MostrarHistorial(), 
-				new QuitarProductoCarrito(), new VaciarCarrito(), new CambiarPrecio(), new EliminarProductoCatalogo(), 
-				new ModificarCantidad(), new SubirProducto(), new VerProductos(), new AgregarOpcion(), 
-				new MostrarCuentas(), new BloqueoDeCuenta(), new EliminarOpcion(), new MostrarMenu(), 
-				new MostrarMenuDisponible(), new MostrarTodasLasOpciones(), new MostrarUsuario(), new CerrarSesion(), 
-				new Salir() }));
+				new ControlInicioSesion(), new ControlRegistrar(), new ControlBuscarProducto(), 
+				new ControlMostrarCatalogo(), new ControlMostrarPorCategoria(), new ControlMostrarResenas(), 
+				new ControlAgregarACarrito(), new ControlAgregarResena(), new ControlBorrarHistorial(), 
+				new ControlComprarProducto(), new ControlMostrarCarrito(), new ControlMostrarHistorial(), 
+				new ControlQuitarProductoCarrito(), new ControlVaciarCarrito(), new ControlCambiarPrecio(), 
+				new ControlEliminarProdCatalogo(), new ControlModificarCantidad(), new ControlSubirProducto(), 
+				new ControlVerProductos(), new ControlAgregarOpcion(), new ControlMostrarCuentas(), 
+				new ControlBloqueoDeCuenta(), new ControlEliminarOpcion(), new ControlMostrarMenu(), 
+				new ControlMostrarMenuDisponible(), new ControlMostrarTodasLasOpciones(), 
+				new ControlMostrarUsuario(), new ControlCerrarSesion()}));
 	}
 	
 	//Mostrar todas las opciones disponibles 

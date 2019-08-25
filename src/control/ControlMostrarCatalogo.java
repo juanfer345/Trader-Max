@@ -7,7 +7,7 @@ import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
-public class MostrarCatalogo implements ActionListener{
+public class ControlMostrarCatalogo extends OpcionDeMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {byte seleccion; 

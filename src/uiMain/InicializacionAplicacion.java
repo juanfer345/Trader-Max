@@ -8,7 +8,6 @@ package uiMain;
 import java.io.IOException;
 import java.util.HashMap;
 
-import baseDatos.EscrituraBD;
 import baseDatos.LecturaBD;
 import gestorAplicacion.Materiales.CuentaBancaria;
 import gestorAplicacion.Materiales.Producto;
@@ -35,13 +34,16 @@ public class InicializacionAplicacion {
 		
 		//Creación de objetos de lectura y escritura
 		LecturaBD Lector = new LecturaBD();
+		
+		//Creación de un usuario visitante
+		setUsuarioActivo (new Visitante());
+		
+		//Creación de nueva ventana
 		VentanaAplicacion interfaz = new VentanaAplicacion();
 		
 		//Ejecución de la lectura de la base de datos
 		Lector.PrincipalLecturaBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Catálogo", "Productos", "Reseñas");
 		
-		//Creación de un usuario visitante
-		setUsuarioActivo (new Visitante());
 
 //		public lanzarInterfaz() {
 //			/*

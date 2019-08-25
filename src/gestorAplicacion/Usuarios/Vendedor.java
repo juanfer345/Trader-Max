@@ -14,19 +14,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
+import control.ControlBuscarProducto;
+import control.ControlCerrarSesion;
+import control.ControlMostrarCatalogo;
+import control.ControlMostrarPorCategoria;
+import control.ControlMostrarResenas;
+import control.Cuenta.Vendedor.ControlCambiarPrecio;
+import control.Cuenta.Vendedor.ControlEliminarProdCatalogo;
+import control.Cuenta.Vendedor.ControlModificarCantidad;
+import control.Cuenta.Vendedor.ControlSubirProducto;
+import control.Cuenta.Vendedor.ControlVerProductos;
 import gestorAplicacion.Materiales.Producto;
-import uiMain.MenuConsola.BuscarProducto;
-import uiMain.MenuConsola.MostrarCatalogo;
-import uiMain.MenuConsola.MostrarPorCategoria;
-import uiMain.MenuConsola.MostrarResenas;
 import uiMain.MenuConsola.OpcionDeMenu;
-import uiMain.MenuConsola.Salir;
-import uiMain.MenuConsola.Cuenta.CerrarSesion;
-import uiMain.MenuConsola.Cuenta.Vendedor.CambiarPrecio;
-import uiMain.MenuConsola.Cuenta.Vendedor.EliminarProductoCatalogo;
-import uiMain.MenuConsola.Cuenta.Vendedor.ModificarCantidad;
-import uiMain.MenuConsola.Cuenta.Vendedor.SubirProducto;
-import uiMain.MenuConsola.Cuenta.Vendedor.VerProductos;
 
 public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 
@@ -55,10 +54,10 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 	// Crea un nuevo menú por defecto
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] {
-				new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(), 
-				new MostrarResenas(), new SubirProducto(), new VerProductos(), 
-				new ModificarCantidad(), new CambiarPrecio(), new EliminarProductoCatalogo(), 
-				new CerrarSesion(), new Salir()}));
+				new ControlBuscarProducto(), new ControlMostrarCatalogo(), new ControlMostrarPorCategoria(), 
+				new ControlMostrarResenas(), new ControlSubirProducto(), new ControlVerProductos(), 
+				new ControlModificarCantidad(), new ControlCambiarPrecio(), new ControlEliminarProdCatalogo(), 
+				new ControlCerrarSesion()}));
 	}
 
 	public int getTotalDeOpcionesDisponibles() {

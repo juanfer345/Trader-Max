@@ -14,53 +14,53 @@ import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
-public class CambiarPrecio extends OpcionDeMenu {
+public class CambiarPrecio {
 
-	public void ejecutar() throws IOException {
-
-		/*
-		 * Propósito: Ejecutar el método cambiarPrecio() haciendo los respectivos
-		 * controles de error del ingreso de datos
-		 */
-
-		// Atributos
-		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
-		double precio;
-		int idProducto;
-
-		//Condicional para vendedores sin productos subidos
-		if (vend.getTotalDeProductosSubidos() != 0) {
-
-			//Guardado de mensaje principal (incluyendo lista de productos)
-			System.out.println("\nEsta opción es para cambiar el precio de un producto del catálogo." +
-							   "\nRecuerde que el producto debe ser de su propiedad.");
-			sb.append(vend.mostrarProductos());
-
-			while(!controlError) {
-
-				//Impresión del mensaje principal
-				System.out.println(sb);
-
-				//Ingreso del código del producto
-				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto al que le desea cambiar el precio", "El dato que ingresó no es válido");
-				if (controlError) {System.out.println(); return;}
-
-				//Ingreso del precio del producto
-				precio = ControlErrorDatos.controlReal(0.1, Double.MAX_VALUE, "Ingrese el nuevo precio del producto", "El dato que ingresó no es válido");
-				if (controlError) {System.out.println(); return;}
-
-				//Ejecución del método
-				System.out.println(vend.cambiarPrecio(idProducto, precio));
-				if (!OpcionDeMenu.controlError)
-					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
-			}
-		}
-		else {
-			System.out.println("Usted aún no ha subido ningún producto\n");
-		}
-	}
-
-	public String toString() {
-		return "Cambiarle el precio a un producto";
-	}
+//	public void ejecutar() throws IOException {
+//
+//		/*
+//		 * Propósito: Ejecutar el método cambiarPrecio() haciendo los respectivos
+//		 * controles de error del ingreso de datos
+//		 */
+//
+//		// Atributos
+//		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
+//		double precio;
+//		int idProducto;
+//
+//		//Condicional para vendedores sin productos subidos
+//		if (vend.getTotalDeProductosSubidos() != 0) {
+//
+//			//Guardado de mensaje principal (incluyendo lista de productos)
+//			System.out.println("\nEsta opción es para cambiar el precio de un producto del catálogo." +
+//							   "\nRecuerde que el producto debe ser de su propiedad.");
+//			sb.append(vend.mostrarProductos());
+//
+//			while(!controlError) {
+//
+//				//Impresión del mensaje principal
+//				System.out.println(sb);
+//
+//				//Ingreso del código del producto
+//				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto al que le desea cambiar el precio", "El dato que ingresó no es válido");
+//				if (controlError) {System.out.println(); return;}
+//
+//				//Ingreso del precio del producto
+//				precio = ControlErrorDatos.controlReal(0.1, Double.MAX_VALUE, "Ingrese el nuevo precio del producto", "El dato que ingresó no es válido");
+//				if (controlError) {System.out.println(); return;}
+//
+//				//Ejecución del método
+//				System.out.println(vend.cambiarPrecio(idProducto, precio));
+//				if (!OpcionDeMenu.controlError)
+//					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.");
+//			}
+//		}
+//		else {
+//			System.out.println("Usted aún no ha subido ningún producto\n");
+//		}
+//	}
+//
+//	public String toString() {
+//		return "Cambiarle el precio a un producto";
+//	}
 }

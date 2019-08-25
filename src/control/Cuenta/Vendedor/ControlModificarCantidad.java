@@ -8,7 +8,7 @@ import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
-public class ControlModificarCantidad  implements ActionListener  {
+public class ControlModificarCantidad extends OpcionDeMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

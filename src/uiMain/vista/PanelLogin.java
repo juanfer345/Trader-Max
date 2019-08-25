@@ -1,6 +1,6 @@
 package uiMain.vista;
 
-import java.awt.FlowLayout; 
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -12,8 +12,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-import control.ControlInicioSesion;
 import control.ControlLogin;
 import control.ControlSalir;
 
@@ -100,7 +98,7 @@ public class PanelLogin extends JPanel {
 		texto_3 = new JPasswordField(); texto_3.setVisible(false);
 		
 		// Definición de las partes del panel - [Fin]
-
+		
 		// Añadiendo todos los elementos al panel
 
 		// Panel izquierdo
@@ -127,6 +125,8 @@ public class PanelLogin extends JPanel {
 		
 		// Juntando todos los paneles
 		this.add(panelIzquierdo); this.add(panelDerecho);
+		
+		VentanaAplicacion.setMenuBar();
 	}
 	
 	public void asignarOyente() {

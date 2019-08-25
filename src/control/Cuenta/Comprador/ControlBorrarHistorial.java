@@ -8,7 +8,7 @@ import gestorAplicacion.Usuarios.Comprador;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
-public class ControlBorrarHistorial implements ActionListener {//OpcionDeMenu.controlError
+public class ControlBorrarHistorial extends OpcionDeMenu implements ActionListener {//OpcionDeMenu.controlError
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -8,7 +8,7 @@ import gestorAplicacion.Usuarios.Comprador;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
-public class ControlAgregarResena implements ActionListener{
+public class ControlAgregarResena extends OpcionDeMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
@@ -42,6 +42,12 @@ public class ControlAgregarResena implements ActionListener{
 		System.out.println("Su historial está vacio, no puede agregar reseñas.\n");
 	}
 		
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -8,7 +8,7 @@ import gestorAplicacion.Usuarios.Comprador;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
-public class ControlMostrarHistorial implements ActionListener {
+public class ControlMostrarHistorial extends OpcionDeMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;

@@ -13,25 +13,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import control.ControlBuscarProducto;
+import control.ControlCerrarSesion;
+import control.ControlMostrarCatalogo;
+import control.ControlMostrarPorCategoria;
+import control.ControlMostrarResenas;
+import control.ControlSalir;
+import control.Cuenta.Comprador.ControlAgregarACarrito;
+import control.Cuenta.Comprador.ControlAgregarResena;
+import control.Cuenta.Comprador.ControlBorrarHistorial;
+import control.Cuenta.Comprador.ControlComprarProducto;
+import control.Cuenta.Comprador.ControlMostrarCarrito;
+import control.Cuenta.Comprador.ControlMostrarHistorial;
+import control.Cuenta.Comprador.ControlQuitarProductoCarrito;
+import control.Cuenta.Comprador.ControlVaciarCarrito;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.BuscarProducto;
-import uiMain.MenuConsola.MostrarCatalogo;
-import uiMain.MenuConsola.MostrarPorCategoria;
-import uiMain.MenuConsola.MostrarResenas;
 import uiMain.MenuConsola.OpcionDeMenu;
-import uiMain.MenuConsola.Salir;
-import uiMain.MenuConsola.Cuenta.CerrarSesion;
-import uiMain.MenuConsola.Cuenta.Comprador.AgregarACarrito;
-import uiMain.MenuConsola.Cuenta.Comprador.AgregarResena;
-import uiMain.MenuConsola.Cuenta.Comprador.BorrarHistorial;
-import uiMain.MenuConsola.Cuenta.Comprador.ComprarProducto;
-import uiMain.MenuConsola.Cuenta.Comprador.MostrarCarrito;
-import uiMain.MenuConsola.Cuenta.Comprador.MostrarHistorial;
-import uiMain.MenuConsola.Cuenta.Comprador.QuitarProductoCarrito;
-import uiMain.MenuConsola.Cuenta.Comprador.VaciarCarrito;
 
 public class Comprador extends CuentaConBanco {
 
@@ -93,10 +93,11 @@ public class Comprador extends CuentaConBanco {
 		 */
 
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-				new BuscarProducto(), new MostrarCatalogo(), new MostrarPorCategoria(), new MostrarResenas(), 
-				new AgregarACarrito(), new MostrarCarrito(), new ComprarProducto(), new QuitarProductoCarrito(), 
-				new VaciarCarrito(), new AgregarResena(), new MostrarHistorial(), new BorrarHistorial(), 
-				new CerrarSesion(), new Salir() }));
+				new ControlBuscarProducto(), new ControlMostrarCatalogo(), new ControlMostrarPorCategoria(), 
+				new ControlMostrarResenas(), new ControlAgregarACarrito(), new ControlMostrarCarrito(), 
+				new ControlComprarProducto(), new ControlQuitarProductoCarrito(), new ControlVaciarCarrito(), 
+				new ControlAgregarResena(), new ControlMostrarHistorial(), new ControlBorrarHistorial(), 
+				new ControlCerrarSesion()}));
 	}
 
 	// Devuelve el numero total de opciones que tiene por defecto

@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.MenuConsola.OpcionDeMenu;
 
-public class MostrarResenas implements ActionListener {
+public class ControlMostrarResenas extends OpcionDeMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -33,6 +33,12 @@ public class MostrarResenas implements ActionListener {
 			OpcionDeMenu.controlError = true;
 		}
 		
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -11,22 +11,21 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import control.ControlBuscarProducto;
+import control.ControlCerrarSesion;
+import control.ControlMostrarCatalogo;
+import control.ControlMostrarPorCategoria;
+import control.ControlMostrarResenas;
+import control.Cuenta.Administrador.ControlAgregarOpcion;
+import control.Cuenta.Administrador.ControlBloqueoDeCuenta;
+import control.Cuenta.Administrador.ControlEliminarOpcion;
+import control.Cuenta.Administrador.ControlMostrarCuentas;
+import control.Cuenta.Administrador.ControlMostrarMenu;
+import control.Cuenta.Administrador.ControlMostrarMenuDisponible;
+import control.Cuenta.Administrador.ControlMostrarTodasLasOpciones;
+import control.Cuenta.Administrador.ControlMostrarUsuario;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.BuscarProducto;
-import uiMain.MenuConsola.MostrarCatalogo;
-import uiMain.MenuConsola.MostrarPorCategoria;
-import uiMain.MenuConsola.MostrarResenas;
 import uiMain.MenuConsola.OpcionDeMenu;
-import uiMain.MenuConsola.Salir;
-import uiMain.MenuConsola.Cuenta.CerrarSesion;
-import uiMain.MenuConsola.Cuenta.Administrador.AgregarOpcion;
-import uiMain.MenuConsola.Cuenta.Administrador.BloqueoDeCuenta;
-import uiMain.MenuConsola.Cuenta.Administrador.EliminarOpcion;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarCuentas;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenu;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarMenuDisponible;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarTodasLasOpciones;
-import uiMain.MenuConsola.Cuenta.Administrador.MostrarUsuario;
 
 
 public class Administrador extends CuentaUsuario {
@@ -66,9 +65,9 @@ public class Administrador extends CuentaUsuario {
 		                           tendrá un usuario administrador
     */
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-				new MostrarUsuario(), new MostrarMenu(), new MostrarMenuDisponible(), 
-				new MostrarTodasLasOpciones(), new AgregarOpcion(), new EliminarOpcion(),
-				new BloqueoDeCuenta(), new MostrarCuentas(), new CerrarSesion(), new Salir()}));
+				new ControlMostrarUsuario(), new ControlMostrarMenu(), new ControlMostrarMenuDisponible(), 
+				new ControlMostrarTodasLasOpciones(), new ControlAgregarOpcion(), new ControlEliminarOpcion(),
+				new ControlBloqueoDeCuenta(), new ControlMostrarCuentas(), new ControlCerrarSesion()}));
 	}
 
 	//Constructor vacío
@@ -87,10 +86,11 @@ public class Administrador extends CuentaUsuario {
 		- ArrayList <OpcionDeMenu>: Arraylist con las opciones de menú que podran agragarse
     */
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
-				new BuscarProducto(), new MostrarCatalogo(),new MostrarPorCategoria(),
-				new MostrarResenas(), new MostrarUsuario(), new MostrarMenu(), new MostrarMenuDisponible(), 
-				new MostrarTodasLasOpciones(), new AgregarOpcion(), new EliminarOpcion(),
-				new BloqueoDeCuenta(), new MostrarCuentas(), new CerrarSesion(), new Salir()}));
+				new ControlBuscarProducto(), new ControlMostrarCatalogo(),new ControlMostrarPorCategoria(),
+				new ControlMostrarResenas(), new ControlMostrarUsuario(), new ControlMostrarMenu(), 
+				new ControlMostrarMenuDisponible(),	new ControlMostrarTodasLasOpciones(), 
+				new ControlAgregarOpcion(), new ControlEliminarOpcion(), new ControlBloqueoDeCuenta(), 
+				new ControlMostrarCuentas(), new ControlCerrarSesion()}));
 	}
 
 	public static String getCodigoSecreto() {return codigoSecreto;}

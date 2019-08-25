@@ -9,7 +9,7 @@ import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
-public class ControlSubirProducto  implements ActionListener{
+public class ControlSubirProducto extends OpcionDeMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

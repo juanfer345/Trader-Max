@@ -12,16 +12,15 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import control.ControlBuscarProducto;
+import control.ControlInicioSesion;
+import control.ControlMostrarCatalogo;
+import control.ControlMostrarPorCategoria;
+import control.ControlMostrarResenas;
+import control.Visitante.ControlRegistrar;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.BuscarProducto;
-import uiMain.MenuConsola.MostrarCatalogo;
-import uiMain.MenuConsola.MostrarPorCategoria;
-import uiMain.MenuConsola.MostrarResenas;
 import uiMain.MenuConsola.OpcionDeMenu;
-import uiMain.MenuConsola.Salir;
-import uiMain.MenuConsola.Visitante.IniciarSesion;
-import uiMain.MenuConsola.Visitante.Registrar;
 
 public class Visitante extends Cuenta {
 	
@@ -30,8 +29,8 @@ public class Visitante extends Cuenta {
 	// Crea un nuevo menú por defecto
 	public ArrayList <OpcionDeMenu> getMenuPredeterminado() {
 		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
-				   new IniciarSesion(), new Registrar(), new BuscarProducto(), new MostrarCatalogo(), 
-				   new MostrarPorCategoria(), new MostrarResenas(), new Salir()}));
+				   new ControlRegistrar(), new ControlBuscarProducto(), new ControlMostrarCatalogo(), 
+				   new ControlMostrarPorCategoria(), new ControlMostrarResenas()}));
 	}
 
 	// Retorna el catálogo

@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-public class AcercaDe implements ActionListener {
+public class ControlAcercaDe implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

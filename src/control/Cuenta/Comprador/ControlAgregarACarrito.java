@@ -8,7 +8,7 @@ import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.MenuConsola.OpcionDeMenu;
 
-public class ControlAgregarACarrito implements ActionListener{
+public class ControlAgregarACarrito extends OpcionDeMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {int idProducto, cantProd;

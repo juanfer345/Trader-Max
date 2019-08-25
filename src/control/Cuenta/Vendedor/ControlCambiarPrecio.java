@@ -8,7 +8,7 @@ import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
-public class ControlCambiarPrecio implements ActionListener {
+public class ControlCambiarPrecio extends OpcionDeMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
