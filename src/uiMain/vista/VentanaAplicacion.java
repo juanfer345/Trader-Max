@@ -25,8 +25,8 @@ public class VentanaAplicacion extends JFrame {
 		setJMenuBar(barraMenu);
 	}
 	
-	public VentanaAplicacion getVentana () {
-		return this;
+	public static JFrame getVentana () {
+		return ventana;
 	}
 	
 	public void lanzar() {

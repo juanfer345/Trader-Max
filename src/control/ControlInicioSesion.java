@@ -3,10 +3,12 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Visitante;
@@ -14,6 +16,7 @@ import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.MenuDeConsola;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.PanelLogin;
+import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
 
 public class ControlInicioSesion implements ActionListener {
@@ -23,6 +26,9 @@ public class ControlInicioSesion implements ActionListener {
 		
 	@Override
 	public void actionPerformed(ActionEvent arg) {
+		
+		ControlInicioSesion oidorIS = new ControlInicioSesion();
+		ControlLogin oidor = new ControlLogin();
 
 		OpcionDeMenu.controlError = false;
 		byte tipoCuenta=0;
@@ -59,41 +65,59 @@ public class ControlInicioSesion implements ActionListener {
 					"Notificación", JOptionPane.WARNING_MESSAGE);
 		}
 		
-		if (OpcionDeMenu.controlError == true) {
+		panel.boton_2.setText("Administrador");
+		panel.boton_3.setText("Comprador");
+		panel.boton_5.setText("Vendedor");
+		
+		for (ActionListener AL: Arrays.asList(panel.boton_2.getActionListeners())) {
+			panel.boton_2.removeActionListener(AL);
+		}
+		for (ActionListener AL: Arrays.asList(panel.boton_3.getActionListeners())) {
+			panel.boton_3.removeActionListener(AL);
+		}
+		for (ActionListener AL: Arrays.asList(panel.boton_5.getActionListeners())) {
+			panel.boton_5.removeActionListener(AL);
+		}
+		
+		panel.boton_3.addActionListener(oidor);
+		panel.boton_5.addActionListener(oidor);
+		panel.boton_2.addActionListener(oidor);
+		
+		/*if (OpcionDeMenu.controlError == true) {
 			
 			//Creación de los items del menú
 			JMenu menuArchivo = new JMenu("Archivo");
 			JMenu menuProcesos = new JMenu("Procesos y Consultas");
 			JMenu menuAyuda = new JMenu("Ayuda");
-			
-			// Declaración del oyente
-			ControlMenu oidorIS = new ControlMenu();
 			JMenuItem opcionDeMenu;
+
+			//Remoción de los elementos del panel
+			panel.removeAll();
 			
 			// Creación de los subitems del menú - [Inicio]
 			
 			// Menú Archivo 
 			opcionDeMenu = new JMenuItem("Usuario");
 			menuArchivo.add(opcionDeMenu);
-			opcionDeMenu.addActionListener(oidorIS);
+			opcionDeMenu.addActionListener(new InformacionUsuario());
 			
-			//DISCUTIR: DEJAR O QUITAR LA OPCIÓN DE QUE EL ADMIN PUEDA BORRAR O AÑADIR UNA OPCIÓN 
+			//CONDICIONAL DE SI EL CERRAR SESIÓN EXISTE
 			opcionDeMenu = new JMenuItem("Cerrar sesión");
 			menuArchivo.add(new JMenuItem());
-			opcionDeMenu.addActionListener(oidorIS);
+			opcionDeMenu.addActionListener(new CerrarSesion());
 			
 			// Menú Procesos
 			ArrayList<OpcionDeMenu> menu = MenuDeConsola.menuActivo;
 			for (int i = 0; i < menu.size(); i++) {
 				opcionDeMenu = new JMenuItem(menu.get(i).toString());
 				menuProcesos.add(opcionDeMenu);
-				opcionDeMenu.addActionListener(oidorIS);
+				opcionDeMenu.addActionListener(menu.get(i));
 			}
 			
 			// Menú Ayuda
 			opcionDeMenu = new JMenuItem("Acerca de");
 			menuAyuda.add(opcionDeMenu);
-			opcionDeMenu.addActionListener(oidorIS);
+			opcionDeMenu.addActionListener(new AcercaDe());
 			
 			//Creación de los subitems del menú - [Fin]
 			
@@ -101,11 +125,12 @@ public class ControlInicioSesion implements ActionListener {
 			VentanaAplicacion.barraMenu.add(menuProcesos);
 			VentanaAplicacion.barraMenu.add(menuAyuda);
 			
+			VentanaAplicacion.ventana.add((new PanelUsuario()));
+		}
 			panel.removeAll();
 //			VentanaAplicacion((JPanel) (new PanelUsuario()));
-		}
+		}*/
 		VentanaAplicacion.ventana.pack();
 		VentanaAplicacion.ventana.setLocationRelativeTo(null);
 	}
-
 }
