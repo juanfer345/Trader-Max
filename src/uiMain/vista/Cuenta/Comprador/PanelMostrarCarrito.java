@@ -1,5 +1,7 @@
 package uiMain.vista.Cuenta.Comprador;
 
-public class PanelMostrarCarrito {
+import javax.swing.JPanel;
+
+public class PanelMostrarCarrito extends JPanel{
 
 }
