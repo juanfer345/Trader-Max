@@ -2,29 +2,13 @@ package control.Cuenta.Administrador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import uiMain.MenuConsola.OpcionDeMenu;
 
-public class ControlMostrarMenu extends OpcionDeMenu implements ActionListener {
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-import control.ControlErrorDatos;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
-public class ControlMostrarMenu implements ActionListener {
+public class ControlMostrarMenu extends OpcionDeMenu implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;

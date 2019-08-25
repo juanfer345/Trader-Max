@@ -2,6 +2,10 @@ package control.Cuenta.Administrador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import gestorAplicacion.Usuarios.Administrador;
+import gestorAplicacion.Usuarios.Cuenta;
+import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlEliminarOpcion extends OpcionDeMenu implements ActionListener {

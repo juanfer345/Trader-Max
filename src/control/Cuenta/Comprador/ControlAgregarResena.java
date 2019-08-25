@@ -18,7 +18,7 @@ public class ControlAgregarResena extends OpcionDeMenu implements ActionListener
 
 	if (!comp.getHistorial().isEmpty()) {
 		//sb.append(comp.mostrarHistorial());
-		
+
 		while (!OpcionDeMenu.controlError) {
 
 			//Ingreso del código
@@ -41,16 +41,9 @@ public class ControlAgregarResena extends OpcionDeMenu implements ActionListener
 	} else {
 		System.out.println("Su historial está vacio, no puede agregar reseñas.\n");
 	}
-		
+
 	}
 	public String toString() {
 		return "Agregar reseña";
 	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

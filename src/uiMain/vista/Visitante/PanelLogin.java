@@ -3,6 +3,7 @@ package uiMain.vista.Visitante;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,8 +13,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
 import control.ControlLogin;
 import control.ControlSalir;
+import uiMain.vista.VentanaAplicacion;
 
 public class PanelLogin extends JPanel {
 

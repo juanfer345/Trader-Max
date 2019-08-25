@@ -2,14 +2,11 @@ package control.Cuenta.Administrador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import control.ControlErrorDatos;
-import uiMain.MenuConsola.OpcionDeMenu;
+
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlMostrarTodasLasOpciones extends OpcionDeMenu implements ActionListener {
 
-
-public class ControlMostrarTodasLasOpciones implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		byte seleccion=0;
@@ -30,5 +27,5 @@ public class ControlMostrarTodasLasOpciones implements ActionListener {
 	}
 	public String toString() {
 		return "Mostrar todas las opciones";
-	
+	}
 }

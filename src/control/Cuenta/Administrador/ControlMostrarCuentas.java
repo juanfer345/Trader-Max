@@ -2,6 +2,9 @@ package control.Cuenta.Administrador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import gestorAplicacion.Usuarios.Administrador;
+import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlMostrarCuentas extends OpcionDeMenu implements ActionListener {
