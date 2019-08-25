@@ -2,29 +2,21 @@ package control;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Visitante;
-import uiMain.MenuConsola.MenuDeConsola;
-import uiMain.MenuConsola.OpcionDeMenu;
-import uiMain.vista.PanelLogin;
-import uiMain.vista.PanelUsuario;
-import uiMain.vista.VentanaAplicacion;
 import uiMain.InicializacionAplicacion;
+import uiMain.vista.PanelLogin;
+import uiMain.vista.VentanaAplicacion;
 
 public class ControlLogin implements MouseMotionListener, ActionListener {
 
@@ -66,9 +58,15 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 				panel.etiqueta_4.setVisible(true);
 				panel.texto_2.setVisible(true);
 				panel.texto_3.setVisible(true);
-				panel.boton_2.removeActionListener(this);
-				panel.boton_3.removeActionListener(this);
-				panel.boton_5.removeActionListener(this);
+				for (ActionListener AL: Arrays.asList(panel.boton_2.getActionListeners())) {
+					panel.boton_2.removeActionListener(AL);
+				}
+				for (ActionListener AL: Arrays.asList(panel.boton_3.getActionListeners())) {
+					panel.boton_3.removeActionListener(AL);
+				}
+				for (ActionListener AL: Arrays.asList(panel.boton_5.getActionListeners())) {
+					panel.boton_5.removeActionListener(AL);
+				}
 				panel.boton_3.addActionListener(oidor);
 				panel.boton_5.addActionListener(oidor);
 				panel.boton_2.addActionListener(oidorIS);
@@ -83,9 +81,15 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 				panel.etiqueta_4.setVisible(true);
 				panel.texto_2.setVisible(true);
 				panel.texto_3.setVisible(true);
-				panel.boton_2.removeActionListener(this);
-				panel.boton_3.removeActionListener(this);
-				panel.boton_5.removeActionListener(this);
+				for (ActionListener AL: Arrays.asList(panel.boton_2.getActionListeners())) {
+					panel.boton_2.removeActionListener(AL);
+				}
+				for (ActionListener AL: Arrays.asList(panel.boton_3.getActionListeners())) {
+					panel.boton_3.removeActionListener(AL);
+				}
+				for (ActionListener AL: Arrays.asList(panel.boton_5.getActionListeners())) {
+					panel.boton_5.removeActionListener(AL);
+				}
 				panel.boton_2.addActionListener(oidor);
 				panel.boton_5.addActionListener(oidor);
 				panel.boton_3.addActionListener(oidorIS);
@@ -100,9 +104,15 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 				panel.etiqueta_4.setVisible(true);
 				panel.texto_2.setVisible(true);
 				panel.texto_3.setVisible(true);
-				panel.boton_2.removeActionListener(this);
-				panel.boton_3.removeActionListener(this);
-				panel.boton_5.removeActionListener(this);
+				for (ActionListener AL: Arrays.asList(panel.boton_2.getActionListeners())) {
+					panel.boton_2.removeActionListener(AL);
+				}
+				for (ActionListener AL: Arrays.asList(panel.boton_3.getActionListeners())) {
+					panel.boton_3.removeActionListener(AL);
+				}
+				for (ActionListener AL: Arrays.asList(panel.boton_5.getActionListeners())) {
+					panel.boton_5.removeActionListener(AL);
+				}
 				panel.boton_2.addActionListener(oidor);
 				panel.boton_3.addActionListener(oidor);
 				panel.boton_5.addActionListener(oidorIS);
