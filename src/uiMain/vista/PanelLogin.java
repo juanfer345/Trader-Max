@@ -1,19 +1,17 @@
 package uiMain.vista;
 
-import java.awt.FlowLayout;
+import java.awt.FlowLayout; 
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.util.Vector;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import control.ControlInicioSesion;
 import control.ControlLogin;
@@ -65,7 +63,7 @@ public class PanelLogin extends JPanel {
 		// Etiquetas
 		etiqueta_1 = new JLabel("Bienvenido a Trader-Max invitado!");
 		
-		etiqueta_2 = new JLabel("Ingrese su código de usuario y su clave");
+		etiqueta_2 = new JLabel("Ingrese su código de usuario y su clave", SwingConstants.CENTER);
 		etiqueta_2.setVisible(false);
 		
 		etiqueta_3 = new JLabel("Correo de usuario");
@@ -90,9 +88,6 @@ public class PanelLogin extends JPanel {
 				+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjfsdfasdfsdfsadfasdfasdfsadfas\n"
 				+ "sdfasdf;lasdjflksadjfls;akdjf;asdlkf;jasdlkf"); 
 				aux.setEditable(false); 
-
-				+ "de todo lo que quieras a través de internet!");
-				aux.setEditable(false);
 
 				//FALTA DECIR QUIEN LO DESARROLLÓ Y COMO FUNCIONA
 
@@ -137,24 +132,14 @@ public class PanelLogin extends JPanel {
 	public void asignarOyente() {
 		// Declaración del oyente
 		ControlLogin oidor = new ControlLogin();
-
 		ControlSalir oidor2 = new ControlSalir();
 		this.addMouseMotionListener(oidor);
 		etiqueta_1.addMouseMotionListener(oidor);
 		boton_1.addActionListener(oidor);
 		boton_2.addActionListener(oidor);
 		boton_3.addActionListener(oidor);
+		boton_5.addActionListener(oidor);
 		boton_4.addMouseMotionListener(oidor2);
-
-		ControlInicioSesion oidorIS = new ControlInicioSesion();
-		
-		this.addMouseMotionListener(oidor);
-		etiqueta_1.addMouseMotionListener(oidor);
-		boton_1.addActionListener(oidor);
-		boton_2.addActionListener(oidorIS);
-		boton_3.addActionListener(oidorIS);
-		boton_5.addActionListener(oidorIS);
-		boton_4.addMouseMotionListener(oidor);
 
 	}
 }

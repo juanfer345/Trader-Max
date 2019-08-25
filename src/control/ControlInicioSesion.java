@@ -3,6 +3,7 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -25,6 +26,9 @@ public class ControlInicioSesion implements ActionListener {
 		
 	@Override
 	public void actionPerformed(ActionEvent arg) {
+		
+		ControlInicioSesion oidorIS = new ControlInicioSesion();
+		ControlLogin oidor = new ControlLogin();
 
 		OpcionDeMenu.controlError = false;
 		byte tipoCuenta=0;
@@ -43,6 +47,8 @@ public class ControlInicioSesion implements ActionListener {
 			break;
 		}
 		
+		OpcionDeMenu.controlError = false;
+		
 		String correoIngresado, contrasenaIngresada;
 		
 		correoIngresado = panel.texto_2.getText();
@@ -59,7 +65,25 @@ public class ControlInicioSesion implements ActionListener {
 					"Notificación", JOptionPane.WARNING_MESSAGE);
 		}
 		
-		if (OpcionDeMenu.controlError == true) {
+		panel.boton_2.setText("Administrador");
+		panel.boton_3.setText("Comprador");
+		panel.boton_5.setText("Vendedor");
+		
+		for (ActionListener AL: Arrays.asList(panel.boton_2.getActionListeners())) {
+			panel.boton_2.removeActionListener(AL);
+		}
+		for (ActionListener AL: Arrays.asList(panel.boton_3.getActionListeners())) {
+			panel.boton_3.removeActionListener(AL);
+		}
+		for (ActionListener AL: Arrays.asList(panel.boton_5.getActionListeners())) {
+			panel.boton_5.removeActionListener(AL);
+		}
+		
+		panel.boton_3.addActionListener(oidor);
+		panel.boton_5.addActionListener(oidor);
+		panel.boton_2.addActionListener(oidor);
+		
+		/*if (OpcionDeMenu.controlError == true) {
 			
 			//Creación de los items del menú
 			JMenu menuArchivo = new JMenu("Archivo");
@@ -103,5 +127,10 @@ public class ControlInicioSesion implements ActionListener {
 			
 			VentanaAplicacion.ventana.add((new PanelUsuario()));
 		}
+			panel.removeAll();
+//			VentanaAplicacion((JPanel) (new PanelUsuario()));
+		}*/
+		VentanaAplicacion.ventana.pack();
+		VentanaAplicacion.ventana.setLocationRelativeTo(null);
 	}
 }

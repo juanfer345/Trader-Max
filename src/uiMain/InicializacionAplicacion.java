@@ -35,7 +35,6 @@ public class InicializacionAplicacion {
 		
 		//Creación de objetos de lectura y escritura
 		LecturaBD Lector = new LecturaBD();
-		EscrituraBD Escritor = new EscrituraBD();
 		VentanaAplicacion interfaz = new VentanaAplicacion();
 		
 		//Ejecución de la lectura de la base de datos
@@ -84,8 +83,6 @@ public class InicializacionAplicacion {
 		//Ciclo de control para ejecutar el menú hasta que se desee salir de la aplicación
 		interfaz.lanzar();
 		
-		//Ejecución de la escritura en la base de datos
-//		Escritor.PrincipalEscrituraBD("Compradores", "Vendedores", "Administradores", "Cuentas Bancarias", "Catálogo", "Productos", "Reseñas");
 	}
 
 	public static HashMap <Integer, Comprador> getBDCompradores() {return BDCompradores;}
