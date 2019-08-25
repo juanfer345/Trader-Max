@@ -1,4 +1,4 @@
-package uiMain.vista;
+package uiMain.vista.Visitante;
 
 import java.awt.FlowLayout; 
 import java.awt.GridLayout;
@@ -142,4 +142,6 @@ public class PanelLogin extends JPanel {
 		boton_4.addMouseMotionListener(oidor2);
 
 	}
+
+	
 }

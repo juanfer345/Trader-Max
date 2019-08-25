@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
-import uiMain.vista.PanelLogin;
 import uiMain.vista.VentanaAplicacion;
+import uiMain.vista.Visitante.PanelLogin;
 
 public class ControlLogin implements MouseMotionListener, ActionListener {
 
