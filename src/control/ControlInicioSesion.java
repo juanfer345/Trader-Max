@@ -41,6 +41,8 @@ public class ControlInicioSesion implements ActionListener {
 			break;
 		}
 		
+		OpcionDeMenu.controlError = false;
+		
 		String correoIngresado, contrasenaIngresada;
 		
 		correoIngresado = panel.texto_2.getText();
