@@ -133,4 +133,7 @@ public class ControlInicioSesion implements ActionListener {
 		VentanaAplicacion.ventana.pack();
 		VentanaAplicacion.ventana.setLocationRelativeTo(null);
 	}
+	public String toString() {
+		return "Iniciar sesión";
+	}
 }

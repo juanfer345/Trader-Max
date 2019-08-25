@@ -24,19 +24,19 @@ public class ControlBloqueoDeCuenta implements ActionListener {
 		while (!OpcionDeMenu.controlError) {
 
 			//Control de ingreso tipo de usuario
-			tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
+			//tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
 			if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 			//Control de ingreso de identificación de usuario
-			idCuenta = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "ID de usuario", "Por favor ingrese un número entero positivo");
+			//idCuenta = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "ID de usuario", "Por favor ingrese un número entero positivo");
 			if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 			//Control de ingreso de tipo de modificación
-			modificacion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, "Ingrese 1 para desbloquear la cuenta y 2 para bloquearla", "Por favor ingrese un número entero positivo");
+			//modificacion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, "Ingrese 1 para desbloquear la cuenta y 2 para bloquearla", "Por favor ingrese un número entero positivo");
 			if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 			//Ejecución del método
-			System.out.println(usuario.bloquearCuenta(idCuenta, tipoDeCuenta, modificacion));
+			//System.out.println(usuario.bloquearCuenta(idCuenta, tipoDeCuenta, modificacion));
 			if (!OpcionDeMenu.controlError)
 				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 		}
@@ -45,6 +45,9 @@ public class ControlBloqueoDeCuenta implements ActionListener {
 		System.out.println("No hay usuarios resgistrados a parte de tu cuenta.\n");
 	}
 }
+	public String toString() {
+		return "Bloqueo de cuentas";
+	}
 
 }
 

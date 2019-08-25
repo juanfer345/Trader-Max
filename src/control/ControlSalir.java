@@ -43,4 +43,7 @@ public class ControlSalir implements MouseMotionListener{
 		VentanaAplicacion.ventana.pack();
 		VentanaAplicacion.ventana.setLocationRelativeTo(null);
 	}
+	public String toString() {
+		return "Salir";
+	}
 }

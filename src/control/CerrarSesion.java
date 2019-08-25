@@ -10,5 +10,8 @@ public class CerrarSesion implements ActionListener {
 		// TODO Auto-generated method stub
 
 	}
+	public String toString() {
+		return "Cerrar sesión";
+	}
 
 }

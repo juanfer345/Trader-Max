@@ -72,8 +72,11 @@ public class ControlAgregarOpcion implements ActionListener  {
 			}
 		}
 		else {
-			System.out.println("No hay usuarios resgistrados a parte de tu cuenta.\n");
+			System.out.println("No hay usuarios resgistrados aparte de tu cuenta.\n");
 		}
+	}
+	public String toString() {
+		return "Agregar opción";
 	}
 
 

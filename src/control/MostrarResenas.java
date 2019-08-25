@@ -34,5 +34,8 @@ public class MostrarResenas implements ActionListener {
 		}
 		
 	}
+	public String toString() {
+		return "Mostrar reseñas";
+	}
 
 }

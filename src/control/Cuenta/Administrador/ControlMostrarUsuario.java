@@ -27,15 +27,15 @@ public class ControlMostrarUsuario implements ActionListener{
 
 			while (!OpcionDeMenu.controlError) {
 				//Control de ingreso tipo de usuario
-				tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
+				//tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				//Control de ingreso de identificación de usuario
-				idCuenta = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el número identificador del usuario", "Por favor ingrese un número entero positivo");
+				//idCuenta = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el número identificador del usuario", "Por favor ingrese un número entero positivo");
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				//Ejecución del método
-				System.out.println(usuario.mostrarUsuario(idCuenta, tipoDeCuenta));
+			//	System.out.println(usuario.mostrarUsuario(idCuenta, tipoDeCuenta));
 				if (!OpcionDeMenu.controlError)
 					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			}
@@ -43,6 +43,9 @@ public class ControlMostrarUsuario implements ActionListener{
 		else {
 			System.out.println("No hay usuarios resgistrados a parte de tu cuenta.\n");
 		}
+	}
+	public String toString() {
+		return "Mostrar usuario";
 	}
 	
 }

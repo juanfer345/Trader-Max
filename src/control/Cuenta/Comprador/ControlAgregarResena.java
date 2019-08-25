@@ -43,5 +43,8 @@ public class ControlAgregarResena implements ActionListener{
 	}
 		
 	}
+	public String toString() {
+		return "Agregar reseña";
+	}
 
 }

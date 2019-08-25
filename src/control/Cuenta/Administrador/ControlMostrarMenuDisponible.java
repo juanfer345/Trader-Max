@@ -21,11 +21,14 @@ public class ControlMostrarMenuDisponible implements ActionListener {
 //		sb.append("3: Administrador.\n");
 //		sb.append("Selección");
 
-		tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
+	//	tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
 		if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 		//Ejecución del método
-		System.out.println(usuario.getMenuDeConsola().mostrarOpcionesDisponibles(tipoDeCuenta));
+//		System.out.println(usuario.getMenuDeConsola().mostrarOpcionesDisponibles(tipoDeCuenta));
+	}
+	public String toString() {
+		return "Mostrar menú disponible";
 	}
 
 	
