@@ -3,10 +3,12 @@ package uiMain.vista;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -14,7 +16,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import control.ControlInicioSesion;
 import control.ControlLogin;
+import control.ControlSalir;
 
 public class PanelLogin extends JPanel {
 
@@ -29,6 +33,7 @@ public class PanelLogin extends JPanel {
 	public JButton boton_1;
 	public JButton boton_3;
 	public JButton boton_4;
+	public JButton boton_5;
 
 	// Textos
 	public JScrollPane texto_1;
@@ -75,17 +80,25 @@ public class PanelLogin extends JPanel {
 		boton_1 = new JButton(new ImageIcon(imagen.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH)));
 		
 		boton_2 = new JButton("Administrador");
-		boton_3 = new JButton("UsuarioComún");
+		boton_3 = new JButton("Comprador");
+		boton_5 = new JButton("Vendedor");
 		boton_4 = new JButton("Salir");
 
 		// Textos
 		JTextArea aux = new JTextArea("Trader-Max es la solución para realizar compras y ventas \n"
+
 				+ "de todo lo que quieras a través de internet!sdjkfnkjlljjjjjjjjjjjjjjjjjjjjjjj\njj"
 				+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjfsdfasdfsdfsadfasdfasdfsadfas\n"
-				+ "sdfasdf;lasdjflksadjfls;akdjf;asdlkf;jasdlkf");
+				+ "sdfasdf;lasdjflksadjfls;akdjf;asdlkf;jasdlkf"); 
+				aux.setEditable(false); 
+
+				+ "de todo lo que quieras a través de internet!");
 				aux.setEditable(false);
+
 				//FALTA DECIR QUIEN LO DESARROLLÓ Y COMO FUNCIONA
-				
+
+
+				  	
 		texto_1 = new JScrollPane(aux, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		texto_1.setSize(300, 500);// ESTO NO AYUDA
 		
@@ -104,7 +117,7 @@ public class PanelLogin extends JPanel {
 		// Panel derecho
 		panelDerechoArriba.add(texto_1);
 		
-		panelDerechoAbajoDobleA.add(boton_2); panelDerechoAbajoDobleA.add(boton_3);
+		panelDerechoAbajoDobleA.add(boton_2); panelDerechoAbajoDobleA.add(boton_3); panelDerechoAbajoDobleA.add(boton_5);
 		panelDerechoAbajoDobleB.add(etiqueta_3); panelDerechoAbajoDobleB.add(texto_2);
 		panelDerechoAbajoDobleC.add(etiqueta_4); panelDerechoAbajoDobleC.add(texto_3);
 		
@@ -125,12 +138,24 @@ public class PanelLogin extends JPanel {
 	public void asignarOyente() {
 		// Declaración del oyente
 		ControlLogin oidor = new ControlLogin();
-		
+
+		ControlSalir oidor2 = new ControlSalir();
 		this.addMouseMotionListener(oidor);
 		etiqueta_1.addMouseMotionListener(oidor);
 		boton_1.addActionListener(oidor);
 		boton_2.addActionListener(oidor);
 		boton_3.addActionListener(oidor);
+		boton_4.addMouseMotionListener(oidor2);
+
+		ControlInicioSesion oidorIS = new ControlInicioSesion();
+		
+		this.addMouseMotionListener(oidor);
+		etiqueta_1.addMouseMotionListener(oidor);
+		boton_1.addActionListener(oidor);
+		boton_2.addActionListener(oidorIS);
+		boton_3.addActionListener(oidorIS);
+		boton_5.addActionListener(oidorIS);
 		boton_4.addMouseMotionListener(oidor);
+
 	}
 }

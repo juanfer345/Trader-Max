@@ -60,7 +60,7 @@ public class IniciarSesion extends OpcionDeMenu {
 				}
 
 				//Inicio de sesión
-				System.out.println(usuario.iniciarSesion(correoIngresado, contrasenaIngresada));
+				System.out.println(usuario.iniciarSesion(tipoDeCuenta, correoIngresado, contrasenaIngresada));
 				if (!OpcionDeMenu.controlError)
 					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 			}
