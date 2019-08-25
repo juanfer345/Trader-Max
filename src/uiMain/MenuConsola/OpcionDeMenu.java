@@ -11,6 +11,7 @@
 
 package uiMain.MenuConsola;
 
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -42,7 +43,7 @@ import uiMain.MenuConsola.Cuenta.Vendedor.VerProductos;
 import uiMain.MenuConsola.Visitante.IniciarSesion;
 import uiMain.MenuConsola.Visitante.Registrar;
 
-public abstract class OpcionDeMenu {
+public abstract class OpcionDeMenu implements ActionListener {
 
 	//Atributos
 	public static boolean controlError;
