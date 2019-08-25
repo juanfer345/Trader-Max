@@ -51,6 +51,9 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg) {
+		
+		ControlInicioSesion oidorIS = new ControlInicioSesion();
+		ControlLogin oidor = new ControlLogin();
 
 		switch (((String) arg.getActionCommand())) {
 		
@@ -63,6 +66,12 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 				panel.etiqueta_4.setVisible(true);
 				panel.texto_2.setVisible(true);
 				panel.texto_3.setVisible(true);
+				panel.boton_2.removeActionListener(this);
+				panel.boton_3.removeActionListener(this);
+				panel.boton_5.removeActionListener(this);
+				panel.boton_3.addActionListener(oidor);
+				panel.boton_5.addActionListener(oidor);
+				panel.boton_2.addActionListener(oidorIS);
 				break;
 	
 			case "Comprador":
@@ -74,6 +83,12 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 				panel.etiqueta_4.setVisible(true);
 				panel.texto_2.setVisible(true);
 				panel.texto_3.setVisible(true);
+				panel.boton_2.removeActionListener(this);
+				panel.boton_3.removeActionListener(this);
+				panel.boton_5.removeActionListener(this);
+				panel.boton_2.addActionListener(oidor);
+				panel.boton_5.addActionListener(oidor);
+				panel.boton_3.addActionListener(oidorIS);
 				break;
 
 			case "Vendedor":
@@ -85,6 +100,12 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 				panel.etiqueta_4.setVisible(true);
 				panel.texto_2.setVisible(true);
 				panel.texto_3.setVisible(true);
+				panel.boton_2.removeActionListener(this);
+				panel.boton_3.removeActionListener(this);
+				panel.boton_5.removeActionListener(this);
+				panel.boton_2.addActionListener(oidor);
+				panel.boton_3.addActionListener(oidor);
+				panel.boton_5.addActionListener(oidorIS);
 				break;
 			
 			default:
@@ -114,5 +135,6 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 				break;
 		}
 		VentanaAplicacion.ventana.pack();
+		VentanaAplicacion.ventana.setLocationRelativeTo(null);
 	}
 }
