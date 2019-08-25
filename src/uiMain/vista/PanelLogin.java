@@ -1,6 +1,6 @@
 package uiMain.vista;
 
-import java.awt.FlowLayout;
+import java.awt.FlowLayout; 
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.Vector;
@@ -14,8 +14,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
-import control.ControlInicioSesion;
 import control.ControlLogin;
 import control.ControlSalir;
 
@@ -91,9 +89,6 @@ public class PanelLogin extends JPanel {
 				+ "sdfasdf;lasdjflksadjfls;akdjf;asdlkf;jasdlkf"); 
 				aux.setEditable(false); 
 
-				+ "de todo lo que quieras a través de internet!");
-				aux.setEditable(false);
-
 				//FALTA DECIR QUIEN LO DESARROLLÓ Y COMO FUNCIONA
 
 
@@ -145,16 +140,6 @@ public class PanelLogin extends JPanel {
 		boton_2.addActionListener(oidor);
 		boton_3.addActionListener(oidor);
 		boton_4.addMouseMotionListener(oidor2);
-
-		ControlInicioSesion oidorIS = new ControlInicioSesion();
-		
-		this.addMouseMotionListener(oidor);
-		etiqueta_1.addMouseMotionListener(oidor);
-		boton_1.addActionListener(oidor);
-		boton_2.addActionListener(oidorIS);
-		boton_3.addActionListener(oidorIS);
-		boton_5.addActionListener(oidorIS);
-		boton_4.addMouseMotionListener(oidor);
 
 	}
 }
