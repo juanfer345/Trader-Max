@@ -7,12 +7,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.Arrays;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
 import uiMain.vista.VentanaAplicacion;
@@ -122,21 +120,21 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 				ImageIcon imagen;
 				switch (contadorFotos) {
 					case 1:
-						imagen = new ImageIcon(System.getProperty("user.dir") + "\\src\\fotos\\foto1.png");
+						imagen = new ImageIcon(System.getProperty("user.dir") + "\\src\\fotos\\Mensaje.jpg");
 						imagen = new ImageIcon(imagen.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH));
 						panel.boton_1.setIcon(imagen);
 						contadorFotos++;
 						break;
 		
 					case 2:
-						imagen = new ImageIcon(System.getProperty("user.dir") + "\\src\\fotos\\foto2.jpg");
+						imagen = new ImageIcon(System.getProperty("user.dir") + "\\src\\fotos\\Foto 1.jpg");
 						imagen = new ImageIcon(imagen.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH));
 						panel.boton_1.setIcon(imagen);
 						contadorFotos++;
 						break;
 		
 					case 3:
-						imagen = new ImageIcon(System.getProperty("user.dir") + "\\src\\fotos\\foto3.jpg");
+						imagen = new ImageIcon(System.getProperty("user.dir") + "\\src\\fotos\\Foto 2.jpg");
 						imagen = new ImageIcon(imagen.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH));
 						panel.boton_1.setIcon(imagen);
 						contadorFotos = 1;

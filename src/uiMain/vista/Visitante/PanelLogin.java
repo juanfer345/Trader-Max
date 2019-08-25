@@ -1,5 +1,7 @@
 package uiMain.vista.Visitante;
 
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -74,7 +76,7 @@ public class PanelLogin extends JPanel {
 		etiqueta_4.setVisible(false);
 
 		// Botones
-		ImageIcon imagen = new ImageIcon(System.getProperty("user.dir") + "\\src\\fotos\\foto1.png");
+		ImageIcon imagen = new ImageIcon(System.getProperty("user.dir") + "\\src\\fotos\\Mensaje.jpg");
 		boton_1 = new JButton(new ImageIcon(imagen.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH)));
 		
 		boton_2 = new JButton("Administrador");
@@ -83,19 +85,34 @@ public class PanelLogin extends JPanel {
 		boton_4 = new JButton("Salir");
 
 		// Textos
-		JTextArea aux = new JTextArea("Trader-Max es la solución para realizar compras y ventas \n"
+		JTextArea aux = new JTextArea(
+				"Trader max es una aplicación que esta diseñada para la "
+			  + "compra y venta autónoma de artículos, cada usuario podrá "
+			  + "crear su cuenta ya sea para poner en venta sus productos, "
+			  + "o para comprar aquellos ofrecidos por parte de los demás "
+			  + "usuarios.\n\nEl comprador tendrá acceso a un carrito de "
+			  + "compras donde almacenará los productos que desee para su "
+			  + "posterior adquisición, en caso de que sea vendedor podrá "
+			  + "montar sus productos al catalogo. El proceso de pago se "
+			  + "encuentra vinculado a una cuenta bancaria que cada usuario "
+			  + "deberá haber registrado con anterioridad, esto para hacer "
+			  + "la transacción de una cuenta a otra cuando se realice la "
+			  + "compra y venta del producto.\n\nFue desarrollada por el"
+			  + "equipo 1 de programación orientada a objetos (2019-I) "
+			  + "conformado por:\n\n "
+			  + "- Sara Catalina Balbín Ramírez\n"
+			  + "- Juan Manuel Cárdenas Vélez\n"
+			  + "- María Paulina García Velásquez\n"
+			  + "- Julián Camilo Ossa Zapata (LA NEA)\n"
+			  + "- Juan Fernando Patiño Castro\n");
+		
+		aux.setEditable(false);
+		aux.setLineWrap(true);
+		aux.setWrapStyleWord(true);
+		//FALTA DECIR QUIEN LO DESARROLLÓ Y COMO FUNCIONA
 
-				+ "de todo lo que quieras a través de internet!sdjkfnkjlljjjjjjjjjjjjjjjjjjjjjjj\njj"
-				+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjfsdfasdfsdfsadfasdfasdfsadfas\n"
-				+ "sdfasdf;lasdjflksadjfls;akdjf;asdlkf;jasdlkf"); 
-				aux.setEditable(false); 
-
-				//FALTA DECIR QUIEN LO DESARROLLÓ Y COMO FUNCIONA
-
-
-				  	
 		texto_1 = new JScrollPane(aux, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		texto_1.setSize(300, 500);// ESTO NO AYUDA
+		texto_1.setPreferredSize(new Dimension(350, 100));
 		
 		texto_2 = new JTextField(); texto_2.setVisible(false);
 		texto_3 = new JPasswordField(); texto_3.setVisible(false);
@@ -145,6 +162,4 @@ public class PanelLogin extends JPanel {
 		boton_4.addMouseMotionListener(oidor2);
 
 	}
-
-	
 }

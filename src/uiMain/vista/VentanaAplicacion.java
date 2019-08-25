@@ -9,9 +9,10 @@ import javax.swing.JMenuItem;
 import control.ControlAcercaDe;
 import control.ControlCerrarSesion;
 import control.ControlInformacionUsuario;
+import gestorAplicacion.Usuarios.Visitante;
+import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.MenuDeConsola;
 import uiMain.MenuConsola.OpcionDeMenu;
-
 import uiMain.vista.Visitante.PanelLogin;
 
 public class VentanaAplicacion extends JFrame {
@@ -45,9 +46,11 @@ public class VentanaAplicacion extends JFrame {
 		opcionDeMenu.addActionListener(new ControlInformacionUsuario());
 		
 		//CONDICIONAL DE SI EL CERRAR SESIÓN EXISTE
-		opcionDeMenu = new JMenuItem("Cerrar sesión");
-		menuArchivo.add(new JMenuItem());
-		opcionDeMenu.addActionListener(new ControlCerrarSesion());
+		if (!(InicializacionAplicacion.usuarioActivo instanceof Visitante)) {
+			opcionDeMenu = new JMenuItem("Cerrar sesión");
+			menuArchivo.add(new JMenuItem());
+			opcionDeMenu.addActionListener(new ControlCerrarSesion());
+		}
 		
 		// Menú Procesos
 		ArrayList<OpcionDeMenu> menu = MenuDeConsola.menuActivo;

@@ -12,11 +12,8 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Registrarse";
 	}
 
 }

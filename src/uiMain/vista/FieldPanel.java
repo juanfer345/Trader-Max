@@ -48,11 +48,11 @@ public class FieldPanel extends JPanel {
 
 	}
 
-//	public String getValue(String criterio) {
-//		/**
-//		 * @arg criterio el criterio cuyo valor se quiere obtener
-//		 * @return el valor del criterio cuyo nombre es 'criterio'
-//		 */
-//
-//	}
+	public String getValue(String criterio) {
+		/**
+		 * @arg criterio el criterio cuyo valor se quiere obtener
+		 * @return el valor del criterio cuyo nombre es 'criterio'
+		 */
+		return "";
+	}
 }
