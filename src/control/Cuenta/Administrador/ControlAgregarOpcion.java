@@ -76,8 +76,6 @@ public class ControlAgregarOpcion implements ActionListener  {
 		}
 	}
 
-	@Override
-	public String toString() {return "Agregar opción de menú a un usuario";}
 
 	}
 
