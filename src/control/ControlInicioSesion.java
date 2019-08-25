@@ -15,9 +15,9 @@ import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.MenuDeConsola;
 import uiMain.MenuConsola.OpcionDeMenu;
-import uiMain.vista.PanelLogin;
 import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
+import uiMain.vista.Visitante.PanelLogin;
 
 public class ControlInicioSesion implements ActionListener {
 	

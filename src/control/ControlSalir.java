@@ -9,8 +9,8 @@ import baseDatos.EscrituraBD;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Usuarios.Comprador;
 import uiMain.InicializacionAplicacion;
-import uiMain.vista.PanelLogin;
 import uiMain.vista.VentanaAplicacion;
+import uiMain.vista.Visitante.PanelLogin;
 
 public class ControlSalir implements MouseMotionListener{
 	
