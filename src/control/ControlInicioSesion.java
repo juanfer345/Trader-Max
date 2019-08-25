@@ -104,7 +104,8 @@ public class ControlInicioSesion implements ActionListener {
 			panel.removeAll();
 //			VentanaAplicacion((JPanel) (new PanelUsuario()));
 		}
-		
+		VentanaAplicacion.ventana.pack();
+		VentanaAplicacion.ventana.setLocationRelativeTo(null);
 	}
 
 }
