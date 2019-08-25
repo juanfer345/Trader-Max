@@ -12,6 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import control.ControlLogin;
 
@@ -60,7 +61,7 @@ public class PanelLogin extends JPanel {
 		// Etiquetas
 		etiqueta_1 = new JLabel("Bienvenido a Trader-Max invitado!");
 		
-		etiqueta_2 = new JLabel("Ingrese su código de usuario y su clave");
+		etiqueta_2 = new JLabel("Ingrese su código de usuario y su clave", SwingConstants.CENTER);
 		etiqueta_2.setVisible(false);
 		
 		etiqueta_3 = new JLabel("Correo de usuario");
