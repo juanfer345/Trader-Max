@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
+import uiMain.vista.Visitante.PanelLogin;
+
 public class VentanaAplicacion extends JFrame {
 
 	public static JFrame ventana;
