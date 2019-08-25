@@ -40,5 +40,7 @@ public class ControlSalir implements MouseMotionListener{
 			System.exit(0);
 		} else {
 		}
+		VentanaAplicacion.ventana.pack();
+		VentanaAplicacion.ventana.setLocationRelativeTo(null);
 	}
 }

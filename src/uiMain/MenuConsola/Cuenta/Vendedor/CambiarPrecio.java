@@ -7,7 +7,7 @@
 
 package uiMain.MenuConsola.Cuenta.Vendedor;
 
-import java.io.IOException;
+import java.io.IOException; 
 
 import control.ControlErrorDatos;
 import gestorAplicacion.Usuarios.Vendedor;

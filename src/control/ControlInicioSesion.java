@@ -41,6 +41,8 @@ public class ControlInicioSesion implements ActionListener {
 			break;
 		}
 		
+		OpcionDeMenu.controlError = false;
+		
 		String correoIngresado, contrasenaIngresada;
 		
 		correoIngresado = panel.texto_2.getText();
@@ -102,7 +104,8 @@ public class ControlInicioSesion implements ActionListener {
 			panel.removeAll();
 //			VentanaAplicacion((JPanel) (new PanelUsuario()));
 		}
-		
+		VentanaAplicacion.ventana.pack();
+		VentanaAplicacion.ventana.setLocationRelativeTo(null);
 	}
 
 }
