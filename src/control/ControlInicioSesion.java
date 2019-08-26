@@ -2,14 +2,12 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
+
 import javax.swing.JOptionPane;
+
 import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.MenuDeConsola;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
@@ -56,17 +54,18 @@ public class ControlInicioSesion extends OpcionDeMenu implements ActionListener 
 					"Notificación", JOptionPane.WARNING_MESSAGE);
 		}
 		
-		if (OpcionDeMenu.controlError == false) {
-			
+		if (OpcionDeMenu.controlError) {
 			
 			//Remoción de los elementos del panel
 			VentanaAplicacion.panelPrincipal.removeAll();
 			
-				
+			//Remoción de opciones de menú viejas y añadiendo las nuevas
+			VentanaAplicacion.setMenuBarUsuario();
+			
+			//Añadiendo los nuevos elementos para la ventana de usuario
 			VentanaAplicacion.panelPrincipal.add((new PanelUsuario()));
 		}
-		VentanaAplicacion.ventana.pack();
-		VentanaAplicacion.ventana.setLocationRelativeTo(null);
+		VentanaAplicacion.organizar();
 	}
 	
 	public String toString() {

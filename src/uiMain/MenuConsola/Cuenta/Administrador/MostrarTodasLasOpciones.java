@@ -8,7 +8,7 @@ package uiMain.MenuConsola.Cuenta.Administrador;
 
 import java.io.IOException;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class MostrarTodasLasOpciones {
@@ -25,7 +25,7 @@ public class MostrarTodasLasOpciones {
 //		sb.append("Selección");
 //
 //		// Ingreso del dato por parte del usuario
-//		seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
+//		seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
 //		if (controlError || seleccion == 2) {System.out.println(); return;}
 //
 //		//Mostrado de todas las opciones

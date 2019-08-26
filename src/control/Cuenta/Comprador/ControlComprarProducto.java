@@ -3,7 +3,7 @@ package control.Cuenta.Comprador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import uiMain.MenuConsola.OpcionDeMenu;
 
@@ -15,7 +15,7 @@ public class ControlComprarProducto extends OpcionDeMenu implements ActionListen
 		
 		if (!CarritoDeCompras.getProductos().isEmpty()) {
 			// Ingreso del dato por parte del usuario
-			//seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
+			//seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
 			if (OpcionDeMenu.controlError || seleccion == 2) {System.out.println(); return;}
 
 			//Ejecución del método

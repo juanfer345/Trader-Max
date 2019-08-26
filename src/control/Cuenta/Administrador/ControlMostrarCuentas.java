@@ -20,7 +20,7 @@ public class ControlMostrarCuentas extends OpcionDeMenu implements ActionListene
 //		sb.append("\nSelección");
 
 		// Ingreso del dato por parte del usuario
-		//seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
+		//seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
 		//if (OpcionDeMenu.controlError) {System.out.println(); return;} OpcionDeMenu.sb.delete(0, OpcionDeMenu.sb.length());
 
 		if (seleccion == 1) {
@@ -31,7 +31,7 @@ public class ControlMostrarCuentas extends OpcionDeMenu implements ActionListene
 //			sb.append("\nSelección");
 
 			// Ingreso del dato por parte del usuario
-		//	seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 4, sb.toString(), "Por favor ingrese un número entero");
+		//	seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 4, sb.toString(), "Por favor ingrese un número entero");
 			if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 			if (seleccion == 1) {
@@ -50,7 +50,7 @@ public class ControlMostrarCuentas extends OpcionDeMenu implements ActionListene
 //			sb.append("\nSelección");
 
 			// Ingreso del dato por parte del usuario
-		//	seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
+		//	seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
 			//if (OpcionDeMenu.controlError) {System.out.println(); return;} OpcionDeMenu.sb.delete(0, OpcionDeMenu.sb.length());
 
 			if (seleccion == 1) {
@@ -62,7 +62,7 @@ public class ControlMostrarCuentas extends OpcionDeMenu implements ActionListene
 //				sb.append("\nSelección");
 
 				// Ingreso del dato por parte del usuario
-			//	seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 4, sb.toString(), "Por favor ingrese un número entero");
+			//	seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 4, sb.toString(), "Por favor ingrese un número entero");
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				if (seleccion == 1) {
@@ -83,7 +83,7 @@ public class ControlMostrarCuentas extends OpcionDeMenu implements ActionListene
 //				sb.append("\nSelección");
 
 				// Ingreso del dato por parte del usuario
-	//			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 4, sb.toString(), "Por favor ingrese un número entero");
+	//			seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 4, sb.toString(), "Por favor ingrese un número entero");
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				if (seleccion == 1) {

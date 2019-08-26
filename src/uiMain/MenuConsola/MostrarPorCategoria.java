@@ -8,7 +8,7 @@ package uiMain.MenuConsola;
 
 import java.io.IOException;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
@@ -32,7 +32,7 @@ public class MostrarPorCategoria { // opcion 3
 //			sb.append("Seleccion");
 //			
 //			//Selección por parte del usuario
-//			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) Producto.categorias.length, sb.toString(), "Por favor ingrese un número entero");
+//			seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) Producto.categorias.length, sb.toString(), "Por favor ingrese un número entero");
 //			if (controlError) {System.out.println(); return;}
 //			
 //			//Ejecución del método

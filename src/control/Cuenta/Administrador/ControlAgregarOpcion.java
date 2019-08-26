@@ -2,7 +2,7 @@ package control.Cuenta.Administrador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
@@ -24,12 +24,12 @@ public class ControlAgregarOpcion extends OpcionDeMenu implements ActionListener
 		
 
 			//Control de ingreso tipo de usuario
-			//tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, OpcionDeMenu.sb.toString(), "Por favor ingrese un número entero");
+			//tipoDeCuenta = ErrorAplicacion.controlByte((byte) 1, (byte) 3, OpcionDeMenu.sb.toString(), "Por favor ingrese un número entero");
 			if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 			while (!OpcionDeMenu.controlError) {
 				//Control de ingreso de identificación de usuario
-//				idUsuario = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Por favor ingrese el número identificador del usuario", "El identificador del usuario debe ser un número entero");
+//				idUsuario = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Por favor ingrese el número identificador del usuario", "El identificador del usuario debe ser un número entero");
 
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
@@ -63,7 +63,7 @@ public class ControlAgregarOpcion extends OpcionDeMenu implements ActionListener
 				System.out.print(menuOpcionesDisponibles);
 
 				//Elección de la opción por parte del usuario
-//				opcionUsuario = ControlErrorDatos.controlByte((byte) 1, MenuDeConsola.getsizeOpcionesComp(), "Ingrese el indice de la opción que desea agregar", "Por favor ingrese un número entero");
+//				opcionUsuario = ErrorAplicacion.controlByte((byte) 1, MenuDeConsola.getsizeOpcionesComp(), "Ingrese el indice de la opción que desea agregar", "Por favor ingrese un número entero");
 
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 

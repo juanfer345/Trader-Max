@@ -7,12 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.Arrays;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import gestorAplicacion.Usuarios.Visitante;
-import uiMain.InicializacionAplicacion;
+
 import uiMain.vista.VentanaAplicacion;
 import uiMain.vista.Visitante.PanelLogin;
 
@@ -20,7 +20,6 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 
 	PanelLogin panel = (PanelLogin) VentanaAplicacion.panelPrincipal.getComponent(0);
 	int contadorFotos = 2;
-	Visitante usuario = (Visitante) InicializacionAplicacion.usuarioActivo;
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {}
@@ -121,28 +120,24 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 				switch (contadorFotos) {
 					case 1:
 						imagen = new ImageIcon(System.getProperty("user.dir") + "\\src\\fotos\\Mensaje.jpg");
-						imagen = new ImageIcon(imagen.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH));
-						panel.boton_1.setIcon(imagen);
+						panel.boton_1.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(250, 210, Image.SCALE_SMOOTH)));
 						contadorFotos++;
 						break;
 		
 					case 2:
 						imagen = new ImageIcon(System.getProperty("user.dir") + "\\src\\fotos\\Foto 1.jpg");
-						imagen = new ImageIcon(imagen.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH));
-						panel.boton_1.setIcon(imagen);
+						panel.boton_1.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(250, 210, Image.SCALE_SMOOTH)));
 						contadorFotos++;
 						break;
 		
 					case 3:
 						imagen = new ImageIcon(System.getProperty("user.dir") + "\\src\\fotos\\Foto 2.jpg");
-						imagen = new ImageIcon(imagen.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH));
-						panel.boton_1.setIcon(imagen);
+						panel.boton_1.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(250, 210, Image.SCALE_SMOOTH)));
 						contadorFotos = 1;
 						break;
 				}
 				break;
 		}
-		VentanaAplicacion.ventana.pack();
-		VentanaAplicacion.ventana.setLocationRelativeTo(null);
+		VentanaAplicacion.organizar();
 	}
 }

@@ -7,7 +7,7 @@ package uiMain.MenuConsola;
 
 import java.io.IOException;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
 
@@ -32,7 +32,7 @@ public class MostrarCatalogo {
 //			sb.append("Seleccion");
 //			
 //			//Selección por parte del usuario
-//			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
+//			seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
 //			if (controlError || seleccion == 2) {System.out.println(); return;}
 //
 //			System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCatalogo());

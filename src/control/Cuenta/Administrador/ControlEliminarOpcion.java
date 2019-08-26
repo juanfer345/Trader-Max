@@ -22,12 +22,12 @@ public class ControlEliminarOpcion extends OpcionDeMenu implements ActionListene
 			System.out.println();
 
 			//Control de ingreso tipo de usuario
-			//tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero");
+			//tipoDeCuenta = ErrorAplicacion.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero");
 			if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 			while (!OpcionDeMenu.controlError) {
 				//Control de ingreso de identificación de usuario
-			//	idUsuario = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Por favor ingrese el número identificador del usuario", "El identificador del usuario debe ser un número entero");
+			//	idUsuario = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Por favor ingrese el número identificador del usuario", "El identificador del usuario debe ser un número entero");
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				if (idUsuario == usuario.getId() && tipoDeCuenta == 3) {
@@ -60,7 +60,7 @@ public class ControlEliminarOpcion extends OpcionDeMenu implements ActionListene
 				System.out.print(menuOpcionesDisponibles);
 
 				//Elección de la opción por parte del usuario
-			//	opcionUsuario = ControlErrorDatos.controlByte((byte) 1, MenuDeConsola.getsizeOpcionesComp(), "Ingrese el indice de la opción que desea eliminar", "Por favor ingrese un número entero");
+			//	opcionUsuario = ErrorAplicacion.controlByte((byte) 1, MenuDeConsola.getsizeOpcionesComp(), "Ingrese el indice de la opción que desea eliminar", "Por favor ingrese un número entero");
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				//Ejecución del método principal

@@ -7,7 +7,7 @@ package uiMain.MenuConsola.Cuenta.Comprador;
 
 import java.io.IOException;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import uiMain.MenuConsola.OpcionDeMenu;
 
@@ -30,7 +30,7 @@ public class VaciarCarrito {
 //			sb.append("Selección");
 //
 //			//Ingreso de valores y control de error
-//			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
+//			seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
 //			if (controlError || seleccion == 2) {System.out.println(); return;}
 //
 //			//Ejecución del método

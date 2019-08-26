@@ -3,6 +3,7 @@ package control;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+
 import javax.swing.JOptionPane;
 
 import baseDatos.EscrituraBD;
@@ -25,13 +26,17 @@ public class ControlSalir implements MouseMotionListener{
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		
+		Object[] opciones = {"Si", "No"};
+		
 		panel.boton_4.setForeground(Color.red);
 		if (InicializacionAplicacion.usuarioActivo instanceof Comprador && CarritoDeCompras.getTotalproductos() > 0) {
 			JOptionPane.showMessageDialog(null, "Los productos no comprados serán eliminados del Carrito de Compras",
 					  "Advertencia", JOptionPane.WARNING_MESSAGE);
 		}
 		
-		int resp = JOptionPane.showConfirmDialog(null, "¿Desea salir de Trader-Max?");
+		int resp = JOptionPane.showOptionDialog(null, "¿Desea salir de Trader-Max?", "Salir", JOptionPane.YES_NO_OPTION, 
+												JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+		
 		if (JOptionPane.OK_OPTION == resp) {
 			JOptionPane.showMessageDialog(null, InicializacionAplicacion.usuarioActivo.salir(),
 					"Notificación", JOptionPane.INFORMATION_MESSAGE);

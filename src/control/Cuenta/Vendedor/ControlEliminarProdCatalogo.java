@@ -2,7 +2,7 @@ package control.Cuenta.Vendedor;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
@@ -26,7 +26,7 @@ public class ControlEliminarProdCatalogo extends OpcionDeMenu implements ActionL
 			while (!OpcionDeMenu.controlError) {
 
 				//Ingreso del código del producto
-				//idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea eliminar del catálogo", "Por favor ingrese un número entero positivo");
+				//idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea eliminar del catálogo", "Por favor ingrese un número entero positivo");
 				if (!OpcionDeMenu.controlError) {System.out.println(); return;}
 				
 				//vend.eliminarProductoCatalogo(idProducto);

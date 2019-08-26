@@ -17,7 +17,7 @@ public class ControlMostrarPorCategoria extends OpcionDeMenu implements ActionLi
 		if (!Cuenta.getCatalogo().isEmpty()) {
 			
 			//Selección por parte del usuario
-			//seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) Producto.categorias.length, sb.toString(), "Por favor ingrese un número entero");
+			//seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) Producto.categorias.length, sb.toString(), "Por favor ingrese un número entero");
 			if (OpcionDeMenu.controlError) {System.out.println(); return;}
 			
 			//Ejecución del método

@@ -23,7 +23,7 @@ public class ControlBloqueoDeCuenta extends OpcionDeMenu implements ActionListen
 			while (!OpcionDeMenu.controlError) {
 
 				// Control de ingreso tipo de usuario
-				// tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3,
+				// tipoDeCuenta = ErrorAplicacion.controlByte((byte) 1, (byte) 3,
 				// sb.toString(), "Por favor ingrese un número entero positivo");
 				if (OpcionDeMenu.controlError) {
 					System.out.println();
@@ -31,7 +31,7 @@ public class ControlBloqueoDeCuenta extends OpcionDeMenu implements ActionListen
 				}
 
 				// Control de ingreso de identificación de usuario
-				// idCuenta = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "ID de
+				// idCuenta = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "ID de
 				// usuario", "Por favor ingrese un número entero positivo");
 				if (OpcionDeMenu.controlError) {
 					System.out.println();
@@ -39,7 +39,7 @@ public class ControlBloqueoDeCuenta extends OpcionDeMenu implements ActionListen
 				}
 
 				// Control de ingreso de tipo de modificación
-				// modificacion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, "Ingrese 1
+				// modificacion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, "Ingrese 1
 				// para desbloquear la cuenta y 2 para bloquearla", "Por favor ingrese un número
 				// entero positivo");
 				if (OpcionDeMenu.controlError) {

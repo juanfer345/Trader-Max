@@ -15,7 +15,7 @@ public class ControlMostrarResenas extends OpcionDeMenu implements ActionListene
 		if (!Cuenta.getCatalogo().isEmpty()) {
 			while (!OpcionDeMenu.controlError) {
 				
-				//idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto", "El dato que ingresó como código es invalido, vuelva a intentarlo");
+				//idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto", "El dato que ingresó como código es invalido, vuelva a intentarlo");
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 				
 				//Comprobación de que el producto existe en el catálogo

@@ -15,7 +15,7 @@ public class ControlMostrarCatalogo extends OpcionDeMenu implements ActionListen
 	if (!Cuenta.getCatalogo().isEmpty()) {
 		
 		//Selección por parte del usuario
-		//seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
+		//seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
 		//f (OpcionDeMenu.controlError || seleccion == 2) {System.out.println(); return;}
 
 		System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCatalogo());

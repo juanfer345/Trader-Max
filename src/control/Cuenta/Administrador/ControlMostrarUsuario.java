@@ -2,7 +2,7 @@ package control.Cuenta.Administrador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
@@ -28,11 +28,11 @@ public class ControlMostrarUsuario extends OpcionDeMenu implements ActionListene
 
 			while (!OpcionDeMenu.controlError) {
 				//Control de ingreso tipo de usuario
-				//tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
+				//tipoDeCuenta = ErrorAplicacion.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				//Control de ingreso de identificación de usuario
-				//idCuenta = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el número identificador del usuario", "Por favor ingrese un número entero positivo");
+				//idCuenta = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el número identificador del usuario", "Por favor ingrese un número entero positivo");
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				//Ejecución del método
