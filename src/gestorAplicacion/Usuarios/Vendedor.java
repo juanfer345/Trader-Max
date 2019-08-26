@@ -79,7 +79,7 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 		for (Map.Entry<Integer, Producto> entry : Cuenta.getCatalogo().entrySet()) {
 			if (entry.getValue().getVendedor().getId() == getId()) {
 				sb.append(entry.getValue().toString()).append(", Cantidad: ").
-				append(entry.getValue().getCantidad()).append("]\n");
+				append(entry.getValue().getCantidad()).append("\n");
 			}
 		}
 		return sb.toString();

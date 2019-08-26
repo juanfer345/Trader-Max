@@ -3,31 +3,47 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
+import uiMain.vista.Visitante.VentanaCatalogo;
 
 public class ControlMostrarCatalogo extends OpcionDeMenu implements ActionListener {
 
+	String productos;
+
+	public String getProductos() {
+		if (!Cuenta.getCatalogo().isEmpty()) {
+			productos = InicializacionAplicacion.usuarioActivo.mostrarCatalogo();
+			return productos;
+		} else {
+			return "";
+		}
+	}
 	@Override
-	public void actionPerformed(ActionEvent e) {byte seleccion; 
-	
-	if (!Cuenta.getCatalogo().isEmpty()) {
-		
-		//Selección por parte del usuario
-		//seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
-		//f (OpcionDeMenu.controlError || seleccion == 2) {System.out.println(); return;}
+	public void actionPerformed(ActionEvent e) {
 
-		System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCatalogo());
-		if (!OpcionDeMenu.controlError)
-			System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
-	}
-	else {
-		System.out.println("El catálogo se encuentra vacío.\n");
-	}
-		
-	}
-	public String toString() {return "Mostrar todos los productos";}
+		VentanaCatalogo x = new VentanaCatalogo();
+		if (!Cuenta.getCatalogo().isEmpty()) {
+			if (e.getSource() instanceof JMenuItem) {
+				x.lanzar();
+			}
 
+		} else {
+			if (e.getSource() instanceof JMenuItem) {
+				JOptionPane.showMessageDialog(null, "El catálogo se encuentra vacío", "Advertencia",
+						JOptionPane.WARNING_MESSAGE);
+				//x.lanzar();
+			}
+		}
+
+	}
+
+	public String toString() {
+		return "Mostrar todos los productos";
+	}
 
 }
