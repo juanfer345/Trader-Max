@@ -103,7 +103,7 @@ public class PanelLogin extends JPanel {
 		 + "- Sara Catalina Balbín Ramírez\n"
 		 + "- Juan Manuel Cárdenas Vélez\n"
 		 + "- María Paulina García Velásquez\n"
-		 + "- Julián Camilo Ossa Zapata (LA NEA)\n"
+		 + "- Julián Camilo Ossa Zapata\n"
 		 + "- Juan Fernando Patiño Castro\n");
 		
 		aux.setEditable(false);

@@ -49,6 +49,33 @@ public abstract class ErrorAplicacion extends Exception {
 			}
 		}
 	}
+	//Control de número real
+	public static double controlReal2 (String entrada, double limInferior, double limSuperior, String ingreso, String Error) throws IOException {
+		
+		//Propósito: Se encarga de controlar el ingreso de un número entero (int) que deba ingresar el usuario
+
+		double numeroReal = OpcionDeMenu.esDouble(entrada) ;
+		
+		while (true) {
+			if(numeroReal != 0) {
+				if(numeroReal != -1) {
+					if(numeroReal >= limInferior && numeroReal <= limSuperior) {
+						return numeroReal;
+					}
+					else {
+						System.out.println("Por favor ingrese un número en el rango [" + limInferior + "," + limSuperior + "].");
+					}
+				}
+				else {
+					System.out.println(Error);
+				}
+			}
+			else {
+				OpcionDeMenu.controlError = true; return -1;
+			}
+		}
+	}
+	
 	
 	//Control de número de entero
 	public static int controlEntero (String entrada, int limInferior, int limSuperior, String ingreso, String Error) throws IOException {
