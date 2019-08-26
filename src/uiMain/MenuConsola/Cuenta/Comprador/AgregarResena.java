@@ -7,7 +7,7 @@ package uiMain.MenuConsola.Cuenta.Comprador;
 
 import java.io.IOException;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Comprador;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
@@ -38,15 +38,15 @@ public class AgregarResena {
 //				System.out.println(sb);
 //
 //				//Ingreso del código
-//				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto al que le desea añadir la reseña", "El dato que ingresó como código es invalido, vuelva a intentarlo");
+//				idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto al que le desea añadir la reseña", "El dato que ingresó como código es invalido, vuelva a intentarlo");
 //				if (controlError) {System.out.println(); return;}
 //
 //				//Ingreso de las estrellas
-//				cantEst = ControlErrorDatos.controlByte((byte) 1, (byte) 5, "Ingrese el numero de estrellas", "El dato que ingresó como numero de estrellas es invalido, vuelva a intentarlo");
+//				cantEst = ErrorAplicacion.controlByte((byte) 1, (byte) 5, "Ingrese el numero de estrellas", "El dato que ingresó como numero de estrellas es invalido, vuelva a intentarlo");
 //				if (controlError) {System.out.println(); return;}
 //
 //				//Ingreso del comentario
-//				comentario = ControlErrorDatos.controlString("Ingrese el comentario", "Ha ingresado un número en lugar de texto");
+//				comentario = ErrorAplicacion.controlString("Ingrese el comentario", "Ha ingresado un número en lugar de texto");
 //				if (controlError) {System.out.println(); return;}
 //
 //				//Ejecución del método

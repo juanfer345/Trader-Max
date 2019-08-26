@@ -2,7 +2,7 @@ package uiMain.MenuConsola.Cuenta;
 
 import java.io.IOException;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Usuarios.Comprador;
 import gestorAplicacion.Usuarios.CuentaUsuario;
@@ -27,7 +27,7 @@ public class CerrarSesion {
 //		sb.append("Selección");
 //		
 //	    //Ingreso de valores y control de error
-//		seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
+//		seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
 //		if (controlError) {System.out.println(); return;}
 //		
 //		//Ejecución del método e impresión de respuesta

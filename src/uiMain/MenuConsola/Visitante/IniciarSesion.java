@@ -12,7 +12,7 @@ package uiMain.MenuConsola.Visitante;
 
 import java.io.IOException;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
@@ -43,14 +43,14 @@ public class IniciarSesion {
 //			sb.append("Seleccion");
 //			
 //			// Control de ingreso tipo de usuario
-//			tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
+//			tipoDeCuenta = ErrorAplicacion.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
 //			if (controlError) {System.out.println(); return;}
 //
 //			// Ejecución del método principal con control de error
 //			while (!controlError) {
 //
 //				// Control de ingreso de correo
-//				correoIngresado = ControlErrorDatos.controlCorreo();
+//				correoIngresado = ErrorAplicacion.controlCorreo();
 //				if (controlError) {System.out.println();return;}
 //
 //				// Ingreso de contraseña

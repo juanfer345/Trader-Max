@@ -27,11 +27,11 @@ public class ControlMostrarMenu extends OpcionDeMenu implements ActionListener {
 
 			while (!OpcionDeMenu.controlError) {
 				//Control de ingreso tipo de usuario
-		//		tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
+		//		tipoDeCuenta = ErrorAplicacion.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				//Control de ingreso de identificación de usuario
-//				idCuenta = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "ID de usuario", "Por favor ingrese un número entero positivo");
+//				idCuenta = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "ID de usuario", "Por favor ingrese un número entero positivo");
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				//Ejecución del método

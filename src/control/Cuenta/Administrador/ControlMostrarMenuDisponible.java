@@ -21,7 +21,7 @@ public class ControlMostrarMenuDisponible extends OpcionDeMenu implements Action
 //		sb.append("3: Administrador.\n");
 //		sb.append("Selección");
 
-	//	tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
+	//	tipoDeCuenta = ErrorAplicacion.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
 		if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 		//Ejecución del método

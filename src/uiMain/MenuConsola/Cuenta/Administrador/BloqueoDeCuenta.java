@@ -8,7 +8,7 @@ package uiMain.MenuConsola.Cuenta.Administrador;
 
 import java.io.IOException;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
@@ -36,15 +36,15 @@ public class BloqueoDeCuenta {
 //			while (!controlError) {
 //
 //				//Control de ingreso tipo de usuario
-//				tipoDeCuenta = ControlErrorDatos.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
+//				tipoDeCuenta = ErrorAplicacion.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero positivo");
 //				if (controlError) {System.out.println(); return;}
 //
 //				//Control de ingreso de identificación de usuario
-//				idCuenta = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "ID de usuario", "Por favor ingrese un número entero positivo");
+//				idCuenta = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "ID de usuario", "Por favor ingrese un número entero positivo");
 //				if (controlError) {System.out.println(); return;}
 //
 //				//Control de ingreso de tipo de modificación
-//				modificacion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, "Ingrese 1 para desbloquear la cuenta y 2 para bloquearla", "Por favor ingrese un número entero positivo");
+//				modificacion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, "Ingrese 1 para desbloquear la cuenta y 2 para bloquearla", "Por favor ingrese un número entero positivo");
 //				if (controlError) {System.out.println(); return;}
 //
 //				//Ejecución del método

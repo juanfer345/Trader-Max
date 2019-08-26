@@ -7,7 +7,7 @@ package uiMain.MenuConsola;
 
 import java.io.IOException;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
 
@@ -36,7 +36,7 @@ public class BuscarProducto {
 //			sb.append("selección");
 //			
 //			//Selección por parte del usuario
-//			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
+//			seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
 //			if (controlError) {System.out.println(); return;}
 //
 //			//Condicional según selección
@@ -46,7 +46,7 @@ public class BuscarProducto {
 //				while (!controlError) {
 //
 //					//Control del ingreso de datos
-//					idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto", "El dato que ingresó como código es invalido, vuelva a intentarlo");
+//					idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto", "El dato que ingresó como código es invalido, vuelva a intentarlo");
 //					if (controlError) {System.out.println(); return;}
 //
 //					//Búsqueda por código
@@ -60,7 +60,7 @@ public class BuscarProducto {
 //				while (!controlError) {
 //
 //					//Control del ingreso de datos
-//					nombreProducto = ControlErrorDatos.controlString("Ingrese el nombre del producto", "Ha ingresado un número en lugar de texto");
+//					nombreProducto = ErrorAplicacion.controlString("Ingrese el nombre del producto", "Ha ingresado un número en lugar de texto");
 //					if (controlError) {System.out.println(); return;}
 //
 //					//Búsqueda por nombre

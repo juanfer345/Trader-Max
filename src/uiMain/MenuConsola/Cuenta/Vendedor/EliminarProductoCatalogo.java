@@ -9,7 +9,7 @@ package uiMain.MenuConsola.Cuenta.Vendedor;
 
 import java.io.IOException;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
@@ -42,7 +42,7 @@ public class EliminarProductoCatalogo {
 //				System.out.println(sb);
 //
 //				//Ingreso del código del producto
-//				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea eliminar del catálogo", "Por favor ingrese un número entero positivo");
+//				idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea eliminar del catálogo", "Por favor ingrese un número entero positivo");
 //				if (controlError) {System.out.println(); return;}
 //				
 //				System.out.println(vend.eliminarProductoCatalogo(idProducto));

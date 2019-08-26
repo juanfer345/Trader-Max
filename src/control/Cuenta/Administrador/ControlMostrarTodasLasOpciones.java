@@ -19,7 +19,7 @@ public class ControlMostrarTodasLasOpciones extends OpcionDeMenu implements Acti
 //		sb.append("Selección");
 
 		// Ingreso del dato por parte del usuario
-	//	seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
+	//	seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
 		if (OpcionDeMenu.controlError || seleccion == 2) {System.out.println(); return;}
 
 		//Mostrado de todas las opciones

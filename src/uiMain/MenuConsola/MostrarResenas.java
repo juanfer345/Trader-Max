@@ -7,7 +7,7 @@ package uiMain.MenuConsola;
 
 import java.io.IOException;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Cuenta;
 
 
@@ -25,7 +25,7 @@ public class MostrarResenas {
 //		if (!Cuenta.getCatalogo().isEmpty()) {
 //			while (!controlError) {
 //				
-//				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto", "El dato que ingresó como código es invalido, vuelva a intentarlo");
+//				idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto", "El dato que ingresó como código es invalido, vuelva a intentarlo");
 //				if (controlError) {System.out.println(); return;}
 //				
 //				//Comprobación de que el producto existe en el catálogo

@@ -3,7 +3,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
@@ -28,11 +28,11 @@ public class ControlCambiarPrecio extends OpcionDeMenu implements ActionListener
 			while(!OpcionDeMenu.controlError) {
 
 				//Ingreso del código del producto
-				//idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto al que le desea cambiar el precio", "El dato que ingresó no es válido");
+				//idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto al que le desea cambiar el precio", "El dato que ingresó no es válido");
 				if (!OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				//Ingreso del precio del producto
-				//precio = ControlErrorDatos.controlReal(0.1, Double.MAX_VALUE, "Ingrese el nuevo precio del producto", "El dato que ingresó no es válido");
+				//precio = ErrorAplicacion.controlReal(0.1, Double.MAX_VALUE, "Ingrese el nuevo precio del producto", "El dato que ingresó no es válido");
 				if (!OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				//Ejecución del método

@@ -12,7 +12,7 @@ package uiMain.MenuConsola.Cuenta.Vendedor;
 
 import java.io.IOException;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
@@ -45,15 +45,15 @@ public class ModificarCantidad {
 //				System.out.println(sb);
 //
 //				//Ingreso del código del producto
-//				idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto al que le desea cambiar su cantidad", "Por favor ingrese un número entero positivo");
+//				idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto al que le desea cambiar su cantidad", "Por favor ingrese un número entero positivo");
 //				if (controlError) {System.out.println(); return;}
 //
 //				//Ingreso de la cantidad del producto
-//				cantidad = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese cantidad a sumar o restar", "Por favor ingrese un número entero positivo");
+//				cantidad = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese cantidad a sumar o restar", "Por favor ingrese un número entero positivo");
 //				if (controlError) {System.out.println(); return;}
 //
 //				//Ingreso del tipo de operación
-//				operacion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, "Ingrese 1 para sumar la cantidad y 2 para restarla", "Por favor ingrese un número entero positivo");
+//				operacion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, "Ingrese 1 para sumar la cantidad y 2 para restarla", "Por favor ingrese un número entero positivo");
 //				if (controlError) {System.out.println(); return;}
 //				
 //				//Ejecución del método

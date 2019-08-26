@@ -3,7 +3,7 @@ package control.Cuenta.Comprador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import uiMain.MenuConsola.OpcionDeMenu;
 
@@ -21,11 +21,11 @@ public class ControlQuitarProductoCarrito extends OpcionDeMenu implements Action
 			while (!OpcionDeMenu.controlError) {
 
 				//Ingreso del código del producto
-				//idProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea eliminar", "El dato que ingresó como código es invalido, vuelva a intentarlo");
+				//idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea eliminar", "El dato que ingresó como código es invalido, vuelva a intentarlo");
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				//Ingreso de la cantidad de producto
-				//cantidadProducto = ControlErrorDatos.controlEntero(1, Integer.MAX_VALUE, "Ingrese la cantidad de elementos que desea eliminar", "El dato que ingresó como cantidad es invalido, vuelva a intentarlo");
+				//cantidadProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese la cantidad de elementos que desea eliminar", "El dato que ingresó como cantidad es invalido, vuelva a intentarlo");
 				if (OpcionDeMenu.controlError) {System.out.println(); return;}
 
 				//Ejecución del método

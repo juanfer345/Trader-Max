@@ -2,7 +2,7 @@ package uiMain.MenuConsola.Cuenta.Vendedor;
 
 import java.io.IOException;
 
-import control.ControlErrorDatos;
+import control.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
@@ -26,7 +26,7 @@ public class VerProductos {
 //			sb.append("Seleccion");
 //
 //			// Ingreso del dato por parte del usuario
-//			seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
+//			seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
 //			if (controlError || seleccion == 2) {System.out.println(); return;}
 //			
 //			//Ejecución del método
