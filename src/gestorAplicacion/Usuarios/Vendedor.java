@@ -12,6 +12,7 @@ package gestorAplicacion.Usuarios;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 import control.ControlBuscarProducto;
@@ -32,6 +33,7 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 	// Atributos
 	private int totalDeProductosSubidos = 0;
 	private static final int totalDeOpcionesDisponibles = 11;
+	public HashMap<Integer,Producto> misProductos = new HashMap<Integer,Producto>();
 
 	// Constructor para usuarios existentes (Llama al super)
 	public Vendedor(int idCuenta, String nombre, String correo, String password, int cedula, boolean activa) {
@@ -82,7 +84,15 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 		}
 		return sb.toString();
 	}
-	
+	//intento para poner en la tabla esa
+	public HashMap<Integer,Producto> verProductos(){
+		for (Map.Entry<Integer, Producto> entry : Cuenta.getCatalogo().entrySet()) {
+			if (entry.getValue().getVendedor().getId() == getId()) {
+				misProductos.put(entry.getValue().getId(),entry.getValue());
+			}
+		}
+		return misProductos;
+	}
 	// Crea e ingresa un nuevo producto al catálogo
 	public String subirProducto(String nombreProducto, byte categoria, double precio, int cantidad) {
 		/*

@@ -2,64 +2,80 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import gestorAplicacion.Usuarios.Cuenta;
+import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
+import uiMain.vista.PanelBuscarProducto;
 
-public class ControlBuscarProducto extends OpcionDeMenu implements ActionListener {
+public class ControlBuscarProducto extends OpcionDeMenu implements ActionListener,ChangeListener {
+String opcion;
+PanelBuscarProducto buscarprod;
+String resultado;
 
+Visitante usuario = (Visitante) InicializacionAplicacion.usuarioActivo;
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent arg) {
 
 		String nombreProducto;
 		int idProducto;
 		byte seleccion=0;
+		
 
 		// Verificación de catalogo no vacío
-		if (!Cuenta.getCatalogo().isEmpty()) {
-			
-			//Selección por parte del usuario
-			//seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "Por favor ingrese un número entero");
-			if (OpcionDeMenu.controlError) {System.out.println(); return;}
+		if (!usuario.getCatalogo().isEmpty()) {
+			buscarprod = new PanelBuscarProducto();
+			if (arg.getSource() instanceof JButton)
 
-			//Condicional según selección
-			if (seleccion == 1) {
+				// Condicional según selección
+				if (arg.getActionCommand().equals("Buscar")) {
 
-				// Selección 1: Búsqueda del producto por código
-				while (!OpcionDeMenu.controlError) {
+					// Selección 1: Búsqueda del producto por código
+					if (opcion.equals("cod")) {
+						try {
+						resultado = usuario.buscarProducto(Integer.parseInt(buscarprod.texto.getText()));
+						}
+						catch (NumberFormatException NF){
+							JOptionPane.showMessageDialog(null, "Debe ingresar un numero entero", "Error",
+									JOptionPane.ERROR_MESSAGE);
+						}
+					} else if (opcion.equals("nom")) {
+						resultado = usuario.buscarProducto(buscarprod.texto.getText());
 
-					//Control del ingreso de datos
-					//idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto", "El dato que ingresó como código es invalido, vuelva a intentarlo");
-					if (OpcionDeMenu.controlError) {System.out.println(); return;}
+					} else {
+						JOptionPane.showMessageDialog(null, "Debe escoger una opción", "Advertencia",
+								JOptionPane.INFORMATION_MESSAGE);
+					}
 
-					//Búsqueda por código
-					//System.out.println(InicializacionAplicacion.usuarioActivo.buscarProducto(idProducto));
-					if (!OpcionDeMenu.controlError)
-						System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
 				}
-			}
-			else if (seleccion == 2) {
-				// Selección 2: Búsqueda del producto por nombre
-				while (!OpcionDeMenu.controlError) {
-
-					//Control del ingreso de datos
-					//nombreProducto = ErrorAplicacion.controlString("Ingrese el nombre del producto", "Ha ingresado un número en lugar de texto");
-					if (OpcionDeMenu.controlError) {System.out.println(); return;}
-
-					//Búsqueda por nombre
-					//System.out.println(InicializacionAplicacion.usuarioActivo.buscarProducto(nombreProducto));
-					if (!OpcionDeMenu.controlError)
-						System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
-				}
-			}
 		}
+
 		else {
-			System.out.println("El catálogo se encuentra vacío.\n");
-		}
+			JOptionPane.showMessageDialog(null, "El catálogo se encuentra vacío", "Informacion",
+					JOptionPane.ERROR_MESSAGE);
 		
+		}
+
 	}
 
 	public String toString() {return "Buscar producto";}
+
+	@Override
+	public void stateChanged(ChangeEvent arg0) {
+		if(arg0.toString().equals("Buscar por código")) {
+			opcion = "cod";
+		}
+		if(arg0.toString().equals("Buscar por nombre")) {
+			opcion = "nom";
+		}
+		
+	}
 
 }

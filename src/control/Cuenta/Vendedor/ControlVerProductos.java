@@ -2,26 +2,36 @@ package control.Cuenta.Vendedor;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 import gestorAplicacion.Usuarios.Vendedor;
+import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlVerProductos extends OpcionDeMenu implements ActionListener {
-
+	Vendedor usuario = (Vendedor) InicializacionAplicacion.usuarioActivo;
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
-		
+		String codigo = e.getActionCommand();
+		/*
+		Producto producto = Producto.getProductoByCodigo(codigo);
+        int cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, 
+               "Cantidad de "+producto.getNombre()+" que desea ordenar"));
+        Usuario.currentUser.getCarrito().añadirProductoCarrito(codigo, cantidad);
 		//Condicional para vendedores sin productos subidos
-		if (vend.getTotalDeProductosSubidos() != 0) {
+        
+		if (usuario.getTotalDeProductosSubidos() != 0) {
 			//Ejecución del método
-			vend.mostrarProductos();
+			usuario.mostrarProductos();
 		}
 		else {
-			String mensaje1 = "Usted aún no ha subido ningún producto.";
-		}
+
+			JOptionPane.showMessageDialog(null, "Usted aún no ha subido ningún producto.", "Advertencia",
+					JOptionPane.WARNING_MESSAGE);
+		}*/
 	}
 
 	@Override
