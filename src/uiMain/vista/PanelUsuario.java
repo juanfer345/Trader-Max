@@ -50,6 +50,6 @@ public class PanelUsuario extends JPanel {
 		// Definición de las partes del panel - [Fin]
 		
 		// Juntando todos los paneles
-		this.add(panelArriba); this.add(panelAbajo);
+		this.add(usuario); this.add(panelArriba); this.add(panelAbajo);
 	}
 }

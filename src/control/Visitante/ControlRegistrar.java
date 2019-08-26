@@ -13,8 +13,8 @@ import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.FieldPanel;
+import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
-import uiMain.vista.Visitante.PanelLogin;
 
 public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 
@@ -58,7 +58,7 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 				// Control de ingreso tipo de cuenta
 				try {
 					tipoDeCuenta = ErrorAplicacion.controlByte(formulario.getValue("Tipo de cuenta [1: Comprador, 2: Vendedor, 3: Administrador]"), 
-							(byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero");
+							(byte) 1, (byte) 3, "\"Tipo de cuenta\"", "Por favor ingrese un número entero en el campo \"Tipo de cuenta\".");
 				}
 				catch (IOException e) {
 					JOptionPane.showMessageDialog(
@@ -87,7 +87,8 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 
 				// Control de ingreso de nombre
 				try {
-					nombreIngresado = ErrorAplicacion.controlString(formulario.getValue("Nombre"), "Ha ingresado un número en lugar de texto");
+					nombreIngresado = ErrorAplicacion.controlString(formulario.getValue("Nombre"), 
+							"Ha ingresado un número en lugar de texto en el campo\"Nombre\"");
 				}
 				catch (IOException e) {
 					JOptionPane.showMessageDialog(
@@ -98,7 +99,8 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 
 				// Control de ingreso de cedula
 				try {
-					cedulaIngresada = ErrorAplicacion.controlEntero(formulario.getValue("Cédula"), 1, Integer.MAX_VALUE, "Por favor ingrese una cédula válida");
+					cedulaIngresada = ErrorAplicacion.controlEntero(formulario.getValue("Cédula"), 1, Integer.MAX_VALUE, 
+									  "Cedula","Por favor ingrese una cédula válida");
 				}
 				catch (IOException e) {
 					JOptionPane.showMessageDialog(
@@ -134,13 +136,17 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 				VentanaAplicacion.panelPrincipal.removeAll();
 
 				//Añadiendo los nuevos elementos para la ventana de usuario
-				VentanaAplicacion.panelPrincipal.add(new PanelLogin());
+				VentanaAplicacion.panelPrincipal.add(new PanelUsuario());
+				
+				//Añadiendo la barra del usuario
+				VentanaAplicacion.setMenuBarUsuario();
+			}
+			else if (arg.getActionCommand().equals("Borrar")) {
+				// Caso C: Se presionado borrar
+				formulario.borrarValores();
 			}
 		}
-		else if (arg.getActionCommand().equals("Borrar")) {
-			// Caso C: Se presionado borrar
-			formulario.borrarValores();
-		}
+		VentanaAplicacion.organizar();
 	}
 
 	public String toString() {

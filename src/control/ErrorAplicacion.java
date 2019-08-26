@@ -51,7 +51,7 @@ public abstract class ErrorAplicacion extends Exception {
 	}
 	
 	//Control de número de entero
-	public static int controlEntero (String entrada, int limInferior, int limSuperior, String Error) throws IOException {
+	public static int controlEntero (String entrada, int limInferior, int limSuperior, String ingreso, String Error) throws IOException {
 		
 		/*
 		   Propósito: Se encarga de controlar el ingreso de un número entero (int) que deba ingresar el usuario
@@ -65,8 +65,9 @@ public abstract class ErrorAplicacion extends Exception {
 			if(numeroEntero >= limInferior && numeroEntero <= limSuperior) {
 				return numeroEntero;
 			}
-			else {
-				throw new IOException("Por favor ingrese un número entero en el rango [" + limInferior + "," + limSuperior + "].");
+			else {				
+				throw new IOException("Por favor ingrese un número entero en el rango [" + limInferior + "," + limSuperior + "]"
+					+ " en el campo " + ingreso + ".");
 			}
 		}
 		else {
@@ -88,7 +89,8 @@ public abstract class ErrorAplicacion extends Exception {
 				return numeroEntero;
 			}
 			else {
-				throw new IOException("Por favor ingrese un número entero en el rango [" + limInferior + "," + limSuperior + "].");
+				throw new IOException("Por favor ingrese un número entero en el rango [" + limInferior + "," + limSuperior + "]"
+						+ " en el campo " + ingreso + ".");
 			}
 		}
 		else {
