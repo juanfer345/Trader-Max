@@ -22,7 +22,7 @@ public class VentanaCatalogo extends JFrame {
 		panel = this.getContentPane();
 		ControlMostrarCatalogo oidor = new ControlMostrarCatalogo();
 		JTextArea aux = new JTextArea(oidor.getProductos());
-		/*TextArea aux2 = new JTextArea("\"Trader max es una aplicación que esta diseñada para la \"\r\n"
+		/*JTextArea aux = new JTextArea("\"Trader max es una aplicación que esta diseñada para la \"\r\n"
 				+ " \"compra y venta autónoma de artículos, cada usuario podrá \"\r\n"
 				+ "\"crear su cuenta ya sea para poner en venta sus productos, \"\r\n"
 				+ " \"o para comprar aquellos ofrecidos por parte de los demás \"\r\n"
@@ -49,13 +49,13 @@ public class VentanaCatalogo extends JFrame {
 		JScrollPane scroll = new JScrollPane(aux, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setPreferredSize(new Dimension(350, 250));
-
-		JButton acep = new JButton("Aceptar");
-		acep.addActionListener(oidor);
+		
 		JPanel panel2 = new JPanel();
 		panel2.setLayout(new GridLayout(2, 1, 10, 10));
 		panel2.add(titulo);
 		panel2.add(descripcion);
+		JButton acep = new JButton("Aceptar");
+		acep.addActionListener(oidor);
 
 		panel.setLayout(new BorderLayout(5, 20));
 
