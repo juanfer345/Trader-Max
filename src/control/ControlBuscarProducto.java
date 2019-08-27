@@ -2,27 +2,26 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.PanelBuscarProducto;
 
 public class ControlBuscarProducto extends OpcionDeMenu implements ActionListener,ChangeListener {
-String opcion;
-PanelBuscarProducto buscarprod;
-String resultado;
+	String opcion;
+	PanelBuscarProducto buscarprod;
+	String resultado;
 
-Visitante usuario = (Visitante) InicializacionAplicacion.usuarioActivo;
 	@Override
 	public void actionPerformed(ActionEvent arg) {
+
+		Visitante usuario = (Visitante) InicializacionAplicacion.usuarioActivo;
 
 		String nombreProducto;
 		int idProducto;

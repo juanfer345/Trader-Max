@@ -20,6 +20,7 @@ import control.ControlCerrarSesion;
 import control.ControlMostrarCatalogo;
 import control.ControlMostrarPorCategoria;
 import control.ControlMostrarResenas;
+import control.ControlSalir;
 import control.Cuenta.Vendedor.ControlCambiarPrecio;
 import control.Cuenta.Vendedor.ControlEliminarProdCatalogo;
 import control.Cuenta.Vendedor.ControlModificarCantidad;
@@ -59,7 +60,7 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 				new ControlBuscarProducto(), new ControlMostrarCatalogo(), new ControlMostrarPorCategoria(), 
 				new ControlMostrarResenas(), new ControlSubirProducto(), new ControlVerProductos(), 
 				new ControlModificarCantidad(), new ControlCambiarPrecio(), new ControlEliminarProdCatalogo(), 
-				new ControlCerrarSesion()}));
+				new ControlCerrarSesion(), new ControlSalir()}));
 	}
 
 	public int getTotalDeOpcionesDisponibles() {

@@ -1,6 +1,5 @@
 package uiMain.vista;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -39,7 +38,6 @@ public class FieldPanel extends JPanel {
 		// Dimensiones del panel
 		this.setLayout(new FlowLayout());	
 		panelInterno.setLayout(new GridLayout(totalCriterios + 2, 2, 50, 20));
-//		panelInterno.setPreferredSize(new Dimension (400, 200));
 		//criterios.length + 2 debido a que además de los criterios se debe contar un renglón para los espácios y otro para los botones
 		
 		// Títulos formulario
@@ -90,8 +88,8 @@ public class FieldPanel extends JPanel {
 		return valores.get(indice).getText();
 	}
 	
+	// Método para borrar todos los valores del formulario
 	public void borrarValores() {
-		
 		for (JTextField valor : valores) {
 			if (valor.isEditable()) {
 				valor.setText(null);

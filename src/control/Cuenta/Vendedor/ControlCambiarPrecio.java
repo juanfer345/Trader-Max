@@ -78,11 +78,11 @@ public class ControlCambiarPrecio extends OpcionDeMenu implements ActionListener
 				// Remoción de los elementos del panel
 				VentanaAplicacion.panelPrincipal.removeAll();
 
+				//Eliminando la barra del usuario invitado
+				VentanaAplicacion.barraMenu.removeAll();
+				
 				// Añadiendo los nuevos elementos para la ventana de usuario
 				VentanaAplicacion.panelPrincipal.add(new PanelUsuario());
-
-				// Añadiendo la barra del usuario
-				VentanaAplicacion.setMenuBarUsuario();
 
 			} else if (arg.getActionCommand().equals("Borrar")) {
 				formulario.borrarValores();

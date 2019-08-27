@@ -16,6 +16,7 @@ import control.ControlCerrarSesion;
 import control.ControlMostrarCatalogo;
 import control.ControlMostrarPorCategoria;
 import control.ControlMostrarResenas;
+import control.ControlSalir;
 import control.Cuenta.Administrador.ControlAgregarOpcion;
 import control.Cuenta.Administrador.ControlBloqueoDeCuenta;
 import control.Cuenta.Administrador.ControlEliminarOpcion;
@@ -67,7 +68,8 @@ public class Administrador extends CuentaUsuario {
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
 				new ControlMostrarUsuario(), new ControlMostrarMenu(), new ControlMostrarMenuDisponible(), 
 				new ControlMostrarTodasLasOpciones(), new ControlAgregarOpcion(), new ControlEliminarOpcion(),
-				new ControlBloqueoDeCuenta(), new ControlMostrarCuentas(), new ControlCerrarSesion()}));
+				new ControlBloqueoDeCuenta(), new ControlMostrarCuentas(), new ControlCerrarSesion(), new ControlSalir()
+		}));
 	}
 
 	//Constructor vacío

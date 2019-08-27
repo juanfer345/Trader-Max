@@ -9,7 +9,6 @@ import java.awt.event.MouseMotionListener;
 import java.util.Arrays;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -29,9 +28,6 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 		if (arg.getSource() instanceof JLabel) {
 			panel.etiqueta_1.setForeground(Color.blue);
 		}
-		else if (arg.getSource() instanceof JButton) {
-			panel.boton_4.setForeground(Color.red);
-		}
 		else if (arg.getSource() instanceof JPanel) {
 			panel.boton_4.setForeground(Color.black);
 			panel.etiqueta_1.setForeground(Color.black);
@@ -44,6 +40,8 @@ public class ControlLogin implements MouseMotionListener, ActionListener {
 		ControlInicioSesion oidorIS = new ControlInicioSesion();
 		ControlLogin oidor = new ControlLogin();
 
+		// CAMBIAR PARA QUE MUESTRE AQUI SI NO HAY CUENTAS INSCRITAS
+		
 		switch (((String) arg.getActionCommand())) {
 		
 			case "Administrador":

@@ -23,48 +23,19 @@ import uiMain.InicializacionAplicacion;
 public class MenuDeConsola {
 
 	public static ArrayList<OpcionDeMenu> menuActivo;
-	private ArrayList<OpcionDeMenu>  menuUsuario;
+	private ArrayList<OpcionDeMenu> menuUsuario;
 	public static boolean SalirApp = false;
 	private static ArrayList<OpcionDeMenu> opcionComp;
-	
-//	public static void LanzarMenu() throws IOException {
-//		/*
-//		  Propósito: Mostrar al usuario las opciones de menú disponibles para que este
-//		             decida qué desea hacer (posterior llamada a metodo ejecutar(). El metodo
-//		             permite que el usuario tenga constantes acciones en el programa hasta que
-//		             desee salir.
-//		 */
-//
-//		byte opcionSeleccionada = 0;
-//
-//		while (!SalirApp) {
-//
-//			OpcionDeMenu.sb.append("Elija una opción:\n");
-//			
-//			// Ciclo para listar por pantalla las opciones de menú
-//			OpcionDeMenu.sb.append(prepararMenuImpresion(menuActivo));
-//
-//			while (true) {
-//				System.out.print(OpcionDeMenu.sb.toString() + "=> ");
-//				opcionSeleccionada = OpcionDeMenu.esByte(OpcionDeMenu.br.readLine().trim());
-//				
-//				// Se realiza la eleccion de la opción
-//				if (opcionSeleccionada > 0 && opcionSeleccionada <= menuActivo.size()) {
-//					break;
-//				} else {
-//					System.out.println("Por favor ingrese un número entero en el rango [1," + menuActivo.size() + "]\n");
-//				}
-//			}
-//			OpcionDeMenu.controlError = false;
-//			OpcionDeMenu.sb.delete(0, OpcionDeMenu.sb.length());
-//			menuActivo.get(opcionSeleccionada - 1).ejecutar();
-//			// Llamado al metodo ejecutar de la opción de menú elegida
-//			OpcionDeMenu.sb.delete(0, OpcionDeMenu.sb.length());
-//
-//			// El ciclo sigue hasta que el usuario ingrese la opción Salir
-//		}
-//	}
 
+	public boolean buscarOpcionDeMenu(OpcionDeMenu opcionBuscada) {
+		for (OpcionDeMenu opcionDeMenu : menuActivo) {
+			if (opcionBuscada.getClass().equals(opcionDeMenu.getClass())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	//Crea el arreglo de opciones de menú del usuario
 	public MenuDeConsola() {menuUsuario = new ArrayList<>();}
 	

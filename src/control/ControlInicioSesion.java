@@ -14,13 +14,13 @@ import uiMain.vista.VentanaAplicacion;
 import uiMain.vista.Visitante.PanelLogin;
 
 public class ControlInicioSesion extends OpcionDeMenu implements ActionListener {
-	
-	PanelLogin panel = (PanelLogin) VentanaAplicacion.panelPrincipal.getComponent(0);
-	Visitante usuario = (Visitante) InicializacionAplicacion.usuarioActivo;
 		
 	@Override
 	public void actionPerformed(ActionEvent arg) {
-
+		
+		PanelLogin panel = (PanelLogin) VentanaAplicacion.panelPrincipal.getComponent(0);
+		Visitante usuario = (Visitante) InicializacionAplicacion.usuarioActivo;
+		
 		OpcionDeMenu.controlError = false;
 		byte tipoCuenta=0;
 		switch (((String) arg.getActionCommand())) {
@@ -56,11 +56,11 @@ public class ControlInicioSesion extends OpcionDeMenu implements ActionListener 
 		
 		if (OpcionDeMenu.controlError) {
 			
-			//Remoción de los elementos del panel
+			//Remoción de los elementos del panel de invitado
 			VentanaAplicacion.panelPrincipal.removeAll();
 			
-			//Remoción de opciones de menú viejas y añadiendo las nuevas
-			VentanaAplicacion.setMenuBarUsuario();
+			//Eliminando la barra del usuario invitado
+			VentanaAplicacion.barraMenu.removeAll();
 			
 			//Añadiendo los nuevos elementos para la ventana de usuario
 			VentanaAplicacion.panelPrincipal.add(new PanelUsuario());

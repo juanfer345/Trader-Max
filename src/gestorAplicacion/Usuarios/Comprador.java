@@ -22,7 +22,7 @@ import control.ControlSalir;
 import control.Cuenta.Comprador.ControlAgregarACarrito;
 import control.Cuenta.Comprador.ControlAgregarResena;
 import control.Cuenta.Comprador.ControlBorrarHistorial;
-import control.Cuenta.Comprador.ControlComprarProducto;
+import control.Cuenta.Comprador.ControlComprarProductos;
 import control.Cuenta.Comprador.ControlMostrarCarrito;
 import control.Cuenta.Comprador.ControlMostrarHistorial;
 import control.Cuenta.Comprador.ControlQuitarProductoCarrito;
@@ -95,9 +95,9 @@ public class Comprador extends CuentaConBanco {
 		return new ArrayList<OpcionDeMenu>(Arrays.asList(new OpcionDeMenu[] { 
 				new ControlBuscarProducto(), new ControlMostrarCatalogo(), new ControlMostrarPorCategoria(), 
 				new ControlMostrarResenas(), new ControlAgregarACarrito(), new ControlMostrarCarrito(), 
-				new ControlComprarProducto(), new ControlQuitarProductoCarrito(), new ControlVaciarCarrito(), 
+				new ControlComprarProductos(), new ControlQuitarProductoCarrito(), new ControlVaciarCarrito(), 
 				new ControlAgregarResena(), new ControlMostrarHistorial(), new ControlBorrarHistorial(), 
-				new ControlCerrarSesion()}));
+				new ControlCerrarSesion(), new ControlSalir()}));
 	}
 
 	// Devuelve el numero total de opciones que tiene por defecto

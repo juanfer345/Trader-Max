@@ -7,7 +7,7 @@ import control.ErrorAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import uiMain.MenuConsola.OpcionDeMenu;
 
-public class ControlComprarProducto extends OpcionDeMenu implements ActionListener {
+public class ControlComprarProductos extends OpcionDeMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

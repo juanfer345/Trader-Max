@@ -23,6 +23,7 @@ import control.ControlInicioSesion;
 import control.ControlMostrarCatalogo;
 import control.ControlMostrarPorCategoria;
 import control.ControlMostrarResenas;
+import control.ControlSalir;
 import control.Cuenta.Administrador.ControlAgregarOpcion;
 import control.Cuenta.Administrador.ControlBloqueoDeCuenta;
 import control.Cuenta.Administrador.ControlEliminarOpcion;
@@ -34,7 +35,7 @@ import control.Cuenta.Administrador.ControlMostrarUsuario;
 import control.Cuenta.Comprador.ControlAgregarACarrito;
 import control.Cuenta.Comprador.ControlAgregarResena;
 import control.Cuenta.Comprador.ControlBorrarHistorial;
-import control.Cuenta.Comprador.ControlComprarProducto;
+import control.Cuenta.Comprador.ControlComprarProductos;
 import control.Cuenta.Comprador.ControlMostrarCarrito;
 import control.Cuenta.Comprador.ControlMostrarHistorial;
 import control.Cuenta.Comprador.ControlQuitarProductoCarrito;
@@ -68,13 +69,13 @@ public abstract class OpcionDeMenu implements ActionListener {
 				new ControlInicioSesion(), new ControlRegistrar(), new ControlBuscarProducto(), 
 				new ControlMostrarCatalogo(), new ControlMostrarPorCategoria(), new ControlMostrarResenas(), 
 				new ControlAgregarACarrito(), new ControlAgregarResena(), new ControlBorrarHistorial(), 
-				new ControlComprarProducto(), new ControlMostrarCarrito(), new ControlMostrarHistorial(), 
+				new ControlComprarProductos(), new ControlMostrarCarrito(), new ControlMostrarHistorial(), 
 				new ControlQuitarProductoCarrito(), new ControlVaciarCarrito(), new ControlCambiarPrecio(), 
 				new ControlEliminarProdCatalogo(), new ControlModificarCantidad(), new ControlSubirProducto(), 
 				new ControlVerProductos(), new ControlAgregarOpcion(), new ControlMostrarCuentas(), 
 				new ControlBloqueoDeCuenta(), new ControlEliminarOpcion(), new ControlMostrarMenu(), 
 				new ControlMostrarMenuDisponible(), new ControlMostrarTodasLasOpciones(), 
-				new ControlMostrarUsuario(), new ControlCerrarSesion()}));
+				new ControlMostrarUsuario(), new ControlCerrarSesion(), new ControlSalir()}));
 	}
 	
 	//Mostrar todas las opciones disponibles 

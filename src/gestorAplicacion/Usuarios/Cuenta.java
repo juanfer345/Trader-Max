@@ -112,7 +112,7 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 		menu = new MenuDeConsola(); // Creacion de nuevo menú
 		ArrayList<OpcionDeMenu> opciones = menu.getmenuUsuario();
 		while (!idOpciones.isEmpty()) {
-			opciones.add(menuTotal.get(idOpciones.poll())); 
+			opciones.add(menuTotal.get(idOpciones.poll()));
 			// Se pasan los elementos de una estructura a otra
 		}
 	}

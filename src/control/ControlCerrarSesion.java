@@ -16,7 +16,7 @@ public class ControlCerrarSesion extends OpcionDeMenu implements ActionListener 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return null;
+		return "Cerrar sesión";
 	}
 
 }

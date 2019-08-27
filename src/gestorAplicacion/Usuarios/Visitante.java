@@ -17,6 +17,7 @@ import control.ControlInicioSesion;
 import control.ControlMostrarCatalogo;
 import control.ControlMostrarPorCategoria;
 import control.ControlMostrarResenas;
+import control.ControlSalir;
 import control.Visitante.ControlRegistrar;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.InicializacionAplicacion;
@@ -30,7 +31,7 @@ public class Visitante extends Cuenta {
 	public ArrayList <OpcionDeMenu> getMenuPredeterminado() {
 		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
 				   new ControlRegistrar(), new ControlBuscarProducto(), new ControlMostrarCatalogo(), 
-				   new ControlMostrarPorCategoria()}));
+				   new ControlMostrarPorCategoria(), new ControlMostrarResenas()}));
 		// new ControlMostrarResenas()
 	}
 
