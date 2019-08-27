@@ -7,22 +7,21 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 
 public class tablaBotonOidorMouse extends MouseAdapter {
-    private final JTable table;
+    private final JTable tabla;
 
-    public tablaBotonOidorMouse(JTable table) {
-        this.table = table;
+    public tablaBotonOidorMouse(JTable tabla) {
+        this.tabla = tabla;
     }
 
     public void mouseClicked(MouseEvent e) {
-        int column = table.getColumnModel().getColumnIndexAtX(e.getX()); // get the column of the button
-        int row    = e.getY()/table.getRowHeight(); //get the row of the button
+        int columna = tabla.getColumnModel().getColumnIndexAtX(e.getX());
+        int fila    = e.getY()/tabla.getRowHeight();
 
         /*Checking the row or column is valid or not*/
-        if (row < table.getRowCount() && row >= 0 && column < table.getColumnCount() && column >= 0) {
-            Object value = table.getValueAt(row, column);
-            if (value instanceof JButton) {
-                /*perform a click event*/
-                ((JButton)value).doClick();
+        if (fila < tabla.getRowCount() && fila >= 0 && columna < tabla.getColumnCount() && columna >= 0) {
+            Object valor = tabla.getValueAt(fila, columna);
+            if (valor instanceof JButton) {
+                ((JButton)valor).doClick();
             }
         }
     }

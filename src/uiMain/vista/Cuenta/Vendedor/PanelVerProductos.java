@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
@@ -14,7 +13,6 @@ import javax.swing.table.TableCellRenderer;
 import control.Cuenta.Vendedor.ControlCambiarPrecio;
 import control.Cuenta.Vendedor.ControlEliminarProdCatalogo;
 import control.Cuenta.Vendedor.ControlModificarCantidad;
-import control.Cuenta.Vendedor.ControlVerProductos;
 import control.tabla.tablaBotonOidorMouse;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Vendedor;
@@ -24,7 +22,7 @@ import uiMain.vista.tabla.tablaModelo;
 
 public class PanelVerProductos extends JFrame {
 	Vendedor usuario = (Vendedor) InicializacionAplicacion.usuarioActivo;
-	JTable table;
+	JTable tabla;
 	public PanelVerProductos(){
 		HashMap<Integer, Producto> productos = usuario.verProductos();
 		String nombreBoton1 = "Cambiar precio";
@@ -60,21 +58,21 @@ public class PanelVerProductos extends JFrame {
 			//
 			contador++;
 		}
-		table = new JTable(new tablaModelo(nombreColumnas,datos)); 
-		table.setFillsViewportHeight(true);
+		tabla = new JTable(new tablaModelo(nombreColumnas,datos)); 
+		tabla.setFillsViewportHeight(true);
 		TableCellRenderer buttonRenderer = new tablaBotonRenderizador();
-	    table.getColumn(nombreBoton1).setCellRenderer(buttonRenderer);
-	    table.getColumn(nombreBoton2).setCellRenderer(buttonRenderer);
-	    table.getColumn(nombreBoton3).setCellRenderer(buttonRenderer);
-	    table.addMouseListener(new tablaBotonOidorMouse(table));
+	    tabla.getColumn(nombreBoton1).setCellRenderer(buttonRenderer);
+	    tabla.getColumn(nombreBoton2).setCellRenderer(buttonRenderer);
+	    tabla.getColumn(nombreBoton3).setCellRenderer(buttonRenderer);
+	    tabla.addMouseListener(new tablaBotonOidorMouse(tabla));
 	    
-		JScrollPane scrollPane = new JScrollPane(table);
+		JScrollPane scrollPane = new JScrollPane(tabla);
 		add(scrollPane);
 		this.setMinimumSize(new Dimension(1000, 300)); 
 
 	}
 	public void lanzar() {
-		this.setTitle("Catálogo productos vendedor no.2");
+		this.setTitle("Catálogo productos vendedor "+usuario.getNombre());
 		getDefaultCloseOperation();
 		organizar();
 	}

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
+import uiMain.vista.Visitante.PanelCatalogo;
 import uiMain.vista.Visitante.VentanaCatalogo;
 
 public class ControlMostrarCatalogo extends OpcionDeMenu implements ActionListener {
@@ -27,9 +28,11 @@ public class ControlMostrarCatalogo extends OpcionDeMenu implements ActionListen
 	public void actionPerformed(ActionEvent e) {
 
 		VentanaCatalogo x = new VentanaCatalogo();
+		PanelCatalogo x2 = new PanelCatalogo();
 		if (!Cuenta.getCatalogo().isEmpty()) {
 			if (e.getSource() instanceof JMenuItem) {
 				x.lanzar();
+				x2.lanzar();
 			}
 
 		} else {
