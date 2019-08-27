@@ -23,7 +23,7 @@ public class ControlComprarProductos extends OpcionDeMenu implements ActionListe
 			if (!CarritoDeCompras.getProductos().isEmpty()) {
 				// Ingreso del dato por parte del usuario
 				//seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
-				if (OpcionDeMenu.controlError || seleccion == 2) {return;}
+				//if (OpcionDeMenu.controlError || seleccion == 2) {return;}
 
 				//Ejecución del método
 				JOptionPane.showMessageDialog(null, CarritoDeCompras.comprarProductos(), "Comprar Productos", JOptionPane.INFORMATION_MESSAGE);
