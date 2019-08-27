@@ -44,14 +44,16 @@ public class PanelMostrarCarrito extends JPanel {
 		this.add(botones, BorderLayout.SOUTH);
 
 		this.add(new TablaCarrito());
+		
+		// Declaración del oyente
+				ControlComprarProductos oidor = new ControlComprarProductos();
+				boton_comprar.addActionListener(oidor);
+				//boton_vac.addActionListener(oidor);
 
 	}
 	
 	public void asignarOyente() {
-		// Declaración del oyente
-		ControlComprarProductos oidor = new ControlComprarProductos();
-		boton_comprar.addActionListener(oidor);
-		//boton_vac.addActionListener(oidor);
+		
 		
 	}
 }

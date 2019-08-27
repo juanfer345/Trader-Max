@@ -11,15 +11,12 @@ import gestorAplicacion.Materiales.CarritoDeCompras;
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlComprarProductos extends OpcionDeMenu implements ActionListener {
-	public void mouseDragged(MouseEvent arg0) {}
-	public void mouseMoved(MouseEvent arg) {}
-	@Override
-	
+
 	public void actionPerformed(ActionEvent arg) {
 		byte seleccion=0;
 		OpcionDeMenu.controlError = false;
 		switch (((String) arg.getActionCommand())) {
-		case "Comprar Productos":
+		case "Comprar productos":
 			if (!CarritoDeCompras.getProductos().isEmpty()) {
 				// Ingreso del dato por parte del usuario
 				//seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
