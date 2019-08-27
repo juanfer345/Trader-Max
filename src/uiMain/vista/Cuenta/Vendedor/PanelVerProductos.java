@@ -1,6 +1,6 @@
 package uiMain.vista.Cuenta.Vendedor;
 
-import java.awt.Dimension;
+import java.awt.Dimension; 
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.HashMap;
@@ -13,7 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
-
 import java.awt.BorderLayout;
 import java.awt.Container;
 
@@ -88,8 +87,7 @@ public class PanelVerProductos extends JFrame {
 			datos[contador][7] = boton2;
 			datos[contador][8] = boton3;
 			datos[contador][9] = boton4;
-			// aca van los botones
-			//
+
 			contador++;
 		}
 		tabla = new JTable(new tablaModelo(nombreColumnas,datos)); 
