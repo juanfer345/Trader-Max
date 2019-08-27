@@ -16,6 +16,8 @@ import javax.swing.table.TableCellRenderer;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+
+import control.ControlMostrarResenas;
 import control.Cuenta.Vendedor.ControlCambiarPrecio;
 import control.Cuenta.Vendedor.ControlEliminarProdCatalogo;
 import control.Cuenta.Vendedor.ControlModificarCantidad;
@@ -74,7 +76,7 @@ public class PanelVerProductos extends JFrame {
 			boton3.addActionListener(new ControlEliminarProdCatalogo());
 			JButton boton4 = new JButton(nombreBoton4);
 			boton4.setActionCommand(ac);
-			boton4.addActionListener(new ControlEliminarProdCatalogo());
+			boton4.addActionListener(new ControlMostrarResenas());
 			
 			datos[contador][0] = item.getId();// codigo
 			datos[contador][1] = item.getNombreProducto();// nombre
