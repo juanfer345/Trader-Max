@@ -22,20 +22,6 @@ public class VentanaCatalogo extends JFrame {
 		panel = this.getContentPane();
 		ControlMostrarCatalogo oidor = new ControlMostrarCatalogo();
 		JTextArea aux = new JTextArea(oidor.getProductos());
-		/*JTextArea aux = new JTextArea("\"Trader max es una aplicación que esta diseñada para la \"\r\n"
-				+ " \"compra y venta autónoma de artículos, cada usuario podrá \"\r\n"
-				+ "\"crear su cuenta ya sea para poner en venta sus productos, \"\r\n"
-				+ " \"o para comprar aquellos ofrecidos por parte de los demás \"\r\n"
-				+ "\"usuarios.\\n\\nEl comprador tendrá acceso a un carrito de \"\r\n"
-				+ "\"compras donde almacenará los productos que desee para su \"\r\n"
-				+ "\"posterior adquisición, en caso de que sea vendedor podrá \"\r\n"
-				+ "+ \"montar sus productos al catalogo. El proceso de pago se \"\r\n"
-				+ " + \"encuentra vinculado a una cuenta bancaria que cada usuario \"\r\n"
-				+ "+ \"deberá haber registrado con anterioridad, esto para hacer \"\r\n"
-				+ "+ \"la transacción de una cuenta a otra cuando se realice la \"\r\n"
-				+ " + \"compra y venta del producto.\\n\\nFue desarrollada por el\"\r\n"
-				+ "\"equipo 1 de programación orientada a objetos (2019-I) \"\r\n"); */
-
 		aux.setEditable(false);
 		aux.setLineWrap(true);
 		aux.setWrapStyleWord(true);
@@ -62,6 +48,8 @@ public class VentanaCatalogo extends JFrame {
 		panel.add(scroll, BorderLayout.CENTER);
 		panel.add(acep, BorderLayout.SOUTH);
 		panel.add(panel2, BorderLayout.NORTH);
+		
+		this.setMinimumSize(new Dimension(800, 300)); 
 
 	}
 

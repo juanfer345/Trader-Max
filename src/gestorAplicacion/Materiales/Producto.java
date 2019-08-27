@@ -182,7 +182,7 @@ public class Producto implements InterfazCategorias {
 
 	// Para imprimir un Producto
 	public String toString() {
-		return "Código: " + id + ", Nombre: " + nombreProducto + ", Categoria: " + categoria + ", Precio: " + precio + ", Vendedor: " + vendedor.getNombre() + ", Reseñas: " + resenas.size();
+		return "   Código: " + id + ", Nombre: " + nombreProducto + ", Categoria: " + categoria + ", Precio: " + precio + ", Vendedor: " + vendedor.getNombre() + ", Reseñas: " + resenas.size();
 	}
 
 	// Para cambiar el atributo vendedor

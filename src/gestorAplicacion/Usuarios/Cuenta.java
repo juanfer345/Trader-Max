@@ -205,10 +205,10 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 		StringBuilder sb = new StringBuilder();
 		Producto prod;
 		
-		sb.append("\nCatálogo de TRADER-MAX: \n");
+		sb.append("\n \n");
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
 		prod = entry.getValue();
-			sb.append(prod.toString()).append(", Cantidad: ").append(prod.getCantidad()).append("]\n");
+			sb.append(prod.toString()).append(", Cantidad: ").append(prod.getCantidad()).append("\n");
 		}
 		OpcionDeMenu.controlError = true;
 		return sb.toString();
