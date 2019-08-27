@@ -3,6 +3,7 @@ package uiMain.vista.Cuenta.Vendedor;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -14,7 +15,7 @@ import uiMain.InicializacionAplicacion;
 import uiMain.vista.tabla.tablaBotonRenderizador;
 import uiMain.vista.tabla.tablaModelo;
 
-public class PanelVerProductos extends JPanel {
+public class PanelVerProductos extends JFrame {
 	Vendedor usuario = (Vendedor) InicializacionAplicacion.usuarioActivo;
 	JTable table;
 	public PanelVerProductos(){
@@ -50,5 +51,16 @@ public class PanelVerProductos extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(table);
 		add(scrollPane);
 
+	}
+	public void lanzar() {
+		this.setTitle("Catálogo productos vendedor no.2");
+		getDefaultCloseOperation();
+		organizar();
+	}
+
+	private void organizar() {
+		pack(); // coloca los componentes
+		setLocationRelativeTo(null); // centra la ventana en la pantalla
+		setVisible(true); 
 	}
 }

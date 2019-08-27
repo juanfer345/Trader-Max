@@ -55,7 +55,7 @@ public class VentanaVerProductos extends JFrame {
 
 	public void lanzar() {
 		this.setTitle("Catálogo productos vendedor");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getDefaultCloseOperation();
 		organizar();
 	}
 

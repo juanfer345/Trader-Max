@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
+import uiMain.vista.Cuenta.Vendedor.PanelVerProductos;
 import uiMain.vista.Cuenta.Vendedor.VentanaVerProductos;
 
 public class ControlVerProductos extends OpcionDeMenu implements ActionListener {
@@ -33,10 +34,12 @@ public class ControlVerProductos extends OpcionDeMenu implements ActionListener 
 		
 
 		VentanaVerProductos x2 = new VentanaVerProductos();
+		PanelVerProductos x3 = new PanelVerProductos();
 
 		if (vend.getTotalDeProductosSubidos() != 0) {
 			if (e.getSource() instanceof JMenuItem) {
 				x2.lanzar();
+				x3.lanzar();
 			}
 		} else {
 			if (e.getSource() instanceof JMenuItem) {
@@ -44,6 +47,7 @@ public class ControlVerProductos extends OpcionDeMenu implements ActionListener 
 						JOptionPane.WARNING_MESSAGE);
 			}
 		}
+		//botones cambiar precio, eliminar
 	}
 
 //	Vendedor usuario = (Vendedor) InicializacionAplicacion.usuarioActivo;
