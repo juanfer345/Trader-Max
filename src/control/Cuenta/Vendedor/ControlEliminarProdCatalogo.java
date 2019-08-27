@@ -11,30 +11,7 @@ public class ControlEliminarProdCatalogo extends OpcionDeMenu implements ActionL
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
-		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
-		int idProducto;
-
-		//Condicional para vendedores sin productos subidos
-		if (vend.getTotalDeProductosSubidos() != 0) {
-
-			//Guardado de mensaje principal (incluyendo lista de productos)
-           String mensaje = "Recuerde que el producto a eliminar debe ser de su propiedad.";
-		   vend.mostrarProductos();
-
-			while (!OpcionDeMenu.controlError) {
-
-				//Ingreso del código del producto
-				//idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea eliminar del catálogo", "Por favor ingrese un número entero positivo");
-				if (!OpcionDeMenu.controlError) {System.out.println(); return;}
-				
-				//vend.eliminarProductoCatalogo(idProducto);
-			}
-		}
-		else {
-			String mensaje2 = "Usted aún no ha subido ningún producto.\n";
-		}
 	}
 
 	public String toString() {return "Eliminar producto";}

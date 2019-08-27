@@ -53,7 +53,8 @@ public class PanelVerProductos extends JFrame {
 		String nombreBoton1 = "Cambiar precio";
 		String nombreBoton2 = "Cambiar cantidad";
 		String nombreBoton3 = "Eliminar";
-		String [] nombreColumnas = {"Codigo", "Nombre","Categoría", "Precio", "Cantidad", "N°Reseñas",nombreBoton1,nombreBoton2,nombreBoton3};
+		String nombreBoton4 = "Ver reseñas";
+		String [] nombreColumnas = {"Codigo", "Nombre","Categoría", "Precio", "Cantidad", "N°Reseñas",nombreBoton1,nombreBoton2,nombreBoton3,nombreBoton4};
 		Object [][] datos = new Object [productos.size()][nombreColumnas.length];
 		int contador = 0;
 		
@@ -71,17 +72,21 @@ public class PanelVerProductos extends JFrame {
 			JButton boton3 = new JButton(nombreBoton3);
 			boton3.setActionCommand(ac);
 			boton3.addActionListener(new ControlEliminarProdCatalogo());
+			JButton boton4 = new JButton(nombreBoton4);
+			boton4.setActionCommand(ac);
+			boton4.addActionListener(new ControlEliminarProdCatalogo());
 			
-			datos[contador][0]= item.getId();//codigo
-			datos[contador][1]= item.getNombreProducto();//nombre
-			datos[contador][2]= item.getCategoria();//categoria
-			datos[contador][3]= item.getPrecio();
-			datos[contador][4]= item.getCantidad();
-			datos[contador][5]= item.getResenas().size();
-			datos[contador][6]= boton1;
-			datos[contador][7]= boton2;
-			datos[contador][8]= boton3;
-			//aca van los botones
+			datos[contador][0] = item.getId();// codigo
+			datos[contador][1] = item.getNombreProducto();// nombre
+			datos[contador][2] = item.getCategoria();// categoria
+			datos[contador][3] = item.getPrecio();
+			datos[contador][4] = item.getCantidad();
+			datos[contador][5] = item.getResenas().size();
+			datos[contador][6] = boton1;
+			datos[contador][7] = boton2;
+			datos[contador][8] = boton3;
+			datos[contador][9] = boton4;
+			// aca van los botones
 			//
 			contador++;
 		}
@@ -91,6 +96,7 @@ public class PanelVerProductos extends JFrame {
 	    tabla.getColumn(nombreBoton1).setCellRenderer(buttonRenderer);
 	    tabla.getColumn(nombreBoton2).setCellRenderer(buttonRenderer);
 	    tabla.getColumn(nombreBoton3).setCellRenderer(buttonRenderer);
+	    tabla.getColumn(nombreBoton4).setCellRenderer(buttonRenderer);	    
 	    tabla.addMouseListener(new tablaBotonOidorMouse(tabla));
 	    
 		JScrollPane scrollPane = new JScrollPane(tabla);

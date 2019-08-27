@@ -18,7 +18,7 @@ public class PanelCatalogo extends JFrame {
 	JTable table;
 	public PanelCatalogo(){
 		HashMap<Integer, Producto> Catalogo = usuario.getCatalogo();
-		String [] nombreColumnas = {"Codigo", "Nombre","Categoría", "Precio", "N°Reseñas","Vendedor"};
+		String [] nombreColumnas = {"Codigo", "Nombre","Categoría", "Precio","Cantidad", "N°Reseñas","Vendedor"};
 		Object [][] datos = new Object [Catalogo.size()][nombreColumnas.length];
 		int contador = 0;
 		for(Map.Entry<Integer, Producto> producto : Catalogo.entrySet()) {
@@ -27,8 +27,9 @@ public class PanelCatalogo extends JFrame {
 			datos[contador][1]= item.getNombreProducto();//nombre
 			datos[contador][2]= item.getCategoria();//categoria
 			datos[contador][3]= item.getPrecio();
-			datos[contador][4]= item.getResenas().size();
-			datos[contador][5]= item.getVendedor().getNombre();
+			datos[contador][4]=item.getCantidad();
+			datos[contador][5]= item.getResenas().size();
+			datos[contador][6]= item.getVendedor().getNombre();
 			contador++;
 		}
 		table = new JTable(new tablaModelo(nombreColumnas,datos)); 
