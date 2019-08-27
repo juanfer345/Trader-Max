@@ -1,15 +1,21 @@
 package uiMain.vista.Cuenta.Vendedor;
 
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
 import control.Cuenta.Vendedor.ControlCambiarPrecio;
 import control.Cuenta.Vendedor.ControlEliminarProdCatalogo;
 import control.Cuenta.Vendedor.ControlModificarCantidad;
@@ -21,16 +27,36 @@ import uiMain.vista.tabla.tablaBotonRenderizador;
 import uiMain.vista.tabla.tablaModelo;
 
 public class PanelVerProductos extends JFrame {
+	
 	Vendedor usuario = (Vendedor) InicializacionAplicacion.usuarioActivo;
 	JTable tabla;
+	
 	public PanelVerProductos(){
+		
+		Container panel = this.getContentPane();
+		panel.setLayout(new BorderLayout(7, 20));
+		
+		JLabel titulo = new JLabel("PRODUCTOS SUBIDOS");
+		Font auxFont = titulo.getFont();
+		titulo.setFont(new Font(auxFont.getFontName(), auxFont.getStyle(), 16));
+		JLabel descripcion = new JLabel("A continuación encontrará la información básica de los productos que ha subido con anterioridad "
+				+ "\na la aplicación, puede modificar la cantidad existente, el precio o eliminarlo del catalogo \n");
+		descripcion.setHorizontalAlignment(SwingConstants.CENTER);
+		titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JPanel panel2 = new JPanel();
+		panel2.setLayout(new GridLayout(2, 1, 10, 10));
+		panel2.add(titulo);
+		panel2.add(descripcion);
+		
 		HashMap<Integer, Producto> productos = usuario.verProductos();
 		String nombreBoton1 = "Cambiar precio";
 		String nombreBoton2 = "Cambiar cantidad";
 		String nombreBoton3 = "Eliminar";
-		String [] nombreColumnas = {"Codigo", "Nombre","Categoría", "Precio", "N°Reseñas",nombreBoton1,nombreBoton2,nombreBoton3};
+		String [] nombreColumnas = {"Codigo", "Nombre","Categoría", "Precio", "Cantidad", "N°Reseñas",nombreBoton1,nombreBoton2,nombreBoton3};
 		Object [][] datos = new Object [productos.size()][nombreColumnas.length];
 		int contador = 0;
+		
 		for(Map.Entry<Integer, Producto> producto : productos.entrySet()) {
 			Producto item = producto.getValue();
 			String ac =String.valueOf(item.getId());
@@ -50,10 +76,11 @@ public class PanelVerProductos extends JFrame {
 			datos[contador][1]= item.getNombreProducto();//nombre
 			datos[contador][2]= item.getCategoria();//categoria
 			datos[contador][3]= item.getPrecio();
-			datos[contador][4]= item.getResenas().size();
-			datos[contador][5]= boton1;
-			datos[contador][6]= boton2;
-			datos[contador][7]= boton3;
+			datos[contador][4]= item.getCantidad();
+			datos[contador][5]= item.getResenas().size();
+			datos[contador][6]= boton1;
+			datos[contador][7]= boton2;
+			datos[contador][8]= boton3;
 			//aca van los botones
 			//
 			contador++;
@@ -67,8 +94,10 @@ public class PanelVerProductos extends JFrame {
 	    tabla.addMouseListener(new tablaBotonOidorMouse(tabla));
 	    
 		JScrollPane scrollPane = new JScrollPane(tabla);
-		add(scrollPane);
-		this.setMinimumSize(new Dimension(1000, 300)); 
+		//JLabel nota = new JLabel();
+		this.setMinimumSize(new Dimension(1100, 300)); 
+		panel.add(scrollPane, BorderLayout.CENTER);
+		panel.add(panel2, BorderLayout.NORTH);
 
 	}
 	public void lanzar() {

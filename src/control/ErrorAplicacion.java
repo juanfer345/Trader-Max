@@ -63,15 +63,15 @@ public abstract class ErrorAplicacion extends Exception {
 						return numeroReal;
 					}
 					else {
-						System.out.println("Por favor ingrese un número en el rango [" + limInferior + "," + limSuperior + "].");
+						throw new IOException("Por favor ingrese un número en el rango [" + limInferior + "," + limSuperior + "]");
 					}
 				}
 				else {
-					System.out.println(Error);
+					throw new IOException("Por favor ingrese un número en el rango [" + limInferior + "," + limSuperior + "]");
 				}
 			}
 			else {
-				OpcionDeMenu.controlError = true; return -1;
+				throw new IOException("Por favor ingrese un número en el rango [" + limInferior + "," + limSuperior + "]");
 			}
 		}
 	}

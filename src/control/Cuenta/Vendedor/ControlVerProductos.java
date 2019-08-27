@@ -1,44 +1,26 @@
 package control.Cuenta.Vendedor;
 
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionEvent;  
 import java.awt.event.ActionListener;
-
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.Cuenta.Vendedor.PanelVerProductos;
-import uiMain.vista.Cuenta.Vendedor.VentanaVerProductos;
+
 
 public class ControlVerProductos extends OpcionDeMenu implements ActionListener {
-
-	String prod;
-
-	public String getProd() {
-		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
-				
-		if (vend.getTotalDeProductosSubidos() != 0) {
-			prod = vend.mostrarProductos();
-			return prod;
-		} else {
-			return "";
-		}
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
 		
-
-		VentanaVerProductos x2 = new VentanaVerProductos();
 		PanelVerProductos x3 = new PanelVerProductos();
 
 		if (vend.getTotalDeProductosSubidos() != 0) {
 			if (e.getSource() instanceof JMenuItem) {
-				x2.lanzar();
 				x3.lanzar();
 			}
 		} else {
@@ -47,7 +29,6 @@ public class ControlVerProductos extends OpcionDeMenu implements ActionListener 
 						JOptionPane.WARNING_MESSAGE);
 			}
 		}
-		//botones cambiar precio, eliminar
 	}
 	
 	@Override
