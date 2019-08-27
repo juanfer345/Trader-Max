@@ -1,32 +1,41 @@
 package control.Cuenta.Comprador;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
-import control.ErrorAplicacion;
-import gestorAplicacion.Materiales.CarritoDeCompras;
+import javax.swing.JMenuItem;
+import javax.swing.SwingConstants;
+
 import uiMain.MenuConsola.OpcionDeMenu;
+import uiMain.vista.PanelUsuario;
+import uiMain.vista.VentanaAplicacion;
+import uiMain.vista.Cuenta.Comprador.PanelMostrarCarrito;
 
-public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListener {
-
+public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListener, MouseMotionListener {
+	public void mouseDragged(MouseEvent arg0) {}
+	public void mouseMoved(MouseEvent arg) {}
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		byte seleccion=0;
-		
-		if (!CarritoDeCompras.getProductos().isEmpty()) {
 
-			// Ingreso del dato por parte del usuario
-			//seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) 2, sb.toString(), "El dato que ingresó es inválido, vuelva a intentarlo");
-			if (OpcionDeMenu.controlError || seleccion == 2) {System.out.println(); return;}
+	public void actionPerformed(ActionEvent arg) {
 
-			// Ejecución del método
-			System.out.println(CarritoDeCompras.mostrarCarrito());
+		if (arg.getSource() instanceof JMenuItem) {
+			// Caso A: Se elige la opción del menú y se requiere mostrar el formulario
+
+			//Remoción de los elementos del panel
+			VentanaAplicacion.panelPrincipal.removeAll();
+			PanelUsuario panelresultados= new PanelUsuario();
+			panelresultados.panelCambiante.removeAll();
+			panelresultados.panelCambiante.setLayout(new BorderLayout());
+			panelresultados.panelCambiante.add(new PanelMostrarCarrito());
+			VentanaAplicacion.panelPrincipal.add(panelresultados,SwingConstants.CENTER);
+            
+			//Añadiendo los nuevos elementos para la ventana de usuario
 		}
-		else {
-			System.out.println("Su carrito de compras está vacío.\n");
-		}
+		VentanaAplicacion.organizar();
 	}
-
 	@Override
 	public String toString() {
 		return "Ver los productos del carrito";
