@@ -7,8 +7,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
+import gestorAplicacion.Materiales.CarritoDeCompras;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
@@ -30,9 +32,9 @@ public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListene
 			panelresultados.panelCambiante.removeAll();
 			panelresultados.panelCambiante.setLayout(new BorderLayout());
 			panelresultados.panelCambiante.add(new PanelMostrarCarrito());
-			VentanaAplicacion.panelPrincipal.add(panelresultados,SwingConstants.CENTER);
-            
-			//Añadiendo los nuevos elementos para la ventana de usuario
+			VentanaAplicacion.panelPrincipal.add(panelresultados, SwingConstants.CENTER);
+
+			// Añadiendo los nuevos elementos para la ventana de usuario
 		}
 		VentanaAplicacion.organizar();
 	}

@@ -1,12 +1,19 @@
 package control.Cuenta.Comprador;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.SwingConstants;
 
 import control.ErrorAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.MenuConsola.OpcionDeMenu;
+import uiMain.vista.PanelUsuario;
+import uiMain.vista.VentanaAplicacion;
+import uiMain.vista.Cuenta.Comprador.PanelAgregarACarrito;
+import uiMain.vista.Cuenta.Comprador.PanelMostrarCarrito;
 
 public class ControlAgregarACarrito extends OpcionDeMenu implements ActionListener {
 
@@ -15,10 +22,15 @@ public class ControlAgregarACarrito extends OpcionDeMenu implements ActionListen
 
 	// Verificación de catalogo no vacío
 	if (!Cuenta.getCatalogo().isEmpty()) {
-
-		System.out.println();
 		
 		while(!OpcionDeMenu.controlError) {
+			VentanaAplicacion.panelPrincipal.removeAll();
+			PanelUsuario panelresultados= new PanelUsuario();
+			panelresultados.panelCambiante.removeAll();
+			panelresultados.panelCambiante.setLayout(new BorderLayout());
+			panelresultados.panelCambiante.add(new PanelAgregarACarrito());
+			VentanaAplicacion.panelPrincipal.add(panelresultados,SwingConstants.CENTER);
+			
 			//Ingreso del código
 			//idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea agregar", "El dato que ingresó como código es inválido, vuelva a intentarlo");
 			if (OpcionDeMenu.controlError) {System.out.println(); return;}
