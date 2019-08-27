@@ -58,7 +58,7 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 				// Control de ingreso tipo de cuenta
 				try {
 					tipoDeCuenta = ErrorAplicacion.controlByte(formulario.getValue("Tipo de cuenta [1: Comprador, 2: Vendedor, 3: Administrador]"), 
-							(byte) 1, (byte) 3, "\"Tipo de cuenta\"", "Por favor ingrese un número entero en el campo \"Tipo de cuenta\".");
+							(byte) 1, (byte) 3, "\"Tipo de cuenta\"", "Por favor ingrese un número entero pequeño (byte) en el campo \"Tipo de cuenta\".");
 				}
 				catch (IOException e) {
 					JOptionPane.showMessageDialog(
@@ -88,7 +88,7 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 				// Control de ingreso de nombre
 				try {
 					nombreIngresado = ErrorAplicacion.controlString(formulario.getValue("Nombre"), 
-							"Ha ingresado un número en lugar de texto en el campo\"Nombre\"");
+							"\"Nombre\"", "Ha ingresado un número en lugar de texto en el campo \"Nombre\"");
 				}
 				catch (IOException e) {
 					JOptionPane.showMessageDialog(
@@ -100,7 +100,7 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 				// Control de ingreso de cedula
 				try {
 					cedulaIngresada = ErrorAplicacion.controlEntero(formulario.getValue("Cédula"), 1, Integer.MAX_VALUE, 
-									  "Cedula","Por favor ingrese una cédula válida");
+									  "\"Cedula\"", "Por favor ingrese una cédula válida");
 				}
 				catch (IOException e) {
 					JOptionPane.showMessageDialog(
@@ -121,7 +121,15 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 				}
 
 				// Control de ingreso de contraseña
-				contrasenaIngresada = formulario.getValue("Contraseña");
+				try {
+					contrasenaIngresada = ErrorAplicacion.controlContrasena(formulario.getValue("Contraseña"), "\"Contraseña\"");
+				}
+				catch (IOException e) {
+					JOptionPane.showMessageDialog(
+							null, "Manejo de errores de la Aplicación: " + e.getMessage(), 
+							"Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				//				if (!ControlErrorDatos.controlContrasena(contrasenaIngresada)) {System.out.println(); return;}
 				//PENDIENTE: VENTANA PARA CONFIRMAR CONTRASEÑA
 
@@ -131,10 +139,10 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 						"Notificación", JOptionPane.INFORMATION_MESSAGE);
 				
 				//Volviendo al panel principal
-
+				
 				//Remoción de los elementos del panel
 				VentanaAplicacion.panelPrincipal.removeAll();
-
+				
 				//Añadiendo los nuevos elementos para la ventana de usuario
 				VentanaAplicacion.panelPrincipal.add(new PanelUsuario());
 				

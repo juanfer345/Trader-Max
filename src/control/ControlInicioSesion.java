@@ -63,7 +63,7 @@ public class ControlInicioSesion extends OpcionDeMenu implements ActionListener 
 			VentanaAplicacion.setMenuBarUsuario();
 			
 			//Añadiendo los nuevos elementos para la ventana de usuario
-			VentanaAplicacion.panelPrincipal.add((new PanelUsuario()));
+			VentanaAplicacion.panelPrincipal.add(new PanelUsuario());
 		}
 		VentanaAplicacion.organizar();
 	}

@@ -18,7 +18,6 @@ import javax.swing.SwingConstants;
 
 import control.ControlLogin;
 import control.ControlSalir;
-import uiMain.vista.VentanaAplicacion;
 
 public class PanelLogin extends JPanel {
 
@@ -97,7 +96,7 @@ public class PanelLogin extends JPanel {
 		 + "encuentra vinculado a una cuenta bancaria que cada usuario "
 		 + "deberá haber registrado con anterioridad, esto para hacer "
 		 + "la transacción de una cuenta a otra cuando se realice la "
-		 + "compra y venta del producto.\n\nFue desarrollada por el"
+		 + "compra y venta del producto.\n\nFue desarrollada por el "
 		 + "equipo 1 de programación orientada a objetos (2019-I) "
 		 + "conformado por:\n\n "
 		 + "- Sara Catalina Balbín Ramírez\n"

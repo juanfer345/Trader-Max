@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import control.ControlAcercaDe;
 import control.ControlCerrarSesion;
 import control.ControlInformacionUsuario;
+import control.ControlInicio;
 import uiMain.MenuConsola.MenuDeConsola;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.Visitante.PanelLogin;
@@ -38,6 +39,7 @@ public class VentanaAplicacion extends JFrame {
 		
 		// Borrado de items anteriores y creación de items nuevos del menú
 		barraMenu.removeAll();
+		JMenuItem inicio = new JMenuItem("Inicio");
 		JMenu menuProcesos = new JMenu("Procesos y Consultas");
 		JMenu menuAyuda = new JMenu("Ayuda");
 		JMenuItem opcionDeMenu;
@@ -45,6 +47,8 @@ public class VentanaAplicacion extends JFrame {
 		// Creación de los subitems del menú - [Inicio]
 		
 		// Menú Procesos
+		inicio.addActionListener(new ControlInicio());	// Opción para volver a la pantalla inicial
+		menuProcesos.add(inicio);
 		ArrayList<OpcionDeMenu> menu = MenuDeConsola.menuActivo;
 		for (int i = 0; i < menu.size(); i++) {
 			opcionDeMenu = new JMenuItem(menu.get(i).toString());
@@ -68,6 +72,7 @@ public class VentanaAplicacion extends JFrame {
 		
 		// Borrado de items anteriores y creación de items nuevos del menú
 		barraMenu.removeAll();
+		JMenuItem inicio = new JMenuItem("Página Principal");
 		JMenuItem menuArchivo = new JMenu("Archivo");
 		JMenu menuProcesos = new JMenu("Procesos y Consultas");
 		JMenu menuAyuda = new JMenu("Ayuda");
@@ -86,6 +91,8 @@ public class VentanaAplicacion extends JFrame {
 		opcionDeMenu.addActionListener(new ControlCerrarSesion());
 		
 		// Menú Procesos
+		inicio.addActionListener(new ControlInicio());	// Opción para volver a la pantalla inicial
+		menuProcesos.add(inicio);
 		ArrayList<OpcionDeMenu> menu = MenuDeConsola.menuActivo;
 		for (int i = 0; i < menu.size(); i++) {
 			opcionDeMenu = new JMenuItem(menu.get(i).toString());

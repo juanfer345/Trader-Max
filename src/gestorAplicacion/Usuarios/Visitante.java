@@ -93,7 +93,7 @@ public class Visitante extends Cuenta {
 					InicializacionAplicacion.setBDCompradores(usuarioActivo.getId(), (Comprador) usuarioActivo);
 					InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
 					OpcionDeMenu.controlError = true;
-					mensaje = "\n                     TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
+					mensaje = "Registro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".";
 				}
 				else {
 					//Caso A.b: El correo se encuentra registrado como Vendedor
@@ -112,13 +112,12 @@ public class Visitante extends Cuenta {
 						InicializacionAplicacion.setBDCompradores(usuarioActivo.getId(), (Comprador) usuarioActivo);
 						InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
 						OpcionDeMenu.controlError = true;
-						mensaje = "\n                     TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + 
-								   usuarioActivo.getNombre() + ".\n" + "El correo ingresado ya se encuentra registrado como "
-								   + "Vendedor, \npor ello esta nueva cuenta comparte la cuenta bancaria \ncon tu cuenta registrada como Vendedor.\n";
+						mensaje = "Registro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n" + "El correo ingresado ya se encuentra registrado como "
+								   + "Vendedor, por ello esta nueva cuenta comparte la cuenta bancaria con tu cuenta registrada como Vendedor.\n";
 					}
 					else {
-						mensaje = "\nEste correo ingresado ya se encuentra registrado ya se encuentra registrado como Vendedor, "
-								+ "por ello los atributos de ambas deben coincidir, por favor intentelo de nuevo.\n";
+						mensaje = "Este correo ingresado ya se encuentra registrado ya se encuentra registrado como Vendedor, "
+								+ "por ello los atributos de ambas cuentas deben coincidir, por favor intentelo de nuevo.";
 					}
 				}
 				break;
@@ -134,7 +133,7 @@ public class Visitante extends Cuenta {
 					InicializacionAplicacion.getBDVendedores().put(usuarioActivo.getId(), (Vendedor) usuarioActivo);
 					InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
 					OpcionDeMenu.controlError = true;
-					mensaje = "\n                     TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
+					mensaje = "Registro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".";
 				}
 				else {
 					//Caso A.b: El correo se encuentra registrado como Comprador
@@ -153,13 +152,12 @@ public class Visitante extends Cuenta {
 						InicializacionAplicacion.getBDVendedores().put(usuarioActivo.getId(), (Vendedor) usuarioActivo);
 						InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
 						OpcionDeMenu.controlError = true;
-						mensaje = "\n                     TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + 
-								   usuarioActivo.getNombre() + ".\n" + "el correo ingresado ya se encuentra registrado como "
-								   + "Comprador, \npor ello comparte la cuenta bancaria con su cuenta \nregistrada como Comprador.\n";
+						mensaje = "Registro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n" + "El correo ingresado ya se encuentra registrado como "
+								   + "Comprador, por ello comparte la cuenta bancaria con su cuenta registrada como Comprador.";
 					}
 					else {
-						mensaje = "\nEste correo ya se encuentra registrado ya se encuentra registrado como Comprador, "
-								+ "por ello los atributos de ambas deben coincidir, por favor intentelo de nuevo.\n";
+						mensaje = "Este correo ya se encuentra registrado ya se encuentra registrado como Comprador, "
+								+ "por ello los atributos de ambas deben coincidir, por favor intentelo de nuevo.";
 					}
 				}
 				break;
@@ -169,14 +167,13 @@ public class Visitante extends Cuenta {
 				InicializacionAplicacion.getBDAdministradores().put(usuarioActivo.getId(), (Administrador) usuarioActivo);
 				InicializacionAplicacion.setUsuarioActivo(usuarioActivo);
 				OpcionDeMenu.controlError = true;
-				mensaje = "\n                    TRADER-MAX INC                       \n" + "\nRegistro exitoso. Bienvenido a TRADER-MAX " + 
-				          usuarioActivo.getNombre() + ".\n";
+				mensaje = "Registro exitoso. Bienvenido a TRADER-MAX " + usuarioActivo.getNombre() + ".\n";
 				break;
 			}
 			return mensaje;
 		} else {
 			// Caso B: El correo se encuentra repetido
-			return "Este correo ya se encuentra registrado, ingresa otro correo.\n";
+			return "Este correo ya se encuentra registrado, por favor ingresa otro correo.";
 		}
 	}
 
