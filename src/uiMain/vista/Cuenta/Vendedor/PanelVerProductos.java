@@ -100,7 +100,6 @@ public class PanelVerProductos extends JFrame {
 	    tabla.addMouseListener(new tablaBotonOidorMouse(tabla));
 	    
 		JScrollPane scrollPane = new JScrollPane(tabla);
-		//JLabel nota = new JLabel();
 		this.setMinimumSize(new Dimension(1100, 300)); 
 		panel.add(scrollPane, BorderLayout.CENTER);
 		panel.add(panel2, BorderLayout.NORTH);
