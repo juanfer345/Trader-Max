@@ -40,7 +40,9 @@ public class ControlAgregarACarrito extends OpcionDeMenu implements ActionListen
 
 	@Override
 	public String toString() {
+
 		// TODO Auto-generated method stub
 		return "Agregar A Carrito";
+
 	}
 }

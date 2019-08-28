@@ -22,6 +22,7 @@ import control.ControlMostrarResenas;
 import control.Cuenta.Comprador.ControlAgregarACarrito;
 import control.tabla.tablaBotonOidorMouse;
 import gestorAplicacion.Materiales.Producto;
+import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Comprador;
 import gestorAplicacion.Usuarios.Vendedor;
 import gestorAplicacion.Usuarios.Visitante;
@@ -58,7 +59,7 @@ public class PanelBuscarCategoria extends JFrame {
 		String[] nombreColumnas2 = { "Codigo", "Nombre", "Categoría", "Precio", "Cantidad", "N°Reseñas", "Vendedor",
 				nombre_boton1, nombre_boton2 };
 		int contador = 0;
-		for (Map.Entry<Integer, Producto> entry : InicializacionAplicacion.usuarioActivo.getCatalogo().entrySet()) {
+		for (Map.Entry<Integer, Producto> entry : Cuenta.getCatalogo().entrySet()) {
 			Producto prod = entry.getValue();
 			if (prod.getCategoria().equals(seleccion)) {
 				contador++;
@@ -69,7 +70,7 @@ public class PanelBuscarCategoria extends JFrame {
 		Object[][] datos2 = new Object[contador][nombreColumnas2.length];
 		int contador1 = 0;
 
-		for (Map.Entry<Integer, Producto> producto : InicializacionAplicacion.usuarioActivo.getCatalogo().entrySet()) {
+		for (Map.Entry<Integer, Producto> producto : Cuenta.getCatalogo().entrySet()) {
 			Producto item = producto.getValue();
 			if (item.getCategoria().equals(seleccion)) {
 				String cod = String.valueOf(item.getId());
@@ -126,7 +127,6 @@ public class PanelBuscarCategoria extends JFrame {
 		panel.add(panel2, BorderLayout.NORTH);
 
 	}
-//	}
 
 	public void lanzar() {
 		this.setTitle("Busqueda de productos por categoria");

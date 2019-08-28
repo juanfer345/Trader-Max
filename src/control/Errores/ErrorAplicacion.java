@@ -17,6 +17,6 @@ import uiMain.MenuConsola.OpcionDeMenu;
 public abstract class ErrorAplicacion extends Exception {
 
 	public ErrorAplicacion(String mensaje) {
-		super("Manejo de errores de la Aplicación: " + mensaje);
+		super("Manejo de errores de la aplicación" + mensaje);
 	}
 }

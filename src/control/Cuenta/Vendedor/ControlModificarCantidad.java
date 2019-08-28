@@ -14,6 +14,7 @@ public class ControlModificarCantidad extends OpcionDeMenu implements ActionList
 	public void actionPerformed(ActionEvent e) {
 		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
 		String cod = e.getActionCommand();
+
 		int codigo = Integer.parseInt(cod);
 		int cant_existente = vend.getCatalogo().get(codigo).getCantidad();
 		String opciones[] = { "Aumentar", "Disminuir" };

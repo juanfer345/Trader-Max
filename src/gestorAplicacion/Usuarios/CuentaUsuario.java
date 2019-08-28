@@ -40,7 +40,7 @@ abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias
 	public CuentaUsuario() {}
 	
 	// Método para cerrar sesión
-	public String cerrarSesion(byte seleccion) {
+	public String cerrarSesion() {
 		/*
 		 * Propósito: le cierra la sesión al usuario
 		 * 
@@ -50,23 +50,15 @@ abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias
 		 * Parámetros de salida: - String: Retorna un mensaje el cual sera el que se
 		 * mostrara al usuario dependiendo de la opción que haya elegido
 		 */
-		
-		if (seleccion == 1) {
-			// se devuelve la cantidad de productos que tenía el carrito.
-			if (InicializacionAplicacion.usuarioActivo instanceof Comprador) {
-				CarritoDeCompras.vaciarCarrito();
-			}
-			InicializacionAplicacion.setUsuarioActivo(new Visitante());
-			OpcionDeMenu.controlError = true;
 
-			System.out.println();
-			return "Se ha cerrado sesión correctamente.\n" + "\n           TRADER-MAX INC           \n" + "\nBienvenido invitado.\n";
-		} else if (seleccion == 2) {
-			OpcionDeMenu.controlError = true;
-			return "";
-		} else {
-			return "Por favor ingrese un número entero en el rango [1,2].";
+		// se devuelve la cantidad de productos que tenía el carrito.
+		if (InicializacionAplicacion.usuarioActivo instanceof Comprador) {
+			CarritoDeCompras.vaciarCarrito();
 		}
+		InicializacionAplicacion.setUsuarioActivo(new Visitante());
+		OpcionDeMenu.controlError = true;
+
+		return "Se ha cerrado sesión correctamente.";
 	}
 	@Override
 	public String toString() {		
