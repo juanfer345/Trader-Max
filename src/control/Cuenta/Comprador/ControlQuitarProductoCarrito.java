@@ -2,42 +2,46 @@ package control.Cuenta.Comprador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
 
 import control.ErrorAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
+import gestorAplicacion.Usuarios.Comprador;
+import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlQuitarProductoCarrito extends OpcionDeMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int idProducto=0, cantidadProducto=0;
+		
+		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
+		String cod = e.getActionCommand();
+		int codigo = Integer.parseInt(cod);
+		Object[] opciones = { "Si", "No" };
 
-		//Concicional de carrito vacío
-		if (!CarritoDeCompras.getProductos().isEmpty()) {
-
-			System.out.println("\nUsted ha elegido la opción para quitar un producto de su carrito.");
-
-			while (!OpcionDeMenu.controlError) {
-
-				//Ingreso del código del producto
-				//idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea eliminar", "El dato que ingresó como código es invalido, vuelva a intentarlo");
-				if (OpcionDeMenu.controlError) {System.out.println(); return;}
-
-				//Ingreso de la cantidad de producto
-				//cantidadProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese la cantidad de elementos que desea eliminar", "El dato que ingresó como cantidad es invalido, vuelva a intentarlo");
-				if (OpcionDeMenu.controlError) {System.out.println(); return;}
-
-				//Ejecución del método
-				System.out.println(CarritoDeCompras.quitarProducto(idProducto, cantidadProducto));
-				if (!OpcionDeMenu.controlError)
-					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
+		int resp = JOptionPane.showOptionDialog(null, "¿Está seguro que desea quitar el producto?",
+				"Quitar Producto de Carrito", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones,
+				opciones[0]);
+		
+		if (JOptionPane.OK_OPTION == resp) {
+			String precio = JOptionPane.showInputDialog(null, "Cantidad para quitar:");
+			try {
+				int cant = ErrorAplicacion.controlEntero((precio), 1, Integer.MAX_VALUE, "Cantidad",
+						"Por favor ingrese un precio válido");
+				JOptionPane.showMessageDialog(null, CarritoDeCompras.quitarProducto(codigo, cant), "Notificación",
+						JOptionPane.INFORMATION_MESSAGE);
+			} catch (IOException e1) {
+				JOptionPane.showMessageDialog(null, "Manejo de errores de la Aplicación: " + e1.getMessage(), "Error",
+						JOptionPane.ERROR_MESSAGE);
+				return;
 			}
-		} 
-		else {
-			System.out.println("Su carrito de compras esta vacío, no puede quitar productos.\n");
-			OpcionDeMenu.controlError = true;
+			
+
 		}
+
 	}
 
 	@Override

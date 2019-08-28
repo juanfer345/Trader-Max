@@ -60,8 +60,7 @@ public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListene
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}
-			else if(arg.getActionCommand().equals("Quitar")){ 
-			if(CarritoDeCompras.getProductos().)
+			else { 			
 				Comprador comprad = (Comprador) InicializacionAplicacion.usuarioActivo;
 				String cod = arg.getActionCommand();
 				int codigo = Integer.parseInt(cod);
@@ -79,8 +78,29 @@ public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListene
 		        CarritoDeCompras. quitarProducto(codigo, cant);
 			}
 			
+
+			//else if(arg.getActionCommand().equals("Quitar")){ 
+//			if(CarritoDeCompras.getProductos().)
+//				Comprador comprad = (Comprador) InicializacionAplicacion.usuarioActivo;
+//				String cod = arg.getActionCommand();
+//				int codigo = Integer.parseInt(cod);
+//		        String cantidad = JOptionPane.showInputDialog(null, "Cantidad que desea quitar:");
+//		        int cant = 0;
+//		    	try {
+//					cant = ErrorAplicacion.controlEntero((cantidad), 1, Integer.MAX_VALUE, "Cantidad", "Por favor ingrese la cantidad a quitar");
+//				}
+//				catch (IOException e1) {
+//					JOptionPane.showMessageDialog(
+//							null, "Manejo de errores de la Aplicación: " + e1.getMessage(), 
+//							"Error", JOptionPane.ERROR_MESSAGE);
+//					return;
+//				}
+//		        CarritoDeCompras. quitarProducto(codigo, cant);
+//			}
+//			
+
 		}
-		VentanaAplicacion.organizar();
+		//VentanaAplicacion.organizar();
 	}
 	@Override
 	public String toString() {

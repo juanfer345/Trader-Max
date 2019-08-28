@@ -43,14 +43,10 @@ public class PanelMostrarCarrito extends JPanel {
 		botones.add(boton_vac);
 
 		TablaCarrito tabla = new TablaCarrito();
-		this.add(botones, BorderLayout.NORTH);
-
 		this.add(tabla);
-
-
 		this.add(botones, BorderLayout.SOUTH);
 
-		this.add(new TablaCarrito());
+		
 		
 
 

@@ -167,7 +167,7 @@ public class Producto implements InterfazCategorias {
 			return sb.toString();
 		} else {
 			OpcionDeMenu.controlError = true;
-			return "\nEl producto no posee reseñas:\n" + toString() + ", Cantidad: " + cantidad + "]\n";
+			return "\nEl producto no posee reseñas:\n" + toString() + ", Cantidad: " + cantidad + "\n";
 		}
 	}
 
@@ -182,7 +182,7 @@ public class Producto implements InterfazCategorias {
 
 	// Para imprimir un Producto
 	public String toString() {
-		return "   Código: " + id + ", Nombre: " + nombreProducto + ", Categoria: " + categoria + ", Precio: " + precio + ", Vendedor: " + vendedor.getNombre() + ", Reseñas: " + resenas.size();
+		return "Código: " + id + ", Nombre: " + nombreProducto + ", Categoria: " + categoria + ", Precio: " + precio + ", Reseñas: " + resenas.size();
 	}
 
 	// Para cambiar el atributo vendedor
