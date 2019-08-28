@@ -46,7 +46,7 @@ public class ControlSalir extends OpcionDeMenu implements MouseMotionListener{
 					  "Advertencia", JOptionPane.WARNING_MESSAGE);
 		}
 		
-		int resp = JOptionPane.showOptionDialog(null, "¿Está seguro que desea salir de Trader-Max papirri?", "Salir", JOptionPane.YES_NO_OPTION, 
+		int resp = JOptionPane.showOptionDialog(null, "¿Está seguro que desea salir de Trader-Max?", "Salir", JOptionPane.YES_NO_OPTION, 
 												JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 		
 		if (JOptionPane.OK_OPTION == resp) {

@@ -3,12 +3,17 @@ package control.Cuenta.Comprador;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import control.Errores.ErrorAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
+import gestorAplicacion.Usuarios.Comprador;
 import gestorAplicacion.Usuarios.Cuenta;
+import gestorAplicacion.Usuarios.Vendedor;
+import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
@@ -17,41 +22,32 @@ import uiMain.vista.Cuenta.Comprador.PanelMostrarCarrito;
 
 public class ControlAgregarACarrito extends OpcionDeMenu implements ActionListener {
 
+	int idProducto, cantProd;
+
 	@Override
-	public void actionPerformed(ActionEvent e) {int idProducto, cantProd;
+	public void actionPerformed(ActionEvent e) {
 
-	// Verificación de catalogo no vacío
-	if (!Cuenta.getCatalogo().isEmpty()) {
-		
-		while(!OpcionDeMenu.controlError) {
-			VentanaAplicacion.panelPrincipal.removeAll();
-			PanelUsuario panelresultados= new PanelUsuario();
-			panelresultados.panelCambiante.removeAll();
-			panelresultados.panelCambiante.setLayout(new BorderLayout());
-			panelresultados.panelCambiante.add(new PanelAgregarACarrito());
-			VentanaAplicacion.panelPrincipal.add(panelresultados,SwingConstants.CENTER);
-			
-			//Ingreso del código
-			//idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto que desea agregar", "El dato que ingresó como código es inválido, vuelva a intentarlo");
-			if (OpcionDeMenu.controlError) {System.out.println(); return;}
-
-			//Ingreso de la cantidad del producto
-			//cantProd = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese la cantidad de elementos que desea agregar", "El dato que ingresó como cantidad es inválido, vuelva a intentarlo");
-			if (OpcionDeMenu.controlError) {System.out.println(); return;}
-			
-			//Ejecución del método
-			//System.out.println(CarritoDeCompras.agregarACarrito(idProducto, cantProd));
-			if (!OpcionDeMenu.controlError)
-				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
+		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
+		String cod = e.getActionCommand();
+		int codigo = Integer.parseInt(cod);
+		String precio = JOptionPane.showInputDialog(null, "Cantidad para agregar:");
+		int cant = 0;
+		try {
+			cant = ErrorAplicacion.controlEntero((precio), 1, Integer.MAX_VALUE, "Precio",
+					"Por favor ingrese un precio válido");
+		} catch (IOException e1) {
+			JOptionPane.showMessageDialog(null, "Manejo de errores de la Aplicación: " + e1.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
+			return;
 		}
-	}
-	else {
-		System.out.println("No hay productos en el catálogo.\n");
-	}
-		
-	}
-	public String toString() {
-		return "Agregar a carrito";
+		JOptionPane.showMessageDialog(null, CarritoDeCompras.agregarACarrito(codigo, cant), "Agregar A Carrito",
+				JOptionPane.INFORMATION_MESSAGE);
+
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

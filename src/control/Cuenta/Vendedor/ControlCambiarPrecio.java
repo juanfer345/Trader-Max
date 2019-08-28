@@ -15,7 +15,6 @@ public class ControlCambiarPrecio extends OpcionDeMenu implements ActionListener
 
 	public void actionPerformed(ActionEvent e) {
 		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
-		//HashMap<Integer, Producto> productos = vend.verProductos();
 		String cod = e.getActionCommand();
 		int codigo = Integer.parseInt(cod);
         String precio = JOptionPane.showInputDialog(null, "Nuevo precio del producto:");

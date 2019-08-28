@@ -3,42 +3,38 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Cuenta;
+import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
+import uiMain.vista.Cuenta.Vendedor.PanelVerProductos;
+import uiMain.vista.Visitante.PanelBuscarCategoria;
 
 public class ControlMostrarPorCategoria extends OpcionDeMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		byte seleccion;
 
-		if (!Cuenta.getCatalogo().isEmpty()) {
-			
-			//Selección por parte del usuario
+		PanelBuscarCategoria x3 = new PanelBuscarCategoria();
 
-			//seleccion = ControlErrorDatos.controlByte((byte) 1, (byte) Producto.categorias.length, sb.toString(), "Por favor ingrese un número entero");
-		
-			//seleccion = ErrorAplicacion.controlByte((byte) 1, (byte) Producto.categorias.length, sb.toString(), "Por favor ingrese un número entero");
-
-			if (OpcionDeMenu.controlError) {System.out.println(); return;}
-			
-			//Ejecución del método
-			//System.out.println(InicializacionAplicacion.usuarioActivo.mostrarCategoria((byte) (seleccion - 1)));
-			if (!OpcionDeMenu.controlError)
-				System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
-			
+		if (InicializacionAplicacion.usuarioActivo.getCatalogo().size() != 0) {
+			if (e.getSource() instanceof JMenuItem) {
+				x3.lanzar();
+			}
+		} else {
+			if (e.getSource() instanceof JMenuItem) {
+				JOptionPane.showMessageDialog(null, "No hay ninguna producto en el catálogo", "Advertencia",
+						JOptionPane.WARNING_MESSAGE);
+			}
 		}
-		else {
-			JOptionPane.showMessageDialog(null, "El catalogo se encuentra vacio", "Mostrar productos por categoria", JOptionPane.INFORMATION_MESSAGE);
-		}
-		
 	}
 
-	public String toString() {return "Mostrar productos por categoría";}
-
+	public String toString() {
+		return "Mostrar productos por categoría";
+	}
 
 }

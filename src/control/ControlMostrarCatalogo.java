@@ -10,7 +10,8 @@ import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.Visitante.PanelCatalogo;
-import uiMain.vista.Visitante.VentanaCatalogo;
+
+
 
 public class ControlMostrarCatalogo extends OpcionDeMenu implements ActionListener {
 
@@ -27,11 +28,10 @@ public class ControlMostrarCatalogo extends OpcionDeMenu implements ActionListen
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		VentanaCatalogo x = new VentanaCatalogo();
 		PanelCatalogo x2 = new PanelCatalogo();
+
 		if (!Cuenta.getCatalogo().isEmpty()) {
 			if (e.getSource() instanceof JMenuItem) {
-				x.lanzar();
 				x2.lanzar();
 			}
 
@@ -39,7 +39,6 @@ public class ControlMostrarCatalogo extends OpcionDeMenu implements ActionListen
 			if (e.getSource() instanceof JMenuItem) {
 				JOptionPane.showMessageDialog(null, "El catálogo se encuentra vacío", "Advertencia",
 						JOptionPane.WARNING_MESSAGE);
-				//x.lanzar();
 			}
 		}
 

@@ -32,6 +32,7 @@ public class PanelMostrarCarrito extends JPanel {
 	public JButton boton_comprar = new JButton("Comprar productos");
 	public JButton boton_vac = new JButton("Vaciar carrito");
 	JTable table;
+	
 
 	public PanelMostrarCarrito() {
 
@@ -41,17 +42,23 @@ public class PanelMostrarCarrito extends JPanel {
 		botones.add(boton_comprar);
 		botones.add(boton_vac);
 
-		this.add(botones, BorderLayout.NORTH);
+		TablaCarrito tabla = new TablaCarrito();
+		this.add(tabla);
+		this.add(botones, BorderLayout.SOUTH);
 
-		this.add(new TablaCarrito());
+		
+		
+
 
 	}
 	
 	public void asignarOyente() {
+
 		// Declaración del oyente
 		ControlComprarProductos oidor = new ControlComprarProductos();
 		boton_comprar.addActionListener(oidor);
-		boton_vac.addActionListener(oidor);
+		boton_vac.addActionListener(new ControlMostrarCarrito());
+
 		
 	}
 }

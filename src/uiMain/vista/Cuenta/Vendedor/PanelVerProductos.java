@@ -1,6 +1,6 @@
 package uiMain.vista.Cuenta.Vendedor;
 
-import java.awt.Dimension;
+import java.awt.Dimension; 
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.HashMap;
@@ -13,9 +13,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
-
 import java.awt.BorderLayout;
 import java.awt.Container;
+
+import control.ControlMostrarResenas;
 import control.Cuenta.Vendedor.ControlCambiarPrecio;
 import control.Cuenta.Vendedor.ControlEliminarProdCatalogo;
 import control.Cuenta.Vendedor.ControlModificarCantidad;
@@ -36,11 +37,10 @@ public class PanelVerProductos extends JFrame {
 		Container panel = this.getContentPane();
 		panel.setLayout(new BorderLayout(7, 20));
 		
-		JLabel titulo = new JLabel("PRODUCTOS SUBIDOS");
+		JLabel titulo = new JLabel("PRODUCTOS POR CATEGORIA");
 		Font auxFont = titulo.getFont();
 		titulo.setFont(new Font(auxFont.getFontName(), auxFont.getStyle(), 16));
-		JLabel descripcion = new JLabel("A continuación encontrará la información básica de los productos que ha subido con anterioridad "
-				+ "\na la aplicación, puede modificar la cantidad existente, el precio o eliminarlo del catalogo \n");
+		JLabel descripcion = new JLabel("A continuación encontrará la información básica de los productos que ha subido con anterioridad, puede modificar la cantidad existente, el precio o eliminarlo del catalogo");
 		descripcion.setHorizontalAlignment(SwingConstants.CENTER);
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -74,7 +74,7 @@ public class PanelVerProductos extends JFrame {
 			boton3.addActionListener(new ControlEliminarProdCatalogo());
 			JButton boton4 = new JButton(nombreBoton4);
 			boton4.setActionCommand(ac);
-			boton4.addActionListener(new ControlEliminarProdCatalogo());
+			boton4.addActionListener(new ControlMostrarResenas());
 			
 			datos[contador][0] = item.getId();// codigo
 			datos[contador][1] = item.getNombreProducto();// nombre
@@ -86,8 +86,7 @@ public class PanelVerProductos extends JFrame {
 			datos[contador][7] = boton2;
 			datos[contador][8] = boton3;
 			datos[contador][9] = boton4;
-			// aca van los botones
-			//
+
 			contador++;
 		}
 		tabla = new JTable(new tablaModelo(nombreColumnas,datos)); 
@@ -100,7 +99,6 @@ public class PanelVerProductos extends JFrame {
 	    tabla.addMouseListener(new tablaBotonOidorMouse(tabla));
 	    
 		JScrollPane scrollPane = new JScrollPane(tabla);
-		//JLabel nota = new JLabel();
 		this.setMinimumSize(new Dimension(1100, 300)); 
 		panel.add(scrollPane, BorderLayout.CENTER);
 		panel.add(panel2, BorderLayout.NORTH);

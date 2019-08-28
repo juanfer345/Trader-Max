@@ -89,6 +89,6 @@ public class Resena {
 
 	@Override
 	public String toString() {
-		return "[Comprador: " + comp.getNombre() + ", Estrellas: " + estrellas + ", Comentario: " + comentario + "]";
+		return "  Comprador: " + comp.getNombre() + ", Estrellas: " + estrellas + ", Comentario: " + comentario + "";
 	}
 }
