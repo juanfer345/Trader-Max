@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,12 +19,10 @@ import javax.swing.table.TableCellRenderer;
 
 import control.ControlMostrarResenas;
 import control.Cuenta.Comprador.ControlAgregarACarrito;
-import control.Cuenta.Vendedor.ControlCambiarPrecio;
-import control.Cuenta.Vendedor.ControlEliminarProdCatalogo;
-import control.Cuenta.Vendedor.ControlModificarCantidad;
 import control.tabla.tablaBotonOidorMouse;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Comprador;
+import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Vendedor;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
@@ -31,7 +30,7 @@ import uiMain.vista.tabla.tablaBotonRenderizador;
 import uiMain.vista.tabla.tablaModelo;
 
 public class PanelCatalogo extends JFrame {
-	
+
 	/*
 	 * Propósito: Se encarga de la parte visual del Catalogo
 	 */
@@ -39,7 +38,6 @@ public class PanelCatalogo extends JFrame {
 	JTable tabla;
 
 	public PanelCatalogo() {
-		
 
 		Container panel = this.getContentPane();
 		panel.setLayout(new BorderLayout(7, 20));
@@ -57,7 +55,7 @@ public class PanelCatalogo extends JFrame {
 		panel2.add(titulo);
 		panel2.add(descripcion);
 
-		HashMap<Integer, Producto> Catalogo = InicializacionAplicacion.usuarioActivo.getCatalogo();
+		HashMap<Integer, Producto> Catalogo = Cuenta.getCatalogo();
 		String nombre_boton1 = "Ver Reseñas";
 		String nombre_boton2 = "Agregar a Carrito";
 		String[] nombreColumnas1 = { "Codigo", "Nombre", "Categoría", "Precio", "Cantidad", "N°Reseñas", "Vendedor",
@@ -73,12 +71,16 @@ public class PanelCatalogo extends JFrame {
 			String cod = String.valueOf(it.getId());
 
 			JButton boton1 = new JButton(nombre_boton1);
-			boton1.addActionListener(new ControlMostrarResenas());
-			boton1.setActionCommand(cod);
+			if (InicializacionAplicacion.usuarioActivo.getMenuDeConsola().buscarOpcionDeMenu(new ControlMostrarResenas())) {
+				boton1.addActionListener(new ControlMostrarResenas());
+				boton1.setActionCommand(cod);
+			}
 
 			JButton boton2 = new JButton(nombre_boton2);
-			boton2.setActionCommand(cod);
-			boton2.addActionListener(new ControlAgregarACarrito());
+			if (InicializacionAplicacion.usuarioActivo.getMenuDeConsola().buscarOpcionDeMenu(new ControlAgregarACarrito())) {
+				boton2.addActionListener(new ControlAgregarACarrito());
+				boton2.setActionCommand(cod);
+			}
 
 			datos1[contador1][0] = it.getId();// codigo
 			datos1[contador1][1] = it.getNombreProducto();// nombre
@@ -98,31 +100,30 @@ public class PanelCatalogo extends JFrame {
 			datos2[contador1][6] = it.getVendedor().getNombre();
 			datos2[contador1][7] = boton1;
 			datos2[contador1][8] = boton2;
-			
+
 			contador1++;
 		}
 		if (InicializacionAplicacion.usuarioActivo instanceof Visitante ||
-			InicializacionAplicacion.usuarioActivo instanceof Vendedor) {
+				InicializacionAplicacion.usuarioActivo instanceof Vendedor) {
 			tabla = new JTable(new tablaModelo(nombreColumnas1, datos1));
 			tabla.setFillsViewportHeight(true);
 			TableCellRenderer buttonRenderer = new tablaBotonRenderizador();
-		    tabla.getColumn(nombre_boton1).setCellRenderer(buttonRenderer);
-	
+			tabla.getColumn(nombre_boton1).setCellRenderer(buttonRenderer);
+
 		} else if (InicializacionAplicacion.usuarioActivo instanceof Comprador) {
 			tabla = new JTable(new tablaModelo(nombreColumnas2, datos2));
 			tabla.setFillsViewportHeight(true);
 			TableCellRenderer buttonRenderer = new tablaBotonRenderizador();
-		    tabla.getColumn(nombre_boton1).setCellRenderer(buttonRenderer);
-		    tabla.getColumn(nombre_boton2).setCellRenderer(buttonRenderer);
+			tabla.getColumn(nombre_boton1).setCellRenderer(buttonRenderer);
+			tabla.getColumn(nombre_boton2).setCellRenderer(buttonRenderer);
 		}
-		
-		
-	    tabla.addMouseListener(new tablaBotonOidorMouse(tabla));
+
+		tabla.addMouseListener(new tablaBotonOidorMouse(tabla));
 		JScrollPane scrollPane = new JScrollPane(tabla);
 		this.setMinimumSize(new Dimension(1000, 300));
 		panel.add(scrollPane, BorderLayout.CENTER);
 		panel.add(panel2, BorderLayout.NORTH);
-		
+
 	}
 
 	public void lanzar() {

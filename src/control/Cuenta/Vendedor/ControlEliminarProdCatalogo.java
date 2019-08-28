@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import control.OpcionDeMenu;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlEliminarProdCatalogo extends OpcionDeMenu implements ActionListener {
 
@@ -22,17 +22,15 @@ public class ControlEliminarProdCatalogo extends OpcionDeMenu implements ActionL
 		String cod = e.getActionCommand();
 		int codigo = Integer.parseInt(cod);
 		Object[] opciones = {"Si", "No"};
-		
+
 		int resp = JOptionPane.showOptionDialog(null, "¿Está seguro que desea borrar el producto?", "Advertencia", JOptionPane.YES_NO_OPTION, 
-												JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
-		
+				JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+
 		if (JOptionPane.OK_OPTION == resp) {
 			JOptionPane.showMessageDialog(null, vend.eliminarProductoCatalogo(codigo),
 					"Notificación", JOptionPane.INFORMATION_MESSAGE);
 			;
-			
 		}
-		
 	}
 
 	public String toString() {return "Eliminar producto";}

@@ -5,15 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import control.OpcionDeMenu;
 import control.Errores.ErrorAplicacion;
 import control.Errores.MetodosConError;
 import gestorAplicacion.Materiales.CarritoDeCompras;
-import gestorAplicacion.Usuarios.Comprador;
-import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlAgregarACarrito extends OpcionDeMenu implements ActionListener {
-	
+
 	/*
 	 * Propósito: Ejecutar el metodo agregarACarrito() haciendo los respectivos
 	 * controles de error del ingreso de datos
@@ -24,7 +22,6 @@ public class ControlAgregarACarrito extends OpcionDeMenu implements ActionListen
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;
 		String cod = e.getActionCommand();
 		int codigo = Integer.parseInt(cod);
 		String precio = JOptionPane.showInputDialog(null, "Cantidad para agregar:");

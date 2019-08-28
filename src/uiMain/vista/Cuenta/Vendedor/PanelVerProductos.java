@@ -1,10 +1,13 @@
 package uiMain.vista.Cuenta.Vendedor;
 
-import java.awt.Dimension; 
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,8 +16,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
-import java.awt.BorderLayout;
-import java.awt.Container;
 
 import control.ControlMostrarResenas;
 import control.Cuenta.Vendedor.ControlCambiarPrecio;
@@ -68,17 +69,28 @@ public class PanelVerProductos extends JFrame {
 			
 			//botones cambiar precio, eliminar
 			JButton boton1 = new JButton(nombreBoton1);
-			boton1.setActionCommand(ac);
-			boton1.addActionListener(new ControlCambiarPrecio());
+			if (InicializacionAplicacion.usuarioActivo.getMenuDeConsola().buscarOpcionDeMenu(new ControlCambiarPrecio())) {
+				boton1.setActionCommand(ac);
+				boton1.addActionListener(new ControlCambiarPrecio());
+			}
+			
 			JButton boton2 = new JButton(nombreBoton2);
-			boton2.setActionCommand(ac);
-			boton2.addActionListener(new ControlModificarCantidad());
+			if (InicializacionAplicacion.usuarioActivo.getMenuDeConsola().buscarOpcionDeMenu(new ControlModificarCantidad())) {
+				boton2.setActionCommand(ac);
+				boton2.addActionListener(new ControlModificarCantidad());
+			}
+			
 			JButton boton3 = new JButton(nombreBoton3);
-			boton3.setActionCommand(ac);
-			boton3.addActionListener(new ControlEliminarProdCatalogo());
+			if (InicializacionAplicacion.usuarioActivo.getMenuDeConsola().buscarOpcionDeMenu(new ControlEliminarProdCatalogo())) {
+				boton3.setActionCommand(ac);
+				boton3.addActionListener(new ControlEliminarProdCatalogo());
+			}
+			
 			JButton boton4 = new JButton(nombreBoton4);
-			boton4.setActionCommand(ac);
-			boton4.addActionListener(new ControlMostrarResenas());
+			if (InicializacionAplicacion.usuarioActivo.getMenuDeConsola().buscarOpcionDeMenu(new ControlMostrarResenas())) {
+				boton4.setActionCommand(ac);
+				boton4.addActionListener(new ControlMostrarResenas());
+			}
 			
 			datos[contador][0] = item.getId();// codigo
 			datos[contador][1] = item.getNombreProducto();// nombre

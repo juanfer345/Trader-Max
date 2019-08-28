@@ -7,12 +7,12 @@ import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+import control.OpcionDeMenu;
 import control.Errores.ErrorAplicacion;
 import control.Errores.MetodosConError;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.FieldPanel;
 import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;

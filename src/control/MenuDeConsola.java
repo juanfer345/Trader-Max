@@ -1,13 +1,13 @@
 /*
 	Clase MenuDeConsola (pública)   
-	
+
 	Propósito: Es el menú general del programa donde el usuario interacciona
 	           con las opciones que tiene en la aplicaion
-	          
+
 	Estructuras de datos relevantes:
 	- ArrayList <OpcionDeMenu> menuActivo: Estructura que contiene las opciones de menú del usuario
-*/
-package uiMain.MenuConsola;
+ */
+package control;
 
 import java.util.ArrayList;
 import java.util.Deque;
@@ -35,13 +35,13 @@ public class MenuDeConsola {
 		}
 		return false;
 	}
-	
+
 	//Crea el arreglo de opciones de menú del usuario
 	public MenuDeConsola() {menuUsuario = new ArrayList<>();}
-	
+
 	// Devuelve las opciones de menu de cada usuario
 	public ArrayList<OpcionDeMenu> getmenuUsuario(){return this.menuUsuario;}
-	
+
 	// Modificacion de opciones de menu de cada usuario
 	public void setmenuUsuario(ArrayList<OpcionDeMenu> menuUsuario) {this.menuUsuario = menuUsuario;}
 
@@ -80,7 +80,7 @@ public class MenuDeConsola {
 		sb.append(menu);
 		return sb.toString();
 	}
-	
+
 	public String mostrarOpcionesDeMenu(int idUsuario, byte tipoUsuario) {
 		/*
 		Proposito: Mostrar las opciones de menú del usuario.
@@ -161,7 +161,7 @@ public class MenuDeConsola {
 			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
 			break;
 		}
-		
+
 		menu = baseDeDatos.get(idUsuario).getMenu(); // Obtención de opciones de menú del usuario
 
 		// Condicional para identificar si es el caso de agregado o eliminación de opciones
@@ -217,7 +217,7 @@ public class MenuDeConsola {
 					opcionComp = ((Administrador) baseDeDatos.get(idUsuario)).getMenu();
 				}
 				OpcionDeMenu.controlError = true;
-				
+
 			} else if (menu.size() == 0) {
 
 				// Caso B.b: El menú del usuario se encuentra vacío
@@ -299,17 +299,17 @@ public class MenuDeConsola {
 			baseDeDatos = InicializacionAplicacion.getBDAdministradores();
 			break;
 		}
-		
+
 		menu = baseDeDatos.get(idUsuario).getMenu(); // Obtención de opciones de menú del usuario
 
 		menu.remove(menu.get(indice)); 								// Agregado de la opción correspondiente
 		sb.append(mostrarOpcionesDeMenu(idUsuario, tipoUsuario)); 	// Guardado del mensaje mostrando el nuevo menú
 		OpcionDeMenu.controlError = true;
 		sb.append("\nSe ha eliminado la opción correctamente\n");
-			
+
 		return sb.toString();
 	}
-	
+
 	//Se devuelven las opciones de menu de un menu dado con su respectivo índice para su posterior impresión
 	public static String prepararMenuImpresion(ArrayList<OpcionDeMenu> menu) {
 		StringBuilder sb = new StringBuilder();
@@ -318,7 +318,7 @@ public class MenuDeConsola {
 		}
 		return sb.toString();
 	}
-	
+
 	//Devuelve el tamaño del arreglo de las opciones de menú usadas en los métodos para agregar o eliminar opciones de menú con fines de impresión
 	public static byte getsizeOpcionesComp() {return (byte) opcionComp.size();}
 }

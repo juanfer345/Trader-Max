@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import control.OpcionDeMenu;
 import gestorAplicacion.Materiales.CuentaBancaria;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
@@ -23,7 +24,6 @@ import gestorAplicacion.Usuarios.Comprador;
 import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 
 public class EscrituraBD {
 

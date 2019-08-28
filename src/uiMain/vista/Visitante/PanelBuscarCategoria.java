@@ -5,13 +5,11 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,8 +20,8 @@ import control.ControlMostrarResenas;
 import control.Cuenta.Comprador.ControlAgregarACarrito;
 import control.tabla.tablaBotonOidorMouse;
 import gestorAplicacion.Materiales.Producto;
-import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Comprador;
+import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Vendedor;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
@@ -31,7 +29,7 @@ import uiMain.vista.tabla.tablaBotonRenderizador;
 import uiMain.vista.tabla.tablaModelo;
 
 public class PanelBuscarCategoria extends JFrame {
-	
+
 	/*
 	 * Propósito: Se encarga de la parte visual del metodo buscarCategoria()
 	 */
@@ -68,7 +66,7 @@ public class PanelBuscarCategoria extends JFrame {
 			if (prod.getCategoria().equals(seleccion)) {
 				contador++;
 			}
-			
+
 		}
 		Object[][] datos1 = new Object[contador][nombreColumnas1.length];
 		Object[][] datos2 = new Object[contador][nombreColumnas2.length];
@@ -80,12 +78,16 @@ public class PanelBuscarCategoria extends JFrame {
 				String cod = String.valueOf(item.getId());
 
 				JButton boton1 = new JButton(nombre_boton1);
-				boton1.addActionListener(new ControlMostrarResenas());
-				boton1.setActionCommand(cod);
+				if (InicializacionAplicacion.usuarioActivo.getMenuDeConsola().buscarOpcionDeMenu(new ControlMostrarResenas())) {
+					boton1.addActionListener(new ControlMostrarResenas());
+					boton1.setActionCommand(cod);
+				}
 
 				JButton boton2 = new JButton(nombre_boton2);
-				boton2.setActionCommand(cod);
-				boton2.addActionListener(new ControlAgregarACarrito());
+				if (InicializacionAplicacion.usuarioActivo.getMenuDeConsola().buscarOpcionDeMenu(new ControlAgregarACarrito())) {
+					boton2.addActionListener(new ControlAgregarACarrito());
+					boton2.setActionCommand(cod);
+				}
 
 				datos1[contador1][0] = item.getId();// codigo
 				datos1[contador1][1] = item.getNombreProducto();// nombre

@@ -10,10 +10,6 @@
 
 package control.Errores;
 
-import java.io.IOException;
-
-import uiMain.MenuConsola.OpcionDeMenu;
-
 public abstract class ErrorAplicacion extends Exception {
 
 	public ErrorAplicacion(String mensaje) {

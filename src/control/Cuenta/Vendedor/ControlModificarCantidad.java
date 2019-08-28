@@ -3,11 +3,13 @@ package control.Cuenta.Vendedor;
 import java.awt.event.ActionEvent; 
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+
+import control.OpcionDeMenu;
 import control.Errores.ErrorAplicacion;
 import control.Errores.MetodosConError;
+import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlModificarCantidad extends OpcionDeMenu implements ActionListener {
 
@@ -21,7 +23,7 @@ public class ControlModificarCantidad extends OpcionDeMenu implements ActionList
 		String cod = e.getActionCommand();
 
 		int codigo = Integer.parseInt(cod);
-		int cant_existente = vend.getCatalogo().get(codigo).getCantidad();
+		int cant_existente = Cuenta.getCatalogo().get(codigo).getCantidad();
 		String opciones[] = { "Aumentar", "Disminuir" };
 		String seleccion = (String) JOptionPane.showInputDialog(null, "Seleccione una accion", "OPERACION",
 				JOptionPane.QUESTION_MESSAGE, null, opciones, "Seleccione");
@@ -50,6 +52,7 @@ public class ControlModificarCantidad extends OpcionDeMenu implements ActionList
 			}
 		}
 	}
+
 	public String toString() {
 		return "Modificar la cantidad de un producto";
 	}

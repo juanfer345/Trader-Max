@@ -1,9 +1,5 @@
 package control.Errores;
 
-import java.io.IOException;
-
-import uiMain.MenuConsola.OpcionDeMenu;
-
 /*
  * Propósito: Error dependiendo del tipo de dato 
  */

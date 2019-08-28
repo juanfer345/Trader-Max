@@ -14,10 +14,10 @@ public class ControlInicio implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Inicio")) {
 			//Caso A: Ventana de invitado
-			
+
 			//Remoción de los elementos del panel
 			VentanaAplicacion.panelPrincipal.removeAll();
-			
+
 			//Añadiendo los nuevos elementos para la ventana de invitado
 			PanelLogin panel = new PanelLogin();
 			VentanaAplicacion.panelPrincipal.add(panel);
@@ -25,10 +25,10 @@ public class ControlInicio implements ActionListener {
 		}
 		else if (e.getActionCommand().equals("Página Principal")) {
 			//Caso B: Ventana de usuario
-			
+
 			//Remoción de los elementos del panel
 			VentanaAplicacion.panelPrincipal.removeAll();
-			
+
 			//Añadiendo los nuevos elementos para la ventana de usuario
 			PanelUsuario panel = new PanelUsuario();
 			VentanaAplicacion.panelPrincipal.add(panel);

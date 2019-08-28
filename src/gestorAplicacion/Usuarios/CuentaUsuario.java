@@ -1,23 +1,23 @@
 /* 
    Clase CuentaUsuario (pública abstracta, hereda de Cuenta)
-   
+
    Propósito:
    Clase intermediaria entre Cuenta y CuentaConBanco
    Contiene el metodo cerrarSesion
-   
+
    Estructuras de datos relevantes:
  */
 
 package gestorAplicacion.Usuarios;
 
+import control.OpcionDeMenu;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 
 abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias{
 
 	private boolean cuentaActiva;
-	
+
 	//Este booleano se utiliza para saber si la cuenta está o no activa
 	public boolean isCuentaActiva() {return cuentaActiva;}
 	public void setCuentaActiva(boolean cuentaActiva) {this.cuentaActiva = cuentaActiva;}
@@ -38,7 +38,7 @@ abstract public class CuentaUsuario extends Cuenta implements InterfazCategorias
 
 	//Constructor vacío
 	public CuentaUsuario() {}
-	
+
 	// Método para cerrar sesión
 	public String cerrarSesion() {
 		/*

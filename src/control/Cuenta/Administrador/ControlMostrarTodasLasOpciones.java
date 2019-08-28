@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import uiMain.MenuConsola.OpcionDeMenu;
+import control.OpcionDeMenu;
 
 public class ControlMostrarTodasLasOpciones extends OpcionDeMenu implements ActionListener {
 

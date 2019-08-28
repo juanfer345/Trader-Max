@@ -4,9 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+
+import control.OpcionDeMenu;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.Cuenta.Vendedor.PanelVerProductos;
 
 
@@ -19,9 +20,9 @@ public class ControlVerProductos extends OpcionDeMenu implements ActionListener 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
-		
+
 		PanelVerProductos x3 = new PanelVerProductos();
 
 		if (vend.getTotalDeProductosSubidos() != 0) {
@@ -35,7 +36,7 @@ public class ControlVerProductos extends OpcionDeMenu implements ActionListener 
 			}
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Ver productos subidos";

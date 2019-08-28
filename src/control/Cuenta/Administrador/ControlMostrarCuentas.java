@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import control.OpcionDeMenu;
 import control.Errores.ErrorAplicacion;
 import control.Errores.MetodosConError;
 import gestorAplicacion.Usuarios.Administrador;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.VentanaAplicacion;
 
 public class ControlMostrarCuentas extends OpcionDeMenu implements ActionListener {

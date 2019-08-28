@@ -2,13 +2,11 @@ package control.Cuenta.Comprador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 
-import control.Errores.ErrorAplicacion;
+import control.OpcionDeMenu;
 import gestorAplicacion.Materiales.CarritoDeCompras;
-import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlComprarProductos extends OpcionDeMenu implements ActionListener {
 

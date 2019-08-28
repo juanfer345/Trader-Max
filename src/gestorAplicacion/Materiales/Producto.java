@@ -1,10 +1,10 @@
 /* 
    Clase Producto (pública implementa InterfazCategorias)
-   
+
    Propósito:
    Se definen todos los metodos y atributos que tendra cada Producto
    Tambien se podran obtener y modificar estos productos
-   
+
    Estructuras de datos relevantes:
    - Lista que contiene cada una de las categorias disponibles en la aplicación
      (Predeterminadas)
@@ -16,10 +16,10 @@ package gestorAplicacion.Materiales;
 import java.util.Deque;
 import java.util.HashMap;
 
+import control.OpcionDeMenu;
 import gestorAplicacion.Usuarios.InterfazCategorias;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 
 public class Producto implements InterfazCategorias {
 
@@ -36,7 +36,7 @@ public class Producto implements InterfazCategorias {
 	public Producto(int codigoProducto, String nombreProducto, String categoria, double precio, int cantidad) {
 		/*
 		  Propósito: Modificar algunos datos de un Producto ya existente
-		  
+
 		  Parámetros de entrada: 
 		  - int codigoProducto: Codigo del producto a crear 
 		  - String nombreProducto: Nombre del producto 
@@ -137,7 +137,7 @@ public class Producto implements InterfazCategorias {
 	public void setResenas(Resena res) {
 		resenas.put(res.getId(), res);
 	}
-	
+
 	// Retorna el atributo id
 	public int getId() {
 		return id;
@@ -155,9 +155,9 @@ public class Producto implements InterfazCategorias {
 	public String mostrarResenas() {
 
 		StringBuilder sb = new StringBuilder();
-		
+
 		sb.append("\nLas reseñas del producto: \n" + toString() + ", Cantidad: " + cantidad + "]\n" + "Se muestran a continuación:\n\n");
-		
+
 		if (!resenas.isEmpty()) {
 			resenas.forEach((k, v) -> {
 				int i = 1;

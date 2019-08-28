@@ -1,15 +1,15 @@
 /* 
    Clase OpcionDeMenu (pública abstracta)
-   
+
    Propósito:
    Es la base para todas las opciones de menú existentes
    Tambien contiene algunos metodos para comprobar el tipo de dato ingresado
-   
+
    Estructuras de datos relevantes:
    - ArrayList<OpcionDeMenu>: Contiene a todas las opciones de menú del programa
  */
 
-package uiMain.MenuConsola;
+package control;
 
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -17,13 +17,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import control.ControlBuscarProducto;
-import control.ControlCerrarSesion;
-import control.ControlInicioSesion;
-import control.ControlMostrarCatalogo;
-import control.ControlMostrarPorCategoria;
-import control.ControlMostrarResenas;
-import control.ControlSalir;
 import control.Cuenta.Administrador.ControlAgregarOpcion;
 import control.Cuenta.Administrador.ControlBloqueoDeCuenta;
 import control.Cuenta.Administrador.ControlEliminarOpcion;
@@ -60,7 +53,7 @@ public abstract class OpcionDeMenu implements ActionListener {
 	public static ArrayList<OpcionDeMenu> getTodasLasOpciones() {
 		/*
 		   Propósito: Crear todas las opciones de menú y meterlas a una ArrayList
-		   
+
 		   Parámetros de salida:
 		   - ArrayList<OpcionDeMenu>: Con todas las opciones
 		 */
@@ -77,10 +70,10 @@ public abstract class OpcionDeMenu implements ActionListener {
 				new ControlMostrarMenuDisponible(), new ControlMostrarTodasLasOpciones(), 
 				new ControlMostrarUsuario(), new ControlCerrarSesion(), new ControlSalir()}));
 	}
-	
+
 	//Mostrar todas las opciones disponibles 
 	public static String ImprimirTodasLasOpciones() {
-     
+
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("A continuación se muestran todas las opciones de menú existentes:\n\n");

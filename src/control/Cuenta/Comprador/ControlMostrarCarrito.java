@@ -11,12 +11,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
+import control.OpcionDeMenu;
 import control.Errores.ErrorAplicacion;
 import control.Errores.MetodosConError;
 import gestorAplicacion.Materiales.CarritoDeCompras;
-import gestorAplicacion.Usuarios.Comprador;
-import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
 import uiMain.vista.Cuenta.Comprador.PanelMostrarCarrito;
@@ -27,7 +25,7 @@ public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListene
 
 	public void mouseMoved(MouseEvent arg) {
 	}
-	
+
 	/*
 	 * Propósito: Ejecutar el metodo mostrarCarrito() haciendo los respectivos
 	 * controles de error del ingreso de datos
@@ -66,7 +64,6 @@ public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListene
 							JOptionPane.WARNING_MESSAGE);
 				}
 			} else {
-				Comprador comprad = (Comprador) InicializacionAplicacion.usuarioActivo;
 				String cod = arg.getActionCommand();
 				int codigo = Integer.parseInt(cod);
 				String cantidad = JOptionPane.showInputDialog(null, "Cantidad que desea quitar:");

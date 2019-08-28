@@ -6,13 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.Cuenta;
-import gestorAplicacion.Usuarios.Vendedor;
-import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.VentanaAplicacion;
-import uiMain.vista.Cuenta.Vendedor.PanelVerProductos;
 import uiMain.vista.Visitante.PanelBuscarCategoria;
 
 public class ControlMostrarPorCategoria extends OpcionDeMenu implements ActionListener {

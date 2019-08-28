@@ -2,18 +2,17 @@ package control.Cuenta.Vendedor;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
+import control.OpcionDeMenu;
 import control.Errores.ErrorAplicacion;
 import control.Errores.MetodosConError;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.FieldPanel;
 import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
@@ -50,7 +49,7 @@ public class ControlSubirProducto extends OpcionDeMenu implements ActionListener
 			formulario.boton_borr.addActionListener(this);
 		}
 		else if (arg.getSource() instanceof JButton) {
-			
+
 			if (arg.getActionCommand().equals("Aceptar")) {
 
 				// Caso B: Se ha llenado el formulario y se a presionado aceptar
@@ -59,7 +58,7 @@ public class ControlSubirProducto extends OpcionDeMenu implements ActionListener
 				String nombreIngresado = null;
 				int cantidadIngresada = 0;
 				Double precioIngresado = 0.0;
-				
+
 				try {
 
 					// Control de ingreso de nombre
@@ -82,7 +81,7 @@ public class ControlSubirProducto extends OpcionDeMenu implements ActionListener
 						"Música", "Tecnología", "Vestimenta", "Vivienda" };
 				String seleccion = (String) JOptionPane.showInputDialog(null, "Seleccione una categoria", "CATEGORIAS",
 						JOptionPane.QUESTION_MESSAGE, null, categorias, "Seleccione");
-				
+
 				byte categoria = 0;
 				for (byte i = 0; i < categorias.length; i++) {
 					if(categorias[i].contentEquals(seleccion)) {
@@ -92,17 +91,17 @@ public class ControlSubirProducto extends OpcionDeMenu implements ActionListener
 				categoria++;
 				// Ejecución e impresión del método
 				JOptionPane.showMessageDialog(
-					null, usuario.subirProducto(nombreIngresado, categoria, precioIngresado, cantidadIngresada), 
-					"Notificación", JOptionPane.INFORMATION_MESSAGE);
-				
+						null, usuario.subirProducto(nombreIngresado, categoria, precioIngresado, cantidadIngresada), 
+						"Notificación", JOptionPane.INFORMATION_MESSAGE);
+
 				//Volviendo al panel principal
-				
+
 				//Remoción de los elementos del panel
 				VentanaAplicacion.panelPrincipal.removeAll();
 
 				//Eliminando la barra del usuario invitado
 				VentanaAplicacion.barraMenu.removeAll();
-				
+
 				//Añadiendo los nuevos elementos para la ventana de usuario
 				VentanaAplicacion.panelPrincipal.add(new PanelUsuario());
 			}

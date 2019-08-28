@@ -1,11 +1,11 @@
 /*	Clase Cuenta (pública abstracta, implementa InterfazCategorias y Comparable )      
-	
+
 	Propósito: Tipo de usuario general del sistema, recoge caracteristicas comunes de los usuarios
-	
+
 	Estructuras de datos relevantes:
 	- HashMap catálogo: Estructura para almacenar todos los productos existentes en el programa
 	- ArrayList<OpcionDeMenu> menu: Estructura para guardar las opciones de menú del usuario
-*/
+ */
 
 package gestorAplicacion.Usuarios;
 
@@ -14,11 +14,11 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
+import control.MenuDeConsola;
+import control.OpcionDeMenu;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.Producto;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.MenuDeConsola;
-import uiMain.MenuConsola.OpcionDeMenu;
 
 public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 
@@ -32,14 +32,14 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 	static int totalCuentasActivas;
 
 	public Cuenta(int id, String nombre, String correo, String password, int cedula) {
-	/*
+		/*
 		Propósito: Constructor de Cuenta para usuarios existentes			
-		           
+
 		Variables de entrada:
 		- int id: Identificador de la cuenta como comprador
 		- String nombre, int cedula: Datos personales del usuario
 		- String correo, password: Datos asignados al usuario para ingreso al programa
-    */
+		 */
 		this.id = id;
 		this.nombre = nombre;
 		this.correo = correo;
@@ -48,13 +48,13 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 	}
 
 	Cuenta(String nombre, String correo, String password, int cedula) {
-	/*
+		/*
 	    Propósito: Constructor de Cuenta para usuarios nuevos		
-		           
+
 		Variables de entrada:
 		- String nombre, int cedula: Datos personales del usuario
 		- String correo, password: Datos asignados al usuario para ingreso al programa
-    */
+		 */
 		this.nombre = nombre;
 		this.correo = correo;
 		this.password = password;
@@ -63,10 +63,10 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 		totalCuentas++;
 		setMenuPredeterminado();
 	}
-	
+
 	//Constructor vacío
 	public Cuenta() {setMenuPredeterminado();}
-	
+
 	// Metodos de retorno y modificación de los atributos de la clase
 	public String getNombre() {return nombre;}
 	public void setNombre(String nombre) {this.nombre = nombre;}
@@ -96,18 +96,18 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 
 	//Devuelve el menu de consola del usuario 
 	public MenuDeConsola getMenuDeConsola() {return menu;}
-	
+
 	// Devuelve el menú del usuario (ArrayList de opciones de menú)
 	public ArrayList<OpcionDeMenu> getMenu() {return menu.getmenuUsuario();}
 
 	public void setMenu(Deque<Integer> idOpciones) {
-	/*
+		/*
 	    Propósito: Modificar el menú que tiene el usuario ingresando las opciones
 	               por las que se desea cambiar 	
-		           
+
 		Variables de entrada:
 		- Deque<Integer> idOpciones: Contiene las opciones para hacer el cambio
-    */
+		 */
 		ArrayList<OpcionDeMenu> menuTotal = OpcionDeMenu.getTodasLasOpciones();
 		menu = new MenuDeConsola(); // Creacion de nuevo menú
 		ArrayList<OpcionDeMenu> opciones = menu.getmenuUsuario();
@@ -124,32 +124,32 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 		menu = new MenuDeConsola();
 		menu.setmenuUsuario(getMenuPredeterminado());
 	}
-	
+
 	public String salir() {
-	/*
+		/*
 	    Propósito: Dar la posibilidad al usuario de salir de la aplicación	           
-		
+
 		Variables de salida:
 		- String con mensaje dependiendo si el proceso fue o no exitoso
-    */
-			OpcionDeMenu.controlError = true;
-			//Devolviendo los productos no comprados en caso de ser comprador
-			if (InicializacionAplicacion.usuarioActivo instanceof Comprador) {
-				CarritoDeCompras.vaciarCarrito();
-			}
-			return "\nLa aplicación será cerrada";}
+		 */
+		OpcionDeMenu.controlError = true;
+		//Devolviendo los productos no comprados en caso de ser comprador
+		if (InicializacionAplicacion.usuarioActivo instanceof Comprador) {
+			CarritoDeCompras.vaciarCarrito();
+		}
+		return "\nLa aplicación será cerrada";}
 
 	public String buscarProducto(int codigo) {
-	/*
+		/*
 	    Propósito: Buscar el producto por código para obtener información sobre él.
-		           
+
 		Variables de entrada:
 		- int codigo: Número que indica el codigo del producto que se desea buscar   
-		
+
 	    Variables de salida:
 	    - String con mensaje dependiendo de si el proceso fue o no exitoso
 	      Busqueda exitosa ---> Devuelve la informacion del producto {Código, nombre, precio, categoría, cantidad}
-    */
+		 */
 		Producto prod;
 
 		if (catalogo.containsKey(codigo)) {
@@ -162,19 +162,19 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 	}
 
 	public String buscarProducto(String nombre) {
-	/*
+		/*
 	    Propósito: Buscar el producto por nombre para obtener información sobre él.
-		           
+
 		Variables de entrada:
 		- String nombre: Nombre del producto a buscar 
-		
+
 	    Variables de salida: 
 	    - String con mensaje dependiendo de si el proceso fue o no exitoso
 	      Busqueda exitosa ---> Devuelve la informacion del producto {Código, nombre, precio, categoría, cantidad}
-    */
+		 */
 		StringBuilder sb = new StringBuilder();
 		Producto prod;
-		
+
 		// Búsqueda de cada producto
 		for (Map.Entry<Integer, Producto> entry: catalogo.entrySet()) {
 			prod = entry.getValue();
@@ -193,21 +193,21 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 	}
 
 	public String mostrarCatalogo() {
-	/*
+		/*
 	    Propósito: mostrar catálogo (todos los productos)
-		           
+
 	    Variables de salida: 
 	    - String con mensaje dependiendo de si el proceso fue o no exitoso
 	      Busqueda exitosa ---> devuelve la informacion de todos los productos 
 	                             {Código, nombre, precio, categoría, cantidad..}
-    */
+		 */
 
 		StringBuilder sb = new StringBuilder();
 		Producto prod;
-		
+
 		sb.append("\n \n");
 		for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
-		prod = entry.getValue();
+			prod = entry.getValue();
 			sb.append(prod.toString()).append(", Cantidad: ").append(prod.getCantidad()).append("\n");
 		}
 		OpcionDeMenu.controlError = true;
@@ -215,23 +215,23 @@ public abstract class Cuenta implements InterfazCategorias, Comparable<Cuenta> {
 	}
 
 	public String mostrarCategoria(byte cat) {
-	/*
+		/*
 	    Propósito: Mostrar todos los productos de una categoria
-		           
+
 		Variables de entrada:
 		- byte cat: selección (número) dependiendo de la categoría
-		
+
 	    Variables de salida: 
 	    - String con mensaje dependiendo de si el proceso fue o no exitoso
 	      Busqueda exitosa ---> Devuelve la informacion los productos encontrados de acuerdo a la categoria
 	                            {Código, nombre, precio, cantidad..}
-    */
+		 */
 		StringBuilder sb = new StringBuilder();
 		Producto prod;
-		
+
 		// Verificación de índice válido 
 		if (cat >= 0 && cat < categorias.length) {
-				
+
 			// Ciclo para hallar cada producto de la categoría adecuada
 			for (Map.Entry<Integer, Producto> entry : catalogo.entrySet()) {
 				prod = entry.getValue();

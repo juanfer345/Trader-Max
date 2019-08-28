@@ -1,9 +1,9 @@
 /* 
    Clase Resena (pública)
-   
+
    Propósito:
    Se definen y se crean las reseñas de cada producto
-   
+
    Estructuras de datos relevantes:
  */
 
@@ -23,7 +23,7 @@ public class Resena {
 	public Resena(int id, String comentario, int estrellas) {
 		/*
 		   Propósito: Construye la reseña de un Producto
-		   
+
 		   Parámetros de entrada: 
 		   - int id: Codigo de identificación para reseñas
 		   - int estrellas, String comentario: Opinión del usuario acerca del producto

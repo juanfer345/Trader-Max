@@ -1,9 +1,9 @@
 /* 
    Clase CuentaConBanco (pública abstracta, hereda de CuentaUsuario)
-   
+
    Propósito:
    Se liga la Cuenta Bancaria con la Cuenta
-   
+
    Estructuras de datos relevantes:
  */
 
@@ -37,7 +37,7 @@ public abstract class CuentaConBanco extends CuentaUsuario {
 
 	//Constructor vacío
 	public CuentaConBanco() {}
-	
+
 	public CuentaBancaria getCuentaBancaria() {return cuentaBancaria;}
 
 	public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {this.cuentaBancaria = cuentaBancaria;}

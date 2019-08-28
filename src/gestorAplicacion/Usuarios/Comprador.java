@@ -1,11 +1,11 @@
 /*	Clase Comprador (pública, hereda de CuentaConBanco)        
-	
+
 	Propósito: Tipo de usuario del sistema que podrá adquirir productos
-	
+
 	Estructuras de datos relevantes:
 	- HashMap historial: Estructura para almacenar historial del comprador, contiene todos
 	                     los productos que ha comprado
-*/
+ */
 
 package gestorAplicacion.Usuarios;
 
@@ -19,6 +19,7 @@ import control.ControlMostrarCatalogo;
 import control.ControlMostrarPorCategoria;
 import control.ControlMostrarResenas;
 import control.ControlSalir;
+import control.OpcionDeMenu;
 import control.Cuenta.Comprador.ControlAgregarACarrito;
 import control.Cuenta.Comprador.ControlAgregarResena;
 import control.Cuenta.Comprador.ControlBorrarHistorial;
@@ -31,7 +32,6 @@ import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Materiales.Resena;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 
 public class Comprador extends CuentaConBanco {
 
@@ -42,7 +42,7 @@ public class Comprador extends CuentaConBanco {
 	public Comprador(int idCuenta, String nombre, String correo, String password, int cedula, boolean activa) {
 		/*
 		  Propósito: Constructor de Comprador para usuarios existentes
-		  
+
 		 Variables de entrada: 
 		 - int idCuenta: Identificador de la cuenta como comprador 
 		 - String nombre, int cedula: Datos personales del usuario 
@@ -55,7 +55,7 @@ public class Comprador extends CuentaConBanco {
 	public Comprador(int idCuenta, String nombre, String correo, String password, int cedula, int idCuentaBancaria) {
 		/*
 		  Propósito: Constructor de Comprador para usuarios nuevos con cuenta repetida
-		  
+
 		 Variables de entrada: 
 		 - int idCuenta: Identificador de la cuenta como comprador 
 		 - String nombre, int cedula: Datos personales del usuario 
@@ -65,11 +65,11 @@ public class Comprador extends CuentaConBanco {
 		carrito = new CarritoDeCompras(this);
 		historial = new HashMap<>();
 	}
-	
+
 	public Comprador(String nombre, String correo, String password, int cedula) {
 		/*
 			 Propósito: Constructor de Comprador para usuarios nuevos
-			  
+
 			 Variables de entrada: 
 			 - String nombre, int cedula: Datos personales del usuario 
 			 - String correo, password: Datos asignados al usuario para ingreso al programa
@@ -79,15 +79,15 @@ public class Comprador extends CuentaConBanco {
 		carrito = new CarritoDeCompras(this);
 		historial = new HashMap<>();
 	}
-	
+
 	//Constructor vacío
 	public Comprador() {}
-	
+
 	public ArrayList<OpcionDeMenu> getMenuPredeterminado() {
 
 		/*
 		 Propósito: Asignar al comprador un menú predeterminado de acuerdo a su perfil
-		 
+
 		 Variables de salida: 
 		 - ArrayList con las opciones de menú que tendrá predeterminadas el usuario.
 		 */
@@ -126,10 +126,10 @@ public class Comprador extends CuentaConBanco {
 		 */
 		StringBuilder sb = new StringBuilder();
 		sb.append("\nEl historial posee un total de ").append(historial.size());
-		
+
 		if (historial.size() > 1) {sb.append(" productos.\n");}
 		else {sb.append(" producto.\n");}
-		
+
 		historial.forEach((k, v) -> { // Ciclo para obtención e impresión de los productos
 			sb.append(InicializacionAplicacion.getBDProductos().get(k)).append(", Cantidad comprada: " + v + "]\n");
 		});
@@ -148,25 +148,25 @@ public class Comprador extends CuentaConBanco {
 	public String anadirResena(int codigo, int estrellas, String comentario) {
 		/*
 		 Propósito: Añadir una reseña a un producto comprado
-		  
+
 		 Variables de entrada: 
 		 - int codigo: Código del producto al cual se le agregará una reseña 
 		 - Reseña r: Reseña (comentario, estrellas) que se le quiere agregar al producto
-		 
+
 		 Variables de salida: 
 		 - String con mensaje dependiendo si el proceso fue o no exitoso.
 		 */
-		
-		//Comprobación de que el producto ya fue comprado
-		
 
-			Producto prod = Cuenta.getCatalogo().get(codigo); 							//Obtención del apuntador al producto
-			Resena rese = new Resena(this, comentario, estrellas);				//Creación nueva reseña
-			prod.setResenas(rese);												//Añadido de la reseña al producto
-			InicializacionAplicacion.getBDResenas().put(rese.getId(), rese);	//Añadido de las reseñas en la base de datos
-			return "La reseña del producto ha sido añadida";
-		
-		
+		//Comprobación de que el producto ya fue comprado
+
+
+		Producto prod = Cuenta.getCatalogo().get(codigo); 							//Obtención del apuntador al producto
+		Resena rese = new Resena(this, comentario, estrellas);				//Creación nueva reseña
+		prod.setResenas(rese);												//Añadido de la reseña al producto
+		InicializacionAplicacion.getBDResenas().put(rese.getId(), rese);	//Añadido de las reseñas en la base de datos
+		return "La reseña del producto ha sido añadida";
+
+
 	}
 
 	@Override

@@ -8,13 +8,11 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
+import control.OpcionDeMenu;
 import control.Errores.ErrorAplicacion;
-import control.Errores.ErrorOtro;
 import control.Errores.MetodosConError;
 import gestorAplicacion.Usuarios.Administrador;
-import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.FieldPanel;
 import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
