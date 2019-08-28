@@ -3,37 +3,27 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import gestorAplicacion.Usuarios.Cuenta;
+
+import javax.swing.JOptionPane;
+import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
+import control.ControlMostrarResenas;
 
 public class ControlMostrarResenas extends OpcionDeMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int idProducto=0;
-
-		if (!Cuenta.getCatalogo().isEmpty()) {
-			while (!OpcionDeMenu.controlError) {
-				
-				//idProducto = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Ingrese el código del producto", "El dato que ingresó como código es invalido, vuelva a intentarlo");
-				if (OpcionDeMenu.controlError) {System.out.println(); return;}
-				
-				//Comprobación de que el producto existe en el catálogo
-				if (!Cuenta.getCatalogo().containsKey(idProducto)) {
-					System.out.println("Producto no existente, intentelo de nuevo.");
-				} 
-				else {
-					System.out.println(Cuenta.getCatalogo().get(idProducto).mostrarResenas());
-				}
-				if (!OpcionDeMenu.controlError)
-					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
-			}
-		} else {
-			System.out.println("El catálogo se ecuentra vacío.\n");
-			OpcionDeMenu.controlError = true;
-		}
 		
+	String cod = e.getActionCommand();
+    int codigo = Integer.parseInt(cod);
+		
+	String resenas =  InicializacionAplicacion.usuarioActivo.getCatalogo().get(codigo).mostrarResenas();
+	
+	JOptionPane.showMessageDialog(null, resenas,"Reseñas", JOptionPane.INFORMATION_MESSAGE);
+		
+	
 	}
+	
 	public String toString() {
 		return "Mostrar reseñas";
 	}
