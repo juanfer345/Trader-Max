@@ -75,7 +75,7 @@ public class ControlMostrarMenu extends OpcionDeMenu implements ActionListener {
 
 					//Control de ingreso de identificación de usuario
 					idUsuario = MetodosConError.controlNumero(formulario.getValue("Identificador usuario"), 
-							(int) 1, (int) Integer.MAX_VALUE, "\"Identificador usuario\"", "Por favor ingrese un número entero en el campo \"Tipo de cuenta\".");
+							(int) 1, (int) Integer.MAX_VALUE, "\"Identificador usuario\"", "Por favor ingrese un número entero en el campo \"Identificador usuario\".");
 
 				}
 				catch (ErrorAplicacion a) {

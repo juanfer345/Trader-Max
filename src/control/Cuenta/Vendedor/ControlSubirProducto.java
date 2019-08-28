@@ -82,7 +82,7 @@ public class ControlSubirProducto extends OpcionDeMenu implements ActionListener
 				String seleccion = (String) JOptionPane.showInputDialog(null, "Seleccione una categoria", "CATEGORIAS",
 						JOptionPane.QUESTION_MESSAGE, null, categorias, "Seleccione");
 				
-				byte categoria =0;
+				byte categoria = 0;
 				for (byte i = 0; i < categorias.length; i++) {
 					if(categorias[i].contentEquals(seleccion)) {
 						categoria = i;
