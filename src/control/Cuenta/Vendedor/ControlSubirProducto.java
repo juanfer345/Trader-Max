@@ -21,12 +21,13 @@ import uiMain.vista.VentanaAplicacion;
 public class ControlSubirProducto extends OpcionDeMenu implements ActionListener {
 	FieldPanel formulario;
 
+	/*
+	 * Propósito: Ejecutar el metodo subirProducto() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent arg) {
-		/*
-		   Propósito: Ejecutar el método registrarse() o hacer aparecer su formulario 
-	   				  haciendo los respectivos controles de error del ingreso de datos
-		 */
 
 		if (arg.getSource() instanceof JMenuItem) {
 			// Caso A: Se elige la opción del menú y se requiere mostrar el formulario

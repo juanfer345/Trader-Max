@@ -20,6 +20,11 @@ import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
 
 public class ControlMostrarMenuDisponible extends OpcionDeMenu implements ActionListener {
+	
+	/*
+	 * Propósito: Ejecutar el metodo mostrarMenuDisponible() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
 
 	FieldPanel formulario = null;
 

@@ -18,6 +18,10 @@ public class PanelBuscarProducto extends JFrame{
 	public JTextField texto=new JTextField();
 	public JLabel mensaje = new JLabel("Ingrese el código o el nombre");
 	
+	/*
+	 * Propósito: Se encarga de la parte visual del metodo buscarProducto()
+	 */
+
 	public PanelBuscarProducto() {
 		this.setLayout(new GridLayout(2,2));
 		add(mensaje);

@@ -22,6 +22,11 @@ public class ControlBloqueoDeCuenta extends OpcionDeMenu implements ActionListen
 
 	FieldPanel formulario = null;
 
+	/*
+	 * Propósito: Ejecutar el metodo bloqueDeCuenta() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

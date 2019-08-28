@@ -8,6 +8,11 @@ import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlMostrarCuentas extends OpcionDeMenu implements ActionListener {
+	
+	/*
+	 * Propósito: Ejecutar el metodo mostrarCuentas() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
 
 	public void actionPerformed(ActionEvent e) {
 		Administrador administrador = (Administrador) InicializacionAplicacion.usuarioActivo;

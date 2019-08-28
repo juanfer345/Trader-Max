@@ -21,15 +21,16 @@ import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlMostrarUsuario extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo mostrarUsuario() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	FieldPanel formulario = null;
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
 
-		/*
-				   Propósito: Ejecutar el método registrarse() o hacer aparecer su formulario 
-			   				  haciendo los respectivos controles de error del ingreso de datos
-		 */
+	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() instanceof JMenuItem) {
 			// Caso A: Se elige la opción del menú y se requiere mostrar el formulario

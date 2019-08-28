@@ -11,6 +11,11 @@ import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlModificarCantidad extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo modificarCantidad() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	public void actionPerformed(ActionEvent e) {
 		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;
 		String cod = e.getActionCommand();

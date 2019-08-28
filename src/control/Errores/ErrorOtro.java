@@ -1,5 +1,9 @@
 package control.Errores;
 
+/*
+ * Propósito: Otros tipos de errores
+ */
+
 public class ErrorOtro extends ErrorAplicacion {
 	
 	public ErrorOtro(String mensaje) {

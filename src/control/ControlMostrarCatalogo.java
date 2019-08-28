@@ -12,8 +12,12 @@ import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.Visitante.PanelCatalogo;
 
 
-
 public class ControlMostrarCatalogo extends OpcionDeMenu implements ActionListener {
+
+	/*
+	 * Propósito: Ejecutar el metodo mostrarCatalogo() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
 
 	String productos;
 

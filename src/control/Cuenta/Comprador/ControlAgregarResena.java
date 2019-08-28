@@ -19,6 +19,12 @@ import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
 
 public class ControlAgregarResena extends OpcionDeMenu implements ActionListener {
+	
+	/*
+	 * Propósito: Ejecutar el metodo agregarReseña() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	FieldPanel formulario;
 	@Override
 	public void actionPerformed(ActionEvent arg) {Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;

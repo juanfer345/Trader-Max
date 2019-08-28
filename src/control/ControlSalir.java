@@ -17,6 +17,11 @@ import uiMain.vista.Visitante.PanelLogin;
 
 public class ControlSalir extends OpcionDeMenu implements MouseMotionListener{
 
+	/*
+	 * Propósito: Ejecutar el metodoComunSalir() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	@Override
 	public void mouseDragged(MouseEvent arg0) {}
 

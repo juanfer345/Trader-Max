@@ -21,6 +21,12 @@ import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
 
 public class ControlMostrarMenu extends OpcionDeMenu implements ActionListener {
+	
+	/*
+	 * Propósito: Ejecutar el metodo mostrarMenu() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 
 	FieldPanel formulario = null;
 

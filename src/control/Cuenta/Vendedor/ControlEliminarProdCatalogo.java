@@ -11,6 +11,11 @@ import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlEliminarProdCatalogo extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo eliminarProductoCatalogo() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Vendedor vend = (Vendedor) InicializacionAplicacion.usuarioActivo;

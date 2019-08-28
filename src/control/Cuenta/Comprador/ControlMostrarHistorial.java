@@ -16,6 +16,11 @@ import uiMain.vista.Cuenta.Comprador.PanelMostrarHistorial;
 
 public class ControlMostrarHistorial extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo mostrarHistorial() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
