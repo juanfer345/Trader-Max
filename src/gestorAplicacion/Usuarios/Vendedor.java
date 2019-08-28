@@ -160,25 +160,22 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 		   -String: Un mensaje que indica lo que sucedio con el proceso
 		 */
 		
-		Producto prod = null;
-		
-		// Comprobar que el producto este en el catalogo
-		if (catalogo.containsKey(codigoProducto)) {
+		Producto prod = catalogo.get(codigoProducto);
+		if (operador == 1) {
+			//Sumando la cantidad
+			prod.setCantidad(prod.getCantidad() + cantidad);
+			return "Se aumentó la cantidad del producto \"" + prod.getNombreProducto() + "\". Nueva cantidad: " + prod.getCantidad() + "\n";
+		}
+		else {
+			//Disminuyendo la cantidad
 
-			prod = catalogo.get(codigoProducto);
-
-			//Comprobar que el vendedor es dueño del producto
-			if (prod.getVendedor().equals(this)) {
-				//Sumando la cantidad
-				prod.setCantidad(prod.getCantidad() + cantidad);
-				OpcionDeMenu.controlError = true;
-				return "Se modificó la cantidad del producto \"" + prod.getNombreProducto() + "\". Nueva cantidad: " + prod.getCantidad();
+			//Condicional para cantidades resultantes negativas
+			if (prod.getCantidad() - cantidad >= 0) {
+				prod.setCantidad(prod.getCantidad() - cantidad);
+				return "Se redujo la cantidad del producto \"" + prod.getNombreProducto() + "\". Nueva cantidad: " + prod.getCantidad() + "\n";
+			} else {
+				return "No se puede";
 			}
-			else {
-				return "\nUsted no es propietario de este producto.";
-			}
-		} else {
-			return "\nProducto no encontrado, no se puede cambiar su cantidad.";
 		}
 	}
 

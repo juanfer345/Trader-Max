@@ -52,7 +52,7 @@ public class PanelCatalogo extends JFrame {
 		panel2.setLayout(new GridLayout(2, 1, 10, 10));
 		panel2.add(titulo);
 		panel2.add(descripcion);
-		
+
 		HashMap<Integer, Producto> Catalogo = InicializacionAplicacion.usuarioActivo.getCatalogo();
 		String nombre_boton1 = "Ver Reseñas";
 		String nombre_boton2 = "Agregar a Carrito";
@@ -71,7 +71,7 @@ public class PanelCatalogo extends JFrame {
 			JButton boton1 = new JButton(nombre_boton1);
 			boton1.addActionListener(new ControlMostrarResenas());
 			boton1.setActionCommand(cod);
-			
+
 			JButton boton2 = new JButton(nombre_boton2);
 			boton2.setActionCommand(cod);
 			boton2.addActionListener(new ControlAgregarACarrito());

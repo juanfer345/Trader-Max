@@ -62,21 +62,32 @@ public class ControlSubirProducto extends OpcionDeMenu implements ActionListener
 
 					// Control de ingreso de precio
 					precioIngresado = MetodosConError.controlNumero(formulario.getValue("Precio"), 1, Double.MAX_VALUE, 
-							"\"Cedula\"", "Por favor ingrese una cédula válida");
+							"\"Cedula\"", "Por favor ingrese un precio válido");
 
 					// Control de ingreso de cantidad
-					cantidadIngresada = MetodosConError.controlNumero(formulario.getValue("Precio"), 1, Integer.MAX_VALUE, 
-							"\"Cedula\"", "Por favor ingrese una cédula válida");
+					cantidadIngresada = MetodosConError.controlNumero(formulario.getValue("Cantidad"), 1, Integer.MAX_VALUE, 
+							"\"Cedula\"", "Por favor ingrese una cantidad válida");
 				}
 				catch (ErrorAplicacion e) {
 					JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
+				String categorias[] = { "Belleza", "Vehículos", "Deportes", "Electrodomésticos", "Hogar", "Juegos", "Libros",
+						"Música", "Tecnología", "Vestimenta", "Vivienda" };
+				String seleccion = (String) JOptionPane.showInputDialog(null, "Seleccione una categoria", "CATEGORIAS",
+						JOptionPane.QUESTION_MESSAGE, null, categorias, "Seleccione");
 				
+				byte categoria =0;
+				for (byte i = 0; i < categorias.length; i++) {
+					if(categorias[i].contentEquals(seleccion)) {
+						categoria = i;
+					}
+				}
+				categoria++;
 				// Ejecución e impresión del método
-//				JOptionPane.showMessageDialog(
-//						null, usuario.registrarse(tipoDeCuenta, nombreIngresado, correoIngresado, cedulaIngresada, contrasenaIngresada), 
-//						"Notificación", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(
+					null, usuario.subirProducto(nombreIngresado, categoria, precioIngresado, cantidadIngresada), 
+					"Notificación", JOptionPane.INFORMATION_MESSAGE);
 				
 				//Volviendo al panel principal
 				

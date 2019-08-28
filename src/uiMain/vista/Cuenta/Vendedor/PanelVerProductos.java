@@ -51,7 +51,7 @@ public class PanelVerProductos extends JFrame {
 		
 		HashMap<Integer, Producto> productos = usuario.verProductos();
 		String nombreBoton1 = "Cambiar precio";
-		String nombreBoton2 = "Cambiar cantidad";
+		String nombreBoton2 = "Modificar cantidad";
 		String nombreBoton3 = "Eliminar";
 		String nombreBoton4 = "Ver reseñas";
 		String [] nombreColumnas = {"Codigo", "Nombre","Categoría", "Precio", "Cantidad", "N°Reseñas",nombreBoton1,nombreBoton2,nombreBoton3,nombreBoton4};
@@ -98,10 +98,16 @@ public class PanelVerProductos extends JFrame {
 	    tabla.getColumn(nombreBoton4).setCellRenderer(buttonRenderer);	    
 	    tabla.addMouseListener(new tablaBotonOidorMouse(tabla));
 	    
+	    JLabel nota = new JLabel("NOTA: Para ver los cambios realizados dirijase de nuevo a la opcion de menú (Ver Productos)");
+	    nota.setHorizontalAlignment(SwingConstants.CENTER);
+	    Font x = nota.getFont();
+		nota.setFont(new Font(x.getFontName(), x.getStyle(), 12));
+		
 		JScrollPane scrollPane = new JScrollPane(tabla);
 		this.setMinimumSize(new Dimension(1100, 300)); 
 		panel.add(scrollPane, BorderLayout.CENTER);
 		panel.add(panel2, BorderLayout.NORTH);
+		panel.add(nota, BorderLayout.SOUTH);
 
 	}
 	public void lanzar() {
