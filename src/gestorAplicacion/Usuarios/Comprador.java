@@ -137,12 +137,12 @@ public class Comprador extends CuentaConBanco {
 		return sb.toString();
 	}
 
-	public String borrarHistorial() {
+	public  void borrarHistorial() {
 		/*
 		 Propósito: Borrar el historial de compras del usuario
 		 */
 		historial.clear();
-		return "\nEl historial se ha borrado exitosamente.\n";
+		return;
 	}
 
 	public String anadirResena(int codigo, int estrellas, String comentario) {
@@ -158,18 +158,15 @@ public class Comprador extends CuentaConBanco {
 		 */
 		
 		//Comprobación de que el producto ya fue comprado
-		if (historial.containsKey(codigo)) {
+		
 
 			Producto prod = catalogo.get(codigo);								//Obtención del apuntador al producto
 			Resena rese = new Resena(this, comentario, estrellas);				//Creación nueva reseña
 			prod.setResenas(rese);												//Añadido de la reseña al producto
 			InicializacionAplicacion.getBDResenas().put(rese.getId(), rese);	//Añadido de las reseñas en la base de datos
-			OpcionDeMenu.controlError = true;
-			return "La reseña del producto \"" + prod.getNombreProducto() + "\" ha sido añadida.\n";
-		} 
-		else {
-			return "No has comprado el producto identificado con este código, no puedes añadir una reseña.\n";
-		}
+			return "La reseña del producto ha sido añadida";
+		
+		
 	}
 
 	@Override

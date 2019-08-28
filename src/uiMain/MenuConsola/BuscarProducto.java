@@ -76,5 +76,5 @@ public class BuscarProducto {
 //	}
 //
 //	@Override
-//	public String toString() {return "Buscar producto";}
+	public String toString() {return "Buscar producto";}
 }
