@@ -1,4 +1,4 @@
-1;comp1;comp1@comp1.com;comp1;75;true;1;1,1;3,4,5,6,10,9,12,13,7,11,27,28,8
+1;comp1;comp1@comp1.com;comp1;75;false;1;1,1;3,4,5,6,10,9,12,13,7,11,27,28,8,2
 4;comp2;comp2@comp2.com;comp2;789;true;3;2,5;2,3,4,5,6,10,9,12,13,11,8,27,28
 6;compVend;compV@compV.com;compV;123;false;5;#;2,3,4,5,6,10,9,12,13,7,11,8,27,28
 8;comp3;comp3@comp3.com;comp3;7851;true;6;2,20;2,3,4,5,10,9,12,13,8,27,28,11
