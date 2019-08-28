@@ -12,6 +12,7 @@ import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.Visitante.PanelCatalogo;
 
 
+
 public class ControlMostrarCatalogo extends OpcionDeMenu implements ActionListener {
 
 	String productos;
