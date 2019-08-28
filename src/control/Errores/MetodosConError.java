@@ -109,6 +109,9 @@ public class MetodosConError {
 
 		try {
 			Long.parseLong(entrada);
+			throw new ErrorGenerico ("Se está ingresando un número en lugar de un correo.");
+		}
+		catch (NumberFormatException e) {
 
 			// Condicional de que el correo contiene una @ y un .
 			if (entrada.contains("@") && entrada.contains(".")) {
@@ -122,9 +125,6 @@ public class MetodosConError {
 					}
 				}
 			}
-		}
-		catch (NumberFormatException e) {
-			throw new ErrorGenerico ("Se está ingresando un número en lugar de un correo.");
 		}
 		
 		// Resultado según nombreCampo
@@ -183,7 +183,7 @@ public class MetodosConError {
 	}
 
 	public static void errorSinCuentas(int numero, String mensaje) throws ErrorSinCuentas {
-		if (numero == 0) {
+		if (numero == 1) {
 			throw new ErrorSinCuentas(mensaje);
 		}
 	}

@@ -78,9 +78,9 @@ public class ControlAgregarOpcion extends OpcionDeMenu implements ActionListener
 					idUsuario = MetodosConError.controlNumero(formulario.getValue("Identificador usuario"), 
 							(int) 1, (int) Integer.MAX_VALUE, "\"Identificador usuario\"", "Por favor ingrese un número entero en el campo \"Tipo de cuenta\".");
 
-					// Control de eliminación a la misma cuenta
+					// Control de agregación a la misma cuenta
 					if (idUsuario == usuario.getId() && tipoDeCuenta == 3) {
-						throw new ErrorOtro("No es permitido que elimines opciones de tu propia cuenta, ingresa otra identificación.");
+						throw new ErrorOtro("No es permitido que añadas opciones de tu propia cuenta, ingresa otra identificación.");
 					}
 
 				}
@@ -96,7 +96,6 @@ public class ControlAgregarOpcion extends OpcionDeMenu implements ActionListener
 				if (controlError) {
 					controlError = false;
 					//Mostrado de las opciones disponibles a agregar
-
 					auxiliar = usuario.getMenuDeConsola().comprobarCantidadOpciones(idUsuario, tipoDeCuenta, (byte) 1);
 
 					if (!auxiliar.equals("")) {
@@ -140,6 +139,7 @@ public class ControlAgregarOpcion extends OpcionDeMenu implements ActionListener
 			}
 		}
 		VentanaAplicacion.organizar();
+		controlError = false;
 	}
 
 	public String toString() {

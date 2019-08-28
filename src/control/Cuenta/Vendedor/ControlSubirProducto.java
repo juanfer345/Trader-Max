@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 import control.Errores.ErrorAplicacion;
 import control.Errores.MetodosConError;
@@ -33,12 +34,16 @@ public class ControlSubirProducto extends OpcionDeMenu implements ActionListener
 
 			//Remoción de los elementos del panel
 			VentanaAplicacion.panelPrincipal.removeAll();
+			//Añadiendo los nuevos elementos para la ventana de usuario
+			PanelUsuario panelresultados = new PanelUsuario();
+			panelresultados.panelCambiante.removeAll();
 
 			//Añadiendo los nuevos elementos para la ventana de usuario
-			VentanaAplicacion.panelPrincipal.add(formulario = new FieldPanel("Datos",
+			panelresultados.panelCambiante.add(formulario = new FieldPanel("Datos",
 					new String[] { "Nombre del producto", "Precio",	"Cantidad"},
 					"Valor", new String[] { null, null, null},
 					new boolean[] { true, true, true}));
+			VentanaAplicacion.panelPrincipal.add(panelresultados, SwingConstants.CENTER);
 
 			//Añadiendo los oidores a los botones
 			formulario.boton_acep.addActionListener(this);

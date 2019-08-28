@@ -33,6 +33,7 @@ public class ControlMostrarHistorial extends OpcionDeMenu implements ActionListe
 		panelresultados.panelCambiante.add(historial);
 		VentanaAplicacion.panelPrincipal.add(panelresultados, SwingConstants.CENTER);
 		historial.asignarOyente();
+		
 	VentanaAplicacion.organizar();
 }
 	
