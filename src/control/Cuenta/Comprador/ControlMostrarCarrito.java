@@ -98,7 +98,7 @@ public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListene
 //			
 
 		}
-		//VentanaAplicacion.organizar();
+		VentanaAplicacion.organizar();
 	}
 	@Override
 	public String toString() {
