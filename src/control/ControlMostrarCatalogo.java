@@ -10,7 +10,6 @@ import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.Visitante.PanelCatalogo;
-import uiMain.vista.Visitante.VentanaCatalogo;
 
 
 

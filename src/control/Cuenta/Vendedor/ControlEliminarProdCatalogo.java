@@ -27,9 +27,9 @@ public class ControlEliminarProdCatalogo extends OpcionDeMenu implements ActionL
 												JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 		
 		if (JOptionPane.OK_OPTION == resp) {
-			JOptionPane.showMessageDialog(null, "El producto se ha borrado exitosamente",
+			JOptionPane.showMessageDialog(null, vend.eliminarProductoCatalogo(codigo),
 					"Notificación", JOptionPane.INFORMATION_MESSAGE);
-			vend.eliminarProductoCatalogo(codigo);
+			;
 			
 		}
 		
