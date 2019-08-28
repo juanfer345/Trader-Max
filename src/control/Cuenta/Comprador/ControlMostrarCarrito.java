@@ -60,8 +60,7 @@ public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListene
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}
-			else if(arg.getActionCommand().equals("Quitar")){ 
-			if(CarritoDeCompras.getProductos().)
+			else { 			
 				Comprador comprad = (Comprador) InicializacionAplicacion.usuarioActivo;
 				String cod = arg.getActionCommand();
 				int codigo = Integer.parseInt(cod);
