@@ -119,7 +119,7 @@ public class ControlEliminarOpcion extends OpcionDeMenu implements ActionListene
 					opciones[i - 1] = Byte.toString(i);
 				}
 
-				opcionUsuario = (String) JOptionPane.showInputDialog(null, "Seleccione una opción", "Opcion a eliminar",
+				opcionUsuario = (String) JOptionPane.showInputDialog(null, "Seleccione una opción", "Opción a eliminar",
 						JOptionPane.QUESTION_MESSAGE, null, opciones, "Seleccione");
 
 				//Ejecución del método principal
@@ -145,6 +145,7 @@ public class ControlEliminarOpcion extends OpcionDeMenu implements ActionListene
 			}
 		}
 		VentanaAplicacion.organizar();
+		controlError = false;
 	}
 
 	public String toString() {

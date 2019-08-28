@@ -113,7 +113,7 @@ public class ControlAgregarOpcion extends OpcionDeMenu implements ActionListener
 					opciones[i - 1] = Byte.toString(i);
 				}
 
-				opcionUsuario = (String) JOptionPane.showInputDialog(null, "Seleccione una opción", "Opcion a agregar",
+				opcionUsuario = (String) JOptionPane.showInputDialog(null, "Seleccione una opción", "Opción a agregar",
 						JOptionPane.QUESTION_MESSAGE, null, opciones, "Seleccione");
 
 				//Ejecución del método principal

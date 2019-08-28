@@ -8,7 +8,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import control.Errores.ErrorAplicacion;
-import control.Errores.ErrorTipodeDato;
 import control.Errores.MetodosConError;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Visitante;

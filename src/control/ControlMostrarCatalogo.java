@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
+import uiMain.vista.VentanaAplicacion;
 import uiMain.vista.Visitante.PanelCatalogo;
 
 
@@ -45,7 +46,8 @@ public class ControlMostrarCatalogo extends OpcionDeMenu implements ActionListen
 						JOptionPane.WARNING_MESSAGE);
 			}
 		}
-
+		VentanaAplicacion.organizar();
+		controlError = false;
 	}
 
 	public String toString() {
