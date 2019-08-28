@@ -41,18 +41,28 @@ public class PanelMostrarCarrito extends JPanel {
 		botones.setLayout(new FlowLayout());
 		botones.add(boton_comprar);
 		botones.add(boton_vac);
+
 		TablaCarrito tabla = new TablaCarrito();
 		this.add(botones, BorderLayout.NORTH);
 
 		this.add(tabla);
 
+
+		this.add(botones, BorderLayout.SOUTH);
+
+		this.add(new TablaCarrito());
+		
+
+
 	}
 	
 	public void asignarOyente() {
+
 		// Declaración del oyente
 		ControlComprarProductos oidor = new ControlComprarProductos();
 		boton_comprar.addActionListener(oidor);
 		boton_vac.addActionListener(new ControlMostrarCarrito());
+
 		
 	}
 }

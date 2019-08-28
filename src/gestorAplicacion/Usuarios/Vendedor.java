@@ -219,6 +219,7 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 			if (prod.getVendedor().equals(this)) {
 				
 				catalogo.remove(codigoProducto);
+				misProductos.remove(codigoProducto);
 				totalDeProductosSubidos --;
 				OpcionDeMenu.controlError = true;
 				return "Se ha eliminado el producto \"" + prod.getNombreProducto() + "\" del catálogo\n";
