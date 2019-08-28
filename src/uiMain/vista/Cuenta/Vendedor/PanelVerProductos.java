@@ -51,7 +51,7 @@ public class PanelVerProductos extends JFrame {
 		
 		HashMap<Integer, Producto> productos = usuario.verProductos();
 		String nombreBoton1 = "Cambiar precio";
-		String nombreBoton2 = "Cambiar cantidad";
+		String nombreBoton2 = "Modificar cantidad";
 		String nombreBoton3 = "Eliminar";
 		String nombreBoton4 = "Ver reseñas";
 		String [] nombreColumnas = {"Codigo", "Nombre","Categoría", "Precio", "Cantidad", "N°Reseñas",nombreBoton1,nombreBoton2,nombreBoton3,nombreBoton4};
