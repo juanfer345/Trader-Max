@@ -160,7 +160,7 @@ public class Comprador extends CuentaConBanco {
 		//Comprobación de que el producto ya fue comprado
 		
 
-			Producto prod = catalogo.get(codigo);								//Obtención del apuntador al producto
+			Producto prod = Cuenta.getCatalogo().get(codigo); 							//Obtención del apuntador al producto
 			Resena rese = new Resena(this, comentario, estrellas);				//Creación nueva reseña
 			prod.setResenas(rese);												//Añadido de la reseña al producto
 			InicializacionAplicacion.getBDResenas().put(rese.getId(), rese);	//Añadido de las reseñas en la base de datos

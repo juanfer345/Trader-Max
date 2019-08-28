@@ -28,7 +28,7 @@ public class ControlBorrarHistorial extends OpcionDeMenu implements ActionListen
 		
 		if (!comp.getHistorial().isEmpty()) {
 			int resp = JOptionPane.showOptionDialog(null, "¿Está seguro que desea quitar el producto?",
-				"Quitar Producto de Carrito", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones,
+				"Quitar Producto de Historial", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones,
 				opciones[0]);
 		if (JOptionPane.OK_OPTION == resp) {	
 			
@@ -45,7 +45,7 @@ public class ControlBorrarHistorial extends OpcionDeMenu implements ActionListen
 			
 		} }
 		else {
-			JOptionPane.showMessageDialog(null, "El catálogo se encuentra vacío", "Advertencia",
+			JOptionPane.showMessageDialog(null, "El Historial se encuentra vacío", "Advertencia",
 					JOptionPane.WARNING_MESSAGE);
 		}
 		VentanaAplicacion.organizar();
