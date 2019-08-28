@@ -1,5 +1,5 @@
 1;PlayStation 2;Juegos;200000.0;0;10;1
-2;Peliculas PlayStation 2;Juegos;1000.0;45;10;#
+2;Peliculas PlayStation 2;Juegos;1000.0;25;10;#
 3;Libro Original Game of thrones;Libros;100000.0;1;6;#
 4;Mesa de Madera;Vivienda;450000.0;6;6;#
 5;Jugo;Juegos;2000.0;5;6;#

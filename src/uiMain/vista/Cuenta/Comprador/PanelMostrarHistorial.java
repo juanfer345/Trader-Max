@@ -28,10 +28,6 @@ public class PanelMostrarHistorial extends JPanel{
 		this.add(tabla);
 		this.add(botones, BorderLayout.SOUTH);
 
-		
-		
-
-
 	}
 	
 	public void asignarOyente() {
