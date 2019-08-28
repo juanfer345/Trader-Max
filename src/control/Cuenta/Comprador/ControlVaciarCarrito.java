@@ -9,6 +9,11 @@ import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlVaciarCarrito extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo vaciarCarrito() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		byte seleccion=0;

@@ -9,6 +9,10 @@ import uiMain.InicializacionAplicacion;
 
 public class ControlInformacionUsuario implements ActionListener {
 
+	/*
+	 * Propósito: Da información de la cuenta
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent arg) {
 		JOptionPane.showMessageDialog(null, InicializacionAplicacion.usuarioActivo.toString(),

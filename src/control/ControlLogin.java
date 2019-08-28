@@ -16,6 +16,11 @@ import uiMain.vista.VentanaAplicacion;
 import uiMain.vista.Visitante.PanelLogin;
 
 public class ControlLogin implements MouseMotionListener, ActionListener {
+	
+	/*
+	 * Propósito: Controla la ventana inicial de la aplicación
+	 * y sus componentes
+	 */
 
 	PanelLogin panel = (PanelLogin) VentanaAplicacion.panelPrincipal.getComponent(0);
 	int contadorFotos = 2;

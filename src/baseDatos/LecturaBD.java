@@ -30,7 +30,7 @@ public class LecturaBD {
     private static BufferedReader br = null;
     private static String BDactual;
     private static int maxID = 0;
-    private static boolean cnConfirmacion = true;
+    private static boolean cnConfirmacion = false;
     
 	public void PrincipalLecturaBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCat, 
 										  String BDProd, String BDRes) {

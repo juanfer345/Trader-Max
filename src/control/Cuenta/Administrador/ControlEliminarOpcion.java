@@ -22,6 +22,11 @@ import uiMain.vista.VentanaAplicacion;
 
 public class ControlEliminarOpcion extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo eliminarOpcion() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	FieldPanel formulario = null;
 
 	@Override
@@ -76,7 +81,7 @@ public class ControlEliminarOpcion extends OpcionDeMenu implements ActionListene
 
 					//Control de ingreso de identificación de usuario
 					idUsuario = MetodosConError.controlNumero(formulario.getValue("Identificador usuario"), 
-							(int) 1, (int) Integer.MAX_VALUE, "\"Identificador usuario\"", "Por favor ingrese un número entero en el campo \"Tipo de cuenta\".");
+							(int) 1, (int) Integer.MAX_VALUE, "\"Identificador usuario\"", "Por favor ingrese un número entero en el campo \"Identificador usuario\".");
 
 					// Control de eliminación a la misma cuenta
 					if (idUsuario == usuario.getId() && tipoDeCuenta == 3) {

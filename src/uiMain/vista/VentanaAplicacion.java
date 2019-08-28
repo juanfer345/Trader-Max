@@ -33,6 +33,10 @@ import uiMain.vista.Visitante.PanelLogin;
 
 public class VentanaAplicacion extends JFrame {
 
+	/*
+	 * Propósito: Se encarga de la ventana de la Aplicacion
+	 */
+	
 	public static JFrame ventana;
 	public static Container panelPrincipal;
 	public static JMenuBar barraMenu = new JMenuBar();

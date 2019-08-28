@@ -17,6 +17,11 @@ import uiMain.vista.PanelBuscarProducto;
 public class ControlBuscarProducto extends OpcionDeMenu implements ActionListener{
 	PanelBuscarProducto buscarprod;
 	String resultado;
+	
+	/*
+	 * Propósito: Ejecutar el metodo buscarProducto() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent arg) {

@@ -183,7 +183,7 @@ public class MetodosConError {
 	}
 
 	public static void errorSinCuentas(int numero, String mensaje) throws ErrorSinCuentas {
-		if (numero == 0) {
+		if (numero == 1) {
 			throw new ErrorSinCuentas(mensaje);
 		}
 	}

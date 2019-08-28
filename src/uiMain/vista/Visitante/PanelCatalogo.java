@@ -31,6 +31,10 @@ import uiMain.vista.tabla.tablaBotonRenderizador;
 import uiMain.vista.tabla.tablaModelo;
 
 public class PanelCatalogo extends JFrame {
+	
+	/*
+	 * Propósito: Se encarga de la parte visual del Catalogo
+	 */
 
 	JTable tabla;
 

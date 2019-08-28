@@ -14,6 +14,11 @@ import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlQuitarProductoCarrito extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo quitarProducto() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

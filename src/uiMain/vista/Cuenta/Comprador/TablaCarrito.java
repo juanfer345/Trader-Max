@@ -21,6 +21,10 @@ import uiMain.vista.tabla.tablaModelo;
 
 public class TablaCarrito extends JPanel {
 	
+	/*
+	 * Propósito: Se encarga de la parte visual de la tabla del carrito de comprador
+	 */
+	
 	JTable table;
 	public TablaCarrito(){
 		HashMap<Integer, Integer> carrito = CarritoDeCompras.getProductos();

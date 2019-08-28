@@ -17,6 +17,11 @@ import uiMain.vista.Visitante.PanelLogin;
 
 public class ControlInicioSesion extends OpcionDeMenu implements ActionListener {
 		
+	/*
+	 * Propósito: Ejecutar el metodo iniciarSesion() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent arg) {
 		
