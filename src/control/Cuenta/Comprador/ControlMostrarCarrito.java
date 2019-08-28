@@ -5,12 +5,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.io.IOException;
 
+import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
+import control.ErrorAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
+import gestorAplicacion.Usuarios.Comprador;
+import gestorAplicacion.Usuarios.Vendedor;
+import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.PanelUsuario;
 import uiMain.vista.VentanaAplicacion;
@@ -31,12 +37,50 @@ public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListene
 			PanelUsuario panelresultados= new PanelUsuario();
 			panelresultados.panelCambiante.removeAll();
 			panelresultados.panelCambiante.setLayout(new BorderLayout());
-			panelresultados.panelCambiante.add(new PanelMostrarCarrito());
+			PanelMostrarCarrito carrito = new PanelMostrarCarrito();
+			panelresultados.panelCambiante.add(carrito);
 			VentanaAplicacion.panelPrincipal.add(panelresultados, SwingConstants.CENTER);
+			carrito.asignarOyente();
 
 			// Añadiendo los nuevos elementos para la ventana de usuario
 		}
-		VentanaAplicacion.organizar();
+		else if (arg.getSource() instanceof JButton) {
+			if (arg.getActionCommand().equals("Vaciar carrito")){
+				if (CarritoDeCompras.getProductos().size()>0) {				
+				CarritoDeCompras.vaciarCarrito();
+				VentanaAplicacion.panelPrincipal.removeAll();
+				PanelUsuario panelresultados= new PanelUsuario();
+				panelresultados.panelCambiante.removeAll();
+				panelresultados.panelCambiante.setLayout(new BorderLayout());
+				panelresultados.panelCambiante.add(new PanelMostrarCarrito());
+				VentanaAplicacion.panelPrincipal.add(panelresultados, SwingConstants.CENTER);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "El Carrito se encuentra vacío", "Advertencia",
+							JOptionPane.WARNING_MESSAGE);
+				}
+			}
+			//else if(arg.getActionCommand().equals("Quitar")){ 
+//			if(CarritoDeCompras.getProductos().)
+//				Comprador comprad = (Comprador) InicializacionAplicacion.usuarioActivo;
+//				String cod = arg.getActionCommand();
+//				int codigo = Integer.parseInt(cod);
+//		        String cantidad = JOptionPane.showInputDialog(null, "Cantidad que desea quitar:");
+//		        int cant = 0;
+//		    	try {
+//					cant = ErrorAplicacion.controlEntero((cantidad), 1, Integer.MAX_VALUE, "Cantidad", "Por favor ingrese la cantidad a quitar");
+//				}
+//				catch (IOException e1) {
+//					JOptionPane.showMessageDialog(
+//							null, "Manejo de errores de la Aplicación: " + e1.getMessage(), 
+//							"Error", JOptionPane.ERROR_MESSAGE);
+//					return;
+//				}
+//		        CarritoDeCompras. quitarProducto(codigo, cant);
+//			}
+//			
+		}
+		//VentanaAplicacion.organizar();
 	}
 	@Override
 	public String toString() {
