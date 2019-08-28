@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class PanelAgregarACarrito extends JPanel {
+	/*
+	 * Propósito: Se encarga de la parte visual del metodo agregarACarrito()
+	 */
 	
 	public JButton agregar = new JButton("Agregar Producto");
 	public JTextField text = new JTextField();

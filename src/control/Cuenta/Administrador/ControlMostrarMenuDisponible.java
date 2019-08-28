@@ -8,6 +8,11 @@ import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlMostrarMenuDisponible extends OpcionDeMenu implements ActionListener {
+	
+	/*
+	 * Propósito: Ejecutar el metodo mostrarMenuDisponible() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
 
 	public void actionPerformed(ActionEvent e) {
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;

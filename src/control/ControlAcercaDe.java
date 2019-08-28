@@ -6,6 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 public class ControlAcercaDe implements ActionListener {
+	
+	/*
+	 * Propósito: Da información acerca de los autores de la aplicación
+	 * (Sus nombres)
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

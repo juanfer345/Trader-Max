@@ -11,6 +11,11 @@ import control.ControlMostrarResenas;
 
 public class ControlMostrarResenas extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo mostrarResenas() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

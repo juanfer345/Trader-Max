@@ -22,6 +22,10 @@ import uiMain.vista.tabla.tablaModelo;
 
 public class tablaHistorial extends JPanel {
 	
+	/*
+	 * Propósito: Se encarga de la parte visual del historail de la tabla de carrito
+	 */
+	
 	JTable table;
 	public tablaHistorial(){
 		Comprador auxComp = (Comprador)InicializacionAplicacion.usuarioActivo;

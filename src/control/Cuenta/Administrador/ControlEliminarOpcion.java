@@ -22,6 +22,11 @@ import uiMain.vista.VentanaAplicacion;
 
 public class ControlEliminarOpcion extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo eliminarOpcion() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	FieldPanel formulario = null;
 
 	@Override

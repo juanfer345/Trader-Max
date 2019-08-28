@@ -16,6 +16,11 @@ import uiMain.vista.Visitante.PanelBuscarCategoria;
 
 public class ControlMostrarPorCategoria extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo mostrarPorCategoria() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

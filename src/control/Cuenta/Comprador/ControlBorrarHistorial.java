@@ -10,6 +10,11 @@ import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlBorrarHistorial extends OpcionDeMenu implements ActionListener {//OpcionDeMenu.controlError
 
+	/*
+	 * Propósito: Ejecutar el metodo borrarHistorial() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;

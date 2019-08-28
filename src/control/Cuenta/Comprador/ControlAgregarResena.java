@@ -9,6 +9,11 @@ import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlAgregarResena extends OpcionDeMenu implements ActionListener {
+	
+	/*
+	 * Propósito: Ejecutar el metodo agregarReseña() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {Comprador comp = (Comprador) InicializacionAplicacion.usuarioActivo;

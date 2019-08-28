@@ -27,6 +27,11 @@ public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListene
 
 	public void mouseMoved(MouseEvent arg) {
 	}
+	
+	/*
+	 * Propósito: Ejecutar el metodo mostrarCarrito() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
 
 	@Override
 

@@ -29,6 +29,10 @@ import uiMain.vista.tabla.tablaModelo;
 
 public class PanelVerProductos extends JFrame {
 	
+	/*
+	 * Propósito: Se encarga de la parte visual del metodo verProductos()
+	 */
+	
 	Vendedor usuario = (Vendedor) InicializacionAplicacion.usuarioActivo;
 	JTable tabla;
 	

@@ -10,6 +10,11 @@ import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlBloqueoDeCuenta extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo bloqueDeCuenta() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	public void actionPerformed(ActionEvent e) {
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
 		int idCuenta;

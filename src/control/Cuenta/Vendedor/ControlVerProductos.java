@@ -12,6 +12,11 @@ import uiMain.vista.Cuenta.Vendedor.PanelVerProductos;
 
 public class ControlVerProductos extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo verProductos() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

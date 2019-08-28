@@ -7,6 +7,11 @@ import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlMostrarTodasLasOpciones extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo ImprimirTodasLasOpciones() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	public void actionPerformed(ActionEvent e) {
 		
 		byte seleccion=0;

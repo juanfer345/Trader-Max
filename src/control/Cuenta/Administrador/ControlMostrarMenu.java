@@ -9,6 +9,12 @@ import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlMostrarMenu extends OpcionDeMenu implements ActionListener {
+	
+	/*
+	 * Propósito: Ejecutar el metodo mostrarMenu() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	public void actionPerformed(ActionEvent e) {
 		
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;

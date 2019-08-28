@@ -12,6 +12,10 @@ import control.Cuenta.Comprador.ControlComprarProductos;
 import control.Cuenta.Comprador.ControlMostrarCarrito;
 
 public class PanelMostrarHistorial extends JPanel{
+	
+	/*
+	 * Propósito: Se encarga de la parte visual del metodo mostrarHistorial()
+	 */
 
 	public JButton boton_borrar = new JButton("Borrar Historial");
 	JTable table;

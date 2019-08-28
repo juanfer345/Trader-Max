@@ -12,6 +12,11 @@ import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlMostrarUsuario extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo mostrarUsuario() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	public void actionPerformed(ActionEvent e) {
 		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
 		int idCuenta;
