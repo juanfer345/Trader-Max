@@ -83,10 +83,8 @@ public abstract class OpcionDeMenu implements ActionListener {
      
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("\nA continuación se muestran todas las opciones de menú existentes:\n");
-		sb.append("\n" + "|-------------------------Inicio menú--------------------------|" + "\n\n");
+		sb.append("A continuación se muestran todas las opciones de menú existentes:\n\n");
 		sb.append(MenuDeConsola.prepararMenuImpresion(getTodasLasOpciones()));
-		sb.append("\n" + "|--------------------------Fin menú----------------------------|" + "\n");
 
 		return sb.toString();
 	}

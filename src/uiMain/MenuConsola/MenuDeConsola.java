@@ -77,9 +77,7 @@ public class MenuDeConsola {
 		}
 
 		sb.append("\nA continuación se muestran todas las opciones de menú disponibles para los usuarios de tipo " + cuenta + ":\n");
-		sb.append("\n" + "|-------------------------Inicio menú--------------------------|" + "\n\n");
 		sb.append(menu);
-		sb.append("\n" + "|--------------------------Fin menú----------------------------|" + "\n");
 		return sb.toString();
 	}
 	
