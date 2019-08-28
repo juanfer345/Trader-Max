@@ -1,5 +1,6 @@
 package uiMain.vista.Cuenta.Comprador;
 
+import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,8 +49,9 @@ public class TablaCarrito extends JPanel {
 	TableCellRenderer buttonRenderer = new tablaBotonRenderizador();
     table.getColumn(nombreBoton).setCellRenderer(buttonRenderer);
     table.addMouseListener(new tablaBotonOidorMouse(table));
-    
+    this.setPreferredSize(new Dimension(500, 300));
 	JScrollPane scrollPane = new JScrollPane(table);
 	add(scrollPane);
 	}
+	
 }
