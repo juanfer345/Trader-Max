@@ -16,6 +16,7 @@ import control.ControlMostrarResenas;
 import control.ControlSalir;
 import control.Cuenta.Comprador.ControlAgregarACarrito;
 import control.Cuenta.Comprador.ControlAgregarResena;
+import control.Cuenta.Comprador.ControlBorrarHistorial;
 import control.Cuenta.Comprador.ControlComprarProductos;
 import control.Cuenta.Comprador.ControlQuitarProductoCarrito;
 import control.Cuenta.Comprador.ControlVaciarCarrito;
@@ -133,7 +134,7 @@ public class VentanaAplicacion extends JFrame {
 			opcionesNoMostrables = new OpcionDeMenu[] {
 				new ControlMostrarResenas(), new ControlAgregarACarrito(), new ControlComprarProductos(), 
 				new ControlQuitarProductoCarrito(), new ControlVaciarCarrito(), new ControlAgregarResena(), 
-				new ControlCerrarSesion(), new ControlSalir()
+				new ControlBorrarHistorial(),new ControlCerrarSesion(), new ControlSalir()
 			};
 		}
 		else if (usuario instanceof Vendedor) {
