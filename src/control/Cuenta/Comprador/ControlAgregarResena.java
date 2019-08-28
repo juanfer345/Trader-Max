@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 import control.Errores.ErrorAplicacion;
 import control.Errores.MetodosConError;
@@ -39,17 +40,20 @@ public class ControlAgregarResena extends OpcionDeMenu implements ActionListener
 		idProducto=arg.getActionCommand();
 		// Caso A: Se elige la opción del menú y se requiere mostrar el formulario
 
-		//Remoción de los elementos del panel
-		VentanaAplicacion.panelPrincipal.removeAll();
+					//Remoción de los elementos del panel
+					VentanaAplicacion.panelPrincipal.removeAll();
+					//Añadiendo los nuevos elementos para la ventana de usuario
+					PanelUsuario panelresultados = new PanelUsuario();
+					panelresultados.panelCambiante.removeAll();
 
-		//Añadiendo los nuevos elementos para la ventana de usuario
-		VentanaAplicacion.panelPrincipal.add(formulario = new FieldPanel(
+					//Añadiendo los nuevos elementos para la ventana de usuario
+					panelresultados.panelCambiante.add(formulario = new FieldPanel(
 				"Datos reseña",
 				new String[] {"Estrellas(1 a 5)", "Comentario"}, 
 				"Valorar", 
 				new String[] {null, null}, 
 				new boolean[] {true, true}));
-
+				VentanaAplicacion.panelPrincipal.add(panelresultados, SwingConstants.CENTER);
 		//Añadiendo los oidores a los botones
 		formulario.boton_acep.addActionListener(this);
 		formulario.boton_borr.addActionListener(this);
