@@ -2,17 +2,20 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
+import baseDatos.EscrituraBD;
+import control.Errores.ErrorAplicacion;
+import gestorAplicacion.Materiales.CarritoDeCompras;
+import gestorAplicacion.Usuarios.Comprador;
+import gestorAplicacion.Usuarios.CuentaUsuario;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
-import uiMain.MenuConsola.MenuDeConsola;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.VentanaAplicacion;
+import uiMain.vista.Visitante.PanelLogin;
 
 public class ControlCerrarSesion extends OpcionDeMenu implements ActionListener {
 	public static JMenuBar barraMenu = new JMenuBar();
@@ -20,47 +23,42 @@ public class ControlCerrarSesion extends OpcionDeMenu implements ActionListener 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		// Caso A: Ventana de invitado
+		CuentaUsuario usuario = (CuentaUsuario) InicializacionAplicacion.usuarioActivo;
+		Object[] opciones = {"Si", "No"};
+		int resp;
 
-		// Remoción de los elementos del panel
-		VentanaAplicacion.panelPrincipal.removeAll();
-
-		// Borrado de items anteriores y creación de items nuevos del menú
-		InicializacionAplicacion.setUsuarioActivo(new Visitante());
-		JMenuItem inicio = new JMenuItem("Inicio");
-		JMenu menuProcesos = new JMenu("Procesos y Consultas");
-		JMenu menuAyuda = new JMenu("Ayuda");
-		JMenuItem opcionDeMenu;
-
-		// Creación de los subitems del menú - [Inicio]
-
-		// Menú Procesos
-		inicio.addActionListener(new ControlInicio()); // Opción para volver a la pantalla inicial
-		menuProcesos.add(inicio);
-		ArrayList<OpcionDeMenu> menu = MenuDeConsola.menuActivo;
-		for (int i = 0; i < menu.size(); i++) {
-			opcionDeMenu = new JMenuItem(menu.get(i).toString());
-			menuProcesos.add(opcionDeMenu);
-			opcionDeMenu.addActionListener(menu.get(i));
+		if (usuario instanceof Comprador && CarritoDeCompras.getTotalproductos() > 0) {
+			JOptionPane.showMessageDialog(null, "Los productos no comprados serán eliminados del Carrito de Compras",
+					"Advertencia", JOptionPane.WARNING_MESSAGE);
 		}
+		
+		resp = JOptionPane.showOptionDialog(null, "¿Está seguro que desea cerrar sesión?", "Cerrar sesión", JOptionPane.YES_NO_OPTION, 
+				JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 
-		// Menú Ayuda
-		opcionDeMenu = new JMenuItem("Acerca de");
-		menuAyuda.add(opcionDeMenu);
-		opcionDeMenu.addActionListener(new ControlAcercaDe());
+		if (JOptionPane.OK_OPTION == resp) {
+			JOptionPane.showMessageDialog(null, usuario.cerrarSesion(),	"Notificación", JOptionPane.INFORMATION_MESSAGE);
 
-		// Creación de los subitems del menú - [Fin]
+			// Remoción de los elementos del panel
+			VentanaAplicacion.panelPrincipal.removeAll();
 
-		// Añadiendo cada menú a la barra
-		barraMenu.add(menuProcesos);
-		barraMenu.add(menuAyuda);
+			// Asignando el visitante como usuario activo
+			InicializacionAplicacion.setUsuarioActivo(new Visitante());
 
+			// Añadiendo el panel de visitante
+			PanelLogin panel = new PanelLogin();
+			VentanaAplicacion.panelPrincipal.add(panel);
+
+			// Añadiendo las opciones de la barra
+			VentanaAplicacion.setMenuBarInvitado();
+
+			// Asignando los oyentes
+			panel.asignarOyente();
+		}
+		VentanaAplicacion.organizar();
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "Cerrar sesión";
 	}
-
 }

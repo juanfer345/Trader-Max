@@ -171,6 +171,6 @@ public class Comprador extends CuentaConBanco {
 
 	@Override
 	public String toString() {
-		return "Comprador:" + super.toString() + ", Productos comprados: " + historial.size() + "]";
+		return "Comprador: " + super.toString() + ", Productos comprados: " + historial.size() + "]";
 	}
 }

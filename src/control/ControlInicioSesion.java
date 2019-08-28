@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import control.Errores.ErrorAplicacion;
+import control.Errores.MetodosConError;
 import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
@@ -43,18 +45,16 @@ public class ControlInicioSesion extends OpcionDeMenu implements ActionListener 
 		correoIngresado = panel.texto_2.getText();
 		contrasenaIngresada = panel.texto_3.getText();
 
-		if (Cuenta.getTotalCuentas() != 0) {
-			JOptionPane.showMessageDialog(
-					null, usuario.iniciarSesion(tipoCuenta, correoIngresado, contrasenaIngresada), 
-					"Notificación", JOptionPane.INFORMATION_MESSAGE);
+		try {
+			MetodosConError.errorSinCuentas(Cuenta.getTotalCuentas(), "No hay cuentas registradas en la base de datos.");
+		JOptionPane.showMessageDialog(
+				null, usuario.iniciarSesion(tipoCuenta, correoIngresado, contrasenaIngresada), 
+				"Notificación", JOptionPane.INFORMATION_MESSAGE);
+		
 		}
-		else {
-			JOptionPane.showMessageDialog(
-					null, "No hay cuentas registradas en la base de datos.", 
-					"Notificación", JOptionPane.WARNING_MESSAGE);
-			
-			
-//			"No hay cuentas registradas en la base de datos."
+		catch (ErrorAplicacion e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 		
 		if (OpcionDeMenu.controlError) {

@@ -25,8 +25,8 @@ public class ControlAgregarACarrito extends OpcionDeMenu implements ActionListen
 		String precio = JOptionPane.showInputDialog(null, "Cantidad para agregar:");
 		int cant = 0;
 		try {
-			cant = MetodosConError.controlNumero(precio, 1, Integer.MAX_VALUE, "Precio",
-					"Por favor ingrese un precio válido");
+			cant = MetodosConError.controlNumero(precio, 1, Integer.MAX_VALUE, "Cantidad",
+					"Por favor ingrese una cantidad válida");
 		} 
 		catch (ErrorAplicacion e1) {
 			JOptionPane.showMessageDialog(null, "Manejo de errores de la Aplicación: " + e1.getMessage(), "Error",
@@ -40,7 +40,9 @@ public class ControlAgregarACarrito extends OpcionDeMenu implements ActionListen
 
 	@Override
 	public String toString() {
+
 		// TODO Auto-generated method stub
-		return null;
+		return "Agregar A Carrito";
+
 	}
 }

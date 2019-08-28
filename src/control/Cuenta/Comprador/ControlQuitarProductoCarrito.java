@@ -21,7 +21,7 @@ public class ControlQuitarProductoCarrito extends OpcionDeMenu implements Action
 		String cod = e.getActionCommand();
 		int codigo = Integer.parseInt(cod);
 		Object[] opciones = { "Si", "No" };
-
+		
 		int resp = JOptionPane.showOptionDialog(null, "¿Está seguro que desea quitar el producto?",
 				"Quitar Producto de Carrito", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones,
 				opciones[0]);

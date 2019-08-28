@@ -19,10 +19,17 @@ public class ControlMostrarPorCategoria extends OpcionDeMenu implements ActionLi
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		PanelBuscarCategoria x3 = new PanelBuscarCategoria();
+		if (Cuenta.getCatalogo().size() != 0) {
 
-		if (InicializacionAplicacion.usuarioActivo.getCatalogo().size() != 0) {
-			if (e.getSource() instanceof JMenuItem) {
+			String categorias[] = { "Belleza", "Vehículos", "Deportes", "Electrodomésticos", "Hogar", "Juegos",
+					"Libros", "Música", "Tecnología", "Vestimenta", "Vivienda" };
+
+			String seleccion = (String) JOptionPane.showInputDialog(null, "Seleccione una categoria", "CATEGORIAS",
+					JOptionPane.QUESTION_MESSAGE, null, categorias, "Seleccione");
+
+			if (seleccion != null) {
+
+				PanelBuscarCategoria x3 = new PanelBuscarCategoria(seleccion);
 				x3.lanzar();
 			}
 		} else {

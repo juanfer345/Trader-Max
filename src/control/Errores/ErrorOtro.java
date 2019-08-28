@@ -3,7 +3,7 @@ package control.Errores;
 public class ErrorOtro extends ErrorAplicacion {
 	
 	public ErrorOtro(String mensaje) {
-		super(mensaje);
+		super(", " + mensaje);
 	}
 }
 
