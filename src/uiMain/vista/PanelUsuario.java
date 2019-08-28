@@ -12,6 +12,10 @@ import javax.swing.SwingConstants;
 import uiMain.InicializacionAplicacion;
 
 public class PanelUsuario extends JPanel {
+	
+	/*
+	 * Propósito: Se encarga de la parte visual del usuario registrado
+	 */
 
 	public JPanel panelCambiante = new JPanel();
 	

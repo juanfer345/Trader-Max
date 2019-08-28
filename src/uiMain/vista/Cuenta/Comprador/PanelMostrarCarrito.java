@@ -25,8 +25,7 @@ import uiMain.vista.tabla.tablaModelo;
 
 public class PanelMostrarCarrito extends JPanel {
 	/*
-	 * crea objeto tipo PanelMostrarCarrito
-	 * 
+	 * Propósito: Se encarga de la parte visual del metodo mostrarCarrito()
 	 */
 
 	public JButton boton_comprar = new JButton("Comprar productos");

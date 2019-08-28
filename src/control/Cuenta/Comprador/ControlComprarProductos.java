@@ -12,6 +12,11 @@ import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlComprarProductos extends OpcionDeMenu implements ActionListener {
 
+	/*
+	 * Propósito: Ejecutar el metodo comprarProductos() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	public void actionPerformed(ActionEvent arg) {
 
 		OpcionDeMenu.controlError = false;

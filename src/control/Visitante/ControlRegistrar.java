@@ -8,7 +8,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import control.Errores.ErrorAplicacion;
+import control.Errores.ErrorTipodeDato;
 import control.Errores.MetodosConError;
+import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
@@ -51,7 +53,7 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 				// Caso B: Se ha llenado el formulario y se a presionado aceptar - [Inicio]
 
 				Visitante usuario = (Visitante) InicializacionAplicacion.usuarioActivo;
-				String nombreIngresado = null, correoIngresado = null, contrasenaIngresada = null;
+				String nombreIngresado = null, correoIngresado = null, contrasenaIngresada = null, contrasenaConfirmacion = null;
 				int cedulaIngresada = 0;
 				byte tipoDeCuenta;
 
@@ -59,24 +61,6 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 					// Control de ingreso tipo de cuenta
 					tipoDeCuenta = MetodosConError.controlNumero(formulario.getValue("Tipo de cuenta [1: Comprador, 2: Vendedor, 3: Administrador]"), 
 							(byte) 1, (byte) 3, "\"Tipo de cuenta\"", "Por favor ingrese un número entero pequeño (byte) en el campo \"Tipo de cuenta\".");
-
-					// Control de ingreso de contraseña secreta para usuarios administradores
-					if (tipoDeCuenta == 3) {
-
-						//						System.out.print("Contraseña secreta para registro de administradores => ");
-						//						String contrasenaSecreta;
-						//						if (esByte(contrasenaSecreta = br.readLine().trim()) != 0) {
-						//							if (contrasenaSecreta.equals(Administrador.getCodigoSecreto())) {
-						//								break;
-						//							} else {
-						//								System.out.println("Contraseña incorrecta, el FBI pronto llegará a su casa.");
-						//							}
-						//						} else {
-						//							System.out.println();
-						//							return;
-						//						}
-						//PENDIENTE: MOSTRAR VENTANA PARA INGRESAR CONTRASEÑA SECRETA
-					}
 
 					// Control de ingreso de nombre
 					nombreIngresado = MetodosConError.controlString(formulario.getValue("Nombre"), 
@@ -92,18 +76,39 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 					// Control de ingreso de contraseña
 					contrasenaIngresada = MetodosConError.controlCampoVacio(formulario.getValue("Contraseña"), "\"Contraseña\"");
 
-					//PENDIENTE: VENTANA PARA CONFIRMAR CONTRASEÑA
+					//comprobacion contraseña
+					contrasenaConfirmacion = JOptionPane.showInputDialog(null, "Confirme su contraseña");
+					if (contrasenaConfirmacion != null) {
+						if(!contrasenaConfirmacion.equals(contrasenaIngresada)) {
+							JOptionPane.showMessageDialog(null, "La contraseña no coincidde NEA!", "Error", JOptionPane.ERROR_MESSAGE);
+							return;
+						}
+					}
+					else {
+						return;
+					}
+
+					// Control de ingreso de contraseña secreta para usuarios administradores
+					if (tipoDeCuenta == 3) {
+
+						String contrasenaSecreta = JOptionPane.showInputDialog(null, "Ingrese la contraseña de administradores:");
+						String resultado =  MetodosConError.controlString(contrasenaSecreta, 
+								"\"Contraseña secreta\"", "Ha ingresado un número en lugar de texto en el campo");
+						if (!resultado.equals(Administrador.getCodigoSecreto())) {
+							return ;
+						}
+					}
 				}
 				catch (ErrorAplicacion e) {
 					JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				
+
 				// Ejecución e impresión del método
 				JOptionPane.showMessageDialog(
 						null, usuario.registrarse(tipoDeCuenta, nombreIngresado, correoIngresado, cedulaIngresada, contrasenaIngresada), 
 						"Notificación", JOptionPane.INFORMATION_MESSAGE);
-				
+
 				// Remoción de los elementos del panel
 				VentanaAplicacion.panelPrincipal.removeAll();
 

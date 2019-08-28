@@ -20,6 +20,11 @@ import uiMain.vista.Visitante.PanelLogin;
 public class ControlCerrarSesion extends OpcionDeMenu implements ActionListener {
 	public static JMenuBar barraMenu = new JMenuBar();
 
+	/*
+	 * Propósito: Ejecutar el metodo cerrarSesion() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

@@ -6,6 +6,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
+/*
+ * Propósito: Sirve para los componentes de la tabla
+ */
+
 public class tablaBotonOidorMouse extends MouseAdapter {
     private final JTable tabla;
 

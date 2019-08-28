@@ -13,6 +13,11 @@ import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class ControlAgregarACarrito extends OpcionDeMenu implements ActionListener {
+	
+	/*
+	 * Propósito: Ejecutar el metodo agregarACarrito() haciendo los respectivos
+	 * controles de error del ingreso de datos
+	 */
 
 	int idProducto, cantProd;
 

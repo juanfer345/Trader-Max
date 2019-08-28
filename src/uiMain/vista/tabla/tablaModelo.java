@@ -3,6 +3,11 @@ package uiMain.vista.tabla;
 import javax.swing.table.AbstractTableModel;
 
 public class tablaModelo extends AbstractTableModel {
+	
+	/*
+	 * Propósito: Modelo básico de la tabla usada
+	 */
+	
     private static final long serialVersionUID = 1L;
     private final String[] nombreColumnas;
     private Object[][] datos;

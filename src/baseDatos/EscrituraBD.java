@@ -30,7 +30,7 @@ public class EscrituraBD {
 	static BufferedWriter bw = null;
 	static StringBuilder sb = new StringBuilder();
 	static String BDactual;
-	static boolean cnConfirmacion = true;
+	static boolean cnConfirmacion = false;
 
 	public void PrincipalEscrituraBD(String BDComp, String BDVend, String BDAdm, String BDCuentBanc, String BDCat, 
 											String BDProd, String BDRes) {

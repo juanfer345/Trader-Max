@@ -31,6 +31,10 @@ import uiMain.vista.tabla.tablaBotonRenderizador;
 import uiMain.vista.tabla.tablaModelo;
 
 public class PanelBuscarCategoria extends JFrame {
+	
+	/*
+	 * Propósito: Se encarga de la parte visual del metodo buscarCategoria()
+	 */
 
 	JTable tabla;
 

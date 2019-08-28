@@ -20,6 +20,10 @@ import control.ControlLogin;
 import control.ControlSalir;
 
 public class PanelLogin extends JPanel {
+	
+	/*
+	 * Propósito: Se encarga de la parte visual del inicio de la aplicacion
+	 */
 
 	// Etiquetas
 	public JLabel etiqueta_1;
