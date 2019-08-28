@@ -37,11 +37,10 @@ public class PanelVerProductos extends JFrame {
 		Container panel = this.getContentPane();
 		panel.setLayout(new BorderLayout(7, 20));
 		
-		JLabel titulo = new JLabel("PRODUCTOS SUBIDOS");
+		JLabel titulo = new JLabel("PRODUCTOS POR CATEGORIA");
 		Font auxFont = titulo.getFont();
 		titulo.setFont(new Font(auxFont.getFontName(), auxFont.getStyle(), 16));
-		JLabel descripcion = new JLabel("A continuación encontrará la información básica de los productos que ha subido con anterioridad "
-				+ "\na la aplicación, puede modificar la cantidad existente, el precio o eliminarlo del catalogo \n");
+		JLabel descripcion = new JLabel("A continuación encontrará la información básica de los productos que ha subido con anterioridad, puede modificar la cantidad existente, el precio o eliminarlo del catalogo");
 		descripcion.setHorizontalAlignment(SwingConstants.CENTER);
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		
