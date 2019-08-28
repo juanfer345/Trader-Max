@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import gestorAplicacion.Materiales.Producto;
+import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
 import uiMain.vista.tabla.tablaModelo;
 
@@ -51,7 +52,7 @@ public class PanelBuscarCategoria extends JFrame {
 
 		String[] nombreColumnas = { "Codigo", "Nombre", "Categoría", "Precio", "Cantidad", "N°Reseñas" };
 		int contador = 0;
-		for (Map.Entry<Integer, Producto> entry : InicializacionAplicacion.usuarioActivo.getCatalogo().entrySet()) {
+		for (Map.Entry<Integer, Producto> entry : Cuenta.getCatalogo().entrySet()) {
 			Producto prod = entry.getValue();
 			if (prod.getCategoria().equals(seleccion)) {
 				contador++;
@@ -61,7 +62,7 @@ public class PanelBuscarCategoria extends JFrame {
 		Object[][] datos = new Object[contador][nombreColumnas.length];
 		int contador2 = 0;
 
-		for (Map.Entry<Integer, Producto> producto : InicializacionAplicacion.usuarioActivo.getCatalogo().entrySet()) {
+		for (Map.Entry<Integer, Producto> producto : Cuenta.getCatalogo().entrySet()) {
 			Producto item = producto.getValue();
 			if (item.getCategoria().equals(seleccion)) {
 
@@ -84,8 +85,6 @@ public class PanelBuscarCategoria extends JFrame {
 		panel.add(panel2, BorderLayout.NORTH);
 
 	}
-
-	
 
 	public void lanzar() {
 		this.setTitle("Busqueda de productos por categoria");

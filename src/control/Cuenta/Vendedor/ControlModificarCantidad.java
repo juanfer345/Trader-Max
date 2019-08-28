@@ -19,7 +19,7 @@ public class ControlModificarCantidad extends OpcionDeMenu implements ActionList
 		Double codigo = Double.parseDouble(cod);
         String precio = JOptionPane.showInputDialog(null, "Ingrese el monto a sumar o restar\n(Numero positivo o negativo)");
         int pre = 0;
-        //desde aca juan fernando
+
     	try {
 			pre = MetodosConError.controlNumero(precio, 1, Integer.MAX_VALUE, "Precio", "Por favor ingrese un precio válido");
 		}

@@ -16,7 +16,6 @@ import uiMain.vista.VentanaAplicacion;
 import uiMain.vista.Visitante.PanelLogin;
 
 public class ControlSalir extends OpcionDeMenu implements MouseMotionListener{
-	
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {}

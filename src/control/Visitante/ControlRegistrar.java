@@ -98,19 +98,19 @@ public class ControlRegistrar extends OpcionDeMenu implements ActionListener {
 					JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-
+				
 				// Ejecución e impresión del método
 				JOptionPane.showMessageDialog(
 						null, usuario.registrarse(tipoDeCuenta, nombreIngresado, correoIngresado, cedulaIngresada, contrasenaIngresada), 
 						"Notificación", JOptionPane.INFORMATION_MESSAGE);
-
-				//Remoción de los elementos del panel
+				
+				// Remoción de los elementos del panel
 				VentanaAplicacion.panelPrincipal.removeAll();
 
-				//Eliminando la barra del usuario invitado
+				// Eliminando la barra del usuario invitado
 				VentanaAplicacion.barraMenu.removeAll();
 
-				//Añadiendo los nuevos elementos para la ventana de usuario
+				// Añadiendo los nuevos elementos para la ventana de usuario
 				VentanaAplicacion.panelPrincipal.add(new PanelUsuario());
 
 				// Caso B: Se ha llenado el formulario y se a presionado aceptar - [Fin]

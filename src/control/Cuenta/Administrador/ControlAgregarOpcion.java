@@ -58,6 +58,7 @@ public class ControlAgregarOpcion extends OpcionDeMenu implements ActionListener
 				Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
 				String menuOpcionesDisponibles = null, auxiliar;
 				int idUsuario = 0;
+				String opciones [] = null;
 				byte tipoDeCuenta = 0, opcionUsuario = 0;
 
 				try {
@@ -101,15 +102,13 @@ public class ControlAgregarOpcion extends OpcionDeMenu implements ActionListener
 				}
 				else {return;}
 
-				//Elección de la opción por parte del usuario
-				//				try {
-				//					opcionUsuario = ErrorAplicacion.controlNumero((byte) 1, MenuDeConsola.getsizeOpcionesComp(), "Ingrese el indice de la opción que desea agregar", "Por favor ingrese un número entero");	
-				//				}
-				//				catch (ErrorAplicacion e) {
-				//					JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-				//					return;
-				//				}
-
+				for (byte i = 1; i <= MenuDeConsola.getsizeOpcionesComp(); i++) {
+					opciones[i - 1] = Byte.toString(i);
+				}
+				
+				opcionUsuario = (byte) JOptionPane.showInputDialog(null, "Seleccione una opción", "Opcion a agregar",
+						JOptionPane.QUESTION_MESSAGE, null, opciones, "Seleccione");
+				
 				//Ejecución del método principal
 				JOptionPane.showMessageDialog(null, 
 						usuario.getMenuDeConsola().agregarOpcion(idUsuario, tipoDeCuenta, (byte) (opcionUsuario - 1)), 
