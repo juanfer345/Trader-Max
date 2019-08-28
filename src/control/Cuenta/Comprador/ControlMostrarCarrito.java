@@ -5,17 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
-import control.ErrorAplicacion;
+import control.Errores.ErrorAplicacion;
+import control.Errores.MetodosConError;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Usuarios.Comprador;
-import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.PanelUsuario;
@@ -56,20 +55,20 @@ public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListene
 				VentanaAplicacion.panelPrincipal.add(panelresultados, SwingConstants.CENTER);
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "El Carrito se encuentra vacío", "Advertencia",
-							JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "El Carrito se encuentra vacío", "Advertencia", JOptionPane.WARNING_MESSAGE);
 				}
 			}
-			else { 			
+			else {
 				Comprador comprad = (Comprador) InicializacionAplicacion.usuarioActivo;
 				String cod = arg.getActionCommand();
 				int codigo = Integer.parseInt(cod);
 		        String cantidad = JOptionPane.showInputDialog(null, "Cantidad que desea quitar:");
 		        int cant = 0;
+		        
 		    	try {
-					cant = ErrorAplicacion.controlEntero((cantidad), 1, Integer.MAX_VALUE, "Cantidad", "Por favor ingrese la cantidad a quitar");
+					cant = MetodosConError.controlNumero((cantidad), 1, Integer.MAX_VALUE, "Cantidad", "Por favor ingrese la cantidad a quitar");
 				}
-				catch (IOException e1) {
+				catch (ErrorAplicacion e1) {
 					JOptionPane.showMessageDialog(
 							null, "Manejo de errores de la Aplicación: " + e1.getMessage(), 
 							"Error", JOptionPane.ERROR_MESSAGE);
@@ -77,7 +76,6 @@ public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListene
 				}
 		        CarritoDeCompras. quitarProducto(codigo, cant);
 			}
-			
 
 			//else if(arg.getActionCommand().equals("Quitar")){ 
 //			if(CarritoDeCompras.getProductos().)
@@ -106,5 +104,4 @@ public class ControlMostrarCarrito extends OpcionDeMenu implements ActionListene
 	public String toString() {
 		return "Ver los productos del carrito";
 	}
-
 }

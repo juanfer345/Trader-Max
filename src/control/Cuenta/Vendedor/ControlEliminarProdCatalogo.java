@@ -3,15 +3,8 @@ package control.Cuenta.Vendedor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import control.Errores.ErrorAplicacion;
-import java.io.IOException;
-
 import javax.swing.JOptionPane;
 
-import baseDatos.EscrituraBD;
-import control.ErrorAplicacion;
-import gestorAplicacion.Materiales.CarritoDeCompras;
-import gestorAplicacion.Usuarios.Comprador;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;

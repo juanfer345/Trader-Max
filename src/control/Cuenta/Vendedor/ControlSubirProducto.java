@@ -9,9 +9,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import control.Errores.ErrorAplicacion;
-import gestorAplicacion.Materiales.Producto;
+import control.Errores.MetodosConError;
 import gestorAplicacion.Usuarios.Vendedor;
-import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.FieldPanel;
@@ -36,8 +35,7 @@ public class ControlSubirProducto extends OpcionDeMenu implements ActionListener
 
 			//Añadiendo los nuevos elementos para la ventana de usuario
 			VentanaAplicacion.panelPrincipal.add(formulario = new FieldPanel("Datos",
-					new String[] { "Nombre del producto", "Precio",
-							"Cantidad"},
+					new String[] { "Nombre del producto", "Precio",	"Cantidad"},
 					"Valor", new String[] { null, null, null},
 					new boolean[] { true, true, true}));
 
@@ -46,6 +44,7 @@ public class ControlSubirProducto extends OpcionDeMenu implements ActionListener
 			formulario.boton_borr.addActionListener(this);
 		}
 		else if (arg.getSource() instanceof JButton) {
+			
 			if (arg.getActionCommand().equals("Aceptar")) {
 
 				// Caso B: Se ha llenado el formulario y se a presionado aceptar
@@ -54,47 +53,30 @@ public class ControlSubirProducto extends OpcionDeMenu implements ActionListener
 				String nombreIngresado = null;
 				int cantidadIngresada = 0;
 				Double precioIngresado = 0.0;
-
-				// Control de ingreso tipo de cuenta
+				
 				try {
-					nombreIngresado = ErrorAplicacion.controlString(formulario.getValue("Nombre"), 
+
+					// Control de ingreso de nombre
+					nombreIngresado = MetodosConError.controlString(formulario.getValue("Nombre"), 
 							"\"Nombre\"", "Ha ingresado un número en lugar de texto en el campo \"Nombre\"");
-				}
-				catch (IOException e) {
-					JOptionPane.showMessageDialog(
-							null, "Manejo de errores de la Aplicación: " + e.getMessage(), 
-							"Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
 
-				// Control de ingreso de cantidad
-				try {
-					cantidadIngresada = ErrorAplicacion.controlEntero(formulario.getValue("Cantidad"), 1, Integer.MAX_VALUE, 
-									  "\"Cantidad\"", "Por favor ingrese una cantidad válida");
-				}
-				catch (IOException e) {
-					JOptionPane.showMessageDialog(
-							null, "Manejo de errores de la Aplicación: " + e.getMessage(), 
-							"Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
+					// Control de ingreso de precio
+					precioIngresado = MetodosConError.controlNumero(formulario.getValue("Precio"), 1, Double.MAX_VALUE, 
+							"\"Cedula\"", "Por favor ingrese una cédula válida");
 
-				// Control de ingreso de correo
-				//JUAN FERNANDOO
-				// Control de ingreso de contraseña
-				try {
-					//CONTROL DOUBLE
+					// Control de ingreso de cantidad
+					cantidadIngresada = MetodosConError.controlNumero(formulario.getValue("Precio"), 1, Integer.MAX_VALUE, 
+							"\"Cedula\"", "Por favor ingrese una cédula válida");
 				}
-				catch (IOException e) {
-					JOptionPane.showMessageDialog(
-							null, "Manejo de errores de la Aplicación: " + e.getMessage(), 
-							"Error", JOptionPane.ERROR_MESSAGE);
+				catch (ErrorAplicacion e) {
+					JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
+				
 				// Ejecución e impresión del método
-				JOptionPane.showMessageDialog(
-						null, usuario.registrarse(tipoDeCuenta, nombreIngresado, correoIngresado, cedulaIngresada, contrasenaIngresada), 
-						"Notificación", JOptionPane.INFORMATION_MESSAGE);
+//				JOptionPane.showMessageDialog(
+//						null, usuario.registrarse(tipoDeCuenta, nombreIngresado, correoIngresado, cedulaIngresada, contrasenaIngresada), 
+//						"Notificación", JOptionPane.INFORMATION_MESSAGE);
 				
 				//Volviendo al panel principal
 				
