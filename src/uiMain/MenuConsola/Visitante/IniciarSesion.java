@@ -12,7 +12,7 @@ package uiMain.MenuConsola.Visitante;
 
 import java.io.IOException;
 
-import control.ErrorAplicacion;
+import control.Errores.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;

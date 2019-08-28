@@ -2,15 +2,17 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+
+import control.Errores.ErrorTipodeDato;
+import control.Errores.MetodosConError;
+import gestorAplicacion.Usuarios.Cuenta;
 import gestorAplicacion.Usuarios.Visitante;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 import uiMain.vista.PanelBuscarProducto;
-import control.ErrorAplicacion;
 
 public class ControlBuscarProducto extends OpcionDeMenu implements ActionListener{
 	PanelBuscarProducto buscarprod;
@@ -23,42 +25,44 @@ public class ControlBuscarProducto extends OpcionDeMenu implements ActionListene
 		PanelBuscarProducto bp = new PanelBuscarProducto();
 
 		// Verificación de catalogo no vacío
-		if (!usuario.getCatalogo().isEmpty()) {
+		if (!Cuenta.getCatalogo().isEmpty()) {
 			bp.lanzar();
 			resultado = buscarprod.texto.getText();
 			if ((arg.getSource() instanceof JButton) && !(resultado.equals(""))) {
 				// Condicional según selección
 				if (arg.getActionCommand().equals("Buscar por código")) {
-					
-						try {
+
+					try {
 						resultado = usuario.buscarProducto(Integer.parseInt(buscarprod.texto.getText()));
-						}
-						catch (NumberFormatException NF){
-							JOptionPane.showMessageDialog(null, "Debe ingresar un numero entero", "Error",
-									JOptionPane.ERROR_MESSAGE);
-						}
-						JOptionPane.showMessageDialog(null, resultado, "Informacion",
-								JOptionPane.INFORMATION_MESSAGE);
+					}
+					catch (NumberFormatException NF){
+						JOptionPane.showMessageDialog(null, "Debe ingresar un numero entero", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					}
+					JOptionPane.showMessageDialog(null, resultado, "Informacion",
+							JOptionPane.INFORMATION_MESSAGE);
 				}else if(arg.getActionCommand().equals("Buscar por nombre")) {
 					try {
-						resultado = ErrorAplicacion.controlString(resultado,"","Error, no ingresó un string");
-					}catch(IOException e){
+						resultado = MetodosConError.controlString(resultado,"","Error, no ingresó un string");
+					}catch(ErrorTipodeDato e){
 						JOptionPane.showMessageDialog(null, e, "Advertencia",
 								JOptionPane.WARNING_MESSAGE);
 					}
-			
+
 				}
-			}else {
+			}
+			else {
 				if(resultado.equals("")) {
 					JOptionPane.showMessageDialog(null, "Debe ingresar algo en el campo de texto", "Advertencia",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}
 
-		}else {
+		}
+		else {
 			JOptionPane.showMessageDialog(null, "El catálogo se encuentra vacío", "Informacion",
 					JOptionPane.ERROR_MESSAGE);
-		
+
 		}
 	}
 

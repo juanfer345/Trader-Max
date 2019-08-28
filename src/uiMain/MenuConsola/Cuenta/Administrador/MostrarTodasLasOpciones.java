@@ -8,7 +8,7 @@ package uiMain.MenuConsola.Cuenta.Administrador;
 
 import java.io.IOException;
 
-import control.ErrorAplicacion;
+import control.Errores.ErrorAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
 
 public class MostrarTodasLasOpciones {

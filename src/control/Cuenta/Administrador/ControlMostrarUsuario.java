@@ -2,7 +2,8 @@ package control.Cuenta.Administrador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import control.ErrorAplicacion;
+
+import control.Errores.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;

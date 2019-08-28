@@ -2,7 +2,8 @@ package control.Cuenta.Vendedor;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import control.ErrorAplicacion;
+
+import control.Errores.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Vendedor;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;

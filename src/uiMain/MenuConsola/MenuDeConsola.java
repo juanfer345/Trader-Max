@@ -120,10 +120,8 @@ public class MenuDeConsola {
 		}
 
 		if (baseDeDatos.containsKey(idUsuario)) {
-			sb.append("\nA continuación se muestra el menú del usuario:\n" + baseDeDatos.get(idUsuario).toString() + "\n");
-			sb.append("\n" + "|-------------------------Inicio menú--------------------------|" + "\n\n");
-			sb.append(prepararMenuImpresion(baseDeDatos.get(idUsuario).getMenu()));
-			sb.append("\n" + "|--------------------------Fin menú----------------------------|" + "\n");
+			sb.append("A continuación se muestra el menú del usuario: " + baseDeDatos.get(idUsuario).toString() + "\n\n");
+			sb.append(prepararMenuImpresion(baseDeDatos.get(idUsuario).getMenu()) + "\n");
 			OpcionDeMenu.controlError = true;
 		} else {
 			sb.append("El usuario de tipo " + usuario + " no fue encontrado, por favor revise el código ingresado.");

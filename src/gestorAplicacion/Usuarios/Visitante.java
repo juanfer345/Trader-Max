@@ -31,8 +31,7 @@ public class Visitante extends Cuenta {
 	public ArrayList <OpcionDeMenu> getMenuPredeterminado() {
 		return new ArrayList <OpcionDeMenu> (Arrays.asList(new OpcionDeMenu[] {
 				   new ControlRegistrar(), new ControlBuscarProducto(), new ControlMostrarCatalogo(), 
-				   new ControlMostrarPorCategoria(), new ControlMostrarResenas()}));
-		// new ControlMostrarResenas()
+				   new ControlMostrarPorCategoria()}));
 	}
 
 	// Retorna el catálogo

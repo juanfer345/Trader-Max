@@ -52,6 +52,9 @@ public class ControlInicioSesion extends OpcionDeMenu implements ActionListener 
 			JOptionPane.showMessageDialog(
 					null, "No hay cuentas registradas en la base de datos.", 
 					"Notificación", JOptionPane.WARNING_MESSAGE);
+			
+			
+//			"No hay cuentas registradas en la base de datos."
 		}
 		
 		if (OpcionDeMenu.controlError) {

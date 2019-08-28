@@ -7,7 +7,7 @@ package uiMain.MenuConsola.Cuenta.Administrador;
 
 import java.io.IOException;
 
-import control.ErrorAplicacion;
+import control.Errores.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;

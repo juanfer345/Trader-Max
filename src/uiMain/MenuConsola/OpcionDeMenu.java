@@ -90,48 +90,4 @@ public abstract class OpcionDeMenu implements ActionListener {
 
 		return sb.toString();
 	}
-	
-	// Método para comprobar si una entrada de tipo String es numérica (double)
-	public static double esDouble(String input) {
-		try {
-			Double.parseDouble(input);
-			return Double.parseDouble(input);
-
-		} catch (NumberFormatException g) {
-			return -1;
-		}
-	}
-	
-	// Método para comprobar si una entrada de tipo String es numérica (long)
-	public static long esLong(String input) {
-		try {
-			Long.parseLong(input);
-			return Long.parseLong(input);
-
-		} catch (NumberFormatException g) {
-			return -1;
-		}
-	}
-
-	// Método para comprobar si una entrada de tipo String es numérica (int)
-	public static int esInt(String input) {
-		try {
-			Integer.parseInt(input);
-			return Integer.parseInt(input);
-
-		} catch (NumberFormatException g) {
-			return -1;
-		}
-	}
-
-	// Método para comprobar si una entrada de tipo String es numérica (byte)
-	public static byte esByte(String input) {
-		try {
-			Byte.parseByte(input);
-			return Byte.parseByte(input);
-
-		} catch (NumberFormatException g) {
-			return -1;
-		}
-	}
 }

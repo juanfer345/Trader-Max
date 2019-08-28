@@ -7,7 +7,7 @@ package uiMain.MenuConsola;
 
 import java.io.IOException;
 
-import control.ErrorAplicacion;
+import control.Errores.ErrorAplicacion;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Usuarios.Comprador;
 import uiMain.InicializacionAplicacion;

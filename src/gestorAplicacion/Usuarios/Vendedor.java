@@ -159,9 +159,9 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 		   Parámetros de salida: 
 		   -String: Un mensaje que indica lo que sucedio con el proceso
 		 */
-
+		
 		Producto prod = null;
-
+		
 		// Comprobar que el producto este en el catalogo
 		if (catalogo.containsKey(codigoProducto)) {
 
@@ -169,24 +169,10 @@ public class Vendedor extends CuentaConBanco implements InterfazCategorias{
 
 			//Comprobar que el vendedor es dueño del producto
 			if (prod.getVendedor().equals(this)) {
-				if (operador == 1) {
-					//Sumando la cantidad
-					prod.setCantidad(prod.getCantidad() + cantidad);
-					OpcionDeMenu.controlError = true;
-					return "Se aumentó la cantidad del producto \"" + prod.getNombreProducto() + "\". Nueva cantidad: " + prod.getCantidad() + "\n";
-				}
-				else {
-					//Disminuyendo la cantidad
-
-					//Condicional para cantidades resultantes negativas
-					if (prod.getCantidad() - cantidad >= 0) {
-						prod.setCantidad(prod.getCantidad() - cantidad);
-						OpcionDeMenu.controlError = true;
-						return "Se redujo la cantidad del producto \"" + prod.getNombreProducto() + "\". Nueva cantidad: " + prod.getCantidad() + "\n";
-					} else {
-						return "No hay suficientes productos, no se puede disminuir esta cantidad";
-					}
-				}
+				//Sumando la cantidad
+				prod.setCantidad(prod.getCantidad() + cantidad);
+				OpcionDeMenu.controlError = true;
+				return "Se modificó la cantidad del producto \"" + prod.getNombreProducto() + "\". Nueva cantidad: " + prod.getCantidad();
 			}
 			else {
 				return "\nUsted no es propietario de este producto.";

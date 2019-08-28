@@ -12,7 +12,7 @@ package uiMain.MenuConsola.Cuenta.Vendedor;
 
 import java.io.IOException;
 
-import control.ErrorAplicacion;
+import control.Errores.ErrorAplicacion;
 import gestorAplicacion.Materiales.Producto;
 import gestorAplicacion.Usuarios.InterfazCategorias;
 import gestorAplicacion.Usuarios.Vendedor;

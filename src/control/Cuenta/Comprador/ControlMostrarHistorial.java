@@ -3,7 +3,7 @@ package control.Cuenta.Comprador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import control.ErrorAplicacion;
+import control.Errores.ErrorAplicacion;
 import gestorAplicacion.Usuarios.Comprador;
 import uiMain.InicializacionAplicacion;
 import uiMain.MenuConsola.OpcionDeMenu;
