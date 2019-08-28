@@ -177,7 +177,7 @@ public class MetodosConError {
 	}
 
 	public static void errorNegativo(int numero, int cantidadRestada, String error) throws ErrorGenerico{
-		if (numero - cantidadRestada < 0) {
+		if (numero + cantidadRestada < 0) {
 			throw new ErrorGenerico(error);
 		}
 	}

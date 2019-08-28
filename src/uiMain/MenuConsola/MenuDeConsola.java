@@ -120,7 +120,7 @@ public class MenuDeConsola {
 		}
 
 		if (baseDeDatos.containsKey(idUsuario)) {
-			sb.append("A continuación se muestra el menú del usuario: " + baseDeDatos.get(idUsuario).toString() + "\n\n");
+			sb.append("A continuación se muestra el menú del usuario: " + "\n\n" + baseDeDatos.get(idUsuario).toString() + "\n\n");
 			sb.append(prepararMenuImpresion(baseDeDatos.get(idUsuario).getMenu()) + "\n");
 			OpcionDeMenu.controlError = true;
 		} else {
@@ -194,16 +194,14 @@ public class MenuDeConsola {
 					opcionComp.remove(cola.poll());
 				}
 
-				sb.append("A continuación se muestran las opciones disponibles que pueden agregarse:\n");
-				sb.append("\n" + "|----------------------Opciones Disponibles---------------------|" + "\n\n");
-				sb.append(prepararMenuImpresion(opcionComp));
-				sb.append("\n" + "|--------------------Fin Opciones Disponibles-------------------|" + "\n\n");
+				sb.append("A continuación se muestran las opciones disponibles que pueden agregarse:" + "\n\n");
+				sb.append(prepararMenuImpresion(opcionComp) + "\n");
 				OpcionDeMenu.controlError = true;
 			}
 			else if (menu.size() == baseDeDatos.get(idUsuario).getTotalDeOpcionesDisponibles()) {
 
 				// Caso A.b: El menú del usuario tiene la cantidad máxima posible de opciones
-				sb.append("Esta cuenta ya posee la máxima cantidad de opciones de menú, intente con otra cuenta.\n");
+				sb.append("Esta cuenta ya posee la máxima cantidad de opciones de menú, intente con otra cuenta.");
 			}
 			// Caso A: Se está agregando una opción - [Fin]
 		} else if (borradoAgregado == 2) {
@@ -225,7 +223,7 @@ public class MenuDeConsola {
 			} else if (menu.size() == 0) {
 
 				// Caso B.b: El menú del usuario se encuentra vacío
-				sb.append("Esta cuenta ya no posee ninguna opción de menú, no es posible borrar más, intente con otra cuenta.\n");
+				sb.append("Esta cuenta ya no posee ninguna opción de menú, no es posible borrar más, intente con otra cuenta.");
 			}
 			// Caso B: Se está eliminando una opción - [Fin]
 		}

@@ -3,76 +3,145 @@ package control.Cuenta.Administrador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+
+import control.Errores.ErrorAplicacion;
+import control.Errores.ErrorOtro;
+import control.Errores.MetodosConError;
 import gestorAplicacion.Usuarios.Administrador;
 import gestorAplicacion.Usuarios.Cuenta;
 import uiMain.InicializacionAplicacion;
+import uiMain.MenuConsola.MenuDeConsola;
 import uiMain.MenuConsola.OpcionDeMenu;
+import uiMain.vista.FieldPanel;
+import uiMain.vista.PanelUsuario;
+import uiMain.vista.VentanaAplicacion;
 
 public class ControlEliminarOpcion extends OpcionDeMenu implements ActionListener {
 
+	FieldPanel formulario = null;
+
+	@Override
 	public void actionPerformed(ActionEvent e) {
-		Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
-		String menuOpcionesDisponibles = null, auxiliar;
-		int idUsuario = 0;
-		byte tipoDeCuenta = 0, opcionUsuario = 0;
 
-		if (Cuenta.getTotalCuentas() != 0) {
+		/*
+			   Propósito: Ejecutar el método registrarse() o hacer aparecer su formulario 
+		   				  haciendo los respectivos controles de error del ingreso de datos
+		 */
 
-			//Guardado de mensaje principal
-			System.out.println();
+		if (e.getSource() instanceof JMenuItem) {
+			// Caso A: Se elige la opción del menú y se requiere mostrar el formulario
 
-			//Control de ingreso tipo de usuario
-			//tipoDeCuenta = ErrorAplicacion.controlByte((byte) 1, (byte) 3, sb.toString(), "Por favor ingrese un número entero");
-			if (OpcionDeMenu.controlError) {System.out.println(); return;}
+			//Remoción de los elementos del panel
+			VentanaAplicacion.panelPrincipal.removeAll();
 
-			while (!OpcionDeMenu.controlError) {
-				//Control de ingreso de identificación de usuario
-			//	idUsuario = ErrorAplicacion.controlEntero(1, Integer.MAX_VALUE, "Por favor ingrese el número identificador del usuario", "El identificador del usuario debe ser un número entero");
-				if (OpcionDeMenu.controlError) {System.out.println(); return;}
+			//Añadiendo los nuevos elementos para la ventana de usuario
+			PanelUsuario panelresultados = new PanelUsuario();
+			panelresultados.panelCambiante.removeAll();
 
-				if (idUsuario == usuario.getId() && tipoDeCuenta == 3) {
+			panelresultados.panelCambiante.add(formulario = new FieldPanel(
+					"Parámetros usuario",
+					new String[] {"Tipo de cuenta [1: Comprador, 2: Vendedor, 3: Administrador]", "Identificador usuario"}, 
+					"Valor", 
+					new String[] {null, null, null, null, null}, 
+					new boolean[] {true, true, true, true, true}));
 
-					System.out.println("\nNo es permitido que elimines opciones de tu propia cuenta, ingresa otra identificación.\n");
-				}
-				else {
-					//Impresión de las opciones de menú del usuario
-					auxiliar = usuario.getMenuDeConsola().mostrarOpcionesDeMenu(idUsuario, tipoDeCuenta);
-					if (OpcionDeMenu.controlError) {
+			VentanaAplicacion.panelPrincipal.add(panelresultados, SwingConstants.CENTER);
 
-						System.out.println(auxiliar);
-						OpcionDeMenu.controlError = false;
+			//Añadiendo los oidores a los botones
+			formulario.boton_acep.addActionListener(this);
+			formulario.boton_borr.addActionListener(this);
+		}
+		else if (e.getSource() instanceof JButton) {
 
-						//Guardado de las opciones disponibles a agregar
-						menuOpcionesDisponibles = usuario.getMenuDeConsola().comprobarCantidadOpciones(idUsuario, tipoDeCuenta, (byte) 2);
-						if (OpcionDeMenu.controlError) {OpcionDeMenu.controlError = false; break;}
-						System.out.println(menuOpcionesDisponibles);
+			if (e.getActionCommand().equals("Aceptar")) {
+
+				// Caso B: Se ha llenado el formulario y se a presionado aceptar
+
+				Administrador usuario = (Administrador) InicializacionAplicacion.usuarioActivo;
+				int idUsuario = 0;
+				String opciones [], auxiliar, opcionUsuario;
+				byte tipoDeCuenta = 0;
+
+				try {
+					// Control de error cuando no hay cuentas
+					MetodosConError.errorSinCuentas(Cuenta.getTotalCuentas(), "No hay usuarios resgistrados aparte de tu cuenta.");
+
+					// Control de ingreso de tipo de cuenta
+					tipoDeCuenta = MetodosConError.controlNumero(formulario.getValue("Tipo de cuenta [1: Comprador, 2: Vendedor, 3: Administrador]"), 
+							(byte) 1, (byte) 3, "\"Tipo de cuenta\"", "Por favor ingrese un número entero pequeño (byte) en el campo \"Tipo de cuenta\".");
+
+					//Control de ingreso de identificación de usuario
+					idUsuario = MetodosConError.controlNumero(formulario.getValue("Identificador usuario"), 
+							(int) 1, (int) Integer.MAX_VALUE, "\"Identificador usuario\"", "Por favor ingrese un número entero en el campo \"Tipo de cuenta\".");
+
+					// Control de eliminación a la misma cuenta
+					if (idUsuario == usuario.getId() && tipoDeCuenta == 3) {
+						throw new ErrorOtro("No es permitido que elimines opciones de tu propia cuenta, ingresa otra identificación.");
 					}
-					else {
-						System.out.println("\n" + auxiliar);
-						System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
-					}
+
 				}
-			}
+				catch (ErrorAplicacion a) {
+					JOptionPane.showMessageDialog(null, a.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 
-			//Eliminación de la opción seleccionada
-			while (!OpcionDeMenu.controlError) {
+				//Impresión de las opciones de menú del usuario
+				JOptionPane.showMessageDialog(null, usuario.getMenuDeConsola().mostrarOpcionesDeMenu(idUsuario, tipoDeCuenta), 
+						"Notificación", JOptionPane.INFORMATION_MESSAGE);
 
-				System.out.print(menuOpcionesDisponibles);
+				if (controlError) {
+					controlError = false;
+					//Mostrado de las opciones disponibles a agregar
 
-				//Elección de la opción por parte del usuario
-			//	opcionUsuario = ErrorAplicacion.controlByte((byte) 1, MenuDeConsola.getsizeOpcionesComp(), "Ingrese el indice de la opción que desea eliminar", "Por favor ingrese un número entero");
-				if (OpcionDeMenu.controlError) {System.out.println(); return;}
+					auxiliar = usuario.getMenuDeConsola().comprobarCantidadOpciones(idUsuario, tipoDeCuenta, (byte) 2);
+
+					if (!auxiliar.equals("")) {
+						JOptionPane.showMessageDialog(null, auxiliar, "Notificación", JOptionPane.INFORMATION_MESSAGE);
+					}
+					if (!controlError) {return;}
+				}
+				else {return;}
+
+				controlError = false;
+				
+				// Obteniendo el índice de la opción a agregar
+				opciones = new String[MenuDeConsola.getsizeOpcionesComp()];
+				for (byte i = 1; i <= MenuDeConsola.getsizeOpcionesComp(); i++) {
+					opciones[i - 1] = Byte.toString(i);
+				}
+
+				opcionUsuario = (String) JOptionPane.showInputDialog(null, "Seleccione una opción", "Opcion a eliminar",
+						JOptionPane.QUESTION_MESSAGE, null, opciones, "Seleccione");
 
 				//Ejecución del método principal
-				System.out.println(usuario.getMenuDeConsola().eliminarOpcion(idUsuario, tipoDeCuenta, (byte) (opcionUsuario - 1)));
-				if (!OpcionDeMenu.controlError)
-					System.out.println("NOTA: se puede cancelar la operación ingresando el número '0'.\n");
+				if (opcionUsuario != null) {
+					JOptionPane.showMessageDialog(null, 
+							usuario.getMenuDeConsola().eliminarOpcion(idUsuario, tipoDeCuenta, (byte) (Byte.parseByte(opcionUsuario) - 1)), 
+							"Notificación", JOptionPane.INFORMATION_MESSAGE);
+				}
+
+				if (controlError) {
+					//Remoción de los elementos del panel
+					VentanaAplicacion.panelPrincipal.removeAll();
+
+					//Añadiendo los nuevos elementos para la ventana de usuario
+					VentanaAplicacion.panelPrincipal.add(new PanelUsuario());
+				}
+				else {return;}
+			}
+			else if (e.getActionCommand().equals("Borrar")) {
+
+				// Caso C: Se presionado borrar
+				formulario.borrarValores();
 			}
 		}
-		else {
-			System.out.println("No hay usuarios resgistrados a parte de tu cuenta.\n");
-		}
+		VentanaAplicacion.organizar();
 	}
+
 	public String toString() {
 		return "Eliminar opción";
 	}
