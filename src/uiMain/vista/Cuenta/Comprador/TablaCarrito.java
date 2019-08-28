@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
 import control.Cuenta.Comprador.ControlMostrarCarrito;
+import control.Cuenta.Comprador.ControlQuitarProductoCarrito;
 import control.tabla.tablaBotonOidorMouse;
 import gestorAplicacion.Materiales.CarritoDeCompras;
 import gestorAplicacion.Materiales.Producto;
@@ -33,9 +34,9 @@ public class TablaCarrito extends JPanel {
 		
 		JButton boton = new JButton(nombreBoton);
 		boton.setActionCommand(String.valueOf(entry.getKey()));
-		boton.addActionListener(new ControlMostrarCarrito());
+		boton.addActionListener(new ControlQuitarProductoCarrito());
 		
-		datos[contador][0]= prod.toString();
+		datos[contador][0]= prod.getNombreProducto();
 		datos[contador][1]= prod.getPrecio();
 		datos[contador][2]= cantidad;
 		datos[contador][3]= cantidad*prod.getPrecio();

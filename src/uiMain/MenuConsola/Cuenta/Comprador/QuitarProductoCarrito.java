@@ -48,7 +48,7 @@ public class QuitarProductoCarrito { // opcion 9
 //			controlError = true;
 //		}
 //	}
-//
-//	@Override
-//	public String toString() {return "Quitar producto del carrito";}
+
+	@Override
+	public String toString() {return "Quitar producto del carrito";}
 }
